@@ -31752,7 +31752,7 @@
      "entries": [
       "regions/left_ifg_pars_opercularis"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -31791,7 +31791,7 @@
       "regions/left_middle_temporal_gyrus",
       "regions/left_superior_temporal_gyrus"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -31827,7 +31827,7 @@
      "entries": [
       "regions/left_arcuate_fasciculus"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -31864,7 +31864,7 @@
       "regions/left_ifg_pars_triangularis",
       "regions/left_posterior_stg"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -31903,7 +31903,7 @@
       "regions/left_superior_temporal_gyrus_wernicke",
       "regions/left_supramarginal_gyrus_premotor"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -31942,7 +31942,7 @@
       "impairments/global_aphasia",
       "impairments/wernickes_aphasia"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -31983,7 +31983,7 @@
       "impairments/semantics",
       "predictors/lesion_volume"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32020,7 +32020,7 @@
       "impairments/form_to_articulation",
       "impairments/form_to_meaning"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32057,7 +32057,7 @@
       "regions/left_ifg_pars_opercularis",
       "regions/left_posterior_stg"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32094,7 +32094,7 @@
       "predictors/bdnf_val66met",
       "therapies/tdcs_aphasia_treatment"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32131,7 +32131,7 @@
       "predictors/auditory_temporal_processing",
       "regions/left_superior_temporal_gyrus_wernickes"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32167,7 +32167,7 @@
      "entries": [
       "therapies/phonological_component_analysis"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32203,7 +32203,7 @@
      "entries": [
       "regions/left_angular_gyrus"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32239,7 +32239,7 @@
      "entries": [
       "predictors/bdnf_val66met"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32275,7 +32275,7 @@
      "entries": [
       "predictors/lesion_volume"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32311,7 +32311,7 @@
      "entries": [
       "regions/bilateral_middle_frontal_gyrus_recovery"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32349,7 +32349,7 @@
       "therapies/treatment_of_underlying_forms",
       "therapies/typicality_semantic_feature_analysis"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32385,7 +32385,7 @@
      "entries": [
       "predictors/severity_metric"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32421,7 +32421,7 @@
      "entries": [
       "predictors/severity_metric"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32457,7 +32457,7 @@
      "entries": [
       "predictors/severity_metric"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32493,7 +32493,7 @@
      "entries": [
       "predictors/severity_metric"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32527,7 +32527,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -32563,7 +32563,7 @@
      "entries": [
       "therapies/constraint_induced_aphasia_therapy"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -32597,7 +32597,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -32631,7 +32631,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -32667,7 +32667,7 @@
      "entries": [
       "therapies/melodic_intonation_therapy"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -32701,7 +32701,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -32737,7 +32737,7 @@
      "entries": [
       "regions/left_superior_temporal_gyrus_wernicke"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -32771,7 +32771,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -32805,7 +32805,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -32831,7 +32831,7 @@
      "drafts": 0,
      "entries": [],
      "pdf": false,
-     "state": "awaiting_extraction",
+     "state": "no_pdf",
      "tag": "cited"
     },
     "key": "@Walker2011",
@@ -32864,7 +32864,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -32898,7 +32898,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -32932,7 +32932,7 @@
      "draft_rejected": 0,
      "drafts": 6,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -32966,7 +32966,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -33002,7 +33002,7 @@
      "entries": [
       "therapies/constraint_induced_aphasia_therapy"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -33038,7 +33038,7 @@
      "entries": [
       "therapies/melodic_intonation_therapy"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -33074,7 +33074,7 @@
      "entries": [
       "therapies/melodic_intonation_therapy"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -33109,7 +33109,7 @@
      "entries": [
       "reviews/constraint_induced_language_therapy__Raymer"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -33144,7 +33144,7 @@
      "entries": [
       "impairments/syntactic_processing"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -33180,7 +33180,7 @@
      "entries": [
       "predictors/stroke_severity_sss"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -33214,7 +33214,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "extracted"
     },
@@ -33250,7 +33250,7 @@
      "entries": [
       "regions/left_precentral_gyrus"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -33284,7 +33284,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "extracted"
     },
@@ -33320,7 +33320,7 @@
      "entries": [
       "therapies/tms_right_ifg__Naeser2005"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -33346,7 +33346,7 @@
      "drafts": 0,
      "entries": [],
      "pdf": false,
-     "state": "awaiting_extraction",
+     "state": "no_pdf",
      "tag": "seed"
     },
     "key": "@Hillis2007",
@@ -33381,7 +33381,7 @@
      "entries": [
       "regions/left_precentral_gyrus_insula"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -33417,7 +33417,7 @@
      "entries": [
       "predictors/initial_aphasia_severity"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -33453,7 +33453,7 @@
      "entries": [
       "regions/left_precentral_gyrus"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -33489,7 +33489,7 @@
      "entries": [
       "regions/left_temporobasal__Goldenberg1994"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -33524,7 +33524,7 @@
      "entries": [
       "reviews/subcortical_aphasia__NadeauCrosson1997"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "re-extracted-as-review"
     },
@@ -33559,7 +33559,7 @@
      "entries": [
       "reviews/basal_ganglia_aphasia__Radanovic2017"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "re-extracted-as-review"
     },
@@ -33594,7 +33594,7 @@
      "entries": [
       "reviews/thalamic_language_mechanisms__Crosson1999"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "re-extracted-as-review"
     },
@@ -33630,7 +33630,7 @@
      "entries": [
       "reviews/lsm_language_systems_review__MirmanThye2018"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -33664,7 +33664,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -33698,7 +33698,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "refused",
      "tag": "refused"
     },
@@ -33733,7 +33733,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -33769,7 +33769,7 @@
      "entries": [
       "reviews/aphasia_therapy_neuroplasticity_fmri__Shekari2022"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -33804,7 +33804,7 @@
      "entries": [
       "reviews/treatment_neuroplasticity_aphasia__Simic2023"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "re-extracted-as-review"
     },
@@ -33839,7 +33839,7 @@
      "entries": [
       "reviews/aphasia_prognosis_predictors__Watila2015"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -33874,7 +33874,7 @@
      "entries": [
       "reviews/neuroplasticity_poststroke_aphasia__Wilson2021"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -33908,7 +33908,7 @@
      "draft_rejected": 0,
      "drafts": 7,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -33942,7 +33942,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -33976,7 +33976,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34012,7 +34012,7 @@
      "entries": [
       "regions/left_precentral_gyrus"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -34053,7 +34053,7 @@
       "regions/left_superior_temporal_gyrus_wernickes",
       "regions/left_supramarginal_gyrus_premotor"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -34089,7 +34089,7 @@
      "entries": [
       "regions/left_ifg_pars_opercularis"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -34123,7 +34123,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34157,7 +34157,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34193,7 +34193,7 @@
      "entries": [
       "regions/left_frontal_white_matter_bottleneck"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -34227,7 +34227,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34261,7 +34261,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34297,7 +34297,7 @@
      "entries": [
       "regions/left_anterior_temporal_lobe"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -34331,7 +34331,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34365,7 +34365,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34399,7 +34399,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34424,7 +34424,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -34458,7 +34458,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34492,7 +34492,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34526,7 +34526,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34560,7 +34560,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34594,7 +34594,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34619,7 +34619,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -34653,7 +34653,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34687,7 +34687,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34723,7 +34723,7 @@
      "entries": [
       "predictors/severity_metric"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -34757,7 +34757,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34791,7 +34791,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34825,7 +34825,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34859,7 +34859,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34893,7 +34893,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34927,7 +34927,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34961,7 +34961,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34995,7 +34995,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35029,7 +35029,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35063,7 +35063,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35097,7 +35097,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35131,7 +35131,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35165,7 +35165,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35199,7 +35199,7 @@
      "draft_rejected": 0,
      "drafts": 5,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35233,7 +35233,7 @@
      "draft_rejected": 0,
      "drafts": 7,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35267,7 +35267,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35301,7 +35301,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35335,7 +35335,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35369,7 +35369,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35403,7 +35403,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35428,7 +35428,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -35462,7 +35462,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35496,7 +35496,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "extracted"
     },
@@ -35532,7 +35532,7 @@
      "entries": [
       "regions/left_ifg_pars_opercularis"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -35566,7 +35566,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35602,7 +35602,7 @@
      "entries": [
       "regions/left_ifg_pars_opercularis"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -35636,7 +35636,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35670,7 +35670,7 @@
      "draft_rejected": 0,
      "drafts": 6,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35704,7 +35704,7 @@
      "draft_rejected": 0,
      "drafts": 5,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35738,7 +35738,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35772,7 +35772,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35806,7 +35806,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35830,7 +35830,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -35864,7 +35864,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35898,7 +35898,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35932,7 +35932,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35966,7 +35966,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36000,7 +36000,7 @@
      "draft_rejected": 0,
      "drafts": 5,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36034,7 +36034,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36068,7 +36068,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36102,7 +36102,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36136,7 +36136,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36170,7 +36170,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36204,7 +36204,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36238,7 +36238,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36272,7 +36272,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36306,7 +36306,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36343,7 +36343,7 @@
       "predictors/lesion_volume",
       "predictors/severity_metric"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -36379,7 +36379,7 @@
      "entries": [
       "predictors/age"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -36413,7 +36413,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36447,7 +36447,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36481,7 +36481,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36515,7 +36515,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36549,7 +36549,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36583,7 +36583,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36617,7 +36617,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36651,7 +36651,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36685,7 +36685,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36719,7 +36719,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36753,7 +36753,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36787,7 +36787,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36821,7 +36821,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36855,7 +36855,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36889,7 +36889,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36923,7 +36923,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36957,7 +36957,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36991,7 +36991,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37027,7 +37027,7 @@
      "entries": [
       "predictors/lesion_volume"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -37061,7 +37061,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37095,7 +37095,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37129,7 +37129,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37163,7 +37163,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37188,7 +37188,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -37213,7 +37213,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -37238,7 +37238,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -37263,7 +37263,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -37288,7 +37288,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -37313,7 +37313,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -37625,7 +37625,7 @@
   }
  },
  "version": {
-  "commit": "a2f8210",
+  "commit": "ae5098e",
   "contentDigest": "4414e2a90bc988b7",
   "date": "2026-10-26",
   "entries": {
