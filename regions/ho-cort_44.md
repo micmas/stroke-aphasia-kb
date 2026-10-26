@@ -29,7 +29,7 @@ notes: |
   worked-example body content were removed on 2026-05-02 so the next
   promotion can land here as `f1`. The canonical worked example for the
   v2 schema lives at
-  `examples/region_ifg_opercularis_fridriksson2018.md` and is unaffected.
+  `docs/examples/region_ifg_opercularis_fridriksson2018.md` and is unaffected.
 reviewer: michele
 reviewed_on: '2026-05-02'
 ---

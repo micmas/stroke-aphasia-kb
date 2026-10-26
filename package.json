@@ -8,7 +8,7 @@
   "engines": { "node": ">=22" },
   "scripts": {
     "test": "node --test js/test/*.test.js",
-    "export": "python3 export_webapp.py --out export/stroke-aphasia-kb.json --fixtures export --indent 1",
+    "export": "python3 scripts/export_webapp.py --out export/stroke-aphasia-kb.json --fixtures export --indent 1",
     "explorer": "python3 -m http.server 8765 --directory ."
   }
 }
