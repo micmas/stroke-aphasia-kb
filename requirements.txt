@@ -1,0 +1,31 @@
+# Python dependencies of the stroke-aphasia-kb scripts.
+# Install from this repository's root:  pip install -r requirements.txt
+# The KB itself (markdown entries with YAML frontmatter) needs nothing to read.
+#
+# CALMaR's requirements.txt (github.com/micmas/calmar) is a superset of this
+# file: a calmar checkout that already has its environment can run every
+# script in its stroke-aphasia-kb/ submodule without installing anything else.
+
+# Loader, validator, query module, export_webapp.py, kb_status.py
+PyYAML>=6.0
+pandas>=2.0
+numpy>=1.24
+scipy>=1.10
+
+# PDF text extraction and highlight annotation
+# (extract.py, annotate_paper.py, auto_review.py, review_sheet.py, quote_check.py,
+#  strip_cover_pages.py, match_papers.py, batch_ocr.py)
+pymupdf>=1.23
+
+# Lesion decoding against atlases (decode_lesion.py, atlas_mapping.py)
+nibabel>=5.0
+nilearn>=0.10,<0.14     # 0.14 breaks the Neurodesk environment CALMaR runs in
+
+# LLM steps (extract.py, auto_review.py --llm-review, aphasia_kb_rag.py --llm)
+# run on a local model through Ollama over plain HTTP: no SDK, no API key.
+#   ollama serve && ollama pull gemma4:26b
+#   which model each role uses: models.yaml   check: python model_config.py
+
+# Optional
+# nimare>=0.5.0          # neurosynth_bootstrap.py (coordinate-based meta-analysis scaffolds)
+# ocrmypdf               # batch_ocr.py; needs tesseract and ghostscript (brew/apt install ocrmypdf)

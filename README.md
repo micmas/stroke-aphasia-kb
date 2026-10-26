@@ -15,7 +15,27 @@ model — and a named person is accountable for all of it. That policy is
 via Ollama; paper text and patient data never leave it
 ([`MODELS.md`](MODELS.md)).
 
-**State (October 2026):** 72 entries, 244 findings, 43 papers. 26
+## Where the knowledge base lives
+
+**This repository, <https://github.com/micmas/stroke-aphasia-kb>, is the
+knowledge base's only home.** It was moved here from the CALMaR
+repository's `aphasia-kb/` folder in October 2026 with its full git
+history; entries, scripts, governance documents and the extraction log
+are edited and committed **here**, never in a copy. Two other
+repositories consume it:
+
+| Consumer | How it gets the KB |
+|---|---|
+| [CALMaR](https://github.com/micmas/calmar) (the Neurodesk notebook pipeline) | a git submodule at `calmar/stroke-aphasia-kb/`, pinned to one commit of this repository. The pipeline's report code imports `aphasia_kb.py`, `aphasia_rules.py` and `atlas_mapping/` from that checkout. After a KB commit is pushed, CALMaR updates its pointer (`git submodule update --remote stroke-aphasia-kb` + commit). |
+| [CALMaR webapp](https://webapps.neurodesk.org/calmar/) ([neurodesk/webapps](https://github.com/neurodesk/webapps), `apps/calmar`) | a JSON export of the approved entries written by `export_webapp.py` (`apps/calmar/scripts/sync_kb.py --kb <this checkout>` runs it and records the KB commit in the webapp's manifests), plus a vendored copy of `js/kb-evidence.js`. |
+
+Submodule checkouts are read-only by convention: if you find yourself
+editing `calmar/stroke-aphasia-kb/`, commit and push from that directory
+(it *is* a clone of this repository), then bump the pointer in calmar.
+`EXPLORER.md` describes the export, the JavaScript port and the
+GitHub Pages explorer.
+
+**State (October 2026):** 72 entries, 262 findings, 55 papers cited. 26
 entries were approved by a named person; 33 were approved before the
 governance policy and are tagged `review_tier: legacy` pending
 re-review. `python kb_status.py` prints the current numbers.
@@ -31,7 +51,7 @@ re-review. `python kb_status.py` prints the current numbers.
 | choose or benchmark a local model | [`MODELS.md`](MODELS.md) and `models.yaml` |
 | see what is in the KB and what is thin | `python kb_status.py` |
 | check the canonical quotes against the PDFs | `python audit_quotes.py` |
-| set up the machine | `pip install -r ../requirements.txt`, `ollama pull gemma4:26b`, `python model_config.py` |
+| set up the machine | `pip install -r requirements.txt`, `ollama pull gemma4:26b`, `python model_config.py` |
 
 ## How a paper becomes an entry
 
@@ -52,18 +72,18 @@ regions/ impairments/ therapies/ predictors/ reviews/ ingredients/      ← what
 extraction_log.md — append-only: EXTRACTED · REJECTED · MODEL-APPROVED · APPROVED · AUDIT
 ```
 
-Minimal session, from the repository root with the venv active:
+Minimal session, from this repository's root with the venv active:
 
 ```bash
-cp ~/Downloads/1-s2.0-S00939.pdf stroke-aphasia-kb/papers/            # any name
-python stroke-aphasia-kb/intake_papers.py --execute                      # rename → strip covers → OCR
-python stroke-aphasia-kb/extract.py --pdf stroke-aphasia-kb/papers/Foo2024.pdf
-python stroke-aphasia-kb/aphasia_kb.py --check stroke-aphasia-kb/drafts/
-python stroke-aphasia-kb/auto_review.py --all --llm-review --require-pdf-match
-python stroke-aphasia-kb/review_sheet.py --all --fix-pages                # open drafts/_review/*.html
-python stroke-aphasia-kb/promote.py --list                               # what still needs you
-python stroke-aphasia-kb/promote.py --approve stroke-aphasia-kb/drafts/<...>.md --reviewer michele
-git add stroke-aphasia-kb && git commit -m "Foo2024 extraction"
+cp ~/Downloads/1-s2.0-S00939.pdf papers/            # any name
+python intake_papers.py --execute                      # rename → strip covers → OCR
+python extract.py --pdf papers/Foo2024.pdf
+python aphasia_kb.py --check drafts/
+python auto_review.py --all --llm-review --require-pdf-match
+python review_sheet.py --all --fix-pages                # open drafts/_review/*.html
+python promote.py --list                               # what still needs you
+python promote.py --approve drafts/<...>.md --reviewer michele
+git add -A && git commit -m "Foo2024 extraction"
 ```
 
 ## Layout
@@ -71,6 +91,8 @@ git add stroke-aphasia-kb && git commit -m "Foo2024 extraction"
 ```
 stroke-aphasia-kb/
 ├── README.md                  # this file
+├── EXPLORER.md                # the export, the JavaScript port and the GitHub Pages explorer
+├── requirements.txt           # Python dependencies of the scripts below
 ├── schema.md                  # YAML frontmatter spec (v2.7) — the data contract
 ├── HOWTO.md                   # procedure: one PDF → approved entry
 ├── GOVERNANCE.md              # policy: review tiers, model approval, audit, legacy
@@ -108,6 +130,16 @@ stroke-aphasia-kb/
 ├── phase.py                   # recovery-phase bands (SRRR) + inference from time_post_onset
 ├── decode_lesion.py           # MNI mask → HarvardOxford overlap + Neurosynth terms
 ├── aphasia_kb_rag.py          # decode → retrieve → deterministic cited report (+ local narrative)
+├── aphasia_rules.py           # stage-mismatch and reporting rules CALMaR's report applies
+├── lesion_mapping.py          # v2.7 lesion-mapping design block and cohort inference
+├── atlas_mapping.py  atlas_mapping/   # curated KB-region ↔ atlas-label mapping (see atlas_mapping/README.md)
+│
+│   # ---- what the other repositories consume ----
+├── export_webapp.py           # KB → export/stroke-aphasia-kb.json (+ parity fixtures) for the webapp
+├── export/                    # the JSON every JavaScript consumer reads, and kb-parity.json
+├── js/                        # kb-evidence.js, the JavaScript port of the evidence logic, and its tests
+├── explorer/                  # browser explorer over export/ (GitHub Pages)
+├── tools/migrate-from-calmar.sh   # how the KB was moved here from calmar/aphasia-kb (historical)
 │
 │   # ---- canonical content (status: approved; loaded by the KB) ----
 ├── regions/  impairments/  therapies/  predictors/  reviews/  ingredients/
@@ -174,7 +206,10 @@ tier. `schema.md` has the full specification.
 
 ## How this connects to CALMaR
 
-The notebooks call the KB at the clinical-interpretation stage:
+CALMaR consumes this repository as a git submodule (see *Where the
+knowledge base lives* above), so a `git clone --recurse-submodules` of
+calmar places a checkout of it at `calmar/stroke-aphasia-kb/`. The
+notebooks call the KB at the clinical-interpretation stage:
 `decode_lesion.py` maps the mask to atlas regions and Neurosynth terms,
 `aphasia_kb_rag.py` retrieves the matching approved findings and
 renders the cited report that appears per subject. The report carries a

@@ -15,14 +15,13 @@ This repository is the KB's home. It is consumed by three things:
 | [CALMaR webapp](https://webapps.neurodesk.org/calmar/) (neurodesk/webapps) | vendors `js/kb-evidence.js` and `export/stroke-aphasia-kb.json` at a pinned commit |
 | The explorer (this repo, GitHub Pages) | `explorer/` reads `export/stroke-aphasia-kb.json` in the browser |
 
-> **Status (October 2026): repository being assembled.** The KB content
-> (entries, scripts, governance documents, extraction log) still lives in
-> `calmar/stroke-aphasia-kb/` while a batch of entries is being written. It will
-> be moved here with its full git history by `tools/migrate-from-calmar.sh`.
-> Until then `export/` holds a snapshot export for developing the explorer
-> and testing the JavaScript port.
+The move from `calmar/aphasia-kb` happened in October 2026 (history
+preserved; `tools/migrate-from-calmar.sh` is how). This repository is
+now the only place the KB is edited; calmar pins it as a submodule and
+the webapp ships an export of it. See `README.md`, *Where the knowledge
+base lives*.
 
-## Layout (after the move)
+## Layout
 
 ```
 stroke-aphasia-kb/

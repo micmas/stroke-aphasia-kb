@@ -122,14 +122,14 @@ ollama pull qwen3.8:27b
 # 2. Sandbox extraction, one directory per model
 for p in $PAPERS; do
   APHASIA_EXTRACT_MODEL=qwen3.8:27b \
-    python stroke-aphasia-kb/extract.py --pdf stroke-aphasia-kb/papers/$p.pdf \
-      --out-dir stroke-aphasia-kb/_compare/qwen3.8-27b
+    python extract.py --pdf papers/$p.pdf \
+      --out-dir _compare/qwen3.8-27b
 done
 
 # 3. Compare each against the approved entries
 for p in $PAPERS; do
-  python stroke-aphasia-kb/compare_extraction.py --citation @$p \
-    --candidate-dir stroke-aphasia-kb/_compare/qwen3.8-27b --show-claims
+  python compare_extraction.py --citation @$p \
+    --candidate-dir _compare/qwen3.8-27b --show-claims
 done
 
 # 4. Note wall-clock and `ollama ps` PROCESSOR while step 2 runs.
@@ -254,7 +254,7 @@ Append one row per experiment. Keep failures; they are the useful part.
 
 ## 6. Housekeeping
 
-- `python stroke-aphasia-kb/model_config.py` shows which model each role
+- `python model_config.py` shows which model each role
   resolved to, which layer won (CLI → role env → `APHASIA_LOCAL_MODEL`
   → `models.yaml` → `default`), and whether it is pulled.
 - `--pick-model` on `extract.py` lists pulled models interactively for a

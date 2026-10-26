@@ -557,7 +557,7 @@ def _cli(argv=None) -> int:
         print(f"  ✓ {w} value(s) written, {s} not written · "
               f"{elapsed / 60:.0f} min so far, ~{left / 60:.0f} min left")
     print(f"\nDone: {tot_w} value(s) written, {tot_s} left for the loader to infer "
-          f"(no verified quote). Review: git diff stroke-aphasia-kb/")
+          f"(no verified quote). Review: git diff")
     return 0
 
 
