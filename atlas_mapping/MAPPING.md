@@ -1,6 +1,6 @@
 # Atlas → knowledge-base mapping (generated)
 
-Generated from `units.yaml` and `kb_regions.yaml` by `python atlas_mapping.py --write-table`;
+Generated from `units.yaml` and `kb_regions.yaml` by `python scripts/atlas_mapping.py --write-table`;
 do not edit by hand. Rules and decisions: [README.md](README.md). ⚑ = judgement call to review.
 
 ## Anatomical units

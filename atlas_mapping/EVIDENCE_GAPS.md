@@ -1,7 +1,7 @@
 # Areas that need more evidence (generated)
 
 Generated from `evidence_gaps.yaml` and the current knowledge base by
-`python atlas_mapping.py --write-table`. Counts are findings / distinct papers (all statuses).
+`python scripts/atlas_mapping.py --write-table`. Counts are findings / distinct papers (all statuses).
 Suggested papers are `[seed]` entries in `citations.md` until extracted.
 
 ## extreme capsule ventral stream

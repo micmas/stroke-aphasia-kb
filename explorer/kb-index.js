@@ -1,4 +1,4 @@
-// Indexes the exported knowledge base (export_webapp.py → stroke-aphasia-kb.json)
+// Indexes the exported knowledge base (scripts/export_webapp.py → stroke-aphasia-kb.json)
 // for exploration: lookups by entry, by paper, by (region, impairment) pair, and
 // faceted filtering of findings. Pure functions over the JSON; no DOM.
 //

@@ -33,9 +33,9 @@ Example, sub-M2030 ses-1454, manual mask: name matching reached 4 findings; the 
 | `units.yaml` | **Anatomical units**: the structures damage is measured in, each defined by named labels of one atlas, with the basis for the choice | yes |
 | `kb_regions.yaml` | **KB region names → units**, with side and basis; plus `unmapped`, the names no atlas can represent and why | yes, whenever a paper adds a region name |
 | `atlas_labels.json` | The labels each atlas actually has (as in the overlap tables), so a misspelt label is caught | only if an atlas changes |
-| `MAPPING.md` | The whole mapping as one table, generated from the YAML | no: `python atlas_mapping.py --write-table` |
+| `MAPPING.md` | The whole mapping as one table, generated from the YAML | no: `python scripts/atlas_mapping.py --write-table` |
 | `evidence_gaps.yaml` | Areas needing more evidence, with the papers to extract | yes |
-| `EVIDENCE_GAPS.md` | The gaps with current finding counts and paper status, generated | no: `python atlas_mapping.py --write-table` |
+| `EVIDENCE_GAPS.md` | The gaps with current finding counts and paper status, generated | no: `python scripts/atlas_mapping.py --write-table` |
 | `../atlas_mapping.py` | Loads, checks and applies the mapping | code |
 
 Two levels keep it maintainable. The 90 region names in the KB (84 mapped, 6 not mappable) include many synonyms (`left_superior_temporal_gyrus_wernicke` / `…_wernickes`, `left_precentral_gyrus` / `left_pre_central_gyrus`, four spellings of the arcuate). They point to 54 anatomical units, so each atlas decision is made once.
@@ -109,13 +109,13 @@ In reports, a damaged region whose findings come from two studies or fewer is ma
 `tests/test_kb_atlas_mapping.py` fails, naming the region. Then:
 
 1. Add it to `kb_regions.yaml`: map it to existing units, add a unit to `units.yaml` (with the atlas label and the basis), or list it under `unmapped` with the reason. Mark judgement calls `review: true`.
-2. Run `python atlas_mapping.py --write-table --coverage` (checks the files, regenerates `MAPPING.md`, prints the coverage).
+2. Run `python scripts/atlas_mapping.py --write-table --coverage` (checks the files, regenerates `MAPPING.md`, prints the coverage).
 3. Run the tests.
 
 ## Checking it
 
 ```
-python atlas_mapping.py --coverage        # files consistent? how much evidence is reachable?
-python kb_status.py                       # "Atlas reachability" section
+python scripts/atlas_mapping.py --coverage        # files consistent? how much evidence is reachable?
+python scripts/kb_status.py                       # "Atlas reachability" section
 pytest tests/test_kb_atlas_mapping.py
 ```

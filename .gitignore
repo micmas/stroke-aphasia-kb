@@ -22,3 +22,4 @@ site/
 # OS
 .DS_Store
 _last_backfill_response_*.txt
+.fuse_hidden*

@@ -4,7 +4,7 @@ name: explorer-pages
 # export/ and js/ beside it, so the page's relative paths are the same as in
 # a local checkout. The export is regenerated from the entries on every push
 # so the site never lags the knowledge base. Until the KB content has moved
-# into this repository (export_webapp.py absent), the committed export is used.
+# into this repository (scripts/export_webapp.py absent), the committed export is used.
 on:
   push:
     branches: [main]
@@ -32,9 +32,9 @@ jobs:
           node-version: "22"
       - name: Regenerate the export (when the KB lives here)
         run: |
-          if [ -f export_webapp.py ]; then
+          if [ -f scripts/export_webapp.py ]; then
             pip install pandas pyyaml
-            python3 export_webapp.py --out export/stroke-aphasia-kb.json --fixtures export --indent 1
+            python3 scripts/export_webapp.py --out export/stroke-aphasia-kb.json --fixtures export --indent 1
           else
             echo "export_webapp.py not present yet; using the committed export"
           fi
