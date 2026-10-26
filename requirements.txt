@@ -24,7 +24,7 @@ nilearn>=0.10,<0.14     # 0.14 breaks the Neurodesk environment CALMaR runs in
 # LLM steps (extract.py, auto_review.py --llm-review, aphasia_kb_rag.py --llm)
 # run on a local model through Ollama over plain HTTP: no SDK, no API key.
 #   ollama serve && ollama pull gemma4:26b
-#   which model each role uses: models.yaml   check: python model_config.py
+#   which model each role uses: models.yaml   check: python scripts/model_config.py
 
 # Optional
 # nimare>=0.5.0          # neurosynth_bootstrap.py (coordinate-based meta-analysis scaffolds)

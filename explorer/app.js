@@ -572,7 +572,7 @@ function coverage(index, route) {
   const sc = index.screening;
   if (!sc.present) {
     return frag(h('div', { class: 'page-head' }, h('h1', { text: 'Coverage' })),
-      h('p', { class: 'notice', text: 'This export carries no screening register. Run `python screen.py backfill --execute` (and searches), regenerate the export, and this view shows the PRISMA flow and what each evidence gap still needs.' }));
+      h('p', { class: 'notice', text: 'This export carries no screening register. Run `python scripts/screen.py backfill --execute` (and searches), regenerate the export, and this view shows the PRISMA flow and what each evidence gap still needs.' }));
   }
   const filters = route.filters;
   const query = route.params.get('q') || '';
@@ -655,11 +655,11 @@ function coverage(index, route) {
       h('td', {}, h('a', { class: 'chip', href: coverageHref({ search: x.id }), text: x.id })), h('td', { text: x.database }), h('td', { text: x.date || '' }),
       h('td', {}, h('code', { class: 'query', text: x.query || '' }), x.filters ? h('div', { class: 'small muted', text: Object.entries(x.filters).map(([k, v]) => `${k}: ${v}`).join(' · ') }) : null, x.file ? h('div', { class: 'small muted', text: `imported from ${x.file}` }) : null),
       h('td', { class: 'small' }, (x.for || []).map((g, i) => [i ? ', ' : '', h('a', { href: coverageHref({ gap: g }), text: g.replace(/_/g, ' ') })])),
-      h('td', { class: 'num', text: String(x.hits ?? '') }), h('td', { class: 'num', text: String(x.retrieved ?? '') }), h('td', { text: x.run_by || '' }))))) : h('p', { class: 'muted', text: 'No database search has been recorded yet; every candidate came from other sources. `python screen.py search` records one.' });
+      h('td', { class: 'num', text: String(x.hits ?? '') }), h('td', { class: 'num', text: String(x.retrieved ?? '') }), h('td', { text: x.run_by || '' }))))) : h('p', { class: 'muted', text: 'No database search has been recorded yet; every candidate came from other sources. `python scripts/screen.py search` records one.' });
 
   return frag(
     h('div', { class: 'page-head' }, h('h1', { text: 'Coverage' }), h('span', { class: 'muted small', text: `${sc.candidates.length} candidates · ${searches.length} searches · ${inc.total} included · ${inc.kb?.in_kb ?? 0} in the knowledge base` })),
-    h('p', {}, 'How the literature was searched and screened, and where every candidate paper stands: identified, screened, excluded (and why), included, extracted, approved into the knowledge base or rejected. The register is kept by ', h('code', { text: 'screen.py' }), ' under the protocol in SCREENING.md; decisions are made by a named person, and papers that entered the bibliography before the register existed are shown as "other sources" with legacy decisions.'),
+    h('p', {}, 'How the literature was searched and screened, and where every candidate paper stands: identified, screened, excluded (and why), included, extracted, approved into the knowledge base or rejected. The register is kept by ', h('code', { text: 'scripts/screen.py' }), ' under the protocol in SCREENING.md; decisions are made by a named person, and papers that entered the bibliography before the register existed are shown as "other sources" with legacy decisions.'),
     h('div', { class: 'tiles' },
       h('div', { class: 'tile' }, h('div', { class: 'value', text: String(sc.candidates.length) }), h('div', { class: 'label', text: 'candidate papers' }), h('div', { class: 'detail', text: `${p?.identification.databases.records ?? 0} database records · ${p?.identification.other.records ?? 0} from other sources` })),
       h('div', { class: 'tile' }, h('div', { class: 'value', text: String(decided) }), h('div', { class: 'label', text: 'screened' }), h('div', { class: 'detail', text: `${awaiting} awaiting a decision` })),
@@ -760,7 +760,7 @@ async function load(url) {
   } catch (err) {
     main.replaceChildren(h('div', { class: 'error' }, h('p', {}, h('b', { text: 'The knowledge-base export could not be loaded.' })),
       h('p', { text: `${url}: ${err.message}` }),
-      h('p', { class: 'small', text: 'Run "python export_webapp.py --out export/stroke-aphasia-kb.json" in the repository, serve the repository root (npm run explorer), or open a local export with the control in the header.' })));
+      h('p', { class: 'small', text: 'Run "python scripts/export_webapp.py --out export/stroke-aphasia-kb.json" in the repository, serve the repository root (npm run explorer), or open a local export with the control in the header.' })));
   }
 }
 
