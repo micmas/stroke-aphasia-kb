@@ -159,7 +159,15 @@ echo "$cfiles" | sed 's/^/    /' | grep . || echo "    (none)"
 # shellcheck disable=SC2086
 apply_rename $cfiles
 if [ "$EXECUTE" = 1 ]; then
-  git -C "$CALMAR" add -A
+  # Stage only tracked changes, the submodule and .gitmodules — never the
+  # git-ignored scratch (papers, _compare, extraction responses) that git rm
+  # leaves behind under aphasia-kb/ and that the .gitignore rename un-ignores.
+  git -C "$CALMAR" add -u
+  git -C "$CALMAR" add .gitmodules stroke-aphasia-kb
+  if [ -d "$CALMAR/aphasia-kb" ]; then
+    echo "  NOTE: $CALMAR/aphasia-kb still holds git-ignored local files (review sheets, _compare, scratch)."
+    echo "        Move what you want to keep into stroke-aphasia-kb/ and delete the rest; it is not committed."
+  fi
   git -C "$CALMAR" commit -q -m "Knowledge base moved to micmas/stroke-aphasia-kb; consumed as a submodule" \
     -m "aphasia-kb/ → submodule stroke-aphasia-kb/ (its history is in that repository). Path references renamed."
 fi
