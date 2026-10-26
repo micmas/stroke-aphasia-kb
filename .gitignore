@@ -2,7 +2,7 @@
 node_modules/
 
 # KB workflow material that must stay local (copyright, size, or regenerated).
-# Mirrors calmar/.gitignore for aphasia-kb/.
+# Mirrors calmar/.gitignore for stroke-aphasia-kb/.
 papers/
 _compare/
 _neurosynth_cache/

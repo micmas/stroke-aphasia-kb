@@ -7,7 +7,7 @@ the v2 controlled vocabularies and required fields documented in `schema.md`.
 Usage from the LINDA notebook:
 
     from aphasia_kb import KnowledgeBase
-    kb = KnowledgeBase("aphasia-kb")             # default: only approved entries
+    kb = KnowledgeBase("stroke-aphasia-kb")             # default: only approved entries
 
     kb.regions / kb.impairments / kb.therapies   # DataFrames
     kb.findings                                  # long-format findings table
@@ -16,7 +16,7 @@ Usage from the LINDA notebook:
     kb.interpret_overlap(overlap_df, atlas="HarvardOxford")
 
     # Include drafts when reviewing (DOES NOT affect interpret_overlap by default):
-    kb_with_drafts = KnowledgeBase("aphasia-kb", include=["approved", "draft", "in_review"])
+    kb_with_drafts = KnowledgeBase("stroke-aphasia-kb", include=["approved", "draft", "in_review"])
 
 CLI:
 
@@ -1730,7 +1730,7 @@ class KnowledgeBase:
         # "TranscorticalMotor", "Broca's aphasia", ...), then map the canonical id.
         try:
             from aphasia_rules import canonical_aphasia_type
-        except ImportError:  # imported without aphasia-kb/ on sys.path
+        except ImportError:  # imported without stroke-aphasia-kb/ on sys.path
             from .aphasia_rules import canonical_aphasia_type  # type: ignore
         canonical = canonical_aphasia_type(wab_type)
         if canonical in _WAB_CANONICAL_IMPAIRMENTS:
@@ -1770,7 +1770,7 @@ def _cli(argv=None):
     import argparse
     p = argparse.ArgumentParser(description="Inspect / validate the aphasia KB")
     p.add_argument("--root", default=Path(__file__).parent,
-                   help="Path to the aphasia-kb folder")
+                   help="Path to the stroke-aphasia-kb folder")
     p.add_argument("--check", metavar="DIR",
                    help="Validate v2 entries in DIR (e.g. drafts/) and exit.")
     p.add_argument("--include", nargs="+",

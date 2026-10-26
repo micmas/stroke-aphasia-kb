@@ -16,21 +16,21 @@ which act when run (each has its own preview flag, listed below).
 ## The everyday sequence
 
 ```
-# 1. add papers: drop PDFs into aphasia-kb/papers/ (= OneDrive calmar-papers), any name
-python aphasia-kb/intake_papers.py                                      # preview
-python aphasia-kb/intake_papers.py --execute --allow-probable --extract # register, rename, clean, OCR, extract
+# 1. add papers: drop PDFs into stroke-aphasia-kb/papers/ (= OneDrive calmar-papers), any name
+python stroke-aphasia-kb/intake_papers.py                                      # preview
+python stroke-aphasia-kb/intake_papers.py --execute --allow-probable --extract # register, rename, clean, OCR, extract
 
 # 2. review
-python aphasia-kb/normalize_drafts.py --execute                         # mechanical fixes to drafts
-python aphasia-kb/auto_review.py --all --llm-review --require-pdf-match # model clears Tier A
-python aphasia-kb/review_sheet.py --all --fix-pages --fill-phase        # sheets in drafts/_review/
-python aphasia-kb/promote.py --list                                     # what is left for you
-python aphasia-kb/promote.py --approve aphasia-kb/drafts/<bucket>/<file>.md --reviewer human:michele
-python aphasia-kb/promote.py --reject  aphasia-kb/drafts/<bucket>/<file>.md --reviewer human:michele --reason "..."
+python stroke-aphasia-kb/normalize_drafts.py --execute                         # mechanical fixes to drafts
+python stroke-aphasia-kb/auto_review.py --all --llm-review --require-pdf-match # model clears Tier A
+python stroke-aphasia-kb/review_sheet.py --all --fix-pages --fill-phase        # sheets in drafts/_review/
+python stroke-aphasia-kb/promote.py --list                                     # what is left for you
+python stroke-aphasia-kb/promote.py --approve stroke-aphasia-kb/drafts/<bucket>/<file>.md --reviewer human:michele
+python stroke-aphasia-kb/promote.py --reject  stroke-aphasia-kb/drafts/<bucket>/<file>.md --reviewer human:michele --reason "..."
 
 # 3. check and publish
-python aphasia-kb/kb_status.py
-git add aphasia-kb && git commit -m "..." && git pull --rebase --autostash && git push
+python stroke-aphasia-kb/kb_status.py
+git add stroke-aphasia-kb && git commit -m "..." && git pull --rebase --autostash && git push
 ```
 
 ---
@@ -52,7 +52,7 @@ re-running is safe and resumes an interrupted batch.
 | `--from DIR` | First copy PDFs out of `DIR` (e.g. `~/Downloads`) whose DOI matches a cited paper that has no PDF yet. Nothing is moved; other files are ignored. |
 | `--no-register` | Skip step 1: do not create `citations.md` entries for unknown PDFs. |
 | `--no-ocr` | Skip the OCR step. |
-| `--papers-dir DIR` | Use another papers folder (default `aphasia-kb/papers`). |
+| `--papers-dir DIR` | Use another papers folder (default `stroke-aphasia-kb/papers`). |
 
 The steps also run on their own:
 
@@ -134,7 +134,7 @@ retries once with a larger budget if a genuine output overflows.
 | `--batch` | Every PDF in `papers/` with no findings yet. Skips `[refused]` papers, PDFs over 60 pages, and PDFs with no `citations.md` entry. |
 | `--citation @Key` | Force the key (single `--pdf` only; normally inferred from the filename). |
 | `--out-dir DIR` | Sandbox: write drafts under `DIR/drafts/`, no annotated PDF, no log line. For benchmarks and second opinions. |
-| `--dry-run` | Build the prompt, don't call the model; saves it to `aphasia-kb/_extraction_dry_run.txt`. |
+| `--dry-run` | Build the prompt, don't call the model; saves it to `stroke-aphasia-kb/_extraction_dry_run.txt`. |
 | `--model TAG` | Ollama model for this run (default from `models.yaml`). |
 | `--pick-model` | Choose interactively from the pulled models. |
 | `--max-tokens N` | Output budget (default from `models.yaml`, 16000). |
@@ -315,7 +315,7 @@ and the 20 % audit in GOVERNANCE.md.
 
 | Option | Meaning |
 |---|---|
-| `--check DIR` | Validate the entries in DIR (`aphasia-kb/drafts/`, `aphasia-kb/regions`, …). |
+| `--check DIR` | Validate the entries in DIR (`stroke-aphasia-kb/drafts/`, `stroke-aphasia-kb/regions`, …). |
 | `--issues` | Print every validation issue in the KB. |
 | `--drafts` | List pending drafts. |
 | `--lookup NAME` | Find a region by id, name or alias. |
@@ -332,7 +332,7 @@ and the 20 % audit in GOVERNANCE.md.
 ### Tests
 
 ```
-python aphasia-kb/test_review_guardrails.py      # the review policy, against a mock Ollama
+python stroke-aphasia-kb/test_review_guardrails.py      # the review policy, against a mock Ollama
 python -m pytest tests/test_kb_atlas_mapping.py  # the atlas mapping
 ```
 
@@ -381,7 +381,7 @@ Renames the PDF, annotated PDF, drafts and sidecars; rewrites `id:` and
 ## 7. Models
 
 ```
-python aphasia-kb/model_config.py      # which model each role uses, and what is pulled
+python stroke-aphasia-kb/model_config.py      # which model each role uses, and what is pulled
 ollama ps                              # what is loaded, and whether it is 100 % on the GPU
 ```
 
@@ -389,16 +389,16 @@ Roles live in `models.yaml` (`extract`, `review`, `rag`). One-off
 overrides without editing it:
 
 ```
-APHASIA_EXTRACT_MODEL=qwen3.8:27b python aphasia-kb/extract.py --pdf …
-APHASIA_REVIEW_MODEL=… python aphasia-kb/auto_review.py …
-APHASIA_RAG_MODEL=…     python aphasia-kb/aphasia_kb_rag.py …
+APHASIA_EXTRACT_MODEL=qwen3.8:27b python stroke-aphasia-kb/extract.py --pdf …
+APHASIA_REVIEW_MODEL=… python stroke-aphasia-kb/auto_review.py …
+APHASIA_RAG_MODEL=…     python stroke-aphasia-kb/aphasia_kb_rag.py …
 ```
 
 Benchmark a candidate before adopting it (`MODELS.md` §3):
 
 ```
-python aphasia-kb/extract.py --pdf aphasia-kb/papers/Alyahya2018NounVerb.pdf --model <tag> --out-dir aphasia-kb/_compare/<tag>
-python aphasia-kb/compare_extraction.py --citation @Alyahya2018NounVerb --candidate-dir aphasia-kb/_compare/<tag> --show-claims
+python stroke-aphasia-kb/extract.py --pdf stroke-aphasia-kb/papers/Alyahya2018NounVerb.pdf --model <tag> --out-dir stroke-aphasia-kb/_compare/<tag>
+python stroke-aphasia-kb/compare_extraction.py --citation @Alyahya2018NounVerb --candidate-dir stroke-aphasia-kb/_compare/<tag> --show-claims
 ```
 
 ---
@@ -407,20 +407,20 @@ python aphasia-kb/compare_extraction.py --citation @Alyahya2018NounVerb --candid
 
 ```
 git pull --rebase --autostash          # before starting work
-git add aphasia-kb                     # papers/, _compare/, drafts/_review/ are ignored
+git add stroke-aphasia-kb                     # papers/, _compare/, drafts/_review/ are ignored
 git commit -m "..."
 git push
 git status --short                     # should list nothing after the push
-ls -la aphasia-kb/papers               # should end in "-> …/OneDrive…/calmar-papers"
+ls -la stroke-aphasia-kb/papers               # should end in "-> …/OneDrive…/calmar-papers"
 ```
 
-`aphasia-kb/papers` is a link to `calmar-papers` in OneDrive on every
+`stroke-aphasia-kb/papers` is a link to `calmar-papers` in OneDrive on every
 computer (set "Always Keep on This Device" on that folder). To set it
 up on a new clone, from the repository root:
 
 ```
-rm -rf aphasia-kb/papers
-ln -s "$HOME/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers" aphasia-kb/papers
+rm -rf stroke-aphasia-kb/papers
+ln -s "$HOME/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers" stroke-aphasia-kb/papers
 ```
 
 Extract on one computer only; two computers annotating the same paper

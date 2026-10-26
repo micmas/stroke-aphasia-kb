@@ -9,7 +9,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/age__Laska2001.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/age__Laska2001.md:
       predictor entries require schema_version 2.3 or higher'
   - name: no_low_confidence_findings
     passed: true

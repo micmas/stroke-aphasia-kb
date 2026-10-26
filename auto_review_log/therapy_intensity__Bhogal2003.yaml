@@ -9,24 +9,24 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[0] (id=f1): region_definition.kind=None invalid'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[0] (id=f1): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[1] (id=f2): region_definition.kind=None invalid'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[1] (id=f2): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[2] (id=f3): region_definition.kind=None invalid'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[2] (id=f3): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[3] (id=f4): region_definition.kind=None invalid'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[3] (id=f4): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
   - name: no_low_confidence_findings
@@ -71,16 +71,16 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[0] (id=f1): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[1] (id=f2): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[2] (id=f3): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[3] (id=f4): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
   - name: no_low_confidence_findings
@@ -125,16 +125,16 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[0] (id=f1): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[1] (id=f2): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[2] (id=f3): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[3] (id=f4): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
   - name: no_low_confidence_findings
@@ -179,16 +179,16 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[0] (id=f1): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[1] (id=f2): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[2] (id=f3): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[3] (id=f4): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
   - name: no_low_confidence_findings
@@ -233,16 +233,16 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[0] (id=f1): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[1] (id=f2): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[2] (id=f3): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md:
       finding[3] (id=f4): predictor triplet partially set (have [''instrument''],
       missing [''score_band'', ''interpretation'']); fill all three or none'
   - name: no_low_confidence_findings

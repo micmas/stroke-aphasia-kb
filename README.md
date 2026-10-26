@@ -55,21 +55,21 @@ extraction_log.md — append-only: EXTRACTED · REJECTED · MODEL-APPROVED · AP
 Minimal session, from the repository root with the venv active:
 
 ```bash
-cp ~/Downloads/1-s2.0-S00939.pdf aphasia-kb/papers/            # any name
-python aphasia-kb/intake_papers.py --execute                      # rename → strip covers → OCR
-python aphasia-kb/extract.py --pdf aphasia-kb/papers/Foo2024.pdf
-python aphasia-kb/aphasia_kb.py --check aphasia-kb/drafts/
-python aphasia-kb/auto_review.py --all --llm-review --require-pdf-match
-python aphasia-kb/review_sheet.py --all --fix-pages                # open drafts/_review/*.html
-python aphasia-kb/promote.py --list                               # what still needs you
-python aphasia-kb/promote.py --approve aphasia-kb/drafts/<...>.md --reviewer michele
-git add aphasia-kb && git commit -m "Foo2024 extraction"
+cp ~/Downloads/1-s2.0-S00939.pdf stroke-aphasia-kb/papers/            # any name
+python stroke-aphasia-kb/intake_papers.py --execute                      # rename → strip covers → OCR
+python stroke-aphasia-kb/extract.py --pdf stroke-aphasia-kb/papers/Foo2024.pdf
+python stroke-aphasia-kb/aphasia_kb.py --check stroke-aphasia-kb/drafts/
+python stroke-aphasia-kb/auto_review.py --all --llm-review --require-pdf-match
+python stroke-aphasia-kb/review_sheet.py --all --fix-pages                # open drafts/_review/*.html
+python stroke-aphasia-kb/promote.py --list                               # what still needs you
+python stroke-aphasia-kb/promote.py --approve stroke-aphasia-kb/drafts/<...>.md --reviewer michele
+git add stroke-aphasia-kb && git commit -m "Foo2024 extraction"
 ```
 
 ## Layout
 
 ```
-aphasia-kb/
+stroke-aphasia-kb/
 ├── README.md                  # this file
 ├── schema.md                  # YAML frontmatter spec (v2.7) — the data contract
 ├── HOWTO.md                   # procedure: one PDF → approved entry

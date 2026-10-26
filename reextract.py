@@ -155,8 +155,8 @@ def _cli(argv=None) -> int:
                                str(ROOT / "_compare" / "rerun")], cwd=str(ROOT.parent))
         print("\nCompare each sandbox paper with what is approved:")
         for pdf in to_sandbox:
-            print(f"  python aphasia-kb/compare_extraction.py --citation @{pdf.stem} "
-                  f"--candidate-dir aphasia-kb/_compare/rerun")
+            print(f"  python stroke-aphasia-kb/compare_extraction.py --citation @{pdf.stem} "
+                  f"--candidate-dir stroke-aphasia-kb/_compare/rerun")
     return rc
 
 

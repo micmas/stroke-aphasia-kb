@@ -9,13 +9,13 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
       finding[0] (id=f1): unknown method=''VBM''; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
       ''fMRI_FC'', ''fMRI_activation'', ''lesion_network_mapping'', ''meta-analysis'',
       ''narrative_review'', ''rs_fMRI'', ''tDCS'', ''tractography'']'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
       finding[1] (id=f2): unknown method=''VBM''; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
@@ -57,13 +57,13 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
       finding[0] (id=f1): unknown method=''VBM''; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
       ''fMRI_FC'', ''fMRI_activation'', ''lesion_network_mapping'', ''meta-analysis'',
       ''narrative_review'', ''rs_fMRI'', ''tDCS'', ''tractography'']'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
       finding[1] (id=f2): unknown method=''VBM''; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
@@ -105,13 +105,13 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
       finding[0] (id=f1): unknown method=''VBM''; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
       ''fMRI_FC'', ''fMRI_activation'', ''lesion_network_mapping'', ''meta-analysis'',
       ''narrative_review'', ''rs_fMRI'', ''tDCS'', ''tractography'']'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
       finding[1] (id=f2): unknown method=''VBM''; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
@@ -153,13 +153,13 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
       finding[0] (id=f1): unknown method=''VBM''; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
       ''fMRI_FC'', ''fMRI_activation'', ''lesion_network_mapping'', ''meta-analysis'',
       ''narrative_review'', ''rs_fMRI'', ''tDCS'', ''tractography'']'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md:
       finding[1] (id=f2): unknown method=''VBM''; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',

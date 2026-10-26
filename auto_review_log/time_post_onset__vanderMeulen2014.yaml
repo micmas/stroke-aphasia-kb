@@ -9,7 +9,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/time_post_onset__vanderMeulen2014.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__vanderMeulen2014.md:
       predictor_type=''clinical'' requires assessment (non-empty list of test names)'
   - name: no_low_confidence_findings
     passed: true
@@ -44,7 +44,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/time_post_onset__vanderMeulen2014.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__vanderMeulen2014.md:
       predictor_type=''clinical'' requires assessment (non-empty list of test names)'
   - name: no_low_confidence_findings
     passed: true
@@ -79,7 +79,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/time_post_onset__vanderMeulen2014.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__vanderMeulen2014.md:
       predictor_type=''clinical'' requires assessment (non-empty list of test names)'
   - name: no_low_confidence_findings
     passed: true
@@ -114,7 +114,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/time_post_onset__vanderMeulen2014.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__vanderMeulen2014.md:
       predictor_type=''clinical'' requires assessment (non-empty list of test names)'
   - name: no_low_confidence_findings
     passed: true
@@ -149,7 +149,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/time_post_onset__vanderMeulen2014.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__vanderMeulen2014.md:
       predictor_type=''clinical'' requires assessment (non-empty list of test names)'
   - name: no_low_confidence_findings
     passed: true

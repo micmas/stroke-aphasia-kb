@@ -9,7 +9,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/left_superior_temporal_gyrus_wernickes__Hillis2001.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/left_superior_temporal_gyrus_wernickes__Hillis2001.md:
       finding[0] (id=f1): unknown method[''PWI'']; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
@@ -51,7 +51,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/left_superior_temporal_gyrus_wernickes__Hillis2001.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/left_superior_temporal_gyrus_wernickes__Hillis2001.md:
       finding[0] (id=f1): unknown method[''PWI'']; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
@@ -93,7 +93,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/left_superior_temporal_gyrus_wernickes__Hillis2001.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/left_superior_temporal_gyrus_wernickes__Hillis2001.md:
       finding[0] (id=f1): unknown method[''PWI'']; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
@@ -135,7 +135,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/left_superior_temporal_gyrus_wernickes__Hillis2001.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/left_superior_temporal_gyrus_wernickes__Hillis2001.md:
       finding[0] (id=f1): unknown method[''PWI'']; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
