@@ -393,6 +393,39 @@ on a fresh clone where only annotated PDFs traveled with git).
 
 After both passes, every draft has a verdict in its sidecar YAML.
 
+### The review workbench
+
+For the reading itself, open the draft and the paper together:
+
+```bash
+python scripts/review_app.py --draft drafts/<bucket>/<entry>__<Key>.md
+```
+
+The page shows every finding on the left and every page of the PDF on
+the right, with each source passage highlighted in its `supports`
+colour and graded against the text layer. Fix a quote, its page or its
+tag in place; remove a passage that does not say what the finding
+claims; change the claim, direction, relationship, strength or
+confidence when the paper says otherwise; add flags or the authors'
+limitations. To add evidence, drag across the words in the paper: the
+exact text becomes a quote you attach to a finding. When you read
+something no finding covers — a result the extractor skipped, a
+predictor, a limitation — select it and **mark it for re-extraction**
+with a note. Save (⌘/Ctrl-S) writes the draft (previous version kept in
+`drafts/_backup/`), stamps your name on each changed finding, logs
+`REVIEW-EDITED` and regenerates the annotated PDF.
+
+Then turn the marks into findings:
+
+```bash
+python scripts/refocus.py drafts/<bucket>/<entry>__<Key>.md --execute
+```
+
+The local model writes findings for exactly the marked passages, which
+land in the same draft (or a new one for a new entry) flagged
+`refocus: m<n>`, and you review them in the same page. A draft with a
+pending mark cannot be promoted; resolve or remove the mark first.
+
 ## 5. Generate a worksheet, fill in verdicts, apply
 
 ```bash

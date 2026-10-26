@@ -964,7 +964,7 @@ def run_annotator(pdf_path: Path, drafts: list[Path], kb_root: Path) -> bool:
     """Run annotate_paper.py on all drafts for this PDF."""
     if not drafts:
         return False
-    cmd = ["python3", str(kb_root / "annotate_paper.py"),
+    cmd = [sys.executable, str(HERE / "annotate_paper.py"),
            "--pdf", str(pdf_path),
            "--draft"] + [str(d) for d in drafts]
     print(f"  → annotator: {' '.join(cmd[:3])} ... ({len(drafts)} draft(s))")

@@ -313,6 +313,61 @@ its grade, the page it was found on, and a highlighted crop.
 | `--fill-phase` | Write the inferred `sample.phase` into drafts that lack it. |
 | `--out-dir DIR`, `--papers-dir DIR` | Other locations. |
 
+### `review_app.py` — the review workbench: draft and paper side by side
+
+```bash
+python scripts/review_app.py                                            # index of every draft, pick one
+python scripts/review_app.py --draft drafts/regions/<entry>__<Key>.md   # open one
+python scripts/review_app.py --citation <Key>                           # the paper's first draft (index lists the rest)
+```
+
+A local page (127.0.0.1 only, no dependency beyond PyMuPDF): each
+finding's claim, direction, relationship, strength, confidence, flags
+and author limitations on the left, editable, with every source passage
+graded (`quote_check.py`), located on its page and colour-coded; on the
+right the whole paper, every page, with the passages highlighted as in
+the annotated PDF. Drag across words to quote the PDF's own text layer,
+then attach the quote to a finding (choosing `supports`) or **mark it
+for re-extraction** with a note. Save validates against `schema.md`
+(an edit may not add a validation issue; existing ones are listed),
+keeps the previous version in `drafts/_backup/` (git-ignored), stamps
+`edits: [{by, date, fields}]` on each changed finding, appends
+`REVIEW-EDITED` to the log and regenerates `papers/<Key>_annotated.pdf`.
+Only drafts are editable.
+
+| Option | Meaning |
+|---|---|
+| `--draft FILE` | Open this draft. |
+| `--citation KEY` | Open the first draft citing the paper. |
+| `--port N` | Default 8766. |
+| `--no-open` | Do not open the browser. |
+
+### `refocus.py` — findings for the passages a reviewer marked
+
+```bash
+python scripts/refocus.py drafts/regions/<entry>__<Key>.md             # dry run: the marks, prompt size
+python scripts/refocus.py drafts/regions/<entry>__<Key>.md --execute   # call the model, merge
+python scripts/refocus.py --citation <Key> --execute                   # every draft of the paper with pending marks
+```
+
+Takes the pending `reviewer_marks` of a draft, gives the local model
+(role `extract`) the paper, the findings already drafted from it and the
+marks, and asks for findings whose passages include each marked quote.
+Returned findings are appended to the existing draft of their entry
+(next free id) or saved as new drafts, flagged `refocus: m<n>`; each
+mark becomes `status: done` with the finding ids it produced, or
+`unresolved` with the model's reason. Then the annotated PDF is
+regenerated and `REFOCUSED` logged. The new findings are drafts: review
+them in the workbench, promote as usual. `promote.py` refuses a draft
+that still has a pending mark.
+
+| Option | Meaning |
+|---|---|
+| `--citation KEY` | All drafts of the paper. |
+| `--model TAG` | Override `models.yaml` role `extract`. |
+| `--timeout S` | Model call timeout (default 3600). |
+| `--execute` | Call the model (default: dry run, prompt written to `_refocus_dry_run.txt`). |
+
 ### `promote.py` — the only way into the canonical KB
 
 | Option | Meaning |
@@ -324,6 +379,10 @@ its grade, the page it was found on, and a highlighted crop.
 | `--reject FILE` | Mark `status: rejected` in place, log REJECTED. |
 | `--reviewer human:<name>` | Required for approve/reject. `model:<tag>` only for Tier A and only if it didn't extract the draft. |
 | `--reason "..."` | Why rejected (goes to the log). |
+
+Approval is refused while the draft has a pending reviewer mark
+(`review_app.py`); resolved marks are dropped from the canonical copy,
+per-finding `edits` records are kept.
 | `--tier A\|B` | Tier from `auto_review.py`; required (as A) for a model reviewer. |
 | `--extractor agent:<tag>` | Who extracted the draft (default: its `created_by`). |
 
@@ -384,6 +443,7 @@ and the 20 % audit in GOVERNANCE.md.
 ```
 python tests/test_review_guardrails.py      # the review policy, against a mock Ollama
 python tests/test_screening.py              # the screening register: parsers, de-duplication, stages, PRISMA counts
+python tests/test_review_app.py             # the review workbench and refocus merge, against a generated PDF (needs PyMuPDF)
 python -m pytest tests/test_kb_atlas_mapping.py  # the atlas mapping
 ```
 

@@ -64,6 +64,7 @@ papers/               source PDFs — local only, never committed (copyright)
 | If you want to… | Read |
 |---|---|
 | add a paper and get it to an approved entry | [`CONTRIBUTING.md`](CONTRIBUTING.md), then [`docs/HOWTO.md`](docs/HOWTO.md) |
+| review a draft against its paper and fix or extend it | `python scripts/review_app.py` (the workbench), then `scripts/refocus.py` for passages you marked — [`docs/HOWTO.md`](docs/HOWTO.md) §4 |
 | look up a command and its options | [`docs/COMMANDS.md`](docs/COMMANDS.md) |
 | understand the entry format | [`docs/schema.md`](docs/schema.md) |
 | know who may approve what | [`docs/GOVERNANCE.md`](docs/GOVERNANCE.md) |
@@ -83,6 +84,7 @@ pip install -r requirements.txt
 python scripts/kb_status.py                 # what is in the KB
 python scripts/aphasia_kb.py --check drafts/   # validate entries
 python scripts/promote.py --list            # what needs a reviewer
+python scripts/review_app.py                # review a draft beside its paper, in the browser
 ```
 
 Extracting and reviewing papers needs a local model:
