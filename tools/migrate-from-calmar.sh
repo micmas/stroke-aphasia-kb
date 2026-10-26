@@ -118,7 +118,7 @@ else
 fi
 
 say "3. Rename aphasia-kb → stroke-aphasia-kb in this repository's text"
-files="$(rename_in "$KB" export)"
+files="$(rename_in "$KB" export tools)"   # tools/ keeps the old name: the script needs it
 echo "$files" | sed 's/^/  /' | grep . || echo "  (none)"
 # shellcheck disable=SC2086
 apply_rename $files
