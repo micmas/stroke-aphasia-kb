@@ -7,12 +7,14 @@
 //   #/findings?facet=value   faceted finding browser (query string = filters)
 //   #/matrix?kind=…          evidence matrices
 //   #/papers · #/paper/<Key> bibliography and one paper's findings in page order
+//   #/coverage?facet=value  the screening register: PRISMA flow, gap coverage, candidates
 //   #/entry/<id>             one region / impairment / therapy / predictor
 //   #/finding/<source>/<id>  one finding, permalinked
 // Every string from the KB is inserted as text, never as HTML.
 import {
   buildIndex, FACETS, facetCounts, matches, matrixOf, provenanceCounts,
   RELATIONSHIP_TEXT, DIRECTION_LABEL, REVIEW_LABEL,
+  SCREENING_FACETS, STAGE_TEXT, KB_STATE_TEXT, ARM_TEXT,
 } from './kb-index.js';
 
 const DEFAULT_KB = '../export/stroke-aphasia-kb.json';
@@ -201,7 +203,9 @@ function overview(index) {
       h('div', { class: 'tile' }, h('div', { class: 'value', text: pct(prov.human, findings.length) }), h('div', { class: 'label', text: 'findings approved by a named person' }),
         h('div', { class: 'detail', text: `${prov.human} of ${findings.length}` })),
       h('div', { class: 'tile' }, h('div', { class: 'value', text: `${reachable}/${regionEntries.length}` }), h('div', { class: 'label', text: 'region entries a lesion can reach' }),
-        h('div', { class: 'detail', text: 'through the curated atlas mapping' }))),
+        h('div', { class: 'detail', text: 'through the curated atlas mapping' })),
+      index.screening.present ? h('div', { class: 'tile' }, h('div', { class: 'value', text: String(index.screening.prisma?.included?.total ?? 0) }), h('div', { class: 'label' }, h('a', { href: '#/coverage', text: 'papers included by screening' })),
+        h('div', { class: 'detail', text: `of ${index.screening.candidates.length} candidates · ${index.screening.candidates.filter((c) => ['awaiting_ta', 'awaiting_ft', 'unsure_ta', 'unsure_ft'].includes(c.stage)).length} awaiting a decision` })) : null),
     h('h2', { text: 'Review provenance of findings' }),
     stackBar(prov),
     h('p', { class: 'small muted' }, 'Who may approve what is set by the governance policy. Legacy findings were approved before it and are tagged for re-review. ',
@@ -220,7 +224,8 @@ function overview(index) {
     h('ul', {},
       h('li', {}, h('a', { href: '#/matrix', text: 'Evidence matrix' }), ' — which region–impairment links are supported, by how many findings.'),
       h('li', {}, h('a', { href: '#/findings', text: 'Findings browser' }), ' — filter by entry type, relationship, strength, method, stage, provenance or paper; full-text search of claims and quotes.'),
-      h('li', {}, h('a', { href: '#/papers', text: 'Papers' }), ' — every cited paper and its findings in page order, to spot-check an extraction against the PDF.')));
+      h('li', {}, h('a', { href: '#/papers', text: 'Papers' }), ' — every cited paper and its findings in page order, to spot-check an extraction against the PDF.'),
+      h('li', {}, h('a', { href: '#/coverage', text: 'Coverage' }), ' — how the literature was searched and screened (PRISMA flow), what each evidence gap still needs, and where every candidate paper stands.')));
 }
 
 function browse(index, route) {
@@ -348,18 +353,20 @@ function papers(index) {
     });
     const head = (label, k, numeric = false) => h('th', { class: numeric ? 'num' : '' }, h('button', { type: 'button', 'aria-sort': by === k ? (dir === 'asc' ? 'ascending' : 'descending') : 'none', onclick: () => render(k, by === k && dir === 'desc' ? 'asc' : 'desc'), text: label }));
     table.replaceChildren(
-      h('thead', {}, h('tr', {}, head('Key', 'key'), head('First author', 'author'), head('Year', 'year', true), head('Findings', 'n', true), head('Person-approved', 'human', true), h('th', { text: 'Entries' }))),
+      h('thead', {}, h('tr', {}, head('Key', 'key'), head('First author', 'author'), head('Year', 'year', true), head('Findings', 'n', true), head('Person-approved', 'human', true), h('th', { text: 'Entries' }), index.screening.present ? h('th', { text: 'Screening' }) : null)),
       h('tbody', {}, rows.map((p) => h('tr', {},
         h('td', {}, h('a', { class: 'chip', href: paperHref(p.key), text: p.key })),
         h('td', { text: p.author }), h('td', { class: 'num', text: p.year ? String(p.year) : '—' }),
         h('td', { class: 'num', text: String(p.n) }), h('td', { class: 'num', text: String(p.human) }),
-        h('td', { class: 'small' }, p.entries.slice(0, 4).map((id, i) => [i ? ', ' : '', entryLink(index, id)]), p.entries.length > 4 ? ` +${p.entries.length - 4}` : '')))));
+        h('td', { class: 'small' }, p.entries.slice(0, 4).map((id, i) => [i ? ', ' : '', entryLink(index, id)]), p.entries.length > 4 ? ` +${p.entries.length - 4}` : ''),
+        index.screening.present ? h('td', {}, (() => { const c = index.screening.byKey.get(p.key); return c ? h('a', { href: coverageHref({ q: c.id }), title: `${c.id} · ${STAGE_TEXT[c.stage] || c.stage}` }, stageBadge(c.stage)) : h('span', { class: 'muted small', text: 'not in the register' }); })()) : null))));
   };
   render('n', 'desc');
   const cited = Object.keys(index.kb.citations || {}).length;
   return frag(
     h('div', { class: 'page-head' }, h('h1', { text: 'Papers' }), h('span', { class: 'muted small', text: `${index.papers.length} papers with findings · ${cited} bibliography entries` })),
     h('p', { class: 'small', text: 'Source PDFs are not redistributed; the bibliography carries a DOI for every key. Open a paper to read its findings in page order and check each quote against the PDF.' }),
+    index.screening.present ? h('p', { class: 'small muted' }, 'Papers that were screened but have no findings yet are listed under ', h('a', { href: '#/coverage', text: 'Coverage' }), '.') : null,
     table);
 }
 
@@ -368,14 +375,15 @@ function paper(index, key) {
   const rows = (index.byPaper.get(k) || []).slice().sort((a, b) => a.page - b.page || a.ordinal - b.ordinal);
   const text = index.kb.citations?.[k];
   const p = index.papers.find((x) => x.key === k);
-  if (!rows.length && !text) return h('p', { class: 'error', text: `No paper ${k} in this export.` });
+  if (!rows.length && !text && !index.screening.byKey.has(k)) return h('p', { class: 'error', text: `No paper ${k} in this export.` });
   const prov = provenanceCounts(rows);
   return frag(
     h('div', { class: 'page-head' }, h('h1', { text: k })),
     text ? h('p', { text }) : h('p', { class: 'muted', text: 'Not in the bibliography.' }),
     p?.doi ? h('p', { class: 'small' }, 'DOI ', h('a', { href: `https://doi.org/${p.doi}`, rel: 'noopener', target: '_blank', text: p.doi })) : null,
     h('p', { class: 'small muted', text: `${plural(rows.length, 'finding')} across ${plural(new Set(rows.map((r) => r.source_id)).size, 'entry', 'entries')} · approved by a person: ${prov.human} · model: ${prov.model} · legacy: ${prov.legacy}` }),
-    h('h2', { text: 'Findings, in page order' }),
+    screeningPanel(index, k),
+    rows.length ? h('h2', { text: 'Findings, in page order' }) : h('p', { class: 'muted', text: 'No approved finding cites this paper in this export.' }),
     rows.map((f) => findingCard(index, f)));
 }
 
@@ -442,6 +450,265 @@ function finding(index, source, id) {
 }
 
 // ---------------------------------------------------------------------------
+// Coverage: the screening register (SCREENING.md) — PRISMA 2020 flow,
+// exclusion reasons, evidence-gap coverage, searches and the candidate table.
+// Counts come from the export (export_webapp.screening, computed in Python);
+// the page only draws them and lets each box open the candidates behind it.
+// ---------------------------------------------------------------------------
+const SVG_NS = 'http://www.w3.org/2000/svg';
+function s(tag, attrs = {}, ...children) {
+  const el = document.createElementNS(SVG_NS, tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v === null || v === undefined || v === false) continue;
+    if (k === 'text') el.textContent = v;
+    else if (k === 'href') el.setAttributeNS('http://www.w3.org/1999/xlink', 'href', v), el.setAttribute('href', v);
+    else el.setAttribute(k, v === true ? '' : v);
+  }
+  for (const c of children.flat(Infinity)) if (c !== null && c !== undefined && c !== false) el.append(c instanceof Node ? c : document.createTextNode(String(c)));
+  return el;
+}
+
+const coverageHref = (params = {}) => href('/coverage', params);
+const stageBadge = (stage) => h('span', { class: `badge badge-stage badge-stage-${stage}`, title: STAGE_TEXT[stage] || stage, text: STAGE_TEXT[stage] || String(stage || '').replace(/_/g, ' ') });
+const kbBadge = (state) => h('span', { class: `badge badge-kb badge-kb-${String(state).replace(/\s+/g, '-')}`, text: KB_STATE_TEXT[state] || String(state || '').replace(/_/g, ' ') });
+
+/** The PRISMA 2020 flow as one SVG. Every box links to the candidates it counts. */
+function prismaDiagram(index) {
+  const p = index.screening.prisma;
+  if (!p) return null;
+  const idn = p.identification; const db = p.screening; const ot = p.other; const inc = p.included;
+  const W = 950; const colL = 48; const colR = 498; const main = 250; const side = 170; const gapX = 20; const boxH = 54; const rowGap = 34;
+  const rows = [];
+  let y = 24;
+  const nodes = [];
+  const lines = [];
+  const text = (x, yy, t, cls = '') => s('text', { x, y: yy, class: `pr-text ${cls}` }, t);
+  const fit = (t, w, px) => { const max = Math.max(4, Math.floor(w / px)); return String(t).length > max ? `${String(t).slice(0, max - 1)}…` : String(t); };
+  const box = ({ x, y: yy, w, title, n, sub, link, cls = '' }) => {
+    const g = s('g', { class: `pr-box ${cls}` });
+    g.append(s('rect', { x, y: yy, width: w, height: boxH, rx: 6 }));
+    g.append(text(x + 10, yy + 20, fit(title, w - 16, 5.5), 'pr-title'));
+    const line = text(x + 10, yy + 41, String(n), 'pr-n');
+    if (sub) line.append(s('tspan', { class: 'pr-sub', dx: 6 }, fit(sub, w - 24 - 9 * String(n).length, 5.4)));
+    g.append(line);
+    if (link) {
+      const a = s('a', { href: link, class: 'pr-link' });
+      a.append(s('title', { text: `${title}: ${n}${sub ? ` (${sub})` : ''} — open these candidates` }));
+      a.append(g);
+      return a;
+    }
+    return g;
+  };
+  const arrowV = (x, y1, y2) => lines.push(s('line', { x1: x, y1, x2: x, y2, class: 'pr-arrow', 'marker-end': 'url(#pr-head)' }));
+  const arrowH = (x1, x2, yy) => lines.push(s('line', { x1, y1: yy, x2, y2: yy, class: 'pr-arrow', 'marker-end': 'url(#pr-head)' }));
+  const label = (yy, t) => nodes.push(s('text', { x: 22, y: yy, class: 'pr-phase', 'text-anchor': 'middle', transform: `rotate(-90 22 ${yy})` }, t));
+  const dbStages = ['awaiting_ta', 'unsure_ta', 'excluded_ta', 'awaiting_ft', 'unsure_ft', 'not_retrieved', 'excluded_ft', 'included'];
+  const soughtStages = ['awaiting_ft', 'unsure_ft', 'not_retrieved', 'excluded_ft', 'included'];
+  const fmtReasons = (obj) => Object.entries(obj || {}).map(([k, v]) => `${index.screening.reasonLabel(k)} ${v}`).join(', ');
+
+  // Identification
+  const dbSub = Object.entries(idn.databases.byDatabase || {}).map(([k, v]) => `${k} ${v}`).join(', ') || 'no search run yet';
+  const otSub = Object.entries(idn.other.byKind || {}).map(([k, v]) => `${k.replace(/_/g, ' ')} ${v}`).join(', ');
+  const sideX = (col) => col + main + gapX;
+  // row 0
+  nodes.push(box({ x: colL, y, w: main, title: 'Records from databases', n: idn.databases.records, sub: dbSub, link: coverageHref({ arm: 'databases' }) }));
+  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Duplicates merged', n: idn.duplicatesRemoved, link: coverageHref({ stage: 'duplicate' }), cls: 'pr-side' }));
+  nodes.push(box({ x: colR, y, w: main + gapX + side, title: 'Records from other sources', n: idn.other.records, sub: otSub, link: coverageHref({ arm: 'other' }) }));
+  arrowH(colL + main, sideX(colL), y + boxH / 2);
+  rows.push(y);
+  y += boxH + rowGap;
+  // row 1
+  nodes.push(box({ x: colL, y, w: main, title: 'Records screened (title/abstract)', n: db.screened, sub: db.awaitingTitleAbstract ? `${db.awaitingTitleAbstract} awaiting` : null, link: coverageHref({ arm: 'databases', stage: dbStages }) }));
+  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Excluded at title/abstract', n: db.excludedTitleAbstract, sub: db.unsureTitleAbstract ? `${db.unsureTitleAbstract} unsure` : null, link: coverageHref({ arm: 'databases', stage: 'excluded_ta' }), cls: 'pr-side pr-out' }));
+  nodes.push(box({ x: colR, y, w: main, title: 'Reports sought for retrieval', n: ot.sought, link: coverageHref({ arm: 'other', stage: dbStages }) }));
+  nodes.push(box({ x: sideX(colR), y, w: side, title: 'Not retrieved', n: ot.notRetrieved, link: coverageHref({ arm: 'other', stage: 'not_retrieved' }), cls: 'pr-side pr-out' }));
+  arrowV(colL + main / 2, rows[0] + boxH, y); arrowV(colR + main / 2, rows[0] + boxH, y);
+  arrowH(colL + main, sideX(colL), y + boxH / 2); arrowH(colR + main, sideX(colR), y + boxH / 2);
+  rows.push(y);
+  y += boxH + rowGap;
+  // row 2
+  nodes.push(box({ x: colL, y, w: main, title: 'Reports sought for retrieval', n: db.sought, link: coverageHref({ arm: 'databases', stage: soughtStages }) }));
+  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Not retrieved', n: db.notRetrieved, link: coverageHref({ arm: 'databases', stage: 'not_retrieved' }), cls: 'pr-side pr-out' }));
+  nodes.push(box({ x: colR, y, w: main, title: 'Reports assessed for eligibility', n: ot.assessed, sub: ot.awaitingFullText ? `${ot.awaitingFullText} awaiting` : null, link: coverageHref({ arm: 'other', stage: ['excluded_ft', 'included', 'awaiting_ft', 'unsure_ft', 'awaiting_ta', 'unsure_ta', 'excluded_ta'] }) }));
+  nodes.push(box({ x: sideX(colR), y, w: side, title: 'Excluded', n: ot.excludedFullText, sub: fmtReasons(ot.excludedFullTextReasons) || null, link: coverageHref({ arm: 'other', stage: ['excluded_ft', 'excluded_ta'] }), cls: 'pr-side pr-out' }));
+  arrowV(colL + main / 2, rows[1] + boxH, y); arrowV(colR + main / 2, rows[1] + boxH, y);
+  arrowH(colL + main, sideX(colL), y + boxH / 2); arrowH(colR + main, sideX(colR), y + boxH / 2);
+  rows.push(y);
+  y += boxH + rowGap;
+  // row 3 (databases arm only)
+  nodes.push(box({ x: colL, y, w: main, title: 'Reports assessed for eligibility', n: db.assessed, sub: db.awaitingFullText ? `${db.awaitingFullText} awaiting` : null, link: coverageHref({ arm: 'databases', stage: ['excluded_ft', 'included', 'awaiting_ft', 'unsure_ft'] }) }));
+  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Excluded at full text', n: db.excludedFullText, sub: fmtReasons(db.excludedFullTextReasons) || null, link: coverageHref({ arm: 'databases', stage: 'excluded_ft' }), cls: 'pr-side pr-out' }));
+  arrowV(colL + main / 2, rows[2] + boxH, y);
+  arrowH(colL + main, sideX(colL), y + boxH / 2);
+  rows.push(y);
+  y += boxH + rowGap;
+  // row 4: included (merged)
+  const incX = (W - main) / 2;
+  nodes.push(box({ x: incX, y, w: main, title: 'Papers included', n: inc.total, sub: `${inc.approvedFindings} approved findings`, link: coverageHref({ stage: 'included' }), cls: 'pr-included' }));
+  lines.push(s('path', { d: `M${colL + main / 2} ${rows[3] + boxH} V${y - 14} H${incX + main / 2} V${y}`, class: 'pr-arrow', 'marker-end': 'url(#pr-head)', fill: 'none' }));
+  lines.push(s('path', { d: `M${colR + main / 2} ${rows[2] + boxH} V${y - 14} H${incX + main / 2}`, class: 'pr-arrow', fill: 'none' }));
+  rows.push(y);
+  y += boxH + rowGap + 12;
+  // row 5: where included papers stand in the knowledge base
+  const kbStates = [['no_pdf', 'No PDF yet'], ['awaiting_extraction', 'Awaiting extraction'], ['in_review', 'In review'], ['in_kb', 'In the KB'], ['rejected', 'Rejected'], ['refused', 'Refused']];
+  const kbW = 136; const kbGap = 12; const kbX0 = (W - (kbStates.length * kbW + (kbStates.length - 1) * kbGap)) / 2;
+  lines.push(s('line', { x1: kbX0 + kbW / 2, y1: rows[4] + boxH + 18, x2: kbX0 + (kbStates.length - 1) * (kbW + kbGap) + kbW / 2, y2: rows[4] + boxH + 18, class: 'pr-arrow pr-bus' }));
+  lines.push(s('line', { x1: incX + main / 2, y1: rows[4] + boxH, x2: incX + main / 2, y2: rows[4] + boxH + 18, class: 'pr-arrow pr-bus' }));
+  kbStates.forEach(([st, title], i) => {
+    const x = kbX0 + i * (kbW + kbGap);
+    nodes.push(box({ x, y, w: kbW, title, n: inc.kb?.[st] ?? 0, link: coverageHref({ stage: 'included', kb: st }), cls: st === 'in_kb' ? 'pr-kb pr-included' : st === 'rejected' || st === 'refused' ? 'pr-kb pr-out' : 'pr-kb' }));
+    arrowV(x + kbW / 2, rows[4] + boxH + 18, y);
+  });
+  y += boxH + 16;
+  label(rows[0] + boxH / 2, 'Identification'); label(rows[2] + boxH / 2, 'Screening'); label(y - 16 - boxH / 2, 'Knowledge base');
+
+  const svg = s('svg', { viewBox: `0 0 ${W} ${y}`, class: 'prisma', role: 'img', 'aria-label': 'PRISMA 2020 flow diagram of the screening register' });
+  svg.append(s('defs', {}, s('marker', { id: 'pr-head', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, orient: 'auto-start-reverse' }, s('path', { d: 'M0 0 L10 5 L0 10 z', class: 'pr-head' }))));
+  svg.append(...lines, ...nodes);
+  return svg;
+}
+
+function coverage(index, route) {
+  const sc = index.screening;
+  if (!sc.present) {
+    return frag(h('div', { class: 'page-head' }, h('h1', { text: 'Coverage' })),
+      h('p', { class: 'notice', text: 'This export carries no screening register. Run `python screen.py backfill --execute` (and searches), regenerate the export, and this view shows the PRISMA flow and what each evidence gap still needs.' }));
+  }
+  const filters = route.filters;
+  const query = route.params.get('q') || '';
+  const sort = route.params.get('sort') || 'register';
+  const counts = facetCounts(sc.candidates, filters, query, SCREENING_FACETS);
+  let rows = sc.candidates.filter((c) => matches(c, filters, query));
+  if (sort === 'year') rows = rows.slice().sort((a, b) => (b.year || 0) - (a.year || 0) || a.ordinal - b.ordinal);
+  else if (sort === 'title') rows = rows.slice().sort((a, b) => String(a.title || '').localeCompare(String(b.title || '')));
+  else if (sort === 'decided') rows = rows.slice().sort((a, b) => String(b.decided_on || '').localeCompare(String(a.decided_on || '')) || a.ordinal - b.ordinal);
+  const go = (next, params = {}) => { location.hash = coverageHref({ ...next, q: query, sort, ...params }); };
+  const toggle = (key, value) => { const cur = new Set(filters[key] || []); if (cur.has(value)) cur.delete(value); else cur.add(value); go({ ...filters, [key]: [...cur] }); };
+  const valueLabel = (key, v) => (key === 'stage' ? STAGE_TEXT[v] || v : key === 'kb' ? KB_STATE_TEXT[v] || v : key === 'arm' ? ARM_TEXT[v] || v : key === 'reason' ? (v === 'not excluded' ? v : sc.reasonLabel(v)) : key === 'origin' ? (sc.sourceKinds[v] || String(v).replace(/_/g, ' ')) : key === 'search' ? (sc.searches.get(v) ? `${v} · ${sc.searches.get(v).database}` : v) : String(v).replace(/_/g, ' '));
+  const anyFilter = Object.values(filters).some((v) => v?.length) || query;
+
+  const facetNodes = SCREENING_FACETS.map((facet) => {
+    const m = counts[facet.key];
+    let values = [...m.keys()];
+    if (facet.order) values.sort((a, b) => (facet.order.indexOf(a) === -1 ? 99 : facet.order.indexOf(a)) - (facet.order.indexOf(b) === -1 ? 99 : facet.order.indexOf(b)));
+    else values.sort((a, b) => (m.get(b) - m.get(a)) || String(a).localeCompare(String(b)));
+    const selected = new Set(filters[facet.key] || []);
+    const many = values.length > 12;
+    const shown = many ? values.filter((v, i) => i < 10 || selected.has(v)) : values;
+    return h('details', { class: 'facet', open: selected.size || ['stage', 'kb', 'arm'].includes(facet.key) ? '' : null },
+      h('summary', { text: `${facet.label}${selected.size ? ` (${selected.size})` : ''}` }),
+      shown.map((v) => h('label', { class: m.get(v) ? '' : 'zero' },
+        h('input', { type: 'checkbox', checked: selected.has(v) ? '' : null, onchange: () => toggle(facet.key, v) }),
+        h('span', { text: valueLabel(facet.key, v), title: String(v) }),
+        h('span', { class: 'n', text: String(m.get(v) || 0) }))),
+      many && shown.length < values.length ? h('p', { class: 'small muted', text: `${values.length - shown.length} more — narrow with the search box` }) : null);
+  });
+  const active = Object.entries(filters).flatMap(([k, vs]) => vs.map((v) => h('button', { type: 'button', onclick: () => toggle(k, v), text: `${SCREENING_FACETS.find((f) => f.key === k)?.label || k}: ${valueLabel(k, v)} ×` })));
+  if (query) active.push(h('button', { type: 'button', onclick: () => go(filters, { q: '' }), text: `search: ${query} ×` }));
+  if (active.length) active.push(h('button', { type: 'button', onclick: () => { location.hash = '#/coverage'; }, text: 'clear all' }));
+  const search = h('input', { class: 'search', type: 'search', placeholder: 'Search titles, keys, DOIs, entries…', value: query, 'aria-label': 'Search candidates' });
+  let timer = null;
+  search.addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(() => go(filters, { q: search.value.trim() }), 250); });
+
+  const p = sc.prisma;
+  const inc = p?.included || { total: 0, kb: {}, approvedFindings: 0 };
+  const decided = sc.candidates.filter((c) => !['awaiting_ta', 'awaiting_ft', 'unsure_ta', 'unsure_ft', 'duplicate'].includes(c.stage)).length;
+  const awaiting = sc.candidates.filter((c) => ['awaiting_ta', 'awaiting_ft', 'unsure_ta', 'unsure_ft'].includes(c.stage)).length;
+  const excludedReasons = new Map();
+  for (const c of sc.candidates) if (['excluded_ta', 'excluded_ft', 'not_retrieved'].includes(c.stage)) excludedReasons.set(c.reason, (excludedReasons.get(c.reason) || 0) + 1);
+
+  const candidateRow = (c) => {
+    const paperKnown = c.key && (index.byPaper.has(c.key) || index.kb.citations?.[c.key]);
+    return h('tr', {},
+      h('td', {}, h('span', { class: 'chip', text: c.id })),
+      h('td', {},
+        paperKnown ? h('a', { href: paperHref(c.key), text: c.key }) : c.key ? h('span', { class: 'chip', text: c.key }) : null,
+        h('div', { class: 'cand-title', text: c.title || '(no title)' }),
+        h('div', { class: 'small muted' }, [c.first_author ? `${c.first_author}${c.year ? ` ${c.year}` : ''}` : (c.year ? String(c.year) : ''), c.journal, c.doi ? h('a', { href: `https://doi.org/${c.doi}`, rel: 'noopener', target: '_blank', text: c.doi }) : null].filter(Boolean).flatMap((x, i) => (i ? [' · ', x] : [x])))),
+      h('td', { class: 'small' }, (c.sources || []).map((src, i) => [i ? h('br') : null, src.search ? h('a', { href: coverageHref({ search: src.search }), text: `${src.search}${sc.searches.get(src.search) ? ` ${sc.searches.get(src.search).database}` : ''}` }) : h('span', { text: sc.sourceKinds[src.kind] || src.kind })])),
+      h('td', {}, stageBadge(c.stage), c.stage !== 'included' && c.reason && c.reason !== 'not excluded' ? h('div', { class: 'small muted', text: sc.reasonLabel(c.reason) }) : null,
+        c.suggestion && ['awaiting_ta', 'unsure_ta'].includes(c.stage) ? h('div', { class: 'small muted', title: `${c.suggestion.model} suggested ${c.suggestion.decision}${c.suggestion.reason && c.suggestion.reason !== 'none' ? ` (${sc.reasonLabel(c.suggestion.reason)})` : ''}; a suggestion, not a decision`, text: `model suggests: ${c.suggestion.decision}` }) : null),
+      h('td', {}, c.kbInfo ? frag(kbBadge(c.kb), c.kbInfo.approved_findings ? h('div', { class: 'small muted', text: `${plural(c.kbInfo.approved_findings, 'approved finding')}` }) : c.kbInfo.drafts ? h('div', { class: 'small muted', text: `${plural(c.kbInfo.drafts, 'draft')}${c.kbInfo.draft_rejected ? `, ${c.kbInfo.draft_rejected} rejected` : ''}` }) : null) : h('span', { class: 'muted', text: '—' })),
+      h('td', { class: 'small muted' }, c.decided_by && c.decided_by !== 'nobody yet' ? c.decided_by : '—', c.decided_on ? h('div', { text: c.decided_on }) : null));
+  };
+  const shown = rows.slice(0, state.shown);
+  const table = h('table', { class: 'cand-list' },
+    h('thead', {}, h('tr', {}, h('th', { text: 'Id' }), h('th', { text: 'Candidate' }), h('th', { text: 'Source' }), h('th', { text: 'Screening' }), h('th', { text: 'Knowledge base' }), h('th', { text: 'Decided' }))),
+    h('tbody', {}, shown.map(candidateRow)));
+  const more = rows.length > shown.length ? h('button', { class: 'btn btn-primary', type: 'button', onclick: () => { state.shown += PAGE; render(); }, text: `Show ${Math.min(PAGE, rows.length - shown.length)} more of ${rows.length}` }) : null;
+
+  const gapRows = sc.coverage.filter((g) => g.kind || g.found);
+  const gapTable = gapRows.length ? h('table', { class: 'gap-list' },
+    h('thead', {}, h('tr', {}, h('th', { text: 'Evidence gap' }), h('th', { text: 'Kind' }), h('th', { text: 'Areas' }), h('th', { class: 'num', text: 'Searches' }), h('th', { class: 'num', text: 'Candidates' }), h('th', { class: 'num', text: 'Screened' }), h('th', { class: 'num', text: 'Included' }), h('th', { class: 'num', text: 'In the KB' }), h('th', { class: 'num', text: 'Findings' }))),
+    h('tbody', {}, gapRows.map((g) => h('tr', {},
+      h('td', {}, h('a', { href: coverageHref({ gap: g.id }), text: g.id.replace(/_/g, ' ') }), g.need ? h('div', { class: 'small muted gap-need', text: g.need }) : null,
+        g.suggested?.length ? h('div', { class: 'small' }, 'Suggested: ', g.suggested.map((k, i) => [i ? ', ' : '', index.kb.citations?.[k] || index.byPaper.has(k) ? h('a', { href: paperHref(k), text: k }) : h('span', { class: 'chip', text: k })])) : null),
+      h('td', {}, g.kind ? h('span', { class: `badge badge-gap-${g.kind}`, text: g.kind.replace(/_/g, ' ') }) : h('span', { class: 'muted', text: 'entry' })),
+      h('td', { class: 'small' }, (g.areas || []).map((a, i) => [i ? ', ' : '', index.hasEntry(a) || index.byTarget.has(a) ? entryLink(index, a) : h('span', { title: a, text: index.mapping.units?.[a]?.name || a.replace(/_/g, ' ') })])),
+      h('td', { class: 'num', text: String(g.searches || 0) }), h('td', { class: 'num', text: String(g.found || 0) }), h('td', { class: 'num', text: String(g.screened || 0) }),
+      h('td', { class: 'num', text: String(g.included || 0) }), h('td', { class: 'num' }, h('b', { text: String(g.in_kb || 0) })), h('td', { class: 'num', text: String(g.approved_findings || 0) }))))) : h('p', { class: 'muted', text: 'No evidence gaps are declared (atlas_mapping/evidence_gaps.yaml) and no search names what it serves.' });
+
+  const searches = [...sc.searches.values()];
+  const searchTable = searches.length ? h('table', { class: 'search-list' },
+    h('thead', {}, h('tr', {}, h('th', { text: 'Id' }), h('th', { text: 'Database' }), h('th', { text: 'Date' }), h('th', { text: 'Query' }), h('th', { text: 'Serves' }), h('th', { class: 'num', text: 'Hits' }), h('th', { class: 'num', text: 'Retrieved' }), h('th', { text: 'Run by' }))),
+    h('tbody', {}, searches.map((x) => h('tr', {},
+      h('td', {}, h('a', { class: 'chip', href: coverageHref({ search: x.id }), text: x.id })), h('td', { text: x.database }), h('td', { text: x.date || '' }),
+      h('td', {}, h('code', { class: 'query', text: x.query || '' }), x.filters ? h('div', { class: 'small muted', text: Object.entries(x.filters).map(([k, v]) => `${k}: ${v}`).join(' · ') }) : null, x.file ? h('div', { class: 'small muted', text: `imported from ${x.file}` }) : null),
+      h('td', { class: 'small' }, (x.for || []).map((g, i) => [i ? ', ' : '', h('a', { href: coverageHref({ gap: g }), text: g.replace(/_/g, ' ') })])),
+      h('td', { class: 'num', text: String(x.hits ?? '') }), h('td', { class: 'num', text: String(x.retrieved ?? '') }), h('td', { text: x.run_by || '' }))))) : h('p', { class: 'muted', text: 'No database search has been recorded yet; every candidate came from other sources. `python screen.py search` records one.' });
+
+  return frag(
+    h('div', { class: 'page-head' }, h('h1', { text: 'Coverage' }), h('span', { class: 'muted small', text: `${sc.candidates.length} candidates · ${searches.length} searches · ${inc.total} included · ${inc.kb?.in_kb ?? 0} in the knowledge base` })),
+    h('p', {}, 'How the literature was searched and screened, and where every candidate paper stands: identified, screened, excluded (and why), included, extracted, approved into the knowledge base or rejected. The register is kept by ', h('code', { text: 'screen.py' }), ' under the protocol in SCREENING.md; decisions are made by a named person, and papers that entered the bibliography before the register existed are shown as "other sources" with legacy decisions.'),
+    h('div', { class: 'tiles' },
+      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(sc.candidates.length) }), h('div', { class: 'label', text: 'candidate papers' }), h('div', { class: 'detail', text: `${p?.identification.databases.records ?? 0} database records · ${p?.identification.other.records ?? 0} from other sources` })),
+      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(decided) }), h('div', { class: 'label', text: 'screened' }), h('div', { class: 'detail', text: `${awaiting} awaiting a decision` })),
+      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(inc.total) }), h('div', { class: 'label', text: 'included' }), h('div', { class: 'detail', text: `${[...excludedReasons.values()].reduce((a, b) => a + b, 0)} excluded` })),
+      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(inc.kb?.in_kb ?? 0) }), h('div', { class: 'label', text: 'in the knowledge base' }), h('div', { class: 'detail', text: `${inc.approvedFindings} approved findings · ${inc.kb?.in_review ?? 0} in review` }))),
+    h('h2', { text: 'Flow of papers (PRISMA 2020)' }),
+    h('p', { class: 'small muted', text: 'Click a box to list the candidates it counts. Pink boxes are exits; the knowledge-base row shows where included papers stand in the extraction and review pipeline.' }),
+    h('div', { class: 'prisma-wrap' }, prismaDiagram(index)),
+    h('div', { class: 'grid-2' },
+      h('section', {}, h('h2', { text: 'Why candidates were excluded' }),
+        excludedReasons.size ? barList([...excludedReasons.entries()].map(([r, n]) => ({ id: r, n, label: sc.reasonLabel(r) })).sort((a, b) => b.n - a.n), { link: (x) => coverageHref({ reason: x.id }) }) : h('p', { class: 'muted', text: 'Nothing excluded yet.' }),
+        h('p', { class: 'small muted', text: 'Reasons are the controlled vocabulary of SCREENING.md §2.' })),
+      h('section', {}, h('h2', { text: 'Who decided' }),
+        barList([...counts.decided_by.entries()].map(([k, n]) => ({ id: k, n, label: k, alt: k === 'legacy' || k === 'nobody yet' })).sort((a, b) => b.n - a.n), { link: (x) => coverageHref({ decided_by: x.id }) }),
+        h('p', { class: 'small muted', text: 'Grey: legacy stamps (papers that pre-date the register) and candidates still awaiting a decision. A model only ever suggests.' }))),
+    h('h2', { text: 'Coverage of the evidence gaps' }),
+    h('p', { class: 'small', text: 'For each gap declared in atlas_mapping/evidence_gaps.yaml (and each entry a search was run for): how many candidates were found, screened and included, and how many are already in the knowledge base. A gap with candidates found but none in the KB is waiting on extraction or review; a gap with none found needs a search.' }),
+    gapTable,
+    h('h2', { text: 'Searches' }),
+    searchTable,
+    h('h2', { id: 'candidates', text: 'Candidates' }),
+    h('div', { class: 'two-col' },
+      h('aside', { class: 'facets', 'aria-label': 'Filters' }, search, facetNodes),
+      h('section', {},
+        h('div', { class: 'results-head' }, h('span', { class: 'count', text: `${rows.length} of ${sc.candidates.length}` }),
+          h('label', { class: 'small muted' }, 'sort ', h('select', { onchange: (e) => go(filters, { sort: e.target.value }) },
+            [['register', 'register order'], ['year', 'year, newest first'], ['title', 'title'], ['decided', 'decided, latest first']].map(([v, t]) => h('option', { value: v, selected: v === sort ? '' : null, text: t }))))),
+        h('div', { class: 'active-filters' }, active),
+        rows.length ? h('div', { class: 'cand-wrap' }, table) : h('p', { class: 'notice', text: anyFilter ? 'No candidate matches these filters.' : 'The register is empty.' }),
+        more)));
+}
+
+/** The screening record of one paper, for the paper page. */
+function screeningPanel(index, key) {
+  const c = index.screening.byKey.get(key);
+  if (!c) return null;
+  const sc = index.screening;
+  const steps = [];
+  for (const src of c.sources || []) steps.push({ when: sc.searches.get(src.search)?.date || '', what: src.search ? `identified by search ${src.search} (${sc.searches.get(src.search)?.database || '?'})` : `identified: ${sc.sourceKinds[src.kind] || src.kind}` });
+  for (const d of c.history || []) steps.push({ when: d.date || '', what: `${d.stage === 'title_abstract' ? 'title/abstract' : 'full text'}: ${d.decision}${d.reason ? ` — ${sc.reasonLabel(d.reason)}` : ''} (${d.by})`, legacy: d.by === 'legacy' });
+  if (c.kbInfo) steps.push({ when: '', what: KB_STATE_TEXT[c.kb] || c.kb, kb: true });
+  return h('section', { class: 'panel' },
+    h('h3', {}, 'Screening record ', h('a', { class: 'small', href: coverageHref({ q: c.id }), text: c.id })),
+    h('p', { class: 'small' }, stageBadge(c.stage), ' ', c.kbInfo ? kbBadge(c.kb) : null),
+    h('ol', { class: 'timeline' }, steps.map((x) => h('li', { class: x.legacy ? 'legacy' : x.kb ? 'kb' : '' }, x.when ? h('span', { class: 'when', text: x.when }) : null, h('span', { text: x.what })))),
+    c.history?.some((d) => d.by === 'legacy') ? h('p', { class: 'small muted', text: 'Legacy: this paper entered the bibliography before the screening register existed; the decision is inferred from its status there, not from a person screening it.' }) : null);
+}
+
+// ---------------------------------------------------------------------------
 // Shell
 // ---------------------------------------------------------------------------
 function render() {
@@ -456,6 +723,7 @@ function render() {
     else if (head === 'findings') { view = browse(index, route); current = '/findings'; }
     else if (head === 'matrix') { view = matrix(index, route); current = '/matrix'; }
     else if (head === 'papers') { view = papers(index); current = '/papers'; }
+    else if (head === 'coverage') { view = coverage(index, route); current = '/coverage'; }
     else if (head === 'paper' && rest[0]) { view = paper(index, rest[0]); current = '/papers'; }
     else if (head === 'entry' && rest[0]) { view = entry(index, rest[0]); current = null; }
     else if (head === 'finding' && rest[1]) { view = finding(index, rest[0], rest[1]); current = null; }

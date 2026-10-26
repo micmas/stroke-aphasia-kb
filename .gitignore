@@ -8,6 +8,8 @@ papers/
 _compare/
 _neurosynth_cache/
 drafts/_review/
+screening/_sheet/
+screening/abstracts.jsonl
 _last_extraction_response_*.txt
 _extraction_dry_run.txt
 __pycache__/

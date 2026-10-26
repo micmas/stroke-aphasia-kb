@@ -262,3 +262,56 @@ a.chip:hover { border-color: var(--blue); text-decoration: none; }
   .two-col { grid-template-columns: 1fr; }
   details { display: block; } details > summary { display: none; } details:not([open]) > *:not(summary) { display: block; }
 }
+
+/* ---- coverage: screening register ---- */
+.badge-stage { background: var(--panel); color: var(--ink-2); border-color: var(--line-strong); }
+.badge-stage-included { background: var(--cyan); color: #10303a; border-color: transparent; }
+.badge-stage-excluded_ta, .badge-stage-excluded_ft, .badge-stage-not_retrieved { background: var(--pink-tint); color: var(--ink); border-color: var(--pink); }
+.badge-stage-awaiting_ta, .badge-stage-awaiting_ft, .badge-stage-unsure_ta, .badge-stage-unsure_ft { background: var(--grape-tint); color: var(--grape); border-color: transparent; }
+.badge-kb { background: var(--panel); color: var(--ink-2); border-color: var(--line-strong); }
+.badge-kb-in_kb { background: var(--cyan); color: #10303a; border-color: transparent; }
+.badge-kb-in_review { background: var(--blue-tint); color: var(--ink); border-color: var(--blue); }
+.badge-kb-rejected, .badge-kb-refused { background: var(--pink-tint); color: var(--ink); border-color: var(--pink); }
+.badge-gap-atlas_gap, .badge-gap-no_evidence { background: var(--pink-tint); color: var(--ink); border-color: var(--pink); }
+.badge-gap-thin { background: var(--blue-tint); color: var(--ink); border-color: var(--blue); }
+.badge-gap-contested { background: var(--grape-tint); color: var(--grape); }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .badge-stage-included, :root:not([data-theme="light"]) .badge-kb-in_kb { color: #0b1f24; }
+}
+
+.prisma-wrap { border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); padding: .4rem; overflow: auto; margin: .4rem 0 1rem; }
+.prisma { width: 100%; height: auto; min-width: 680px; font-family: var(--font); display: block; }
+.prisma .pr-box rect { fill: var(--panel); stroke: var(--line-strong); stroke-width: 1; }
+.prisma .pr-box.pr-side rect { fill: var(--surface); }
+.prisma .pr-box.pr-out rect { fill: var(--pink-tint); stroke: var(--pink); }
+.prisma .pr-box.pr-included rect { fill: var(--cyan-tint); stroke: var(--cyan); }
+.prisma .pr-box.pr-kb rect { stroke-dasharray: none; }
+.prisma .pr-text { fill: var(--ink); font-size: 12.5px; }
+.prisma .pr-title { fill: var(--ink-2); font-size: 11.5px; }
+.prisma .pr-n { fill: var(--ink); font-size: 14px; font-weight: 600; }
+.prisma .pr-sub { fill: var(--ink-2); font-size: 11px; font-weight: 400; }
+.prisma .pr-phase { fill: var(--grape); font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; }
+.prisma .pr-arrow { stroke: var(--ink-2); stroke-width: 1.3; fill: none; }
+.prisma .pr-bus { stroke: var(--line-strong); }
+.prisma .pr-head { fill: var(--ink-2); }
+.prisma a.pr-link { cursor: pointer; }
+.prisma a.pr-link:hover rect, .prisma a.pr-link:focus rect { stroke: var(--grape); stroke-width: 2; }
+.prisma a.pr-link:focus { outline: none; }
+.prisma text { pointer-events: none; }
+
+.cand-wrap { overflow: auto; }
+.cand-list { font-size: .86rem; }
+.cand-list td:first-child { white-space: nowrap; }
+.cand-list .cand-title { font-weight: 500; margin: .1rem 0; }
+.cand-list td:nth-child(2) { min-width: 280px; }
+.cand-list .badge { margin-bottom: .15rem; }
+.cand-list td:last-child { white-space: nowrap; }
+.gap-list .gap-need { max-width: 520px; margin-top: .15rem; }
+.search-list .query { white-space: pre-wrap; word-break: break-word; font-size: .78rem; display: block; max-width: 520px; }
+.timeline { list-style: none; padding: 0 0 0 1rem; margin: .4rem 0; border-left: 2px solid var(--line-strong); font-size: .88rem; }
+.timeline li { position: relative; margin: .25rem 0; padding-left: .6rem; }
+.timeline li::before { content: ""; position: absolute; left: -1.45rem; top: .45rem; width: 9px; height: 9px; border-radius: 50%; background: var(--blue); }
+.timeline li.legacy::before { background: var(--neutral); }
+.timeline li.kb::before { background: var(--cyan); }
+.timeline .when { color: var(--ink-2); font-variant-numeric: tabular-nums; margin-right: .5rem; }
+@media (max-width: 640px) { .prisma { min-width: 600px; } }

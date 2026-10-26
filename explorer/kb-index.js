@@ -140,8 +140,10 @@ export function buildIndex(kb) {
     for (const t of e.targets_impairments || []) (therapiesFor.get(t) || therapiesFor.set(t, []).get(t)).push(e.id);
   }
 
+  const screening = buildScreeningIndex(kb);
+
   return {
-    kb, entries, findings, byKey, bySource, byTarget, byPaper, papers, ids, mapping, unmappedReason, therapiesFor,
+    kb, entries, findings, byKey, bySource, byTarget, byPaper, papers, ids, mapping, unmappedReason, therapiesFor, screening,
     name: (id) => displayName(kb, id),
     hasEntry: (id) => Boolean(entries[id]),
     kindOf(id) {
@@ -173,9 +175,9 @@ export function matches(f, filters, query) {
 }
 
 /** Counts per facet value, each facet computed with every *other* filter applied. */
-export function facetCounts(findings, filters, query) {
+export function facetCounts(findings, filters, query, facets = FACETS) {
   const out = {};
-  for (const facet of FACETS) {
+  for (const facet of facets) {
     const others = { ...filters, [facet.key]: [] };
     const counts = new Map();
     for (const f of findings) {
@@ -185,6 +187,67 @@ export function facetCounts(findings, filters, query) {
     out[facet.key] = counts;
   }
   return out;
+}
+
+// ---------------------------------------------------------------------------
+// The screening register (export_webapp.screening; SCREENING.md): candidates
+// with their derived stage, searches, PRISMA counts and evidence-gap coverage.
+// ---------------------------------------------------------------------------
+export const SCREENING_FACETS = [
+  { key: 'stage', label: 'Screening stage', order: ['awaiting_ta', 'unsure_ta', 'excluded_ta', 'awaiting_ft', 'unsure_ft', 'not_retrieved', 'excluded_ft', 'included', 'duplicate'] },
+  { key: 'kb', label: 'In the knowledge base', order: ['in_kb', 'in_review', 'awaiting_extraction', 'no_pdf', 'not_registered', 'rejected', 'refused', 'not included'] },
+  { key: 'arm', label: 'Identified through', order: ['databases', 'other'] },
+  { key: 'reason', label: 'Exclusion reason', order: null },
+  { key: 'origin', label: 'Other source', order: ['hand_picked', 'gap_analysis', 'citation_chasing', 'registered', 'seed'] },
+  { key: 'search', label: 'Search', order: null },
+  { key: 'gap', label: 'Evidence gap served', order: null },
+  { key: 'decided_by', label: 'Decided by', order: null },
+  { key: 'decade', label: 'Decade', order: null },
+];
+
+export const STAGE_TEXT = {
+  awaiting_ta: 'awaiting title/abstract screening', unsure_ta: 'unsure at title/abstract', excluded_ta: 'excluded at title/abstract',
+  awaiting_ft: 'awaiting full-text assessment', unsure_ft: 'unsure at full text', not_retrieved: 'full text not retrieved',
+  excluded_ft: 'excluded at full text', included: 'included', duplicate: 'duplicate (merged)',
+};
+export const KB_STATE_TEXT = {
+  in_kb: 'in the knowledge base', in_review: 'extracted, in review', awaiting_extraction: 'registered, awaiting extraction',
+  no_pdf: 'registered, no PDF yet', not_registered: 'included, not yet registered', rejected: 'extracted, drafts rejected',
+  refused: 'refused (not extractable)', 'not included': 'not included',
+};
+export const ARM_TEXT = { databases: 'database searches', other: 'other sources' };
+
+export function buildScreeningIndex(kb) {
+  const sc = kb.screening || {};
+  const searches = new Map((sc.searches || []).map((s) => [s.id, s]));
+  const gapsByCandidate = new Map();
+  for (const g of sc.coverage || []) for (const cid of g.candidates || []) (gapsByCandidate.get(cid) || gapsByCandidate.set(cid, []).get(cid)).push(g.id);
+  const candidates = (sc.candidates || []).map((c, i) => {
+    const kinds = []; const searchIds = []; const dbs = [];
+    for (const s of c.sources || []) { if (s.search) { searchIds.push(s.search); const db = searches.get(s.search)?.database; if (db) dbs.push(db); } else if (s.kind) kinds.push(s.kind); }
+    return {
+      ...c,
+      ordinal: i,
+      kb: c.kb?.state || 'not included',
+      kbInfo: c.kb || null,
+      reason: c.reason || (c.stage === 'excluded_ta' || c.stage === 'excluded_ft' || c.stage === 'not_retrieved' ? 'other' : 'not excluded'),
+      origin: kinds.length ? kinds : ['none (database search)'],
+      search: searchIds.length ? searchIds : ['none'],
+      database: dbs.length ? [...new Set(dbs)] : ['none'],
+      gap: gapsByCandidate.get(c.id) || ['none'],
+      decided_by: c.decided_by || 'nobody yet',
+      decade: c.year ? `${Math.floor(c.year / 10) * 10}s` : 'unknown',
+      text: [c.id, c.key, c.title, c.doi, c.pmid, c.first_author, c.journal, c.stage, c.reason, ...(c.kb?.entries || [])].filter(Boolean).join(' \n ').toLowerCase(),
+    };
+  });
+  const byId = new Map(candidates.map((c) => [c.id, c]));
+  const byKeyMap = new Map();
+  for (const c of candidates) if (c.key) byKeyMap.set(c.key, c);
+  return {
+    candidates, byId, byKey: byKeyMap, searches, coverage: sc.coverage || [], prisma: sc.prisma || null,
+    reasons: sc.reasons || {}, sourceKinds: sc.sourceKinds || {}, present: Boolean(kb.screening && (sc.candidates || []).length),
+    reasonLabel: (r) => sc.reasons?.[r]?.label || String(r || '').replace(/_/g, ' '),
+  };
 }
 
 export function matrixOf(index, kind) {

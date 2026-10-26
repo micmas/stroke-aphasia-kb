@@ -17,7 +17,10 @@ script writes everything that logic needs:
   and the disconnectome bundle mapping (``atlas_mapping/disconnectome.yaml``);
 * the rule tables of ``aphasia_rules`` (score weights, display bins, aphasia
   type ids, recovery stages of each therapy's evidence);
-* the bibliography (``citations.md``), keyed by ``@Key``.
+* the bibliography (``citations.md``), keyed by ``@Key``;
+* the screening register (``screening/``, SCREENING.md): searches, candidates
+  with their derived stage, PRISMA 2020 counts and evidence-gap coverage, for
+  the explorer's Coverage view.
 
 ``--fixtures DIR`` also writes parity fixtures: synthetic overlap tables with
 the outputs the Python code produces for them, which the webapp's Node tests
@@ -48,6 +51,7 @@ sys.path.insert(0, str(ROOT))
 import aphasia_kb  # noqa: E402
 import aphasia_rules  # noqa: E402
 import atlas_mapping  # noqa: E402
+import screening as _screening  # noqa: E402
 
 SCHEMA_VERSION = 1
 ENTRY_FIELDS = ("id", "name", "kind", "aliases", "short_description", "status", "reviewer", "review_tier",
@@ -240,9 +244,10 @@ def version(root: Path, kb) -> dict:
         return done.stdout.strip() if done.returncode == 0 else None
     commit = git("log", "-1", "--format=%h %cs", "--", *[str(root / p) for p in (
         "regions", "impairments", "therapies", "predictors", "reviews", "ingredients", "citations.md",
-        "atlas_mapping", "aphasia_kb.py", "aphasia_rules.py")])
+        "atlas_mapping", "aphasia_kb.py", "aphasia_rules.py", "screening")])
     digest = hashlib.sha256()
-    for path in sorted(root.glob("*/*.md")) + sorted((root / "atlas_mapping").glob("*.yaml")) + [root / "citations.md"]:
+    for path in (sorted(root.glob("*/*.md")) + sorted((root / "atlas_mapping").glob("*.yaml"))
+                 + sorted((root / "screening").glob("*.yaml")) + [root / "citations.md"]):
         if path.parent.name in ("drafts", "examples", "_legacy_v1"):
             continue
         digest.update(path.name.encode() + path.read_bytes())
@@ -257,6 +262,40 @@ def version(root: Path, kb) -> dict:
         "findingsReviewed": int((findings["review_kind"] == "human").sum()) if "review_kind" in findings else 0,
         "entries": {b: int(len(getattr(kb, b))) for b in ("regions", "impairments", "therapies", "predictors")},
         "statuses": list(kb.include),
+    }
+
+
+CANDIDATE_FIELDS = ("id", "key", "doi", "pmid", "title", "year", "first_author", "journal", "for",
+                    "stage", "reason", "arm", "kb", "decided_by", "decided_on", "duplicate_of")
+
+
+def screening(root: Path) -> dict:
+    """The screening register (SCREENING.md) for the explorer's Coverage view:
+    searches, candidates with their derived stage, the PRISMA 2020 counts and
+    the coverage of each evidence gap. Abstracts and notes stay out of the
+    export; the Python counts are the reference the page displays."""
+    data = _screening.collect(root)
+    candidates = []
+    for r in data["candidates"]:
+        item = {k: _clean(r.get(k)) for k in CANDIDATE_FIELDS if _present(r.get(k))}
+        item["sources"] = [{"search": s["search"]} if s.get("search") else {"kind": s.get("kind")}
+                           for s in (r.get("sources") or []) if isinstance(s, dict)]
+        item["history"] = [{k: _clean(d.get(k)) for k in ("stage", "decision", "reason", "by", "date") if _present(d.get(k))}
+                           for d in (r.get("screening") or [])]
+        if r.get("suggestion"):
+            s = r["suggestion"]
+            item["suggestion"] = {k: _clean(s.get(k)) for k in ("stage", "decision", "reason", "model", "date") if _present(s.get(k))}
+        candidates.append(item)
+    searches = [{k: _clean(v) for k, v in s.items() if k not in ("notes",)} for s in data["searches"]]
+    return {
+        "searches": searches,
+        "candidates": candidates,
+        "prisma": _clean(data["prisma"]),
+        "coverage": [{k: _clean(v) for k, v in g.items() if k != "need"} | {"need": g.get("need")} for g in data["coverage"]],
+        "reasons": data["reasons"],
+        "sourceKinds": data["sourceKinds"],
+        "stageLabels": data["stageLabels"],
+        "kbStates": data["kbStates"],
     }
 
 
@@ -276,6 +315,7 @@ def export(root: Path, include) -> dict:
         "rules": rules(root),
         "citations": citations(root),
         "citationLinks": citation_links(root),
+        "screening": screening(root),
     }
 
 

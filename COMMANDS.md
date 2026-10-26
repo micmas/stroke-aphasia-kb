@@ -35,6 +35,53 @@ git add -A && git commit -m "..." && git pull --rebase --autostash && git push
 
 ---
 
+## 0. Finding papers — the screening register
+
+### `screen.py` — search, screen, hand over
+
+The systematic front end of the pipeline (protocol: [`SCREENING.md`](SCREENING.md)).
+It records every search, every candidate and every decision in
+`screening/`, and hands included papers to `citations.md` so the
+everyday sequence below takes over. Nothing it does touches `drafts/`
+or the canonical folders.
+
+```
+# identify
+python screen.py search --db pubmed --query '"aphasia"[tiab] AND stroke[tiab] AND (lesion[tiab] OR VLSM[tiab])' \
+    --years 2000-2026 --for thalamus_basal_ganglia --by michele --execute
+python screen.py search --db openalex --query 'aphasia stroke lesion symptom mapping' --for right_hemisphere --by michele --execute
+python screen.py import --file ~/Downloads/scopus.ris --db scopus --query '<the query as run>' --for <gap> --by michele --execute
+python screen.py backfill --execute          # once: citations.md as it stood → other-source candidates
+python screen.py fetch-abstracts             # fill the local abstract cache for the sheet / the model
+
+# screen
+python screen.py assist                      # local model's suggestion per title/abstract (never a decision)
+python screen.py sheet                       # screening/_sheet/title_abstract.html → decide → download CSV
+python screen.py decide --csv ~/Downloads/decisions_title_abstract_<date>.csv --by michele
+python screen.py sheet --stage full_text     # the full-text pass, same loop
+python screen.py decide --id C0012 --stage full_text --decision exclude --reason not_retrieved --by michele
+
+# hand over and report
+python screen.py register --execute          # included candidates → citations.md blocks (Crossref), key set
+python screen.py status                      # PRISMA 2020 numbers + evidence-gap coverage (--json for scripts)
+python screen.py list --stage awaiting_ft    # ids of what is waiting (or a KB state: in_review, no_pdf …)
+```
+
+| Subcommand | What it does | Options |
+|---|---|---|
+| `search` | Live PubMed (E-utilities) or OpenAlex query; hits become candidates, de-duplicated by DOI / PMID / title+year; the search is one record in `screening/searches.yaml`. Network. | `--db pubmed\|openalex` `--query` `--years 2000-2026` `--for gap,entry` `--by` `--max 2000` `--notes` `--execute` |
+| `import` | The same from a RIS or CSV export (Scopus, Embase, PsycINFO, Web of Science); give the query and date so the record is complete. | `--file` `--db` `--query` `--date` `--years` `--for` `--by` `--execute` |
+| `backfill` | Every `citations.md` key not in the register becomes an *other-source* candidate; extracted keys are stamped included `by: legacy`, `[refused]` excluded, seeds left awaiting assessment. Idempotent. | `--date` `--execute` |
+| `assist` | The local model (role `screen`, else `review`, in `models.yaml`) reads title + abstract against SCREENING.md §2 and writes `suggestion`. Ollama. | `--model` `--ids` `--max` `--redo` |
+| `sheet` | One HTML card per candidate awaiting the pass, with the suggestion, keyboard shortcuts and a CSV download. Written to `screening/_sheet/` (git-ignored). | `--stage title_abstract\|full_text` `--for gap` `--ids` `--out` |
+| `decide` | Records decisions from the sheet's CSV or one by hand; an exclusion needs a reason, `other` and `duplicate_report` need a note, `--by` must be a person. Appends `SCREENED` to the log. Acts at once. | `--csv` or `--id --stage --decision --reason --note` · `--by` `--date` |
+| `register` | Included candidates without a key: Crossref record from the DOI → `citations.md` block (house format, `[seed]`, note says which candidate) and `key:` set; existing DOIs are linked instead. Network. | `--execute` |
+| `fetch-abstracts` | Fills `screening/abstracts.jsonl` from PubMed (by PMID) then OpenAlex (by DOI). Network. | `--max` |
+| `status` | The PRISMA numbers (both arms), where included papers stand in the KB, and found / included / in-KB per evidence gap. | `--json` |
+| `list` | Candidates with id, derived stage, KB state, key and title. | `--stage` |
+
+The stage of a candidate is derived, never typed: see SCREENING.md §5.
+
 ## 1. Getting papers in
 
 ### `intake_papers.py` — everything between the download and the extractor
@@ -286,6 +333,9 @@ its grade, the page it was found on, and a highlighted crop.
 
 ### `kb_status.py` — counts and gaps
 
+Ends with the screening register's PRISMA numbers and the coverage of
+each evidence gap (`screen.py status` has the full breakdown).
+
 Entries and findings per bucket, review provenance (person / model /
 legacy), findings by recovery phase, relationship and strength, which
 regions the lesion decoder can reach, papers cited vs present.
@@ -333,6 +383,7 @@ and the 20 % audit in GOVERNANCE.md.
 
 ```
 python test_review_guardrails.py      # the review policy, against a mock Ollama
+python test_screening.py              # the screening register: parsers, de-duplication, stages, PRISMA counts
 python -m pytest tests/test_kb_atlas_mapping.py  # the atlas mapping
 ```
 

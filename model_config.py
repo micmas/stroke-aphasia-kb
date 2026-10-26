@@ -36,6 +36,7 @@ ROLE_ENV_VAR = {
     "extract": "APHASIA_EXTRACT_MODEL",
     "review":  "APHASIA_REVIEW_MODEL",
     "rag":     "APHASIA_RAG_MODEL",
+    "screen":  "APHASIA_SCREEN_MODEL",
 }
 GLOBAL_ENV_VAR = "APHASIA_LOCAL_MODEL"
 

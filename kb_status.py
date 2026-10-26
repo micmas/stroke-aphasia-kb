@@ -22,6 +22,8 @@ Sections of the summary
   (atlas_mapping/) lets a lesion reach, and which cannot be reached and why
 * papers: cited keys, which have a DOI in citations.md, and which have a
   PDF in papers/
+* screening: the PRISMA 2020 numbers of the screening register
+  (screening/, SCREENING.md) and the coverage of each evidence gap
 
 Nothing here calls a model or the network.
 """
@@ -176,6 +178,16 @@ def collect(root: Path) -> dict:
         total_review.update(per_bucket[b]["review"])
         per_bucket[b]["review"] = dict(per_bucket[b]["review"])
 
+    # Screening register (SCREENING.md): PRISMA numbers and gap coverage.
+    import screening
+    sc = screening.collect(root)
+    screening_summary = {
+        "searches": len(sc["searches"]),
+        "candidates": len(sc["candidates"]),
+        "prisma": sc["prisma"],
+        "coverage": [{k: v for k, v in g.items() if k not in ("candidates", "need")} for g in sc["coverage"] if g.get("kind")],
+    }
+
     return {
         "as_of": dt.date.today().isoformat(),
         "entries": sum(v["entries"] for v in per_bucket.values()),
@@ -191,6 +203,7 @@ def collect(root: Path) -> dict:
         "atlas_mapping": {"reachable": reachable, "unreachable": unreachable},
         "papers": papers,
         "papers_unmatched": unmatched,
+        "screening": screening_summary,
         "_legacy_candidates": [str(p.relative_to(root)) for p in legacy_candidates],
     }
 
@@ -243,6 +256,32 @@ def print_summary(st: dict) -> None:
               f"cited key (rename to <Key>.pdf): "
               + ", ".join(st["papers_unmatched"][:6])
               + (" …" if len(st["papers_unmatched"]) > 6 else ""))
+    print_screening(st)
+
+
+def print_screening(st: dict) -> None:
+    sc = st.get("screening") or {}
+    p = sc.get("prisma")
+    if not p:
+        return
+    idn, db, ot, inc = p["identification"], p["screening"], p["other"], p["included"]
+    print(f"\n  Screening register (SCREENING.md): {sc['searches']} searches, {sc['candidates']} candidates")
+    print(f"    identified: {idn['databases']['records']} database records, {idn['other']['records']} from other sources, "
+          f"{idn['duplicatesRemoved']} duplicates merged")
+    print(f"    databases arm: {db['screened']} screened → {db['excludedTitleAbstract']} excluded at title/abstract "
+          f"({db['awaitingTitleAbstract']} awaiting) → {db['sought']} sought → {db['notRetrieved']} not retrieved → "
+          f"{db['excludedFullText']} excluded at full text ({db['awaitingFullText']} awaiting) → {db['included']} included")
+    print(f"    other sources: {ot['sought']} sought → {ot['notRetrieved']} not retrieved → {ot['excludedFullText']} excluded "
+          f"({ot['awaitingFullText']} awaiting) → {ot['included']} included")
+    kb = inc["kb"]
+    print(f"    included {inc['total']}: in the KB {kb['in_kb']} · in review {kb['in_review']} · awaiting extraction "
+          f"{kb['awaiting_extraction']} · no PDF {kb['no_pdf']} · rejected {kb['rejected']} · refused {kb['refused']}")
+    gaps = sc.get("coverage") or []
+    if gaps:
+        print("    evidence gaps (candidates found / included / in KB):")
+        for g in gaps:
+            print(f"      {g['id']:<44} {g['found']:>3} / {g['included']:>3} / {g['in_kb']:>3}   {g['kind']}")
+    print("    (python screen.py status for the full breakdown; the explorer's Coverage view draws the flow)")
 
 
 def print_papers_needed(st: dict) -> None:
