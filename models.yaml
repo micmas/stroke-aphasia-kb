@@ -11,7 +11,7 @@
 # Precedence (highest wins):
 #   1. --model on the command line
 #   2. role-specific env var  (APHASIA_EXTRACT_MODEL, APHASIA_REVIEW_MODEL,
-#                              APHASIA_RAG_MODEL)
+#                              APHASIA_RAG_MODEL, APHASIA_SCREEN_MODEL)
 #   3. APHASIA_LOCAL_MODEL env var — overrides every role at once,
 #      handy for A/B testing a new model across the pipeline
 #   4. this file
@@ -36,6 +36,13 @@ roles:
   review:
     model: gemma4:26b
     max_tokens: 2000
+    num_ctx: null
+
+  # Title/abstract screening suggestion (screen.py assist). It only ever
+  # writes a suggestion a person sees in the sheet; short prompt, many calls.
+  screen:
+    model: gemma4:26b
+    max_tokens: 400
     num_ctx: null
 
   # Narrative summary over already-retrieved KB entries. Lowest stakes —

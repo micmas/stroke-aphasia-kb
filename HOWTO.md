@@ -8,6 +8,14 @@ KB. It assumes you've already done the one-time setup
 The pipeline has six steps. Steps 1–3 are mostly automatic and run
 in a few minutes per paper; steps 4–6 are where you spend judgment.
 
+Before any of this comes the question of *which* PDF: papers are found
+and chosen under the screening protocol in [`SCREENING.md`](SCREENING.md)
+(`screen.py` records the searches, the candidates and every
+include/exclude decision, and `screen.py register` writes the
+`citations.md` entry for an included paper). The explorer's Coverage
+view shows where each candidate stands. This walkthrough starts once a
+paper is included and its PDF is in `papers/`.
+
 ## Two ways to drive the agent (Cowork vs CLI)
 
 The extraction step (and the optional LLM second-opinion step in

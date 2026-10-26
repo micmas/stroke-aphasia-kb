@@ -45,6 +45,7 @@ re-review. `python kb_status.py` prints the current numbers.
 | You want to… | Read / run |
 |---|---|
 | understand the entry format | [`schema.md`](schema.md) (v2.7), then `examples/region_ifg_opercularis_fridriksson2018.md` |
+| find papers systematically and screen them | [`SCREENING.md`](SCREENING.md), then `python screen.py status` |
 | take one PDF to an approved entry | [`HOWTO.md`](HOWTO.md) |
 | look up any command and its options | [`COMMANDS.md`](COMMANDS.md) |
 | know who may approve what | [`GOVERNANCE.md`](GOVERNANCE.md) |
@@ -56,6 +57,9 @@ re-review. `python kb_status.py` prints the current numbers.
 ## How a paper becomes an entry
 
 ```
+screening/ — screen.py: searches (PubMed, OpenAlex, RIS/CSV imports) → candidates → title/abstract
+   │          and full-text decisions by a named person (SCREENING.md); included → citations.md
+   ▼
 papers/<Key>.pdf
    │  extract.py — local model reads the text layer, writes schema-bound drafts
    ▼
@@ -94,6 +98,7 @@ stroke-aphasia-kb/
 ├── EXPLORER.md                # the export, the JavaScript port and the GitHub Pages explorer
 ├── requirements.txt           # Python dependencies of the scripts below
 ├── schema.md                  # YAML frontmatter spec (v2.7) — the data contract
+├── SCREENING.md               # protocol: how papers are found and chosen (PRISMA 2020)
 ├── HOWTO.md                   # procedure: one PDF → approved entry
 ├── GOVERNANCE.md              # policy: review tiers, model approval, audit, legacy
 ├── MODELS.md                  # choosing and benchmarking the local models; decision log
@@ -101,6 +106,11 @@ stroke-aphasia-kb/
 ├── models.yaml                # which Ollama model each role uses (extract / review / rag)
 ├── citations.md               # bibliography (@Key, DOI, extraction status)
 ├── extraction_log.md          # append-only audit log
+│
+│   # ---- finding papers ----
+├── screen.py                  # search / import / screen / decide / register — the screening register
+├── screening.py               # the register's data contract: derived stages, PRISMA counts, gap coverage
+├── screening/                 # searches.yaml, candidates.yaml (tracked); abstracts and sheets (local)
 │
 │   # ---- building the KB ----
 ├── intake_papers.py           # the three steps below in one command
@@ -157,6 +167,7 @@ stroke-aphasia-kb/
 
 | Script | Role | Needs |
 |---|---|---|
+| `screen.py` | The systematic front end: record a database search (PubMed / OpenAlex live, RIS / CSV import for Scopus and the like) or backfill the bibliography; de-duplicate; let a person screen titles/abstracts and full texts in an HTML sheet, with the local model's opinion shown as a suggestion only; register included papers in `citations.md`; print the PRISMA 2020 numbers and what each evidence gap still needs. Protocol in `SCREENING.md`. | network for search/register; Ollama for `assist` |
 | `intake_papers.py` | Download → extractor-ready in one command: `--from ~/Downloads` copies in PDFs that match a cited paper, then the three scripts below run in order and the papers line of `kb_status.py` is printed; `--extract` goes on to `extract.py --batch`. Every step skips what is already done, so re-running is safe. Dry run by default; `--execute` applies. | local / Ollama with `--extract` |
 | `verify_dois.py` | Look every DOI in `citations.md` up at Crossref and flag title/author mismatches — run it after adding entries, since `match_papers.py` keys on those DOIs. Needs network. | network |
 | `register_papers.py` | Any PDF in `papers/` with no `citations.md` entry gets one built from its DOI via Crossref, tagged `[seed]` with a dated "registered automatically" note. Needs network. The intake runs it first; `extract.py --batch` refuses a PDF that has no entry. | network |
@@ -172,7 +183,7 @@ stroke-aphasia-kb/
 | `compare_extraction.py` | Run a candidate model on a paper you already curated and grade quote fidelity, schema, coverage and calibration. The model-selection test in `MODELS.md` §3. | local |
 | `audit_quotes.py` | Grade every canonical quote against its PDF: found / elided / table / anchored / near / absent / no_pdf. The legacy re-review triage. | local |
 | `quote_check.py` | The shared grader behind `auto_review.py`, `compare_extraction.py` and `audit_quotes.py`, so one quote gets one grade. Module, not a CLI. | local |
-| `kb_status.py` | Entries and findings per bucket, review provenance, relationship and strength counts, which KB regions the lesion decoder can reach, papers missing from `papers/` (`--papers-needed`), `--tag-legacy`. | local |
+| `kb_status.py` | Entries and findings per bucket, review provenance, relationship and strength counts, which KB regions the lesion decoder can reach, papers missing from `papers/` (`--papers-needed`), the screening register's PRISMA numbers and gap coverage, `--tag-legacy`. | local |
 | `aphasia_kb.py` | Load, validate (`--check DIR`, `--issues`), query (`--lookup`); `KnowledgeBase(review_kinds=("human",))` restricts to person-approved findings. | local |
 | `decode_lesion.py` | Atlas overlap and Neurosynth term decoding of an MNI mask. | local |
 | `aphasia_kb_rag.py` | Decode → retrieve → deterministic cited report; `--llm` adds a local narrative over the same evidence; `--human-approved-only` drops model-approved and legacy findings. | local / Ollama |

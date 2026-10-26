@@ -30,6 +30,7 @@ stroke-aphasia-kb/
 ├── regions/ impairments/ therapies/ predictors/ reviews/ ingredients/      ← canonical entries
 ├── drafts/  auto_review_log/  atlas_mapping/  examples/                    ← workflow material
 ├── *.py                                   extract / review / promote / query scripts
+├── SCREENING.md  screen.py  screening.py  screening/                          ← the screening register
 ├── export_webapp.py                       KB → export/stroke-aphasia-kb.json (+ parity fixtures)
 ├── export/
 │   ├── stroke-aphasia-kb.json             the one JSON every JavaScript consumer reads
@@ -61,7 +62,15 @@ A static page with no backend: it loads the export and renders
   including the atlas mapping that lets a lesion reach a region and the
   findings that target the entry from elsewhere;
 - **finding permalinks** — `#/finding/<entry id>/<finding id>`, which the
-  CALMaR report can link to.
+  CALMaR report can link to;
+- **coverage** — the screening register (`SCREENING.md`): a PRISMA 2020
+  flow diagram whose every box opens the candidates it counts, the
+  exclusion reasons, how far each evidence gap has been searched,
+  screened, included and extracted, the searches that were run, and a
+  faceted table of every candidate paper (stage, reason, source, search,
+  gap, decider); the Papers page shows each paper's screening stage and
+  the paper page its screening record. The counts come from the export
+  (`export_webapp.screening`, computed in Python).
 
 Run it locally from the repository root (the page fetches
 `../export/stroke-aphasia-kb.json`):
