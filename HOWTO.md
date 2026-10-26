@@ -35,28 +35,28 @@ all local Python and free.
 ## TL;DR
 
 ```bash
-cp ~/Downloads/Foo2024.pdf  stroke-aphasia-kb/papers/
+cp ~/Downloads/Foo2024.pdf  papers/
 # (optional) add a @Foo2024 block to citations.md if you want to
 # pre-seed it with the bibliographic info; otherwise extract.py
 # (or Cowork-Claude) will leave a placeholder you fill in later.
 
 #  Step 2 — pick ONE of:
 #  (a) Cowork: open Claude desktop, ask it to extract from
-#      stroke-aphasia-kb/papers/Foo2024.pdf following EXTRACTION_SKILL.md.
+#      papers/Foo2024.pdf following EXTRACTION_SKILL.md.
 #      Subscription cost; no per-paper charge.
-#  (b) CLI:    python stroke-aphasia-kb/extract.py --pdf stroke-aphasia-kb/papers/Foo2024.pdf
+#  (b) CLI:    python extract.py --pdf papers/Foo2024.pdf
 #              free + fully local (Ollama); slower, lower quality.
 
-python stroke-aphasia-kb/aphasia_kb.py --check stroke-aphasia-kb/drafts/   # free, local
+python aphasia_kb.py --check drafts/   # free, local
 
-python stroke-aphasia-kb/auto_review.py --all                       # free, local
-python stroke-aphasia-kb/auto_review.py --deferred --llm-review     # free, local
-python stroke-aphasia-kb/auto_review.py --emit-worksheet worksheet.yaml   # free
+python auto_review.py --all                       # free, local
+python auto_review.py --deferred --llm-review     # free, local
+python auto_review.py --emit-worksheet worksheet.yaml   # free
 # fill in verdicts in worksheet.yaml
-python stroke-aphasia-kb/auto_review.py --apply-verdicts worksheet.yaml \
+python auto_review.py --apply-verdicts worksheet.yaml \
     --reviewer "michele"                                     # free
 
-git add stroke-aphasia-kb/ && git commit -m "Foo2024 extraction"
+git add -A && git commit -m "Foo2024 extraction"
 ```
 
 The rest of this file walks through each step and tells you what to
@@ -67,11 +67,11 @@ look at along the way.
 ## 1. Drop the PDF into `papers/`
 
 ```
-stroke-aphasia-kb/papers/Foo2024.pdf
+papers/Foo2024.pdf
 ```
 
 That's it for this step. The PDF itself is gitignored
-(`stroke-aphasia-kb/papers/*.pdf`) — it stays local. The annotated PDF that
+(`papers/*.pdf`) — it stays local. The annotated PDF that
 gets generated in step 2 is **not** ignored (`!*_annotated.pdf` rule
 in `.gitignore`) so it travels with the repo and reviewers on other
 machines can do the visual audit.
@@ -90,12 +90,12 @@ and a line in `extraction_log.md`.
 ### Option A — Cowork (subscription, no API charge)
 
 Open Claude in the Cowork desktop app. Make sure your workspace
-folder includes `calmar/`. Then say something like:
+folder includes `stroke-aphasia-kb/`. Then say something like:
 
 > Please extract findings from
-> `/Users/me/calmar/stroke-aphasia-kb/papers/Foo2024.pdf`
-> following `stroke-aphasia-kb/EXTRACTION_SKILL.md`. Write draft markdown
-> files into `stroke-aphasia-kb/drafts/`, run annotate_paper.py to produce
+> `/Users/me/stroke-aphasia-kb/papers/Foo2024.pdf`
+> following `EXTRACTION_SKILL.md`. Write draft markdown
+> files into `drafts/`, run annotate_paper.py to produce
 > the annotated PDF, append to `extraction_log.md`, and update
 > `citations.md`.
 
@@ -113,8 +113,8 @@ no API key needed.
 
 ```bash
 ollama pull gemma4:26b                    # once
-python stroke-aphasia-kb/model_config.py         # check what's configured
-python stroke-aphasia-kb/extract.py --pdf stroke-aphasia-kb/papers/Foo2024.pdf
+python model_config.py         # check what's configured
+python extract.py --pdf papers/Foo2024.pdf
 ```
 
 #### Choosing the model
@@ -133,8 +133,8 @@ To adopt a newer model, pull it and edit one line:
 
 ```bash
 ollama pull <new-model>
-$EDITOR stroke-aphasia-kb/models.yaml     # set roles.extract.model
-python stroke-aphasia-kb/model_config.py  # confirm it resolved + is pulled
+$EDITOR models.yaml     # set roles.extract.model
+python model_config.py  # confirm it resolved + is pulled
 ```
 
 Resolution order, highest first: `--pick-model` → `--model` → role env
@@ -144,7 +144,7 @@ prints which layer won, so there's no guessing.
 
 ```bash
 # try a new model across the whole pipeline without editing anything
-APHASIA_LOCAL_MODEL=gemma4:31b python stroke-aphasia-kb/extract.py --batch
+APHASIA_LOCAL_MODEL=gemma4:31b python extract.py --batch
 ```
 
 **Interactive picker.** To choose a model at run time — e.g. to A/B a
@@ -153,7 +153,7 @@ gemma models (biggest first, with size and parameter count) and lets
 you pick one for that run only:
 
 ```bash
-python stroke-aphasia-kb/extract.py --pdf papers/Foo2024.pdf \
+python extract.py --pdf papers/Foo2024.pdf \
     --out-dir _compare/gemma12 --pick-model
 ```
 
@@ -174,7 +174,7 @@ lower `num_ctx` (or pick a smaller model) to fit. Disable with
 `--no-monitor`. Sample the currently-loaded model on its own with:
 
 ```bash
-python stroke-aphasia-kb/resource_monitor.py
+python resource_monitor.py
 ```
 
 > ✅ **Nothing leaves this machine.** Paper full text goes only to a
@@ -251,7 +251,7 @@ becomes `[extracted]`.
 ## 3. Validate with `aphasia_kb.py --check`
 
 ```bash
-python stroke-aphasia-kb/aphasia_kb.py --check stroke-aphasia-kb/drafts/
+python aphasia_kb.py --check drafts/
 ```
 
 This checks that every draft conforms to v2.3 schema: required
@@ -300,7 +300,7 @@ the worksheet):
 
 ```bash
 # Pass 1: deterministic checks + tier classification. Promotes nothing.
-python stroke-aphasia-kb/auto_review.py --all
+python auto_review.py --all
 
 # Pass 2: the second reading. An independent local model (a different
 # tag from the extractor — see models.yaml `review`) re-reads the paper's
@@ -310,10 +310,10 @@ python stroke-aphasia-kb/auto_review.py --all
 # contradicting result omitted? A unanimous `approve` on a Tier A draft
 # promotes it as `model:<tag>` (log line MODEL-APPROVED). On Tier B the
 # verdict is recorded and the draft waits for you.
-python stroke-aphasia-kb/auto_review.py --all --llm-review --require-pdf-match
+python auto_review.py --all --llm-review --require-pdf-match
 
 # While calibrating a new reviewer model: record verdicts, promote nothing.
-python stroke-aphasia-kb/auto_review.py --all --llm-review --no-model-approve
+python auto_review.py --all --llm-review --no-model-approve
 ```
 
 #### Guardrails on the model reviewer
@@ -348,7 +348,7 @@ Everything that fires is recorded under `llm_review.guardrails` in the
 sidecar YAML:
 
 ```bash
-grep -A3 guardrails stroke-aphasia-kb/auto_review_log/*.yaml
+grep -A3 guardrails auto_review_log/*.yaml
 ```
 
 `--allow-local-override` is deprecated and ignored: the tier decides.
@@ -357,7 +357,7 @@ To verify the guardrails and the tier rules after editing the review
 code:
 
 ```bash
-python stroke-aphasia-kb/test_review_guardrails.py   # no Ollama needed
+python test_review_guardrails.py   # no Ollama needed
 ```
 
 #### Auditing model approvals
@@ -388,7 +388,7 @@ After both passes, every draft has a verdict in its sidecar YAML.
 ## 5. Generate a worksheet, fill in verdicts, apply
 
 ```bash
-python stroke-aphasia-kb/auto_review.py --all --emit-worksheet worksheet.yaml
+python auto_review.py --all --emit-worksheet worksheet.yaml
 ```
 
 This produces `worksheet.yaml` at the repo root with one entry per
@@ -411,7 +411,7 @@ per_finding:           # optional; omit if not needed
 Then:
 
 ```bash
-python stroke-aphasia-kb/auto_review.py --apply-verdicts worksheet.yaml \
+python auto_review.py --apply-verdicts worksheet.yaml \
     --reviewer "michele"
 ```
 
@@ -451,8 +451,8 @@ samples from.
 Quick sanity checks before committing:
 
 ```bash
-python stroke-aphasia-kb/aphasia_kb.py --check         # full KB, not just drafts/
-git status stroke-aphasia-kb/                          # what got moved/added?
+python aphasia_kb.py --check         # full KB, not just drafts/
+git status                          # what got moved/added?
 ```
 
 `--check` over the whole KB confirms canonical entries are still
@@ -461,17 +461,17 @@ the absence of the old draft show up in `git status`. The annotated
 PDF should also be listed as a new file the first time:
 
 ```
-new file:   stroke-aphasia-kb/papers/Foo2024_annotated.pdf
-new file:   stroke-aphasia-kb/regions/left_foo_gyrus.md
-modified:   stroke-aphasia-kb/extraction_log.md
-modified:   stroke-aphasia-kb/citations.md
-deleted:    stroke-aphasia-kb/drafts/regions/left_foo_gyrus__Foo2024.md
+new file:   papers/Foo2024_annotated.pdf
+new file:   regions/left_foo_gyrus.md
+modified:   extraction_log.md
+modified:   citations.md
+deleted:    drafts/regions/left_foo_gyrus__Foo2024.md
 ```
 
 Commit:
 
 ```bash
-git add stroke-aphasia-kb/
+git add -A
 git commit -m "Foo2024 extraction (3 drafts approved, 1 rejected)"
 git push
 ```

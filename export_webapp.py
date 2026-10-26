@@ -23,9 +23,9 @@ script writes everything that logic needs:
 the outputs the Python code produces for them, which the webapp's Node tests
 replay against the JavaScript port.
 
-    python stroke-aphasia-kb/export_webapp.py --out ../webapps/apps/calmar/web/models/annotations/stroke-aphasia-kb.json
-    python stroke-aphasia-kb/export_webapp.py --include approved,in_review --out kb.json
-    python stroke-aphasia-kb/export_webapp.py --fixtures ../webapps/apps/calmar/tests/fixtures/kb-parity
+    python export_webapp.py --out ../webapps/apps/calmar/web/models/annotations/stroke-aphasia-kb.json
+    python export_webapp.py --include approved,in_review --out kb.json
+    python export_webapp.py --fixtures ../webapps/apps/calmar/tests/fixtures/kb-parity
 """
 from __future__ import annotations
 
