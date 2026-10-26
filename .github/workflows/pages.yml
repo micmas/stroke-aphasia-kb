@@ -1,0 +1,66 @@
+name: explorer-pages
+
+# Publishes the explorer to GitHub Pages: explorer/ at the site root with
+# export/ and js/ beside it, so the page's relative paths are the same as in
+# a local checkout. The export is regenerated from the entries on every push
+# so the site never lags the knowledge base. Until the KB content has moved
+# into this repository (export_webapp.py absent), the committed export is used.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Regenerate the export (when the KB lives here)
+        run: |
+          if [ -f export_webapp.py ]; then
+            pip install pandas pyyaml
+            python3 export_webapp.py --out export/stroke-aphasia-kb.json --fixtures export --indent 1
+          else
+            echo "export_webapp.py not present yet; using the committed export"
+          fi
+      - name: Parity test of the JavaScript port
+        run: npm test
+      - name: Assemble the site
+        run: |
+          mkdir -p site/explorer site/export site/js
+          cp -r explorer/. site/explorer/
+          cp export/stroke-aphasia-kb.json site/export/
+          cp js/kb-evidence.js site/js/
+          cat > site/index.html <<'HTML'
+          <!doctype html><meta charset="utf-8"><meta http-equiv="refresh" content="0; url=explorer/">
+          <title>Stroke aphasia KB</title><a href="explorer/">Stroke aphasia KB explorer</a>
+          HTML
+          touch site/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,21 @@
+# Node
+node_modules/
+
+# KB workflow material that must stay local (copyright, size, or regenerated).
+# Mirrors calmar/.gitignore for aphasia-kb/.
+papers/
+_compare/
+_neurosynth_cache/
+drafts/_review/
+_last_extraction_response_*.txt
+_extraction_dry_run.txt
+__pycache__/
+*.pyc
+.venv/
+
+# Pages build output
+site/
+
+# OS
+.DS_Store
+_last_backfill_response_*.txt

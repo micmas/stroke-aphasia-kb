@@ -1,0 +1,14 @@
+{
+  "name": "stroke-aphasia-kb",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Stroke aphasia knowledge base: curated, source-traceable literature findings, the JavaScript evidence port, and the explorer site.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test js/test/*.test.js",
+    "export": "python3 export_webapp.py --out export/stroke-aphasia-kb.json --fixtures export --indent 1",
+    "explorer": "python3 -m http.server 8765 --directory ."
+  }
+}
