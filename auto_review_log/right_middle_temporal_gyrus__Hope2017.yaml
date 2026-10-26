@@ -9,7 +9,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/right_middle_temporal_gyrus__Hope2017.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/right_middle_temporal_gyrus__Hope2017.md:
       finding[0] (id=f1): unknown method=''VBM''; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
@@ -53,7 +53,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/right_middle_temporal_gyrus__Hope2017.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/right_middle_temporal_gyrus__Hope2017.md:
       finding[0] (id=f1): unknown method=''VBM''; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
@@ -97,7 +97,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/right_middle_temporal_gyrus__Hope2017.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/right_middle_temporal_gyrus__Hope2017.md:
       finding[0] (id=f1): unknown method=''VBM''; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',
@@ -141,7 +141,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/regions/right_middle_temporal_gyrus__Hope2017.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/regions/right_middle_temporal_gyrus__Hope2017.md:
       finding[0] (id=f1): unknown method=''VBM''; allowed: [''DTI'', ''EEG'', ''LSM'',
       ''MEG'', ''MLPA'', ''MVPA'', ''NODDI'', ''RLSM'', ''TMS'', ''VBCM'', ''VLSM'',
       ''behavioral_only'', ''clinical_RCT'', ''computational_model'', ''disconnectome'',

@@ -115,7 +115,7 @@ In reports, a damaged region whose findings come from two studies or fewer is ma
 ## Checking it
 
 ```
-python aphasia-kb/atlas_mapping.py --coverage        # files consistent? how much evidence is reachable?
-python aphasia-kb/kb_status.py                       # "Atlas reachability" section
+python stroke-aphasia-kb/atlas_mapping.py --coverage        # files consistent? how much evidence is reachable?
+python stroke-aphasia-kb/kb_status.py                       # "Atlas reachability" section
 pytest tests/test_kb_atlas_mapping.py
 ```

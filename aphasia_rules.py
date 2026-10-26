@@ -133,7 +133,7 @@ def decompose_aphasia(name) -> tuple[str, str, str] | None:
 #: et al., 2017, Int J Stroke 12:444–450): acute 1–7 d, early subacute 7 d–3 mo,
 #: late subacute 3–6 mo, chronic > 6 months; the two subacute bands are merged
 #: here. The same bands give each KB finding's ``sample.phase``
-#: (aphasia-kb/phase.py), so a participant's stage and the evidence's phase are
+#: (stroke-aphasia-kb/phase.py), so a participant's stage and the evidence's phase are
 #: compared on one scale. (Until 2026-10-22 the acute/subacute cut was an
 #: unsourced 14 days.) Day 7 is subacute here; phase.py counts a sample whose
 #: time post onset is exactly 7 days as acute.

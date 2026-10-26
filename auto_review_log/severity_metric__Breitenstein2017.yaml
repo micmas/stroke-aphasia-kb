@@ -9,9 +9,9 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/severity_metric__Breitenstein2017.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/severity_metric__Breitenstein2017.md:
       missing required file-level field: status'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/severity_metric__Breitenstein2017.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/severity_metric__Breitenstein2017.md:
       unknown status=None; allowed: [''approved'', ''draft'', ''in_review'', ''legacy_v1'',
       ''rejected'']'
   - name: no_low_confidence_findings
@@ -47,9 +47,9 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/severity_metric__Breitenstein2017.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/severity_metric__Breitenstein2017.md:
       missing required file-level field: status'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/severity_metric__Breitenstein2017.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/severity_metric__Breitenstein2017.md:
       unknown status=None; allowed: [''approved'', ''draft'', ''in_review'', ''legacy_v1'',
       ''rejected'']'
   - name: no_low_confidence_findings

@@ -17,7 +17,7 @@ This repository is the KB's home. It is consumed by three things:
 
 > **Status (October 2026): repository being assembled.** The KB content
 > (entries, scripts, governance documents, extraction log) still lives in
-> `calmar/aphasia-kb/` while a batch of entries is being written. It will
+> `calmar/stroke-aphasia-kb/` while a batch of entries is being written. It will
 > be moved here with its full git history by `tools/migrate-from-calmar.sh`.
 > Until then `export/` holds a snapshot export for developing the explorer
 > and testing the JavaScript port.
@@ -26,7 +26,7 @@ This repository is the KB's home. It is consumed by three things:
 
 ```
 stroke-aphasia-kb/
-├── README.md  schema.md  HOWTO.md  GOVERNANCE.md  MODELS.md  COMMANDS.md   ← from calmar/aphasia-kb
+├── README.md  schema.md  HOWTO.md  GOVERNANCE.md  MODELS.md  COMMANDS.md   ← from calmar/stroke-aphasia-kb
 ├── citations.md  extraction_log.md  models.yaml
 ├── regions/ impairments/ therapies/ predictors/ reviews/ ingredients/      ← canonical entries
 ├── drafts/  auto_review_log/  atlas_mapping/  examples/                    ← workflow material

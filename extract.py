@@ -3,7 +3,7 @@ extract.py — extract aphasia-KB findings from one or more papers.
 
 Reads a PDF, calls a LOCAL model via Ollama with EXTRACTION_SKILL.md +
 schema.md + the paper text as the prompt, and saves the resulting
-draft entries to aphasia-kb/drafts/. Then runs annotate_paper.py
+draft entries to stroke-aphasia-kb/drafts/. Then runs annotate_paper.py
 and appends to extraction_log.md.
 
 Paper full text never leaves this machine — all inference is local.
@@ -11,21 +11,21 @@ Paper full text never leaves this machine — all inference is local.
 Usage
 -----
     # one paper
-    python aphasia-kb/extract.py --pdf aphasia-kb/papers/Foo2024.pdf
+    python stroke-aphasia-kb/extract.py --pdf stroke-aphasia-kb/papers/Foo2024.pdf
 
     # one paper, explicit citation key (auto-inferred from filename if omitted)
-    python aphasia-kb/extract.py \
-        --pdf aphasia-kb/papers/Foo2024.pdf \
+    python stroke-aphasia-kb/extract.py \
+        --pdf stroke-aphasia-kb/papers/Foo2024.pdf \
         --citation '@Foo2024'
 
     # batch — every PDF in papers/ that doesn't already have drafts
-    python aphasia-kb/extract.py --batch
+    python stroke-aphasia-kb/extract.py --batch
 
     # explicit batch
-    python aphasia-kb/extract.py --pdf papers/Foo2024.pdf papers/Bar2023.pdf
+    python stroke-aphasia-kb/extract.py --pdf papers/Foo2024.pdf papers/Bar2023.pdf
 
     # dry-run: print the prompt that would be sent (no API call)
-    python aphasia-kb/extract.py --pdf papers/Foo2024.pdf --dry-run
+    python stroke-aphasia-kb/extract.py --pdf papers/Foo2024.pdf --dry-run
 
 Pre-requisites
 --------------
@@ -259,7 +259,7 @@ PROMPT_HEADER = """You are an extraction agent for an aphasia knowledge base.
 
 You read the paper below and produce one or more **draft KB entries**
 under schema v2.3. Your output will be saved as markdown files in
-`aphasia-kb/drafts/<bucket>/` for human review.
+`stroke-aphasia-kb/drafts/<bucket>/` for human review.
 
 # Output format (REQUIRED)
 
@@ -1150,7 +1150,7 @@ def main(argv=None):
     p.add_argument("--pdf", type=Path, nargs="*", default=[],
                    help="One or more PDF paths to extract from.")
     p.add_argument("--batch", action="store_true",
-                   help="Process every PDF in aphasia-kb/papers/ that "
+                   help="Process every PDF in stroke-aphasia-kb/papers/ that "
                         "doesn't already have a draft with its citation key.")
     p.add_argument("--citation", default=None,
                    help="Citation key (e.g. @Foo2024). Inferred from "
@@ -1196,7 +1196,7 @@ def main(argv=None):
                         "comparison without damaging anything.")
     p.add_argument("--dry-run", action="store_true",
                    help="Build the prompt but don't call the model. "
-                        "Saves prompt to aphasia-kb/_extraction_dry_run.txt.")
+                        "Saves prompt to stroke-aphasia-kb/_extraction_dry_run.txt.")
     args = p.parse_args(argv)
 
     # Interactive picker takes precedence over --model / config for this
@@ -1217,7 +1217,7 @@ def main(argv=None):
     if args.num_ctx is None:
         args.num_ctx = cfg["num_ctx"]
 
-    kb_root = HERE  # this script lives in aphasia-kb/
+    kb_root = HERE  # this script lives in stroke-aphasia-kb/
 
     pdfs = list(args.pdf)
     if args.batch:

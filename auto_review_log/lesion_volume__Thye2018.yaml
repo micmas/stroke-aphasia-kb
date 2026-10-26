@@ -9,20 +9,20 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/lesion_volume__Thye2018.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/lesion_volume__Thye2018.md:
       finding[0] (id=f1): region_definition.kind=None invalid'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/lesion_volume__Thye2018.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/lesion_volume__Thye2018.md:
       finding[0] (id=f1): imaging_details.reference_space=None invalid (required for
       imaging method)'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/lesion_volume__Thye2018.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/lesion_volume__Thye2018.md:
       finding[0] (id=f1): imaging_details.atlases_used must be present (use [] if
       none)'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/lesion_volume__Thye2018.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/lesion_volume__Thye2018.md:
       finding[1] (id=f2): region_definition.kind=None invalid'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/lesion_volume__Thye2018.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/lesion_volume__Thye2018.md:
       finding[1] (id=f2): imaging_details.reference_space=None invalid (required for
       imaging method)'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/lesion_volume__Thye2018.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/lesion_volume__Thye2018.md:
       finding[1] (id=f2): imaging_details.atlases_used must be present (use [] if
       none)'
   - name: no_low_confidence_findings

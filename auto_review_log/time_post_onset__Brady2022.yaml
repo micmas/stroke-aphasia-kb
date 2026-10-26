@@ -9,9 +9,9 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md:
       predictor_type=''clinical'' requires assessment (non-empty list of test names)'
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md:
       finding[0] (id=f1): region_definition.kind=None invalid'
   - name: no_low_confidence_findings
     passed: true
@@ -48,7 +48,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md:
       predictor_type=''clinical'' requires assessment (non-empty list of test names)'
   - name: no_low_confidence_findings
     passed: true
@@ -85,7 +85,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md:
       predictor_type=''clinical'' requires assessment (non-empty list of test names)'
   - name: no_low_confidence_findings
     passed: true
@@ -122,7 +122,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md:
       predictor_type=''clinical'' requires assessment (non-empty list of test names)'
   - name: no_low_confidence_findings
     passed: true
@@ -159,7 +159,7 @@ runs:
     passed: false
     blocker: true
     details:
-    - '/Users/uqmmasso/GITHUB/calmar/aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md:
       predictor_type=''clinical'' requires assessment (non-empty list of test names)'
   - name: no_low_confidence_findings
     passed: true
