@@ -84,6 +84,7 @@ documented change to *this file* and the loader together.
 | `created_on`     | ISO date | yes | When the entry was first written. |
 | `findings`       | list of *finding* objects | yes (may be empty) | See below. |
 | `notes`          | string  | no       | Free text, file-level. |
+| `reviewer_marks` | list    | no (drafts only) | Passages a reviewer marked in `review_app.py` for re-extraction: `{id: m<n>, page, quote, note, by, date, status: pending \| done \| unresolved, result}`. Consumed by `refocus.py`; `promote.py` refuses a draft with a pending mark and drops the list from the canonical copy. |
 
 ## `regions/` files
 
@@ -324,7 +325,8 @@ reports.
 | `provenance.extracted_on`   | R     | ISO date. |
 | `provenance.paper_section`  | R     | E.g. `Results, page 1435`, `Table 2`, `Figure 4 caption`. |
 | `provenance.confidence`     | R     | Agent's confidence in the *extraction itself* (not in the finding). `high` \| `medium` \| `low`. |
-| `provenance.flags`          | R     | List of one-line concerns, e.g. `["effect direction unclear", "sample n inferred from figure"]`. Use `[]` if none. |
+| `provenance.flags`          | R     | List of one-line concerns, e.g. `["effect direction unclear", "sample n inferred from figure"]`. Use `[]` if none. A finding written by `refocus.py` carries `refocus: m<n>`, the reviewer mark it answers. |
+| `edits`                     | O     | List of `{by: human:<name>, date, fields: [...]}` written by `review_app.py` each time a person changes the finding before approval (`fields` names what changed: `claim`, `strength`, `source_passages`, `provenance.flags` …). Kept through promotion. |
 
 ### Source passages (REQUIRED in v2.1)
 

@@ -133,7 +133,7 @@ ROOT = Path(__file__).resolve().parents[1]  # repository root (this file lives i
 DRAFTS_DIR = ROOT / "drafts"
 PAPERS_DIR = ROOT / "papers"
 REPORTS_DIR = ROOT / "logs/auto_review"
-PROMOTE_PY = ROOT / "promote.py"
+PROMOTE_PY = Path(__file__).resolve().parent / "promote.py"
 LOG_PATH = ROOT / "logs/extraction_log.md"
 
 # Which model reviews drafts lives in models.yaml — see model_config.py.

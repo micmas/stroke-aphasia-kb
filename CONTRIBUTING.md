@@ -20,6 +20,7 @@ drop it in `papers/<Key>.pdf`) and checking each finding against it.
 ```bash
 python scripts/promote.py --list                       # what is waiting, and at which tier
 python scripts/review_sheet.py --all --fix-pages       # one HTML page per draft, every quote on its page
+python scripts/review_app.py --draft drafts/<bucket>/<file>.md   # the workbench: edit the draft beside the whole paper
 python scripts/promote.py --approve drafts/<bucket>/<file>.md --reviewer human:<your name>
 python scripts/promote.py --reject  drafts/<bucket>/<file>.md --reviewer human:<your name> --reason "..."
 ```
