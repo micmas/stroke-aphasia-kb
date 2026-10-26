@@ -4,9 +4,9 @@
 // The CALMaR webapp (neurodesk/webapps, apps/calmar) vendors this file at a
 // pinned commit; do not edit the vendored copy. Dependency-free on purpose:
 // it runs in the browser, in Node tests and in the explorer alike.
-// Reference implementation: aphasia_kb.py / aphasia_rules.py / atlas_mapping.py
+// Reference implementation: scripts/aphasia_kb.py / scripts/aphasia_rules.py / scripts/atlas_mapping.py
 // in this repository; js/test/kb-evidence.test.js checks parity against the
-// fixtures export_webapp.py --fixtures writes.
+// fixtures scripts/export_webapp.py --fixtures writes.
 //
 // Knowledge-base evidence for a lesion: the JavaScript port of the parts of
 // CALMaR's Python participant report that turn atlas overlap into cited
@@ -71,7 +71,7 @@ export function fullMapping(mapping) {
 }
 
 // ---------------------------------------------------------------------------
-// Damage per unit and knowledge-base region (atlas_mapping.py)
+// Damage per unit and knowledge-base region (scripts/atlas_mapping.py)
 // ---------------------------------------------------------------------------
 
 function sideRows(rows, labels, side, fromVoxels) {

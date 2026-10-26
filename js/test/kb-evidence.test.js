@@ -1,6 +1,6 @@
 // The knowledge-base evidence port (js/kb-evidence.js) against the Python answers.
 //
-// export/kb-parity.json is written by export_webapp.py --fixtures with the real
+// export/kb-parity.json is written by scripts/export_webapp.py --fixtures with the real
 // aphasia_kb / atlas_mapping code: synthetic overlap tables and what Python
 // computes from them. export/stroke-aphasia-kb.json is the matching export. The JavaScript must give the same unit and region
 // damage, the same matched findings with the same contributions, the same

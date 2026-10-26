@@ -6,7 +6,7 @@
 #
 #   ollama list                     # what you already have
 #   ollama pull <tag>               # get a new one
-#   python model_config.py          # show resolved config + availability
+#   python scripts/model_config.py          # show resolved config + availability
 #
 # Precedence (highest wins):
 #   1. --model on the command line
