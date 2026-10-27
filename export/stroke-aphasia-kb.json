@@ -459,7 +459,8 @@
     "fluency",
     "form_to_articulation",
     "form_to_meaning",
-    "global_aphasia"
+    "global_aphasia",
+    "anomia"
    ]
   },
   "executive_functions": {
@@ -2569,7 +2570,8 @@
    "flags": [
     "Relationship coded as `correlational` per KB rules.",
     "Note: paper reports R² (not partial R²) for AF predicting BNT, while earlier outcomes used partial R². The paper text says 'AF lesion load (R²=0.159)' — coded as stated; may reflect total vs partial R² inconsistency in reporting.",
-    "UF trend (p=0.073) not significant but noted — consistent with dual-stream predictions for naming; not coded as a separate finding given it did not reach threshold."
+    "UF trend (p=0.073) not significant but noted — consistent with dual-stream predictions for naming; not coded as a separate finding given it did not reach threshold.",
+    "retargeted confrontation_naming → anomia (symptom, v2.8) on 2026-10-26"
    ],
    "id": "f4",
    "lm_analysis": null,
@@ -2647,7 +2649,7 @@
     "threshold": "multiple regression with all 4 predictors; p<0.05 for R²."
    },
    "strength": "moderate",
-   "target": "confrontation_naming",
+   "target": "anomia",
    "target_kind": "impairment",
    "time_post_onset": ">=11 months post-stroke; mean 35.0 months (SD 28.7)"
   },
@@ -3084,7 +3086,8 @@
    "flags": [
     "Relationship coded as `correlational` per KB rules.",
     "Note: paper reports R² (not partial R²) for AF predicting BNT, while earlier outcomes used partial R². The paper text says 'AF lesion load (R²=0.159)' — coded as stated; may reflect total vs partial R² inconsistency in reporting.",
-    "UF trend (p=0.073) not significant but noted — consistent with dual-stream predictions for naming; not coded as a separate finding given it did not reach threshold."
+    "UF trend (p=0.073) not significant but noted — consistent with dual-stream predictions for naming; not coded as a separate finding given it did not reach threshold.",
+    "retargeted confrontation_naming → anomia (symptom, v2.8) on 2026-10-26"
    ],
    "id": "f9",
    "lm_analysis": null,
@@ -3162,7 +3165,7 @@
     "threshold": "multiple regression with all 4 predictors; p<0.05 for R²."
    },
    "strength": "moderate",
-   "target": "confrontation_naming",
+   "target": "anomia",
    "target_kind": "impairment",
    "time_post_onset": ">=11 months post-stroke; mean 35.0 months (SD 28.7)"
   },
@@ -5580,7 +5583,8 @@
     "cohort overlaps with @Fridriksson2018Anatomy (same USC/MUSC lab group; Bonilha 2014 n=39; Fridriksson 2018Anatomy n=159); flag for downstream double-counting risk in interpret_overlap()",
     "DTI acquisition parameters (b-values, directions, voxel size) are in Online Supplement only — verify against supplement for imaging_details completeness",
     "reference_space not explicitly stated in main text — likely native Brodmann-atlas space; verify",
-    "disconnection beta (1.21) exceeds necrosis beta (0.43) — paper interprets disconnection as having greater predictive weight than necrosis for naming"
+    "disconnection beta (1.21) exceeds necrosis beta (0.43) — paper interprets disconnection as having greater predictive weight than necrosis for naming",
+    "retargeted naming → anomia (symptom, v2.8) on 2026-10-26"
    ],
    "id": "f1",
    "lm_analysis": "univariate",
@@ -5689,7 +5693,7 @@
     "threshold": "p<0.05 Bonferroni-corrected for number of regressions"
    },
    "strength": "moderate",
-   "target": "naming",
+   "target": "anomia",
    "target_kind": "impairment",
    "time_post_onset": ">=6 months prior to enrollment"
   },
@@ -5949,7 +5953,9 @@
    ],
    "direction": "likely",
    "evidence_quality": "cohort",
-   "flags": [],
+   "flags": [
+    "retargeted anomic_aphasia → anomia (symptom, v2.8) on 2026-10-26"
+   ],
    "id": "f2",
    "lm_analysis": "univariate",
    "lm_correction": "fdr",
@@ -6026,7 +6032,7 @@
     "threshold": "FDR p < 0.05"
    },
    "strength": "moderate",
-   "target": "anomic_aphasia",
+   "target": "anomia",
    "target_kind": "impairment",
    "time_post_onset": ">= 12 months"
   },
@@ -6337,7 +6343,8 @@
     "cohort overlaps with @Fridriksson2018 (same USC Aphasia Lab)",
     "paper states 'unlike Wernicke's, Broca's, conduction, or global aphasia, anomic aphasia has no specific lesion location' (citing Yourganov 2015) — this is consistent with low R2 for naming",
     "CLSM for PNT correct: top univariate link is PrCG <-> posterior STG (Z=4.21); multivariate CLSM: posterior STG <-> PrCG R2=0.18 (first entry), then multiple additional links adding to total R2=0.48",
-    "The naming finding illustrates the key claim: many different lesion locations can impair naming because naming relies on both dorsal and ventral stream networks"
+    "The naming finding illustrates the key claim: many different lesion locations can impair naming because naming relies on both dorsal and ventral stream networks",
+    "retargeted naming → anomia (symptom, v2.8) on 2026-10-26"
    ],
    "id": "f3",
    "lm_analysis": "univariate",
@@ -6462,7 +6469,7 @@
     "threshold": "permutation thresholding (4000 permutations), p<0.05 one-tailed"
    },
    "strength": "moderate",
-   "target": "naming",
+   "target": "anomia",
    "target_kind": "impairment",
    "time_post_onset": ">=6 months (mean 36.4 months, SD 43.1 for full sample)"
   },
@@ -6899,7 +6906,8 @@
     "cohort overlaps with @Fridriksson2018 (same USC Aphasia Lab)",
     "paper states 'unlike Wernicke's, Broca's, conduction, or global aphasia, anomic aphasia has no specific lesion location' (citing Yourganov 2015) — this is consistent with low R2 for naming",
     "CLSM for PNT correct: top univariate link is PrCG <-> posterior STG (Z=4.21); multivariate CLSM: posterior STG <-> PrCG R2=0.18 (first entry), then multiple additional links adding to total R2=0.48",
-    "The naming finding illustrates the key claim: many different lesion locations can impair naming because naming relies on both dorsal and ventral stream networks"
+    "The naming finding illustrates the key claim: many different lesion locations can impair naming because naming relies on both dorsal and ventral stream networks",
+    "retargeted naming → anomia (symptom, v2.8) on 2026-10-26"
    ],
    "id": "f7",
    "lm_analysis": "univariate",
@@ -7024,7 +7032,7 @@
     "threshold": "permutation thresholding (4000 permutations), p<0.05 one-tailed"
    },
    "strength": "moderate",
-   "target": "naming",
+   "target": "anomia",
    "target_kind": "impairment",
    "time_post_onset": ">=6 months (mean 36.4 months, SD 43.1 for full sample)"
   },
@@ -9637,6 +9645,12 @@
      "quote": "Patients with aphasia caused by a cerebrovascular accident were taken into the study not earlier than 2 months after the accident.",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 3,
+     "quote": "During the following 8 weeks patients were treated with 2 sessions of 45 min of language therapy per day five times a week.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "regions/left_temporobasal__Goldenberg1994.md",
@@ -9656,6 +9670,11 @@
    "strength": "weak",
    "target": "prognosis",
    "target_kind": "prognosis",
+   "therapy": {
+    "dose": "2 sessions of 45 min of language therapy per day five times a week",
+    "id": "intensive_language_therapy",
+    "name": "intensive language therapy"
+   },
    "time_post_onset": "10 patients at 2 months, six at 3–4 months, two at 6–7 months post-CVA at study entry"
   },
   {
@@ -21984,6 +22003,12 @@
      "quote": "Patients with chronic aphasia were assigned randomly to a group to receive either conventional aphasia therapy or constraint-induced (CI) aphasia therapy",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 1,
+     "quote": "CI aphasia therapy is realized in a communicative therapeutic environment constraining patients to practice systematically speech acts with which they have difficulty.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/constraint_induced_aphasia_therapy.md",
@@ -22001,6 +22026,11 @@
    "strength": "strong",
    "target": "brocas_aphasia",
    "target_kind": "impairment",
+   "therapy": {
+    "dose": "3 to 4 hours per day for 10 days",
+    "id": "constraint_induced_aphasia_therapy",
+    "name": "constraint-induced (CI) aphasia therapy"
+   },
    "time_post_onset": null
   },
   {
@@ -22133,6 +22163,12 @@
      "quote": "(citation from clinical knowledge — not formally extracted)",
      "section": "migrated entry",
      "supports": "claim"
+    },
+    {
+     "page": 2,
+     "quote": "MIT is a hierarchically structured treatment that uses intoned (sung) patterns to exaggerate the normal melodic content of speech at three levels of difficulty.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/melodic_intonation_therapy.md",
@@ -22152,6 +22188,11 @@
    "strength": "moderate",
    "target": "left_precentral_gyrus",
    "target_kind": "region",
+   "therapy": {
+    "dose": "1.5 hrs/day, five days/week",
+    "id": "melodic_intonation_therapy",
+    "name": "Melodic Intonation Therapy"
+   },
    "time_post_onset": ">6 months"
   },
   {
@@ -22203,6 +22244,12 @@
      "quote": "(citation from clinical knowledge — not formally extracted)",
      "section": "migrated entry",
      "supports": "claim"
+    },
+    {
+     "page": 1,
+     "quote": "The best-described aphasia therapy using melody is the Melodic Intonation Therapy (MIT).",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/melodic_intonation_therapy.md",
@@ -22222,6 +22269,10 @@
    "strength": "moderate",
    "target": "brocas_aphasia",
    "target_kind": "impairment",
+   "therapy": {
+    "id": "melodic_intonation_therapy",
+    "name": "Melodic Intonation Therapy"
+   },
    "time_post_onset": null
   },
   {
@@ -22839,6 +22890,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 6,
+     "quote": "Finally, at Johns Hopkins University, training employed a spell-study-spell procedure for participants with dysgraphia.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/spell_study_spell.md",
@@ -22858,6 +22915,11 @@
    "strength": "strong",
    "target": "dysgraphia",
    "target_kind": "impairment",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "spell_study_spell",
+    "name": "spell-study-spell training"
+   },
    "time_post_onset": "mean 67.9 months (SD 41.1)"
   },
   {
@@ -22974,6 +23036,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 6,
+     "quote": "Finally, at Johns Hopkins University, training employed a spell-study-spell procedure for participants with dysgraphia.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/spell_study_spell.md",
@@ -22993,6 +23061,11 @@
    "strength": "moderate",
    "target": "right_anterior_superior_temporal_gyrus",
    "target_kind": "region",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "spell_study_spell",
+    "name": "spell-study-spell training"
+   },
    "time_post_onset": "mean 67.9 months (SD 41.1)"
   },
   {
@@ -23098,6 +23171,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 6,
+     "quote": "Finally, at Johns Hopkins University, training employed a spell-study-spell procedure for participants with dysgraphia.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/spell_study_spell.md",
@@ -23117,6 +23196,11 @@
    "strength": "strong",
    "target": "dysgraphia",
    "target_kind": "impairment",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "spell_study_spell",
+    "name": "spell-study-spell training"
+   },
    "time_post_onset": "mean 67.9 months (SD 41.1)"
   },
   {
@@ -23233,6 +23317,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 6,
+     "quote": "Finally, at Johns Hopkins University, training employed a spell-study-spell procedure for participants with dysgraphia.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/spell_study_spell.md",
@@ -23252,6 +23342,11 @@
    "strength": "moderate",
    "target": "right_anterior_superior_temporal_gyrus",
    "target_kind": "region",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "spell_study_spell",
+    "name": "spell-study-spell training"
+   },
    "time_post_onset": "mean 67.9 months (SD 41.1)"
   },
   {
@@ -23346,6 +23441,12 @@
      "quote": "Seventy-four individuals with chronic stroke-induced aphasia completed 15 language therapy sessions",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": "not_reported",
+     "quote": "Seventy-four individuals with chronic stroke-induced aphasia completed 15 language therapy sessions and were randomized to receive 1 mA A-tDCS or sham tDCS (S-tDCS) to the intact left temporoparietal region for the first 20 min of each session.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/tdcs_aphasia_treatment.md",
@@ -23365,6 +23466,11 @@
    "strength": "moderate",
    "target": "bdnf_genotype",
    "target_kind": "predictor",
+   "therapy": {
+    "dose": "1 mA A-tDCS or sham tDCS (S-tDCS) to the intact left temporoparietal region for the first 20 min of each session",
+    "id": "tdcs_aphasia_treatment",
+    "name": "anodal tDCS during aphasia treatment"
+   },
    "time_post_onset": "mean 43.3 months (SD 41.1; range 6.1–204.9 months)"
   },
   {
@@ -23473,6 +23579,12 @@
      "quote": "Four right-handed, chronic aphasia patients participated, at 5–11 years post-L middle cerebral artery stroke.",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 6,
+     "quote": "On each day of treatment, rTMS was applied at 1 Hz frequency for 20 min (1200 pulses) at 90% of motor threshold (left, first dorsal interosseus muscle), using a Super-Rapid High Frequency MagStim Magnetic Stimulator and a figure 8-shaped coil (MagStim, NY).",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/tms_right_ifg__Naeser2005.md",
@@ -23492,6 +23604,11 @@
    "strength": "weak",
    "target": "right_pars_triangularis_ba45",
    "target_kind": "region",
+   "therapy": {
+    "dose": "daily for 10 days (1200 pulses/day at 90% motor threshold)",
+    "id": "tdcs_aphasia_treatment",
+    "name": "Inhibitory 1 Hz rTMS to the right pars triangularis"
+   },
    "time_post_onset": "P1: 5 years; P2: 10 years; P3: 11 years; P4: 7 years"
   },
   {
@@ -23600,6 +23717,12 @@
      "quote": "Four right-handed, chronic aphasia patients participated, at 5–11 years post-L middle cerebral artery stroke.",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 6,
+     "quote": "On each day of treatment, rTMS was applied at 1 Hz frequency for 20 min (1200 pulses) at 90% of motor threshold (left, first dorsal interosseus muscle), using a Super-Rapid High Frequency MagStim Magnetic Stimulator and a figure 8-shaped coil (MagStim, NY).",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/tms_right_ifg__Naeser2005.md",
@@ -23619,6 +23742,11 @@
    "strength": "weak",
    "target": "right_pars_triangularis_ba45",
    "target_kind": "region",
+   "therapy": {
+    "dose": "daily for 10 days (1200 pulses/day at 90% motor threshold)",
+    "id": "tdcs_aphasia_treatment",
+    "name": "Inhibitory 1 Hz rTMS to the right pars triangularis"
+   },
    "time_post_onset": "P1: 5 years; P2: 10 years; P3: 11 years; P4: 7 years"
   },
   {
@@ -23731,6 +23859,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": "not_reported",
+     "quote": "Brieﬂy, at Northwestern University, participants in the treatment group underwent Treatment of Underlying Forms (TUF, Thompson & Shapiro, 2005), a treatment approach that uses a series of meta-linguistic steps focused on verbs, verb argument structure, and thematic-syntactic mapping in active (e.g., The man was shaving the boy) and passive sentences (e.g., The boy was shaved by the man) to improve sentence comprehension and production.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/treatment_of_underlying_forms.md",
@@ -23750,6 +23884,11 @@
    "strength": "strong",
    "target": "agrammatism",
    "target_kind": "impairment",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "treatment_of_underlying_forms",
+    "name": "Treatment of Underlying Forms"
+   },
    "time_post_onset": "mean 42.3 months (SD 30.0)"
   },
   {
@@ -23865,6 +24004,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": "not_reported",
+     "quote": "Brieﬂy, at Northwestern University, participants in the treatment group underwent Treatment of Underlying Forms (TUF, Thompson & Shapiro, 2005), a treatment approach that uses a series of meta-linguistic steps focused on verbs, verb argument structure, and thematic-syntactic mapping in active (e.g., The man was shaving the boy) and passive sentences (e.g., The boy was shaved by the man) to improve sentence comprehension and production.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/treatment_of_underlying_forms.md",
@@ -23884,6 +24029,11 @@
    "strength": "strong",
    "target": "right_anterior_middle_temporal_gyrus",
    "target_kind": "region",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "treatment_of_underlying_forms",
+    "name": "Treatment of Underlying Forms"
+   },
    "time_post_onset": "mean 42.3 months (SD 30.0)"
   },
   {
@@ -23982,6 +24132,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": "not_reported",
+     "quote": "Brieﬂy, at Northwestern University, participants in the treatment group underwent Treatment of Underlying Forms (TUF, Thompson & Shapiro, 2005), a treatment approach that uses a series of meta-linguistic steps focused on verbs, verb argument structure, and thematic-syntactic mapping in active (e.g., The man was shaving the boy) and passive sentences (e.g., The boy was shaved by the man) to improve sentence comprehension and production.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/treatment_of_underlying_forms.md",
@@ -24000,6 +24156,11 @@
    "strength": "moderate",
    "target": "agrammatism",
    "target_kind": "impairment",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "treatment_of_underlying_forms",
+    "name": "Treatment of Underlying Forms"
+   },
    "time_post_onset": "mean 42.3 months (SD 30.0)"
   },
   {
@@ -24112,6 +24273,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": "not_reported",
+     "quote": "Brieﬂy, at Northwestern University, participants in the treatment group underwent Treatment of Underlying Forms (TUF, Thompson & Shapiro, 2005), a treatment approach that uses a series of meta-linguistic steps focused on verbs, verb argument structure, and thematic-syntactic mapping in active (e.g., The man was shaving the boy) and passive sentences (e.g., The boy was shaved by the man) to improve sentence comprehension and production.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/treatment_of_underlying_forms.md",
@@ -24131,6 +24298,11 @@
    "strength": "strong",
    "target": "agrammatism",
    "target_kind": "impairment",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "treatment_of_underlying_forms",
+    "name": "Treatment of Underlying Forms"
+   },
    "time_post_onset": "mean 42.3 months (SD 30.0)"
   },
   {
@@ -24246,6 +24418,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": "not_reported",
+     "quote": "Brieﬂy, at Northwestern University, participants in the treatment group underwent Treatment of Underlying Forms (TUF, Thompson & Shapiro, 2005), a treatment approach that uses a series of meta-linguistic steps focused on verbs, verb argument structure, and thematic-syntactic mapping in active (e.g., The man was shaving the boy) and passive sentences (e.g., The boy was shaved by the man) to improve sentence comprehension and production.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/treatment_of_underlying_forms.md",
@@ -24265,6 +24443,11 @@
    "strength": "strong",
    "target": "right_anterior_middle_temporal_gyrus",
    "target_kind": "region",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "treatment_of_underlying_forms",
+    "name": "Treatment of Underlying Forms"
+   },
    "time_post_onset": "mean 42.3 months (SD 30.0)"
   },
   {
@@ -24363,6 +24546,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": "not_reported",
+     "quote": "Brieﬂy, at Northwestern University, participants in the treatment group underwent Treatment of Underlying Forms (TUF, Thompson & Shapiro, 2005), a treatment approach that uses a series of meta-linguistic steps focused on verbs, verb argument structure, and thematic-syntactic mapping in active (e.g., The man was shaving the boy) and passive sentences (e.g., The boy was shaved by the man) to improve sentence comprehension and production.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/treatment_of_underlying_forms.md",
@@ -24381,6 +24570,11 @@
    "strength": "moderate",
    "target": "agrammatism",
    "target_kind": "impairment",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "treatment_of_underlying_forms",
+    "name": "Treatment of Underlying Forms"
+   },
    "time_post_onset": "mean 42.3 months (SD 30.0)"
   },
   {
@@ -24492,6 +24686,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 6,
+     "quote": "At Boston University, the participants treated for anomia underwent a typicality-based semantic feature analysis treatment in which typical (e.g., pigeon) or atypical (e.g., pen-guin) exemplars of a certain semantic category (e.g., birds) were trained.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/typicality_semantic_feature_analysis.md",
@@ -24511,6 +24711,11 @@
    "strength": "strong",
    "target": "anomia",
    "target_kind": "impairment",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "semantic_feature_analysis",
+    "name": "typicality-based semantic feature analysis treatment"
+   },
    "time_post_onset": "mean 60.0 months (SD 53.1)"
   },
   {
@@ -24601,6 +24806,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 6,
+     "quote": "At Boston University, the participants treated for anomia underwent a typicality-based semantic feature analysis treatment in which typical (e.g., pigeon) or atypical (e.g., pen-guin) exemplars of a certain semantic category (e.g., birds) were trained.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/typicality_semantic_feature_analysis.md",
@@ -24620,6 +24831,11 @@
    "strength": "moderate",
    "target": "right_anterior_middle_temporal_gyrus",
    "target_kind": "region",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "semantic_feature_analysis",
+    "name": "typicality-based semantic feature analysis treatment"
+   },
    "time_post_onset": "mean 60.0 months (SD 53.1)"
   },
   {
@@ -24717,6 +24933,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 6,
+     "quote": "At Boston University, the participants treated for anomia underwent a typicality-based semantic feature analysis treatment in which typical (e.g., pigeon) or atypical (e.g., pen-guin) exemplars of a certain semantic category (e.g., birds) were trained.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/typicality_semantic_feature_analysis.md",
@@ -24735,6 +24957,11 @@
    "strength": "moderate",
    "target": "right_anterior_middle_temporal_gyrus",
    "target_kind": "region",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "semantic_feature_analysis",
+    "name": "typicality-based semantic feature analysis treatment"
+   },
    "time_post_onset": "mean 60.0 months (SD 53.1)"
   },
   {
@@ -24846,6 +25073,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 6,
+     "quote": "At Boston University, the participants treated for anomia underwent a typicality-based semantic feature analysis treatment in which typical (e.g., pigeon) or atypical (e.g., pen-guin) exemplars of a certain semantic category (e.g., birds) were trained.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/typicality_semantic_feature_analysis.md",
@@ -24865,6 +25098,11 @@
    "strength": "strong",
    "target": "anomia",
    "target_kind": "impairment",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "semantic_feature_analysis",
+    "name": "typicality-based semantic feature analysis treatment"
+   },
    "time_post_onset": "mean 60.0 months (SD 53.1)"
   },
   {
@@ -24955,6 +25193,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 6,
+     "quote": "At Boston University, the participants treated for anomia underwent a typicality-based semantic feature analysis treatment in which typical (e.g., pigeon) or atypical (e.g., pen-guin) exemplars of a certain semantic category (e.g., birds) were trained.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/typicality_semantic_feature_analysis.md",
@@ -24974,6 +25218,11 @@
    "strength": "moderate",
    "target": "right_anterior_middle_temporal_gyrus",
    "target_kind": "region",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "semantic_feature_analysis",
+    "name": "typicality-based semantic feature analysis treatment"
+   },
    "time_post_onset": "mean 60.0 months (SD 53.1)"
   },
   {
@@ -25071,6 +25320,12 @@
      "quote": "presence of a single left-hemisphere stroke at least 12 months prior entering the study",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": 6,
+     "quote": "At Boston University, the participants treated for anomia underwent a typicality-based semantic feature analysis treatment in which typical (e.g., pigeon) or atypical (e.g., pen-guin) exemplars of a certain semantic category (e.g., birds) were trained.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "therapies/typicality_semantic_feature_analysis.md",
@@ -25089,6 +25344,11 @@
    "strength": "moderate",
    "target": "right_anterior_middle_temporal_gyrus",
    "target_kind": "region",
+   "therapy": {
+    "dose": "12 weeks",
+    "id": "semantic_feature_analysis",
+    "name": "typicality-based semantic feature analysis treatment"
+   },
    "time_post_onset": "mean 60.0 months (SD 53.1)"
   },
   {
@@ -25703,6 +25963,12 @@
      "quote": "Seventy-four individuals with chronic stroke-induced aphasia completed 15 language therapy sessions",
      "section": "added by backfill",
      "supports": "sample"
+    },
+    {
+     "page": "not_reported",
+     "quote": "Seventy-four individuals with chronic stroke-induced aphasia completed 15 language therapy sessions and were randomized to receive 1 mA A-tDCS or sham tDCS (S-tDCS) to the intact left temporoparietal region for the first 20 min of each session.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "predictors/bdnf_val66met.md",
@@ -25722,6 +25988,11 @@
    "strength": "moderate",
    "target": "tdcs_aphasia_treatment",
    "target_kind": "therapy",
+   "therapy": {
+    "dose": "1 mA A-tDCS or sham tDCS (S-tDCS) to the intact left temporoparietal region for the first 20 min of each session",
+    "id": "tdcs_aphasia_treatment",
+    "name": "anodal tDCS during aphasia treatment"
+   },
    "time_post_onset": "mean 43.3 months (SD 41.1; range 6.1–204.9 months)"
   },
   {
@@ -28784,6 +29055,12 @@
      "quote": "In addition, all patients underwent identical treatment, despite their individual baseline performance or type of aphasia.",
      "section": "Limitations and Future Studies",
      "supports": "limitation"
+    },
+    {
+     "page": "not_reported",
+     "quote": "During each 3-hour treatment session, the subject underwent clinician-administered anomia treatment using semantic and phonemic cueing hierarchies.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "predictors/severity_metric.md",
@@ -28801,6 +29078,11 @@
    "strength": "moderate",
    "target": "anomic_aphasia",
    "target_kind": "therapy",
+   "therapy": {
+    "dose": "30 hours of speech therapy over a 2-week period",
+    "id": "anomia_treatment_using_semantic_and_phonemic_cueing_hierarch",
+    "name": "anomia treatment using semantic and phonemic cueing hierarchies"
+   },
    "time_post_onset": "at least 6 months"
   },
   {
@@ -37625,8 +37907,8 @@
   }
  },
  "version": {
-  "commit": "ae5098e",
-  "contentDigest": "4414e2a90bc988b7",
+  "commit": "8b00307",
+  "contentDigest": "161e3638ebcce8d9",
   "date": "2026-10-26",
   "entries": {
    "impairments": 13,
@@ -37634,7 +37916,7 @@
    "regions": 22,
    "therapies": 8
   },
-  "exportedOn": "2026-10-26",
+  "exportedOn": "2026-10-27",
   "findings": 240,
   "findingsReviewed": 47,
   "papers": 48,

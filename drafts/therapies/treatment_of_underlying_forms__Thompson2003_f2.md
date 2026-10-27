@@ -81,6 +81,13 @@ findings:
     page: 601
     quote: Small sample size (n=4) using a single-subject experimental design.
     supports: limitation
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-27'
+    tool: backfill.py
+    fields: []
+    unresolved:
+    - therapy
 notes: This finding supports the CATE hypothesis by demonstrating the asymmetry of generalization based
   on structural complexity.
 ---

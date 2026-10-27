@@ -163,6 +163,22 @@ REGION_DEF_KIND_VOCAB = {
 }
 
 # v2.1 additions ---------------------------------------------------
+# v2.8: relationships that describe an intervention's effect; such findings name the therapy.
+THERAPY_RELATIONSHIPS = {"treatment_response", "responder"}
+_SYNDROME_WORDS = re.compile(r"\b(aphasia (type|types|subtype|subtypes|syndrome|syndromes|classification|category|"
+                             r"categories|profile)|(anomic|broca'?s|wernicke'?s|conduction|global|transcortical|"
+                             r"thalamic|subcortical|basal.ganglia) aphasia|classified|classification|WAB(-R)? "
+                             r"(type|class)|diagnos)", re.I)
+
+
+def _syndrome_claim(f: dict) -> bool:
+    """True when a finding's claim speaks of an aphasia syndrome (a classified
+    type), not of a symptom that happens to be the syndrome's name."""
+    text = " ".join(str(f.get(k) or "") for k in ("claim", "notes")) + " " + \
+        " ".join(str(p.get("quote") or "") for p in (f.get("source_passages") or []) if isinstance(p, dict) and p.get("supports") == "claim")
+    return bool(_SYNDROME_WORDS.search(text))
+
+
 SUPPORTS_VOCAB = {
     "claim", "method", "sample", "statistics", "confounders",
     "region_definition", "limitation", "imaging_details",
@@ -314,10 +330,10 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
     # v2.4+ entries can use method=narrative_review with relaxed field rules.
     # v2.5 adds optional review-provenance fields (review_tier, per-finding
     # review block, audited_by/audited_on); no structural change.
-    _ALL_SV = (2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7,
-               "2", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7")
+    _ALL_SV = (2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8,
+               "2", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8")
     if sv not in _ALL_SV:
-        err(f"schema_version must be 2–2.7, got {sv!r}")
+        err(f"schema_version must be 2–2.8, got {sv!r}")
     # Compare numerically: the slice-based test this replaces silently
     # excluded every version added after it was written (2.6 drafts
     # failed "predictor entries require schema_version 2.3 or higher").
@@ -330,6 +346,7 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
     is_v23 = _v >= 2.3
     is_v24 = _v >= 2.4
     is_v27 = _v >= 2.7
+    is_v28 = _v >= 2.8
 
     # v2.3 predictor entries: validate file-level predictor fields.
     # (We check kind=='predictor' regardless of bucket so any file that
@@ -414,6 +431,24 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
             if rel not in RELATIONSHIP_VOCAB:
                 err(f"{prefix}: relationship={rel!r} required in v2.2; "
                     f"allowed: {sorted(RELATIONSHIP_VOCAB)}")
+
+        # v2.8: a therapy finding names its therapy; a symptom is not a syndrome
+        th = f.get("therapy")
+        if th is not None and not isinstance(th, dict):
+            err(f"{prefix}: therapy must be a mapping {{id, name}}")
+        elif isinstance(th, dict):
+            if not str(th.get("name") or "").strip():
+                err(f"{prefix}: therapy.name is empty")
+            if th.get("id") is not None and not re.match(r"^[a-z0-9_]+$", str(th["id"])):
+                err(f"{prefix}: therapy.id must be a lowercase_snake id, got {th['id']!r}")
+        if is_v28 and th is None and (f.get("relationship") in THERAPY_RELATIONSHIPS
+                                      or f.get("target_kind") == "therapy"):
+            err(f"{prefix}: therapy {{id, name}} is required for a {f.get('relationship')} finding in v2.8 "
+                f"(which intervention was given)")
+        if is_v28 and str(f.get("target") or "").endswith("_aphasia") and f.get("target_kind") == "impairment" \
+                and not _syndrome_claim(f):
+            err(f"{prefix}: target {f.get('target')!r} is an aphasia syndrome but the claim is about a symptom; "
+                f"target the symptom entry (anomia, fluency, …) unless the paper classifies by syndrome")
 
         if not is_narrative:
             # Sample
@@ -745,6 +780,9 @@ class KnowledgeBase:
                                "citation", "method", "design", "evidence_quality",
                                "strength",
                            )},
+                        # v2.8: which intervention a therapy finding is about
+                        "therapy_id": (f.get("therapy") or {}).get("id") if isinstance(f.get("therapy"), dict) else None,
+                        "therapy_name": (f.get("therapy") or {}).get("name") if isinstance(f.get("therapy"), dict) else None,
                         "sample_n": (f.get("sample") or {}).get("n"),
                         "population": (f.get("sample") or {}).get("population"),
                         "time_post_onset": (f.get("sample") or {}).get("time_post_onset"),
@@ -1416,11 +1454,11 @@ class KnowledgeBase:
             "aphasia_quotient":      "fluency",         # WAB AQ is a broad proxy
             "apraxia_of_speech":     "form_to_articulation",
             "dysarthria":            "form_to_articulation",
-            # Naming / lexical
-            "naming":                "anomic_aphasia",
-            "anomia":                "anomic_aphasia",
-            "word_retrieval":        "anomic_aphasia",
-            "lexical_retrieval":     "anomic_aphasia",
+            # Naming / lexical (v2.8: the symptom entry, not the syndrome)
+            "naming":                "anomia",
+            "confrontation_naming":  "anomia",
+            "word_retrieval":        "anomia",
+            "lexical_retrieval":     "anomia",
             # Comprehension
             "auditory_comprehension": "form_to_meaning",
             "sentence_comprehension": "form_to_meaning",

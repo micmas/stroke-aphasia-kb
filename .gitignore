@@ -8,6 +8,9 @@ papers/
 _compare/
 _neurosynth_cache/
 drafts/_review/
+drafts/_backup/
+_refocus_dry_run.txt
+_last_refocus_response_*.txt
 screening/_sheet/
 screening/abstracts.jsonl
 _last_extraction_response_*.txt

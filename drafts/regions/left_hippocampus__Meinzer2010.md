@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: left_hippocampus
 name: Left Hippocampus
 kind: classical
@@ -113,6 +113,11 @@ findings:
     page: 2
     quote: Ten consecutively recruited patients
     supports: method
+  - section: added by backfill
+    page: 2
+    quote: In short, patients received 3 h daily of computer-assisted naming treatment over a period of
+      2 weeks.
+    supports: method
   lesion_mapping:
     analysis: univariate
     n_analysed: 10
@@ -121,11 +126,16 @@ findings:
     multiple_comparisons: uncorrected
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - lesion_mapping
+    - therapy
+  therapy:
+    id: intensive_naming_treatment
+    name: intensive naming treatment
+    dose: 3 h daily of computer-assisted naming treatment over a period of 2 weeks
 - id: f2
   target: severity_metric
   target_kind: predictor
@@ -217,11 +227,21 @@ findings:
     quote: Our results should be treated as preliminary... our results cannot be generalized to patients
       with severe apraxia of speech.
     supports: limitation
+  - section: added by backfill
+    page: 2
+    quote: In short, patients received 3 h daily of computer-assisted naming treatment over a period of
+      2 weeks.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: intensive_naming_treatment
+    name: intensive naming treatment
+    dose: 3 h daily of computer-assisted naming treatment over a period of 2 weeks
 ---
 Findings from Meinzer et al. (2010) indicate that both the volume and the surrounding white matter integrity of the left hippocampus are critical predictors of success in intensive naming therapy for chronic aphasia.

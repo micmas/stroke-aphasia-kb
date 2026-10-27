@@ -114,6 +114,8 @@ function findingCard(index, f, { route = true, open = false } = {}) {
   push(strengthBadge(f.strength));
   push(h('span', { text: `${f.method.join(', ')}${f.design && f.design !== 'not reported' ? ` · ${f.design}` : ''}` }));
   push(h('span', { text: `stage: ${f.stage.join('/')}` }));
+  if (f.therapy?.name) push(h('span', { class: 'badge badge-kind', title: f.therapy.id ? `therapy id ${f.therapy.id}${f.therapy.dose ? ` · ${f.therapy.dose}` : ''}` : (f.therapy.dose || ''), text: `therapy: ${f.therapy.name}` }));
+  else if (f.therapy_name === 'not recorded') push(h('span', { class: 'badge badge-warn', text: 'therapy not recorded' }));
   if (f.evidence_quality) push(h('span', { text: f.evidence_quality }));
   push(reviewBadge(f));
   if (f.design_cautions?.length) push(h('span', { class: 'badge badge-warn', title: f.design_cautions.join('; '), text: plural(f.design_cautions.length, 'design caution') }));

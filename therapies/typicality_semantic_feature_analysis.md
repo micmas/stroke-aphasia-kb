@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: typicality_semantic_feature_analysis
 name: Typicality-based Semantic Feature Analysis (SFA)
 aliases:
@@ -200,6 +200,13 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: 6
+    quote: At Boston University, the participants treated for anomia underwent a typicality-based
+      semantic feature analysis treatment in which typical (e.g., pigeon) or atypical
+      (e.g., pen-guin) exemplars of a certain semantic category (e.g., birds) were
+      trained.
+    supports: method
   statistics:
     ci_95: not_reported
     cluster_extent: null
@@ -214,11 +221,16 @@ findings:
   target_kind: impairment
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: semantic_feature_analysis
+    name: typicality-based semantic feature analysis treatment
+    dose: 12 weeks
 - author_limitations:
   - Voxel-based finding may have been driven by some participants or accounted for
     by age/education/lesion size — see f3 for the corresponding ROI-level result with
@@ -363,6 +375,13 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: 6
+    quote: At Boston University, the participants treated for anomia underwent a typicality-based
+      semantic feature analysis treatment in which typical (e.g., pigeon) or atypical
+      (e.g., pen-guin) exemplars of a certain semantic category (e.g., birds) were
+      trained.
+    supports: method
   statistics:
     ci_95: not_reported
     cluster_extent: 257
@@ -376,11 +395,16 @@ findings:
   target_kind: region
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: semantic_feature_analysis
+    name: typicality-based semantic feature analysis treatment
+    dose: 12 weeks
 - author_limitations:
   - 'The discrepancy with f2 (voxel-level positive) is interpreted by the authors
     as: voxel-level findings may have been driven by some participants, or accounted
@@ -518,6 +542,13 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: 6
+    quote: At Boston University, the participants treated for anomia underwent a typicality-based
+      semantic feature analysis treatment in which typical (e.g., pigeon) or atypical
+      (e.g., pen-guin) exemplars of a certain semantic category (e.g., birds) were
+      trained.
+    supports: method
   statistics:
     ci_95: not_reported
     effect_size: β = 0.016 (essentially zero); ROI-level Time effect not significant
@@ -529,11 +560,16 @@ findings:
   target_kind: region
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: semantic_feature_analysis
+    name: typicality-based semantic feature analysis treatment
+    dose: 12 weeks
 - author_limitations:
   - Pre-treatment heterogeneities across treatment groups (different impairment profiles,
     different recruitment sites).
@@ -656,6 +692,13 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: 6
+    quote: At Boston University, the participants treated for anomia underwent a typicality-based
+      semantic feature analysis treatment in which typical (e.g., pigeon) or atypical
+      (e.g., pen-guin) exemplars of a certain semantic category (e.g., birds) were
+      trained.
+    supports: method
   statistics:
     ci_95: not_reported
     cluster_extent: null
@@ -670,11 +713,16 @@ findings:
   target_kind: impairment
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: semantic_feature_analysis
+    name: typicality-based semantic feature analysis treatment
+    dose: 12 weeks
 - author_limitations:
   - Voxel-based finding may have been driven by some participants or accounted for
     by age/education/lesion size — see f3 for the corresponding ROI-level result with
@@ -819,6 +867,13 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: 6
+    quote: At Boston University, the participants treated for anomia underwent a typicality-based
+      semantic feature analysis treatment in which typical (e.g., pigeon) or atypical
+      (e.g., pen-guin) exemplars of a certain semantic category (e.g., birds) were
+      trained.
+    supports: method
   statistics:
     ci_95: not_reported
     cluster_extent: 257
@@ -832,11 +887,16 @@ findings:
   target_kind: region
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: semantic_feature_analysis
+    name: typicality-based semantic feature analysis treatment
+    dose: 12 weeks
 - author_limitations:
   - 'The discrepancy with f2 (voxel-level positive) is interpreted by the authors
     as: voxel-level findings may have been driven by some participants, or accounted
@@ -974,6 +1034,13 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: 6
+    quote: At Boston University, the participants treated for anomia underwent a typicality-based
+      semantic feature analysis treatment in which typical (e.g., pigeon) or atypical
+      (e.g., pen-guin) exemplars of a certain semantic category (e.g., birds) were
+      trained.
+    supports: method
   statistics:
     ci_95: not_reported
     effect_size: β = 0.016 (essentially zero); ROI-level Time effect not significant
@@ -985,11 +1052,16 @@ findings:
   target_kind: region
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: semantic_feature_analysis
+    name: typicality-based semantic feature analysis treatment
+    dose: 12 weeks
 source: agent_draft
 last_reviewed: '2026-05-06'
 notes: "First-extraction draft from Barbieri et al. 2023. Typicality-based\nSemantic\

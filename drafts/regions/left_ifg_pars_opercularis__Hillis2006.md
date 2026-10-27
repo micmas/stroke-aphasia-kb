@@ -9,7 +9,7 @@ created_on: 2026-10-21
 hemisphere: left
 findings:
 - id: f1
-  target: anomic_aphasia
+  target: anomia
   target_kind: impairment
   claim: Restored blood flow to left BA 44/45 (Broca's area) independently contributes to the prediction
     of early improvement in picture naming after stroke.
@@ -73,7 +73,8 @@ findings:
     extracted_on: 2026-01-01
     paper_section: Results, page 8070
     confidence: high
-    flags: []
+    flags:
+    - retargeted anomic_aphasia → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Results
     page: 8070
@@ -129,4 +130,9 @@ findings:
     fields:
     - cohort
     - lesion_mapping
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
 ---

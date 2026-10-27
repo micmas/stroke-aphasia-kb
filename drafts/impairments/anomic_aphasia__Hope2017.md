@@ -9,7 +9,7 @@ created_on: 2026-10-20
 short_definition: Aphasia characterized by difficulty in word retrieval (naming).
 findings:
 - id: f1
-  target: anomic_aphasia
+  target: anomia
   target_kind: impairment
   claim: Longitudinal changes in spoken object naming in chronic aphasia reflect changes in word-finding
     processes rather than articulatory changes.
@@ -46,7 +46,8 @@ findings:
     extracted_on: 2026-01-01
     paper_section: Results, page 1724
     confidence: high
-    flags: []
+    flags:
+    - retargeted anomic_aphasia → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Results
     page: 8
@@ -82,6 +83,11 @@ findings:
     tool: backfill.py
     fields:
     - cohort
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
 ---
 # Anomic Aphasia
 

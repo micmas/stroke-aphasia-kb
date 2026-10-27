@@ -70,4 +70,11 @@ findings:
     page: 6
     quote: The study is too underpowered to obtain significant effects on most of the outcome measures
     supports: limitation
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-27'
+    tool: backfill.py
+    fields: []
+    unresolved:
+    - therapy
 ---

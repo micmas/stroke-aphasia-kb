@@ -11,6 +11,7 @@ short_description: A naming treatment where trials are initiated with complex le
 targets_impairments:
 - anomic_aphasia
 - conduction_aphasia
+- anomia
 findings:
 - id: f1
   target: semantics
@@ -72,6 +73,7 @@ findings:
     tool: backfill.py
     fields:
     - cohort
+notes: '2026-10-26: targets_impairments gained `anomia` (symptom, schema v2.8; retarget_symptoms.py).'
 ---
 # Intention Treatment
 

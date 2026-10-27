@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: time_post_onset
 name: Time post-stroke onset
 kind: predictor
@@ -74,12 +74,22 @@ findings:
     quote: We created the international RELEASE IPD database of aphasia research to support several planned
       analyses
     supports: sample
+  - section: added by backfill
+    page: 2
+    quote: We explored associations between speech and language therapy (SLT) interventions frequency
+      (days/week), intensity (h/week), and dosage (total SLT-hours) and language outcomes
+    supports: method
   region_definition:
     kind: not_reported
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: speech_and_language_therapy
+    name: speech and language therapy
+    dose: low-intensity (<=2 h/week) or moderate-intensity (3-4 h/week)
 ---

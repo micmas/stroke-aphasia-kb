@@ -155,7 +155,7 @@ def _cli(argv=None) -> int:
 
     if args.extract:
         _banner(6, "Extract papers that have no findings yet  (extract.py --batch)")
-        cmd = [sys.executable, str(ROOT / "extract.py"), "--batch"]
+        cmd = [sys.executable, str(ROOT / "scripts" / "extract.py"), "--batch"]
         if not args.execute:
             cmd.append("--dry-run")
         print("  $ " + " ".join(cmd[1:]) + "\n")

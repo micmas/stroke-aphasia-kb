@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: melodic_intonation_therapy
 name: Melodic Intonation Therapy (MIT)
 kind: therapy
@@ -76,12 +76,22 @@ findings:
     quote: Although caution should be exercised when making generalizations from results in two prototypical
       patients...
     supports: limitation
+  - section: added by backfill
+    page: 2
+    quote: MIT is a hierarchically structured treatment that uses intoned (sung) patterns to exaggerate
+      the normal melodic content of speech at three levels of difficulty.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: melodic_intonation_therapy
+    name: Melodic Intonation Therapy
+    dose: 1.5 hrs/day, five days/week
 - id: f2
   target: right_inferior_frontal_gyrus
   target_kind: region
@@ -154,12 +164,22 @@ findings:
     quote: Although caution should be exercised when making generalizations from results in two prototypical
       patients...
     supports: limitation
+  - section: added by backfill
+    page: 2
+    quote: MIT is a hierarchically structured treatment that uses intoned (sung) patterns to exaggerate
+      the normal melodic content of speech at three levels of difficulty.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: melodic_intonation_therapy
+    name: Melodic Intonation Therapy
+    dose: 1.5 hrs/day, five days/week
 ---
 # Notes
 This is a case-series study (n=2) comparing MIT to a control Speech Repetition Therapy (SRT). The findings suggest that while both are effective, MIT's efficacy is linked to right-hemisphere recruitment.

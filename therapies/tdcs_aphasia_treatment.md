@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: tdcs_aphasia_treatment
 name: Transcranial Direct Current Stimulation (tDCS) during aphasia treatment
 kind: therapy
@@ -171,6 +171,13 @@ findings:
     quote: Seventy-four individuals with chronic stroke-induced aphasia completed
       15 language therapy sessions
     supports: sample
+  - section: added by backfill
+    page: not_reported
+    quote: Seventy-four individuals with chronic stroke-induced aphasia completed
+      15 language therapy sessions and were randomized to receive 1 mA A-tDCS or sham
+      tDCS (S-tDCS) to the intact left temporoparietal region for the first 20 min
+      of each session.
+    supports: method
   statistics:
     ci_95: not_reported
     cluster_extent: null
@@ -183,11 +190,17 @@ findings:
   target_kind: predictor
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: tdcs_aphasia_treatment
+    name: anodal tDCS during aphasia treatment
+    dose: 1 mA A-tDCS or sham tDCS (S-tDCS) to the intact left temporoparietal region
+      for the first 20 min of each session
 source: curated
 last_reviewed: 2026-05-06
 notes: 'Behavioral-only therapy finding (no imaging analysis). This draft captures
