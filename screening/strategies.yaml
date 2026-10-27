@@ -37,10 +37,27 @@
 # `filters`), Scopus strings get `AND PUBYEAR > 1999` appended by
 # `screen.py strategies --show`. The upper limit is the search date.
 
-version: 2
+version: 3
 status: locked            # draft → locked (then commit) before the first --execute
 protocol_owner: michele
 amendments:
+  - version: 3
+    date: 2026-10-27
+    by: michele
+    what: >-
+      (1) OpenAlex is not searched; its conditional dry run is not done. (2) The
+      stopping rule's minimum share of database records screened goes from 30 %
+      to 15 %; the other two conditions (last 200 decisions exclusions, ≥ 95 % of
+      validation papers screened) are unchanged.
+    why: >-
+      (1) The v2 searches retrieved 20,777 unique records. PsycINFO, the third
+      database, added 2,246 records but no benchmark paper that PubMed and Scopus
+      had not already retrieved (120/145 found; in-scope recall ≈ 120/124); a
+      fourth, general-purpose index with poorer abstract coverage (v1 pilot:
+      OpenAlex q1 recall 61 % against PubMed 75 %) was judged not worth its
+      screening load. (2) At 20,777 records a 30 % floor alone means ~6,200
+      records; the validation-set condition is the direct check on recall.
+    when: before any title/abstract screening decision was recorded.
   - version: 2
     date: 2026-10-27
     by: michele
@@ -82,7 +99,7 @@ prioritised_screening:
   seed: 20261027                # benchmark split and cold-start sampling
   prior_fraction: 0.5           # share of in-window benchmark papers used as prior knowledge; the rest validate
   stop:
-    min_screened_fraction: 0.30 # of the database-arm records
+    min_screened_fraction: 0.15 # of the database-arm records (0.30 until amendment v3)
     consecutive_exclusions: 200 # the last 200 decisions in ranked order were all exclusions
     validation_found: 0.95      # of the validation benchmark papers the searches retrieved
 
