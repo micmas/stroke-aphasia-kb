@@ -74,6 +74,18 @@ amendments:
 # pillar papers enter by citation chasing (§3), never by the searches.
 years: 2000-
 
+# Prioritised title/abstract screening (docs/SCREENING.md §4.1): the sheet is
+# ordered by a model retrained on every decision; screening stops when all three
+# conditions below hold, and the records left unscreened are reported as such.
+prioritised_screening:
+  model: tfidf_naive_bayes      # scripts/prioritise.py
+  seed: 20261027                # benchmark split and cold-start sampling
+  prior_fraction: 0.5           # share of in-window benchmark papers used as prior knowledge; the rest validate
+  stop:
+    min_screened_fraction: 0.30 # of the database-arm records
+    consecutive_exclusions: 200 # the last 200 decisions in ranked order were all exclusions
+    validation_found: 0.95      # of the validation benchmark papers the searches retrieved
+
 # Pre-lock calibration (not protocol searches; nothing entered the register).
 # PubMed counts and benchmark recall measured 2026-10-27 through E-utilities.
 # Benchmark: 151 legacy includes, 139 of them in PubMed (no DOI: 6 book/chapter
