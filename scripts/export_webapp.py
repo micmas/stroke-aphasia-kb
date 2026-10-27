@@ -242,15 +242,26 @@ def version(root: Path, kb) -> dict:
         except (OSError, subprocess.TimeoutExpired):
             return None
         return done.stdout.strip() if done.returncode == 0 else None
-    commit = git("log", "-1", "--format=%h %cs", "--", *[str(root / p) for p in (
-        "regions", "impairments", "therapies", "predictors", "reviews", "ingredients", "citations.md",
-        "atlas_mapping", "scripts/aphasia_kb.py", "scripts/aphasia_rules.py", "screening")])
+    read = ["regions", "impairments", "therapies", "predictors", "reviews", "ingredients", "citations.md",
+            "atlas_mapping", "scripts/aphasia_kb.py", "scripts/aphasia_rules.py", "screening"]
+    if tuple(kb.include) != ("approved",):
+        read.append("drafts")   # the last commit that touched what a drafts export reads
+    commit = git("log", "-1", "--format=%h %cs", "--", *[str(root / p) for p in read])
     digest = hashlib.sha256()
     content = [p for b in ("regions", "impairments", "therapies", "predictors", "reviews", "ingredients")
                for p in sorted((root / b).glob("*.md"))]
+    # An export that includes drafts reads drafts/ too, and the same files exported
+    # with other statuses are a different asset: both go into the digest, which the
+    # webapp's cache key is built from (otherwise a drafts snapshot would reuse the
+    # approved-only key and the browser would keep serving the cached copy).
     for path in (content + sorted((root / "atlas_mapping").glob("*.yaml"))
                  + sorted((root / "screening").glob("*.yaml")) + [root / "citations.md"]):
         digest.update(path.name.encode() + path.read_bytes())
+    if tuple(kb.include) != ("approved",):   # approved-only digests are unchanged by this
+        digest.update(("statuses:" + ",".join(kb.include)).encode())
+        for path in sorted((root / "drafts").rglob("*.md")):
+            if "_review" not in path.relative_to(root).parts:
+                digest.update(path.relative_to(root).as_posix().encode() + path.read_bytes())
     findings = kb.findings
     return {
         "commit": commit.split()[0] if commit else None,
