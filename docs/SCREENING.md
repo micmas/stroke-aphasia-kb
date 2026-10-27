@@ -115,11 +115,10 @@ title + abstract filter, no wildcards) and Scopus (`TITLE-ABS-KEY`).
 
 Databases: **PubMed**, **Scopus** and **PsycINFO** for every question
 strategy (much of the aphasia literature, e.g. *Aphasiology*, is not in
-MEDLINE). **OpenAlex** is a conditional supplement: after the other three,
-each question strategy is dry-run in OpenAlex and recorded only if it
-retrieves benchmark papers none of them found (the dry run lists them);
-otherwise the report says so. The gap strategies run in PubMed and
-OpenAlex. Scopus and PsycINFO are run
+MEDLINE). **OpenAlex** is not searched (amendment v3: PsycINFO, the third
+database, added no benchmark paper beyond PubMed and Scopus; v2 had made
+OpenAlex a conditional supplement). The gap strategies, when run, use
+PubMed. Scopus and PsycINFO are run
 in their own interface through UQ Library access with the string from
 `screen.py strategies --show <id> --db scopus|psycinfo` (PsycINFO is
 APA PsycInfo on EBSCOhost: TI/AB fields, `DE` subject headings, `ZC`
@@ -279,7 +278,8 @@ the top 50 %; abstracts and the screener's decisions improve this.
 
 **Stopping rule** (all three must hold; `screen.py progress` shows them):
 
-1. at least **30 %** of the database-arm records have been screened;
+1. at least **15 %** of the database-arm records have been screened
+   (30 % until amendment v3);
 2. the last **200** decisions, in the order they were made, were all
    exclusions;
 3. at least **95 %** of the validation papers the searches retrieved have
