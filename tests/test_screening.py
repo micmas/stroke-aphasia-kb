@@ -78,7 +78,10 @@ class Parsers(unittest.TestCase):
         self.assertEqual(screen.parse_export_name("scopus_q1b_language_lesion_mapping_2145-b", "scopus", known),
                          ("q1b_language_lesion_mapping", 2145, "b"))
         self.assertIsNone(screen.parse_export_name("scopus_q1_5312", "scopus", known))           # not a strategy id
-        self.assertIsNone(screen.parse_export_name("scopus_q1_lesion_impairment", "scopus", known))   # no count
+        self.assertEqual(screen.parse_export_name("scopus_q1_lesion_impairment", "scopus", known),
+                         ("q1_lesion_impairment", None, None))                                # count asked for
+        self.assertEqual(screen.parse_export_name("scopus_q1_lesion_impairment-b", "scopus", known),
+                         ("q1_lesion_impairment", None, "b"))
         self.assertIsNone(screen.parse_export_name("psycinfo_q5_recruitment_meta_908", "scopus", known))
 
     def test_ris_and_csv(self):
