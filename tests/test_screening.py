@@ -179,6 +179,7 @@ class Backfill(unittest.TestCase):
 STRATS = """
 version: 3
 status: draft
+years: 2000-
 blocks:
   pubmed:
     a: ("Aphasia"[Mesh] OR aphasi*[tiab])
@@ -188,6 +189,10 @@ strategies:
     buckets: [regions]
     for: [q1]
     pubmed: ${a} AND ${s} AND lesion*[tiab]
+    scopus: TITLE-ABS-KEY(aphasi*)
+  - id: old
+    years: 1990-1999
+    pubmed: ${a}
   - id: bad
     pubmed: ${a} AND ${missing}
 """
@@ -208,6 +213,11 @@ class Protocol(unittest.TestCase):
                 S.expand_query(st, "bad", "pubmed")           # unknown block
             with self.assertRaises(KeyError):
                 S.strategy(st, "nope")
+            self.assertEqual(S.strategy_years(st, "q1"), "2000-")            # the protocol's window
+            self.assertEqual(S.strategy_years(st, "old"), "1990-1999")       # a strategy's own
+            self.assertEqual(S.query_for_run(st, "q1", "scopus"), "(TITLE-ABS-KEY(aphasi*)) AND PUBYEAR > 1999")
+            self.assertEqual(S.query_for_run(st, "q1", "pubmed"), S.expand_query(st, "q1", "pubmed"))   # a filter, not text
+            self.assertEqual(S.year_window("1990-1999"), (1990, 1999))
             fp = S.protocol_fingerprint(root)
             (root / "screening" / "strategies.yaml").write_text(STRATS + "\n# amended\n", encoding="utf-8")
             self.assertNotEqual(fp, S.protocol_fingerprint(root))
@@ -269,6 +279,16 @@ class Rebaseline(unittest.TestCase):
         self.assertEqual((q1["inScope"], q1["found"], q1["missed"]), (2, 1, ["C0002"]))
         self.assertIsNone(rec["byStrategy"][1]["recall"])                    # not run, nothing in scope
         self.assertEqual([m["id"] for m in rec["missed"]], ["C0002"])
+        # the publication window and full-text exclusions under the protocol leave the denominator
+        old = _legacy_cand("C0004", "@O1996", "A classic paper from before the window")
+        old["year"] = 1996
+        cands.append(old)
+        S.rebaseline(cands, "2026-10-27")
+        self.assertIsNone(screen._apply_decision(b, "full_text", "exclude", "not_aphasia", "michele", None, "2026-10-28"))
+        rec = S.recall(cands, searches, {**strategies, "years": "2000-"}, {"@A2010": {"regions"}, "@B2010": {"regions"}})
+        self.assertEqual((rec["benchmarkAll"], rec["benchmark"], rec["found"], rec["recall"]), (3, 1, 1, 1.0))
+        self.assertEqual([m["id"] for m in rec["outsideWindow"]], ["C0004"])
+        self.assertEqual([m["id"] for m in rec["excludedUnderProtocol"]], ["C0002"])
 
 
 class DualScreening(unittest.TestCase):
@@ -289,6 +309,45 @@ class DualScreening(unittest.TestCase):
         self.assertAlmostEqual(a["observed"], 0.9)
         self.assertAlmostEqual(a["kappa"], 0.8)
         self.assertEqual([d["id"] for d in a["disagreements"]], ["C4"])
+        self.assertEqual(list(a["byCheckScreener"]), ["alex"])
+
+
+class Chase(unittest.TestCase):
+    def test_pillar_by_citation_chasing(self):
+        inc = {"id": "C0001", "title": "Included lesion study of naming", "year": 2015, "sources": [{"search": "S001"}],
+               "screening": [{"stage": "title_abstract", "decision": "include", "by": "michele"},
+                             {"stage": "full_text", "decision": "include", "by": "michele"}]}
+        pending = {"id": "C0002", "title": "Not yet assessed", "year": 2016, "sources": [{"search": "S001"}], "screening": []}
+        old = {"id": "C0003", "key": "@Dronkers1996", "doi": "10.1038/384159a0", "title": "A new brain region for coordinating speech articulation",
+               "year": 1996, "sources": [{"kind": "hand_picked"}], "skip_title_abstract": True, "screening": [], "benchmark": True}
+        store = {"c": [inc, pending, old]}
+        saved, logged = [], []
+        orig = (S.load_candidates, S.save_candidates, screen._log)
+        S.load_candidates = lambda root=None: store["c"]
+        S.save_candidates = lambda c, root=None: saved.append(len(c))
+        screen._log = lambda *a: logged.append(a)
+        try:
+            args = lambda **k: type("A", (), {"doi": None, "title": None, "year": None, "cited_by": "C0001",
+                                              "why": "Source of the insula claim that the gap contests", "by": "michele",
+                                              "date": "2026-10-28", "execute": True, **k})()
+            with self.assertRaises(SystemExit):
+                screen.cmd_chase(args(doi="10.1038/384159a0", cited_by="C0002"))       # citing paper not included
+            with self.assertRaises(SystemExit):
+                screen.cmd_chase(args(doi="10.1038/384159a0", why="short"))            # reason required
+            self.assertEqual(screen.cmd_chase(args(doi="10.1038/384159a0")), 0)
+            self.assertTrue(old["pillar"])
+            src = old["sources"][-1]
+            self.assertEqual((src["kind"], src["cited_by"]), ("citation_chasing", ["C0001"]))
+            self.assertEqual(S.stage_of(old), ("awaiting_ft", None))
+            self.assertEqual((saved, logged[0][0]), ([3], "CHASED"))
+            # a paper with no DOI enters with title and year, as a new candidate
+            self.assertEqual(screen.cmd_chase(args(title="Disconnexion syndromes in animals and man", year="1965")), 0)
+            self.assertEqual(store["c"][-1]["id"], "C0004")
+            # a paper a search already found needs no chasing
+            self.assertEqual(screen.cmd_chase(args(title="Not yet assessed", year="2016")), 0)
+            self.assertNotIn("pillar", pending)
+        finally:
+            S.load_candidates, S.save_candidates, screen._log = orig
 
 
 if __name__ == "__main__":
