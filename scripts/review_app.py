@@ -55,9 +55,9 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]  # repository root (this file lives in scripts/)
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # sibling modules in scripts/
 from annotate_paper import _find_quote_rects, annotate  # noqa: E402
-from aphasia_kb import (CONFIDENCE_VOCAB, DIRECTION_VOCAB, RELATIONSHIP_VOCAB,  # noqa: E402
-                        STRENGTH_VOCAB, SUPPORTS_COLORS, SUPPORTS_VOCAB, _validate_v2_entry,
-                        parse_markdown)
+from aphasia_kb import (CONFIDENCE_VOCAB, DIRECTION_VOCAB, METHOD_VOCAB, RELATIONSHIP_VOCAB,  # noqa: E402
+                        STRENGTH_VOCAB, SUPPORTS_COLORS, SUPPORTS_VOCAB, TARGET_KIND_VOCAB,
+                        THERAPY_RELATIONSHIPS, _validate_v2_entry, parse_markdown)
 from quote_check import PaperText, find_paper, grade_quote  # noqa: E402
 
 DRAFTS = ROOT / "drafts"
@@ -66,7 +66,8 @@ BACKUP = DRAFTS / "_backup"
 LOG = ROOT / "logs/extraction_log.md"
 BUCKETS = ("regions", "impairments", "therapies", "predictors", "reviews")
 DPI = 120
-EDITABLE_FIELDS = ("claim", "direction", "relationship", "strength", "author_limitations")
+EDITABLE_FIELDS = ("claim", "direction", "relationship", "strength", "author_limitations",
+                   "target", "target_kind", "method", "therapy")
 EDITABLE_PROVENANCE = ("confidence", "flags")
 
 
@@ -111,6 +112,24 @@ def list_drafts() -> list[dict]:
                         "status": fm.get("status"), "citation": cite, "findings": len(findings),
                         "marks": sum(1 for m in fm.get("reviewer_marks") or [] if m.get("status", "pending") == "pending"),
                         "pdf": bool(pdf and pdf.suffix.lower() == ".pdf"), "created_by": fm.get("created_by")})
+    return out
+
+
+def entry_ids() -> dict:
+    """Known ids per kind (canonical + drafts), for the target and therapy pickers."""
+    out: dict[str, dict[str, str]] = {"impairment": {}, "region": {}, "therapy": {}, "predictor": {}}
+    kind_of = {"regions": "region", "impairments": "impairment", "therapies": "therapy", "predictors": "predictor"}
+    for b, kind in kind_of.items():
+        for folder in (ROOT / b, DRAFTS / b):
+            if not folder.is_dir():
+                continue
+            for p in sorted(folder.glob("*.md")):
+                try:
+                    fm, _ = parse_markdown(p)
+                except Exception:  # noqa: BLE001
+                    continue
+                if fm.get("id"):
+                    out[kind].setdefault(str(fm["id"]), str(fm.get("name") or ""))
     return out
 
 
@@ -186,10 +205,11 @@ class Session:
         return {"rel": self.rel, "citation": self.citation, "pdf": self.pdf.name, "pages": self.pages(),
                 "frontmatter": self.fm, "body": self.body, "located": located, "marks": marks,
                 "issues": _issues(self.fm, self.rel),
-                "colors": SUPPORTS_COLORS,
+                "colors": SUPPORTS_COLORS, "entryIds": entry_ids(),
                 "vocab": {"supports": sorted(SUPPORTS_VOCAB), "direction": sorted(DIRECTION_VOCAB),
                           "relationship": sorted(RELATIONSHIP_VOCAB), "strength": sorted(STRENGTH_VOCAB),
-                          "confidence": sorted(CONFIDENCE_VOCAB)}}
+                          "confidence": sorted(CONFIDENCE_VOCAB), "target_kind": sorted(TARGET_KIND_VOCAB),
+                          "method": sorted(METHOD_VOCAB), "therapy_relationships": sorted(THERAPY_RELATIONSHIPS)}}
 
 
 # ---------------------------------------------------------------------------
@@ -239,6 +259,14 @@ def apply_save(session: Session, new_fm: dict, by: str) -> dict:
                     p["page"] = None
                 else:
                     p["page"] = int(p["page"])
+        if isinstance(f.get("method"), str) and "," in f["method"]:
+            f["method"] = [m.strip() for m in f["method"].split(",") if m.strip()]
+        th = f.get("therapy")
+        if isinstance(th, dict):
+            th = {k: str(v).strip() for k, v in th.items() if str(v or "").strip()}
+            f["therapy"] = th if th.get("name") else None
+            if f["therapy"] is None:
+                f.pop("therapy")
         old = old_by_id.get(f.get("id"))
         changed = _changed_fields(old, f) if old else ["new"]
         if changed:
@@ -423,7 +451,11 @@ textarea{width:100%;resize:vertical;min-height:2.6em;line-height:1.35}
 .finding.active{border-color:var(--grape);box-shadow:0 0 0 3px rgba(82,72,156,.12)}
 .finding .head{display:flex;gap:.5rem;align-items:baseline;flex-wrap:wrap}
 .finding .head .id{font-family:ui-monospace,Menlo,monospace;font-size:.78rem;background:var(--panel);border:1px solid var(--line2);border-radius:4px;padding:0 .35rem}
-.finding .head .route{font-size:.82rem;color:var(--ink2)}
+.finding .head .route{font-size:.82rem;color:var(--ink2);display:flex;gap:.3rem;align-items:center;flex-wrap:wrap}
+.finding .head input.target{font-weight:600;color:var(--ink);width:16em}
+.finding .head input.target.unknown{border-color:var(--pink);border-style:dashed}
+.row.therapy{background:var(--panel);border-radius:5px;padding:.3rem .45rem}
+.row.therapy.missing{border:1px dashed var(--pink)}
 .row{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.3rem 0;font-size:.82rem}
 .row label{color:var(--ink2)}
 .row select{max-width:170px}
@@ -527,7 +559,7 @@ function marksPanel() {
 function findingCard(f) {
   const v = state.data.vocab;
   const prov = (f.provenance = f.provenance || {});
-  const sel = (key, obj, options, label) => h('label', {}, `${label} `, h('select', { onchange: (e) => { obj[key] = e.target.value; setDirty(); } }, options.map((o) => h('option', { value: o, selected: obj[key] === o ? '' : null, text: o })), options.includes(obj[key]) ? null : h('option', { value: obj[key] ?? '', selected: '', text: `${obj[key] ?? '(unset)'}` })));
+  const sel = (key, obj, options, label) => h('label', {}, `${label} `, h('select', { onchange: (e) => { obj[key] = e.target.value; setDirty(); if (key === 'relationship') refresh(); } }, options.map((o) => h('option', { value: o, selected: obj[key] === o ? '' : null, text: o })), options.includes(obj[key]) ? null : h('option', { value: obj[key] ?? '', selected: '', text: `${obj[key] ?? '(unset)'}` })));
   const listEditor = (key, obj, label) => {
     const items = Array.isArray(obj[key]) ? obj[key] : (obj[key] ? [String(obj[key])] : []);
     obj[key] = items;
@@ -535,8 +567,22 @@ function findingCard(f) {
     items.forEach((it, i) => box.append(h('div', { class: 'item' }, h('input', { type: 'text', value: it, oninput: (e) => { items[i] = e.target.value; setDirty(); } }), h('button', { class: 'danger', onclick: () => { items.splice(i, 1); setDirty(); refresh(); }, text: '×' }))));
     return box;
   };
+  const ids = state.data.entryIds || {};
+  const targetList = h('datalist', { id: `targets-${f.id}` }, Object.entries(ids[f.target_kind] || {}).map(([id, name]) => h('option', { value: id, text: name })));
+  const therapyList = h('datalist', { id: `therapies-${f.id}` }, Object.entries(ids.therapy || {}).map(([id, name]) => h('option', { value: id, text: name })));
+  const needsTherapy = (state.data.vocab.therapy_relationships || []).includes(f.relationship) || f.target_kind === 'therapy';
+  const th = (f.therapy && typeof f.therapy === 'object') ? f.therapy : (f.therapy = {});
+  const knownTarget = Boolean((ids[f.target_kind] || {})[f.target]);
   const card = h('div', { class: `finding${state.active === f.id ? ' active' : ''}`, id: `finding-${f.id}`, onclick: () => { if (state.active !== f.id) { state.active = f.id; document.querySelectorAll('.finding').forEach((el) => el.classList.toggle('active', el.id === `finding-${f.id}`)); } } },
-    h('div', { class: 'head' }, h('span', { class: 'id', text: f.id }), h('span', { class: 'route', text: `→ ${esc(f.target)} (${esc(f.target_kind)}) · ${esc(f.citation)} · ${Array.isArray(f.method) ? f.method.join(', ') : esc(f.method)}` })),
+    h('div', { class: 'head' }, h('span', { class: 'id', text: f.id }),
+      h('span', { class: 'route' }, '→ ', h('input', { type: 'text', list: `targets-${f.id}`, value: esc(f.target), title: knownTarget ? `${ids[f.target_kind][f.target]} (entry exists)` : 'no entry with this id yet (forward-looking id)', class: knownTarget ? 'target' : 'target unknown', oninput: (e) => { f.target = e.target.value.trim(); setDirty(); } }), targetList,
+        ' ', h('select', { title: 'target kind', onchange: (e) => { f.target_kind = e.target.value; setDirty(); refresh(); } }, state.data.vocab.target_kind.map((o) => h('option', { value: o, selected: f.target_kind === o ? '' : null, text: o }))),
+        ` · ${esc(f.citation)} · `, h('input', { type: 'text', value: Array.isArray(f.method) ? f.method.join(', ') : esc(f.method), title: `method (comma-separated): ${state.data.vocab.method.join(', ')}`, style: 'width:11em', oninput: (e) => { f.method = e.target.value; setDirty(); } }))),
+    h('div', { class: `row therapy${needsTherapy && !th.name ? ' missing' : ''}` },
+      h('label', { text: needsTherapy ? 'therapy (required for this relationship)' : 'therapy' }),
+      h('input', { type: 'text', value: esc(th.name || ''), placeholder: 'as the paper names it, e.g. cueing hierarchy anomia treatment', style: 'flex:1;min-width:200px', oninput: (e) => { th.name = e.target.value; setDirty(); } }),
+      h('input', { type: 'text', list: `therapies-${f.id}`, value: esc(th.id || ''), placeholder: 'entry id (optional)', style: 'width:14em', oninput: (e) => { th.id = e.target.value.trim(); setDirty(); } }), therapyList,
+      h('input', { type: 'text', value: esc(th.dose || ''), placeholder: 'dose', style: 'width:9em', oninput: (e) => { th.dose = e.target.value; setDirty(); } })),
     h('textarea', { rows: 3, oninput: (e) => { f.claim = e.target.value; setDirty(); } }, esc(f.claim)),
     h('div', { class: 'row' }, sel('direction', f, v.direction, 'direction'), sel('relationship', f, v.relationship, 'relationship'), sel('strength', f, v.strength, 'strength'), sel('confidence', prov, v.confidence, 'confidence')),
     listEditor('flags', prov, 'flags'), listEditor('author_limitations', f, 'author limitations'),

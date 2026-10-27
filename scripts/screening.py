@@ -27,7 +27,11 @@ from __future__ import annotations
 
 import collections
 import datetime as dt
+import hashlib
+import os
 import re
+import string
+import subprocess
 import sys
 import unicodedata
 from pathlib import Path
@@ -42,12 +46,18 @@ DIR = ROOT / "screening"
 SEARCHES = DIR / "searches.yaml"
 CANDIDATES = DIR / "candidates.yaml"
 ABSTRACTS = DIR / "abstracts.jsonl"          # local cache, git-ignored
+STRATEGIES = DIR / "strategies.yaml"         # pre-specified search strategies (part of the protocol)
+PROTOCOL_FILES = ("docs/SCREENING.md", "screening/strategies.yaml")
 
 CANONICAL_BUCKETS = ("regions", "impairments", "therapies", "predictors", "reviews")
 DRAFT_BUCKETS = ("regions", "impairments", "therapies", "predictors", "reviews")
 
 STAGES = ("title_abstract", "full_text")
 DECISIONS = ("include", "exclude", "unsure")
+# A decision with `role: check` is a second screener's independent decision on a
+# sample (docs/SCREENING.md §4): kept for the agreement statistic, never the
+# decision of record.
+CHECK_ROLE = "check"
 
 # Exclusion reasons (docs/SCREENING.md §2). `ft_only` reasons apply at full text.
 REASONS: dict[str, dict] = {
@@ -174,7 +184,13 @@ def norm_doi(doi) -> str | None:
         return None
     d = str(doi).strip().lower()
     d = re.sub(r"^(https?://(dx\.)?doi\.org/|doi:\s*)", "", d)
-    d = d.rstrip(".,;)")
+    d = d.rstrip(".,;")
+    # a closing parenthesis is part of many DOIs (10.1044/1058-0360(2004/025)); strip it only when
+    # it is unbalanced (text like "(doi:10.1/x)"), and restore one a citation parser cut off
+    while d.endswith(")") and d.count(")") > d.count("("):
+        d = d[:-1].rstrip(".,;")
+    if d.count("(") > d.count(")"):
+        d += ")"
     return d if d.startswith("10.") else None
 
 
@@ -394,10 +410,11 @@ def kb_state(fact: dict | None) -> str | None:
 # Derived stage of a candidate
 # ---------------------------------------------------------------------------
 
-def last_decision(cand: dict, stage: str) -> dict | None:
+def last_decision(cand: dict, stage: str, role: str | None = None) -> dict | None:
+    """The decision of record at a stage (role None), or the last check decision (role 'check')."""
     out = None
     for d in cand.get("screening") or []:
-        if d.get("stage") == stage:
+        if d.get("stage") == stage and d.get("role") == role:
             out = d
     return out
 
@@ -408,9 +425,12 @@ def stage_of(cand: dict) -> tuple[str, str | None]:
         return "duplicate", None
     ta = last_decision(cand, "title_abstract")
     ft = last_decision(cand, "full_text")
-    # A paper that came in with full text already (hand-picked, registered) may have no T/A step.
+    # A paper that came in with full text already (hand-picked, registered) may have no T/A step —
+    # but only while it is in the other-methods arm: once a database search finds it, it is
+    # screened at title/abstract like every other database record.
     if ta is None and ft is None:
-        return ("awaiting_ft" if cand.get("skip_title_abstract") else "awaiting_ta"), None
+        skip = cand.get("skip_title_abstract") and arm_of(cand) == "other"
+        return ("awaiting_ft" if skip else "awaiting_ta"), None
     if ta is not None and ft is None:
         if ta.get("decision") == "exclude":
             return "excluded_ta", ta.get("reason")
@@ -447,7 +467,7 @@ def enrich(candidates: list[dict], facts: dict[str, dict]) -> list[dict]:
                   "approved_findings": int(fact["approved_findings"]) if fact else 0,
                   "entries": list(fact["entries"]) if fact else [],
                   "tag": fact.get("tag") if fact else None}
-        last = (c.get("screening") or [None])[-1]
+        last = ([d for d in (c.get("screening") or []) if d.get("role") != CHECK_ROLE] or [None])[-1]
         row = dict(c)
         row.update({"stage": stage, "reason": reason, "arm": arm_of(c), "kb": kb,
                     "decided_by": (last or {}).get("by"), "decided_on": str((last or {}).get("date") or "") or None})
@@ -654,6 +674,243 @@ def backfill_candidates(root: Path = ROOT, by: str = "legacy", date: str | None 
 
 
 # ---------------------------------------------------------------------------
+# The protocol: search strategies, fingerprint, lock
+# ---------------------------------------------------------------------------
+
+def load_strategies(root: Path = ROOT) -> dict:
+    path = root / "screening" / "strategies.yaml"
+    if not path.exists():
+        return {"version": None, "status": None, "blocks": {}, "strategies": []}
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    data.setdefault("blocks", {})
+    data.setdefault("strategies", [])
+    return data
+
+
+def strategy(strategies: dict, sid: str) -> dict:
+    for s in strategies.get("strategies") or []:
+        if s.get("id") == sid:
+            return s
+    known = ", ".join(s.get("id", "?") for s in strategies.get("strategies") or [])
+    raise KeyError(f"no strategy {sid!r} in screening/strategies.yaml (known: {known})")
+
+
+def expand_query(strategies: dict, sid: str, db: str) -> str:
+    """The verbatim query a strategy runs on a database, ${blocks} pasted in."""
+    st = strategy(strategies, sid)
+    q = st.get(db)
+    if not q:
+        dbs = [k for k in ("pubmed", "openalex", "scopus", "embase", "psycinfo", "web_of_science") if st.get(k)]
+        raise KeyError(f"strategy {sid} has no {db} query (it has: {', '.join(dbs) or 'none'})")
+    blocks = dict((strategies.get("blocks") or {}).get(db) or {})
+    try:
+        out = string.Template(str(q)).substitute({k: " ".join(str(v).split()) for k, v in blocks.items()})
+    except KeyError as e:
+        raise KeyError(f"strategy {sid} uses block {e} that has no {db} version under blocks.{db}") from None
+    return " ".join(out.split())
+
+
+def protocol_fingerprint(root: Path = ROOT) -> str:
+    h = hashlib.sha256()
+    for rel in PROTOCOL_FILES:
+        p = root / rel
+        h.update(rel.encode())
+        h.update(p.read_bytes() if p.exists() else b"")
+    return h.hexdigest()[:12]
+
+
+def protocol_state(root: Path = ROOT) -> dict:
+    """Fingerprint, version, status and whether the protocol files are committed.
+
+    `locked` is True only when strategies.yaml says `status: locked` *and* git
+    reports both protocol files committed and unchanged. `committed` is None when
+    git cannot be asked (no git, not a checkout)."""
+    st = load_strategies(root)
+    state = {"fingerprint": protocol_fingerprint(root), "version": st.get("version"), "status": st.get("status"),
+             "committed": None, "commit": None, "locked": False}
+    env = {**os.environ, "GIT_OPTIONAL_LOCKS": "0"}
+    try:
+        r = subprocess.run(["git", "status", "--porcelain", "--", *PROTOCOL_FILES], cwd=root, env=env,
+                           capture_output=True, text=True, timeout=20)
+        if r.returncode == 0:
+            state["committed"] = not r.stdout.strip()
+            c = subprocess.run(["git", "log", "-1", "--format=%h", "--", *PROTOCOL_FILES], cwd=root, env=env,
+                               capture_output=True, text=True, timeout=20)
+            state["commit"] = c.stdout.strip() or None
+    except (OSError, subprocess.SubprocessError):
+        pass
+    state["locked"] = state["status"] == "locked" and state["committed"] is True
+    return state
+
+
+# ---------------------------------------------------------------------------
+# Re-baselining: the legacy bibliography becomes a benchmark, not a decision
+# ---------------------------------------------------------------------------
+
+def _legacy(d: dict) -> bool:
+    return str(d.get("by") or "").lower() == "legacy"
+
+
+def is_benchmark(cand: dict) -> bool:
+    """A paper the curator judged relevant before the protocol existed: it was
+    read in full and findings were extracted (legacy full-text include). Used to
+    measure whether the searches find what is already known to be relevant."""
+    if cand.get("benchmark"):
+        return True
+    return any(_legacy(d) and d.get("stage") == "full_text" and d.get("decision") == "include"
+               for d in cand.get("screening") or [])
+
+
+def rebaseline(candidates: list[dict], date: str, protocol: str | None = None) -> dict:
+    """Move every legacy decision out of `screening` into `legacy`, so each
+    candidate is screened afresh under the protocol. Legacy includes become the
+    benchmark set (`benchmark: true`). Nothing is deleted: `legacy.decisions`
+    keeps what was recorded, with the date of the re-baseline. Idempotent."""
+    out = {"benchmark": 0, "refused": 0, "candidates": 0}
+    for c in candidates:
+        legacy = [d for d in c.get("screening") or [] if _legacy(d)]
+        if not legacy:
+            continue
+        if any(d.get("stage") == "full_text" and d.get("decision") == "include" for d in legacy):
+            c["benchmark"] = True
+            out["benchmark"] += 1
+        elif any(d.get("decision") == "exclude" for d in legacy):
+            out["refused"] += 1
+        c["screening"] = [d for d in c.get("screening") or [] if not _legacy(d)]
+        rec = c.setdefault("legacy", {})
+        rec.setdefault("decisions", []).extend(legacy)
+        rec["rebaselined"] = date
+        if protocol:
+            rec["protocol"] = protocol
+        out["candidates"] += 1
+    return out
+
+
+def kb_buckets(root: Path = ROOT) -> dict[str, set[str]]:
+    """@Key -> the KB folders its findings live in (drafts and canonical)."""
+    out: dict[str, set[str]] = collections.defaultdict(set)
+    for base in (root / "drafts", root):
+        for b in CANONICAL_BUCKETS + ("ingredients",):
+            d = base / b
+            if not d.is_dir():
+                continue
+            for p in sorted(d.glob("*.md")):
+                m = re.match(r"^(.*)__(\S+)\.md$", p.name)
+                if m:
+                    out[f"@{m.group(2)}"].add(b)
+                try:
+                    fm, _ = parse_markdown(p)
+                except Exception:  # noqa: BLE001
+                    continue
+                for x in fm.get("findings") or []:
+                    if isinstance(x, dict) and re.match(r"^@[A-Za-z]", str(x.get("citation") or "")):
+                        out[str(x["citation"])].add(b)
+    return dict(out)
+
+
+def benchmark_hits(records: list[dict], candidates: list[dict]) -> list[dict]:
+    """Benchmark candidates that a set of search records (not yet merged) would find."""
+    bench = [c for c in candidates if is_benchmark(c) and not c.get("duplicate_of")]
+    index = build_identity_index(bench)
+    hit: dict[str, dict] = {}
+    for r in records:
+        c = find_duplicate(r, index)
+        if c is not None:
+            hit[c["id"]] = c
+    return list(hit.values())
+
+
+def recall(candidates: list[dict], searches: list[dict], strategies: dict, buckets: dict[str, set[str]]) -> dict:
+    """Relative recall of the searches against the benchmark (legacy includes).
+
+    overall: benchmark papers found by any database search / all benchmark papers.
+    byStrategy: for each strategy, the benchmark papers in its KB folders
+    (`buckets`) and how many of them its runs found — the number to look at
+    before screening; a strategy that misses papers its question should find
+    needs another term. missed: the benchmark papers no search found, for
+    the curator to classify (out of scope under §2, or a search gap)."""
+    bench = [c for c in candidates if is_benchmark(c) and not c.get("duplicate_of")]
+    s_by_id = {str(s.get("id")): s for s in searches}
+
+    def found_by(c):
+        sids, strats, dbs = set(), set(), set()
+        for src in c.get("sources") or []:
+            if isinstance(src, dict) and src.get("search"):
+                s = s_by_id.get(str(src["search"])) or {}
+                sids.add(str(src["search"]))
+                if s.get("strategy"):
+                    strats.add(str(s["strategy"]))
+                if s.get("database"):
+                    dbs.add(str(s["database"]))
+        return sids, strats, dbs
+
+    rows = []
+    for c in bench:
+        sids, strats, dbs = found_by(c)
+        rows.append({"id": c["id"], "key": c.get("key"), "title": c.get("title"), "year": c.get("year"),
+                     "buckets": sorted(buckets.get(c.get("key") or "", set())), "searches": sorted(sids),
+                     "strategies": sorted(strats), "databases": sorted(dbs)})
+    found = [r for r in rows if r["searches"]]
+    by_strategy = []
+    for st in strategies.get("strategies") or []:
+        sid = st.get("id")
+        runs = [s for s in searches if s.get("strategy") == sid]
+        want = set(st.get("buckets") or [])
+        scope = [r for r in rows if want & set(r["buckets"])]
+        hit = [r for r in scope if sid in r["strategies"]]
+        by_strategy.append({"id": sid, "question": st.get("question"), "runs": len(runs),
+                            "databases": sorted({str(s.get("database")) for s in runs}),
+                            "inScope": len(scope), "found": len(hit),
+                            "recall": (len(hit) / len(scope)) if (scope and runs) else None,
+                            "missed": [r["id"] for r in scope if sid not in r["strategies"]] if runs else []})
+    by_db = collections.Counter(d for r in found for d in r["databases"])
+    return {"benchmark": len(rows), "found": len(found),
+            "recall": (len(found) / len(rows)) if rows and searches else None,
+            "byDatabase": dict(by_db), "byStrategy": by_strategy,
+            "missed": [r for r in rows if not r["searches"]]}
+
+
+# ---------------------------------------------------------------------------
+# Dual screening on a sample: agreement
+# ---------------------------------------------------------------------------
+
+def agreement(candidates: list[dict], stage: str = "title_abstract") -> dict:
+    """Cohen's kappa between the decision of record and a second screener's
+    `role: check` decision on the same candidates. At title/abstract `unsure`
+    counts as include (it goes forward); at full text pairs with an unsure on
+    either side are left out of kappa and counted."""
+    pairs, skipped = [], 0
+    for c in candidates:
+        a, b = last_decision(c, stage), last_decision(c, stage, role=CHECK_ROLE)
+        if not a or not b or _legacy(a):
+            continue
+        da, db_ = a.get("decision"), b.get("decision")
+        if stage == "title_abstract":
+            da = "include" if da == "unsure" else da
+            db_ = "include" if db_ == "unsure" else db_
+        elif "unsure" in (da, db_):
+            skipped += 1
+            continue
+        pairs.append((c, da, db_, a, b))
+    n = len(pairs)
+    if not n:
+        return {"stage": stage, "pairs": 0, "skipped": skipped, "kappa": None, "observed": None, "disagreements": []}
+    agree = sum(1 for _, x, y, _, _ in pairs if x == y)
+    po = agree / n
+    pa = sum(1 for _, x, _, _, _ in pairs if x == "include") / n
+    pb = sum(1 for _, _, y, _, _ in pairs if y == "include") / n
+    pe = pa * pb + (1 - pa) * (1 - pb)
+    kappa = (po - pe) / (1 - pe) if pe < 1 else 1.0
+    table = collections.Counter((x, y) for _, x, y, _, _ in pairs)
+    return {"stage": stage, "pairs": n, "skipped": skipped, "observed": po, "expected": pe, "kappa": kappa,
+            "table": {f"{x}/{y}": v for (x, y), v in sorted(table.items())},
+            "screeners": sorted({str(a.get("by")) for _, _, _, a, _ in pairs} | {str(b.get("by")) for *_, b in pairs}),
+            "disagreements": [{"id": c["id"], "title": c.get("title"), "record": x, "check": y,
+                               "record_reason": a.get("reason"), "check_reason": b.get("reason")}
+                              for c, x, y, a, b in pairs if x != y]}
+
+
+# ---------------------------------------------------------------------------
 # One call for the export and the status script
 # ---------------------------------------------------------------------------
 
@@ -663,7 +920,11 @@ def collect(root: Path = ROOT) -> dict:
     facts = kb_facts(root)
     rows = enrich(candidates, facts)
     gaps = load_gaps(root)
+    strategies = load_strategies(root)
     return {
+        "protocol": protocol_state(root),
+        "recall": recall(candidates, searches, strategies, kb_buckets(root)),
+        "agreement": {st: agreement(candidates, st) for st in STAGES},
         "searches": searches,
         "candidates": rows,
         "prisma": prisma_counts(rows, searches),

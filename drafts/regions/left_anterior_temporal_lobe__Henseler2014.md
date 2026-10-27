@@ -9,7 +9,7 @@ created_on: 2026-10-21
 hemisphere: left
 findings:
 - id: f1
-  target: anomic_aphasia
+  target: anomia
   target_kind: impairment
   claim: Naming of compound nouns correlates with the integrity of the left anterior temporal lobe.
   direction: likely
@@ -50,7 +50,8 @@ findings:
     extracted_on: 2026-01-01
     paper_section: Results, page 6
     confidence: high
-    flags: []
+    flags:
+    - retargeted anomic_aphasia → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Results
     page: 6
@@ -84,4 +85,9 @@ findings:
     fields:
     - cohort
     - lesion_mapping
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
 ---

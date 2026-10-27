@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: virtual_reality_rehabilitation
 name: Virtual Reality Rehabilitation
 kind: therapy
@@ -85,14 +85,24 @@ findings:
       studies, thereby raising questions about how applicable this intervention is to a wide range of
       stroke survivors.
     supports: limitation
+  - section: added by backfill
+    page: 11
+    quote: 'We included studies using virtual reality interventions that met the following definition:
+      an advanced form of human-computer interface that allows the user to ''interact'' with a computer-generated
+      environment in a naturalistic fashion [30].'
+    supports: method
   region_definition:
     kind: not_reported
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: virtual_reality
+    name: virtual reality
 - id: f2
   target: upper_limb_function
   target_kind: impairment
@@ -143,14 +153,24 @@ findings:
     quote: a moderate effect on upper limb function when virtual reality was used to augment usual care
       (standardised mean difference (SMD) 0.42, moderate-certainty evidence)
     supports: statistics
+  - section: added by backfill
+    page: 4
+    quote: The addition of virtual reality to usual care or rehabilitation (resulting in an increased
+      amount of time spent in therapy for those in the intervention group) probably increases upper limb
+      function and activity compared to usual care alone
+    supports: method
   region_definition:
     kind: not_reported
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: virtual_reality_in_addition_to_usual_care
+    name: virtual reality in addition to usual care
 - id: f3
   target: balance
   target_kind: impairment
@@ -193,14 +213,24 @@ findings:
     quote: Compared to alternative therapy approaches, virtual reality may be slightly beneficial for
       balance (SMD 0.26, 95% CI 0.12 to 0.40; 24 studies, 871 participants; low-certainty evidence)
     supports: claim
+  - section: added by backfill
+    page: 11
+    quote: 'We included studies using virtual reality interventions that met the following definition:
+      an advanced form of human-computer interface that allows the user to ''interact'' with a computer-generated
+      environment in a naturalistic fashion [30].'
+    supports: method
   region_definition:
     kind: not_reported
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: virtual_reality
+    name: virtual reality
 - id: f4
   target: activity_limitation
   target_kind: impairment
@@ -244,14 +274,24 @@ findings:
     quote: probably reduces activity limitation (SMD 0.21, 95% CI 0.11 to 0.32; 33 studies, 1495 participants;
       moderate-certainty evidence).
     supports: claim
+  - section: added by backfill
+    page: 11
+    quote: 'We included studies using virtual reality interventions that met the following definition:
+      an advanced form of human-computer interface that allows the user to ''interact'' with a computer-generated
+      environment in a naturalistic fashion [30].'
+    supports: method
   region_definition:
     kind: not_reported
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: virtual_reality
+    name: virtual reality
 - id: f5
   target: cognitive_function
   target_kind: impairment
@@ -294,12 +334,22 @@ findings:
       with 279 participants. There was an eﬀect in favour of virtual reality (SMD 0.32, 95% CI 0.08 to
       0.56; heterogeneity I2 = 47%; Analysis 1.12).
     supports: claim
+  - section: added by backfill
+    page: 11
+    quote: 'We included studies using virtual reality interventions that met the following definition:
+      an advanced form of human-computer interface that allows the user to ''interact'' with a computer-generated
+      environment in a naturalistic fashion [30].'
+    supports: method
   region_definition:
     kind: not_reported
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: virtual_reality
+    name: virtual reality
 ---

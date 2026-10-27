@@ -1399,6 +1399,11 @@ findings:
     quote: In addition, all patients underwent identical treatment, despite their
       individual baseline performance or type of aphasia.
     supports: limitation
+  - section: added by backfill
+    page: not_reported
+    quote: During each 3-hour treatment session, the subject underwent clinician-administered
+      anomia treatment using semantic and phonemic cueing hierarchies.
+    supports: method
   review:
     reviewer: model:gemma4:26b
     reviewed_on: '2026-10-22'
@@ -1406,10 +1411,15 @@ findings:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: anomia_treatment_using_semantic_and_phonemic_cueing_hierarch
+    name: anomia treatment using semantic and phonemic cueing hierarchies
+    dose: 30 hours of speech therapy over a 2-week period
 notes: "This is the umbrella entry for *any* finding about how aphasia severity predicts\
   \ an outcome. Different studies use different instruments (WAB-AQ, BDAE severity,\
   \ CAT, AAT, …); rather than fragmenting the literature into one predictor entry\

@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: spell_study_spell
 name: Spell-study-spell training
 aliases:
@@ -197,13 +197,23 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: 6
+    quote: Finally, at Johns Hopkins University, training employed a spell-study-spell
+      procedure for participants with dysgraphia.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: spell_study_spell
+    name: spell-study-spell training
+    dose: 12 weeks
 - id: f2
   target: right_anterior_superior_temporal_gyrus
   target_kind: region
@@ -404,13 +414,23 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: 6
+    quote: Finally, at Johns Hopkins University, training employed a spell-study-spell
+      procedure for participants with dysgraphia.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: spell_study_spell
+    name: spell-study-spell training
+    dose: 12 weeks
 - id: f3
   target: dysgraphia
   target_kind: impairment
@@ -539,13 +559,23 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: 6
+    quote: Finally, at Johns Hopkins University, training employed a spell-study-spell
+      procedure for participants with dysgraphia.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: spell_study_spell
+    name: spell-study-spell training
+    dose: 12 weeks
 - id: f4
   target: right_anterior_superior_temporal_gyrus
   target_kind: region
@@ -746,13 +776,23 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: 6
+    quote: Finally, at Johns Hopkins University, training employed a spell-study-spell
+      procedure for participants with dysgraphia.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: spell_study_spell
+    name: spell-study-spell training
+    dose: 12 weeks
 source: agent_draft
 last_reviewed: '2026-05-06'
 notes: "First-extraction draft from Barbieri et al. 2023. Spell-study-spell\nis an\

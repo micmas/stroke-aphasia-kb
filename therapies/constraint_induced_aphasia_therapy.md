@@ -26,6 +26,7 @@ targets_impairments:
 - form_to_articulation
 - form_to_meaning
 - global_aphasia
+- anomia
 dosage: 'Highly intensive: original Pulvermüller protocol is 3–4 hours/day × 10 consecutive
   weekdays. Modified CIAT-PACE uses smaller groups (2–3 patients) and structured card-exchange
   games. Some protocols extend to 3 weeks at lower daily intensity.
@@ -237,13 +238,24 @@ findings:
     quote: Patients with chronic aphasia were assigned randomly to a group to receive
       either conventional aphasia therapy or constraint-induced (CI) aphasia therapy
     supports: sample
+  - section: added by backfill
+    page: 1
+    quote: CI aphasia therapy is realized in a communicative therapeutic environment
+      constraining patients to practice systematically speech acts with which they
+      have difficulty.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: constraint_induced_aphasia_therapy
+    name: constraint-induced (CI) aphasia therapy
+    dose: 3 to 4 hours per day for 10 days
 - id: f2
   target: anomic_aphasia
   target_kind: impairment
@@ -299,11 +311,13 @@ findings:
     supports: sample
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    unresolved:
+    - therapy
 source:
 - migrated_from: _legacy_v1/therapies/ciat.md
 - basis: Pulvermüller 2001, Maher 2006 (not formally extracted)
@@ -316,7 +330,7 @@ notes: 'Less well-suited to: acute presentations; patients with severe global ap
   and optimal scheduling remain active research questions. CILT and PACE are related
   variants with slightly different procedural details.
 
-  '
+  2026-10-26: targets_impairments gained `anomia` (symptom, schema v2.8; retarget_symptoms.py).'
 ---
 # Constraint-Induced Aphasia Therapy (CIAT / CILT)
 

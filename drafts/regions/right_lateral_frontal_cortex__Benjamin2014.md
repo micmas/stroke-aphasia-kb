@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: right_lateral_frontal_cortex
 name: Right Lateral Frontal Cortex
 kind: classical
@@ -111,12 +111,22 @@ findings:
     page: 6
     quote: Small number of subjects in the groups...
     supports: limitation
+  - section: added by backfill
+    page: 2
+    quote: Nonfluent aphasia patients initiated picture naming trials with complex left-hand movements,
+      putatively to activate right-hemisphere (medial frontal) intentional mechanisms that engage right
+      lateral frontal structures during training.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: intention_treatment
+    name: Intention Treatment
 ---
 # Right Lateral Frontal Cortex
 

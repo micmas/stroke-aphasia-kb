@@ -16,6 +16,9 @@ Missing fields, per finding (narrative reviews are skipped):
                       the sample is not a named, reused dataset, so the
                       paper is not asked again
   author_limitations  missing, or filled with [] by the save-time repair
+  therapy             the intervention of a treatment_response / responder
+                      finding (schema v2.8): {id, name}, with the sentence
+                      that names it
 
 For each paper the local extraction model reads the full text once with
 the list of its findings (claim, method, sample, threshold) and returns
@@ -52,18 +55,61 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]  # repository root (this file lives in scripts/)
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # sibling modules in scripts/
-from aphasia_kb import parse_markdown, _validate_v2_entry  # noqa: E402
+from aphasia_kb import THERAPY_RELATIONSHIPS, parse_markdown, _validate_v2_entry  # noqa: E402
 import lesion_mapping as LM  # noqa: E402
 from phase import PHASE_VOCAB, infer_phase  # noqa: E402
 from quote_check import PaperText, find_paper, grade_quote  # noqa: E402
 
 BUCKETS = ("regions", "impairments", "therapies", "predictors", "reviews")
-ALL_FIELDS = ("lesion_mapping", "phase", "cohort", "author_limitations")
+ALL_FIELDS = ("lesion_mapping", "phase", "cohort", "author_limitations", "therapy")
 ACCEPT = {"exact", "elided", "table", "anchored"}
 LIMITATION_FLAGS = ("author_limitations not extracted by the model",)
 LESIONMAP_FLAGS = ("lesion_mapping (v2.7 design) not extracted by the model",)
 SUPPORTS = {"lesion_mapping": "method", "phase": "sample", "cohort": "sample",
-            "author_limitations": "limitation"}
+            "author_limitations": "limitation", "therapy": "method"}
+
+
+def _needs_therapy(f: dict) -> bool:
+    return f.get("relationship") in THERAPY_RELATIONSHIPS or f.get("target_kind") == "therapy"
+
+
+def _slug(name: str) -> str:
+    s = re.sub(r"[^a-z0-9]+", "_", str(name).lower()).strip("_")
+    return s[:60] or "unnamed_therapy"
+
+
+_THERAPY_INDEX: dict[str, str] | None = None
+
+
+def therapy_index() -> dict[str, str]:
+    """lowercased id / name / alias → therapies/ (or drafts/therapies/) entry id."""
+    global _THERAPY_INDEX
+    if _THERAPY_INDEX is None:
+        idx: dict[str, str] = {}
+        for folder in (ROOT / "therapies", ROOT / "drafts" / "therapies"):
+            for p in sorted(folder.glob("*.md")) if folder.is_dir() else []:
+                try:
+                    fm, _ = parse_markdown(p)
+                except Exception:  # noqa: BLE001
+                    continue
+                tid = str(fm.get("id") or "")
+                if not tid:
+                    continue
+                for key in [tid, fm.get("name"), *(fm.get("aliases") or [])]:
+                    if key:
+                        idx.setdefault(str(key).lower().strip(), tid)
+        _THERAPY_INDEX = idx
+    return _THERAPY_INDEX
+
+
+def resolve_therapy_id(name: str, given: str | None) -> str:
+    idx = therapy_index()
+    for cand in (given, name):
+        if cand and str(cand).lower().strip() in idx:
+            return idx[str(cand).lower().strip()]
+    if given and re.match(r"^[a-z0-9_]+$", str(given)):
+        return str(given)
+    return _slug(name)
 
 
 # --------------------------------------------------------------- targets
@@ -98,6 +144,8 @@ def missing_fields(f: dict, wanted=ALL_FIELDS, retry: bool = False) -> list[str]
     if "author_limitations" in wanted and (f.get("author_limitations") is None
                                            or _flagged(f, LIMITATION_FLAGS)):
         out.append("author_limitations")
+    if "therapy" in wanted and _needs_therapy(f) and not isinstance(f.get("therapy"), dict):
+        out.append("therapy")
     return out
 
 
@@ -165,6 +213,15 @@ Fields:
   recruited for this study only.
 - author_limitations: list of the limitations the AUTHORS state (short
   phrases), [] if none are stated.
+- therapy: the intervention this treatment-response / responder finding is
+  about, as the paper names it (e.g. "cueing hierarchy anomia treatment",
+  "anodal tDCS over left IFG with computerised naming practice", "semantic
+  feature analysis"), with the sentence that describes it as the quote; "id"
+  may name a known therapy entry (semantic_feature_analysis,
+  melodic_intonation_therapy, tdcs_aphasia_treatment, constraint_induced_aphasia_therapy,
+  phonological_component_analysis, treatment_of_underlying_forms …) when it is that
+  therapy, otherwise leave id empty. "not_reported" only if the paper never
+  describes the intervention.
 
 Findings often come from the same analysis. When a finding's answers are
 identical to an earlier finding's, write {{"key": "K7", "same_as": "K3"}}
@@ -178,7 +235,8 @@ Answer with JSON only, in this shape (include only the requested fields):
                         "quotes": ["..."]}},
     "phase": {{"value": "...", "quote": "..."}},
     "cohort": {{"value": "...", "quote": "..."}},
-    "author_limitations": {{"value": ["..."], "quote": "..."}}}}
+    "author_limitations": {{"value": ["..."], "quote": "..."}},
+    "therapy": {{"value": {{"name": "...", "id": "", "dose": ""}}, "quote": "..."}}}}
 ]}}
 
 Findings:
@@ -284,6 +342,25 @@ def check(field: str, item, paper: PaperText):
         if val and not good:
             return None, [], "no quote found in the PDF"
         return val, good, ""
+    if field == "therapy":
+        if isinstance(val, str):
+            val = {"name": val}
+        if not isinstance(val, dict) or not str(val.get("name") or "").strip():
+            return None, [], "no therapy name"
+        name = str(val["name"]).strip()[:120]
+        if name.lower() in ("not_reported", "none", "n/a"):
+            return None, [], "model says the paper never names the intervention"
+        if not good:
+            return None, [], "no quote found in the PDF"
+        words = [w for w in re.findall(r"[a-z]{4,}", name.lower()) if w not in ("with", "treatment", "therapy", "based")]
+        said = " ".join(good).lower()
+        if words and not any(w in said for w in words):
+            return None, [], f"the quote does not name the intervention ({name!r})"
+        out = {"id": resolve_therapy_id(name, val.get("id")), "name": name}
+        dose = str(val.get("dose") or "").strip()
+        if dose and dose.lower() not in ("not_reported", "none", "n/a"):
+            out["dose"] = dose[:120]
+        return out, good, ""
     return None, [], "unknown field"
 
 
@@ -317,27 +394,30 @@ def _dump(path: Path, fm: dict, body: str, canonical: bool) -> None:
         path.write_text(out, encoding="utf-8")
 
 
+CURRENT = 2.8
+
+
 def _complete(fm: dict) -> bool:
     for f in fm.get("findings") or []:
-        if missing_fields(f, ("lesion_mapping", "phase")):
+        if missing_fields(f, ("lesion_mapping", "phase", "therapy")):
             return False
     return True
 
 
 def _maybe_bump(fm: dict, path: Path) -> bool:
-    """schema_version → 2.7 when complete and it validates no worse."""
+    """schema_version → CURRENT when complete and it validates no worse."""
     try:
-        if float(fm.get("schema_version") or 0) >= 2.7 or not _complete(fm):
+        if float(fm.get("schema_version") or 0) >= CURRENT or not _complete(fm):
             return False
     except (TypeError, ValueError):
         return False
     before, after = [], []
     _validate_v2_entry(copy.deepcopy(fm), str(path), before)
     trial = copy.deepcopy(fm)
-    trial["schema_version"] = 2.7
+    trial["schema_version"] = CURRENT
     _validate_v2_entry(trial, str(path), after)
     if len(after) <= len(before):
-        fm["schema_version"] = 2.7
+        fm["schema_version"] = CURRENT
         return True
     return False
 
@@ -393,6 +473,8 @@ def apply(targets_by_key: dict, answer: dict, paper: PaperText, pdf: Path,
                 if not isinstance(f.get("sample"), dict):
                     f["sample"] = {}
                 f["sample"][field] = val
+            elif field == "therapy":
+                f["therapy"] = val
             elif field == "author_limitations":
                 f["author_limitations"] = val
                 prov = f.get("provenance") or {}
@@ -422,7 +504,7 @@ def apply(targets_by_key: dict, answer: dict, paper: PaperText, pdf: Path,
         if path not in changed:
             continue
         if _maybe_bump(fm, path):
-            notes.append(f"{path.name}: schema_version → 2.7")
+            notes.append(f"{path.name}: schema_version → {CURRENT}")
         if execute:
             _dump(path, fm, body, canonical)
     return written, skipped, notes

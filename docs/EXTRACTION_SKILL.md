@@ -728,6 +728,36 @@ addition that disambiguates "damage → impairment" claims (`causal`)
 from "treatment → activation change" claims (`treatment_response`)
 and from "patients with X respond to therapy Y" claims (`responder`).
 
+### Name the therapy (v2.8)
+
+Every `treatment_response` or `responder` finding, and every finding
+that targets a therapy, carries a `therapy` block:
+
+```yaml
+therapy:
+  id: cueing_hierarchy_naming_treatment      # a therapies/ entry id when one exists, else a forward-looking id
+  name: cueing hierarchy anomia treatment    # as the paper calls it
+  dose: 3 h/day, 2 weeks                     # optional, as reported
+```
+
+An activation change or a responder profile is evidence about *that*
+intervention only. "Treatment" in the claim is not enough; quote the
+sentence that names the intervention with `supports: method`.
+
+### Symptom, not syndrome (v2.8)
+
+`impairments/` has two kinds of entry: symptoms a test measures
+(`anomia`, `fluency`, `semantics`, `syntactic_processing`,
+`form_to_meaning` …) and classified syndromes (`anomic_aphasia`,
+`brocas_aphasia`, `wernickes_aphasia`, `conduction_aphasia`,
+`global_aphasia`). A finding targets a syndrome only when the paper
+classified patients by type and the claim is about the type (lesion
+predicts Broca's aphasia; SVM separates anomic from conduction aphasia).
+A naming score, a fluency measure, a comprehension test — whatever the
+sample was called — targets the symptom. Naming deficits target
+`anomia` (not `naming`, `confrontation_naming` or `anomic_aphasia`);
+`object_naming` / `action_naming` only when the paper dissociates them.
+
 ### Behavioural-only findings inside an fMRI paper
 
 Common case: a paper is primarily an fMRI study, but the

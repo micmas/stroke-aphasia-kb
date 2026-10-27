@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: phonological_component_analysis
 name: Phonological Component Analysis (PCA)
 kind: therapy
@@ -11,9 +11,10 @@ short_description: A phonologically based naming treatment modeled after Semanti
   target items.
 targets_impairments:
 - anomic_aphasia
+- anomia
 findings:
 - id: f1
-  target: anomic_aphasia
+  target: anomia
   target_kind: impairment
   claim: Phonological Components Analysis (PCA) treatment significantly improves the naming of treated
     items in individuals with aphasia.
@@ -56,7 +57,8 @@ findings:
     extracted_on: 2026-01-01
     paper_section: Results, pages 932-933
     confidence: high
-    flags: []
+    flags:
+    - retargeted anomic_aphasia → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Outcomes & Results
     page: 2
@@ -97,11 +99,27 @@ findings:
     page: 14
     quote: it is acknowledged that due to the small sample size, the power of this analysis is limited.
     supports: limitation
+  - section: added by backfill
+    page: 1
+    quote: A new phonologically based treatment that we developed for addressing naming deficits in aphasia—the
+      phonological components analysis (PCA) treatment—is presented.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
+  therapy:
+    id: phonological_component_analysis
+    name: phonological components analysis (PCA) treatment
+    dose: Sessions occurred three times a week for approximately 1 hour.
+notes: '2026-10-26: targets_impairments gained `anomia` (symptom, schema v2.8; retarget_symptoms.py).'
 ---
 This study establishes the efficacy of PCA, a phonological analogue to SFA, for treating anomia across various aphasia types.

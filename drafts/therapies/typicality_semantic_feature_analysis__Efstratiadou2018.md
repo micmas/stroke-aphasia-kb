@@ -10,6 +10,7 @@ short_description: A semantic-based treatment that improves naming by having pat
   features of a target object using a structured chart.
 targets_impairments:
 - anomic_aphasia
+- anomia
 findings:
 - id: f1
   target: anomic_aphasia
@@ -70,7 +71,7 @@ findings:
       studies.
     supports: limitation
 - id: f2
-  target: anomic_aphasia
+  target: anomia
   target_kind: impairment
   claim: SFA may be more effective for individuals with fluent aphasia and mild-to-moderate severity compared
     to those with nonfluent or severe aphasia.
@@ -102,7 +103,8 @@ findings:
     extracted_on: 2026-01-01
     paper_section: Discussion
     confidence: high
-    flags: []
+    flags:
+    - retargeted anomic_aphasia → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Discussion
     page: 14
@@ -115,4 +117,10 @@ findings:
     quote: Further research with large numbers of participants is necessary in order to begin to unravel
       the impact of different aphasic profiles and severities on the efficacy of SFA.
     supports: limitation
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
+notes: '2026-10-26: targets_impairments gained `anomia` (symptom, schema v2.8; retarget_symptoms.py).'
 ---

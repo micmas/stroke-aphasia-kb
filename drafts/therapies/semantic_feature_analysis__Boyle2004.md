@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: semantic_feature_analysis
 name: Semantic Feature Analysis
 kind: therapy
@@ -11,7 +11,10 @@ short_description: A treatment that guides the client to produce semantically re
 targets_impairments:
 - anomic_aphasia
 - wernickes_aphasia
-notes: This entry is created for standard SFA; it is distinct from typicality_semantic_feature_analysis.
+- anomia
+notes: 'This entry is created for standard SFA; it is distinct from typicality_semantic_feature_analysis.
+
+  2026-10-26: targets_impairments gained `anomia` (symptom, schema v2.8; retarget_symptoms.py).'
 findings:
 - id: f1
   target: anomic_aphasia
@@ -83,12 +86,21 @@ findings:
     quote: The present experiment is a Phase II outcomes research study aiming to refine the participant
       selection criteria, treatment protocol, and outcome measures...
     supports: limitation
+  - section: added by backfill
+    page: 2
+    quote: During SFA treatment, the client is guided to produce words that are semantically related to
+      the target word (i.e., semantic features).
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: semantic_feature_analysis
+    name: semantic feature analysis
 - id: f2
   target: wernickes_aphasia
   target_kind: impairment
@@ -159,12 +171,21 @@ findings:
     quote: The present experiment is a Phase II outcomes research study aiming to refine the participant
       selection criteria, treatment protocol, and outcome measures...
     supports: limitation
+  - section: added by backfill
+    page: 2
+    quote: During SFA treatment, the client is guided to produce words that are semantically related to
+      the target word (i.e., semantic features).
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: semantic_feature_analysis
+    name: semantic feature analysis
 - id: f3
   target: fluency
   target_kind: impairment
@@ -230,12 +251,21 @@ findings:
     quote: The present experiment is a Phase II outcomes research study aiming to refine the participant
       selection criteria, treatment protocol, and outcome measures...
     supports: limitation
+  - section: added by backfill
+    page: 2
+    quote: During SFA treatment, the client is guided to produce words that are semantically related to
+      the target word (i.e., semantic features).
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: semantic_feature_analysis
+    name: semantic feature analysis
 - id: f4
   target: semantic_feature_analysis
   target_kind: therapy
@@ -300,10 +330,19 @@ findings:
     quote: The present experiment is a Phase II outcomes research study aiming to refine the participant
       selection criteria, treatment protocol, and outcome measures...
     supports: limitation
+  - section: added by backfill
+    page: 2
+    quote: During SFA treatment, the client is guided to produce words that are semantically related to
+      the target word (i.e., semantic features).
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: semantic_feature_analysis
+    name: semantic feature analysis
 ---

@@ -11,7 +11,7 @@ short_definition: Total volume of the brain lesion.
 units: cm3
 findings:
 - id: f1
-  target: anomic_aphasia
+  target: anomia
   target_kind: impairment
   claim: Lesion volume does not predict the direction of language recovery or decline in chronic aphasia.
   direction: no_effect
@@ -47,7 +47,8 @@ findings:
     extracted_on: 2026-01-01
     paper_section: Results, page 1725
     confidence: high
-    flags: []
+    flags:
+    - retargeted anomic_aphasia → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Results
     page: 8
@@ -80,6 +81,11 @@ findings:
     tool: backfill.py
     fields:
     - cohort
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
 direction_of_severity: higher_is_worse
 ---
 # Lesion Volume

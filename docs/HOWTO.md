@@ -415,6 +415,15 @@ with a note. Save (⌘/Ctrl-S) writes the draft (previous version kept in
 `drafts/_backup/`), stamps your name on each changed finding, logs
 `REVIEW-EDITED` and regenerates the annotated PDF.
 
+Two things to check on every finding while you are there (schema
+v2.8): the **target** — a naming score targets `anomia`, a classified
+type (`anomic_aphasia`, `brocas_aphasia`) only when the paper classified
+patients by syndrome; and, for treatment-response and responder
+findings, the **therapy** box — the intervention as the paper names it
+(the box turns pink when it is required and empty). Both are editable in
+the finding's header, and `backfill.py --fields therapy` can fill the
+therapy from the paper for a whole batch.
+
 Then turn the marks into findings:
 
 ```bash

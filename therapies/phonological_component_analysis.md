@@ -238,11 +238,13 @@ findings:
   target_kind: region
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    unresolved:
+    - therapy
 - author_limitations:
   - Small sample (n=10) without active control group.
   - No significant correlation between rsFC changes and naming improvement — therapy-driven
@@ -356,11 +358,13 @@ findings:
   target_kind: region
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    unresolved:
+    - therapy
 - author_limitations:
   - Small sample (n=10) without an active control group; healthy controls showed stable
     rsFC over 5 weeks in a prior publication, supporting therapy-related interpretation.
@@ -531,11 +535,13 @@ findings:
   target_kind: region
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    unresolved:
+    - therapy
 - author_limitations:
   - Small sample (n=10) without active control group.
   - No significant correlation between rsFC changes and naming improvement — therapy-driven
@@ -649,11 +655,13 @@ findings:
   target_kind: region
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    unresolved:
+    - therapy
 source: extracted
 notes: 'This is a therapy-anchored draft (PCA → rsFC changes). The anchor is the therapy
   because the

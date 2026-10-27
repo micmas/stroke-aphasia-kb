@@ -46,7 +46,18 @@ everyday sequence below takes over. Nothing it does touches `drafts/`
 or the canonical folders.
 
 ```
-# identify
+# protocol (once, then on each amendment)
+python scripts/screen.py strategies                  # strategies, protocol fingerprint, lock state, what has been run
+python scripts/screen.py strategies --show q1_lesion_impairment --db scopus   # the string to paste into Scopus
+python scripts/screen.py rebaseline --execute        # legacy decisions → `legacy`; legacy includes → recall benchmark
+
+# identify — protocol searches (dry run first: hits + how many benchmark papers they retrieve)
+python scripts/screen.py search --strategy q1_lesion_impairment --db pubmed --by michele
+python scripts/screen.py search --strategy q1_lesion_impairment --db pubmed --by michele --execute
+python scripts/screen.py import --strategy q1_lesion_impairment --db scopus --file ~/Downloads/scopus.ris --by michele --execute
+python scripts/screen.py recall                      # relative recall against the benchmark, and what no search found
+
+# identify — ad-hoc searches (recorded and reported, not part of the protocol)
 python scripts/screen.py search --db pubmed --query '"aphasia"[tiab] AND stroke[tiab] AND (lesion[tiab] OR VLSM[tiab])' \
     --years 2000-2026 --for thalamus_basal_ganglia --by michele --execute
 python scripts/screen.py search --db openalex --query 'aphasia stroke lesion symptom mapping' --for right_hemisphere --by michele --execute
@@ -60,6 +71,9 @@ python scripts/screen.py sheet                       # screening/_sheet/title_ab
 python scripts/screen.py decide --csv ~/Downloads/decisions_title_abstract_<date>.csv --by michele
 python scripts/screen.py sheet --stage full_text     # the full-text pass, same loop
 python scripts/screen.py decide --id C0012 --stage full_text --decision exclude --reason not_retrieved --by michele
+python scripts/screen.py sheet --check --sample 0.2 --seed 1   # blind 20 % sample for a second screener
+python scripts/screen.py decide --csv ~/Downloads/check.csv --by <second screener> --role check
+python scripts/screen.py agreement                   # Cohen's kappa + the disagreements to reconcile
 
 # hand over and report
 python scripts/screen.py register --execute          # included candidates → citations.md blocks (Crossref), key set
@@ -69,15 +83,19 @@ python scripts/screen.py list --stage awaiting_ft    # ids of what is waiting (o
 
 | Subcommand | What it does | Options |
 |---|---|---|
-| `search` | Live PubMed (E-utilities) or OpenAlex query; hits become candidates, de-duplicated by DOI / PMID / title+year; the search is one record in `screening/searches.yaml`. Network. | `--db pubmed\|openalex` `--query` `--years 2000-2026` `--for gap,entry` `--by` `--max 2000` `--notes` `--execute` |
-| `import` | The same from a RIS or CSV export (Scopus, Embase, PsycINFO, Web of Science); give the query and date so the record is complete. | `--file` `--db` `--query` `--date` `--years` `--for` `--by` `--execute` |
+| `strategies` | Lists the strategies in `screening/strategies.yaml`, the protocol version and fingerprint, whether it is locked (status `locked` and both protocol files committed), and which strategies have been run where. | `--show ID --db pubmed\|openalex\|scopus` `-v` |
+| `rebaseline` | Moves every `by: legacy` decision into the candidate's `legacy` record and marks legacy includes `benchmark: true`, so each paper is screened afresh under the protocol. Nothing is deleted. Idempotent. | `--date` `--execute` |
+| `search` | Live PubMed (E-utilities) or OpenAlex query; hits become candidates, de-duplicated by DOI / PMID / title+year; the search is one record in `screening/searches.yaml`. With `--strategy` the query, years and `--for` come from the protocol, the run records the strategy and protocol fingerprint, nothing is capped, an incomplete retrieval is refused, and `--execute` is refused until the protocol is locked. Every run (dry or not) reports how many benchmark papers it retrieved. PubMed queries over 10,000 hits are split by publication year. Network. | `--strategy` or `--query` · `--db pubmed\|openalex` `--years 2000-2026` `--for gap,entry` `--by` `--max` `--oa-field` `--notes` `--allow-unlocked` `--execute` |
+| `import` | The same from a RIS or CSV export (Scopus, Embase, PsycINFO, Web of Science); with `--strategy` the recorded query is the protocol's string for that database, otherwise give the query and date so the record is complete. | `--file` `--db` `--strategy` or `--query` · `--date` `--years` `--for` `--by` `--execute` |
+| `recall` | Relative recall: benchmark papers found by any database search, per strategy (against the benchmark papers in its KB folders) and per database, and the list no search found. | `--json` |
 | `backfill` | Every `citations.md` key not in the register becomes an *other-source* candidate; extracted keys are stamped included `by: legacy`, `[refused]` excluded, seeds left awaiting assessment. Idempotent. | `--date` `--execute` |
 | `assist` | The local model (role `screen`, else `review`, in `models.yaml`) reads title + abstract against SCREENING.md §2 and writes `suggestion`. Ollama. | `--model` `--ids` `--max` `--redo` |
-| `sheet` | One HTML card per candidate awaiting the pass, with the suggestion, keyboard shortcuts and a CSV download. Written to `screening/_sheet/` (git-ignored). | `--stage title_abstract\|full_text` `--for gap` `--ids` `--out` |
-| `decide` | Records decisions from the sheet's CSV or one by hand; an exclusion needs a reason, `other` and `duplicate_report` need a note, `--by` must be a person. Appends `SCREENED` to the log. Acts at once. | `--csv` or `--id --stage --decision --reason --note` · `--by` `--date` |
+| `sheet` | One HTML card per candidate awaiting the pass, with the suggestion, keyboard shortcuts and a CSV download. Written to `screening/_sheet/` (git-ignored). Title/abstract cards are blind: no citation key, no hand-picked or legacy provenance. `--check` writes a blind random sample of already-decided candidates for a second screener (no prior decision, no suggestion). | `--stage title_abstract\|full_text` `--for gap` `--ids` `--out` · `--check --sample 0.2 --seed 1` |
+| `decide` | Records decisions from the sheet's CSV or one by hand; an exclusion needs a reason, `other` and `duplicate_report` need a note, `--by` must be a person. Appends `SCREENED` to the log. Acts at once. `--role check` records a second screener's decision for the agreement statistic (never the decision of record; must be a different person). | `--csv` or `--id --stage --decision --reason --note` · `--by` `--date` `--role check` |
+| `agreement` | Cohen's kappa between decisions of record and check decisions per stage (unsure counts as include at title/abstract), the 2×2 table and each disagreement. | `--stage ta\|ft` |
 | `register` | Included candidates without a key: Crossref record from the DOI → `citations.md` block (house format, `[seed]`, note says which candidate) and `key:` set; existing DOIs are linked instead. Network. | `--execute` |
 | `fetch-abstracts` | Fills `screening/abstracts.jsonl` from PubMed (by PMID) then OpenAlex (by DOI). Network. | `--max` |
-| `status` | The PRISMA numbers (both arms), where included papers stand in the KB, and found / included / in-KB per evidence gap. | `--json` |
+| `status` | The protocol version and lock, the PRISMA numbers (both arms), recall against the benchmark, kappa if double-screened, where included papers stand in the KB, and found / included / in-KB per evidence gap. | `--json` |
 | `list` | Candidates with id, derived stage, KB state, key and title. | `--stage` |
 
 The stage of a candidate is derived, never typed: see SCREENING.md §5.
@@ -191,28 +209,47 @@ retries once with a larger budget if a genuine output overflows.
 | `--no-monitor` | No GPU/CPU monitor line. |
 | `--ollama-host URL` | Another Ollama server (default `http://localhost:11434`; a non-local host is warned about). |
 
-### `backfill.py` — bring older findings up to schema v2.7
+### `backfill.py` — bring older findings up to schema v2.8
 
 Asks the extraction model, once per paper, only for the fields a finding
 is missing (`lesion_mapping`, `sample.phase`, `sample.cohort`,
-`author_limitations`). Claims, quotes and reviews are untouched. A value
+`author_limitations`, and from v2.8 `therapy`: the `{id, name}` of the
+intervention behind every `treatment_response` / `responder` finding,
+quoted from the sentence that names it). Claims, quotes and reviews are untouched. A value
 is written only if its quote is found in the PDF (or it is
 `not_reported`); the quote is added to the finding's `source_passages`
 and the finding gets `filled: {by, date, tool, fields}`. Approved entries
 are written too; the report labels these values "filled in by a model".
-A file moves to `schema_version: 2.7` once all its findings are complete.
+A file moves to `schema_version: 2.8` once all its findings are complete.
 
 | Option | Meaning |
 |---|---|
 | (none) | Dry run: papers and their missing fields. |
 | `--execute` | Ask the model and write the verified values. |
 | `--citation @Key` | Only these papers (repeatable). |
-| `--fields a,b` | Subset of `lesion_mapping,phase,cohort,author_limitations`. |
+| `--fields a,b` | Subset of `lesion_mapping,phase,cohort,author_limitations,therapy`. |
 | `--drafts-only` | Leave approved entries alone. |
 | `--limit N` | Stop after N papers. |
 | `--from-response FILE` | Apply a saved response (`_last_backfill_response_<Key>.txt`) for one `--citation`. |
 | `--reapply` | No model: apply every saved response again to the fields still missing. |
 | `--retry` | Ask again for fields already answered without a verifiable quote (`filled.unresolved`). |
+
+### `retarget_symptoms.py` — symptom, not syndrome (schema v2.8)
+
+```bash
+python scripts/retarget_symptoms.py              # dry run: RETARGET / KEEP / REVIEW lists
+python scripts/retarget_symptoms.py --execute    # drafts and canonical entries
+python scripts/retarget_symptoms.py --execute --drafts-only
+```
+
+Moves findings whose target is an aphasia syndrome but whose claim is a
+symptom onto the symptom entry: `naming`, `confrontation_naming` and
+`anomic_aphasia`-with-a-naming-claim → `anomia`. A syndrome target whose
+claim speaks of the classified type is kept and listed for a person to
+confirm; other `*_aphasia` targets with symptom claims are listed for
+the workbench. The old target is kept in `provenance.flags`, an `edits`
+record is added, and one `RETARGETED` line per file goes to the log.
+Re-run `export_webapp.py` after.
 
 ### `reextract.py` — extract chosen papers again, on purpose
 
@@ -348,6 +385,7 @@ Only drafts are editable.
 python scripts/refocus.py drafts/regions/<entry>__<Key>.md             # dry run: the marks, prompt size
 python scripts/refocus.py drafts/regions/<entry>__<Key>.md --execute   # call the model, merge
 python scripts/refocus.py --citation <Key> --execute                   # every draft of the paper with pending marks
+python scripts/refocus.py --all --execute                              # every paper with pending marks, one model call each
 ```
 
 Takes the pending `reviewer_marks` of a draft, gives the local model
@@ -364,6 +402,7 @@ that still has a pending mark.
 | Option | Meaning |
 |---|---|
 | `--citation KEY` | All drafts of the paper. |
+| `--all` | Every paper with a pending mark, one model call per paper. |
 | `--model TAG` | Override `models.yaml` role `extract`. |
 | `--timeout S` | Model call timeout (default 3600). |
 | `--execute` | Call the model (default: dry run, prompt written to `_refocus_dry_run.txt`). |
@@ -442,8 +481,9 @@ and the 20 % audit in GOVERNANCE.md.
 
 ```
 python tests/test_review_guardrails.py      # the review policy, against a mock Ollama
-python tests/test_screening.py              # the screening register: parsers, de-duplication, stages, PRISMA counts
+python tests/test_screening.py              # the screening register: parsers, de-duplication, stages, PRISMA counts, strategies, rebaseline, recall, kappa
 python tests/test_review_app.py             # the review workbench and refocus merge, against a generated PDF (needs PyMuPDF)
+python tests/test_schema_v28.py             # v2.8: therapy block, symptom vs syndrome, retargeting, therapy backfill checks
 python -m pytest tests/test_kb_atlas_mapping.py  # the atlas mapping
 ```
 

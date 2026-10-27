@@ -1,4 +1,4 @@
-# Schema v2.7
+# Schema v2.8
 
 Every entry is a single markdown file with **YAML frontmatter** followed by
 **prose**. The frontmatter is the contract that `aphasia_kb.py`,
@@ -64,8 +64,24 @@ documented change to *this file* and the loader together.
 >   `sample.cohort` names a reused dataset so findings from the same
 >   patients are grouped, not counted as replications.
 >
-> New entries must declare `schema_version: 2.7`. The loader reads older
-> entries (v1, v2.0–v2.6) for backwards compatibility.
+> - **v2.8** (2026-10-27) adds a finding-level `therapy: {id, name}`
+>   block, required on `treatment_response` and `responder` findings
+>   and on findings that target a therapy: a treatment effect is only
+>   evidence about *that* treatment (cueing hierarchy, SFA, tDCS …), so
+>   the intervention is recorded with the finding, not left in the
+>   claim text. It also fixes the **symptom vs syndrome** rule for
+>   targets: an aphasia-type id (`anomic_aphasia`, `brocas_aphasia` …)
+>   is the target only when the paper classifies patients by syndrome;
+>   a deficit measured by a test (naming accuracy on the BNT, fluency,
+>   sentence comprehension) targets the symptom entry (`anomia`,
+>   `fluency`, `syntactic_processing` …), which every aphasia type can
+>   show. The validator refuses a v2.8 syndrome target whose claim
+>   speaks of a symptom. `retarget_symptoms.py` migrated the older
+>   findings; `backfill.py --fields therapy` fills the therapy block
+>   from the paper.
+>
+> New entries must declare `schema_version: 2.8`. The loader reads older
+> entries (v1, v2.0–v2.7) for backwards compatibility.
 
 ## File-level fields (every entry)
 
@@ -108,6 +124,17 @@ In addition to the file-level fields above:
 | `kind`             | const `impairment` | yes   | |
 | `short_definition` | string          | yes      | One-sentence clinical definition. |
 | `assessment`       | list of strings | no       | Standard tests, e.g. `["BNT", "WAB-R Naming"]`. |
+
+Two kinds of impairment entry coexist. **Symptom** entries name a deficit
+any person with aphasia can show and a test can measure: `anomia`
+(word finding / naming), `fluency`, `semantics`, `phonological_production`,
+`syntactic_processing`, `form_to_meaning` … **Syndrome** entries name a
+classified aphasia type: `anomic_aphasia`, `brocas_aphasia`,
+`wernickes_aphasia`, `conduction_aphasia`, `global_aphasia`. A finding
+targets a syndrome only when the paper classified its patients by type
+(WAB classification, "patients with Broca's aphasia", syndrome
+prediction); a naming score predicted by a lesion, or improved by a
+therapy, targets `anomia`, however the sample was labelled (v2.8).
 
 ## `therapies/` files
 
@@ -169,7 +196,7 @@ ones are **S**; optional ones are **O**.
 | Field         | R/S/O | Type   | Notes |
 |---------------|-------|--------|-------|
 | `id`          | R     | string | Stable id within the file (e.g. `f1`, `f2`). Used by `replications` / `contradictions` to refer to specific findings. |
-| `target`      | R     | string | The other-side `id` (an impairment id from this entry, or a region id from an impairment/therapy entry). |
+| `target`      | R     | string | The other-side `id` (an impairment id from this entry, or a region id from an impairment/therapy entry). Symptom, not syndrome: `anomia` for a naming deficit, `anomic_aphasia` only for the classified type (see `impairments/`). |
 | `target_kind` | R     | enum   | `impairment` \| `therapy` \| `region` \| `prognosis` \| `predictor`. |
 | `claim`       | R     | string | One sentence stating the finding in plain language. The agent's own prose, not a quote. |
 | `direction`   | R     | enum   | `likely` \| `unlikely` \| `likely_responder` \| `unlikely_responder` \| `no_effect` \| `mixed`. |
@@ -197,7 +224,16 @@ to know what e.g. `direction: likely` actually means.
 | `correlational`  | fMRI_FC, rs_fMRI, DTI, NODDI, EEG, MEG | "Activity / integrity of this region tracks behavior" — no causal claim, just covariation.              |
 | `recruitment`    | fMRI_activation                        | "This region is recruited (active) during this task" — task-functional claim.                           |
 | `responder`      | clinical_RCT, behavioral_only          | "Patients with this lesion / region pattern respond well to this therapy" — a moderator claim.          |
-| `treatment_response` (added 2026-05-01) | fMRI_activation pre/post a treatment   | "This region's activation changes as a *consequence* of the treatment." Distinct from `causal` (damage→impairment) and `responder` (which patients respond). Use for treatment-induced upregulation / functional reorganization findings. |
+| `treatment_response` (added 2026-05-01) | fMRI_activation pre/post a treatment   | "This region's activation changes as a *consequence* of the treatment." Distinct from `causal` (damage→impairment) and `responder` (which patients respond). Use for treatment-induced upregulation / functional reorganization findings. Needs `therapy` (v2.8). |
+
+### Therapy (v2.8)
+
+| Field          | R/S/O | Type   | Notes |
+|----------------|-------|--------|-------|
+| `therapy`      | R for `treatment_response` / `responder` findings and findings with `target_kind: therapy`; O otherwise | object | The intervention the finding is about. |
+| `therapy.id`   | S     | string | A `therapies/` entry id when one exists (`semantic_feature_analysis`, `tdcs_aphasia_treatment`), else a forward-looking lowercase_snake id (`cueing_hierarchy_naming_treatment`). |
+| `therapy.name` | R     | string | The intervention as the paper names it, e.g. `"cueing hierarchy anomia treatment"`, `"anodal tDCS over left IFG with naming practice"`. |
+| `therapy.dose` | O     | string | Sessions × duration, as reported. |
 | `synthesis` (added v2.4)    | narrative_review                       | "This is the consensus or majority position of the review literature." No primary measurement — a synthesized claim with `evidence_quality: narrative-review`. |
 
 For `interpret_overlap()` (the per-patient lesion → literature interpretation),

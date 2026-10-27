@@ -186,7 +186,7 @@ findings:
       temporal gyri
     supports: claim
 - id: f4
-  target: naming
+  target: anomia
   target_kind: impairment
   claim: Damage to the left posterior superior temporal gyrus is a significant predictor of naming in
     chronic aphasia.
@@ -228,12 +228,18 @@ findings:
     extracted_on: 2026-01-01
     paper_section: Results, page 5
     confidence: high
-    flags: []
+    flags:
+    - retargeted naming → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Results
     page: 5
     quote: for predicting naming scores, the PSTG, the pole of the superior and middle temporal gyri,
       and the triangular part of the inferior frontal gyrus.
     supports: claim
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
 ---
 Findings from Yourganov 2016 using multivariate SVR to predict WAB scores from lesion maps and connectomes.

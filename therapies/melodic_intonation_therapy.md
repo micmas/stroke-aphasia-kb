@@ -135,12 +135,22 @@ findings:
     page: 0
     supports: claim
     quote: (citation from clinical knowledge — not formally extracted)
+  - section: added by backfill
+    page: 2
+    quote: MIT is a hierarchically structured treatment that uses intoned (sung) patterns
+      to exaggerate the normal melodic content of speech at three levels of difficulty.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: melodic_intonation_therapy
+    name: Melodic Intonation Therapy
+    dose: 1.5 hrs/day, five days/week
 - id: f2
   target: brocas_aphasia
   target_kind: impairment
@@ -182,6 +192,20 @@ findings:
     page: 0
     supports: claim
     quote: (citation from clinical knowledge — not formally extracted)
+  - section: added by backfill
+    page: 1
+    quote: The best-described aphasia therapy using melody is the Melodic Intonation
+      Therapy (MIT).
+    supports: method
+  therapy:
+    id: melodic_intonation_therapy
+    name: Melodic Intonation Therapy
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-27'
+    tool: backfill.py
+    fields:
+    - therapy
 - id: f3
   target: apraxia_of_speech
   target_kind: impairment
@@ -222,6 +246,13 @@ findings:
     page: 0
     supports: claim
     quote: (citation from clinical knowledge — not formally extracted)
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-27'
+    tool: backfill.py
+    fields: []
+    unresolved:
+    - therapy
 source:
 - migrated_from: _legacy_v1/therapies/mit.md
 - basis: Schlaug 2008, van der Meulen 2012, Stahl 2013 (not formally extracted)

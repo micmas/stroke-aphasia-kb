@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: bdnf_val66met
 name: BDNF Val66Met genotype (rs6265)
 kind: predictor
@@ -131,13 +131,26 @@ findings:
     quote: Seventy-four individuals with chronic stroke-induced aphasia completed
       15 language therapy sessions
     supports: sample
+  - section: added by backfill
+    page: not_reported
+    quote: Seventy-four individuals with chronic stroke-induced aphasia completed
+      15 language therapy sessions and were randomized to receive 1 mA A-tDCS or sham
+      tDCS (S-tDCS) to the intact left temporoparietal region for the first 20 min
+      of each session.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: tdcs_aphasia_treatment
+    name: anodal tDCS during aphasia treatment
+    dose: 1 mA A-tDCS or sham tDCS (S-tDCS) to the intact left temporoparietal region
+      for the first 20 min of each session
 - id: f2
   target: severity_metric
   target_kind: predictor
