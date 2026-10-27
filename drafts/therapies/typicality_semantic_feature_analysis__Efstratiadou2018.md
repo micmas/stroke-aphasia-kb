@@ -1,5 +1,5 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: typicality_semantic_feature_analysis
 name: Typicality-based Semantic Feature Analysis (SFA)
 kind: therapy
@@ -122,5 +122,14 @@ findings:
     date: '2026-10-26'
     fields:
     - target
+  therapy:
+    id: typicality_semantic_feature_analysis
+    name: Typicality-based Semantic Feature Analysis (SFA)
+  filled:
+    by: tool:backfill.py
+    date: '2026-10-27'
+    tool: backfill.py
+    fields:
+    - therapy
 notes: '2026-10-26: targets_impairments gained `anomia` (symptom, schema v2.8; retarget_symptoms.py).'
 ---

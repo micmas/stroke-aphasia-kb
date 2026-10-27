@@ -70,7 +70,42 @@ SUPPORTS = {"lesion_mapping": "method", "phase": "sample", "cohort": "sample",
 
 
 def _needs_therapy(f: dict) -> bool:
-    return f.get("relationship") in THERAPY_RELATIONSHIPS or f.get("target_kind") == "therapy"
+    return f.get("relationship") in THERAPY_RELATIONSHIPS and f.get("target_kind") != "therapy"
+
+
+def fill_therapy_from_entries(kb_root: Path, execute: bool, include_canonical: bool = True) -> int:
+    """A finding inside a therapy entry is about that therapy: fill `therapy`
+    from the entry's id and name, no model and no quote needed."""
+    today = dt.date.today().isoformat()
+    folders = [kb_root / "drafts" / "therapies"] + ([kb_root / "therapies"] if include_canonical else [])
+    n = 0
+    for folder in folders:
+        for path in sorted(folder.glob("*.md")) if folder.is_dir() else []:
+            fm, body = parse_markdown(path)
+            if fm.get("kind") != "therapy" or not fm.get("id"):
+                continue
+            done = []
+            for f in fm.get("findings") or []:
+                if isinstance(f, dict) and _needs_therapy(f) and not isinstance(f.get("therapy"), dict):
+                    f["therapy"] = {"id": str(fm["id"]), "name": str(fm.get("name") or fm["id"])}
+                    prev = f.get("filled") or {}
+                    f["filled"] = {"by": "tool:backfill.py", "date": today, "tool": "backfill.py",
+                                   "fields": sorted(set(prev.get("fields") or []) | {"therapy"})}
+                    if prev.get("unresolved"):
+                        f["filled"]["unresolved"] = [u for u in prev["unresolved"] if u != "therapy"] or None
+                        if not f["filled"]["unresolved"]:
+                            del f["filled"]["unresolved"]
+                    done.append(str(f.get("id")))
+            if done:
+                n += len(done)
+                print(f"  {'filled' if execute else 'would fill':10} therapy from the entry: {path.relative_to(kb_root)} ({', '.join(done)})")
+                if execute:
+                    _maybe_bump(fm, path)
+                    _dump(path, fm, body, folder.name == "therapies" and folder.parent == kb_root)
+                    with (kb_root / "logs/extraction_log.md").open("a", encoding="utf-8") as fh:
+                        fh.write(f"{today} | BACKFILLED | — | {fm['id']} | therapy | {len(done)} finding(s) filled from the "
+                                 f"therapy entry itself | tool: backfill.py\n")
+    return n
 
 
 def _slug(name: str) -> str:
@@ -598,6 +633,10 @@ def _cli(argv=None) -> int:
     only = {("@" + c.lstrip("@")).lower() for c in args.citation} if args.citation else None
     if args.reapply:
         return _reapply(wanted, only, args)
+    if "therapy" in wanted and not only:
+        n = fill_therapy_from_entries(ROOT, args.execute, include_canonical=not args.drafts_only)
+        if n:
+            print(f"{n} finding(s) in therapy entries {'filled' if args.execute else 'would be filled'} from the entry itself (no model)")
     papers = collect(ROOT, wanted, only, include_canonical=not args.drafts_only, retry=args.retry)
     order = sorted(papers, key=lambda c: c.lower())
     if args.limit:

@@ -530,3 +530,9 @@ add an `EXTRACTED` line for every run.
 2026-10-27 | BACKFILLED | @Schlaug2008 | therapy | 3 value(s) written, 0 not (no quote found) across 3 finding(s) | model: gemma4:31b-it-q8_0
 2026-10-27 | BACKFILLED | @Thiel2013 | therapy | 2 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
 2026-10-27 | BACKFILLED | @vanderMeulen2012 | therapy | 1 value(s) written, 0 not (no quote found) across 1 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | — | treatment_of_underlying_forms | therapy | 1 finding(s) filled from the therapy entry itself | tool: backfill.py
+2026-10-27 | BACKFILLED | — | treatment_of_underlying_forms | therapy | 1 finding(s) filled from the therapy entry itself | tool: backfill.py
+2026-10-27 | BACKFILLED | — | typicality_semantic_feature_analysis | therapy | 1 finding(s) filled from the therapy entry itself | tool: backfill.py
+2026-10-27 | BACKFILLED | — | constraint_induced_aphasia_therapy | therapy | 1 finding(s) filled from the therapy entry itself | tool: backfill.py
+2026-10-27 | BACKFILLED | — | melodic_intonation_therapy | therapy | 1 finding(s) filled from the therapy entry itself | tool: backfill.py
+2026-10-27 | BACKFILLED | — | phonological_component_analysis | therapy | 4 finding(s) filled from the therapy entry itself | tool: backfill.py

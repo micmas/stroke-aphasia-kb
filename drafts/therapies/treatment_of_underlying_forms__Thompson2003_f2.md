@@ -1,5 +1,5 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: treatment_of_underlying_forms
 name: Treatment of Underlying Forms (TUF)
 kind: therapy
@@ -82,12 +82,14 @@ findings:
     quote: Small sample size (n=4) using a single-subject experimental design.
     supports: limitation
   filled:
-    by: model:gemma4:31b-it-q8_0
+    by: tool:backfill.py
     date: '2026-10-27'
     tool: backfill.py
-    fields: []
-    unresolved:
+    fields:
     - therapy
+  therapy:
+    id: treatment_of_underlying_forms
+    name: Treatment of Underlying Forms (TUF)
 notes: This finding supports the CATE hypothesis by demonstrating the asymmetry of generalization based
   on structural complexity.
 ---
