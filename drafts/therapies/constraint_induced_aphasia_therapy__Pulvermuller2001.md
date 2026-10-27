@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: constraint_induced_aphasia_therapy
 name: Constraint-Induced Aphasia Therapy (CIAT / CILT)
 kind: therapy
@@ -84,12 +84,22 @@ findings:
     quote: Results presented here are from a single study into a new therapeutic domain. Replication of
       these findings in a larger population of patients is important.
     supports: limitation
+  - section: added by backfill
+    page: 1
+    quote: CI aphasia therapy is realized in a communicative therapeutic environment constraining patients
+      to practice systematically speech acts with which they have difficulty.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: constraint_induced_aphasia_therapy
+    name: constraint-induced (CI) aphasia therapy
+    dose: 3 to 4 hours per day for 10 days
 - id: f2
   target: severity_metric
   target_kind: predictor
@@ -143,10 +153,20 @@ findings:
     page: 4
     quote: Results presented here are from a single study into a new therapeutic domain.
     supports: limitation
+  - section: added by backfill
+    page: 1
+    quote: CI aphasia therapy is realized in a communicative therapeutic environment constraining patients
+      to practice systematically speech acts with which they have difficulty.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: constraint_induced_aphasia_therapy
+    name: constraint-induced (CI) aphasia therapy
+    dose: 3 to 4 hours per day for 10 days
 ---

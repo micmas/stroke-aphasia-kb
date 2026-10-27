@@ -4,7 +4,17 @@ screen.py — systematic identification and screening of candidate papers
 (docs/SCREENING.md). Feeds the existing intake → extract → review → promote
 pipeline; never writes to drafts/ or the canonical folders.
 
-    # 1. identify
+    # 0. protocol (docs/SCREENING.md, screening/strategies.yaml)
+    python scripts/screen.py strategies               # the pre-specified strategies, fingerprint, lock state
+    python scripts/screen.py strategies --show q1_lesion_impairment --db scopus   # the string to paste into Scopus
+    python scripts/screen.py rebaseline --execute     # legacy decisions → `legacy`, legacy includes → benchmark (once)
+
+    # 1. identify — protocol searches (refused with --execute until the protocol is locked and committed)
+    python scripts/screen.py search --strategy q1_lesion_impairment --db pubmed --by michele            # dry run: hits + benchmark recall
+    python scripts/screen.py search --strategy q1_lesion_impairment --db pubmed --by michele --execute
+    python scripts/screen.py import --strategy q1_lesion_impairment --db scopus --file ~/Downloads/scopus.ris --by michele --execute
+    python scripts/screen.py recall                   # relative recall of the searches against the benchmark
+    # ad-hoc searches (recorded, reported, but not part of the protocol)
     python scripts/screen.py search --db pubmed --query '"aphasia"[tiab] AND stroke[tiab] AND (lesion[tiab] OR VLSM[tiab])' \
                             --years 2000-2026 --for thalamus_basal_ganglia --by michele --execute
     python scripts/screen.py search --db openalex --query 'aphasia stroke lesion symptom mapping' --years 2015-2026 --execute
@@ -17,6 +27,9 @@ pipeline; never writes to drafts/ or the canonical folders.
     python scripts/screen.py decide --csv ~/Downloads/decisions.csv --by michele
     python scripts/screen.py decide --id C0012 --stage full_text --decision exclude --reason not_retrieved --by michele
     python scripts/screen.py sheet --stage full_text  # the same for the full-text pass
+    python scripts/screen.py sheet --check --sample 0.2 --seed 1          # blind sample for a second screener
+    python scripts/screen.py decide --csv ~/Downloads/check.csv --by <second screener> --role check
+    python scripts/screen.py agreement                # Cohen's kappa, and the disagreements to reconcile
 
     # 3. hand over
     python scripts/screen.py register --execute       # included candidates → citations.md entries (DOI via Crossref)
@@ -115,12 +128,47 @@ def _years(arg: str | None) -> tuple[int | None, int | None]:
 # identification: PubMed, OpenAlex, RIS / CSV import
 # ---------------------------------------------------------------------------
 
+PUBMED_WINDOW = 9999        # E-utilities return at most the first 10,000 records of one query
+
+
+def _pubmed_count(term: str) -> int:
+    q = urllib.parse.urlencode({"db": "pubmed", "term": term, "retmax": 0, "retmode": "json",
+                                "tool": "stroke-aphasia-kb", "email": MAILTO})
+    time.sleep(0.4)
+    return int(json.loads(_get(f"{EUTILS}esearch.fcgi?{q}"))["esearchresult"].get("count") or 0)
+
+
 def pubmed_search(query: str, years=(None, None), max_results: int = 2000) -> tuple[list[dict], int]:
-    """E-utilities: esearch (history server) then efetch in batches of 200."""
-    term = query
+    """E-utilities: esearch (history server) then efetch in batches of 200. A query
+    with more hits than the E-utilities window is split into publication-year
+    ranges, each under the window, so nothing is silently cut off."""
     lo, hi = years
-    if lo or hi:
-        term = f"({term}) AND ({lo or 1800}[dp] : {hi or 3000}[dp])"
+    total = _pubmed_count(_pubmed_term(query, lo, hi))
+    if total <= PUBMED_WINDOW or max_results <= PUBMED_WINDOW:
+        return _pubmed_fetch(query, lo, hi, max_results)[0], total
+    out: dict[str, dict] = {}
+    for a, b in _pubmed_year_chunks(query, lo or 1800, hi or dt.date.today().year + 1):
+        for r in _pubmed_fetch(query, a, b, max_results)[0]:
+            out.setdefault(r.get("pmid") or f"x{len(out)}", r)
+    return list(out.values())[:max_results], total
+
+
+def _pubmed_term(query: str, lo, hi) -> str:
+    return f"({query}) AND ({lo or 1800}[dp] : {hi or 3000}[dp])" if (lo or hi) else query
+
+
+def _pubmed_year_chunks(query: str, lo: int, hi: int) -> list[tuple[int, int]]:
+    n = _pubmed_count(_pubmed_term(query, lo, hi))
+    if n <= PUBMED_WINDOW or lo >= hi:
+        if n > PUBMED_WINDOW:
+            raise SystemExit(f"PubMed: {n} hits in {lo} alone — more than one query can return; narrow the strategy.")
+        return [(lo, hi)] if n else []
+    mid = (lo + hi) // 2
+    return _pubmed_year_chunks(query, lo, mid) + _pubmed_year_chunks(query, mid + 1, hi)
+
+
+def _pubmed_fetch(query: str, lo, hi, max_results: int) -> tuple[list[dict], int]:
+    term = _pubmed_term(query, lo, hi)
     q = urllib.parse.urlencode({"db": "pubmed", "term": term, "retmax": max_results, "retmode": "json", "usehistory": "y",
                                 "tool": "stroke-aphasia-kb", "email": MAILTO})
     es = json.loads(_get(f"{EUTILS}esearch.fcgi?{q}"))["esearchresult"]
@@ -179,15 +227,25 @@ def _openalex_abstract(inv: dict | None) -> str:
     return " ".join(w for _, w in sorted(pos))
 
 
-def openalex_search(query: str, years=(None, None), max_results: int = 2000) -> tuple[list[dict], int]:
+def openalex_search(query: str, years=(None, None), max_results: int = 2000, field: str = "search") -> tuple[list[dict], int]:
+    """field 'search': OpenAlex relevance search (title, abstract, full text);
+    field 'title_and_abstract': a boolean title+abstract filter — what the
+    protocol strategies use, because it is reproducible and says where it looked."""
     lo, hi = years
     filters = ["type:article|review"]
     if lo or hi:
         filters.append(f"publication_year:{lo or 1800}-{hi or 3000}")
+    params = {}
+    if field == "title_and_abstract":
+        if "," in query:
+            raise SystemExit("an OpenAlex filter value cannot contain a comma; rewrite the query without commas")
+        filters.append(f"title_and_abstract.search:{query}")
+    else:
+        params["search"] = query
     out: list[dict] = []
     cursor, total = "*", 0
     while cursor and len(out) < max_results:
-        q = urllib.parse.urlencode({"search": query, "filter": ",".join(filters), "per-page": 200, "cursor": cursor, "mailto": MAILTO,
+        q = urllib.parse.urlencode({**params, "filter": ",".join(filters), "per-page": 200, "cursor": cursor, "mailto": MAILTO,
                                     "select": "id,doi,title,publication_year,authorships,primary_location,abstract_inverted_index,ids,type"})
         data = json.loads(_get(f"{OPENALEX}?{q}", timeout=120))
         total = int(data.get("meta", {}).get("count") or 0)
@@ -302,15 +360,53 @@ def add_records(records: list[dict], search_id: str, candidates: list[dict], abs
     return new, known
 
 
+def _resolve_strategy(args) -> None:
+    """Fill query / years / for from screening/strategies.yaml when --strategy is given,
+    and stamp the protocol on args for _ingest."""
+    args.protocol = None
+    if not getattr(args, "strategy", None):
+        if args.max is None:
+            args.max = 2000
+        return
+    if args.query:
+        raise SystemExit("give --strategy or --query, not both: a strategy's query is the one in screening/strategies.yaml")
+    strategies = S.load_strategies()
+    try:
+        st = S.strategy(strategies, args.strategy)
+        args.query = S.expand_query(strategies, args.strategy, args.db)
+    except KeyError as e:
+        raise SystemExit(str(e).strip('"'))
+    if not args.years and st.get("years"):
+        args.years = str(st["years"])
+    if not args.for_ and st.get("for"):
+        args.for_ = ",".join(str(x) for x in st["for"])
+    if args.max is None:
+        args.max = 10 ** 6                       # a protocol search is never capped
+    state = S.protocol_state()
+    args.protocol = state
+    if args.execute and not state["locked"] and not args.allow_unlocked:
+        why = []
+        if state["status"] != "locked":
+            why.append(f"strategies.yaml has status: {state['status']}")
+        if state["committed"] is False:
+            why.append("docs/SCREENING.md or screening/strategies.yaml has uncommitted changes")
+        if state["committed"] is None:
+            why.append("git could not confirm the protocol files are committed")
+        raise SystemExit("The protocol is not locked (" + "; ".join(why) + "). Set status: locked, commit both files, "
+                         "then run again — or add --allow-unlocked for a pilot run (recorded as such).")
+
+
 def cmd_search(args) -> int:
+    _resolve_strategy(args)
     years = _years(args.years)
     if not args.query:
-        raise SystemExit("--query is required")
+        raise SystemExit("--query or --strategy is required")
     try:
         if args.db == "pubmed":
             records, total = pubmed_search(args.query, years, args.max)
         elif args.db == "openalex":
-            records, total = openalex_search(args.query, years, args.max)
+            records, total = openalex_search(args.query, years, args.max,
+                                             field="title_and_abstract" if args.strategy else args.oa_field)
         else:
             raise SystemExit("--db must be pubmed or openalex for a live search; use `import` for a file export")
     except (urllib.error.URLError, OSError) as e:
@@ -320,6 +416,7 @@ def cmd_search(args) -> int:
 
 
 def cmd_import(args) -> int:
+    _resolve_strategy(args)
     text = Path(args.file).read_text(encoding="utf-8", errors="replace")
     records = parse_ris(text) if args.file.lower().endswith(".ris") or "TY  -" in text[:2000] else parse_csv(text)
     return _ingest(args, records, len(records), file=str(Path(args.file).name))
@@ -336,11 +433,46 @@ def _ingest(args, records, total, file) -> int:
         rec["filters"] = {"years": args.years}
     if file:
         rec["file"] = file
+    if getattr(args, "strategy", None):
+        pr = args.protocol or {}
+        rec["strategy"] = args.strategy
+        rec["protocol"] = {"version": pr.get("version"), "fingerprint": pr.get("fingerprint"),
+                           "commit": pr.get("commit"), "locked": bool(pr.get("locked"))}
     if args.notes:
         rec["notes"] = args.notes
+    # what the benchmark (legacy includes) says about this run, before anything is merged
+    bench_all = [c for c in candidates if S.is_benchmark(c) and not c.get("duplicate_of")]
+    bench_hit = S.benchmark_hits(records, candidates)
     before = len(candidates)
     new, known = add_records(records, sid, candidates, abstracts)
     print(f"{sid} {args.db}: {total} hits, {len(records)} retrieved → {new} new candidates, {known} already in the register")
+    if bench_all:
+        line = f"  benchmark: {len(bench_hit)} of {len(bench_all)} legacy-included papers retrieved"
+        if getattr(args, "strategy", None):
+            st = S.strategy(S.load_strategies(), args.strategy)
+            want = set(st.get("buckets") or [])
+            if want:
+                buckets = S.kb_buckets()
+                scope = [c for c in bench_all if want & buckets.get(c.get("key") or "", set())]
+                got = {c["id"] for c in bench_hit}
+                missed = [c for c in scope if c["id"] not in got]
+                line += (f"; {len(scope) - len(missed)} of {len(scope)} in this strategy's folders ({', '.join(sorted(want))})"
+                         + (f" = {100 * (len(scope) - len(missed)) / len(scope):.0f}%" if scope else ""))
+                if missed and not args.execute:
+                    print(line)
+                    line = ""
+                    print("  not retrieved (check: out of scope under §2, or a missing term?):")
+                    for c in missed[:40]:
+                        print(f"    {c['id']}  {str(c.get('key') or ''):<26} {str(c.get('year') or ''):<5} {str(c.get('title') or '')[:90]}")
+                    if len(missed) > 40:
+                        print(f"    … {len(missed) - 40} more")
+        if line:
+            print(line)
+    if total and len(records) < total and args.db in ("pubmed", "openalex"):
+        msg = f"  only {len(records)} of {total} hits were retrieved"
+        if getattr(args, "strategy", None):
+            raise SystemExit(msg + " — a protocol search must be complete; check --max and the network, then re-run.")
+        print(msg + " (raise --max)")
     if not args.execute:
         print("Dry run — nothing written. Add --execute.")
         return 0
@@ -348,7 +480,9 @@ def _ingest(args, records, total, file) -> int:
     S.save_searches(searches)
     S.save_candidates(candidates)
     save_abstracts(abstracts)
-    _log("SEARCHED", f"{sid} {args.db}", f"{len(records)} records | {new} new candidates (register {before}→{len(candidates)}) | by: {args.by}")
+    strat = f" | strategy {args.strategy} v{(args.protocol or {}).get('version')} {(args.protocol or {}).get('fingerprint')}" \
+        if getattr(args, "strategy", None) else ""
+    _log("SEARCHED", f"{sid} {args.db}", f"{len(records)} records | {new} new candidates (register {before}→{len(candidates)}){strat} | by: {args.by}")
     return 0
 
 
@@ -359,6 +493,103 @@ def cmd_backfill(args) -> int:
     if args.execute and added:
         S.save_candidates(candidates)
         _log("SCREEN-BACKFILL", "screening register", f"{added} citations.md entries added as other-source candidates")
+    return 0
+
+
+def cmd_strategies(args) -> int:
+    strategies = S.load_strategies()
+    if args.show:
+        try:
+            print(S.expand_query(strategies, args.show, args.db or "pubmed"))
+        except KeyError as e:
+            raise SystemExit(str(e).strip('"'))
+        return 0
+    st = S.protocol_state()
+    lock = "LOCKED" if st["locked"] else "not locked"
+    print(f"Protocol v{st['version']} · status {st['status']} · fingerprint {st['fingerprint']} · "
+          f"{'committed' if st['committed'] else ('uncommitted changes' if st['committed'] is False else 'git unknown')}"
+          f"{' @ ' + st['commit'] if st['commit'] else ''} → {lock}")
+    runs = S.load_searches()
+    for x in strategies.get("strategies") or []:
+        done = [r for r in runs if r.get("strategy") == x.get("id")]
+        dbs = ", ".join(f"{r.get('database')} {r.get('date')} ({r.get('retrieved')})" for r in done) or "not run"
+        have = "/".join(k for k in ("pubmed", "openalex", "scopus") if x.get(k))
+        print(f"  {x.get('id'):<46} {have:<22} {dbs}")
+        if args.verbose:
+            for db in ("pubmed", "openalex", "scopus"):
+                if x.get(db):
+                    print(f"      {db}: {S.expand_query(strategies, x['id'], db)}")
+    return 0
+
+
+def cmd_rebaseline(args) -> int:
+    candidates = S.load_candidates()
+    st = S.protocol_state()
+    today = args.date or dt.date.today().isoformat()
+    out = S.rebaseline(candidates, today, protocol=st["fingerprint"])
+    print(f"{out['candidates']} candidates carry legacy decisions: {out['benchmark']} legacy includes become the benchmark set, "
+          f"{out['refused']} legacy refusals are re-opened; every one is screened afresh under protocol v{st['version']} "
+          f"({st['fingerprint']}). The legacy decisions move to `legacy` on each candidate; nothing is deleted.")
+    print("  After this, a legacy paper that a protocol search finds is screened at title/abstract like any database record;\n"
+          "  one no search finds stays in the other-methods arm, awaiting full-text assessment.")
+    if not args.execute:
+        print("Dry run — nothing written. Add --execute.")
+        return 0
+    if out["candidates"]:
+        S.save_candidates(candidates)
+        _log("SCREEN-REBASELINE", "screening register",
+             f"{out['candidates']} legacy decisions moved to `legacy` | benchmark {out['benchmark']} | protocol {st['fingerprint']}")
+    return 0
+
+
+def cmd_recall(args) -> int:
+    data = S.recall(S.load_candidates(), S.load_searches(), S.load_strategies(), S.kb_buckets())
+    if args.json:
+        print(json.dumps(data, indent=1, default=str))
+        return 0
+    print_recall(data, verbose=True)
+    return 0
+
+
+def print_recall(data: dict, verbose: bool = False) -> None:
+    if not data["benchmark"]:
+        print("  Recall: no benchmark set (run `screen.py rebaseline` after `backfill`).")
+        return
+    if data["recall"] is None:
+        print(f"  Recall: benchmark of {data['benchmark']} legacy-included papers; no database search run yet.")
+        return
+    print(f"  Recall against the benchmark: {data['found']} of {data['benchmark']} legacy-included papers found by a database "
+          f"search ({100 * data['recall']:.0f}%) · by database: " + (", ".join(f"{k} {v}" for k, v in data["byDatabase"].items()) or "—"))
+    if not verbose:
+        return
+    for x in data["byStrategy"]:
+        if not x["inScope"]:
+            continue
+        r = "not run" if x["recall"] is None else f"{x['found']}/{x['inScope']} = {100 * x['recall']:.0f}%"
+        print(f"    {x['id']:<46} {r:<16} {', '.join(x['databases'])}")
+    if data["missed"]:
+        print(f"  Not found by any search ({len(data['missed'])}) — classify each: out of scope under §2 (it will be "
+              f"excluded at full text), or a search gap (amend the strategy):")
+        for m in data["missed"]:
+            print(f"    {m['id']}  {str(m.get('key') or ''):<26} {','.join(m['buckets']) or '—':<22} {str(m.get('title') or '')[:80]}")
+
+
+def cmd_agreement(args) -> int:
+    stages = [S.STAGES[0] if args.stage in ("ta", "title_abstract") else "full_text"] if args.stage else list(S.STAGES)
+    cands = S.load_candidates()
+    for stg in stages:
+        a = S.agreement(cands, stg)
+        if not a["pairs"]:
+            print(f"{STAGE_TEXT[stg]}: no double-screened candidates yet.")
+            continue
+        print(f"{STAGE_TEXT[stg]}: {a['pairs']} double-screened ({', '.join(a['screeners'])}) · observed agreement "
+              f"{100 * a['observed']:.0f}% · Cohen's kappa {a['kappa']:.2f}" + (f" · {a['skipped']} with an unsure left out" if a["skipped"] else ""))
+        print("  " + " · ".join(f"{k} {v}" for k, v in a["table"].items()) + "   (record/check)")
+        for d in a["disagreements"]:
+            print(f"    {d['id']}  record {d['record']}{'/' + d['record_reason'] if d.get('record_reason') else ''} · "
+                  f"check {d['check']}{'/' + d['check_reason'] if d.get('check_reason') else ''}  {str(d.get('title') or '')[:70]}")
+        if a["disagreements"]:
+            print("  Reconcile by discussion; record the agreed decision with `decide` (no --role) — it becomes the decision of record.")
     return 0
 
 
@@ -474,7 +705,17 @@ def cmd_sheet(args) -> int:
     abstracts = load_abstracts()
     rows = {r["id"]: r for r in S.enrich(candidates, S.kb_facts())}
     want = {"title_abstract": ("awaiting_ta", "unsure_ta"), "full_text": ("awaiting_ft", "unsure_ft")}[stage]
-    todo = [c for c in candidates if rows[c["id"]]["stage"] in want]
+    if args.check:
+        # a second screener's blind sample: candidates that already have a decision of record
+        # at this stage and no check decision yet
+        import random
+        pool = [c for c in candidates if (d := S.last_decision(c, stage)) and str(d.get("by")).lower() != "legacy"
+                and not S.last_decision(c, stage, role=S.CHECK_ROLE)]
+        random.Random(args.seed).shuffle(pool)
+        k = round(len(pool) * args.sample) if args.sample and args.sample < 1 else int(args.sample or len(pool))
+        todo = sorted(pool[:k], key=lambda c: c["id"])
+    else:
+        todo = [c for c in candidates if rows[c["id"]]["stage"] in want]
     if args.for_:
         searches = {s["id"]: s for s in S.load_searches()}
         want_for = set(args.for_.split(","))
@@ -490,7 +731,8 @@ def cmd_sheet(args) -> int:
         keep = set(args.ids.split(","))
         todo = [c for c in todo if c["id"] in keep]
     if not todo:
-        print(f"Nothing awaiting {STAGE_TEXT[stage]} screening.")
+        print(f"No {STAGE_TEXT[stage]} decisions of record without a check decision yet." if args.check
+              else f"Nothing awaiting {STAGE_TEXT[stage]} screening.")
         return 0
     reasons = [(k, v["label"]) for k, v in S.REASONS.items() if stage == "full_text" or not v["ft_only"]]
     built = dt.datetime.now().isoformat(timespec="minutes")
@@ -504,11 +746,15 @@ def cmd_sheet(args) -> int:
     for c in todo:
         r = rows[c["id"]]
         doi = c.get("doi")
-        sug = c.get("suggestion") if stage == "title_abstract" else None
+        sug = c.get("suggestion") if stage == "title_abstract" and not args.check else None
         meta = " · ".join(x for x in [str(c.get("year") or ""), c.get("journal") or "", (c.get("authors") or "")[:120]] if x)
-        srcs = ", ".join((s.get("search") or S.SOURCE_KINDS.get(s.get("kind"), s.get("kind"))) for s in (c.get("sources") or []) if isinstance(s, dict))
+        # Blind screening: at title/abstract, and in a check sheet, the screener sees the record as
+        # the search returned it — no citation key, no "hand-picked"/legacy provenance.
+        blind = stage == "title_abstract" or args.check
+        srcs = ", ".join((s.get("search") or ("" if blind else S.SOURCE_KINDS.get(s.get("kind"), s.get("kind"))))
+                         for s in (c.get("sources") or []) if isinstance(s, dict) and (s.get("search") or not blind))
         prev = ""
-        if stage == "full_text":
+        if stage == "full_text" and not args.check:
             ta = S.last_decision(c, "title_abstract")
             if ta:
                 prev = f" · title/abstract: {ta.get('decision')} by {ta.get('by')}"
@@ -520,7 +766,7 @@ def cmd_sheet(args) -> int:
         if c.get("pmid"):
             pm = e(str(c["pmid"]))
             links += " · PMID <a href=\"https://pubmed.ncbi.nlm.nih.gov/" + pm + "\" target=_blank rel=noopener>" + pm + "</a>"
-        key = (" · " + e(str(c["key"]))) if c.get("key") else ""
+        key = (" · " + e(str(c["key"]))) if c.get("key") and not blind else ""
         abstract = abstracts.get(cid) or "(no abstract in the local cache — run `python scripts/screen.py fetch-abstracts`)"
         sug_html = ""
         if sug:
@@ -540,14 +786,15 @@ def cmd_sheet(args) -> int:
                      + "<input type=text name=\"n-" + cid + "\" placeholder=\"note (required for 'other' and duplicate_report)\"></div></article>")
     parts.append(f"</form></main><script>{SHEET_JS}</script></body></html>")
     SHEET_DIR.mkdir(parents=True, exist_ok=True)
-    out = Path(args.out) if args.out else SHEET_DIR / f"{stage}.html"
+    out = Path(args.out) if args.out else SHEET_DIR / (f"{stage}_check.html" if args.check else f"{stage}.html")
     out.write_text("".join(parts), encoding="utf-8")
     print(f"{out}: {len(todo)} candidates to screen at {STAGE_TEXT[stage]}. Open it, decide, download the CSV, then\n"
-          f"  python scripts/screen.py decide --csv <downloaded file> --by <your name>")
+          f"  python scripts/screen.py decide --csv <downloaded file> --by <your name>" + (" --role check" if args.check else ""))
     return 0
 
 
-def _apply_decision(c: dict, stage: str, decision: str, reason: str | None, by: str, note: str | None, date: str) -> str | None:
+def _apply_decision(c: dict, stage: str, decision: str, reason: str | None, by: str, note: str | None, date: str,
+                    role: str | None = None) -> str | None:
     if stage not in S.STAGES:
         return f"stage must be one of {S.STAGES}"
     if decision not in S.DECISIONS:
@@ -563,7 +810,15 @@ def _apply_decision(c: dict, stage: str, decision: str, reason: str | None, by: 
         reason = None
     if not by or by.lower() in ("model", "legacy", "agent"):
         return "--by must name a person"
+    if role:
+        if role != S.CHECK_ROLE:
+            return f"--role must be {S.CHECK_ROLE}"
+        rec_d = S.last_decision(c, stage)
+        if rec_d and str(rec_d.get("by") or "").lower() == by.lower():
+            return "a check decision must come from a different person than the decision of record"
     rec = {"stage": stage, "decision": decision}
+    if role:
+        rec["role"] = role
     if reason:
         rec["reason"] = reason
     rec.update({"by": by, "date": date})
@@ -595,7 +850,7 @@ def cmd_decide(args) -> int:
             print(f"  {cid}: not in the register", file=sys.stderr)
             errors += 1
             continue
-        err = _apply_decision(c, stage, decision, reason, args.by, note, today)
+        err = _apply_decision(c, stage, decision, reason, args.by, note, today, role=args.role)
         if err:
             print(f"  {cid}: {err}", file=sys.stderr)
             errors += 1
@@ -604,7 +859,8 @@ def cmd_decide(args) -> int:
         applied += 1
     if applied:
         S.save_candidates(candidates)
-        _log("SCREENED", ", ".join(f"{k} {v}" for k, v in sorted(counts.items())), f"{applied} decisions | by: {args.by}")
+        _log("SCREEN-CHECKED" if args.role else "SCREENED", ", ".join(f"{k} {v}" for k, v in sorted(counts.items())),
+             f"{applied} decisions | by: {args.by}")
     print(f"{applied} decisions recorded for {args.by}" + (f"; {errors} rejected (see above)" if errors else ""))
     return 1 if errors else 0
 
@@ -725,7 +981,10 @@ def cmd_fetch_abstracts(args) -> int:
 def print_status(data: dict) -> None:
     p = data["prisma"]
     idn, sc, ot, inc = p["identification"], p["screening"], p["other"], p["included"]
+    pr = data.get("protocol") or {}
     print("Screening register (PRISMA 2020)")
+    print(f"  Protocol v{pr.get('version')} · {pr.get('status')} · fingerprint {pr.get('fingerprint')}"
+          f"{' · LOCKED' if pr.get('locked') else ' · not locked'}")
     print(f"  Identified: {idn['databases']['records']} records from {len(data['searches'])} database searches "
           f"({', '.join(f'{k} {v}' for k, v in idn['databases']['byDatabase'].items()) or 'none yet'}) · "
           f"{idn['other']['records']} from other sources ({', '.join(f'{k} {v}' for k, v in idn['other']['byKind'].items()) or 'none'}) · "
@@ -743,6 +1002,11 @@ def print_status(data: dict) -> None:
     print(f"  Included {inc['total']}: in the KB {kb['in_kb']} ({inc['approvedFindings']} approved findings) · in review {kb['in_review']} · "
           f"awaiting extraction {kb['awaiting_extraction']} · no PDF {kb['no_pdf']} · not registered {kb['not_registered']} · "
           f"rejected {kb['rejected']} · refused {kb['refused']}")
+    if data.get("recall"):
+        print_recall(data["recall"])
+    for stg, a in (data.get("agreement") or {}).items():
+        if a.get("pairs"):
+            print(f"  Dual screening at {STAGE_TEXT[stg]}: {a['pairs']} pairs, kappa {a['kappa']:.2f}")
     cov = [g for g in data["coverage"] if g.get("kind")]
     if cov:
         print("  Coverage of evidence gaps (found / included / in KB / approved findings):")
@@ -783,20 +1047,40 @@ def _cli(argv=None) -> int:
         p.add_argument("--by", default="unknown", help="who ran it")
         p.add_argument("--date", help="when (default today)")
         p.add_argument("--notes")
+        p.add_argument("--strategy", help="a strategy id from screening/strategies.yaml (supplies the query, years and --for)")
+        p.add_argument("--allow-unlocked", action="store_true", help="pilot run while the protocol is not locked (recorded as such)")
         p.add_argument("--execute", action="store_true")
 
     p = sub.add_parser("search", help="run a PubMed or OpenAlex search and add the hits to the register")
     common_ingest(p)
-    p.add_argument("--max", type=int, default=2000)
+    p.add_argument("--max", type=int, default=None, help="cap on records (default 2000 ad hoc; none for a --strategy run)")
+    p.add_argument("--oa-field", default="search", choices=("search", "title_and_abstract"),
+                   help="OpenAlex: relevance search or boolean title+abstract filter (strategies always use the filter)")
     p.set_defaults(fn=cmd_search)
     p = sub.add_parser("import", help="import a RIS or CSV export (Scopus, Embase, PsycINFO, Web of Science …)")
     common_ingest(p)
     p.add_argument("--file", required=True)
+    p.set_defaults(max=None)
     p.set_defaults(fn=cmd_import)
     p = sub.add_parser("backfill", help="add the existing citations.md entries as other-source candidates")
     p.add_argument("--date")
     p.add_argument("--execute", action="store_true")
     p.set_defaults(fn=cmd_backfill)
+    p = sub.add_parser("strategies", help="the protocol's search strategies, fingerprint and lock state")
+    p.add_argument("--show", metavar="ID", help="print one strategy's expanded query (for pasting into a database)")
+    p.add_argument("--db", help="with --show: pubmed (default) | openalex | scopus")
+    p.add_argument("-v", "--verbose", action="store_true", help="print every expanded query")
+    p.set_defaults(fn=cmd_strategies)
+    p = sub.add_parser("rebaseline", help="move legacy decisions aside; legacy includes become the recall benchmark")
+    p.add_argument("--date")
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(fn=cmd_rebaseline)
+    p = sub.add_parser("recall", help="relative recall of the database searches against the benchmark")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_recall)
+    p = sub.add_parser("agreement", help="Cohen's kappa between decisions of record and a second screener's check decisions")
+    p.add_argument("--stage", help="ta | ft (default both)")
+    p.set_defaults(fn=cmd_agreement)
     p = sub.add_parser("assist", help="local model suggests include/exclude on title + abstract (suggestion only)")
     p.add_argument("--model")
     p.add_argument("--ids", help="comma-separated candidate ids (default: every one awaiting title/abstract)")
@@ -808,6 +1092,9 @@ def _cli(argv=None) -> int:
     p.add_argument("--for", dest="for_", help="only candidates serving these gap/entry ids")
     p.add_argument("--ids")
     p.add_argument("--out")
+    p.add_argument("--check", action="store_true", help="a blind sheet for a second screener (already-decided candidates)")
+    p.add_argument("--sample", type=float, default=0.2, help="with --check: a fraction (0.2) or a number (50) of candidates")
+    p.add_argument("--seed", type=int, default=1, help="with --check: random seed, so the sample is reproducible")
     p.set_defaults(fn=cmd_sheet)
     p = sub.add_parser("decide", help="record decisions (from the sheet's CSV, or one by hand)")
     p.add_argument("--csv")
@@ -817,6 +1104,7 @@ def _cli(argv=None) -> int:
     p.add_argument("--reason", choices=list(S.REASONS))
     p.add_argument("--note")
     p.add_argument("--by", required=True, help="the person deciding")
+    p.add_argument("--role", choices=[S.CHECK_ROLE], help="check: a second screener's independent decision (for kappa; not the decision of record)")
     p.add_argument("--date")
     p.set_defaults(fn=cmd_decide)
     p = sub.add_parser("register", help="included candidates without a key → citations.md entries (Crossref)")

@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: intensive_speech_and_language_therapy
 name: Intensive Speech and Language Therapy
 kind: therapy
@@ -13,6 +13,7 @@ targets_impairments:
 - brocas_aphasia
 - wernickes_aphasia
 - anomic_aphasia
+- anomia
 dosage: 3 weeks or more, >=10 h per week professional therapy + >=5 h per week self-managed training
 findings:
 - id: f1
@@ -98,9 +99,16 @@ findings:
     supports: sample
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
-notes: Primary outcome measured by ANELT A-scale. Findings show stability of effect at 6 months.
+    - therapy
+  therapy:
+    id: intensive_speech_and_language_therapy
+    name: intensive speech and language therapy
+    dose: 3 weeks or more, ≥10 h per week
+notes: 'Primary outcome measured by ANELT A-scale. Findings show stability of effect at 6 months.
+
+  2026-10-26: targets_impairments gained `anomia` (symptom, schema v2.8; retarget_symptoms.py).'
 ---

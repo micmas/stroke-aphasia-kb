@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: severity_metric
 name: Aphasia severity metric (instrument-agnostic)
 kind: predictor
@@ -78,12 +78,22 @@ findings:
     page: 6
     quote: The current study was not powered for superiority analyses to compare A-tDCS with S-tDCS.
     supports: limitation
+  - section: added by backfill
+    page: 1
+    quote: Outpatient speech therapy for 3 weeks (15 sessions, 45 minutes each) combined with either A-tDCS
+      vs sham tDCS applied to preserved left temporal lobe regions.
+    supports: method
   region_definition:
     kind: not_reported
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: tdcs_aphasia_treatment
+    name: adjunctive anodal tDCS during speech therapy
+    dose: 1mA for 20 minutes during 15 sessions of 45-minute speech therapy over 3 weeks
 ---

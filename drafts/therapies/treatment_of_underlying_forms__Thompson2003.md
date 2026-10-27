@@ -84,6 +84,13 @@ findings:
       sentence processing/production ability... and that these abilities translated to improvements in
       processing of sentences of shorter length
     supports: limitation
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-27'
+    tool: backfill.py
+    fields: []
+    unresolved:
+    - therapy
 notes: This paper introduces the Complexity Account of Treatment Efficacy (CATE), arguing that the direction
   of treatment from complex to simple structures enhances generalization.
 ---

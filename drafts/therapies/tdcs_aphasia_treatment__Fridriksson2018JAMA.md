@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: tdcs_aphasia_treatment
 name: Transcranial Direct Current Stimulation (tDCS) during aphasia treatment
 kind: therapy
@@ -10,9 +10,10 @@ short_description: Non-invasive brain stimulation using low-intensity electrical
   excitability during speech therapy.
 targets_impairments:
 - anomic_aphasia
+- anomia
 findings:
 - id: f1
-  target: naming
+  target: anomia
   target_kind: impairment
   claim: Adjunctive anodal tDCS during speech therapy is not futile for improving naming in chronic aphasia
     and showed numerically greater gains than sham stimulation.
@@ -66,6 +67,7 @@ findings:
     - target ID 'naming' is forward-looking
     - cohort overlaps with @Fridriksson2018, @Yourganov2015Predicting (USC/MUSC Aphasia Lab); flag for
       downstream double-counting risk in interpret_overlap().
+    - retargeted naming → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Abstract
     page: 1
@@ -96,10 +98,26 @@ findings:
     page: 6
     quote: The current study was not powered for superiority analyses to compare A-tDCS with S-tDCS.
     supports: limitation
+  - section: added by backfill
+    page: 1
+    quote: Outpatient speech therapy for 3 weeks (15 sessions, 45 minutes each) combined with either A-tDCS
+      vs sham tDCS applied to preserved left temporal lobe regions.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
+  therapy:
+    id: tdcs_aphasia_treatment
+    name: adjunctive anodal tDCS during speech therapy
+    dose: 1mA for 20 minutes during 15 sessions of 45-minute speech therapy over 3 weeks
+notes: '2026-10-26: targets_impairments gained `anomia` (symptom, schema v2.8; retarget_symptoms.py).'
 ---

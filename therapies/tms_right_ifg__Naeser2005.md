@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: tms_right_ifg__Naeser2005
 name: Inhibitory rTMS to Right Pars Triangularis (BA45) for Anomia in Nonfluent Aphasia
 kind: therapy
@@ -223,6 +223,13 @@ findings:
     quote: Four right-handed, chronic aphasia patients participated, at 5–11 years
       post-L middle cerebral artery stroke.
     supports: sample
+  - section: added by backfill
+    page: 6
+    quote: On each day of treatment, rTMS was applied at 1 Hz frequency for 20 min
+      (1200 pulses) at 90% of motor threshold (left, first dorsal interosseus muscle),
+      using a Super-Rapid High Frequency MagStim Magnetic Stimulator and a figure
+      8-shaped coil (MagStim, NY).
+    supports: method
   statistics:
     ci_95: not_reported
     cluster_extent: not_reported
@@ -240,11 +247,16 @@ findings:
   target_kind: region
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: tdcs_aphasia_treatment
+    name: Inhibitory 1 Hz rTMS to the right pars triangularis
+    dose: daily for 10 days (1200 pulses/day at 90% motor threshold)
 - author_limitations:
   - Open-protocol; no sham TMS control — cannot rule out placebo, attention, or practice
     effects.
@@ -396,6 +408,13 @@ findings:
     quote: Four right-handed, chronic aphasia patients participated, at 5–11 years
       post-L middle cerebral artery stroke.
     supports: sample
+  - section: added by backfill
+    page: 6
+    quote: On each day of treatment, rTMS was applied at 1 Hz frequency for 20 min
+      (1200 pulses) at 90% of motor threshold (left, first dorsal interosseus muscle),
+      using a Super-Rapid High Frequency MagStim Magnetic Stimulator and a figure
+      8-shaped coil (MagStim, NY).
+    supports: method
   statistics:
     ci_95: not_reported
     cluster_extent: not_reported
@@ -413,11 +432,16 @@ findings:
   target_kind: region
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: tdcs_aphasia_treatment
+    name: Inhibitory 1 Hz rTMS to the right pars triangularis
+    dose: daily for 10 days (1200 pulses/day at 90% motor threshold)
 source: draft
 last_reviewed: '2026-05-07'
 reviewer: claude-cowork

@@ -11,19 +11,15 @@ aliases:
 - BA 45
 - pars triangularis
 - left BA45
-notes: 'Forward-looking target ID left_ifg_pars_triangularis — not yet a canonical
-  entry.
+notes: 'Forward-looking target ID left_ifg_pars_triangularis — not yet a canonical entry.
 
-  This draft covers disconnectome findings from Bonilha 2014, which examines cortical
-  necrosis
+  This draft covers disconnectome findings from Bonilha 2014, which examines cortical necrosis
 
-  AND cortical disconnection (via DTI connectome) as independent predictors of naming
-  and fluency.
+  AND cortical disconnection (via DTI connectome) as independent predictors of naming and fluency.
 
   Method coded as `disconnectome` per the EXTRACTION_SKILL controlled vocabulary.
 
-  Cohort (n=39) is from USC and MUSC (Bonilha, Rorden, Fridriksson lab group); may
-  overlap with
+  Cohort (n=39) is from USC and MUSC (Bonilha, Rorden, Fridriksson lab group); may overlap with
 
   @Fridriksson2018Anatomy and other USC-lab papers — flag for double-counting risk.
 
@@ -36,11 +32,11 @@ notes: 'Forward-looking target ID left_ifg_pars_triangularis — not yet a canon
   '
 findings:
 - id: f1
-  target: naming
+  target: anomia
   target_kind: impairment
-  claim: Structural disconnection of left BA 45 (pars triangularis), independent of
-    BA 45 cortical necrosis, is associated with poorer naming performance on the Philadelphia
-    Naming Test in chronic aphasia after left-hemisphere stroke.
+  claim: Structural disconnection of left BA 45 (pars triangularis), independent of BA 45 cortical necrosis,
+    is associated with poorer naming performance on the Philadelphia Naming Test in chronic aphasia after
+    left-hemisphere stroke.
   direction: likely
   relationship: causal
   citation: '@Bonilha2014'
@@ -54,12 +50,12 @@ findings:
     age_range: mean 62.7 years (SD 12.8)
     handedness: all right-handed prior to stroke
     language: not_reported
-    recruitment: Recruited from local community at Medical University of South Carolina
-      (MUSC) and University of South Carolina (USC).
-    inclusion_criteria: Left hemisphere ischemic stroke >=6 months prior; right-handed;
-      able to ambulate; no history of other neurological illness or learning disability.
-    exclusion_criteria: History of learning disability; uncontrolled seizures; severe
-      motor impairment (unable to ambulate).
+    recruitment: Recruited from local community at Medical University of South Carolina (MUSC) and University
+      of South Carolina (USC).
+    inclusion_criteria: Left hemisphere ischemic stroke >=6 months prior; right-handed; able to ambulate;
+      no history of other neurological illness or learning disability.
+    exclusion_criteria: History of learning disability; uncontrolled seizures; severe motor impairment
+      (unable to ambulate).
     phase: chronic
     cohort: not_reported
   statistics:
@@ -80,10 +76,9 @@ findings:
   region_definition:
     kind: atlas
     atlas: Brodmann area atlas (probabilistic grey matter segmentation)
-    description: BA 45 defined using probabilistic grey matter parcellation from T1-weighted
-      images segmented into Brodmann areas. Connectivity quantified as number of DTI
-      streamlines between BA 45 and all other cortical BAs, normalized for region
-      volume.
+    description: BA 45 defined using probabilistic grey matter parcellation from T1-weighted images segmented
+      into Brodmann areas. Connectivity quantified as number of DTI streamlines between BA 45 and all
+      other cortical BAs, normalized for region volume.
   imaging_details:
     field_strength: 3T
     acquisition:
@@ -96,11 +91,11 @@ findings:
       sequence: MPRAGE
       notes: Siemens Trio 3T with 12-channel head coil at USC and MUSC
     - modality: DTI
-      notes: Deterministic fiber tractography; full acquisition parameters in Online
-        Supplement (not in main text)
-    preprocessing_pipeline: SPM-based cortical segmentation into Brodmann areas; T1-to-DTI
-      registration; deterministic tractography for pairwise connectome reconstruction;
-      necrotic tissue excluded from tractography seeding and waypoint masks
+      notes: Deterministic fiber tractography; full acquisition parameters in Online Supplement (not in
+        main text)
+    preprocessing_pipeline: SPM-based cortical segmentation into Brodmann areas; T1-to-DTI registration;
+      deterministic tractography for pairwise connectome reconstruction; necrotic tissue excluded from
+      tractography seeding and waypoint masks
     reference_space: not_reported
     atlases_used:
     - Brodmann area atlas (probabilistic)
@@ -108,85 +103,79 @@ findings:
   replications: []
   contradictions: []
   author_limitations:
-  - MRI tractography has known technical limitations; structural connectome mapping
-    is a novel methodological approach and results should be interpreted cautiously.
-  - Study focused on a small set of cortical BAs (22, 37, 45) — disconnection in other
-    regions may also contribute.
-  - Physiological hemispheric asymmetries were not fully accounted for, though none
-    of the ROIs tested (except part of BA 45) showed significant asymmetry in healthy
-    subjects.
+  - MRI tractography has known technical limitations; structural connectome mapping is a novel methodological
+    approach and results should be interpreted cautiously.
+  - Study focused on a small set of cortical BAs (22, 37, 45) — disconnection in other regions may also
+    contribute.
+  - Physiological hemispheric asymmetries were not fully accounted for, though none of the ROIs tested
+    (except part of BA 45) showed significant asymmetry in healthy subjects.
   - Small sample (n=39) limits statistical power.
-  - DTI acquisition parameters (b-value, number of directions, voxel size) available
-    in Online Supplement only.
+  - DTI acquisition parameters (b-value, number of directions, voxel size) available in Online Supplement
+    only.
   evidence_quality: cohort
   strength: moderate
   provenance:
     extracted_by: agent:claude-sonnet-4-6
     extracted_on: 2026-05-06
-    paper_section: Abstract; Results – Regional necrosis and connectivity; Methods
-      – Subjects, MRI acquisition, Statistical Analyses; Discussion
+    paper_section: Abstract; Results – Regional necrosis and connectivity; Methods – Subjects, MRI acquisition,
+      Statistical Analyses; Discussion
     confidence: high
     flags:
-    - cohort overlaps with @Fridriksson2018Anatomy (same USC/MUSC lab group; Bonilha
-      2014 n=39; Fridriksson 2018Anatomy n=159); flag for downstream double-counting
-      risk in interpret_overlap()
-    - DTI acquisition parameters (b-values, directions, voxel size) are in Online
-      Supplement only — verify against supplement for imaging_details completeness
-    - reference_space not explicitly stated in main text — likely native Brodmann-atlas
-      space; verify
-    - disconnection beta (1.21) exceeds necrosis beta (0.43) — paper interprets disconnection
-      as having greater predictive weight than necrosis for naming
+    - cohort overlaps with @Fridriksson2018Anatomy (same USC/MUSC lab group; Bonilha 2014 n=39; Fridriksson
+      2018Anatomy n=159); flag for downstream double-counting risk in interpret_overlap()
+    - DTI acquisition parameters (b-values, directions, voxel size) are in Online Supplement only — verify
+      against supplement for imaging_details completeness
+    - reference_space not explicitly stated in main text — likely native Brodmann-atlas space; verify
+    - disconnection beta (1.21) exceeds necrosis beta (0.43) — paper interprets disconnection as having
+      greater predictive weight than necrosis for naming
+    - retargeted naming → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Abstract
     page: 1
     supports: claim
-    quote: 'structural disconnection of BA 45 (spared by the necrotic tissue) was
-      independently associated with naming performance, controlling for the extent
-      of BA 45 necrosis (F=4.62, p<0.01; necrosis: beta=0.43; p=0.03; disconnection
-      beta=1.21; p<0.001).'
+    quote: 'structural disconnection of BA 45 (spared by the necrotic tissue) was independently associated
+      with naming performance, controlling for the extent of BA 45 necrosis (F=4.62, p<0.01; necrosis:
+      beta=0.43; p=0.03; disconnection beta=1.21; p<0.001).'
   - section: Methods – Subjects
     page: 2
     supports: sample
-    quote: We studied thirty-nine individuals (mean age 62.7 +/-12.8 years, 22 male,
-      16 female) who suffered a left hemisphere ischemic stroke at least six months
-      prior to enrolling in this study
+    quote: We studied thirty-nine individuals (mean age 62.7 +/-12.8 years, 22 male, 16 female) who suffered
+      a left hemisphere ischemic stroke at least six months prior to enrolling in this study
   - section: Methods – MRI acquisition
     page: 3
     supports: imaging_details
-    quote: MRI scanning was performed using the same type of MRI scanner, i.e., a
-      3T Siemens Trio equipped with a 12-channel head coil.
+    quote: MRI scanning was performed using the same type of MRI scanner, i.e., a 3T Siemens Trio equipped
+      with a 12-channel head coil.
   - section: Methods – Statistical Analyses
     page: 4
     supports: method
-    quote: 'We performed multiple linear regression analyses with the performance
-      on naming measures defined as the dependent variable, with the following independent
-      variables: 1) percentage of damage to each BA area, 2) percentage number of
-      fibers of each BA area.'
+    quote: 'We performed multiple linear regression analyses with the performance on naming measures defined
+      as the dependent variable, with the following independent variables: 1) percentage of damage to
+      each BA area, 2) percentage number of fibers of each BA area.'
   - section: Methods – Statistical Analyses
     page: 4
     supports: statistics
-    quote: The level of statistical significance was set at p<0.05, adjusted through
-      Bonferroni correction based on the number of regressions investigated.
+    quote: The level of statistical significance was set at p<0.05, adjusted through Bonferroni correction
+      based on the number of regressions investigated.
   - section: Results – Regional necrosis and connectivity and language impairment
     page: 5
     supports: statistics
-    quote: 'We observed a significant relationship between number of correctly named
-      items on the PNT and a model composed of BA 45 necrotic damage and BA 45 disconnection
-      (F=4.62, p<0.01; necrosis: beta=0.43; p=0.03; disconnection beta=1.21; p<0.001)'
+    quote: 'We observed a significant relationship between number of correctly named items on the PNT
+      and a model composed of BA 45 necrotic damage and BA 45 disconnection (F=4.62, p<0.01; necrosis:
+      beta=0.43; p=0.03; disconnection beta=1.21; p<0.001)'
   - section: Discussion
     page: 6
     supports: limitation
-    quote: Although MRI tractography has the advantage of providing in-vivo information
-      about structural brain integrity, it is not without technical limitations.
+    quote: Although MRI tractography has the advantage of providing in-vivo information about structural
+      brain integrity, it is not without technical limitations.
   - section: added by backfill
     page: 1
-    quote: Thirty-nine patients with chronic aphasia underwent language assessment
-      and MRI scanning.
+    quote: Thirty-nine patients with chronic aphasia underwent language assessment and MRI scanning.
     supports: method
   - section: added by backfill
     page: 2
-    quote: who suffered a left hemisphere ischemic stroke at least six months prior
-      to enrolling in this study
+    quote: who suffered a left hemisphere ischemic stroke at least six months prior to enrolling in this
+      study
     supports: sample
   lesion_mapping:
     analysis: univariate
@@ -202,13 +191,17 @@ findings:
     - cohort
     - lesion_mapping
     - phase
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
 - id: f2
   target: fluency
   target_kind: impairment
-  claim: Structural disconnection of left BA 45 (pars triangularis), independent of
-    BA 45 cortical necrosis, is independently associated with reduced speech fluency
-    in chronic aphasia after left-hemisphere stroke; BA 45 necrosis alone is not an
-    independent predictor of fluency.
+  claim: Structural disconnection of left BA 45 (pars triangularis), independent of BA 45 cortical necrosis,
+    is independently associated with reduced speech fluency in chronic aphasia after left-hemisphere stroke;
+    BA 45 necrosis alone is not an independent predictor of fluency.
   direction: likely
   relationship: causal
   citation: '@Bonilha2014'
@@ -228,8 +221,8 @@ findings:
   statistics:
     threshold: p<0.05 Bonferroni-corrected
     cluster_extent: not_reported
-    effect_size: 'necrosis: beta=2.89, p=0.13 (not independently significant); disconnection:
-      beta=7.52, p=0.025'
+    effect_size: 'necrosis: beta=2.89, p=0.13 (not independently significant); disconnection: beta=7.52,
+      p=0.025'
     ci_95: not_reported
     p_value: F=4.62, p<0.01 (overall model)
   confounders_controlled:
@@ -242,8 +235,8 @@ findings:
   region_definition:
     kind: atlas
     atlas: Brodmann area atlas (probabilistic grey matter segmentation)
-    description: BA 45 defined via probabilistic Brodmann parcellation; connectivity
-      as number of normalized DTI streamlines.
+    description: BA 45 defined via probabilistic Brodmann parcellation; connectivity as number of normalized
+      DTI streamlines.
   imaging_details:
     field_strength: 3T
     acquisition:
@@ -251,8 +244,8 @@ findings:
       voxel_size_mm: not_reported
       TR_ms: not_reported
       TE_ms: not_reported
-    preprocessing_pipeline: SPM-based Brodmann parcellation; deterministic tractography
-      connectome; necrotic tissue excluded from tractography
+    preprocessing_pipeline: SPM-based Brodmann parcellation; deterministic tractography connectome; necrotic
+      tissue excluded from tractography
     reference_space: not_reported
     atlases_used:
     - Brodmann area atlas (probabilistic)
@@ -260,8 +253,8 @@ findings:
   replications: []
   contradictions: []
   author_limitations:
-  - BA 45 necrosis alone was not independently associated with fluency (p=0.13) —
-    the full model is significant only via the disconnection term.
+  - BA 45 necrosis alone was not independently associated with fluency (p=0.13) — the full model is significant
+    only via the disconnection term.
   - Small sample (n=39); DTI tractography technical limitations.
   evidence_quality: cohort
   strength: moderate
@@ -271,58 +264,52 @@ findings:
     paper_section: Results – Regional necrosis and connectivity and language impairment
     confidence: high
     flags:
-    - necrosis alone NOT independently associated with fluency (p=0.13); only disconnection
-      significant (p=0.025) — important distinction from the naming finding where
-      necrosis was also significant
-    - cohort overlaps with @Fridriksson2018Anatomy — flag for downstream double-counting
-      risk
-    - F=4.62 p<0.01 identical to naming model F-value — this appears as coincidental
-      rounding in the manuscript; verify against published Table
+    - necrosis alone NOT independently associated with fluency (p=0.13); only disconnection significant
+      (p=0.025) — important distinction from the naming finding where necrosis was also significant
+    - cohort overlaps with @Fridriksson2018Anatomy — flag for downstream double-counting risk
+    - F=4.62 p<0.01 identical to naming model F-value — this appears as coincidental rounding in the manuscript;
+      verify against published Table
   source_passages:
   - section: Results – Regional necrosis and connectivity and language impairment
     page: 5
     supports: claim
-    quote: 'we also observed significant relationship between fluency and a model
-      composed by BA 45 necrosis and BA 45 disconnection F=4.62, p<0.01; necrosis:
-      beta=2.89; p=0.13; disconnection beta=7.52; p=0.025). Similarly, in this model,
-      necrosis alone was not an independent predictor of fluency'
+    quote: 'we also observed significant relationship between fluency and a model composed by BA 45 necrosis
+      and BA 45 disconnection F=4.62, p<0.01; necrosis: beta=2.89; p=0.13; disconnection beta=7.52; p=0.025).
+      Similarly, in this model, necrosis alone was not an independent predictor of fluency'
   - section: Methods – Subjects
     page: 2
     supports: sample
-    quote: We studied thirty-nine individuals (mean age 62.7 +/-12.8 years, 22 male,
-      16 female) who suffered a left hemisphere ischemic stroke at least six months
-      prior to enrolling in this study
+    quote: We studied thirty-nine individuals (mean age 62.7 +/-12.8 years, 22 male, 16 female) who suffered
+      a left hemisphere ischemic stroke at least six months prior to enrolling in this study
   - section: Methods – Statistical Analyses
     page: 4
     supports: method
-    quote: 'We performed multiple linear regression analyses with the performance
-      on naming measures defined as the dependent variable, with the following independent
-      variables: 1) percentage of damage to each BA area, 2) percentage number of
-      fibers of each BA area.'
+    quote: 'We performed multiple linear regression analyses with the performance on naming measures defined
+      as the dependent variable, with the following independent variables: 1) percentage of damage to
+      each BA area, 2) percentage number of fibers of each BA area.'
   - section: Methods – MRI acquisition
     page: 3
     supports: imaging_details
-    quote: MRI scanning was performed using the same type of MRI scanner, i.e., a
-      3T Siemens Trio equipped with a 12-channel head coil.
+    quote: MRI scanning was performed using the same type of MRI scanner, i.e., a 3T Siemens Trio equipped
+      with a 12-channel head coil.
   - section: Discussion
     page: 6
     supports: limitation
-    quote: our study focused on a small set of cortical regions, including BA 45,
-      to clearly demonstrate how disconnection contributes to behavioral impairment.
+    quote: our study focused on a small set of cortical regions, including BA 45, to clearly demonstrate
+      how disconnection contributes to behavioral impairment.
   - section: added by backfill
     page: 4
-    quote: The level of statistical significance was set at p<0.05, adjusted through
-      Bonferroni correction based on the number of regressions investigated.
+    quote: The level of statistical significance was set at p<0.05, adjusted through Bonferroni correction
+      based on the number of regressions investigated.
     supports: method
   - section: added by backfill
     page: 1
-    quote: Thirty-nine patients with chronic aphasia underwent language assessment
-      and MRI scanning.
+    quote: Thirty-nine patients with chronic aphasia underwent language assessment and MRI scanning.
     supports: method
   - section: added by backfill
     page: 2
-    quote: who suffered a left hemisphere ischemic stroke at least six months prior
-      to enrolling in this study
+    quote: who suffered a left hemisphere ischemic stroke at least six months prior to enrolling in this
+      study
     supports: sample
   lesion_mapping:
     analysis: univariate

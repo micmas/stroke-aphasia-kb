@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: left_temporal_lobe
 name: Left Temporal Lobe
 kind: classical
@@ -109,10 +109,20 @@ findings:
       brain regions that serve distinct functions (eg, anterior and posterior aspects of the temporal
       gyri).
     supports: limitation
+  - section: added by backfill
+    page: not_reported
+    quote: During each 3-hour treatment session, the subject underwent clinician-administered anomia treatment
+      using semantic and phonemic cueing hierarchies.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: anomia_treatment_using_semantic_and_phonemic_cueing_hierarch
+    name: anomia treatment using semantic and phonemic cueing hierarchies
+    dose: 30 hours of speech therapy over a 2-week period
 ---

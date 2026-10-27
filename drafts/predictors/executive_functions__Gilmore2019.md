@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: executive_functions
 name: Executive Functions
 kind: predictor
@@ -14,7 +14,7 @@ created_by: agent:ollama-extract-cli/gemma4:31b-it-q8_0
 created_on: 2026-10-23
 findings:
 - id: f1
-  target: naming
+  target: anomia
   target_kind: impairment
   claim: Higher pretreatment executive function significantly predicts greater immediate and maintained
     gains following semantic-based naming therapy.
@@ -54,7 +54,8 @@ findings:
     extracted_on: 2026-01-01
     paper_section: Results - Study 2, pages 5-6
     confidence: high
-    flags: []
+    flags:
+    - retargeted naming → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Results - Study 2
     page: 6
@@ -82,10 +83,25 @@ findings:
       participants' performance... may have been negatively affected by speech... language... or motor
       impairment.
     supports: limitation
+  - section: added by backfill
+    page: 1
+    quote: 'Interventions: 120-minute sessions of sentence comprehension (nZ26) or naming treatment (nZ41)
+      2 times per week for up to 10-12 weeks.'
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
+  therapy:
+    id: semantic_based_naming_treatment
+    name: semantic-based naming treatment
+    dose: 120-minute sessions 2 times per week for up to 10-12 weeks
 ---

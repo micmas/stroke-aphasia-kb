@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: left_supramarginal_gyrus_premotor
 name: Left Supramarginal Gyrus and Premotor Cortex (supra-Sylvian)
 kind: classical
@@ -9,7 +9,7 @@ created_on: 2026-10-20
 hemisphere: left
 findings:
 - id: f1
-  target: anomic_aphasia
+  target: anomia
   target_kind: impairment
   claim: Increased activation in the left inferior parietal lobule following treatment is associated with
     improved naming performance.
@@ -80,6 +80,7 @@ findings:
     confidence: high
     flags:
     - cohort overlaps with @Fridriksson2010 (as stated in paper)
+    - retargeted anomic_aphasia → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Results
     page: 4
@@ -105,11 +106,26 @@ findings:
     quote: the current fMRI analysis did not deduce which of these areas is more important than others
       or the dynamics of change needed to support recovery.
     supports: limitation
+  - section: added by backfill
+    page: 2
+    quote: the treatment, usually referred to as a "cueing hierarchy," is based on using verbal cues of
+      increasing cueing strength to elicit correct naming of colored pictures shown on a computer screen.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
+  therapy:
+    id: cueing_hierarchy
+    name: cueing hierarchy
+    dose: 30 h
 ---
 Finding f1 links increased activation in the left inferior parietal lobule to improved naming outcomes following intensive treatment.

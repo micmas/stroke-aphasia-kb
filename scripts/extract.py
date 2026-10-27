@@ -282,7 +282,7 @@ prose or markdown around it:
 }
 
 Each draft's `content` field must:
-  - Start with `---` and a YAML frontmatter block (schema_version: 2.7)
+  - Start with `---` and a YAML frontmatter block (schema_version: 2.8)
   - Contain at least one valid `findings` entry (or be empty if you're
     creating a new region/impairment/therapy/predictor entry without findings)
   - Set `status: draft`
@@ -368,6 +368,22 @@ The complete workflow is in docs/EXTRACTION_SKILL.md (below). Key rules:
    `sample.cohort`: when the patients come from a named, reused dataset
    (Aphasia Recovery Cohort "ARC", "PLORAS", "OCS", a trial ID such as
    "NCT01927302"), name it; otherwise leave it out.
+
+10. NAME THE THERAPY (schema v2.8): every finding with
+   `relationship: treatment_response` or `responder`, and every finding
+   whose target_kind is therapy, carries
+     therapy: {id: <therapies/ entry id, else a lowercase_snake forward-looking id>,
+               name: "<the intervention as the paper names it>", dose: "<optional>"}
+   and quotes the sentence that names the intervention (supports: method).
+   An activation change after "treatment" is evidence about THAT treatment.
+
+11. SYMPTOM, NOT SYNDROME (schema v2.8): target an aphasia-type id
+   (anomic_aphasia, brocas_aphasia, …) only when the paper classified
+   patients by syndrome and the claim is about the type. A measured
+   deficit targets the symptom entry whatever the sample was called:
+   naming → anomia; fluency → fluency; comprehension → form_to_meaning;
+   sentence processing → syntactic_processing. Never use `naming` or
+   `confrontation_naming` as a target id.
 
 # Existing KB entries you can target
 
