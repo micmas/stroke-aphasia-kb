@@ -136,7 +136,7 @@ def load_searches(root: Path = ROOT) -> list[dict]:
     path = root / "screening" / "searches.yaml"
     if not path.exists():
         return []
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    data = _load(path.read_text(encoding="utf-8")) or {}
     return list(data.get("searches") or [])
 
 
@@ -144,11 +144,20 @@ def load_candidates(root: Path = ROOT) -> list[dict]:
     path = root / "screening" / "candidates.yaml"
     if not path.exists():
         return []
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    data = _load(path.read_text(encoding="utf-8")) or {}
     return list(data.get("candidates") or [])
 
 
-class _Dumper(yaml.SafeDumper):
+# libyaml (C) when available: the register holds ~20,000 candidates, and the pure-Python
+# loader takes seconds where the C one takes about one.
+_SafeLoader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
+
+
+def _load(text: str):
+    return yaml.load(text, Loader=_SafeLoader)
+
+
+class _Dumper(getattr(yaml, "CSafeDumper", yaml.SafeDumper)):
     pass
 
 
@@ -184,7 +193,7 @@ def load_withdrawn(root: Path = ROOT) -> list[dict]:
     path = root / "screening" / "searches.yaml"
     if not path.exists():
         return []
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    data = _load(path.read_text(encoding="utf-8")) or {}
     return list(data.get("withdrawn") or [])
 
 
@@ -635,7 +644,7 @@ def load_gaps(root: Path = ROOT) -> dict[str, dict]:
     path = root / "atlas_mapping" / "evidence_gaps.yaml"
     if not path.exists():
         return {}
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    data = _load(path.read_text(encoding="utf-8")) or {}
     return {str(k): dict(v or {}) for k, v in (data.get("gaps") or {}).items()}
 
 
@@ -765,7 +774,7 @@ def load_strategies(root: Path = ROOT) -> dict:
     path = root / "screening" / "strategies.yaml"
     if not path.exists():
         return {"version": None, "status": None, "blocks": {}, "strategies": []}
-    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    data = _load(path.read_text(encoding="utf-8")) or {}
     data.setdefault("blocks", {})
     data.setdefault("strategies", [])
     return data

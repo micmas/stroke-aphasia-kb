@@ -1021,10 +1021,11 @@ for (const a of document.querySelectorAll('article')) a.setAttribute('tabindex',
 """
 
 
-def _ranked(candidates: list[dict], todo: list[dict], abstracts: dict[str, str], batch: int) -> tuple[list[dict], str]:
-    """Order the title/abstract sheet by the prioritisation model (docs/SCREENING.md §4.1)."""
+def rank_order(candidates: list[dict], todo_ids: list[str], abstracts: dict[str, str],
+               strategies: dict | None = None) -> tuple[list[str], dict]:
+    """The prioritisation model's order for ``todo_ids`` (most likely relevant first) and what it learned from."""
     import prioritise as P
-    strategies = S.load_strategies()
+    strategies = strategies or S.load_strategies()
     cfg = S.prioritised_config(strategies)
     prior, _ = S.benchmark_split(candidates, strategies)
     texts = {c["id"]: f"{c.get('title') or ''}. {abstracts.get(c['id'], '')}" for c in candidates if not c.get("duplicate_of")}
@@ -1038,12 +1039,20 @@ def _ranked(candidates: list[dict], todo: list[dict], abstracts: dict[str, str],
                 pos.add(c["id"])
             elif d.get("decision") == "exclude" and d.get("reason") not in ("not_screened_stopping_rule", "not_retrieved"):
                 neg.add(c["id"])
-    order = P.rank(texts, pos, neg, [c["id"] for c in todo], seed=cfg["seed"])
+    order = [i for i, _ in P.rank(texts, pos, neg, list(todo_ids), seed=cfg["seed"])]
+    return order, {"model": cfg.get("model", "tfidf_naive_bayes"), "relevant": len(pos), "priors": len(prior),
+                   "excluded": len(neg)}
+
+
+def _ranked(candidates: list[dict], todo: list[dict], abstracts: dict[str, str], batch: int) -> tuple[list[dict], str]:
+    """Order the title/abstract sheet by the prioritisation model (docs/SCREENING.md §4.1)."""
+    strategies = S.load_strategies()
+    order, info = rank_order(candidates, [c["id"] for c in todo], abstracts, strategies)
     by_id = {c["id"]: c for c in todo}
-    ranked = [by_id[i] for i, _ in order][: max(1, batch)]
+    ranked = [by_id[i] for i in order][: max(1, batch)]
     st = S.stopping_state(candidates, strategies)
-    note = (f"ranked by {cfg.get('model', 'tfidf_naive_bayes')} on {len(pos)} relevant ({len(prior)} benchmark priors) and "
-            f"{len(neg)} excluded records; this sheet holds the top {len(ranked)} of {len(todo)} awaiting.\n"
+    note = (f"ranked by {info['model']} on {info['relevant']} relevant ({info['priors']} benchmark priors) and "
+            f"{info['excluded']} excluded records; this sheet holds the top {len(ranked)} of {len(todo)} awaiting.\n"
             + _stopping_line(st))
     return ranked, note
 
