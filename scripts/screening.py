@@ -727,7 +727,25 @@ def load_strategies(root: Path = ROOT) -> dict:
     return data
 
 
+ALL_QUESTIONS = "all_questions"
+
+
+def question_strategies(strategies: dict) -> list[dict]:
+    """The question-family strategies (q…), not the evidence-gap ones."""
+    return [s for s in strategies.get("strategies") or [] if str(s.get("id", "")).startswith("q")]
+
+
 def strategy(strategies: dict, sid: str) -> dict:
+    if sid == ALL_QUESTIONS:
+        # one search per database that ORs every question strategy: one export instead of seven.
+        qs = question_strategies(strategies)
+        out = {"id": ALL_QUESTIONS, "question": "all question families (q1–q5) in one search",
+               "buckets": sorted({b for s in qs for b in s.get("buckets") or []}),
+               "for": sorted({f for s in qs for f in s.get("for") or []})}
+        for db in ("pubmed", "openalex", "scopus", "psycinfo", "embase", "web_of_science"):
+            if qs and all(s.get(db) for s in qs):
+                out[db] = " OR ".join(f"({' '.join(str(s[db]).split())})" for s in qs)
+        return out
     for s in strategies.get("strategies") or []:
         if s.get("id") == sid:
             return s

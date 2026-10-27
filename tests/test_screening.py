@@ -272,6 +272,15 @@ class Protocol(unittest.TestCase):
             self.assertFalse(state["locked"])
             self.assertEqual(state["version"], 3)
 
+    def test_all_questions_in_one_search(self):
+        st = S.load_strategies(ROOT)
+        q = S.query_for_run(st, S.ALL_QUESTIONS, "psycinfo")
+        for x in S.question_strategies(st):
+            self.assertIn(S.expand_query(st, x["id"], "psycinfo"), q)
+        self.assertEqual(q.count("("), q.count(")"))
+        self.assertTrue(S.query_for_run(st, S.ALL_QUESTIONS, "scopus").endswith("PUBYEAR > 1999"))
+        self.assertIn("reviews", S.strategy(st, S.ALL_QUESTIONS)["buckets"])
+
     def test_the_shipped_strategies_expand(self):
         st = S.load_strategies(ROOT)
         for x in st["strategies"]:
