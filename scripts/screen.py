@@ -504,7 +504,7 @@ def cmd_import_all(args) -> int:
     import argparse as _ap
     import glob
     strategies = S.load_strategies()
-    known = [x["id"] for x in strategies.get("strategies") or []]
+    known = [x["id"] for x in strategies.get("strategies") or []] + [S.ALL_QUESTIONS]
     paths = sorted(glob.glob(str(Path(args.files).expanduser())))
     if not paths:
         raise SystemExit(f"no file matches {args.files}")
