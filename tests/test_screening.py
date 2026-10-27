@@ -77,6 +77,9 @@ class Parsers(unittest.TestCase):
         self.assertEqual([r["title"] for r in rows], ["One", "Two"])
         self.assertEqual(rows[0]["doi"], "10.1/a.b")
         self.assertEqual(rows[1]["year"], 2020)
+        scopus = "\ufeffTY  - JOUR\r\nAU  - Leff, A.P.\r\nTI  - The left superior temporal gyrus is a shared substrate\r\nPY  - 2009\r\nT2  - Brain\r\nDO  - 10.1093/brain/awp273\r\nAB  - We analysed 210 stroke patients.\r\nC2  - 19892765\r\nER  - \r\n"
+        (r,) = screen.parse_ris(scopus)
+        self.assertEqual((r["pmid"], r["doi"], r["year"], r["journal"]), ("19892765", "10.1093/brain/awp273", 2009, "Brain"))
         csv_text = 'Authors,Title,Year,Source title,DOI,PubMed ID,Abstract\n"Lee K; Park S","T",2019,"S",10.1/C,31,"a"\n'
         (r,) = screen.parse_csv(csv_text)
         self.assertEqual((r["doi"], r["pmid"], r["authors"]), ("10.1/c", "31", ["Lee K", "Park S"]))
