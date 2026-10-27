@@ -550,3 +550,16 @@ add an `EXTRACTED` line for every run.
 2026-10-27 | SEARCHED | — | S010 scopus | 98 records | 71 new candidates (register 15100→15171) | strategy q1_lesion_impairment v1 bf2a8e24bc92 | by: michele
 2026-10-27 | SEARCH-WITHDRAWN | — | S010 | Scopus export held 98 records, not the full result set | 71 candidates removed | by: michele
 2026-10-27 | SCREEN-RESET | — | screening register | pilot searches S001–S010 under protocol v1 (PubMed q1–q5, OpenAlex q1, Scopus q1 partial) set aside before any screening; register restored to its pre-lock state (164 legacy candidates); protocol revised to v2 (scope A: imaging-anchored primary studies, non-imaging evidence from syntheses) | by: michele
+2026-10-27 | SCREEN-REBASELINE | — | screening register | 152 legacy decisions moved to `legacy` | benchmark 151 | protocol 8d8dc2e70d35
+2026-10-27 | SEARCHED | — | S001 pubmed | 4465 records | 4375 new candidates (register 164→4539) | strategy q1_lesion_impairment v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S002 pubmed | 2145 records | 1380 new candidates (register 4539→5919) | strategy q1b_language_lesion_mapping v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S003 pubmed | 1041 records | 680 new candidates (register 5919→6599) | strategy q1c_cognition_prosody_lesion v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S004 pubmed | 1387 records | 132 new candidates (register 6599→6731) | strategy q2b_therapy_response_neural v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S005 pubmed | 2041 records | 0 new candidates (register 6731→6731) | strategy q3_predictor_outcome v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S006 pubmed | 1704 records | 1166 new candidates (register 6731→7897) | strategy q4_synthesis v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S007 pubmed | 908 records | 829 new candidates (register 7897→8726) | strategy q5_recruitment_meta v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S008 scopus | 8005 records | 4500 new candidates (register 8726→13226) | strategy q1_lesion_impairment v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S009 scopus | 4568 records | 1926 new candidates (register 13226→15152) | strategy q1b_language_lesion_mapping v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S010 scopus | 1563 records | 427 new candidates (register 15152→15579) | strategy q1c_cognition_prosody_lesion v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S011 scopus | 3632 records | 986 new candidates (register 15579→16565) | strategy q2b_therapy_response_neural v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S012 scopus | 3432 records | 2 new candidates (register 16565→16567) | strategy q3_predictor_outcome v2 8d8dc2e70d35 | by: michele
