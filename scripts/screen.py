@@ -100,7 +100,7 @@ def _log(action: str, what: str, meta: str) -> None:
 
 def _next_search_id(searches: list[dict]) -> str:
     n = 0
-    for s in searches:
+    for s in list(searches) + S.load_withdrawn():          # a withdrawn id is never reused
         m = re.match(r"^S(\d+)$", str(s.get("id") or ""))
         if m:
             n = max(n, int(m.group(1)))
@@ -469,9 +469,16 @@ def cmd_search(args) -> int:
 
 def cmd_import(args) -> int:
     _resolve_strategy(args)
-    text = Path(args.file).expanduser().read_text(encoding="utf-8-sig", errors="replace")
+    path = Path(args.file).expanduser()
+    if not path.exists():
+        raise SystemExit(f"{path}: no such file. Check the name the database gave the download.")
+    text = path.read_text(encoding="utf-8-sig", errors="replace")
     records = parse_ris(text) if args.file.lower().endswith(".ris") or "TY  -" in text[:2000] else parse_csv(text)
-    return _ingest(args, records, len(records), file=str(Path(args.file).name))
+    if getattr(args, "strategy", None) and args.hits is None:
+        raise SystemExit("give --hits <n>: the number of results the database showed for this search. It goes into the "
+                         "PRISMA record, and an export with fewer records than that is refused.")
+    total = args.hits if args.hits is not None else len(records)
+    return _ingest(args, records, total, file=path.name)
 
 
 def _ingest(args, records, total, file) -> int:
@@ -534,7 +541,7 @@ def _ingest(args, records, total, file) -> int:
         if searches_before:
             print(f"  new for the benchmark: {len(fresh)} of these were not found by any recorded search"
                   + (": " + ", ".join(f"{c['id']} {c.get('key') or ''}".strip() for c in fresh[:15]) if fresh else ""))
-    if total and len(records) < total and args.db in ("pubmed", "openalex"):
+    if total and len(records) < total:
         msg = f"  only {len(records)} of {total} hits were retrieved"
         if args.db == "pubmed" and LAST_MISSING:
             msg += f" (PMIDs PubMed counted but did not return: {', '.join(LAST_MISSING[:20])}{' …' if len(LAST_MISSING) > 20 else ''})"
@@ -751,6 +758,52 @@ def cmd_chase(args) -> int:
         return 0
     S.save_candidates(candidates)
     _log("CHASED", target["id"], f"cited by {', '.join(cited_by)} | {args.why.strip()[:120]} | by: {args.by}")
+    return 0
+
+
+def cmd_withdraw(args) -> int:
+    """Take back a search record (an incomplete export, a wrong file): its record moves to
+    `withdrawn` in searches.yaml with the reason, its source links are removed from the
+    candidates, and candidates that came only from it (and were never decided) leave the
+    register. The id is never reused; the log keeps both lines."""
+    searches, candidates = S.load_searches(), S.load_candidates()
+    rec = next((x for x in searches if x.get("id") == args.id), None)
+    if rec is None:
+        raise SystemExit(f"{args.id}: no such search")
+    if not args.why or len(args.why.strip()) < 10:
+        raise SystemExit("--why is required (it is kept with the withdrawn record)")
+    keep, gone, unlinked, kept_decided = [], [], 0, []
+    for c in candidates:
+        srcs = c.get("sources") or []
+        mine = [x for x in srcs if isinstance(x, dict) and x.get("search") == args.id]
+        if not mine:
+            keep.append(c)
+            continue
+        rest = [x for x in srcs if x not in mine]
+        if rest or c.get("key") or c.get("benchmark") or c.get("legacy"):
+            c["sources"] = rest
+            unlinked += 1
+            keep.append(c)
+        elif c.get("screening"):
+            c["sources"] = rest
+            kept_decided.append(c["id"])
+            keep.append(c)
+        else:
+            gone.append(c["id"])
+    print(f"{args.id} ({rec.get('database')} {rec.get('strategy') or ''}, {rec.get('retrieved')} records): "
+          f"{len(gone)} candidates found only by it leave the register, {unlinked} keep their other sources"
+          + (f", {len(kept_decided)} already decided stay (no source): {', '.join(kept_decided[:10])}" if kept_decided else ""))
+    if not args.execute:
+        print("Dry run — nothing written. Add --execute.")
+        return 0
+    withdrawn = S.load_withdrawn()
+    withdrawn.append({**rec, "withdrawn": {"date": dt.date.today().isoformat(), "by": args.by, "why": args.why.strip()}})
+    S.save_searches([x for x in searches if x.get("id") != args.id], withdrawn=withdrawn)
+    S.save_candidates(keep)
+    abstracts = load_abstracts()
+    if any(cid in abstracts for cid in gone):
+        save_abstracts({k: v for k, v in abstracts.items() if k not in set(gone)})
+    _log("SEARCH-WITHDRAWN", args.id, f"{args.why.strip()[:120]} | {len(gone)} candidates removed | by: {args.by}")
     return 0
 
 
@@ -1221,6 +1274,7 @@ def _cli(argv=None) -> int:
     p = sub.add_parser("import", help="import a RIS or CSV export (Scopus, Embase, PsycINFO, Web of Science …)")
     common_ingest(p)
     p.add_argument("--file", required=True)
+    p.add_argument("--hits", type=int, help="the number of results the database showed (required with --strategy)")
     p.set_defaults(max=None)
     p.set_defaults(fn=cmd_import)
     p = sub.add_parser("backfill", help="add the existing citations.md entries as other-source candidates")
@@ -1239,6 +1293,12 @@ def _cli(argv=None) -> int:
     p = sub.add_parser("recall", help="relative recall of the database searches against the benchmark")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_recall)
+    p = sub.add_parser("withdraw", help="take back a recorded search (incomplete export, wrong file), with the reason")
+    p.add_argument("id")
+    p.add_argument("--why", required=True)
+    p.add_argument("--by", required=True)
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(fn=cmd_withdraw)
     p = sub.add_parser("chase", help="enter a pillar paper by citation chasing from included papers (with the reason)")
     p.add_argument("--doi")
     p.add_argument("--title", help="when there is no DOI, or Crossref cannot be reached")

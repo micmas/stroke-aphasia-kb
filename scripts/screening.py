@@ -172,9 +172,23 @@ CANDIDATES_HEADER = """# Screening register — one record per de-duplicated can
 """
 
 
-def save_searches(searches: list[dict], root: Path = ROOT) -> None:
+def load_withdrawn(root: Path = ROOT) -> list[dict]:
+    """Search records withdrawn after they were recorded (e.g. an incomplete export), kept for the audit trail."""
+    path = root / "screening" / "searches.yaml"
+    if not path.exists():
+        return []
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return list(data.get("withdrawn") or [])
+
+
+def save_searches(searches: list[dict], root: Path = ROOT, withdrawn: list[dict] | None = None) -> None:
     (root / "screening").mkdir(exist_ok=True)
-    (root / "screening" / "searches.yaml").write_text(SEARCHES_HEADER + _dump({"searches": searches}), encoding="utf-8")
+    if withdrawn is None:
+        withdrawn = load_withdrawn(root)
+    body = {"searches": searches}
+    if withdrawn:
+        body["withdrawn"] = withdrawn
+    (root / "screening" / "searches.yaml").write_text(SEARCHES_HEADER + _dump(body), encoding="utf-8")
 
 
 def save_candidates(candidates: list[dict], root: Path = ROOT) -> None:
