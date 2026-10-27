@@ -32,7 +32,30 @@ OPENALEX = {"id": "https://openalex.org/W123", "doi": "https://doi.org/10.1000/X
             "abstract_inverted_index": {"We": [0], "mapped": [1], "naming.": [2]}, "ids": {"pmid": "https://pubmed.ncbi.nlm.nih.gov/999"}, "type": "article"}
 
 
+PUBMED_WITH_REFS = b"""<?xml version="1.0"?><PubmedArticleSet><PubmedArticle><MedlineCitation><PMID>111</PMID>
+<Article><Journal><Title>Brain</Title><JournalIssue><PubDate><Year>2015</Year></PubDate></JournalIssue></Journal>
+<ArticleTitle>Lesion mapping of naming after stroke in a large cohort</ArticleTitle>
+<AuthorList><Author><LastName>Smith</LastName><Initials>J</Initials></Author></AuthorList></Article>
+<CommentsCorrectionsList><CommentsCorrections RefType="Cites"><PMID>8918862</PMID></CommentsCorrections></CommentsCorrectionsList></MedlineCitation>
+<PubmedData><ArticleIdList><ArticleId IdType="pubmed">111</ArticleId><ArticleId IdType="doi">10.1/own</ArticleId></ArticleIdList>
+<ReferenceList><Reference><Citation>Dronkers 1996</Citation><ArticleIdList><ArticleId IdType="doi">10.1038/384159a0</ArticleId>
+<ArticleId IdType="pubmed">8918862</ArticleId></ArticleIdList></Reference></ReferenceList></PubmedData></PubmedArticle>
+<PubmedBookArticle><BookDocument><PMID Version="1">30422576</PMID><ArticleIdList><ArticleId IdType="bookaccession">NBK532981</ArticleId></ArticleIdList>
+<Book><BookTitle book="statpearls">StatPearls</BookTitle><PubDate><Year>2026</Year></PubDate></Book>
+<ArticleTitle book="statpearls">Frontal Lobe Syndrome</ArticleTitle><AuthorList><Author><LastName>Jabbari</LastName><Initials>B</Initials></Author></AuthorList>
+<PublicationType UI="D000072643">Study Guide</PublicationType><Abstract><AbstractText>Frontal lobe syndrome is ...</AbstractText></Abstract>
+</BookDocument></PubmedBookArticle></PubmedArticleSet>"""
+
+
 class Parsers(unittest.TestCase):
+    def test_pubmed_references_and_books(self):
+        art, book = screen.parse_pubmed_xml(PUBMED_WITH_REFS)
+        self.assertEqual((art["pmid"], art["doi"]), ("111", "10.1/own"))     # not the cited paper's DOI
+        self.assertEqual(art["authors"], ["Smith J"])
+        self.assertEqual((book["pmid"], book["title"], book["year"], book["journal"], book["book"]),
+                         ("30422576", "Frontal Lobe Syndrome", 2026, "StatPearls", True))
+        self.assertEqual(book["pub_types"], ["Study Guide"])
+
     def test_pubmed(self):
         (r,) = screen.parse_pubmed_xml(PUBMED_XML)
         self.assertEqual(r["pmid"], "12345678")
@@ -78,6 +101,14 @@ class Register(unittest.TestCase):
         self.assertEqual(S.norm_doi("10.1044/1058-0360(2004/025"), "10.1044/1058-0360(2004/025)")   # cut by a parser
         self.assertEqual(S.norm_doi("(doi:10.1000/abc)."), None)                                      # not a bare DOI
         self.assertEqual(S.norm_doi("https://doi.org/10.1000/ABC)."), "10.1000/abc")
+
+    def test_same_title_different_paper(self):
+        a = {"id": "C1", "title": "Unilateral opercular infarction presenting with foreign accent", "year": 2014,
+             "pmid": "1", "doi": "10.1/a", "sources": [], "screening": []}
+        idx = S.build_identity_index([a])
+        self.assertIsNone(S.find_duplicate({"title": a["title"], "year": 2014, "pmid": "2", "doi": "10.1/b"}, idx))
+        self.assertIs(S.find_duplicate({"title": a["title"], "year": 2014}, idx), a)        # no ids: same paper
+        self.assertIs(S.find_duplicate({"title": a["title"], "year": 2014, "pmid": "1"}, idx), a)
 
     def test_stages(self):
         c = {"id": "C1", "sources": [{"search": "S1"}], "screening": []}

@@ -131,6 +131,7 @@ def _years(arg: str | None) -> tuple[int | None, int | None]:
 # ---------------------------------------------------------------------------
 
 PUBMED_WINDOW = 9999        # E-utilities return at most the first 10,000 records of one query
+LAST_MISSING: list[str] = []   # PMIDs a PubMed run counted but could not fetch
 
 
 def _pubmed_count(term: str) -> int:
@@ -144,6 +145,7 @@ def pubmed_search(query: str, years=(None, None), max_results: int = 2000) -> tu
     """E-utilities: esearch (history server) then efetch in batches of 200. A query
     with more hits than the E-utilities window is split into publication-year
     ranges, each under the window, so nothing is silently cut off."""
+    LAST_MISSING.clear()
     lo, hi = years
     total = _pubmed_count(_pubmed_term(query, lo, hi))
     if total <= PUBMED_WINDOW or max_results <= PUBMED_WINDOW:
@@ -182,40 +184,67 @@ def _pubmed_fetch(query: str, lo, hi, max_results: int) -> tuple[list[dict], int
                                     "retmode": "xml", "tool": "stroke-aphasia-kb", "email": MAILTO})
         out.extend(parse_pubmed_xml(_get(f"{EUTILS}efetch.fcgi?{q}", timeout=120)))
         time.sleep(0.4)                 # 3 requests/s without an API key
+    want = min(total, max_results)
+    if len(out) < want and total <= PUBMED_WINDOW:
+        # a batch came back short: fetch the missing records by PMID
+        q = urllib.parse.urlencode({"db": "pubmed", "term": term, "retmax": PUBMED_WINDOW, "retmode": "json",
+                                    "tool": "stroke-aphasia-kb", "email": MAILTO})
+        ids = json.loads(_get(f"{EUTILS}esearch.fcgi?{q}"))["esearchresult"].get("idlist") or []
+        have = {r.get("pmid") for r in out}
+        missing = [i for i in ids if i not in have]
+        for i in range(0, len(missing), 100):
+            q = urllib.parse.urlencode({"db": "pubmed", "id": ",".join(missing[i:i + 100]), "retmode": "xml",
+                                        "tool": "stroke-aphasia-kb", "email": MAILTO})
+            out.extend(parse_pubmed_xml(_get(f"{EUTILS}efetch.fcgi?{q}", timeout=120)))
+            time.sleep(0.4)
+        have = {r.get("pmid") for r in out}
+        LAST_MISSING[:] = [i for i in ids if i not in have]
     return out, total
 
 
 def parse_pubmed_xml(data: bytes) -> list[dict]:
+    """PubmedArticle (journal) and PubmedBookArticle (NCBI Bookshelf chapter) records.
+
+    Identifiers come only from the record's own id list (PubmedData/ArticleIdList,
+    BookDocument/ArticleIdList) and its ELocationID — never from ReferenceList, whose
+    ArticleIdList elements are the DOIs of the papers it cites."""
     out = []
     root = ET.fromstring(data)
-    for art in root.iter("PubmedArticle"):
-        pmid = (art.findtext(".//MedlineCitation/PMID") or "").strip()
-        title = " ".join("".join(art.find(".//ArticleTitle").itertext()).split()) if art.find(".//ArticleTitle") is not None else ""
+    for art in list(root.iter("PubmedArticle")) + list(root.iter("PubmedBookArticle")):
+        book = art.tag == "PubmedBookArticle"
+        pmid = (art.findtext("./MedlineCitation/PMID") or art.findtext("./BookDocument/PMID") or "").strip()
+        t_el = art.find(".//ArticleTitle")
+        if t_el is None or not "".join(t_el.itertext()).strip():
+            t_el = art.find(".//BookTitle")
+        title = " ".join("".join(t_el.itertext()).split()) if t_el is not None else ""
         parts = []
         for ab in art.findall(".//Abstract/AbstractText"):
             label = ab.get("Label")
             text = " ".join("".join(ab.itertext()).split())
             parts.append(f"{label}: {text}" if label else text)
         doi = None
-        for eid in art.findall(".//ArticleIdList/ArticleId"):
-            if eid.get("IdType") == "doi":
+        for eid in art.findall("./PubmedData/ArticleIdList/ArticleId") + art.findall("./BookDocument/ArticleIdList/ArticleId"):
+            if eid.get("IdType") == "doi" and not doi:
                 doi = S.norm_doi(eid.text)
         if not doi:
-            for el in art.findall(".//ELocationID"):
+            for el in art.findall("./MedlineCitation/Article/ELocationID") + art.findall("./BookDocument/ELocationID"):
                 if el.get("EIdType") == "doi":
                     doi = S.norm_doi(el.text)
-        year = art.findtext(".//JournalIssue/PubDate/Year") or art.findtext(".//JournalIssue/PubDate/MedlineDate") or ""
+                    break
+        year = (art.findtext(".//JournalIssue/PubDate/Year") or art.findtext(".//JournalIssue/PubDate/MedlineDate")
+                or art.findtext("./BookDocument/Book/PubDate/Year") or art.findtext("./BookDocument/ContributionDate/Year") or "")
         ym = re.search(r"(19|20)\d{2}", year)
         authors = []
-        for a in art.findall(".//AuthorList/Author"):
+        for a in (art.findall("./MedlineCitation/Article/AuthorList/Author") or art.findall("./BookDocument/AuthorList/Author")):
             last, ini, coll = a.findtext("LastName"), a.findtext("Initials"), a.findtext("CollectiveName")
             if last:
                 authors.append(f"{last} {ini or ''}".strip())
             elif coll:
                 authors.append(coll)
         out.append({"pmid": pmid, "doi": doi, "title": title.rstrip("."), "year": int(ym.group(0)) if ym else None,
-                    "authors": authors, "journal": art.findtext(".//Journal/Title") or "",
-                    "abstract": " ".join(parts), "pub_types": [pt.text for pt in art.findall(".//PublicationTypeList/PublicationType") if pt.text]})
+                    "authors": authors, "journal": art.findtext(".//Journal/Title") or art.findtext(".//Book/BookTitle") or "",
+                    "abstract": " ".join(parts), "book": book or None,
+                    "pub_types": [pt.text for pt in art.findall(".//PublicationType") if pt.text]})
     return out
 
 
@@ -443,13 +472,18 @@ def _ingest(args, records, total, file) -> int:
     if args.notes:
         rec["notes"] = args.notes
     # what the benchmark (legacy includes) says about this run, before anything is merged
-    bench_all = [c for c in candidates if S.is_benchmark(c) and not c.get("duplicate_of")]
-    bench_hit = S.benchmark_hits(records, candidates)
+    lo_y, hi_y = S.year_window(args.years)
+    in_win = (lambda c: not ((lo_y and (c.get("year") or 9999) < lo_y) or (hi_y and (c.get("year") or 0) > hi_y)))
+    bench_every = [c for c in candidates if S.is_benchmark(c) and not c.get("duplicate_of")]
+    bench_all = [c for c in bench_every if in_win(c)]
+    bench_hit = [c for c in S.benchmark_hits(records, candidates) if in_win(c)]
     before = len(candidates)
     new, known = add_records(records, sid, candidates, abstracts)
     print(f"{sid} {args.db}: {total} hits, {len(records)} retrieved → {new} new candidates, {known} already in the register")
     if bench_all:
-        line = f"  benchmark: {len(bench_hit)} of {len(bench_all)} legacy-included papers retrieved"
+        line = (f"  benchmark: {len(bench_hit)} of {len(bench_all)} legacy-included papers retrieved"
+                + (f" ({len(bench_every) - len(bench_all)} published outside {args.years} not counted)"
+                   if len(bench_every) > len(bench_all) else ""))
         if getattr(args, "strategy", None):
             st = S.strategy(S.load_strategies(), args.strategy)
             want = set(st.get("buckets") or [])
@@ -459,7 +493,8 @@ def _ingest(args, records, total, file) -> int:
                 got = {c["id"] for c in bench_hit}
                 missed = [c for c in scope if c["id"] not in got]
                 line += (f"; {len(scope) - len(missed)} of {len(scope)} in this strategy's folders ({', '.join(sorted(want))})"
-                         + (f" = {100 * (len(scope) - len(missed)) / len(scope):.0f}%" if scope else ""))
+                         + (f" = {100 * (len(scope) - len(missed)) / len(scope):.0f}%" if scope else "")
+                         + " — this strategy alone; `screen.py recall` gives the union of all runs")
                 if missed and not args.execute:
                     print(line)
                     line = ""
@@ -472,7 +507,9 @@ def _ingest(args, records, total, file) -> int:
             print(line)
     if total and len(records) < total and args.db in ("pubmed", "openalex"):
         msg = f"  only {len(records)} of {total} hits were retrieved"
-        if getattr(args, "strategy", None):
+        if args.db == "pubmed" and LAST_MISSING:
+            msg += f" (PMIDs PubMed counted but did not return: {', '.join(LAST_MISSING[:20])}{' …' if len(LAST_MISSING) > 20 else ''})"
+        if getattr(args, "strategy", None) and args.execute:
             raise SystemExit(msg + " — a protocol search must be complete; check --max and the network, then re-run.")
         print(msg + " (raise --max)")
     if not args.execute:
