@@ -228,7 +228,7 @@ class Protocol(unittest.TestCase):
     def test_the_shipped_strategies_expand(self):
         st = S.load_strategies(ROOT)
         for x in st["strategies"]:
-            for db in ("pubmed", "openalex", "scopus"):
+            for db in ("pubmed", "openalex", "scopus", "psycinfo"):
                 if x.get(db):
                     q = S.expand_query(st, x["id"], db)
                     self.assertNotIn("${", q, (x["id"], db))
@@ -317,7 +317,7 @@ class Chase(unittest.TestCase):
         inc = {"id": "C0001", "title": "Included lesion study of naming", "year": 2015, "sources": [{"search": "S001"}],
                "screening": [{"stage": "title_abstract", "decision": "include", "by": "michele"},
                              {"stage": "full_text", "decision": "include", "by": "michele"}]}
-        pending = {"id": "C0002", "title": "Not yet assessed", "year": 2016, "sources": [{"search": "S001"}], "screening": []}
+        pending = {"id": "C0002", "title": "Not yet assessed at full text by anyone", "year": 2016, "sources": [{"search": "S001"}], "screening": []}
         old = {"id": "C0003", "key": "@Dronkers1996", "doi": "10.1038/384159a0", "title": "A new brain region for coordinating speech articulation",
                "year": 1996, "sources": [{"kind": "hand_picked"}], "skip_title_abstract": True, "screening": [], "benchmark": True}
         store = {"c": [inc, pending, old]}
@@ -344,8 +344,10 @@ class Chase(unittest.TestCase):
             self.assertEqual(screen.cmd_chase(args(title="Disconnexion syndromes in animals and man", year="1965")), 0)
             self.assertEqual(store["c"][-1]["id"], "C0004")
             # a paper a search already found needs no chasing
-            self.assertEqual(screen.cmd_chase(args(title="Not yet assessed", year="2016")), 0)
+            n = len(store["c"])
+            self.assertEqual(screen.cmd_chase(args(title="Not yet assessed at full text by anyone", year="2016")), 0)
             self.assertNotIn("pillar", pending)
+            self.assertEqual(len(store["c"]), n)
         finally:
             S.load_candidates, S.save_candidates, screen._log = orig
 

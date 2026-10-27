@@ -18,8 +18,19 @@
 # title_and_abstract.search filter; boolean operators in capitals, no
 # wildcards (OpenAlex stems words itself), no commas. Scopus: for the UQ
 # Library interface; run there and bring the RIS in with
-# `screen.py import --strategy <id> --db scopus --file …`. PsycINFO strings are
-# added as `psycinfo:` fields (translated from the Scopus ones) before the run.
+# `screen.py import --strategy <id> --db scopus --file …`. PsycINFO: UQ Library
+# provides APA PsycInfo on EBSCOhost; the strings use EBSCO field codes (TI, AB,
+# DE = exact subject heading, ZC = methodology), are pasted into Advanced Search
+# with the Published Date limiter set to the years below, and the RIS export
+# comes in with `screen.py import --strategy <id> --db psycinfo`.
+# Before locking, check in the APA Thesaurus (EBSCO "Subject terms") that each DE
+# heading used below exists as written — Aphasia, Dysarthria, Cerebrovascular
+# Accidents, Cerebrovascular Disorders, Magnetic Resonance Imaging, Functional
+# Magnetic Resonance Imaging, Neuroimaging, Diffusion Tensor Imaging, Speech
+# Therapy, Language Therapy, Transcranial Magnetic Stimulation, Prognosis,
+# Recovery (Disorders), Prosody, Executive Function — and that ZC accepts the
+# methodology values Clinical Trial, Meta Analysis, Systematic Review,
+# Literature Review. Fix a heading here (draft) rather than in the interface.
 #
 # Dates: `years` below applies to every strategy that does not set its own:
 # PubMed and OpenAlex runs get it as a publication-date filter (recorded under
@@ -96,6 +107,20 @@ calibration:
       123/127 (97 %). The 4 in-scope misses and the pre-2000 pillars (Geschwind
       1965, Dronkers 1996, Pedersen 1995, Goldenberg 1994, Nadeau & Crosson 1997,
       Crosson 1999) are candidates for citation chasing.
+  - date: 2026-10-27
+    database: pubmed
+    draft: this file, with dysarthria in scope (aphasia block + "Dysarthria"[Mesh] OR dysarthri*[tiab])
+    hits_2000_on: {q1_lesion_impairment: 4465, q1b_language_lesion_mapping: 2145, q1c_cognition_prosody_lesion: 1041,
+                   q2a_therapy_efficacy: 2375, q2b_therapy_response_neural: 2864, q3_predictor_outcome: 4037,
+                   q4_synthesis: 1703, q5_recruitment_meta: 907}
+    union_hits: 11864
+    benchmark_found: 124 of 136 in the window (91 %)
+    missed_out_of_scope: [C0002, C0098, C0099, C0100, C0080, C0104, C0126, C0108]
+    missed_in_scope: [C0012, C0073, C0109, C0110]
+    finding: >-
+      Dysarthria adds ~1,600 records and finds the dysarthria Cochrane review
+      (C0106). In-scope recall 124/128 (97 %). Note that the aphasia block now
+      means "aphasia or motor speech disorder"; the gap strategies inherit it.
 
 blocks:
   pubmed:
@@ -103,7 +128,7 @@ blocks:
       ("Aphasia"[Mesh] OR aphasi*[tiab] OR dysphasi*[tiab] OR anomi*[tiab] OR "word finding"[tiab]
       OR "word retrieval"[tiab] OR "naming impairment*"[tiab] OR "naming deficit*"[tiab]
       OR "language impairment*"[tiab] OR "language deficit*"[tiab] OR "language disorder*"[tiab]
-      OR "apraxia of speech"[tiab])
+      OR "apraxia of speech"[tiab] OR "Dysarthria"[Mesh] OR dysarthri*[tiab])
     language: >-
       (alexi*[tiab] OR dyslexi*[tiab] OR agraphi*[tiab] OR dysgraphi*[tiab] OR agrammati*[tiab]
       OR paraphasi*[tiab] OR "language comprehension"[tiab] OR "speech comprehension"[tiab]
@@ -173,7 +198,8 @@ blocks:
   openalex:
     aphasia: >-
       (aphasia OR aphasic OR dysphasia OR anomia OR "word finding" OR "word retrieval" OR "naming impairment"
-      OR "language impairment" OR "language deficit" OR "language disorder" OR "apraxia of speech")
+      OR "language impairment" OR "language deficit" OR "language disorder" OR "apraxia of speech" OR dysarthria
+      OR dysarthric)
     language: >-
       (alexia OR dyslexia OR agraphia OR dysgraphia OR agrammatism OR agrammatic OR paraphasia
       OR "language comprehension" OR "speech comprehension" OR "sentence comprehension" OR "auditory comprehension"
@@ -229,7 +255,7 @@ blocks:
     aphasia: >-
       TITLE-ABS-KEY(aphasi* OR dysphasi* OR anomi* OR "word finding" OR "word retrieval"
       OR "naming impairment*" OR "naming deficit*" OR "language impairment*" OR "language deficit*"
-      OR "language disorder*" OR "apraxia of speech")
+      OR "language disorder*" OR "apraxia of speech" OR dysarthri*)
     language: >-
       TITLE-ABS-KEY(alexi* OR dyslexi* OR agraphi* OR dysgraphi* OR agrammati* OR paraphasi*
       OR "language comprehension" OR "speech comprehension" OR "sentence comprehension" OR "auditory comprehension"
@@ -281,6 +307,102 @@ blocks:
     systematic: TITLE-ABS-KEY("systematic review" OR meta-analy* OR "scoping review")
     review: DOCTYPE(re)
 
+  psycinfo:
+    aphasia: >-
+      (DE "Aphasia" OR DE "Dysarthria" OR TI (aphasi* OR dysphasi* OR anomi* OR "word finding" OR "word
+      retrieval" OR "naming impairment*" OR "naming deficit*" OR "language impairment*" OR "language deficit*"
+      OR "language disorder*" OR "apraxia of speech" OR dysarthri*) OR AB (aphasi* OR dysphasi* OR anomi* OR
+      "word finding" OR "word retrieval" OR "naming impairment*" OR "naming deficit*" OR "language
+      impairment*" OR "language deficit*" OR "language disorder*" OR "apraxia of speech" OR dysarthri*))
+    language: >-
+      (TI (alexi* OR dyslexi* OR agraphi* OR dysgraphi* OR agrammati* OR paraphasi* OR "language
+      comprehension" OR "speech comprehension" OR "sentence comprehension" OR "auditory comprehension" OR
+      "verbal fluency" OR "speech fluency" OR "speech production" OR naming OR "semantic processing" OR
+      "semantic cognition" OR "phonological processing" OR "speech perception" OR language OR prosod*) OR AB
+      (alexi* OR dyslexi* OR agraphi* OR dysgraphi* OR agrammati* OR paraphasi* OR "language comprehension" OR
+      "speech comprehension" OR "sentence comprehension" OR "auditory comprehension" OR "verbal fluency" OR
+      "speech fluency" OR "speech production" OR naming OR "semantic processing" OR "semantic cognition" OR
+      "phonological processing" OR "speech perception" OR language OR prosod*))
+    stroke: >-
+      (DE "Cerebrovascular Accidents" OR DE "Cerebrovascular Disorders" OR TI (stroke* OR poststroke OR
+      cerebrovascular OR infarct* OR "intracerebral hemorrhage" OR "intracerebral haemorrhage" OR "brain
+      damage*" OR "brain-damaged" OR "hemisphere damage*" OR "left hemisphere lesion*" OR "focal damage" OR
+      "focal lesion*") OR AB (stroke* OR poststroke OR cerebrovascular OR infarct* OR "intracerebral
+      hemorrhage" OR "intracerebral haemorrhage" OR "brain damage*" OR "brain-damaged" OR "hemisphere damage*"
+      OR "left hemisphere lesion*" OR "focal damage" OR "focal lesion*"))
+    imaging: >-
+      (DE "Magnetic Resonance Imaging" OR DE "Functional Magnetic Resonance Imaging" OR DE "Neuroimaging" OR
+      DE "Diffusion Tensor Imaging" OR TI (lesion* OR "symptom mapping" OR "voxel-based" OR "voxel-wise" OR
+      VLSM OR "lesion load" OR tractograph* OR "diffusion tensor" OR "white matter" OR fascicul* OR
+      disconnect* OR connectom* OR "neural correlate*" OR neuroanatom* OR "brain region*" OR cortical OR
+      subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*) OR AB (lesion* OR
+      "symptom mapping" OR "voxel-based" OR "voxel-wise" OR VLSM OR "lesion load" OR tractograph* OR
+      "diffusion tensor" OR "white matter" OR fascicul* OR disconnect* OR connectom* OR "neural correlate*" OR
+      neuroanatom* OR "brain region*" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion
+      OR plasticity OR reorgani*))
+    lesion_mapping: >-
+      (TI ("symptom mapping" OR VLSM OR "voxel-based lesion*" OR "lesion-symptom" OR "lesion symptom" OR
+      "lesion-behavio*" OR "lesion-deficit" OR "lesion mapping" OR "lesion analys*" OR "lesion location*" OR
+      "lesion site*" OR "lesion load" OR "lesion stud*" OR "lesion pattern*" OR "lesion-based" OR disconnect*
+      OR tractograph* OR "white matter" OR "brain damage*" OR "brain-damaged" OR "voxel-based" OR "voxel
+      based" OR "lesion loci" OR "lesion locus") OR AB ("symptom mapping" OR VLSM OR "voxel-based lesion*" OR
+      "lesion-symptom" OR "lesion symptom" OR "lesion-behavio*" OR "lesion-deficit" OR "lesion mapping" OR
+      "lesion analys*" OR "lesion location*" OR "lesion site*" OR "lesion load" OR "lesion stud*" OR "lesion
+      pattern*" OR "lesion-based" OR disconnect* OR tractograph* OR "white matter" OR "brain damage*" OR
+      "brain-damaged" OR "voxel-based" OR "voxel based" OR "lesion loci" OR "lesion locus"))
+    lesion_symptom: >-
+      (TI ("symptom mapping" OR VLSM OR "voxel-based lesion*" OR "voxel-wise lesion*" OR "lesion-symptom" OR
+      "lesion symptom" OR "lesion-behavio*" OR "lesion-deficit" OR "lesion mapping" OR "lesion analys*" OR
+      "lesion location*" OR "lesion loci" OR "lesion locus" OR "lesion site*" OR "lesion load" OR "lesion
+      network mapping" OR "strategic infarct*" OR "infarct location*" OR disconnectom* OR "lesion-based" OR
+      "lesion pattern*") OR AB ("symptom mapping" OR VLSM OR "voxel-based lesion*" OR "voxel-wise lesion*" OR
+      "lesion-symptom" OR "lesion symptom" OR "lesion-behavio*" OR "lesion-deficit" OR "lesion mapping" OR
+      "lesion analys*" OR "lesion location*" OR "lesion loci" OR "lesion locus" OR "lesion site*" OR "lesion
+      load" OR "lesion network mapping" OR "strategic infarct*" OR "infarct location*" OR disconnectom* OR
+      "lesion-based" OR "lesion pattern*"))
+    cognition: >-
+      (DE "Executive Function" OR TI (cogniti* OR executive OR "working memory" OR "short-term memory" OR
+      "cognitive control" OR "processing speed" OR "decision making" OR "problem solving" OR reasoning OR
+      "attentional control" OR prosod* OR "emotion recognition") OR AB (cogniti* OR executive OR "working
+      memory" OR "short-term memory" OR "cognitive control" OR "processing speed" OR "decision making" OR
+      "problem solving" OR reasoning OR "attentional control" OR prosod* OR "emotion recognition"))
+    prosody: >-
+      (DE "Prosody" OR TI (prosod* OR aprosodi* OR "emotion recognition" OR "tone of voice") OR AB (prosod* OR
+      aprosodi* OR "emotion recognition" OR "tone of voice"))
+    therapy: >-
+      (DE "Speech Therapy" OR DE "Language Therapy" OR DE "Transcranial Magnetic Stimulation" OR TI (therap*
+      OR treatment* OR rehabilit* OR intervention* OR training OR tDCS OR rTMS OR "brain stimulation" OR
+      "transcranial magnetic stimulation" OR "transcranial direct current stimulation" OR pharmacotherap*) OR
+      AB (therap* OR treatment* OR rehabilit* OR intervention* OR training OR tDCS OR rTMS OR "brain
+      stimulation" OR "transcranial magnetic stimulation" OR "transcranial direct current stimulation" OR
+      pharmacotherap*))
+    aphasia_therapy: >-
+      (DE "Speech Therapy" OR DE "Language Therapy" OR TI ("aphasia therapy" OR "aphasia treatment" OR
+      "aphasia rehabilitation" OR "speech therapy" OR "language therapy" OR "speech and language therapy") OR
+      AB ("aphasia therapy" OR "aphasia treatment" OR "aphasia rehabilitation" OR "speech therapy" OR
+      "language therapy" OR "speech and language therapy"))
+    trial_design: >-
+      (ZC "Clinical Trial" OR ZC "Meta Analysis" OR ZC "Systematic Review" OR TI (randomi* OR "controlled
+      trial" OR crossover OR "cross-over" OR "case series" OR "single-case" OR "multiple baseline" OR "single
+      subject" OR "single-subject" OR "systematic review" OR meta-analy*) OR AB (randomi* OR "controlled
+      trial" OR crossover OR "cross-over" OR "case series" OR "single-case" OR "multiple baseline" OR "single
+      subject" OR "single-subject" OR "systematic review" OR meta-analy*))
+    response: >-
+      (TI (respond* OR responder* OR "treatment response" OR "response to treatment" OR "response to therapy"
+      OR "treatment outcome*" OR "treatment-induced" OR "treatment gains" OR "therapy gains" OR generali* OR
+      "treatment effect*") OR AB (respond* OR responder* OR "treatment response" OR "response to treatment" OR
+      "response to therapy" OR "treatment outcome*" OR "treatment-induced" OR "treatment gains" OR "therapy
+      gains" OR generali* OR "treatment effect*"))
+    predictor: >-
+      (DE "Prognosis" OR DE "Recovery (Disorders)" OR TI (predict* OR prognos* OR recover* OR longitudinal OR
+      determinant* OR "risk factor*") OR AB (predict* OR prognos* OR recover* OR longitudinal OR determinant*
+      OR "risk factor*"))
+    systematic: >-
+      (ZC "Systematic Review" OR ZC "Meta Analysis" OR TI ("systematic review" OR meta-analy* OR "scoping
+      review") OR AB ("systematic review" OR meta-analy* OR "scoping review"))
+    review: >-
+      (ZC "Literature Review" OR ZC "Systematic Review")
+
 # `question`: the §1 question family. `buckets`: the KB folders whose legacy papers
 # this strategy is expected to find — the recall check measures the strategy
 # against the benchmark papers extracted into those folders.
@@ -294,6 +416,7 @@ strategies:
     pubmed: ${aphasia} AND ${stroke} AND ${imaging}
     openalex: ${aphasia} AND ${stroke} AND ${imaging}
     scopus: ${aphasia} AND ${stroke} AND ${imaging}
+    psycinfo: ${aphasia} AND ${stroke} AND ${imaging}
 
   - id: q1b_language_lesion_mapping
     question: lesion → impairment (language outcomes not called aphasia)
@@ -307,6 +430,7 @@ strategies:
     pubmed: ${language} AND ${stroke} AND ${lesion_mapping}
     openalex: ${language} AND ${stroke} AND ${lesion_mapping}
     scopus: ${language} AND ${stroke} AND ${lesion_mapping}
+    psycinfo: ${language} AND ${stroke} AND ${lesion_mapping}
 
   - id: q1c_cognition_prosody_lesion
     question: lesion → impairment (prosody and domain-general cognition after stroke)
@@ -321,6 +445,7 @@ strategies:
     pubmed: ((${cognition} AND ${lesion_symptom}) OR (${prosody} AND ${imaging})) AND ${stroke}
     openalex: ((${cognition} AND ${lesion_symptom}) OR (${prosody} AND ${imaging})) AND ${stroke}
     scopus: ((${cognition} AND ${lesion_symptom}) OR (${prosody} AND ${imaging})) AND ${stroke}
+    psycinfo: ((${cognition} AND ${lesion_symptom}) OR (${prosody} AND ${imaging})) AND ${stroke}
 
   - id: q2a_therapy_efficacy
     question: therapy → response (efficacy)
@@ -336,6 +461,8 @@ strategies:
     pubmed: ${aphasia} AND ${therapy} AND ${trial_design}
     openalex: ${aphasia} AND ${therapy} AND ${trial_design}
     scopus: ${aphasia} AND ${therapy} AND ${trial_design}
+    psycinfo: ${aphasia} AND ${therapy} AND ${trial_design}
+    psycinfo: ${aphasia} AND ${therapy} AND ${trial_design}
 
   - id: q2b_therapy_response_neural
     question: therapy → response (who responds; neural correlates of response)
@@ -344,6 +471,7 @@ strategies:
     pubmed: ${aphasia} AND ${therapy} AND (${response} OR ${imaging}) AND (${stroke} OR ${aphasia_therapy})
     openalex: ${aphasia} AND ${therapy} AND (${response} OR ${imaging}) AND (${stroke} OR ${aphasia_therapy})
     scopus: ${aphasia} AND ${therapy} AND (${response} OR ${imaging}) AND (${stroke} OR ${aphasia_therapy})
+    psycinfo: ${aphasia} AND ${therapy} AND (${response} OR ${imaging}) AND (${stroke} OR ${aphasia_therapy})
 
   - id: q3_predictor_outcome
     question: predictor → outcome
@@ -352,6 +480,7 @@ strategies:
     pubmed: ${aphasia} AND ${stroke} AND ${predictor}
     openalex: ${aphasia} AND ${stroke} AND ${predictor}
     scopus: ${aphasia} AND ${stroke} AND ${predictor}
+    psycinfo: ${aphasia} AND ${stroke} AND ${predictor}
 
   - id: q4_synthesis
     question: synthesis (reviews and meta-analyses)
@@ -365,6 +494,7 @@ strategies:
     pubmed: ${aphasia} AND (${systematic} OR (${stroke} AND ${imaging} AND ${review}))
     openalex: ${aphasia} AND (${systematic} OR (${stroke} AND ${imaging} AND ${review}))
     scopus: ${aphasia} AND (${systematic} OR (${stroke} AND ${imaging} AND ${review}))
+    psycinfo: ${aphasia} AND (${systematic} OR (${stroke} AND ${imaging} AND ${review}))
 
   - id: q5_recruitment_meta
     question: recruitment (healthy-volunteer language mapping) — syntheses only
@@ -391,6 +521,14 @@ strategies:
       OR "sentence comprehension" OR "word production" OR reading) AND TITLE-ABS-KEY(meta-analy*
       OR "activation likelihood" OR "coordinate-based" OR MKDA) AND TITLE-ABS-KEY(fMRI
       OR "functional magnetic resonance" OR "positron emission" OR neuroimaging)
+    psycinfo: >-
+      (TI (language OR naming OR semantic* OR phonolog* OR syntax OR syntactic OR "speech production" OR
+      "sentence comprehension" OR "word production" OR reading) OR AB (language OR naming OR semantic* OR
+      phonolog* OR syntax OR syntactic OR "speech production" OR "sentence comprehension" OR "word production"
+      OR reading)) AND (ZC "Meta Analysis" OR TI (meta-analy* OR "activation likelihood" OR "coordinate-based"
+      OR MKDA) OR AB (meta-analy* OR "activation likelihood" OR "coordinate-based" OR MKDA)) AND (TI (fMRI OR
+      "functional magnetic resonance" OR "positron emission" OR neuroimaging) OR AB (fMRI OR "functional
+      magnetic resonance" OR "positron emission" OR neuroimaging))
 
   # --- evidence-gap searches (atlas_mapping/evidence_gaps.yaml) ---------------------
   # Narrower, mostly subsets of q1; they exist so the Coverage view can report each

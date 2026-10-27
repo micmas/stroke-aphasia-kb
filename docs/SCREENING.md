@@ -28,18 +28,29 @@ A paper is relevant when it reports, for people with aphasia after
 stroke, at least one of:
 
 - **lesion → impairment**: an association between damage to a brain
-  region, tract or network and a language or communication outcome
-  (regions/, impairments/);
+  region, tract or network and a language or communication outcome —
+  motor speech (dysarthria, apraxia of speech) and prosody included — or
+  a domain-general cognitive outcome after stroke
+  (executive function, working memory, cognitive control) (regions/,
+  impairments/);
 - **therapy → response**: the effect of a named therapy or ingredient
   on a language outcome, or who responds (therapies/, ingredients/);
 - **predictor → outcome**: a demographic, clinical, lesion or genetic
   predictor of aphasia severity or recovery (predictors/);
-- **synthesis**: a review or meta-analysis of any of the above
-  (reviews/, since schema v2.4).
+- **synthesis**: a systematic review, scoping review or meta-analysis of
+  any of the above; a narrative review only when it covers neuroimaging
+  or lesion evidence in stroke (reviews/, since schema v2.4).
 
 Healthy-volunteer imaging that maps a language function to anatomy is
 in scope as *recruitment* evidence (see `schema.md`, relationship
-`recruitment`); it must still concern a function the KB tracks.
+`recruitment`) through **meta-analyses and systematic reviews only**
+(coordinate-based: ALE, MKDA, SDM); it must still concern a function the
+KB tracks. A primary healthy-volunteer study enters only as a pillar
+paper by citation chasing (§3.4).
+
+**Publication years: 2000 onward** (`years` in
+`screening/strategies.yaml`). Earlier papers enter only as pillar papers
+by citation chasing.
 
 ## 2. Eligibility criteria
 
@@ -51,7 +62,9 @@ reports; change this list and `screening.REASONS` together.
 | id | Exclude when… | Applies at |
 |---|---|---|
 | `not_stroke` | the population is not (post-)stroke: tumour, TBI, primary progressive aphasia, dementia, developmental; or healthy-only with no language-mapping question | both passes |
-| `not_aphasia` | no aphasia, language or communication outcome is reported (e.g. motor recovery only, neglect only) | both passes |
+| `not_aphasia` | no aphasia, language, communication (motor speech — dysarthria, apraxia of speech — and prosody included) or domain-general cognitive outcome is reported (e.g. motor recovery only, spatial neglect only) | both passes |
+| `narrative_review_out_of_scope` | a narrative (non-systematic) review that does not cover neuroimaging or lesion evidence in stroke | both passes |
+| `out_of_date_range` | published before 2000 (the protocol's `years`) and not entered as a pillar paper by citation chasing | both passes |
 | `design_out_of_scope` | nothing the schema can hold: no lesion–behaviour, therapy-response, predictor or network evidence (pure psycholinguistic modelling, instrument validation without brain or outcome data, qualitative studies of lived experience) | both passes |
 | `not_full_report` | editorial, letter, commentary, conference abstract, protocol, erratum, thesis | both passes |
 | `insufficient_sample` | fewer than **5** participants for a lesion-mapping or therapy claim; single cases are kept only when they are the classic source for a region entry (note it) | both passes |
@@ -91,11 +104,19 @@ Databases: **PubMed** and **Scopus** for every question strategy, and
 *Aphasiology*, is poorly covered by MEDLINE); **OpenAlex** is run as a
 free supplement and for the gap strategies. Scopus and PsycINFO are run
 in their own interface through UQ Library access with the string from
-`strategies.yaml` (translated to PsycINFO syntax by hand — the
-translation goes into the strategy as a `psycinfo:` field before the
-run) and imported with `screen.py import --strategy <id>`. No date
-limits: inception to the date of the search, which is recorded per
-run. No language filter in the search (language is a screening reason).
+`screen.py strategies --show <id> --db scopus|psycinfo` (PsycINFO is
+APA PsycInfo on EBSCOhost: TI/AB fields, `DE` subject headings, `ZC`
+methodology; the subject headings are checked against the APA
+Thesaurus before locking) and imported with `screen.py import
+--strategy <id>`. Publication
+years 2000 to the date of the search: from 2000, clinical MRI with
+diffusion and perfusion imaging was routine, voxel-wise lesion–symptom
+mapping (2003) and tractography followed, and lesion localisation
+became comparable to what the KB maps onto atlases; for therapy and
+prognosis, 2000 also marks contemporary stroke care (stroke units,
+thrombolysis). PubMed and OpenAlex runs apply the window as a filter;
+the Scopus string carries it (`PUBYEAR > 1999`). No language filter in
+the search (language is a screening reason).
 
 ### 3.2 Locking and amendments
 
@@ -130,13 +151,37 @@ overall.
 
 Before the title/abstract pass starts, each question strategy is run in
 all its databases and every benchmark paper no search found is
-classified: **out of scope** under §2 (it will be excluded at full text
-with that reason) or a **search gap** (amend the strategy and re-run).
+classified: **out of scope** under §2 (excluded at full text with that
+reason — it then leaves the recall denominator), a **search gap** (amend
+the strategy and re-run), or a **pillar** the searches cannot reach
+(citation chasing, §3.4). Benchmark papers published before 2000 are
+reported separately and are not counted.
 The target is ≥ 90 % relative recall per question strategy on in-scope
 benchmark papers; the figure reached and the classification of the
 misses are reported with the PRISMA diagram.
 
-### 3.4 Recording
+### 3.4 Citation chasing for pillar papers
+
+Some papers the field rests on cannot come from the searches: published
+before 2000 (Geschwind 1965, Dronkers 1996, Pedersen 1995), primary
+healthy-volunteer studies (Saur 2008), records without an abstract
+(Bates 2003), or reviews and studies whose records lack the search
+terms. Such a paper enters as a **pillar** when an included paper cites
+it as the source of a claim the KB records and the KB needs it for that
+claim:
+
+    python scripts/screen.py chase --doi <doi> --cited-by <included candidate ids> \
+        --why "<the entry or claim that needs it>" --by <you> --execute
+
+The citing papers must already be included under the protocol (a
+person's full-text include), and the reason is required. The candidate
+is marked `pillar: true` with a `citation_chasing` source (cited by,
+why, who, when) and goes to full-text assessment in the
+other-methods arm, where §2 applies except the publication years and the
+healthy-volunteer rule. PRISMA reports these as identified by citation
+searching.
+
+### 3.5 Recording
 
 Each search is one record in
 `screening/searches.yaml` with the database, the verbatim query, the
@@ -210,7 +255,9 @@ per stage and lists the disagreements. Disagreements are resolved by
 discussion and the agreed decision is recorded as a new decision of
 record (it supersedes; all are kept). Kappa ≥ 0.6 is accepted; below
 that, the ambiguous criterion in §2 is clarified (an amendment) and a
-fresh sample is double-screened.
+fresh sample is double-screened. The second screener may change over the
+review; every check decision names its person, and `agreement` reports
+kappa overall and for each second screener.
 
 ## 5. What is derived, not recorded
 

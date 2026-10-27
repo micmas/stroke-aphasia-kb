@@ -520,12 +520,12 @@ def cmd_strategies(args) -> int:
     for x in strategies.get("strategies") or []:
         done = [r for r in runs if r.get("strategy") == x.get("id")]
         dbs = ", ".join(f"{r.get('database')} {r.get('date')} ({r.get('retrieved')})" for r in done) or "not run"
-        have = "/".join(k for k in ("pubmed", "openalex", "scopus") if x.get(k))
+        have = "/".join(k for k in ("pubmed", "openalex", "scopus", "psycinfo") if x.get(k))
         print(f"  {x.get('id'):<46} {have:<22} {dbs}")
         if args.verbose:
-            for db in ("pubmed", "openalex", "scopus"):
+            for db in ("pubmed", "openalex", "scopus", "psycinfo"):
                 if x.get(db):
-                    print(f"      {db}: {S.expand_query(strategies, x['id'], db)}")
+                    print(f"      {db}: {S.query_for_run(strategies, x['id'], db)}")
     return 0
 
 
@@ -563,7 +563,9 @@ def print_recall(data: dict, verbose: bool = False) -> None:
         print("  Recall: no benchmark set (run `screen.py rebaseline` after `backfill`).")
         return
     if data["recall"] is None:
-        print(f"  Recall: benchmark of {data['benchmark']} legacy-included papers; no database search run yet.")
+        out = len(data.get("outsideWindow") or [])
+        print(f"  Recall: benchmark of {data['benchmark']} legacy-included papers"
+              + (f" ({out} more published outside {data.get('window')})" if out else "") + "; no database search run yet.")
         return
     print(f"  Recall against the benchmark: {data['found']} of {data['benchmark']} legacy-included papers found by a database "
           f"search ({100 * data['recall']:.0f}%) · by database: " + (", ".join(f"{k} {v}" for k, v in data["byDatabase"].items()) or "—"))
@@ -1161,7 +1163,7 @@ def _cli(argv=None) -> int:
     p.set_defaults(fn=cmd_backfill)
     p = sub.add_parser("strategies", help="the protocol's search strategies, fingerprint and lock state")
     p.add_argument("--show", metavar="ID", help="print one strategy's expanded query (for pasting into a database)")
-    p.add_argument("--db", help="with --show: pubmed (default) | openalex | scopus")
+    p.add_argument("--db", help="with --show: pubmed (default) | openalex | scopus | psycinfo")
     p.add_argument("-v", "--verbose", action="store_true", help="print every expanded query")
     p.set_defaults(fn=cmd_strategies)
     p = sub.add_parser("rebaseline", help="move legacy decisions aside; legacy includes become the recall benchmark")

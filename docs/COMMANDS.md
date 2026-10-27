@@ -56,6 +56,7 @@ python scripts/screen.py search --strategy q1_lesion_impairment --db pubmed --by
 python scripts/screen.py search --strategy q1_lesion_impairment --db pubmed --by michele --execute
 python scripts/screen.py import --strategy q1_lesion_impairment --db scopus --file ~/Downloads/scopus.ris --by michele --execute
 python scripts/screen.py recall                      # relative recall against the benchmark, and what no search found
+python scripts/screen.py chase --doi 10.1038/384159a0 --cited-by C0123 --why "<entry / claim that needs it>" --by michele --execute
 
 # identify — ad-hoc searches (recorded and reported, not part of the protocol)
 python scripts/screen.py search --db pubmed --query '"aphasia"[tiab] AND stroke[tiab] AND (lesion[tiab] OR VLSM[tiab])' \
@@ -83,10 +84,11 @@ python scripts/screen.py list --stage awaiting_ft    # ids of what is waiting (o
 
 | Subcommand | What it does | Options |
 |---|---|---|
-| `strategies` | Lists the strategies in `screening/strategies.yaml`, the protocol version and fingerprint, whether it is locked (status `locked` and both protocol files committed), and which strategies have been run where. | `--show ID --db pubmed\|openalex\|scopus` `-v` |
+| `strategies` | Lists the strategies in `screening/strategies.yaml`, the protocol version, publication years and fingerprint, whether it is locked (status `locked` and both protocol files committed), and which strategies have been run where. | `--show ID --db pubmed\|openalex\|scopus` `-v` |
 | `rebaseline` | Moves every `by: legacy` decision into the candidate's `legacy` record and marks legacy includes `benchmark: true`, so each paper is screened afresh under the protocol. Nothing is deleted. Idempotent. | `--date` `--execute` |
 | `search` | Live PubMed (E-utilities) or OpenAlex query; hits become candidates, de-duplicated by DOI / PMID / title+year; the search is one record in `screening/searches.yaml`. With `--strategy` the query, years and `--for` come from the protocol, the run records the strategy and protocol fingerprint, nothing is capped, an incomplete retrieval is refused, and `--execute` is refused until the protocol is locked. Every run (dry or not) reports how many benchmark papers it retrieved. PubMed queries over 10,000 hits are split by publication year. Network. | `--strategy` or `--query` · `--db pubmed\|openalex` `--years 2000-2026` `--for gap,entry` `--by` `--max` `--oa-field` `--notes` `--allow-unlocked` `--execute` |
 | `import` | The same from a RIS or CSV export (Scopus, Embase, PsycINFO, Web of Science); with `--strategy` the recorded query is the protocol's string for that database, otherwise give the query and date so the record is complete. | `--file` `--db` `--strategy` or `--query` · `--date` `--years` `--for` `--by` `--execute` |
+| `chase` | Enters a pillar paper by citation chasing (before 2000, primary healthy-volunteer study, no abstract …): `--cited-by` must name papers included under the protocol and `--why` says what the KB needs it for. Existing candidate → source added; else Crossref record from the DOI (or `--title --year`). Goes to full text, other-methods arm. Logs `CHASED`. | `--doi` or `--title --year` · `--cited-by` `--why` `--by` `--date` `--execute` |
 | `recall` | Relative recall: benchmark papers found by any database search, per strategy (against the benchmark papers in its KB folders) and per database, and the list no search found. | `--json` |
 | `backfill` | Every `citations.md` key not in the register becomes an *other-source* candidate; extracted keys are stamped included `by: legacy`, `[refused]` excluded, seeds left awaiting assessment. Idempotent. | `--date` `--execute` |
 | `assist` | The local model (role `screen`, else `review`, in `models.yaml`) reads title + abstract against SCREENING.md §2 and writes `suggestion`. Ollama. | `--model` `--ids` `--max` `--redo` |
