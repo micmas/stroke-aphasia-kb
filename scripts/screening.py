@@ -76,6 +76,10 @@ REASONS: dict[str, dict] = {
                         "text": "Editorial, letter, conference abstract, protocol, erratum or thesis."},
     "insufficient_sample": {"label": "Insufficient sample", "ft_only": False,
                             "text": "Below the sample threshold set in docs/SCREENING.md for the question asked."},
+    "no_imaging_primary": {"label": "Primary study without imaging", "ft_only": False,
+                           "text": "A primary study with no brain imaging or lesion data related to the outcome (e.g. a "
+                                   "therapy trial or a clinical prognostic cohort); under the imaging-anchored scope its "
+                                   "evidence enters through systematic reviews and meta-analyses."},
     "narrative_review_out_of_scope": {"label": "Narrative review out of scope", "ft_only": False,
                                       "text": "A narrative (non-systematic) review that does not cover neuroimaging or "
                                               "lesion evidence in stroke."},

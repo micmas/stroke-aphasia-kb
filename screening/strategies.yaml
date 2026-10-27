@@ -37,10 +37,34 @@
 # `filters`), Scopus strings get `AND PUBYEAR > 1999` appended by
 # `screen.py strategies --show`. The upper limit is the search date.
 
-version: 1
-status: locked            # draft → locked (then commit) before the first --execute
+version: 2
+status: draft            # draft → locked (then commit) before the first --execute
 protocol_owner: michele
-amendments: []
+amendments:
+  - version: 2
+    date: 2026-10-27
+    by: michele
+    what: >-
+      Scope A, before any screening. Primary studies are in scope only when they
+      relate brain imaging or lesion data to an outcome; evidence without imaging
+      (therapy efficacy, clinical and demographic predictors) enters only through
+      systematic reviews and meta-analyses (q4). q2a_therapy_efficacy removed;
+      q2b_therapy_response_neural and q3_predictor_outcome require imaging
+      (new block imaging_strict for q2b). §2 gains the reason no_imaging_primary.
+      OpenAlex is run only if its dry run retrieves benchmark papers that PubMed,
+      Scopus and PsycINFO did not.
+    why: >-
+      The knowledge base serves CALMaR, which interprets an individual's lesion:
+      its primary evidence must link brain to outcome. Measured on PubMed
+      (calibration below), scope A cuts the records to screen by 27 % (11,866 →
+      8,681) and loses no benchmark paper except the 17 non-imaging trials and
+      cohorts it places, by design, under syntheses.
+    pilot: >-
+      Protocol v1 was locked and run on 2026-10-27 (PubMed S001–S008, OpenAlex
+      S009, a partial Scopus export S010, withdrawn). No record was screened. The
+      register was restored to its pre-lock state (SCREEN-RESET in
+      logs/extraction_log.md; the v1 runs remain in git history, commits af42791
+      and cc7049f) and the protocol revised as above before re-running.
 
 # Publication years searched (docs/SCREENING.md §3.1). 2000 onward: routine
 # clinical MRI with diffusion and perfusion imaging, then voxel-wise
@@ -121,6 +145,23 @@ calibration:
       Dysarthria adds ~1,600 records and finds the dysarthria Cochrane review
       (C0106). In-scope recall 124/128 (97 %). Note that the aphasia block now
       means "aphasia or motor speech disorder"; the gap strategies inherit it.
+  - date: 2026-10-27
+    database: pubmed
+    draft: version 2 (scope A)
+    hits_2000_on: {q1_lesion_impairment: 4465, q1b_language_lesion_mapping: 2145, q1c_cognition_prosody_lesion: 1041,
+                   q2b_therapy_response_neural: 1387, q3_predictor_outcome: 2041, q4_synthesis: 1704,
+                   q5_recruitment_meta: 908}
+    union_hits: 8681
+    benchmark: 128 benchmark papers that the v1 PubMed runs retrieved
+    benchmark_found: 111 of 128
+    missed_by_design: [C0010, C0023, C0024, C0036, C0041, C0045, C0048, C0075, C0081, C0082, C0084, C0117, C0135,
+                       C0137, C0138, C0142, C0145]
+    finding: >-
+      The 17 papers v2 no longer retrieves are therapy trials and clinical
+      predictor cohorts without imaging; under scope A they are excluded at full
+      text (no_imaging_primary) and their evidence comes from the syntheses. A
+      stricter imaging block everywhere (7,482 records) would also lose in-scope
+      papers (e.g. C0122, C0088), so it is used only for q2b.
 
 blocks:
   pubmed:
@@ -150,6 +191,14 @@ blocks:
       OR disconnect*[tiab] OR connectom*[tiab] OR "neural correlate*"[tiab] OR neuroanatom*[tiab]
       OR "brain region*"[tiab] OR cortical[tiab] OR subcortical[tiab] OR MRI[tiab] OR fMRI[tiab]
       OR perfusion[tiab] OR hypoperfusion[tiab] OR "Neuronal Plasticity"[Mesh] OR reorgani*[tiab])
+    imaging_strict: >-
+      ("Brain Mapping"[Mesh] OR "Diffusion Tensor Imaging"[Mesh] OR "Magnetic Resonance Imaging"[Mesh] OR "symptom mapping"[tiab]
+      OR "voxel-based"[tiab] OR "voxel based"[tiab] OR "voxel-wise"[tiab] OR VLSM[tiab] OR "lesion load"[tiab]
+      OR "lesion location*"[tiab] OR "lesion site*"[tiab] OR "lesion volume"[tiab] OR "lesion size"[tiab]
+      OR "lesion mapping"[tiab] OR tractograph*[tiab] OR "diffusion tensor"[tiab] OR DTI[tiab] OR "white matter"[tiab]
+      OR fascicul*[tiab] OR disconnect*[tiab] OR connectom*[tiab] OR connectivity[tiab] OR "neural correlate*"[tiab]
+      OR fMRI[tiab] OR "functional MRI"[tiab] OR "functional magnetic"[tiab] OR perfusion[tiab] OR neuroimaging[tiab]
+      OR "Neuronal Plasticity"[Mesh])
     lesion_mapping: >-
       ("symptom mapping"[tiab] OR VLSM[tiab] OR "voxel-based lesion*"[tiab] OR "lesion-symptom"[tiab]
       OR "lesion symptom"[tiab] OR "lesion-behavio*"[tiab] OR "lesion-deficit"[tiab] OR "lesion mapping"[tiab]
@@ -214,6 +263,11 @@ blocks:
       OR "diffusion tensor" OR "white matter" OR fasciculus OR disconnection OR connectome
       OR "neural correlates" OR neuroanatomy OR cortical OR subcortical OR MRI OR fMRI OR perfusion
       OR hypoperfusion OR reorganization OR reorganisation OR plasticity)
+    imaging_strict: >-
+      ("symptom mapping" OR "voxel-based" OR "voxel based" OR "voxel-wise" OR VLSM OR "lesion load" OR "lesion location"
+      OR "lesion site" OR "lesion volume" OR "lesion size" OR "lesion mapping" OR tractography OR "diffusion tensor" OR DTI
+      OR "white matter" OR fasciculus OR disconnection OR connectome OR connectivity OR "neural correlates" OR fMRI
+      OR "functional MRI" OR "functional magnetic" OR perfusion OR neuroimaging)
     lesion_mapping: >-
       ("symptom mapping" OR VLSM OR "voxel-based lesion" OR "lesion-symptom" OR "lesion symptom"
       OR "lesion-behavior" OR "lesion-behaviour" OR "lesion-deficit" OR "lesion mapping" OR "lesion analysis"
@@ -270,6 +324,11 @@ blocks:
       OR tractograph* OR "diffusion tensor" OR "white matter" OR fascicul* OR disconnect* OR connectom*
       OR "neural correlate*" OR neuroanatom* OR "brain region*" OR cortical OR subcortical OR MRI OR fMRI
       OR perfusion OR hypoperfusion OR plasticity OR reorgani*)
+    imaging_strict: >-
+      TITLE-ABS-KEY("symptom mapping" OR "voxel-based" OR "voxel based" OR "voxel-wise" OR VLSM OR "lesion load" OR "lesion location*"
+      OR "lesion site*" OR "lesion volume" OR "lesion size" OR "lesion mapping" OR tractograph* OR "diffusion tensor" OR DTI
+      OR "white matter" OR fascicul* OR disconnect* OR connectom* OR connectivity OR "neural correlate*" OR fMRI
+      OR "functional MRI" OR "functional magnetic" OR perfusion OR neuroimaging)
     lesion_mapping: >-
       TITLE-ABS-KEY("symptom mapping" OR VLSM OR "voxel-based lesion*" OR "lesion-symptom" OR "lesion symptom"
       OR "lesion-behavio*" OR "lesion-deficit" OR "lesion mapping" OR "lesion analys*" OR "lesion location*"
@@ -340,6 +399,15 @@ blocks:
       "diffusion tensor" OR "white matter" OR fascicul* OR disconnect* OR connectom* OR "neural correlate*" OR
       neuroanatom* OR "brain region*" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion
       OR plasticity OR reorgani*))
+    imaging_strict: >-
+      (DE "Magnetic Resonance Imaging" OR DE "Functional Magnetic Resonance Imaging" OR DE "Neuroimaging" OR DE "Diffusion Tensor Imaging"
+      OR TI ("symptom mapping" OR "voxel-based" OR "voxel based" OR "voxel-wise" OR VLSM OR "lesion load" OR "lesion location*"
+      OR "lesion site*" OR "lesion volume" OR "lesion size" OR "lesion mapping" OR tractograph* OR "diffusion tensor" OR DTI
+      OR "white matter" OR fascicul* OR disconnect* OR connectom* OR connectivity OR "neural correlate*" OR fMRI
+      OR "functional MRI" OR "functional magnetic" OR perfusion OR neuroimaging) OR AB ("symptom mapping" OR "voxel-based" OR "voxel based" OR "voxel-wise" OR VLSM OR "lesion load" OR "lesion location*"
+      OR "lesion site*" OR "lesion volume" OR "lesion size" OR "lesion mapping" OR tractograph* OR "diffusion tensor" OR DTI
+      OR "white matter" OR fascicul* OR disconnect* OR connectom* OR connectivity OR "neural correlate*" OR fMRI
+      OR "functional MRI" OR "functional magnetic" OR perfusion OR neuroimaging))
     lesion_mapping: >-
       (TI ("symptom mapping" OR VLSM OR "voxel-based lesion*" OR "lesion-symptom" OR "lesion symptom" OR
       "lesion-behavio*" OR "lesion-deficit" OR "lesion mapping" OR "lesion analys*" OR "lesion location*" OR
@@ -447,40 +515,31 @@ strategies:
     scopus: ((${cognition} AND ${lesion_symptom}) OR (${prosody} AND ${imaging})) AND ${stroke}
     psycinfo: ((${cognition} AND ${lesion_symptom}) OR (${prosody} AND ${imaging})) AND ${stroke}
 
-  - id: q2a_therapy_efficacy
-    question: therapy → response (efficacy)
+  - id: q2b_therapy_response_neural
+    question: therapy → response, with brain imaging (neural correlates and imaging predictors of response)
     buckets: [therapies, ingredients]
     for: [q2_therapy_response]
     notes: >-
-      No stroke block: aphasia therapy papers often never say stroke (primary
-      progressive and developmental populations are excluded at screening,
-      not_stroke). The design block keeps controlled trials, crossover,
-      case-series, single-case / single-subject experimental designs and
-      syntheses, and drops uncontrolled single-case reports (below the §2
-      sample threshold anyway).
-    pubmed: ${aphasia} AND ${therapy} AND ${trial_design}
-    openalex: ${aphasia} AND ${therapy} AND ${trial_design}
-    scopus: ${aphasia} AND ${therapy} AND ${trial_design}
-    psycinfo: ${aphasia} AND ${therapy} AND ${trial_design}
-    psycinfo: ${aphasia} AND ${therapy} AND ${trial_design}
-
-  - id: q2b_therapy_response_neural
-    question: therapy → response (who responds; neural correlates of response)
-    buckets: [therapies, ingredients]
-    for: [q2_therapy_response]
-    pubmed: ${aphasia} AND ${therapy} AND (${response} OR ${imaging}) AND (${stroke} OR ${aphasia_therapy})
-    openalex: ${aphasia} AND ${therapy} AND (${response} OR ${imaging}) AND (${stroke} OR ${aphasia_therapy})
-    scopus: ${aphasia} AND ${therapy} AND (${response} OR ${imaging}) AND (${stroke} OR ${aphasia_therapy})
-    psycinfo: ${aphasia} AND ${therapy} AND (${response} OR ${imaging}) AND (${stroke} OR ${aphasia_therapy})
+      Scope A (v2): therapy studies enter as primary evidence only with imaging or
+      lesion data; therapy efficacy without imaging comes from q4 syntheses. Uses
+      the stricter imaging block: therapy abstracts mention "lesion" and "cortical"
+      in passing far more often than lesion-mapping abstracts do.
+    pubmed: ${aphasia} AND ${therapy} AND ${imaging_strict} AND (${stroke} OR ${aphasia_therapy})
+    openalex: ${aphasia} AND ${therapy} AND ${imaging_strict} AND (${stroke} OR ${aphasia_therapy})
+    scopus: ${aphasia} AND ${therapy} AND ${imaging_strict} AND (${stroke} OR ${aphasia_therapy})
+    psycinfo: ${aphasia} AND ${therapy} AND ${imaging_strict} AND (${stroke} OR ${aphasia_therapy})
 
   - id: q3_predictor_outcome
-    question: predictor → outcome
+    question: predictor → outcome, with brain imaging (lesion and imaging predictors of severity and recovery)
     buckets: [predictors]
     for: [q3_predictor_outcome]
-    pubmed: ${aphasia} AND ${stroke} AND ${predictor}
-    openalex: ${aphasia} AND ${stroke} AND ${predictor}
-    scopus: ${aphasia} AND ${stroke} AND ${predictor}
-    psycinfo: ${aphasia} AND ${stroke} AND ${predictor}
+    notes: >-
+      Scope A (v2): clinical and demographic predictors (age, sex, initial
+      severity, time post onset) without imaging come from q4 syntheses.
+    pubmed: ${aphasia} AND ${stroke} AND ${predictor} AND ${imaging}
+    openalex: ${aphasia} AND ${stroke} AND ${predictor} AND ${imaging}
+    scopus: ${aphasia} AND ${stroke} AND ${predictor} AND ${imaging}
+    psycinfo: ${aphasia} AND ${stroke} AND ${predictor} AND ${imaging}
 
   - id: q4_synthesis
     question: synthesis (reviews and meta-analyses)
