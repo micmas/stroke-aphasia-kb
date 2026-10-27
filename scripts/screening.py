@@ -86,6 +86,9 @@ REASONS: dict[str, dict] = {
     "out_of_date_range": {"label": "Outside the publication years", "ft_only": False,
                           "text": "Published before the protocol's first year (screening/strategies.yaml `years`) and not "
                                   "entered as a pillar paper by citation chasing."},
+    "not_screened_stopping_rule": {"label": "Not screened (stopping rule met)", "ft_only": False,
+                                   "text": "Left unscreened when the prioritised-screening stopping rule was met "
+                                           "(docs/SCREENING.md §4.1); reported separately, not an exclusion for cause."},
     "language": {"label": "Language", "ft_only": False,
                  "text": "Not available in a language the screener reads."},
     "duplicate_report": {"label": "Duplicate report of an included study", "ft_only": False,
@@ -948,6 +951,75 @@ def recall(candidates: list[dict], searches: list[dict], strategies: dict, bucke
 
 
 # ---------------------------------------------------------------------------
+# Prioritised screening: benchmark split and the stopping rule (§4.1)
+# ---------------------------------------------------------------------------
+
+def prioritised_config(strategies: dict) -> dict:
+    cfg = dict(strategies.get("prioritised_screening") or {})
+    stop = dict(cfg.get("stop") or {})
+    stop.setdefault("min_screened_fraction", 0.30)
+    stop.setdefault("consecutive_exclusions", 200)
+    stop.setdefault("validation_found", 0.95)
+    cfg["stop"] = stop
+    cfg.setdefault("seed", 1)
+    cfg.setdefault("prior_fraction", 0.5)
+    return cfg
+
+
+def benchmark_split(candidates: list[dict], strategies: dict) -> tuple[set[str], set[str]]:
+    """(prior ids, validation ids) among the in-window benchmark papers — a seeded, reproducible split."""
+    import prioritise as P
+    cfg = prioritised_config(strategies)
+    lo, hi = year_window(strategy_years(strategies))
+    prior, val = set(), set()
+    for c in candidates:
+        if not is_benchmark(c) or c.get("duplicate_of"):
+            continue
+        y = c.get("year")
+        if (lo and (y or 9999) < lo) or (hi and (y or 0) > hi):
+            continue
+        (prior if P.is_prior(c["id"], cfg["seed"], float(cfg["prior_fraction"])) else val).add(c["id"])
+    return prior, val
+
+
+def _person_ta(c: dict) -> dict | None:
+    d = last_decision(c, "title_abstract")
+    return d if d and not _legacy(d) else None
+
+
+def stopping_state(candidates: list[dict], strategies: dict) -> dict:
+    """Where prioritised screening stands against the stopping rule."""
+    cfg = prioritised_config(strategies)
+    stop = cfg["stop"]
+    db = [c for c in candidates if not c.get("duplicate_of") and arm_of(c) == "databases"]
+    screened = [c for c in db if _person_ta(c) and _person_ta(c).get("reason") != "not_screened_stopping_rule"]
+    events = []
+    for c in db:
+        for d in c.get("screening") or []:
+            if d.get("stage") == "title_abstract" and d.get("role") is None and not _legacy(d) and d.get("seq"):
+                events.append((int(d["seq"]), d.get("decision")))
+    events.sort()
+    run = 0
+    for _, dec in reversed(events):
+        if dec != "exclude":
+            break
+        run += 1
+    _, val = benchmark_split(candidates, strategies)
+    val_db = [c for c in db if c["id"] in val]
+    val_found = [c for c in val_db if _person_ta(c)]
+    n = len(db)
+    frac = len(screened) / n if n else 0.0
+    vfrac = len(val_found) / len(val_db) if val_db else None
+    checks = {"screened": frac >= float(stop["min_screened_fraction"]),
+              "consecutive": run >= int(stop["consecutive_exclusions"]),
+              "validation": vfrac is not None and vfrac >= float(stop["validation_found"])}
+    return {"records": n, "screened": len(screened), "fraction": frac, "consecutiveExclusions": run,
+            "validation": len(val_db), "validationScreened": len(val_found), "validationFraction": vfrac,
+            "stop": stop, "checks": checks, "met": bool(n) and all(checks.values()),
+            "included": sum(1 for c in screened if _person_ta(c).get("decision") in ("include", "unsure"))}
+
+
+# ---------------------------------------------------------------------------
 # Dual screening on a sample: agreement
 # ---------------------------------------------------------------------------
 
@@ -1012,6 +1084,7 @@ def collect(root: Path = ROOT) -> dict:
         "protocol": protocol_state(root),
         "recall": recall(candidates, searches, strategies, kb_buckets(root)),
         "agreement": {st: agreement(candidates, st) for st in STAGES},
+        "stopping": stopping_state(candidates, strategies),
         "searches": searches,
         "candidates": rows,
         "prisma": prisma_counts(rows, searches),

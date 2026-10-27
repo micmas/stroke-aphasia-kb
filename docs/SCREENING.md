@@ -257,6 +257,39 @@ a candidate marks a merge done by hand.
    fetch the PDF into `papers/`, `intake_papers.py --execute`,
    `extract.py`, review, `promote.py` (`HOWTO.md`).
 
+### 4.1 Prioritised title/abstract screening and the stopping rule
+
+The title/abstract pass is prioritised (active learning, as in ASReview):
+`python scripts/screen.py sheet --ranked --batch 200` writes the 200
+records the model rates most likely relevant; after `decide`, the next
+sheet is ranked again with those decisions included. The model
+(`scripts/prioritise.py`) is TF-IDF features with multinomial Naive
+Bayes, trained on the records a person has included (positives) and
+excluded (negatives); until there are 50 exclusions, a seeded random
+sample of unscreened records stands in for the negatives.
+
+**Prior knowledge and validation.** The in-window benchmark papers are
+split by a seeded hash (`prioritised_screening` in
+`screening/strategies.yaml`): half are prior knowledge (positives from the
+start), half are a **validation set** the model never sees as positive.
+How early validation papers surface shows how well the ordering works.
+In a cold-start test on the v1 PubMed pilot (titles only, no screening
+decisions), 38 of 52 validation papers ranked in the top 30 % and 47 in
+the top 50 %; abstracts and the screener's decisions improve this.
+
+**Stopping rule** (all three must hold; `screen.py progress` shows them):
+
+1. at least **30 %** of the database-arm records have been screened;
+2. the last **200** decisions, in the order they were made, were all
+   exclusions;
+3. at least **95 %** of the validation papers the searches retrieved have
+   been screened.
+
+Then `screen.py stop --by <you> --execute` records every record still
+awaiting the pass as not screened (reason `not_screened_stopping_rule`).
+PRISMA reports them separately, with the three figures above. The
+model only orders the sheet; every decision is a person's.
+
 **Blind screening.** Title/abstract cards show the record as the
 search returned it: no citation key, no "hand-picked" or legacy
 provenance, so a legacy paper is judged like any other. At full text

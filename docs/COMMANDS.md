@@ -71,7 +71,10 @@ python scripts/screen.py fetch-abstracts             # fill the local abstract c
 
 # screen
 python scripts/screen.py assist                      # local model's suggestion per title/abstract (never a decision)
-python scripts/screen.py sheet                       # screening/_sheet/title_abstract.html → decide → download CSV
+python scripts/screen.py sheet --ranked --batch 200  # the 200 most likely relevant first → decide → download CSV → repeat
+python scripts/screen.py progress                    # where the stopping rule stands
+python scripts/screen.py stop --by michele --execute # once it is met: the rest recorded as not screened
+python scripts/screen.py sheet                       # unranked sheet (all awaiting)
 python scripts/screen.py decide --csv ~/Downloads/decisions_title_abstract_<date>.csv --by michele
 python scripts/screen.py sheet --stage full_text     # the full-text pass, same loop
 python scripts/screen.py decide --id C0012 --stage full_text --decision exclude --reason not_retrieved --by michele
@@ -92,6 +95,9 @@ python scripts/screen.py list --stage awaiting_ft    # ids of what is waiting (o
 | `search` | Live PubMed (E-utilities) or OpenAlex query; hits become candidates, de-duplicated by DOI / PMID / title+year; the search is one record in `screening/searches.yaml`. With `--strategy` the query, years and `--for` come from the protocol, the run records the strategy and protocol fingerprint, nothing is capped, an incomplete retrieval is refused, and `--execute` is refused until the protocol is locked. Every run (dry or not) reports how many benchmark papers it retrieved. PubMed queries over 10,000 hits are split by publication year. Network. | `--strategy` or `--query` · `--db pubmed\|openalex` `--years 2000-2026` `--for gap,entry` `--by` `--max` `--oa-field` `--notes` `--allow-unlocked` `--execute` |
 | `import` | The same from a RIS or CSV export (Scopus, Embase, PsycINFO, Web of Science); with `--strategy` the recorded query is the protocol's string for that database, otherwise give the query and date so the record is complete. | `--file` `--db` `--strategy` or `--query` · `--date` `--years` `--for` `--by` `--execute` |
 | `chase` | Enters a pillar paper by citation chasing (before 2000, primary healthy-volunteer study, no abstract …): `--cited-by` must name papers included under the protocol and `--why` says what the KB needs it for. Existing candidate → source added; else Crossref record from the DOI (or `--title --year`). Goes to full text, other-methods arm. Logs `CHASED`. | `--doi` or `--title --year` · `--cited-by` `--why` `--by` `--date` `--execute` |
+| `sheet --ranked` | Title/abstract sheet ordered by the prioritisation model (SCREENING.md §4.1), the top `--batch` records (default 200); prints the stopping-rule status. Keys `1`–`9` exclude with that reason and move on. | `--ranked` `--batch 200` |
+| `progress` | Prioritised screening against the stopping rule: share screened, last run of exclusions, validation papers screened. | `--json` |
+| `stop` | Once the stopping rule is met, records every database record still awaiting title/abstract as not screened (`not_screened_stopping_rule`). Logs `SCREEN-STOPPED`. | `--by` `--date` `--execute` |
 | `withdraw` | Takes back a recorded search (an incomplete export, a wrong file): the record moves to `withdrawn` in `searches.yaml` with the reason, candidates that came only from it leave the register, the id is never reused. Logs `SEARCH-WITHDRAWN`. | `<id>` `--why` `--by` `--execute` |
 | `recall` | Relative recall: benchmark papers found by any database search, per strategy (against the benchmark papers in its KB folders) and per database, and the list no search found. | `--json` |
 | `backfill` | Every `citations.md` key not in the register becomes an *other-source* candidate; extracted keys are stamped included `by: legacy`, `[refused]` excluded, seeds left awaiting assessment. Idempotent. | `--date` `--execute` |

@@ -379,6 +379,44 @@ class Withdraw(unittest.TestCase):
                  screen.load_abstracts) = orig
 
 
+class Prioritised(unittest.TestCase):
+    def test_ranking_puts_relevant_first(self):
+        import prioritise as P
+        rel = ["Voxel-based lesion symptom mapping of naming in chronic stroke aphasia",
+               "Arcuate fasciculus lesion load predicts speech production after stroke",
+               "White matter disconnection and sentence comprehension in post-stroke aphasia",
+               "Lesion location and recovery of aphasia: a voxel-wise study"]
+        irr = [f"Knee arthroplasty outcomes in cohort {i} of older adults" for i in range(30)] + \
+              [f"Dietary sodium and blood pressure trial {i}" for i in range(30)]
+        texts = {f"R{i}": x for i, x in enumerate(rel)} | {f"I{i}": x for i, x in enumerate(irr)}
+        texts["Q1"] = "Lesion symptom mapping of verbal fluency in stroke aphasia"
+        texts["Q2"] = "Knee arthroplasty outcomes in a new cohort of adults"
+        order = [i for i, _ in P.rank(texts, {"R0", "R1", "R2", "R3"}, set(), ["Q2", "Q1"], seed=3)]
+        self.assertEqual(order, ["Q1", "Q2"])
+        self.assertEqual(P.is_prior("C0001", 1, 0.5), P.is_prior("C0001", 1, 0.5))       # reproducible split
+        self.assertEqual(P.rank(texts, set(), set(), ["Q2", "Q1"]), [("Q2", 0.0), ("Q1", 0.0)])
+
+    def test_stopping_rule(self):
+        strategies = {"years": "2000-", "prioritised_screening": {"seed": 1, "prior_fraction": 0.0,
+                      "stop": {"min_screened_fraction": 0.5, "consecutive_exclusions": 3, "validation_found": 1.0}}}
+        db = lambda i, **k: {"id": f"C{i:04d}", "title": f"t{i}", "year": 2010, "sources": [{"search": "S001"}],
+                             "screening": [], **k}
+        cands = [db(i) for i in range(1, 9)] + [db(9, benchmark=True)]
+        seq = 1
+        for c, dec in zip(cands[:5], ["include", "exclude", "exclude", "exclude", "exclude"]):
+            self.assertIsNone(screen._apply_decision(c, "title_abstract", dec, "not_stroke" if dec == "exclude" else None,
+                                                     "michele", None, "2026-10-28", seq=seq))
+            seq += 1
+        st = S.stopping_state(cands, strategies)
+        self.assertEqual((st["records"], st["screened"], st["consecutiveExclusions"]), (9, 5, 4))
+        self.assertEqual(st["checks"], {"screened": True, "consecutive": True, "validation": False})   # C0009 not seen yet
+        self.assertFalse(st["met"])
+        self.assertIsNone(screen._apply_decision(cands[8], "title_abstract", "include", None, "michele", None, "2026-10-28", seq=seq))
+        st = S.stopping_state(cands, strategies)
+        self.assertEqual((st["consecutiveExclusions"], st["validationScreened"]), (0, 1))
+        self.assertFalse(st["met"])                    # the include broke the run of exclusions
+
+
 class Chase(unittest.TestCase):
     def test_pillar_by_citation_chasing(self):
         inc = {"id": "C0001", "title": "Included lesion study of naming", "year": 2015, "sources": [{"search": "S001"}],

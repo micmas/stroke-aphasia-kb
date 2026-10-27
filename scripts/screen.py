@@ -881,7 +881,8 @@ article.decided{opacity:.6}
 article:focus-within{border-color:#52489c;box-shadow:0 0 0 3px rgba(82,72,156,.12)}
 .t{font-weight:600;margin:0 0 .2rem}
 .m{font-size:.84rem;color:#5a5a66}
-.ab{font-size:.92rem;margin:.5rem 0}
+.ab{font-size:.92rem;margin:.5rem 0;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+article:focus-within .ab,article:focus .ab{-webkit-line-clamp:unset;display:block}
 .sug{font-size:.84rem;background:rgba(64,98,187,.09);border-left:3px solid #4062bb;padding:.3rem .6rem;border-radius:0 4px 4px 0}
 .dec{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;font-size:.9rem;margin-top:.5rem}
 .dec label{cursor:pointer}
@@ -908,9 +909,84 @@ try{ const saved=localStorage.getItem(KEY); if(saved) apply(JSON.parse(saved)); 
 refresh();
 document.getElementById('hide').addEventListener('change', (e)=>document.body.classList.toggle('hide-decided', e.target.checked));
 document.getElementById('dl').addEventListener('click', ()=>{ const o=state(); const rows=[['id','stage','decision','reason','note']]; for (const [id,s] of Object.entries(o)){ if(!s.decision) continue; if(s.decision==='exclude' && !s.reason){ alert(id+': an exclusion needs a reason'); return; } rows.push([id, document.body.dataset.stage, s.decision, s.decision==='exclude'?s.reason:'', s.note]); } const csv=rows.map(r=>r.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\\n'); const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'})); a.download='decisions_'+document.body.dataset.stage+'_'+new Date().toISOString().slice(0,10)+'.csv'; a.click(); });
-document.addEventListener('keydown', (e)=>{ if (e.target.tagName==='INPUT' && e.target.type==='text') return; const a=document.activeElement.closest ? document.activeElement.closest('article') : null; if(!a) return; const map={i:'include',e:'exclude',u:'unsure'}; if(map[e.key]){ const r=a.querySelector(`input[type=radio][value="${map[e.key]}"]`); if(r){ r.checked=true; refresh(); if(e.key!=='e'){ const next=a.nextElementSibling; if(next){ next.setAttribute('tabindex','-1'); next.focus(); next.scrollIntoView({block:'center'});} } else { a.querySelector('select').focus(); } } e.preventDefault(); } });
+document.addEventListener('keydown', (e)=>{ if (e.target.tagName==='INPUT' && e.target.type==='text') return; const a=document.activeElement.closest ? document.activeElement.closest('article') : null; if(!a) return;
+  if (/^[1-9]$/.test(e.key)) { const sel=a.querySelector('select'); const opt=sel.options[Number(e.key)]; if(opt){ a.querySelector('input[type=radio][value="exclude"]').checked=true; refresh(); sel.value=opt.value; refresh(); const next=a.nextElementSibling; if(next){ next.setAttribute('tabindex','-1'); next.focus(); next.scrollIntoView({block:'center'}); } } e.preventDefault(); return; }
+  const map={i:'include',e:'exclude',u:'unsure'}; if(map[e.key]){ const r=a.querySelector(`input[type=radio][value="${map[e.key]}"]`); if(r){ r.checked=true; refresh(); if(e.key!=='e'){ const next=a.nextElementSibling; if(next){ next.setAttribute('tabindex','-1'); next.focus(); next.scrollIntoView({block:'center'});} } else { a.querySelector('select').focus(); } } e.preventDefault(); } });
 for (const a of document.querySelectorAll('article')) a.setAttribute('tabindex','-1');
 """
+
+
+def _ranked(candidates: list[dict], todo: list[dict], abstracts: dict[str, str], batch: int) -> tuple[list[dict], str]:
+    """Order the title/abstract sheet by the prioritisation model (docs/SCREENING.md §4.1)."""
+    import prioritise as P
+    strategies = S.load_strategies()
+    cfg = S.prioritised_config(strategies)
+    prior, _ = S.benchmark_split(candidates, strategies)
+    texts = {c["id"]: f"{c.get('title') or ''}. {abstracts.get(c['id'], '')}" for c in candidates if not c.get("duplicate_of")}
+    pos, neg = set(prior), set()
+    for c in candidates:
+        for stg in ("title_abstract", "full_text"):
+            d = S.last_decision(c, stg)
+            if not d or str(d.get("by")).lower() == "legacy":
+                continue
+            if d.get("decision") == "include":
+                pos.add(c["id"])
+            elif d.get("decision") == "exclude" and d.get("reason") not in ("not_screened_stopping_rule", "not_retrieved"):
+                neg.add(c["id"])
+    order = P.rank(texts, pos, neg, [c["id"] for c in todo], seed=cfg["seed"])
+    by_id = {c["id"]: c for c in todo}
+    ranked = [by_id[i] for i, _ in order][: max(1, batch)]
+    st = S.stopping_state(candidates, strategies)
+    note = (f"ranked by {cfg.get('model', 'tfidf_naive_bayes')} on {len(pos)} relevant ({len(prior)} benchmark priors) and "
+            f"{len(neg)} excluded records; this sheet holds the top {len(ranked)} of {len(todo)} awaiting.\n"
+            + _stopping_line(st))
+    return ranked, note
+
+
+def _stopping_line(st: dict) -> str:
+    stop, ck = st["stop"], st["checks"]
+    v = "—" if st["validationFraction"] is None else f"{st['validationScreened']}/{st['validation']} ({100 * st['validationFraction']:.0f}%)"
+    mark = lambda ok: "✓" if ok else "·"
+    return (f"  stopping rule: {mark(ck['screened'])} screened {st['screened']}/{st['records']} ({100 * st['fraction']:.0f}% ≥ "
+            f"{100 * float(stop['min_screened_fraction']):.0f}%) · {mark(ck['consecutive'])} last {st['consecutiveExclusions']} "
+            f"decisions exclusions (≥ {stop['consecutive_exclusions']}) · {mark(ck['validation'])} validation papers screened {v} "
+            f"(≥ {100 * float(stop['validation_found']):.0f}%) → {'MET: `screen.py stop`' if st['met'] else 'keep screening'}")
+
+
+def cmd_progress(args) -> int:
+    st = S.stopping_state(S.load_candidates(), S.load_strategies())
+    if args.json:
+        print(json.dumps(st, indent=1))
+        return 0
+    print(f"Title/abstract screening: {st['screened']} of {st['records']} database records screened, {st['included']} kept for full text")
+    print(_stopping_line(st))
+    return 0
+
+
+def cmd_stop(args) -> int:
+    """Close the title/abstract pass when the stopping rule is met: every database record
+    still awaiting it is recorded as not screened (reason not_screened_stopping_rule)."""
+    candidates, strategies = S.load_candidates(), S.load_strategies()
+    st = S.stopping_state(candidates, strategies)
+    print(_stopping_line(st))
+    if not st["met"]:
+        raise SystemExit("The stopping rule is not met; keep screening (docs/SCREENING.md §4.1).")
+    rows = {r["id"]: r for r in S.enrich(candidates, {})}
+    left = [c for c in candidates if rows[c["id"]]["stage"] == "awaiting_ta" and rows[c["id"]]["arm"] == "databases"]
+    print(f"{len(left)} database records not screened would be recorded as such (reason not_screened_stopping_rule).")
+    if not args.execute:
+        print("Dry run — nothing written. Add --execute.")
+        return 0
+    today = args.date or dt.date.today().isoformat()
+    for c in left:
+        err = _apply_decision(c, "title_abstract", "exclude", "not_screened_stopping_rule", args.by,
+                              f"stopping rule met: {st['screened']}/{st['records']} screened, last {st['consecutiveExclusions']} "
+                              f"excluded, validation {st['validationScreened']}/{st['validation']}", today)
+        if err:
+            raise SystemExit(f"{c['id']}: {err}")
+    S.save_candidates(candidates)
+    _log("SCREEN-STOPPED", "title/abstract", f"{len(left)} records not screened | {st['screened']}/{st['records']} screened | by: {args.by}")
+    return 0
 
 
 def cmd_sheet(args) -> int:
@@ -930,6 +1006,9 @@ def cmd_sheet(args) -> int:
         todo = sorted(pool[:k], key=lambda c: c["id"])
     else:
         todo = [c for c in candidates if rows[c["id"]]["stage"] in want]
+    ranked_note = ""
+    if getattr(args, "ranked", False) and stage == "title_abstract" and not args.check and todo:
+        todo, ranked_note = _ranked(candidates, todo, abstracts, args.batch)
     if args.for_:
         searches = {s["id"]: s for s in S.load_searches()}
         want_for = set(args.for_.split(","))
@@ -948,14 +1027,17 @@ def cmd_sheet(args) -> int:
         print(f"No {STAGE_TEXT[stage]} decisions of record without a check decision yet." if args.check
               else f"Nothing awaiting {STAGE_TEXT[stage]} screening.")
         return 0
-    reasons = [(k, v["label"]) for k, v in S.REASONS.items() if stage == "full_text" or not v["ft_only"]]
+    reasons = [(k, v["label"]) for k, v in S.REASONS.items()
+               if (stage == "full_text" or not v["ft_only"]) and k != "not_screened_stopping_rule"]
+    legend = " · ".join(f"<kbd>{n}</kbd> {html.escape(l)}" for n, (_, l) in enumerate(reasons[:9], 1))
     built = dt.datetime.now().isoformat(timespec="minutes")
     parts = [f"<!doctype html><html lang=en><head><meta charset=utf-8><title>Screening — {STAGE_TEXT[stage]}</title>"
              f"<style>{SHEET_CSS}</style></head><body data-stage=\"{stage}\" data-built=\"{html.escape(built)}\">"
              f"<header><h1>Screening · {STAGE_TEXT[stage]}</h1><span class=n id=count></span>"
              f"<label><input type=checkbox id=hide> hide decided</label>"
              f"<button id=dl type=button>Download decisions CSV</button>"
-             f"<span class=m>Keys: <kbd>i</kbd> include · <kbd>e</kbd> exclude (then pick a reason) · <kbd>u</kbd> unsure · click a card first. "
+             f"<span class=m>Keys: <kbd>i</kbd> include · <kbd>u</kbd> unsure · <kbd>e</kbd> exclude (then pick a reason) — or exclude with a reason "
+             f"in one key: {legend} · click the first card to start; the focused card shows its whole abstract. "
              f"Then: <code>python scripts/screen.py decide --csv &lt;file&gt; --by &lt;you&gt;</code></span></header><main><form id=f>"]
     for c in todo:
         r = rows[c["id"]]
@@ -1002,13 +1084,15 @@ def cmd_sheet(args) -> int:
     SHEET_DIR.mkdir(parents=True, exist_ok=True)
     out = Path(args.out) if args.out else SHEET_DIR / (f"{stage}_check.html" if args.check else f"{stage}.html")
     out.write_text("".join(parts), encoding="utf-8")
+    if ranked_note:
+        print(ranked_note)
     print(f"{out}: {len(todo)} candidates to screen at {STAGE_TEXT[stage]}. Open it, decide, download the CSV, then\n"
           f"  python scripts/screen.py decide --csv <downloaded file> --by <your name>" + (" --role check" if args.check else ""))
     return 0
 
 
 def _apply_decision(c: dict, stage: str, decision: str, reason: str | None, by: str, note: str | None, date: str,
-                    role: str | None = None) -> str | None:
+                    role: str | None = None, seq: int | None = None) -> str | None:
     if stage not in S.STAGES:
         return f"stage must be one of {S.STAGES}"
     if decision not in S.DECISIONS:
@@ -1036,10 +1120,16 @@ def _apply_decision(c: dict, stage: str, decision: str, reason: str | None, by: 
     if reason:
         rec["reason"] = reason
     rec.update({"by": by, "date": date})
+    if seq:
+        rec["seq"] = seq              # global order of decisions (the stopping rule counts the last run of exclusions)
     if note:
         rec["note"] = note
     c.setdefault("screening", []).append(rec)
     return None
+
+
+def _next_seq(candidates: list[dict]) -> int:
+    return 1 + max([int(d.get("seq") or 0) for c in candidates for d in (c.get("screening") or [])] or [0])
 
 
 def cmd_decide(args) -> int:
@@ -1058,13 +1148,17 @@ def cmd_decide(args) -> int:
         raise SystemExit("give --csv FILE or --id/--stage/--decision")
     applied, errors = 0, 0
     counts: dict[str, int] = {}
+    seq_next = _next_seq(candidates)
     for cid, stage, decision, reason, note in todo:
         c = by_id.get(cid)
         if c is None:
             print(f"  {cid}: not in the register", file=sys.stderr)
             errors += 1
             continue
-        err = _apply_decision(c, stage, decision, reason, args.by, note, today, role=args.role)
+        seq = None if args.role else seq_next
+        err = _apply_decision(c, stage, decision, reason, args.by, note, today, role=args.role, seq=seq)
+        if seq and not err:
+            seq_next += 1
         if err:
             print(f"  {cid}: {err}", file=sys.stderr)
             errors += 1
@@ -1218,6 +1312,8 @@ def print_status(data: dict) -> None:
           f"rejected {kb['rejected']} · refused {kb['refused']}")
     if data.get("recall"):
         print_recall(data["recall"])
+    if (data.get("stopping") or {}).get("screened"):
+        print(_stopping_line(data["stopping"]))
     for stg, a in (data.get("agreement") or {}).items():
         if a.get("pairs"):
             print(f"  Dual screening at {STAGE_TEXT[stg]}: {a['pairs']} pairs, kappa {a['kappa']:.2f}")
@@ -1293,6 +1389,14 @@ def _cli(argv=None) -> int:
     p = sub.add_parser("recall", help="relative recall of the database searches against the benchmark")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_recall)
+    p = sub.add_parser("progress", help="prioritised screening against the stopping rule")
+    p.add_argument("--json", action="store_true")
+    p.set_defaults(fn=cmd_progress)
+    p = sub.add_parser("stop", help="close the title/abstract pass once the stopping rule is met")
+    p.add_argument("--by", required=True)
+    p.add_argument("--date")
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(fn=cmd_stop)
     p = sub.add_parser("withdraw", help="take back a recorded search (incomplete export, wrong file), with the reason")
     p.add_argument("id")
     p.add_argument("--why", required=True)
@@ -1323,6 +1427,8 @@ def _cli(argv=None) -> int:
     p.add_argument("--for", dest="for_", help="only candidates serving these gap/entry ids")
     p.add_argument("--ids")
     p.add_argument("--out")
+    p.add_argument("--ranked", action="store_true", help="title/abstract: order by the prioritisation model (§4.1)")
+    p.add_argument("--batch", type=int, default=200, help="with --ranked: how many of the top-ranked records to put in the sheet")
     p.add_argument("--check", action="store_true", help="a blind sheet for a second screener (already-decided candidates)")
     p.add_argument("--sample", type=float, default=0.2, help="with --check: a fraction (0.2) or a number (50) of candidates")
     p.add_argument("--seed", type=int, default=1, help="with --check: random seed, so the sample is reproducible")
