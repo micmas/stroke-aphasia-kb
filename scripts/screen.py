@@ -314,13 +314,15 @@ def openalex_record(w: dict) -> dict:
 
 def parse_ris(text: str) -> list[dict]:
     out, rec = [], {}
-    for line in text.splitlines():
-        m = re.match(r"^([A-Z][A-Z0-9])  - ?(.*)$", line)
+    for line in text.lstrip("\ufeff").splitlines():
+        m = re.match(r"^([A-Z][A-Z0-9])  - ?(.*)$", line.lstrip("\ufeff"))
         if not m:
             continue
         tag, val = m.group(1), m.group(2).strip()
         if tag == "TY":
             rec = {"authors": [], "title": "", "abstract": ""}
+        elif not rec:
+            continue                      # a tag outside a TY … ER record
         elif tag == "ER":
             if rec:
                 out.append(rec)
@@ -338,7 +340,7 @@ def parse_ris(text: str) -> list[dict]:
             rec["abstract"] = (rec.get("abstract") + " " + val).strip() if rec.get("abstract") else val
         elif tag in ("JO", "JF", "T2", "JA"):
             rec.setdefault("journal", val)
-        elif tag in ("AN", "ID", "C1") and re.fullmatch(r"\d{6,9}", val):
+        elif tag in ("AN", "ID", "C1", "C2") and re.fullmatch(r"\d{6,9}", val):   # Scopus puts the PubMed ID in C2
             rec.setdefault("pmid", val)
         elif tag == "UR" and "doi.org" in val and not rec.get("doi"):
             rec["doi"] = S.norm_doi(val)
@@ -467,7 +469,7 @@ def cmd_search(args) -> int:
 
 def cmd_import(args) -> int:
     _resolve_strategy(args)
-    text = Path(args.file).read_text(encoding="utf-8", errors="replace")
+    text = Path(args.file).expanduser().read_text(encoding="utf-8-sig", errors="replace")
     records = parse_ris(text) if args.file.lower().endswith(".ris") or "TY  -" in text[:2000] else parse_csv(text)
     return _ingest(args, records, len(records), file=str(Path(args.file).name))
 
