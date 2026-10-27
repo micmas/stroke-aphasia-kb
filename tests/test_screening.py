@@ -126,6 +126,19 @@ class Register(unittest.TestCase):
         self.assertIs(S.find_duplicate({"title": a["title"], "year": 2014}, idx), a)        # no ids: same paper
         self.assertIs(S.find_duplicate({"title": a["title"], "year": 2014, "pmid": "1"}, idx), a)
 
+    def test_near_duplicates(self):
+        a = {"id": "C0002", "title": "Neural recruitment for the production of native and novel speech", "year": 2009,
+             "doi": "10.1/a", "sources": [{"search": "S001"}], "screening": []}
+        b = {"id": "C0009", "title": "Neural recruitment for the production of native and novel speech.", "year": 2008,
+             "sources": [{"search": "S015"}], "screening": []}
+        c = {"id": "C0010", "title": "Neural recruitment for the production of native and novel speech", "year": 2009,
+             "doi": "10.1/other", "sources": [{"search": "S008"}], "screening": []}            # different DOI: different paper
+        pairs = S.near_duplicates([b, a, c])
+        self.assertEqual([(k["id"], d["id"]) for k, d in pairs], [("C0002", "C0009")])
+        S.merge_duplicate(a, b, "michele", "2026-10-28")
+        self.assertEqual((b["duplicate_of"], a["sources"]), ("C0002", [{"search": "S001"}, {"search": "S015"}]))
+        self.assertEqual(S.stage_of(b), ("duplicate", None))
+
     def test_stages(self):
         c = {"id": "C1", "sources": [{"search": "S1"}], "screening": []}
         self.assertEqual(S.stage_of(c), ("awaiting_ta", None))
@@ -180,7 +193,9 @@ class Register(unittest.TestCase):
         rows = S.enrich(cands, facts)
         p = S.prisma_counts(rows, searches)
         self.assertEqual(p["identification"]["databases"]["records"], 10)
-        self.assertEqual(p["identification"]["duplicatesRemoved"], 1)
+        # 10 records retrieved became 4 live candidates: 5 merged on import + 1 merged later (C5)
+        self.assertEqual(p["identification"]["duplicatesRemoved"], 6)
+        self.assertEqual(p["identification"]["duplicatesMerged"], 1)
         sc = p["screening"]
         self.assertEqual((sc["screened"], sc["excludedTitleAbstract"], sc["awaitingTitleAbstract"]), (4, 1, 1))
         self.assertEqual((sc["sought"], sc["notRetrieved"], sc["assessed"], sc["included"]), (2, 1, 1, 1))

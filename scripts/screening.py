@@ -261,6 +261,47 @@ def _conflicting_ids(a: dict, b: dict) -> bool:
     return bool(da and db_ and da != db_)
 
 
+def near_duplicates(candidates: list[dict]) -> list[tuple[dict, dict]]:
+    """(keep, duplicate) pairs the import could not merge: the same normalised title
+    (first 90 characters) with publication years at most one apart (epub vs print)
+    and no conflicting PMID or DOI. The record with identifiers, else the older id, is kept."""
+    groups = collections.defaultdict(list)
+    for c in candidates:
+        if c.get("duplicate_of"):
+            continue
+        t = norm_title(c.get("title"))
+        if len(t) >= 30:
+            groups[t[:90]].append(c)
+    out = []
+    for v in groups.values():
+        if len(v) < 2:
+            continue
+        v = sorted(v, key=lambda c: (not (c.get("doi") or c.get("pmid")), not c.get("key"), str(c.get("id"))))
+        keep = v[0]
+        for d in v[1:]:
+            if _conflicting_ids(keep, d):
+                continue
+            ya, yb = keep.get("year"), d.get("year")
+            if ya and yb and abs(int(ya) - int(yb)) > 1:
+                continue
+            out.append((keep, d))
+    return out
+
+
+def merge_duplicate(keep: dict, dup: dict, by: str, date: str) -> None:
+    """Mark ``dup`` as a duplicate of ``keep``; its sources and identifiers move to ``keep``."""
+    for src in dup.get("sources") or []:
+        if src not in (keep.get("sources") or []):
+            keep.setdefault("sources", []).append(src)
+    for k in ("doi", "pmid", "openalex", "journal", "key"):
+        if not keep.get(k) and dup.get(k):
+            keep[k] = dup[k]
+    if dup.get("benchmark"):
+        keep["benchmark"] = True
+    dup["duplicate_of"] = keep["id"]
+    dup["duplicate"] = {"by": by, "date": date}
+
+
 def find_duplicate(rec: dict, index: dict[str, dict]) -> dict | None:
     for k in identity_keys(rec):
         if k in index:
@@ -552,7 +593,10 @@ def prisma_counts(rows: list[dict], searches: list[dict]) -> dict:
         "identification": {
             "databases": {"records": sum(by_db.values()), "byDatabase": dict(by_db), "candidates": len(db) + sum(1 for r in dups if r["arm"] == "databases")},
             "other": {"records": len(other) + sum(1 for r in dups if r["arm"] == "other"), "byKind": dict(by_kind)},
-            "duplicatesRemoved": len(dups),
+            # PRISMA "duplicates removed": every database record that did not become a new
+            # candidate (merged on import by DOI / PMID / title + year), plus merges made later
+            "duplicatesRemoved": max(0, sum(by_db.values()) - len(db) - sum(1 for r in dups if r["arm"] == "databases")) + len(dups),
+            "duplicatesMerged": len(dups),
         },
         "screening": {
             "screened": len(db),
