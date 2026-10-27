@@ -33,10 +33,12 @@ stroke, at least one of:
   a domain-general cognitive outcome after stroke
   (executive function, working memory, cognitive control) (regions/,
   impairments/);
-- **therapy → response**: the effect of a named therapy or ingredient
-  on a language outcome, or who responds (therapies/, ingredients/);
-- **predictor → outcome**: a demographic, clinical, lesion or genetic
-  predictor of aphasia severity or recovery (predictors/);
+- **therapy → response**: the neural correlates or imaging/lesion
+  predictors of response to a named therapy or ingredient (therapies/,
+  ingredients/);
+- **predictor → outcome**: a lesion or imaging predictor of aphasia
+  severity or recovery, alone or with demographic, clinical or genetic
+  predictors (predictors/);
 - **synthesis**: a systematic review, scoping review or meta-analysis of
   any of the above; a narrative review only when it covers neuroimaging
   or lesion evidence in stroke (reviews/, since schema v2.4).
@@ -47,6 +49,15 @@ in scope as *recruitment* evidence (see `schema.md`, relationship
 (coordinate-based: ALE, MKDA, SDM); it must still concern a function the
 KB tracks. A primary healthy-volunteer study enters only as a pillar
 paper by citation chasing (§3.4).
+
+**Imaging-anchored scope (protocol v2).** The knowledge base serves
+CALMaR, which interprets an individual's lesion, so a *primary* study is
+in scope only when it relates brain imaging or lesion data to an
+outcome. Evidence without imaging — the efficacy of a therapy,
+clinical and demographic predictors such as age, initial severity or
+time post onset — enters **only through systematic reviews and
+meta-analyses** (synthesis). A primary study without imaging is
+excluded with `no_imaging_primary`.
 
 **Publication years: 2000 onward** (`years` in
 `screening/strategies.yaml`). Earlier papers enter only as pillar papers
@@ -63,6 +74,7 @@ reports; change this list and `screening.REASONS` together.
 |---|---|---|
 | `not_stroke` | the population is not (post-)stroke: tumour, TBI, primary progressive aphasia, dementia, developmental; or healthy-only with no language-mapping question | both passes |
 | `not_aphasia` | no aphasia, language, communication (motor speech — dysarthria, apraxia of speech — and prosody included) or domain-general cognitive outcome is reported (e.g. motor recovery only, spatial neglect only) | both passes |
+| `no_imaging_primary` | a primary study with no brain imaging or lesion data related to the outcome (e.g. a therapy trial, a clinical prognostic cohort); its evidence enters through syntheses (§1) | both passes |
 | `narrative_review_out_of_scope` | a narrative (non-systematic) review that does not cover neuroimaging or lesion evidence in stroke | both passes |
 | `out_of_date_range` | published before 2000 (the protocol's `years`) and not entered as a pillar paper by citation chasing | both passes |
 | `design_out_of_scope` | nothing the schema can hold: no lesion–behaviour, therapy-response, predictor or network evidence (pure psycholinguistic modelling, instrument validation without brain or outcome data, qualitative studies of lived experience) | both passes |
@@ -90,19 +102,24 @@ papers").
 
 The searches are written before they are run, in
 `screening/strategies.yaml`: one strategy per question family of §1
-(`q1_lesion_impairment`, `q2a_therapy_efficacy`,
-`q2b_therapy_response_neural`, `q3_predictor_outcome`, `q4_synthesis`,
-`q5_recruitment_meta`) and one per evidence gap (`gap_…`). Each is a
+(`q1_lesion_impairment`, `q1b_language_lesion_mapping`,
+`q1c_cognition_prosody_lesion`, `q2b_therapy_response_neural`,
+`q3_predictor_outcome`, `q4_synthesis`, `q5_recruitment_meta`; protocol
+v2 removed `q2a_therapy_efficacy` and requires imaging in q2b and q3)
+and one per evidence gap (`gap_…`). Each is a
 combination of shared concept blocks (aphasia, stroke, imaging, therapy,
 trial design, response, predictor, synthesis), written once per database
 — PubMed (MeSH + title/abstract, truncation), OpenAlex (boolean
 title + abstract filter, no wildcards) and Scopus (`TITLE-ABS-KEY`).
 `screen.py strategies --show <id> --db <db>` prints the expanded string.
 
-Databases: **PubMed** and **Scopus** for every question strategy, and
-**PsycINFO** for q1–q3 (much of the aphasia literature, e.g.
-*Aphasiology*, is poorly covered by MEDLINE); **OpenAlex** is run as a
-free supplement and for the gap strategies. Scopus and PsycINFO are run
+Databases: **PubMed**, **Scopus** and **PsycINFO** for every question
+strategy (much of the aphasia literature, e.g. *Aphasiology*, is not in
+MEDLINE). **OpenAlex** is a conditional supplement: after the other three,
+each question strategy is dry-run in OpenAlex and recorded only if it
+retrieves benchmark papers none of them found (the dry run lists them);
+otherwise the report says so. The gap strategies run in PubMed and
+OpenAlex. Scopus and PsycINFO are run
 in their own interface through UQ Library access with the string from
 `screen.py strategies --show <id> --db scopus|psycinfo` (PsycINFO is
 APA PsycInfo on EBSCOhost: TI/AB fields, `DE` subject headings, `ZC`

@@ -548,3 +548,5 @@ add an `EXTRACTED` line for every run.
 2026-10-27 | SEARCHED | — | S008 pubmed | 908 records | 829 new candidates (register 11065→11894) | strategy q5_recruitment_meta v1 bf2a8e24bc92 | by: michele
 2026-10-27 | SEARCHED | — | S009 openalex | 6236 records | 3206 new candidates (register 11894→15100) | strategy q1_lesion_impairment v1 bf2a8e24bc92 | by: michele
 2026-10-27 | SEARCHED | — | S010 scopus | 98 records | 71 new candidates (register 15100→15171) | strategy q1_lesion_impairment v1 bf2a8e24bc92 | by: michele
+2026-10-27 | SEARCH-WITHDRAWN | — | S010 | Scopus export held 98 records, not the full result set | 71 candidates removed | by: michele
+2026-10-27 | SCREEN-RESET | — | screening register | pilot searches S001–S010 under protocol v1 (PubMed q1–q5, OpenAlex q1, Scopus q1 partial) set aside before any screening; register restored to its pre-lock state (164 legacy candidates); protocol revised to v2 (scope A: imaging-anchored primary studies, non-imaging evidence from syntheses) | by: michele
