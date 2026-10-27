@@ -263,6 +263,20 @@ candidates they became.
    fetch the PDF into `papers/`, `intake_papers.py --execute`,
    `extract.py`, review, `promote.py` (`HOWTO.md`).
 
+### 4.0 The screening workbench
+
+`python scripts/screen_app.py --by <you>` opens the screening workbench in
+the browser (it runs on this computer only and needs no network). One
+record at a time, keyboard first: `i` include, `u` unsure, `1`–`9`
+exclude with that reason, `0` exclude as Other (write the note first),
+`n` note, `z` undo. Each decision is saved as you make it (journal at
+once, register a few seconds later and on quit); the title/abstract queue
+is ranked (§4.1) and re-ranked every 50 decisions; the header shows the
+stopping rule. `--stage ft` is the full-text pass (with the PDF from
+`papers/` when there is one); `--check --sample 0.2 --seed <n>` is the
+second screener's blind sample. The HTML sheet and `decide --csv` below
+remain for working without the app.
+
 ### 4.1 Prioritised title/abstract screening and the stopping rule
 
 The title/abstract pass is prioritised (active learning, as in ASReview):

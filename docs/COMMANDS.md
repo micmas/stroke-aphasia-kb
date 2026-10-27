@@ -37,6 +37,19 @@ git add -A && git commit -m "..." && git pull --rebase --autostash && git push
 
 ## 0. Finding papers — the screening register
 
+### `screen_app.py` — the screening workbench
+
+```
+python scripts/screen_app.py --by michele                      # title/abstract, ranked; opens http://127.0.0.1:8766/
+python scripts/screen_app.py --by michele --stage ft           # full text
+python scripts/screen_app.py --by alex --check --sample 0.2 --seed 1   # second screener, blind
+```
+
+Keys: `i` include · `u` unsure · `1`–`9` exclude with that reason · `0` Other (note first) · `n` note · `z` undo.
+Decisions are saved as you go (journal `screening/_sheet/app_journal.jsonl`, register a few seconds later, and on Ctrl-C);
+re-ranked every `--rerank` decisions (default 50). Offline. Don't run other register-writing commands while it is open.
+
+
 ### `screen.py` — search, screen, hand over
 
 The systematic front end of the pipeline (protocol: [`SCREENING.md`](SCREENING.md)).
