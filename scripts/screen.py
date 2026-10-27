@@ -496,6 +496,9 @@ def _ingest(args, records, total, file) -> int:
     bench_every = [c for c in candidates if S.is_benchmark(c) and not c.get("duplicate_of")]
     bench_all = [c for c in bench_every if in_win(c)]
     bench_hit = [c for c in S.benchmark_hits(records, candidates) if in_win(c)]
+    searches_before = [x for x in searches if x.get("id") != sid]
+    already_searched = {c["id"] for c in candidates
+                        if any(isinstance(x, dict) and x.get("search") for x in c.get("sources") or [])}
     before = len(candidates)
     new, known = add_records(records, sid, candidates, abstracts)
     print(f"{sid} {args.db}: {total} hits, {len(records)} retrieved → {new} new candidates, {known} already in the register"
@@ -525,6 +528,10 @@ def _ingest(args, records, total, file) -> int:
                         print(f"    … {len(missed) - 40} more")
         if line:
             print(line)
+        fresh = [c for c in bench_hit if c["id"] not in already_searched]
+        if searches_before:
+            print(f"  new for the benchmark: {len(fresh)} of these were not found by any recorded search"
+                  + (": " + ", ".join(f"{c['id']} {c.get('key') or ''}".strip() for c in fresh[:15]) if fresh else ""))
     if total and len(records) < total and args.db in ("pubmed", "openalex"):
         msg = f"  only {len(records)} of {total} hits were retrieved"
         if args.db == "pubmed" and LAST_MISSING:
