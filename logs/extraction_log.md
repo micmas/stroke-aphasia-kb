@@ -537,3 +537,12 @@ add an `EXTRACTED` line for every run.
 2026-10-27 | BACKFILLED | — | melodic_intonation_therapy | therapy | 1 finding(s) filled from the therapy entry itself | tool: backfill.py
 2026-10-27 | BACKFILLED | — | phonological_component_analysis | therapy | 4 finding(s) filled from the therapy entry itself | tool: backfill.py
 2026-10-27 | APPROVED | ? | anomia | reviewer: human:michele | tier: B
+2026-10-27 | SCREEN-REBASELINE | — | screening register | 152 legacy decisions moved to `legacy` | benchmark 151 | protocol bf2a8e24bc92
+2026-10-27 | SEARCHED | — | S001 pubmed | 4465 records | 4375 new candidates (register 164→4539) | strategy q1_lesion_impairment v1 bf2a8e24bc92 | by: michele
+2026-10-27 | SEARCHED | — | S002 pubmed | 2145 records | 1380 new candidates (register 4539→5919) | strategy q1b_language_lesion_mapping v1 bf2a8e24bc92 | by: michele
+2026-10-27 | SEARCHED | — | S003 pubmed | 1041 records | 680 new candidates (register 5919→6599) | strategy q1c_cognition_prosody_lesion v1 bf2a8e24bc92 | by: michele
+2026-10-27 | SEARCHED | — | S004 pubmed | 2375 records | 2065 new candidates (register 6599→8664) | strategy q2a_therapy_efficacy v1 bf2a8e24bc92 | by: michele
+2026-10-27 | SEARCHED | — | S005 pubmed | 2864 records | 443 new candidates (register 8664→9107) | strategy q2b_therapy_response_neural v1 bf2a8e24bc92 | by: michele
+2026-10-27 | SEARCHED | — | S006 pubmed | 4037 records | 1415 new candidates (register 9107→10522) | strategy q3_predictor_outcome v1 bf2a8e24bc92 | by: michele
+2026-10-27 | SEARCHED | — | S007 pubmed | 1704 records | 543 new candidates (register 10522→11065) | strategy q4_synthesis v1 bf2a8e24bc92 | by: michele
+2026-10-27 | SEARCHED | — | S008 pubmed | 908 records | 829 new candidates (register 11065→11894) | strategy q5_recruitment_meta v1 bf2a8e24bc92 | by: michele
