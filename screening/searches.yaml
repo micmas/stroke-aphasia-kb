@@ -425,3 +425,277 @@ searches:
     fingerprint: 8d8dc2e70d35
     commit: 9ce9499
     locked: true
+- id: S015
+  database: psycinfo
+  query: >-
+    (DE "Aphasia" OR DE "Dysarthria" OR TI (aphasi* OR dysphasi* OR anomi* OR "word finding" OR "word
+    retrieval" OR "naming impairment*" OR "naming deficit*" OR "language impairment*" OR "language deficit*"
+    OR "language disorder*" OR "apraxia of speech" OR dysarthri*) OR AB (aphasi* OR dysphasi* OR anomi*
+    OR "word finding" OR "word retrieval" OR "naming impairment*" OR "naming deficit*" OR "language impairment*"
+    OR "language deficit*" OR "language disorder*" OR "apraxia of speech" OR dysarthri*)) AND (DE "Cerebrovascular
+    Accidents" OR DE "Cerebrovascular Disorders" OR TI (stroke* OR poststroke OR cerebrovascular OR infarct*
+    OR "intracerebral hemorrhage" OR "intracerebral haemorrhage" OR "brain damage*" OR "brain-damaged"
+    OR "hemisphere damage*" OR "left hemisphere lesion*" OR "focal damage" OR "focal lesion*") OR AB (stroke*
+    OR poststroke OR cerebrovascular OR infarct* OR "intracerebral hemorrhage" OR "intracerebral haemorrhage"
+    OR "brain damage*" OR "brain-damaged" OR "hemisphere damage*" OR "left hemisphere lesion*" OR "focal
+    damage" OR "focal lesion*")) AND (DE "Magnetic Resonance Imaging" OR DE "Functional Magnetic Resonance
+    Imaging" OR DE "Neuroimaging" OR DE "Diffusion Tensor Imaging" OR TI (lesion* OR "symptom mapping"
+    OR "voxel-based" OR "voxel-wise" OR VLSM OR "lesion load" OR tractograph* OR "diffusion tensor" OR
+    "white matter" OR fascicul* OR disconnect* OR connectom* OR "neural correlate*" OR neuroanatom* OR
+    "brain region*" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity
+    OR reorgani*) OR AB (lesion* OR "symptom mapping" OR "voxel-based" OR "voxel-wise" OR VLSM OR "lesion
+    load" OR tractograph* OR "diffusion tensor" OR "white matter" OR fascicul* OR disconnect* OR connectom*
+    OR "neural correlate*" OR neuroanatom* OR "brain region*" OR cortical OR subcortical OR MRI OR fMRI
+    OR perfusion OR hypoperfusion OR plasticity OR reorgani*))
+  date: '2026-10-27'
+  run_by: michele
+  hits: 2319
+  retrieved: 2319
+  for:
+  - q1_lesion_impairment
+  filters:
+    years: 2000-
+  file: psycinfo_q1_lesion_impairment_2319.ris
+  strategy: q1_lesion_impairment
+  protocol:
+    version: 2
+    fingerprint: 8d8dc2e70d35
+    commit: 9ce9499
+    locked: true
+- id: S016
+  database: psycinfo
+  query: >-
+    (TI (alexi* OR dyslexi* OR agraphi* OR dysgraphi* OR agrammati* OR paraphasi* OR "language comprehension"
+    OR "speech comprehension" OR "sentence comprehension" OR "auditory comprehension" OR "verbal fluency"
+    OR "speech fluency" OR "speech production" OR naming OR "semantic processing" OR "semantic cognition"
+    OR "phonological processing" OR "speech perception" OR language OR prosod*) OR AB (alexi* OR dyslexi*
+    OR agraphi* OR dysgraphi* OR agrammati* OR paraphasi* OR "language comprehension" OR "speech comprehension"
+    OR "sentence comprehension" OR "auditory comprehension" OR "verbal fluency" OR "speech fluency" OR
+    "speech production" OR naming OR "semantic processing" OR "semantic cognition" OR "phonological processing"
+    OR "speech perception" OR language OR prosod*)) AND (DE "Cerebrovascular Accidents" OR DE "Cerebrovascular
+    Disorders" OR TI (stroke* OR poststroke OR cerebrovascular OR infarct* OR "intracerebral hemorrhage"
+    OR "intracerebral haemorrhage" OR "brain damage*" OR "brain-damaged" OR "hemisphere damage*" OR "left
+    hemisphere lesion*" OR "focal damage" OR "focal lesion*") OR AB (stroke* OR poststroke OR cerebrovascular
+    OR infarct* OR "intracerebral hemorrhage" OR "intracerebral haemorrhage" OR "brain damage*" OR "brain-damaged"
+    OR "hemisphere damage*" OR "left hemisphere lesion*" OR "focal damage" OR "focal lesion*")) AND (TI
+    ("symptom mapping" OR VLSM OR "voxel-based lesion*" OR "lesion-symptom" OR "lesion symptom" OR "lesion-behavio*"
+    OR "lesion-deficit" OR "lesion mapping" OR "lesion analys*" OR "lesion location*" OR "lesion site*"
+    OR "lesion load" OR "lesion stud*" OR "lesion pattern*" OR "lesion-based" OR disconnect* OR tractograph*
+    OR "white matter" OR "brain damage*" OR "brain-damaged" OR "voxel-based" OR "voxel based" OR "lesion
+    loci" OR "lesion locus") OR AB ("symptom mapping" OR VLSM OR "voxel-based lesion*" OR "lesion-symptom"
+    OR "lesion symptom" OR "lesion-behavio*" OR "lesion-deficit" OR "lesion mapping" OR "lesion analys*"
+    OR "lesion location*" OR "lesion site*" OR "lesion load" OR "lesion stud*" OR "lesion pattern*" OR
+    "lesion-based" OR disconnect* OR tractograph* OR "white matter" OR "brain damage*" OR "brain-damaged"
+    OR "voxel-based" OR "voxel based" OR "lesion loci" OR "lesion locus"))
+  date: '2026-10-27'
+  run_by: michele
+  hits: 2389
+  retrieved: 2389
+  for:
+  - q1_lesion_impairment
+  filters:
+    years: 2000-
+  file: psycinfo_q1b_language_lesion_mapping_2389.ris
+  strategy: q1b_language_lesion_mapping
+  protocol:
+    version: 2
+    fingerprint: 8d8dc2e70d35
+    commit: 9ce9499
+    locked: true
+- id: S017
+  database: psycinfo
+  query: >-
+    (((DE "Executive Function" OR TI (cogniti* OR executive OR "working memory" OR "short-term memory"
+    OR "cognitive control" OR "processing speed" OR "decision making" OR "problem solving" OR reasoning
+    OR "attentional control" OR prosod* OR "emotion recognition") OR AB (cogniti* OR executive OR "working
+    memory" OR "short-term memory" OR "cognitive control" OR "processing speed" OR "decision making" OR
+    "problem solving" OR reasoning OR "attentional control" OR prosod* OR "emotion recognition")) AND
+    (TI ("symptom mapping" OR VLSM OR "voxel-based lesion*" OR "voxel-wise lesion*" OR "lesion-symptom"
+    OR "lesion symptom" OR "lesion-behavio*" OR "lesion-deficit" OR "lesion mapping" OR "lesion analys*"
+    OR "lesion location*" OR "lesion loci" OR "lesion locus" OR "lesion site*" OR "lesion load" OR "lesion
+    network mapping" OR "strategic infarct*" OR "infarct location*" OR disconnectom* OR "lesion-based"
+    OR "lesion pattern*") OR AB ("symptom mapping" OR VLSM OR "voxel-based lesion*" OR "voxel-wise lesion*"
+    OR "lesion-symptom" OR "lesion symptom" OR "lesion-behavio*" OR "lesion-deficit" OR "lesion mapping"
+    OR "lesion analys*" OR "lesion location*" OR "lesion loci" OR "lesion locus" OR "lesion site*" OR
+    "lesion load" OR "lesion network mapping" OR "strategic infarct*" OR "infarct location*" OR disconnectom*
+    OR "lesion-based" OR "lesion pattern*"))) OR ((DE "Prosody" OR TI (prosod* OR aprosodi* OR "emotion
+    recognition" OR "tone of voice") OR AB (prosod* OR aprosodi* OR "emotion recognition" OR "tone of
+    voice")) AND (DE "Magnetic Resonance Imaging" OR DE "Functional Magnetic Resonance Imaging" OR DE
+    "Neuroimaging" OR DE "Diffusion Tensor Imaging" OR TI (lesion* OR "symptom mapping" OR "voxel-based"
+    OR "voxel-wise" OR VLSM OR "lesion load" OR tractograph* OR "diffusion tensor" OR "white matter" OR
+    fascicul* OR disconnect* OR connectom* OR "neural correlate*" OR neuroanatom* OR "brain region*" OR
+    cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*) OR
+    AB (lesion* OR "symptom mapping" OR "voxel-based" OR "voxel-wise" OR VLSM OR "lesion load" OR tractograph*
+    OR "diffusion tensor" OR "white matter" OR fascicul* OR disconnect* OR connectom* OR "neural correlate*"
+    OR neuroanatom* OR "brain region*" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion
+    OR plasticity OR reorgani*)))) AND (DE "Cerebrovascular Accidents" OR DE "Cerebrovascular Disorders"
+    OR TI (stroke* OR poststroke OR cerebrovascular OR infarct* OR "intracerebral hemorrhage" OR "intracerebral
+    haemorrhage" OR "brain damage*" OR "brain-damaged" OR "hemisphere damage*" OR "left hemisphere lesion*"
+    OR "focal damage" OR "focal lesion*") OR AB (stroke* OR poststroke OR cerebrovascular OR infarct*
+    OR "intracerebral hemorrhage" OR "intracerebral haemorrhage" OR "brain damage*" OR "brain-damaged"
+    OR "hemisphere damage*" OR "left hemisphere lesion*" OR "focal damage" OR "focal lesion*"))
+  date: '2026-10-27'
+  run_by: michele
+  hits: 625
+  retrieved: 625
+  for:
+  - q1_lesion_impairment
+  filters:
+    years: 2000-
+  file: psycinfo_q1c_cognition_prosody_lesion_625.ris
+  strategy: q1c_cognition_prosody_lesion
+  protocol:
+    version: 2
+    fingerprint: 8d8dc2e70d35
+    commit: 9ce9499
+    locked: true
+- id: S018
+  database: psycinfo
+  query: >-
+    (DE "Aphasia" OR DE "Dysarthria" OR TI (aphasi* OR dysphasi* OR anomi* OR "word finding" OR "word
+    retrieval" OR "naming impairment*" OR "naming deficit*" OR "language impairment*" OR "language deficit*"
+    OR "language disorder*" OR "apraxia of speech" OR dysarthri*) OR AB (aphasi* OR dysphasi* OR anomi*
+    OR "word finding" OR "word retrieval" OR "naming impairment*" OR "naming deficit*" OR "language impairment*"
+    OR "language deficit*" OR "language disorder*" OR "apraxia of speech" OR dysarthri*)) AND (DE "Speech
+    Therapy" OR DE "Language Therapy" OR DE "Transcranial Magnetic Stimulation" OR TI (therap* OR treatment*
+    OR rehabilit* OR intervention* OR training OR tDCS OR rTMS OR "brain stimulation" OR "transcranial
+    magnetic stimulation" OR "transcranial direct current stimulation" OR pharmacotherap*) OR AB (therap*
+    OR treatment* OR rehabilit* OR intervention* OR training OR tDCS OR rTMS OR "brain stimulation" OR
+    "transcranial magnetic stimulation" OR "transcranial direct current stimulation" OR pharmacotherap*))
+    AND (DE "Magnetic Resonance Imaging" OR DE "Functional Magnetic Resonance Imaging" OR DE "Neuroimaging"
+    OR DE "Diffusion Tensor Imaging" OR TI ("symptom mapping" OR "voxel-based" OR "voxel based" OR "voxel-wise"
+    OR VLSM OR "lesion load" OR "lesion location*" OR "lesion site*" OR "lesion volume" OR "lesion size"
+    OR "lesion mapping" OR tractograph* OR "diffusion tensor" OR DTI OR "white matter" OR fascicul* OR
+    disconnect* OR connectom* OR connectivity OR "neural correlate*" OR fMRI OR "functional MRI" OR "functional
+    magnetic" OR perfusion OR neuroimaging) OR AB ("symptom mapping" OR "voxel-based" OR "voxel based"
+    OR "voxel-wise" OR VLSM OR "lesion load" OR "lesion location*" OR "lesion site*" OR "lesion volume"
+    OR "lesion size" OR "lesion mapping" OR tractograph* OR "diffusion tensor" OR DTI OR "white matter"
+    OR fascicul* OR disconnect* OR connectom* OR connectivity OR "neural correlate*" OR fMRI OR "functional
+    MRI" OR "functional magnetic" OR perfusion OR neuroimaging)) AND ((DE "Cerebrovascular Accidents"
+    OR DE "Cerebrovascular Disorders" OR TI (stroke* OR poststroke OR cerebrovascular OR infarct* OR "intracerebral
+    hemorrhage" OR "intracerebral haemorrhage" OR "brain damage*" OR "brain-damaged" OR "hemisphere damage*"
+    OR "left hemisphere lesion*" OR "focal damage" OR "focal lesion*") OR AB (stroke* OR poststroke OR
+    cerebrovascular OR infarct* OR "intracerebral hemorrhage" OR "intracerebral haemorrhage" OR "brain
+    damage*" OR "brain-damaged" OR "hemisphere damage*" OR "left hemisphere lesion*" OR "focal damage"
+    OR "focal lesion*")) OR (DE "Speech Therapy" OR DE "Language Therapy" OR TI ("aphasia therapy" OR
+    "aphasia treatment" OR "aphasia rehabilitation" OR "speech therapy" OR "language therapy" OR "speech
+    and language therapy") OR AB ("aphasia therapy" OR "aphasia treatment" OR "aphasia rehabilitation"
+    OR "speech therapy" OR "language therapy" OR "speech and language therapy")))
+  date: '2026-10-27'
+  run_by: michele
+  hits: 533
+  retrieved: 533
+  for:
+  - q2_therapy_response
+  filters:
+    years: 2000-
+  file: psycinfo_q2b_therapy_response_neural_533.ris
+  strategy: q2b_therapy_response_neural
+  protocol:
+    version: 2
+    fingerprint: 8d8dc2e70d35
+    commit: 9ce9499
+    locked: true
+- id: S019
+  database: psycinfo
+  query: >-
+    (DE "Aphasia" OR DE "Dysarthria" OR TI (aphasi* OR dysphasi* OR anomi* OR "word finding" OR "word
+    retrieval" OR "naming impairment*" OR "naming deficit*" OR "language impairment*" OR "language deficit*"
+    OR "language disorder*" OR "apraxia of speech" OR dysarthri*) OR AB (aphasi* OR dysphasi* OR anomi*
+    OR "word finding" OR "word retrieval" OR "naming impairment*" OR "naming deficit*" OR "language impairment*"
+    OR "language deficit*" OR "language disorder*" OR "apraxia of speech" OR dysarthri*)) AND (DE "Cerebrovascular
+    Accidents" OR DE "Cerebrovascular Disorders" OR TI (stroke* OR poststroke OR cerebrovascular OR infarct*
+    OR "intracerebral hemorrhage" OR "intracerebral haemorrhage" OR "brain damage*" OR "brain-damaged"
+    OR "hemisphere damage*" OR "left hemisphere lesion*" OR "focal damage" OR "focal lesion*") OR AB (stroke*
+    OR poststroke OR cerebrovascular OR infarct* OR "intracerebral hemorrhage" OR "intracerebral haemorrhage"
+    OR "brain damage*" OR "brain-damaged" OR "hemisphere damage*" OR "left hemisphere lesion*" OR "focal
+    damage" OR "focal lesion*")) AND (DE "Prognosis" OR DE "Recovery (Disorders)" OR TI (predict* OR prognos*
+    OR recover* OR longitudinal OR determinant* OR "risk factor*") OR AB (predict* OR prognos* OR recover*
+    OR longitudinal OR determinant* OR "risk factor*")) AND (DE "Magnetic Resonance Imaging" OR DE "Functional
+    Magnetic Resonance Imaging" OR DE "Neuroimaging" OR DE "Diffusion Tensor Imaging" OR TI (lesion* OR
+    "symptom mapping" OR "voxel-based" OR "voxel-wise" OR VLSM OR "lesion load" OR tractograph* OR "diffusion
+    tensor" OR "white matter" OR fascicul* OR disconnect* OR connectom* OR "neural correlate*" OR neuroanatom*
+    OR "brain region*" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity
+    OR reorgani*) OR AB (lesion* OR "symptom mapping" OR "voxel-based" OR "voxel-wise" OR VLSM OR "lesion
+    load" OR tractograph* OR "diffusion tensor" OR "white matter" OR fascicul* OR disconnect* OR connectom*
+    OR "neural correlate*" OR neuroanatom* OR "brain region*" OR cortical OR subcortical OR MRI OR fMRI
+    OR perfusion OR hypoperfusion OR plasticity OR reorgani*))
+  date: '2026-10-27'
+  run_by: michele
+  hits: 841
+  retrieved: 841
+  for:
+  - q3_predictor_outcome
+  filters:
+    years: 2000-
+  file: psycinfo_q3_predictor_outcome_841.ris
+  strategy: q3_predictor_outcome
+  protocol:
+    version: 2
+    fingerprint: 8d8dc2e70d35
+    commit: 9ce9499
+    locked: true
+- id: S020
+  database: psycinfo
+  query: >-
+    (DE "Aphasia" OR DE "Dysarthria" OR TI (aphasi* OR dysphasi* OR anomi* OR "word finding" OR "word
+    retrieval" OR "naming impairment*" OR "naming deficit*" OR "language impairment*" OR "language deficit*"
+    OR "language disorder*" OR "apraxia of speech" OR dysarthri*) OR AB (aphasi* OR dysphasi* OR anomi*
+    OR "word finding" OR "word retrieval" OR "naming impairment*" OR "naming deficit*" OR "language impairment*"
+    OR "language deficit*" OR "language disorder*" OR "apraxia of speech" OR dysarthri*)) AND ((ZC "Systematic
+    Review" OR ZC "Meta Analysis" OR TI ("systematic review" OR meta-analy* OR "scoping review") OR AB
+    ("systematic review" OR meta-analy* OR "scoping review")) OR ((DE "Cerebrovascular Accidents" OR DE
+    "Cerebrovascular Disorders" OR TI (stroke* OR poststroke OR cerebrovascular OR infarct* OR "intracerebral
+    hemorrhage" OR "intracerebral haemorrhage" OR "brain damage*" OR "brain-damaged" OR "hemisphere damage*"
+    OR "left hemisphere lesion*" OR "focal damage" OR "focal lesion*") OR AB (stroke* OR poststroke OR
+    cerebrovascular OR infarct* OR "intracerebral hemorrhage" OR "intracerebral haemorrhage" OR "brain
+    damage*" OR "brain-damaged" OR "hemisphere damage*" OR "left hemisphere lesion*" OR "focal damage"
+    OR "focal lesion*")) AND (DE "Magnetic Resonance Imaging" OR DE "Functional Magnetic Resonance Imaging"
+    OR DE "Neuroimaging" OR DE "Diffusion Tensor Imaging" OR TI (lesion* OR "symptom mapping" OR "voxel-based"
+    OR "voxel-wise" OR VLSM OR "lesion load" OR tractograph* OR "diffusion tensor" OR "white matter" OR
+    fascicul* OR disconnect* OR connectom* OR "neural correlate*" OR neuroanatom* OR "brain region*" OR
+    cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*) OR
+    AB (lesion* OR "symptom mapping" OR "voxel-based" OR "voxel-wise" OR VLSM OR "lesion load" OR tractograph*
+    OR "diffusion tensor" OR "white matter" OR fascicul* OR disconnect* OR connectom* OR "neural correlate*"
+    OR neuroanatom* OR "brain region*" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion
+    OR plasticity OR reorgani*)) AND (ZC "Literature Review" OR ZC "Systematic Review")))
+  date: '2026-10-27'
+  run_by: michele
+  hits: 918
+  retrieved: 918
+  for:
+  - q4_synthesis
+  filters:
+    years: 2000-
+  file: psycinfo_q4_synthesis_918.ris
+  strategy: q4_synthesis
+  protocol:
+    version: 2
+    fingerprint: 8d8dc2e70d35
+    commit: 9ce9499
+    locked: true
+- id: S021
+  database: psycinfo
+  query: >-
+    (TI (language OR naming OR semantic* OR phonolog* OR syntax OR syntactic OR "speech production" OR
+    "sentence comprehension" OR "word production" OR reading) OR AB (language OR naming OR semantic* OR
+    phonolog* OR syntax OR syntactic OR "speech production" OR "sentence comprehension" OR "word production"
+    OR reading)) AND (ZC "Meta Analysis" OR TI (meta-analy* OR "activation likelihood" OR "coordinate-based"
+    OR MKDA) OR AB (meta-analy* OR "activation likelihood" OR "coordinate-based" OR MKDA)) AND (TI (fMRI
+    OR "functional magnetic resonance" OR "positron emission" OR neuroimaging) OR AB (fMRI OR "functional
+    magnetic resonance" OR "positron emission" OR neuroimaging))
+  date: '2026-10-27'
+  run_by: michele
+  hits: 363
+  retrieved: 363
+  for:
+  - q5_recruitment
+  filters:
+    years: 2000-
+  file: psycinfo_q5_recruitment_meta_363.ris
+  strategy: q5_recruitment_meta
+  protocol:
+    version: 2
+    fingerprint: 8d8dc2e70d35
+    commit: 9ce9499
+    locked: true
