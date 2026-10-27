@@ -346,6 +346,39 @@ class DualScreening(unittest.TestCase):
         self.assertEqual(list(a["byCheckScreener"]), ["alex"])
 
 
+class Withdraw(unittest.TestCase):
+    def test_withdraw_an_incomplete_import(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "screening").mkdir()
+            cands = [{"id": "C0001", "key": "@A2010", "title": "Old", "benchmark": True,
+                      "sources": [{"kind": "hand_picked"}, {"search": "S002"}], "screening": []},
+                     {"id": "C0002", "title": "Only from the bad export", "sources": [{"search": "S002"}], "screening": []},
+                     {"id": "C0003", "title": "From both", "sources": [{"search": "S001"}, {"search": "S002"}], "screening": []}]
+            S.save_candidates(cands, root)
+            S.save_searches([{"id": "S001", "database": "pubmed"}, {"id": "S002", "database": "scopus", "retrieved": 98}], root)
+            orig = (S.load_searches, S.load_candidates, S.save_searches, S.save_candidates, S.load_withdrawn, screen._log,
+                    screen.load_abstracts)
+            S.load_searches = lambda root_=root: orig[0](root)
+            S.load_candidates = lambda root_=root: orig[1](root)
+            S.save_searches = lambda s, root_=root, withdrawn=None: orig[2](s, root, withdrawn)
+            S.save_candidates = lambda c, root_=root: orig[3](c, root)
+            S.load_withdrawn = lambda root_=root: orig[4](root)
+            screen._log = lambda *a: None
+            screen.load_abstracts = lambda: {}
+            try:
+                a = type("A", (), {"id": "S002", "why": "export held one page only", "by": "michele", "execute": True})()
+                self.assertEqual(screen.cmd_withdraw(a), 0)
+                self.assertEqual([s["id"] for s in S.load_searches()], ["S001"])
+                self.assertEqual(S.load_withdrawn()[0]["withdrawn"]["why"], "export held one page only")
+                self.assertEqual([c["id"] for c in S.load_candidates()], ["C0001", "C0003"])
+                self.assertEqual(S.load_candidates()[0]["sources"], [{"kind": "hand_picked"}])
+                self.assertEqual(screen._next_search_id(S.load_searches()), "S003")    # S002 is never reused
+            finally:
+                (S.load_searches, S.load_candidates, S.save_searches, S.save_candidates, S.load_withdrawn, screen._log,
+                 screen.load_abstracts) = orig
+
+
 class Chase(unittest.TestCase):
     def test_pillar_by_citation_chasing(self):
         inc = {"id": "C0001", "title": "Included lesion study of naming", "year": 2015, "sources": [{"search": "S001"}],
