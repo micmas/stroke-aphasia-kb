@@ -481,6 +481,56 @@ def cmd_import(args) -> int:
     return _ingest(args, records, total, file=path.name)
 
 
+def parse_export_name(stem: str, db: str, known: list[str]) -> tuple[str, int, str | None] | None:
+    """`scopus_q1_lesion_impairment_5312` → ("q1_lesion_impairment", 5312, None);
+    `scopus_q1_lesion_impairment_5312-b` → (…, 5312, "b") for an export split in parts.
+    None when the name does not follow the convention or names no known strategy."""
+    m = re.match(rf"^{re.escape(db)}_(?P<sid>.+?)_(?P<hits>\d+)(?:-(?P<part>[A-Za-z0-9]+))?$", stem)
+    if not m or m.group("sid") not in known:
+        return None
+    return m.group("sid"), int(m.group("hits")), m.group("part")
+
+
+def cmd_import_all(args) -> int:
+    """Import every export matching a wildcard, one search record per strategy.
+
+    File names carry the strategy and the count the database showed:
+    `<db>_<strategy id>_<count>.ris`, e.g. scopus_q1_lesion_impairment_5312.ris; an
+    export split in parts adds `-a`, `-b` … (same count on every part)."""
+    import argparse as _ap
+    import glob
+    strategies = S.load_strategies()
+    known = [x["id"] for x in strategies.get("strategies") or []]
+    paths = sorted(glob.glob(str(Path(args.files).expanduser())))
+    if not paths:
+        raise SystemExit(f"no file matches {args.files}")
+    groups: dict[str, dict] = {}
+    for p in paths:
+        got = parse_export_name(Path(p).stem, args.db, known)
+        if got is None:
+            print(f"  skipped {Path(p).name}: name is not {args.db}_<strategy id>_<count>.ris (strategy ids: screen.py strategies)")
+            continue
+        sid, hits, _ = got
+        g = groups.setdefault(sid, {"hits": set(), "paths": []})
+        g["hits"].add(hits)
+        g["paths"].append(p)
+    for sid in [k for k in known if k in groups]:
+        g = groups[sid]
+        if len(g["hits"]) > 1:
+            raise SystemExit(f"{sid}: its parts give different counts {sorted(g['hits'])}; the count is the search's total")
+        records = []
+        for p in g["paths"]:
+            text = Path(p).read_text(encoding="utf-8-sig", errors="replace")
+            records += parse_ris(text) if p.lower().endswith(".ris") or "TY  -" in text[:2000] else parse_csv(text)
+        ns = _ap.Namespace(**vars(args))
+        ns.strategy, ns.query, ns.years, ns.for_, ns.max, ns.notes = sid, None, None, None, None, args.notes
+        ns.hits = g["hits"].pop()
+        print(f"— {sid}: {len(g['paths'])} file(s), {ns.hits} hits in {args.db}")
+        _resolve_strategy(ns)
+        _ingest(ns, records, ns.hits, file=", ".join(Path(p).name for p in g["paths"]))
+    return 0
+
+
 def _ingest(args, records, total, file) -> int:
     searches, candidates = S.load_searches(), S.load_candidates()
     abstracts = load_abstracts()
@@ -1377,6 +1427,15 @@ def _cli(argv=None) -> int:
     p.add_argument("--date")
     p.add_argument("--execute", action="store_true")
     p.set_defaults(fn=cmd_backfill)
+    p = sub.add_parser("import-all", help="import every export matching a wildcard: <db>_<strategy>_<count>.ris")
+    p.add_argument("--db", required=True, help="scopus | psycinfo | embase | web_of_science")
+    p.add_argument("--files", required=True, help="a wildcard in quotes, e.g. '~/Downloads/scopus_*.ris'")
+    p.add_argument("--by", default="unknown")
+    p.add_argument("--date", help="when the searches were run (default today)")
+    p.add_argument("--notes")
+    p.add_argument("--allow-unlocked", action="store_true")
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(fn=cmd_import_all)
     p = sub.add_parser("strategies", help="the protocol's search strategies, fingerprint and lock state")
     p.add_argument("--show", metavar="ID", help="print one strategy's expanded query (for pasting into a database)")
     p.add_argument("--db", help="with --show: pubmed (default) | openalex | scopus | psycinfo")

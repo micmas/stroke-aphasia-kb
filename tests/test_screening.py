@@ -71,6 +71,16 @@ class Parsers(unittest.TestCase):
         self.assertEqual(r["abstract"], "We mapped naming.")
         self.assertEqual(r["journal"], "Stroke")
 
+    def test_export_names(self):
+        known = ["q1_lesion_impairment", "q1b_language_lesion_mapping", "q5_recruitment_meta"]
+        self.assertEqual(screen.parse_export_name("scopus_q1_lesion_impairment_5312", "scopus", known),
+                         ("q1_lesion_impairment", 5312, None))
+        self.assertEqual(screen.parse_export_name("scopus_q1b_language_lesion_mapping_2145-b", "scopus", known),
+                         ("q1b_language_lesion_mapping", 2145, "b"))
+        self.assertIsNone(screen.parse_export_name("scopus_q1_5312", "scopus", known))           # not a strategy id
+        self.assertIsNone(screen.parse_export_name("scopus_q1_lesion_impairment", "scopus", known))   # no count
+        self.assertIsNone(screen.parse_export_name("psycinfo_q5_recruitment_meta_908", "scopus", known))
+
     def test_ris_and_csv(self):
         ris = "TY  - JOUR\nTI  - One\nAU  - A, B\nPY  - 2019\nDO  - https://doi.org/10.1/A.B\nAB  - abs\nJO  - J\nER  - \n\nTY  - JOUR\nT1  - Two\nY1  - 2020///\nN2  - n2\nER  - \n"
         rows = screen.parse_ris(ris)
