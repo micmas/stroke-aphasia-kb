@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: intensive_aphasia_therapy
 name: Intensive Aphasia Therapy (Early Acute)
 kind: therapy
@@ -12,6 +12,7 @@ targets_impairments:
 - brocas_aphasia
 - wernickes_aphasia
 - anomic_aphasia
+- anomia
 findings:
 - id: f1
   target: severity_metric
@@ -101,12 +102,23 @@ findings:
       aphasia therapy, beginning within 14 days after stroke, improved communication recovery compared
       to usual care.
     supports: sample
+  - section: added by backfill
+    page: 4
+    quote: Participants were prescribed 20 sessions of 45–60 min (15–20 h; or 4–5 h per week) of aphasia
+      therapy, commencing before day 15 and completed within four weeks.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: intensive_aphasia_therapy
+    name: intensive aphasia therapy
+    dose: 20 sessions of either non-prescribed (usual care-plus or prescribed (VERSE) direct aphasia therapy
+notes: '2026-10-26: targets_impairments gained `anomia` (symptom, schema v2.8; retarget_symptoms.py).'
 ---
 # Notes
 This is a high-powered Phase III RCT (VERSE) challenging the 'more is better' hypothesis in the very early acute phase of recovery.

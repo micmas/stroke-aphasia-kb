@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: severity_metric
 name: Aphasia severity metric (instrument-agnostic)
 kind: predictor
@@ -82,10 +82,15 @@ findings:
     supports: sample
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: intensive_speech_and_language_therapy
+    name: intensive speech and language therapy
+    dose: 3 weeks or more, ≥10 h per week
 created_by: agent:ollama-extract-cli/gemma4:31b-it-q8_0
 created_on: 2026-10-22
 ---

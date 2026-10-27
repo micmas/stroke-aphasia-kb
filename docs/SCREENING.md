@@ -10,6 +10,14 @@ diagram with every box clickable. The aim is coverage you can audit:
 anyone can see which searches were run, what they returned, what was
 excluded and why, and what each evidence gap still needs.
 
+**The October 2026 restart.** The bibliography built during
+development (`citations.md` up to 2026-10) was chosen by hand. It is not
+the KB's justification any more: the protocol's searches are run from
+scratch, every candidate — legacy papers included — is screened against
+§2, and the legacy set is used to measure the searches (§3.3), not to
+decide anything. A legacy paper keeps its findings while it is re-screened;
+it stays in the KB only if it passes.
+
 The register sits upstream of everything in `HOWTO.md`. Nothing here
 writes to `drafts/` or the canonical folders; an included paper is
 handed to `intake_papers.py` exactly as a hand-picked one was.
@@ -65,7 +73,72 @@ papers").
 
 ## 3. Identification
 
-**Database searches.** Each search is one record in
+### 3.1 Pre-specified strategies
+
+The searches are written before they are run, in
+`screening/strategies.yaml`: one strategy per question family of §1
+(`q1_lesion_impairment`, `q2a_therapy_efficacy`,
+`q2b_therapy_response_neural`, `q3_predictor_outcome`, `q4_synthesis`,
+`q5_recruitment_meta`) and one per evidence gap (`gap_…`). Each is a
+combination of shared concept blocks (aphasia, stroke, imaging, therapy,
+trial design, response, predictor, synthesis), written once per database
+— PubMed (MeSH + title/abstract, truncation), OpenAlex (boolean
+title + abstract filter, no wildcards) and Scopus (`TITLE-ABS-KEY`).
+`screen.py strategies --show <id> --db <db>` prints the expanded string.
+
+Databases: **PubMed** and **Scopus** for every question strategy, and
+**PsycINFO** for q1–q3 (much of the aphasia literature, e.g.
+*Aphasiology*, is poorly covered by MEDLINE); **OpenAlex** is run as a
+free supplement and for the gap strategies. Scopus and PsycINFO are run
+in their own interface through UQ Library access with the string from
+`strategies.yaml` (translated to PsycINFO syntax by hand — the
+translation goes into the strategy as a `psycinfo:` field before the
+run) and imported with `screen.py import --strategy <id>`. No date
+limits: inception to the date of the search, which is recorded per
+run. No language filter in the search (language is a screening reason).
+
+### 3.2 Locking and amendments
+
+The protocol is this file plus `screening/strategies.yaml`. Its
+fingerprint (sha256 of both) is stamped on every strategy run with the
+strategy id, the protocol version and the commit. Before the first
+protocol search: confirm the scope choices noted in `strategies.yaml`,
+set `status: locked`, commit both files (and, optionally, register the
+protocol on OSF with that commit). `screen.py search --strategy …
+--execute` refuses to run while the status is draft or either file has
+uncommitted changes; `--allow-unlocked` is for pilot runs and records
+them as such.
+
+A change after locking is an **amendment**: bump `version`, add an
+entry under `amendments` (date, what, why — e.g. "q1: added *aphemia*;
+benchmark paper C0045 was missed"), commit, and re-run the strategies
+it affects. The register de-duplicates, so a re-run adds only what is
+new; both runs stay in `searches.yaml`.
+
+### 3.3 The benchmark and the recall check
+
+`screen.py rebaseline --execute` (once, at the restart) moves every
+legacy decision out of the screening history into the candidate's
+`legacy` record and marks the 151 legacy includes `benchmark: true`.
+They are papers already judged relevant and read in full, so they
+measure the searches: **relative recall** is the share of benchmark
+papers a strategy's runs retrieve, counted against the benchmark papers
+whose findings sit in the KB folders the strategy serves (`buckets`).
+Every `search`, dry run or not, prints this number and the papers it
+missed; `screen.py recall` gives it per strategy, per database and
+overall.
+
+Before the title/abstract pass starts, each question strategy is run in
+all its databases and every benchmark paper no search found is
+classified: **out of scope** under §2 (it will be excluded at full text
+with that reason) or a **search gap** (amend the strategy and re-run).
+The target is ≥ 90 % relative recall per question strategy on in-scope
+benchmark papers; the figure reached and the classification of the
+misses are reported with the PRISMA diagram.
+
+### 3.4 Recording
+
+Each search is one record in
 `screening/searches.yaml` with the database, the verbatim query, the
 filters, the date, who ran it, the number of hits and — the part that
 makes coverage measurable — `for`: the evidence gaps
@@ -76,13 +149,14 @@ run in their own interface through UQ Library access and brought in
 with `screen.py import --file export.ris` (RIS or CSV), with the query
 and date given on the command line so the record is complete.
 
-Searches are built per gap or per entry, not as one giant string:
+Searches are built per question family and per gap, not as one giant string:
 a search for the thalamus / basal-ganglia gap is written and recorded
 on its own, so the Coverage view can say how many candidates that gap
 has had, screened, included and extracted. Re-run searches get a new
 record (new date); the register de-duplicates.
 
-**Other sources.** Hand-picked papers, papers found by citation chasing
+**Other sources.** Benchmark papers that no protocol search
+retrieves, hand-picked papers, papers found by citation chasing
 from an extracted paper, papers suggested by the gap analysis, and
 PDFs dropped into `papers/` and registered from their DOI all enter the
 register through `screen.py backfill` (for what is already in
@@ -121,10 +195,22 @@ a candidate marks a merge done by hand.
    fetch the PDF into `papers/`, `intake_papers.py --execute`,
    `extract.py`, review, `promote.py` (`HOWTO.md`).
 
-One named screener decides each candidate (single screening with an
-audit trail). The register supports more than one decision per stage —
-a later decision by another person supersedes, and both are kept — so
-dual screening can be adopted later without changing the format.
+**Blind screening.** Title/abstract cards show the record as the
+search returned it: no citation key, no "hand-picked" or legacy
+provenance, so a legacy paper is judged like any other. At full text
+the key is shown (the PDF is needed anyway).
+
+**Dual screening on a sample.** One named screener makes the decision
+of record for every candidate. A second person independently screens a
+random 20 % of the title/abstract decisions and of the full-text
+decisions (`screen.py sheet --check --sample 0.2 --seed <n>`, blind to
+the first decision and to the model; the seed is reported), recorded
+with `decide --role check`. `screen.py agreement` gives Cohen's kappa
+per stage and lists the disagreements. Disagreements are resolved by
+discussion and the agreed decision is recorded as a new decision of
+record (it supersedes; all are kept). Kappa ≥ 0.6 is accepted; below
+that, the ambiguous criterion in §2 is clarified (an amendment) and a
+fresh sample is double-screened.
 
 ## 5. What is derived, not recorded
 
@@ -153,18 +239,22 @@ exclusion reasons, the coverage table, the searches and a filterable
 candidate table. For a manuscript, the diagram's numbers are the
 export's — cite the KB commit shown in the explorer footer.
 
-Papers that entered the bibliography before this protocol (the 2026-10
-backfill) carry decisions stamped `by: legacy` and are reported as
-identified via other methods; the register does not claim a person
-screened them. Re-screening them against §2 is a one-off task that the
-full-text sheet supports (`screen.py sheet --stage full_text --ids …`).
+Papers that entered the bibliography before this protocol carry their
+old decisions under `legacy` after the re-baseline (§3.3); they count
+in PRISMA only through their new, protocol decisions — in the
+databases arm when a search found them, otherwise as identified via
+other methods. The report also gives: the protocol version and
+fingerprint, the date and verbatim string of every search with its
+hit count (PRISMA-S), relative recall per question strategy with the
+classification of missed benchmark papers, and kappa per stage.
 
 ## 7. Files
 
 ```
 SCREENING.md                  this protocol
-screen.py                     search · import · backfill · assist · sheet · decide · register · status · list
+screen.py                     strategies · rebaseline · search · import · recall · backfill · assist · sheet · decide · agreement · register · status · list
 screening.py                  the register's data contract and derivations (used by export_webapp.py, kb_status.py)
+screening/strategies.yaml     the pre-specified search strategies (protocol) (tracked)
 screening/searches.yaml       one record per search run / import            (tracked)
 screening/candidates.yaml     one record per candidate, with decisions       (tracked)
 screening/abstracts.jsonl     abstract cache for the sheet and the model     (git-ignored; `screen.py fetch-abstracts` refills it)
@@ -172,5 +262,6 @@ screening/_sheet/*.html       the screening sheets                            (g
 ```
 
 Changing the eligibility criteria is a change to §2 of this file and
-`screening.REASONS` together; changing who may decide is a change to
+`screening.REASONS` together, and after locking it is an amendment
+(§3.2); changing who may decide is a change to
 `GOVERNANCE.md` and `screen.py decide` together.

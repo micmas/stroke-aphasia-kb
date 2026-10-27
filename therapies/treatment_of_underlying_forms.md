@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: treatment_of_underlying_forms
 name: Treatment of Underlying Forms (TUF)
 aliases:
@@ -209,6 +209,15 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: not_reported
+    quote: Brieﬂy, at Northwestern University, participants in the treatment group
+      underwent Treatment of Underlying Forms (TUF, Thompson & Shapiro, 2005), a treatment
+      approach that uses a series of meta-linguistic steps focused on verbs, verb
+      argument structure, and thematic-syntactic mapping in active (e.g., The man
+      was shaving the boy) and passive sentences (e.g., The boy was shaved by the
+      man) to improve sentence comprehension and production.
+    supports: method
   statistics:
     ci_95: not_reported
     cluster_extent: null
@@ -223,11 +232,16 @@ findings:
   target_kind: impairment
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: treatment_of_underlying_forms
+    name: Treatment of Underlying Forms
+    dose: 12 weeks
 - author_limitations:
   - No upregulation observed in left-hemisphere ROIs (Time effect not significant
     for LH; Group×Time not significant for LH).
@@ -436,6 +450,15 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: not_reported
+    quote: Brieﬂy, at Northwestern University, participants in the treatment group
+      underwent Treatment of Underlying Forms (TUF, Thompson & Shapiro, 2005), a treatment
+      approach that uses a series of meta-linguistic steps focused on verbs, verb
+      argument structure, and thematic-syntactic mapping in active (e.g., The man
+      was shaving the boy) and passive sentences (e.g., The boy was shaved by the
+      man) to improve sentence comprehension and production.
+    supports: method
   statistics:
     ci_95: not_reported
     cluster_extent: 502
@@ -451,11 +474,16 @@ findings:
   target_kind: region
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: treatment_of_underlying_forms
+    name: Treatment of Underlying Forms
+    dose: 12 weeks
 - author_limitations:
   - Brain-behavior association applies only to the sentence treatment group; same
     analysis on the spelling treatment group found no associations.
@@ -581,6 +609,15 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: not_reported
+    quote: Brieﬂy, at Northwestern University, participants in the treatment group
+      underwent Treatment of Underlying Forms (TUF, Thompson & Shapiro, 2005), a treatment
+      approach that uses a series of meta-linguistic steps focused on verbs, verb
+      argument structure, and thematic-syntactic mapping in active (e.g., The man
+      was shaving the boy) and passive sentences (e.g., The boy was shaved by the
+      man) to improve sentence comprehension and production.
+    supports: method
   statistics:
     ci_95: not_reported
     effect_size: 'Verb comprehension: β=1.051, SE=0.343, t(94)=3.063, p=0.017 (FDR-corrected).
@@ -596,11 +633,16 @@ findings:
   target_kind: impairment
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: treatment_of_underlying_forms
+    name: Treatment of Underlying Forms
+    dose: 12 weeks
 - author_limitations:
   - Pre-treatment heterogeneities across treatment groups (different impairment profiles,
     different recruitment sites).
@@ -737,6 +779,15 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: not_reported
+    quote: Brieﬂy, at Northwestern University, participants in the treatment group
+      underwent Treatment of Underlying Forms (TUF, Thompson & Shapiro, 2005), a treatment
+      approach that uses a series of meta-linguistic steps focused on verbs, verb
+      argument structure, and thematic-syntactic mapping in active (e.g., The man
+      was shaving the boy) and passive sentences (e.g., The boy was shaved by the
+      man) to improve sentence comprehension and production.
+    supports: method
   statistics:
     ci_95: not_reported
     cluster_extent: null
@@ -751,11 +802,16 @@ findings:
   target_kind: impairment
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: treatment_of_underlying_forms
+    name: Treatment of Underlying Forms
+    dose: 12 weeks
 - author_limitations:
   - No upregulation observed in left-hemisphere ROIs (Time effect not significant
     for LH; Group×Time not significant for LH).
@@ -964,6 +1020,15 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: not_reported
+    quote: Brieﬂy, at Northwestern University, participants in the treatment group
+      underwent Treatment of Underlying Forms (TUF, Thompson & Shapiro, 2005), a treatment
+      approach that uses a series of meta-linguistic steps focused on verbs, verb
+      argument structure, and thematic-syntactic mapping in active (e.g., The man
+      was shaving the boy) and passive sentences (e.g., The boy was shaved by the
+      man) to improve sentence comprehension and production.
+    supports: method
   statistics:
     ci_95: not_reported
     cluster_extent: 502
@@ -979,11 +1044,16 @@ findings:
   target_kind: region
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: treatment_of_underlying_forms
+    name: Treatment of Underlying Forms
+    dose: 12 weeks
 - author_limitations:
   - Brain-behavior association applies only to the sentence treatment group; same
     analysis on the spelling treatment group found no associations.
@@ -1109,6 +1179,15 @@ findings:
     quote: presence of a single left-hemisphere stroke at least 12 months prior entering
       the study
     supports: sample
+  - section: added by backfill
+    page: not_reported
+    quote: Brieﬂy, at Northwestern University, participants in the treatment group
+      underwent Treatment of Underlying Forms (TUF, Thompson & Shapiro, 2005), a treatment
+      approach that uses a series of meta-linguistic steps focused on verbs, verb
+      argument structure, and thematic-syntactic mapping in active (e.g., The man
+      was shaving the boy) and passive sentences (e.g., The boy was shaved by the
+      man) to improve sentence comprehension and production.
+    supports: method
   statistics:
     ci_95: not_reported
     effect_size: 'Verb comprehension: β=1.051, SE=0.343, t(94)=3.063, p=0.017 (FDR-corrected).
@@ -1124,11 +1203,16 @@ findings:
   target_kind: impairment
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
+    - therapy
+  therapy:
+    id: treatment_of_underlying_forms
+    name: Treatment of Underlying Forms
+    dose: 12 weeks
 source: agent_draft
 last_reviewed: '2026-05-06'
 notes: "First-extraction draft from Barbieri et al. 2023. TUF (Treatment of\nUnderlying\

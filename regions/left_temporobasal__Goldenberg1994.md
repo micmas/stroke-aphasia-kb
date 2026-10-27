@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: left_temporobasal__Goldenberg1994
 name: Left Temporobasal Cortex (basal temporal lobe / entorhinal–perisylvian junction)
 kind: classical
@@ -219,6 +219,11 @@ findings:
     quote: Patients with aphasia caused by a cerebrovascular accident were taken into
       the study not earlier than 2 months after the accident.
     supports: sample
+  - section: added by backfill
+    page: 3
+    quote: During the following 8 weeks patients were treated with 2 sessions of 45
+      min of language therapy per day five times a week.
+    supports: method
   lesion_mapping:
     analysis: region_based
     n_analysed: 18
@@ -227,12 +232,17 @@ findings:
     multiple_comparisons: uncorrected
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - lesion_mapping
     - phase
+    - therapy
+  therapy:
+    id: intensive_language_therapy
+    name: intensive language therapy
+    dose: 2 sessions of 45 min of language therapy per day five times a week
 source: curated
 last_reviewed: 2026-05-07
 notes: 'Goldenberg & Spatt 1994 (Brain Lang 47:684–698). Vienna cohort, n=18 chronic

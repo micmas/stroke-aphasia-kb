@@ -82,7 +82,7 @@ APHASIA_ALIASES = {
     "wernicke": "wernickes_aphasia", "wernicke's": "wernickes_aphasia",
     "wernickes": "wernickes_aphasia", "wernicke aphasia": "wernickes_aphasia",
     "conduction": "conduction_aphasia",
-    "anomic": "anomic_aphasia", "anomia": "anomic_aphasia",
+    "anomic": "anomic_aphasia",   # "anomia" is the symptom (impairments/anomia), not the type (v2.8)
     "global": "global_aphasia",
     "transcortical motor": "transcortical_motor_aphasia",
     "tcm": "transcortical_motor_aphasia",

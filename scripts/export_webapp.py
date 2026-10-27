@@ -58,7 +58,7 @@ ENTRY_FIELDS = ("id", "name", "kind", "aliases", "short_description", "status", 
                 "targets_impairments", "rtss_ingredients", "rtss_category", "direction_of_severity", "units",
                 "predictor_type")
 FINDING_RAW_FIELDS = ("relationship", "design", "sample", "statistics", "author_limitations", "source_passages",
-                      "region_definition", "primary_papers_cited", "instrument")
+                      "region_definition", "primary_papers_cited", "instrument", "therapy")
 # Columns of KnowledgeBase.findings the webapp reads (the rest are tooling).
 FINDING_FLAT_FIELDS = ("source_id", "source_kind", "source_status", "source_path", "id", "target", "target_kind",
                        "claim", "direction", "citation", "method", "design", "evidence_quality", "strength",
@@ -280,7 +280,7 @@ def screening(root: Path) -> dict:
         item = {k: _clean(r.get(k)) for k in CANDIDATE_FIELDS if _present(r.get(k))}
         item["sources"] = [{"search": s["search"]} if s.get("search") else {"kind": s.get("kind")}
                            for s in (r.get("sources") or []) if isinstance(s, dict)]
-        item["history"] = [{k: _clean(d.get(k)) for k in ("stage", "decision", "reason", "by", "date") if _present(d.get(k))}
+        item["history"] = [{k: _clean(d.get(k)) for k in ("stage", "decision", "reason", "by", "date", "role") if _present(d.get(k))}
                            for d in (r.get("screening") or [])]
         if r.get("suggestion"):
             s = r["suggestion"]

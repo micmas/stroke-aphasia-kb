@@ -1,5 +1,5 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: tms_right_ifg
 name: Inhibitory rTMS to Right Inferior Frontal Gyrus
 kind: therapy
@@ -88,9 +88,25 @@ findings:
     quote: however, the study was underpowered to detect a specific aphasia type and treatment interaction,
       so larger studies are needed to specifically address this question.
     supports: limitation
+  - section: added by backfill
+    page: 1
+    quote: Twenty-four patients with subacute poststroke aphasia were randomized to a 10-day protocol
+      of 20-minute inhibitory 1 Hz rTMS over the right triangular part of the posterior inferior frontal
+      gyrus or sham stimulation, followed by 45 minutes of speech and language therapy.
+    supports: method
   imaging_details:
     reference_space: not_reported
     atlases_used: []
+  therapy:
+    id: tdcs_aphasia_treatment
+    name: inhibitory 1 Hz rTMS over the right triangular part of the posterior inferior frontal gyrus
+      followed by 45 minutes of sp
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-27'
+    tool: backfill.py
+    fields:
+    - therapy
 - id: f2
   target: severity_metric
   target_kind: predictor
@@ -145,8 +161,24 @@ findings:
     page: 5
     quote: however, the study was underpowered to detect a specific aphasia type and treatment interaction
     supports: limitation
+  - section: added by backfill
+    page: 1
+    quote: Twenty-four patients with subacute poststroke aphasia were randomized to a 10-day protocol
+      of 20-minute inhibitory 1 Hz rTMS over the right triangular part of the posterior inferior frontal
+      gyrus or sham stimulation, followed by 45 minutes of speech and language therapy.
+    supports: method
   imaging_details:
     reference_space: not_reported
     atlases_used: []
+  therapy:
+    id: tdcs_aphasia_treatment
+    name: inhibitory 1 Hz rTMS over the right triangular part of the posterior inferior frontal gyrus
+      followed by 45 minutes of sp
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-27'
+    tool: backfill.py
+    fields:
+    - therapy
 ---
 This study demonstrates that inhibitory rTMS to the right pars triangularis, when combined with SLT, improves global aphasia recovery in the subacute phase, with the most significant effects seen in naming.

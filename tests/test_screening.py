@@ -73,6 +73,12 @@ class Register(unittest.TestCase):
         self.assertEqual(abstracts, {"C0002": "ab"})
         self.assertEqual(S.arm_of(cands[0]), "databases")
 
+    def test_doi_parentheses(self):
+        self.assertEqual(S.norm_doi("10.1044/1058-0360(2004/025)"), "10.1044/1058-0360(2004/025)")
+        self.assertEqual(S.norm_doi("10.1044/1058-0360(2004/025"), "10.1044/1058-0360(2004/025)")   # cut by a parser
+        self.assertEqual(S.norm_doi("(doi:10.1000/abc)."), None)                                      # not a bare DOI
+        self.assertEqual(S.norm_doi("https://doi.org/10.1000/ABC)."), "10.1000/abc")
+
     def test_stages(self):
         c = {"id": "C1", "sources": [{"search": "S1"}], "screening": []}
         self.assertEqual(S.stage_of(c), ("awaiting_ta", None))
@@ -168,6 +174,121 @@ class Backfill(unittest.TestCase):
             S.save_candidates(cands, root)
             _, again = S.backfill_candidates(root, date="2026-10-26")
             self.assertEqual(again, 0)
+
+
+STRATS = """
+version: 3
+status: draft
+blocks:
+  pubmed:
+    a: ("Aphasia"[Mesh] OR aphasi*[tiab])
+    s: (stroke*[tiab])
+strategies:
+  - id: q1
+    buckets: [regions]
+    for: [q1]
+    pubmed: ${a} AND ${s} AND lesion*[tiab]
+  - id: bad
+    pubmed: ${a} AND ${missing}
+"""
+
+
+class Protocol(unittest.TestCase):
+    def test_expand_and_fingerprint(self):
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "screening").mkdir()
+            (root / "screening" / "strategies.yaml").write_text(STRATS, encoding="utf-8")
+            st = S.load_strategies(root)
+            self.assertEqual(S.expand_query(st, "q1", "pubmed"),
+                             '("Aphasia"[Mesh] OR aphasi*[tiab]) AND (stroke*[tiab]) AND lesion*[tiab]')
+            with self.assertRaises(KeyError):
+                S.expand_query(st, "q1", "openalex")          # no openalex version
+            with self.assertRaises(KeyError):
+                S.expand_query(st, "bad", "pubmed")           # unknown block
+            with self.assertRaises(KeyError):
+                S.strategy(st, "nope")
+            fp = S.protocol_fingerprint(root)
+            (root / "screening" / "strategies.yaml").write_text(STRATS + "\n# amended\n", encoding="utf-8")
+            self.assertNotEqual(fp, S.protocol_fingerprint(root))
+            state = S.protocol_state(root)               # not a git checkout: never locked
+            self.assertFalse(state["locked"])
+            self.assertEqual(state["version"], 3)
+
+    def test_the_shipped_strategies_expand(self):
+        st = S.load_strategies(ROOT)
+        for x in st["strategies"]:
+            for db in ("pubmed", "openalex", "scopus"):
+                if x.get(db):
+                    q = S.expand_query(st, x["id"], db)
+                    self.assertNotIn("${", q, (x["id"], db))
+                    self.assertEqual(q.count("("), q.count(")"), (x["id"], db))
+                    if db == "openalex":
+                        self.assertNotIn(",", q, x["id"])
+                        self.assertNotIn("*", q, x["id"])
+
+
+def _legacy_cand(cid, key, title, include=True):
+    d = {"stage": "full_text", "decision": "include" if include else "exclude", "by": "legacy", "date": "2026-10-26"}
+    if not include:
+        d["reason"] = "not_extractable"
+    return {"id": cid, "key": key, "title": title, "year": 2010, "sources": [{"kind": "hand_picked"}],
+            "skip_title_abstract": True, "screening": [d]}
+
+
+class Rebaseline(unittest.TestCase):
+    def test_rebaseline_recall_and_arms(self):
+        a = _legacy_cand("C0001", "@A2010", "Lesion correlates of naming in chronic stroke aphasia")
+        b = _legacy_cand("C0002", "@B2010", "Thalamic aphasia after haemorrhage in a large cohort")
+        r = _legacy_cand("C0003", "@R2010", "A refused paper about something else entirely", include=False)
+        cands = [a, b, r]
+        self.assertTrue(S.is_benchmark(a))
+        self.assertEqual(S.stage_of(a), ("included", None))
+        out = S.rebaseline(cands, "2026-10-27", protocol="abc")
+        self.assertEqual(out, {"benchmark": 2, "refused": 1, "candidates": 3})
+        self.assertEqual(a["screening"], [])
+        self.assertEqual(a["legacy"]["decisions"][0]["by"], "legacy")
+        self.assertTrue(a["benchmark"] and S.is_benchmark(a))
+        self.assertFalse(S.is_benchmark(r))
+        self.assertEqual(S.stage_of(a), ("awaiting_ft", None))           # other-methods arm: full text
+        self.assertEqual(S.rebaseline(cands, "2026-10-28")["candidates"], 0)   # idempotent
+        # a search finds A: it moves to the database arm and is screened at title/abstract
+        recs = [{"title": "Lesion correlates of naming in chronic stroke aphasia", "year": 2010, "pmid": "1"},
+                {"title": "Something new about aphasia and the insula in stroke", "year": 2020, "pmid": "2"}]
+        self.assertEqual([c["id"] for c in S.benchmark_hits(recs, cands)], ["C0001"])
+        screen.add_records(recs, "S001", cands, {})
+        self.assertEqual(S.arm_of(a), "databases")
+        self.assertEqual(S.stage_of(a), ("awaiting_ta", None))
+        self.assertEqual(S.stage_of(b), ("awaiting_ft", None))
+        searches = [{"id": "S001", "database": "pubmed", "strategy": "q1"}]
+        strategies = {"strategies": [{"id": "q1", "buckets": ["regions"]}, {"id": "q9", "buckets": ["therapies"]}]}
+        rec = S.recall(cands, searches, strategies, {"@A2010": {"regions"}, "@B2010": {"regions"}})
+        self.assertEqual((rec["benchmark"], rec["found"]), (2, 1))
+        self.assertAlmostEqual(rec["recall"], 0.5)
+        q1 = rec["byStrategy"][0]
+        self.assertEqual((q1["inScope"], q1["found"], q1["missed"]), (2, 1, ["C0002"]))
+        self.assertIsNone(rec["byStrategy"][1]["recall"])                    # not run, nothing in scope
+        self.assertEqual([m["id"] for m in rec["missed"]], ["C0002"])
+
+
+class DualScreening(unittest.TestCase):
+    def test_check_decisions_and_kappa(self):
+        cands = [{"id": f"C{i}", "title": f"t{i}", "screening": []} for i in range(10)]
+        record = ["include"] * 5 + ["exclude"] * 5
+        check = ["include"] * 4 + ["exclude"] * 6
+        for c, x, y in zip(cands, record, check):
+            self.assertIsNone(screen._apply_decision(c, "title_abstract", x, "not_stroke" if x == "exclude" else None, "michele", None, "2026-10-27"))
+            self.assertIsNone(screen._apply_decision(c, "title_abstract", y, "not_stroke" if y == "exclude" else None, "alex", None, "2026-10-28", role="check"))
+        # the check decision never becomes the decision of record
+        self.assertEqual(S.stage_of(cands[4]), ("awaiting_ft", None))
+        self.assertEqual(S.last_decision(cands[4], "title_abstract")["by"], "michele")
+        # same person cannot check their own decision
+        self.assertIsNotNone(screen._apply_decision(cands[0], "title_abstract", "include", None, "michele", None, "2026-10-28", role="check"))
+        a = S.agreement(cands, "title_abstract")
+        self.assertEqual(a["pairs"], 10)
+        self.assertAlmostEqual(a["observed"], 0.9)
+        self.assertAlmostEqual(a["kappa"], 0.8)
+        self.assertEqual([d["id"] for d in a["disagreements"]], ["C4"])
 
 
 if __name__ == "__main__":

@@ -42,7 +42,7 @@ disagree, this file wins and the other two get fixed.
 | Extractor model | `created_by: agent:<model-tag>` | write to `drafts/`, `papers/*_annotated.pdf`, `logs/extraction_log.md`, `citations.md` | touch any canonical folder; review its own drafts |
 | Deterministic checks (`auto_review.py`) | `auto-reviewer` | reject or defer a draft; emit a reviewer worksheet | approve anything |
 | Independent reviewer model | `model:<model-tag>` | verify passages against the PDF, check interpretation, **approve Tier A drafts** (§3), defer or reject any draft | approve Tier B; edit a draft; review drafts from the same model tag that extracted them |
-| Person | `human:<name>` | everything above; approve Tier B; audit model approvals; change this policy | approve a draft without opening the annotated PDF |
+| Person | `human:<name>` | everything above; approve Tier B; audit model approvals; edit a draft in the review workbench (`review_app.py`: every change is stamped `edits: {by, date, fields}` and logged `REVIEW-EDITED`); mark passages for a focused re-extraction (`refocus.py`); change this policy | approve a draft without opening the annotated PDF; edit a canonical entry outside `promote.py` |
 
 "Independent" means a different model tag from the extractor. Same
 family at a different size counts (`gemma4:31b` reviewing `gemma4:26b`

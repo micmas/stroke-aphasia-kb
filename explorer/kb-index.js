@@ -45,6 +45,7 @@ export const FACETS = [
   { key: 'source_id', label: 'Entry', order: null, link: 'entry' },
   { key: 'target', label: 'Target', order: null, link: 'entry' },
   { key: 'citation', label: 'Paper', order: null, link: 'paper' },
+  { key: 'therapy_name', label: 'Therapy', order: null },
 ];
 
 const BUCKET_KIND = { regions: 'region', impairments: 'impairment', therapies: 'therapy', predictors: 'predictor', reviews: 'review', ingredients: 'ingredient' };
@@ -99,10 +100,11 @@ export function buildIndex(kb) {
       method: asList(f.method).length ? asList(f.method) : ['not reported'],
       design: f.design ? String(f.design) : 'not reported',
       review_kind: f.review_kind || 'none',
+      therapy_name: f.therapy && f.therapy.name ? String(f.therapy.name) : (['treatment_response', 'responder'].includes(f.relationship) || f.target_kind === 'therapy' ? 'not recorded' : 'not applicable'),
       year: yearOf(f.citation, kb.citations?.[f.citation]),
       page: pagesOf(f),
       pair: pairOf(f),
-      text: [f.claim, f.population, f.time_post_onset, ...(f.source_passages || []).map((p) => p.quote), f.source_id, f.target, f.citation,
+      text: [f.claim, f.population, f.time_post_onset, ...(f.source_passages || []).map((p) => p.quote), f.source_id, f.target, f.citation, f.therapy?.name, f.therapy?.id,
         labelFor(kb, f.source_id), labelFor(kb, f.target), ...(f.flags || []), ...(f.author_limitations || [])]
         .filter(Boolean).join(' \n ').toLowerCase(),
     };

@@ -11,7 +11,7 @@ short_definition: Time elapsed since the stroke event.
 units: months
 findings:
 - id: f1
-  target: anomic_aphasia
+  target: anomia
   target_kind: impairment
   claim: Time post-stroke at first assessment does not predict the direction of language recovery or decline
     in chronic aphasia.
@@ -48,7 +48,8 @@ findings:
     extracted_on: 2026-01-01
     paper_section: Results, page 1725
     confidence: high
-    flags: []
+    flags:
+    - retargeted anomic_aphasia → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Results
     page: 8
@@ -80,6 +81,11 @@ findings:
     tool: backfill.py
     fields:
     - cohort
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
 direction_of_severity: not_applicable
 ---
 # Time Post Onset

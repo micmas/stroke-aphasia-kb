@@ -206,6 +206,18 @@ def cmd_approve(args):
             print(f"  {i}")
         sys.exit(1)
 
+    # 1a. Reviewer marks (review_app.py): passages the reviewer flagged for
+    # re-extraction must be resolved first — refocus.py turns them into
+    # findings, or the reviewer removes them in the workbench.
+    pending = [m.get("id") for m in fm.get("reviewer_marks") or []
+               if isinstance(m, dict) and m.get("status", "pending") == "pending"]
+    if pending:
+        print(f"❌ Cannot approve — {len(pending)} reviewer mark(s) still pending "
+              f"({', '.join(map(str, pending))}): run scripts/refocus.py on the draft, or remove "
+              f"them in scripts/review_app.py")
+        sys.exit(1)
+    fm.pop("reviewer_marks", None)   # the register of marks stays in the draft's history, not in the KB
+
     # 1b. Policy checks (docs/GOVERNANCE.md §2–§3)
     problems = validate_review_args(args.reviewer, args.tier,
                                     args.extractor, fm)

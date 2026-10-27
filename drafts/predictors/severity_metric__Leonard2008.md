@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: severity_metric
 name: Aphasia severity metric (instrument-agnostic)
 kind: predictor
@@ -75,11 +75,21 @@ findings:
     page: 14
     quote: it is acknowledged that due to the small sample size, the power of this analysis is limited.
     supports: limitation
+  - section: added by backfill
+    page: 1
+    quote: A new phonologically based treatment that we developed for addressing naming deficits in aphasia—the
+      phonological components analysis (PCA) treatment—is presented.
+    supports: method
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: phonological_component_analysis
+    name: phonological components analysis (PCA) treatment
+    dose: Sessions occurred three times a week for approximately 1 hour.
 ---
 Baseline naming severity (BNT) was a significant predictor of response to PCA treatment.

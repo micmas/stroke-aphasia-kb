@@ -476,3 +476,57 @@ add an `EXTRACTED` line for every run.
 2026-10-26 | BACKFILL-REAPPLIED | @Sheppard2020 | cohort, lesion_mapping | 4 value(s) written, 0 not (no quote found) across 3 finding(s) | model: gemma4:31b-it-q8_0
 2026-10-26 | BACKFILLED | @Siegel2016 | cohort, lesion_mapping | 3 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
 2026-10-26 | SCREEN-BACKFILL | — | screening register | 164 citations.md entries added as other-source candidates
+2026-10-26 | RETARGETED | @Fridriksson2010Anomia | bilateral_middle_frontal_gyrus_recovery | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Henseler2014 | left_anterior_temporal_lobe | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Fridriksson2010Anomia | left_ifg_pars_opercularis | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Hillis2006 | left_ifg_pars_opercularis | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Fridriksson2010Anomia | left_middle_temporal_gyrus | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Hillis2006 | left_middle_temporal_gyrus | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Yourganov2016 | left_posterior_stg | f4 naming→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Fridriksson2010Anomia | left_precentral_gyrus | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Hillis2006 | left_superior_temporal_gyrus_wernicke | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Fridriksson2010Anomia | left_supramarginal_gyrus_premotor | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Hope2017 | right_middle_temporal_gyrus | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @SkipperKallal2017 | right_motor_cortex | f1 naming→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Hope2017 | right_precentral_gyrus | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Marchina2011 | left_arcuate_fasciculus | f4 confrontation_naming→anomia; f9 confrontation_naming→anomia | symptom not syndrome (schema v2.8); canonical | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Bonilha2014 | left_ifg_pars_triangularis | f1 naming→anomia | symptom not syndrome (schema v2.8); canonical | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Saur2008 | left_middle_temporal_gyrus | f2 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); canonical | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Fridriksson2018Anatomy | left_posterior_stg | f3 naming→anomia; f7 naming→anomia | symptom not syndrome (schema v2.8); canonical | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Hope2017 | anomic_aphasia | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Leonard2008 | phonological_component_analysis | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Fridriksson2018JAMA | tdcs_aphasia_treatment | f1 naming→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Efstratiadou2018 | typicality_semantic_feature_analysis | f2 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Hope2017 | age | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Gilmore2019 | executive_functions | f1 naming→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Hope2017 | lesion_volume | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | @Hope2017 | time_post_onset | f1 anomic_aphasia→anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | — | intensive_aphasia_therapy | targets_impairments += anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | — | intensive_speech_and_language_therapy | targets_impairments += anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | — | intention_treatment | targets_impairments += anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | — | phonological_component_analysis | targets_impairments += anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | — | semantic_feature_analysis | targets_impairments += anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | — | tdcs_aphasia_treatment | targets_impairments += anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | — | typicality_semantic_feature_analysis | targets_impairments += anomia | symptom not syndrome (schema v2.8); draft | tool: retarget_symptoms.py
+2026-10-26 | RETARGETED | — | constraint_induced_aphasia_therapy | targets_impairments += anomia | symptom not syndrome (schema v2.8); canonical | tool: retarget_symptoms.py
+2026-10-27 | BACKFILLED | @Barbieri2023 | therapy | 16 value(s) written, 0 not (no quote found) across 16 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Benjamin2014 | therapy | 3 value(s) written, 0 not (no quote found) across 3 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Bonilha2016 | therapy | 3 value(s) written, 0 not (no quote found) across 3 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Boyle2004 | therapy | 4 value(s) written, 0 not (no quote found) across 4 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Brady2022 | therapy | 4 value(s) written, 0 not (no quote found) across 4 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Breitenstein2017 | therapy | 2 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Fridriksson2010Anomia | therapy | 5 value(s) written, 0 not (no quote found) across 5 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Fridriksson2018BDNF | therapy | 2 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Fridriksson2018JAMA | therapy | 2 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Gilmore2019 | therapy | 1 value(s) written, 0 not (no quote found) across 1 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Godecke2021 | therapy | 1 value(s) written, 0 not (no quote found) across 1 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Goldenberg1994 | therapy | 1 value(s) written, 0 not (no quote found) across 1 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Laver2025 | therapy | 5 value(s) written, 0 not (no quote found) across 5 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Leonard2008 | therapy | 2 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Meinzer2010 | therapy | 2 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Naeser2005 | therapy | 2 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Nouwens2017 | therapy | 1 value(s) written, 0 not (no quote found) across 1 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Pulvermuller2001 | therapy | 3 value(s) written, 0 not (no quote found) across 3 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Schlaug2008 | therapy | 3 value(s) written, 0 not (no quote found) across 3 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @Thiel2013 | therapy | 2 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-27 | BACKFILLED | @vanderMeulen2012 | therapy | 1 value(s) written, 0 not (no quote found) across 1 finding(s) | model: gemma4:31b-it-q8_0

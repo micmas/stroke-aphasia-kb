@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: left_middle_temporal_gyrus
 name: Left Middle Temporal Gyrus (Ventral Stream Node)
 kind: classical
@@ -9,7 +9,7 @@ created_on: 2026-10-20
 hemisphere: left
 findings:
 - id: f1
-  target: anomic_aphasia
+  target: anomia
   target_kind: impairment
   claim: Damage to the posterior portion of the left middle temporal lobe and the temporal-occipital junction
     is associated with a reduced likelihood of improvement in naming following treatment.
@@ -56,6 +56,7 @@ findings:
     confidence: high
     flags:
     - cohort overlaps with @Fridriksson2010 (as stated in paper)
+    - retargeted anomic_aphasia → anomia (symptom, v2.8) on 2026-10-26
   source_passages:
   - section: Results
     page: 1
@@ -94,6 +95,11 @@ findings:
     quote: Data from all 26 patients were included in the structural MRI analysis of change in correct
       naming.
     supports: method
+  - section: added by backfill
+    page: 2
+    quote: the treatment, usually referred to as a "cueing hierarchy," is based on using verbal cues of
+      increasing cueing strength to elicit correct naming of colored pictures shown on a computer screen.
+    supports: method
   lesion_mapping:
     analysis: univariate
     n_analysed: 26
@@ -102,10 +108,20 @@ findings:
     multiple_comparisons: uncorrected
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - lesion_mapping
+    - therapy
+  edits:
+  - by: tool:retarget_symptoms.py
+    date: '2026-10-26'
+    fields:
+    - target
+  therapy:
+    id: cueing_hierarchy
+    name: cueing hierarchy
+    dose: 30 h
 ---
 Finding f1 describes the negative impact of posterior left temporal lobe damage on the efficacy of anomia treatment.

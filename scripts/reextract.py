@@ -147,10 +147,10 @@ def _cli(argv=None) -> int:
             for pdf in to_drafts:
                 fh.write(f"{today} | RE-EXTRACTED | @{pdf.stem} | previous drafts moved to "
                          f"_compare/superseded/{today}/ | current extractor (thinking off)\n")
-        rc |= subprocess.call([sys.executable, str(ROOT / "extract.py"), "--pdf",
+        rc |= subprocess.call([sys.executable, str(ROOT / "scripts" / "extract.py"), "--pdf",
                                *map(str, to_drafts)], cwd=str(ROOT.parent))
     if to_sandbox:
-        rc |= subprocess.call([sys.executable, str(ROOT / "extract.py"), "--pdf",
+        rc |= subprocess.call([sys.executable, str(ROOT / "scripts" / "extract.py"), "--pdf",
                                *map(str, to_sandbox), "--out-dir",
                                str(ROOT / "_compare" / "rerun")], cwd=str(ROOT.parent))
         print("\nCompare each sandbox paper with what is approved:")

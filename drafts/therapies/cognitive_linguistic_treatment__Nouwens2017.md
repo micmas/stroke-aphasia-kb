@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: cognitive_linguistic_treatment
 name: Cognitive-Linguistic Treatment
 kind: therapy
@@ -101,8 +101,13 @@ findings:
     supports: sample
   filled:
     by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
+    date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
+    - therapy
+  therapy:
+    id: intensive_cognitive_linguistic_treatment
+    name: intensive cognitive-linguistic treatment
+    dose: 1 h/day for 4 weeks
 ---
