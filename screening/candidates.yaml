@@ -34327,6 +34327,10 @@ candidates:
   sources:
   - search: S001
   - search: S008
+  - &id001
+    search: S011
+  - &id002
+    search: S012
   screening: []
 - id: C2038
   doi: 10.1016/j.pediatrneurol.2018.10.022
@@ -47176,6 +47180,8 @@ candidates:
   - search: S001
   - search: S008
   - search: S009
+  - &id005
+    search: S015
   screening: []
 - id: C2859
   doi: 10.1001/jama.2013.284467
@@ -57407,6 +57413,10 @@ candidates:
   - search: S001
   - search: S008
   - search: S015
+  - &id007
+    search: S018
+  - &id008
+    search: S019
   screening: []
 - id: C3534
   doi: 10.1093/brain/awp083
@@ -103928,6 +103938,8 @@ candidates:
   sources:
   - search: S006
   - search: S013
+  - &id014
+    search: S020
   screening: []
 - id: C6871
   doi: 10.1016/j.actpsy.2026.106325
@@ -117173,6 +117185,8 @@ candidates:
   sources:
   - search: S006
   - search: S013
+  - &id016
+    search: S020
   screening: []
 - id: C7815
   doi: 10.1016/j.neuroimage.2012.06.018
@@ -160477,9 +160491,13 @@ candidates:
   journal: Tremor and Other Hyperkinetic Movements
   sources:
   - search: S008
-  - search: S011
-  - search: S012
+  - *id001
+  - *id002
   screening: []
+  duplicate_of: C2037
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C11067
   pmid: '30717501'
   title: >-
@@ -174486,6 +174504,8 @@ candidates:
   journal: 'The Oxford Handbook of Deaf Studies, Language, and Education: Second Edition'
   sources:
   - search: S008
+  - &id006
+    search: S015
   screening: []
 - id: C12176
   doi: 10.1590/s0004-282x2012005000018
@@ -186996,6 +187016,10 @@ candidates:
   journal: 'Classification of Developmental Language Disorders: Theoretical Issues and Clinical Implications'
   sources:
   - search: S008
+  - &id003
+    search: S015
+  - &id004
+    search: S016
   screening: []
 - id: C13208
   doi: 10.1080/02687030344000454
@@ -196968,6 +196992,8 @@ candidates:
   journal: 'Acquired Language Disorders in Adulthood and Childhood: Selected Works of Elaine Funnell'
   sources:
   - search: S009
+  - &id009
+    search: S016
   screening: []
 - id: C14025
   doi: 10.1016/b978-0-12-407794-2.00055-9
@@ -200672,6 +200698,8 @@ candidates:
   journal: 'The Roots of Cognitive Neuroscience: Behavioral Neurology and Neuropsychology'
   sources:
   - search: S009
+  - &id012
+    search: S016
   screening: []
 - id: C14346
   pmid: '26860009'
@@ -202323,6 +202351,8 @@ candidates:
   journal: Language and Action in Cognitive Neuroscience
   sources:
   - search: S009
+  - &id010
+    search: S016
   screening: []
 - id: C14489
   doi: 10.1016/j.bandl.2010.01.009
@@ -204586,6 +204616,8 @@ candidates:
     Crosslinguistic Approaches to the Psychology of Language: Research in the Tradition of Dan Isaac Slobin
   sources:
   - search: S009
+  - &id011
+    search: S016
   screening: []
 - id: C14686
   doi: 10.1080/02687030902958381
@@ -204906,6 +204938,8 @@ candidates:
   journal: Automaticity and Control in Language Processing
   sources:
   - search: S009
+  - &id013
+    search: S016
   screening: []
 - id: C14715
   title: Response [3]
@@ -233380,6 +233414,8 @@ candidates:
   journal: Inclusion and Special Needs Education for Immigrant Students in the Nordic Countries
   sources:
   - search: S013
+  - &id015
+    search: S020
   screening: []
 - id: C17107
   doi: 10.1080/09638237.2020.1739241
@@ -244304,6 +244340,10 @@ candidates:
   sources:
   - search: S013
   screening: []
+  duplicate_of: C7861
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C18029
   doi: 10.1016/j.ijantimicag.2008.10.021
   title: 'Systemic colistin use in children without cystic fibrosis: a systematic review of the literature'
@@ -252310,9 +252350,13 @@ candidates:
   authors: Reilly, Judy, Weckerly, Jill, Wulfeck, Beverly
   journal: 'Classification of developmental language disorders: Theoretical issues and clinical implications.'
   sources:
-  - search: S015
-  - search: S016
+  - *id003
+  - *id004
   screening: []
+  duplicate_of: C13207
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C18700
   doi: 10.1212/wnl.0000000000003705
   title: 'Language, meaning, and localization: Last year''s words, next year''s words'
@@ -252687,8 +252731,12 @@ candidates:
     Angela, Loverre, Anna
   journal: Neuropsychiatric Disease and Treatment
   sources:
-  - search: S015
+  - *id005
   screening: []
+  duplicate_of: C2858
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C18734
   doi: 10.1212/wnl.0b013e318294b423
   title: 'Pearls & Oy-sters: Acute ischemic stroke caused by atypical thrombotic thrombocytopenic purpura'
@@ -253286,8 +253334,12 @@ candidates:
   authors: Emmorey, Karen
   journal: The Oxford handbook of deaf studies, language, and education., Vol. 1, 2nd ed.
   sources:
-  - search: S015
+  - *id006
   screening: []
+  duplicate_of: C12175
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C18787
   title: >-
     Crises épileptiques, hémiplégie et hyperglycémie: Révéation tardive d'une dysplasie corticale localisée
@@ -258205,9 +258257,13 @@ candidates:
   journal: 'Dissertation Abstracts International: Section B: The Sciences and Engineering'
   sources:
   - search: S015
-  - search: S018
-  - search: S019
+  - *id007
+  - *id008
   screening: []
+  duplicate_of: C3533
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C19234
   doi: 10.1080/01688638608401295
   title: 'Focal brain lesions and intelligence: A study with a new version of Raven''s Colored Matrices'
@@ -258329,6 +258385,10 @@ candidates:
   - search: S015
   - search: S019
   screening: []
+  duplicate_of: C19302
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C19245
   doi: 10.1016/0093-934x(84)90011-7
   title: Age and type of crossed aphasia in dextrals due to stroke
@@ -262185,8 +262245,12 @@ candidates:
   first_author: Funnell
   authors: Funnell, Elaine, Pitchford, Nicola, Ellis, Andrew W.
   sources:
-  - search: S016
+  - *id009
   screening: []
+  duplicate_of: C14024
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C19612
   doi: 10.1080/02687039708248485
   title: Agrammatic and non-brain-damaged subjects' verb and verg argument structure production
@@ -262239,8 +262303,12 @@ candidates:
   authors: Ham, Heidi Stieglitz, Bartolo, Angela
   journal: Language and action in cognitive neuroscience.
   sources:
-  - search: S016
+  - *id010
   screening: []
+  duplicate_of: C14488
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C19617
   doi: 10.1016/s0021-9924(96)00039-1
   title: 'Test—retest reliability of three aphasia tests: Performance of non-brain-damaged older adults'
@@ -263197,8 +263265,12 @@ candidates:
   journal: >-
     Crosslinguistic approaches to the psychology of language: Research in the tradition of Dan Isaac Slobin.
   sources:
-  - search: S016
+  - *id011
   screening: []
+  duplicate_of: C14685
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C19710
   title: Spatial neglect, Baliant-Homes' and Gerstmann's syndrome, and other spatial disorders
   year: 2007
@@ -263663,8 +263735,12 @@ candidates:
   first_author: Chatterjee
   authors: Chatterjee, Anjan, Coslett, H. Branch
   sources:
-  - search: S016
+  - *id012
   screening: []
+  duplicate_of: C14345
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C19758
   title: Social and communication disorders following traumatic brain injury., 2nd ed
   year: 2014
@@ -263902,8 +263978,12 @@ candidates:
   first_author: Meyer
   authors: Meyer, Antje S., Wheeldon, Linda R., Krott, Andrea
   sources:
-  - search: S016
+  - *id013
   screening: []
+  duplicate_of: C14714
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C19782
   doi: 10.1207/s15326942dn231
   title: Can adolescents with Williams syndrome tell the difference between lies and jokes?
@@ -270091,6 +270171,10 @@ candidates:
   sources:
   - search: S016
   screening: []
+  duplicate_of: C20400
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C20400
   doi: 10.1111/j.1469-8749.1987.tb02104.x
   title: Factors affecting cognitive functioning of hemiplegic children
@@ -271072,6 +271156,10 @@ candidates:
   sources:
   - search: S016
   screening: []
+  duplicate_of: C20257
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C20500
   doi: 10.2466/pms.1971.33.1.269
   title: 'Lateralized brain damage and differential psychological effects: Reply to Dr. Woo-Sam'
@@ -271091,6 +271179,10 @@ candidates:
   sources:
   - search: S016
   screening: []
+  duplicate_of: C20342
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C20502
   doi: 10.1037/0022-006x.52.2.323
   title: Neuropsychological deficits, learning disability, and violent behavior
@@ -272572,8 +272664,12 @@ candidates:
   authors: Han, Weifeng, Zhou, Lin, Lu, Juan, Pill, Shane
   journal: Brain Sciences
   sources:
-  - search: S020
+  - *id014
   screening: []
+  duplicate_of: C6870
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C20646
   doi: 10.1080/09638288.2025.2470401
   title: >-
@@ -272735,8 +272831,12 @@ candidates:
   authors: Gunnerud, Hilde Lowell, Bratlie, Siri Steffensen
   journal: Inclusion and special needs education for immigrant students in the Nordic countries.
   sources:
-  - search: S020
+  - *id015
   screening: []
+  duplicate_of: C17106
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C20661
   title: >-
     A comprehensive study of neural entrainment in developmental language disorder and reading disability
@@ -273287,8 +273387,12 @@ candidates:
   authors: Fey, Marc E., Kamhi, Alan G., Richard, Gail J.
   journal: Language, Speech, and Hearing Services in Schools
   sources:
-  - search: S020
+  - *id016
   screening: []
+  duplicate_of: C7814
+  duplicate:
+    by: michele
+    date: '2026-10-27'
 - id: C20713
   doi: 10.1111/j.1460-6984.2012.00174.x
   title: 'Treating verbs in aphasia: Exploring the impact of therapy at the single word and sentence levels'
