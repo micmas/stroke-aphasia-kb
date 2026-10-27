@@ -231,9 +231,20 @@ def next_id(candidates: list[dict]) -> str:
     return f"C{n + 1:04d}"
 
 
+def _conflicting_ids(a: dict, b: dict) -> bool:
+    """Two records with different PMIDs or different DOIs are different papers, whatever their titles."""
+    pa, pb = str(a.get("pmid") or "").strip(), str(b.get("pmid") or "").strip()
+    if pa and pb and pa != pb:
+        return True
+    da, db_ = norm_doi(a.get("doi")), norm_doi(b.get("doi"))
+    return bool(da and db_ and da != db_)
+
+
 def find_duplicate(rec: dict, index: dict[str, dict]) -> dict | None:
     for k in identity_keys(rec):
         if k in index:
+            if k.startswith("title:") and _conflicting_ids(rec, index[k]):
+                continue          # same title and year, different paper (e.g. two case reports)
             return index[k]
     return None
 
