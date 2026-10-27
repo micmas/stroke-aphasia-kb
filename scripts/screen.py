@@ -540,6 +540,7 @@ def cmd_import_all(args) -> int:
                 if ans.isdigit():
                     g["hits"] = {int(ans)}
                     break
+    failed: list[str] = []
     for sid in [k for k in known if k in groups]:
         g = groups[sid]
         if len(g["hits"]) > 1:
@@ -552,8 +553,16 @@ def cmd_import_all(args) -> int:
         ns.strategy, ns.query, ns.years, ns.for_, ns.max, ns.notes = sid, None, None, None, None, args.notes
         ns.hits = g["hits"].pop()
         print(f"— {sid}: {len(g['paths'])} file(s), {ns.hits} hits in {args.db}")
-        _resolve_strategy(ns)
-        _ingest(ns, records, ns.hits, file=", ".join(Path(p).name for p in g["paths"]))
+        try:
+            _resolve_strategy(ns)
+            _ingest(ns, records, ns.hits, file=", ".join(Path(p).name for p in g["paths"]))
+        except SystemExit as e:              # one bad file must not stop the others
+            failed.append(sid)
+            print(f"  {sid} NOT imported: {e}")
+    if failed:
+        print(f"Not imported: {', '.join(failed)} — fix those files and run the same command again "
+              f"(files already imported are skipped).")
+        return 1
     return 0
 
 
