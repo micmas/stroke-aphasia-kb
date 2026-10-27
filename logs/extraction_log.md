@@ -573,3 +573,19 @@ add an `EXTRACTED` line for every run.
 2026-10-27 | SEARCHED | — | S020 psycinfo | 918 records | 120 new candidates (register 20641→20761) | strategy q4_synthesis v2 8d8dc2e70d35 | by: michele
 2026-10-27 | SEARCHED | — | S021 psycinfo | 363 records | 51 new candidates (register 20761→20812) | strategy q5_recruitment_meta v2 8d8dc2e70d35 | by: michele
 2026-10-27 | DEDUPED | — | screening register | 18 near-duplicates merged | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
+2026-10-27 | SCREENED | — | title_abstract (screen_app) | 3 decisions/undos | by: michele
