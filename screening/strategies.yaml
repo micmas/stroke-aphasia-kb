@@ -21,13 +21,23 @@
 # `screen.py import --strategy <id> --db scopus --file …`. PsycINFO strings are
 # added as `psycinfo:` fields (translated from the Scopus ones) before the run.
 #
-# Dates: no lower limit (inception) unless a strategy says otherwise; the
-# upper limit is the search date, recorded per run.
+# Dates: `years` below applies to every strategy that does not set its own:
+# PubMed and OpenAlex runs get it as a publication-date filter (recorded under
+# `filters`), Scopus strings get `AND PUBYEAR > 1999` appended by
+# `screen.py strategies --show`. The upper limit is the search date.
 
 version: 1
 status: draft            # draft → locked (then commit) before the first --execute
 protocol_owner: michele
 amendments: []
+
+# Publication years searched (docs/SCREENING.md §3.1). 2000 onward: routine
+# clinical MRI with diffusion and perfusion imaging, then voxel-wise
+# lesion-symptom mapping (2003) and tractography, made lesion localisation
+# comparable to what the KB maps onto atlases; for therapy and prognosis, it
+# also marks contemporary stroke care (stroke units, thrombolysis). Earlier
+# pillar papers enter by citation chasing (§3), never by the searches.
+years: 2000-
 
 # Pre-lock calibration (not protocol searches; nothing entered the register).
 # PubMed counts and benchmark recall measured 2026-10-27 through E-utilities.
@@ -67,6 +77,25 @@ calibration:
       term (C0073), a pure-alexia eye-movement study (C0109), and Bates 2003
       VLSM, which has no abstract (C0110). Citation chasing (§3) is the route
       for these.
+  - date: 2026-10-27
+    database: pubmed
+    draft: this file, after the scope decisions of 2026-10-27 (years 2000-, q1c, q4 narrative reviews need stroke + imaging)
+    hits_2000_on: {q1_lesion_impairment: 3528, q1b_language_lesion_mapping: 2145, q1c_cognition_prosody_lesion: 1041,
+                   q2a_therapy_efficacy: 2014, q2b_therapy_response_neural: 2382, q3_predictor_outcome: 3429,
+                   q4_synthesis: 1466, q5_recruitment_meta: 907}
+    union_hits: 10281
+    benchmark: 139 in PubMed; 3 published before 2000 (C0022, C0047, C0133) → 136 in the window
+    benchmark_found: 123 of 136 (90 %)
+    missed_out_of_scope: [C0002, C0098, C0099, C0100, C0080, C0104, C0126, C0106, C0108]
+    missed_in_scope: [C0012, C0073, C0109, C0110]
+    finding: >-
+      Out of scope under the 2026-10-27 decisions: a primary healthy-volunteer
+      study (C0002), narrative reviews that do not name stroke and neuroimaging
+      (C0098, C0099, C0100, C0080, C0104, C0126), dysarthria and VR-rehabilitation
+      reviews (C0106, C0108). Recall on in-scope, in-window benchmark papers:
+      123/127 (97 %). The 4 in-scope misses and the pre-2000 pillars (Geschwind
+      1965, Dronkers 1996, Pedersen 1995, Goldenberg 1994, Nadeau & Crosson 1997,
+      Crosson 1999) are candidates for citation chasing.
 
 blocks:
   pubmed:
@@ -102,7 +131,21 @@ blocks:
       OR "lesion analys*"[tiab] OR "lesion location*"[tiab] OR "lesion site*"[tiab] OR "lesion load"[tiab]
       OR "lesion stud*"[tiab] OR "lesion pattern*"[tiab] OR "lesion-based"[tiab] OR disconnect*[tiab]
       OR tractograph*[tiab] OR "white matter"[tiab] OR "brain damage*"[tiab] OR "brain-damaged"[tiab]
-      OR "voxel-based"[tiab] OR "voxel based"[tiab])
+      OR "voxel-based"[tiab] OR "voxel based"[tiab] OR "lesion loci"[tiab] OR "lesion locus"[tiab])
+    lesion_symptom: >-
+      ("symptom mapping"[tiab] OR VLSM[tiab] OR "voxel-based lesion*"[tiab] OR "voxel-wise lesion*"[tiab]
+      OR "lesion-symptom"[tiab] OR "lesion symptom"[tiab] OR "lesion-behavio*"[tiab] OR "lesion-deficit"[tiab]
+      OR "lesion mapping"[tiab] OR "lesion analys*"[tiab] OR "lesion location*"[tiab] OR "lesion loci"[tiab]
+      OR "lesion locus"[tiab] OR "lesion site*"[tiab] OR "lesion load"[tiab] OR "lesion network mapping"[tiab]
+      OR "strategic infarct*"[tiab] OR "infarct location*"[tiab] OR disconnectom*[tiab] OR "lesion-based"[tiab]
+      OR "lesion pattern*"[tiab])
+    cognition: >-
+      ("Cognition"[Mesh] OR "Cognitive Dysfunction"[Mesh] OR "Executive Function"[Mesh] OR cogniti*[tiab]
+      OR executive[tiab] OR "working memory"[tiab] OR "short-term memory"[tiab] OR "cognitive control"[tiab]
+      OR "processing speed"[tiab] OR "decision making"[tiab] OR "problem solving"[tiab] OR reasoning[tiab]
+      OR "attentional control"[tiab] OR prosod*[tiab] OR "emotion recognition"[tiab])
+    prosody: >-
+      (prosod*[tiab] OR aprosodi*[tiab] OR "emotion recognition"[tiab] OR "tone of voice"[tiab])
     therapy: >-
       ("Language Therapy"[Mesh] OR "Speech Therapy"[Mesh] OR "Transcranial Direct Current Stimulation"[Mesh]
       OR "Transcranial Magnetic Stimulation"[Mesh] OR therap*[tiab] OR treatment*[tiab] OR rehabilit*[tiab]
@@ -150,7 +193,18 @@ blocks:
       OR "lesion-behavior" OR "lesion-behaviour" OR "lesion-deficit" OR "lesion mapping" OR "lesion analysis"
       OR "lesion location" OR "lesion site" OR "lesion load" OR "lesion study" OR "lesion pattern"
       OR "lesion-based" OR disconnection OR tractography OR "white matter" OR "brain damage" OR "brain damaged"
-      OR "voxel-based" OR "voxel based")
+      OR "voxel-based" OR "voxel based" OR "lesion loci" OR "lesion locus")
+    lesion_symptom: >-
+      ("symptom mapping" OR VLSM OR "voxel-based lesion" OR "voxel-wise lesion" OR "lesion-symptom"
+      OR "lesion symptom" OR "lesion-behavior" OR "lesion-behaviour" OR "lesion-deficit" OR "lesion mapping"
+      OR "lesion analysis" OR "lesion location" OR "lesion loci" OR "lesion locus" OR "lesion site" OR "lesion load"
+      OR "lesion network mapping" OR "strategic infarct" OR "infarct location" OR disconnectome OR "lesion-based"
+      OR "lesion pattern")
+    cognition: >-
+      (cognition OR cognitive OR executive OR "working memory" OR "short-term memory" OR "cognitive control"
+      OR "processing speed" OR "decision making" OR "problem solving" OR reasoning OR "attentional control"
+      OR prosody OR "emotion recognition")
+    prosody: (prosody OR prosodic OR aprosodia OR "emotion recognition" OR "tone of voice")
     therapy: >-
       (therapy OR treatment OR rehabilitation OR intervention OR training OR tDCS OR rTMS
       OR "brain stimulation" OR "transcranial magnetic stimulation" OR "transcranial direct current stimulation"
@@ -194,7 +248,19 @@ blocks:
       TITLE-ABS-KEY("symptom mapping" OR VLSM OR "voxel-based lesion*" OR "lesion-symptom" OR "lesion symptom"
       OR "lesion-behavio*" OR "lesion-deficit" OR "lesion mapping" OR "lesion analys*" OR "lesion location*"
       OR "lesion site*" OR "lesion load" OR "lesion stud*" OR "lesion pattern*" OR "lesion-based" OR disconnect*
-      OR tractograph* OR "white matter" OR "brain damage*" OR "brain-damaged" OR "voxel-based" OR "voxel based")
+      OR tractograph* OR "white matter" OR "brain damage*" OR "brain-damaged" OR "voxel-based" OR "voxel based"
+      OR "lesion loci" OR "lesion locus")
+    lesion_symptom: >-
+      TITLE-ABS-KEY("symptom mapping" OR VLSM OR "voxel-based lesion*" OR "voxel-wise lesion*" OR "lesion-symptom"
+      OR "lesion symptom" OR "lesion-behavio*" OR "lesion-deficit" OR "lesion mapping" OR "lesion analys*"
+      OR "lesion location*" OR "lesion loci" OR "lesion locus" OR "lesion site*" OR "lesion load"
+      OR "lesion network mapping" OR "strategic infarct*" OR "infarct location*" OR disconnectom* OR "lesion-based"
+      OR "lesion pattern*")
+    cognition: >-
+      TITLE-ABS-KEY(cogniti* OR executive OR "working memory" OR "short-term memory" OR "cognitive control"
+      OR "processing speed" OR "decision making" OR "problem solving" OR reasoning OR "attentional control"
+      OR prosod* OR "emotion recognition")
+    prosody: TITLE-ABS-KEY(prosod* OR aprosodi* OR "emotion recognition" OR "tone of voice")
     therapy: >-
       TITLE-ABS-KEY(therap* OR treatment* OR rehabilit* OR intervention* OR training OR tDCS OR rTMS
       OR "brain stimulation" OR "transcranial magnetic stimulation" OR "transcranial direct current stimulation"
@@ -242,6 +308,20 @@ strategies:
     openalex: ${language} AND ${stroke} AND ${lesion_mapping}
     scopus: ${language} AND ${stroke} AND ${lesion_mapping}
 
+  - id: q1c_cognition_prosody_lesion
+    question: lesion → impairment (prosody and domain-general cognition after stroke)
+    buckets: [regions, impairments]
+    for: [q1_lesion_impairment]
+    notes: >-
+      In scope since 2026-10-27. Paired with the strict lesion–symptom block, not
+      the broad lesion-mapping one: with "white matter" the cognition arm returns
+      ~8,800 PubMed hits, mostly small-vessel-disease imaging. Prosody papers
+      also enter through ordinary imaging terms (few of them use lesion-mapping
+      vocabulary).
+    pubmed: ((${cognition} AND ${lesion_symptom}) OR (${prosody} AND ${imaging})) AND ${stroke}
+    openalex: ((${cognition} AND ${lesion_symptom}) OR (${prosody} AND ${imaging})) AND ${stroke}
+    scopus: ((${cognition} AND ${lesion_symptom}) OR (${prosody} AND ${imaging})) AND ${stroke}
+
   - id: q2a_therapy_efficacy
     question: therapy → response (efficacy)
     buckets: [therapies, ingredients]
@@ -249,10 +329,10 @@ strategies:
     notes: >-
       No stroke block: aphasia therapy papers often never say stroke (primary
       progressive and developmental populations are excluded at screening,
-      not_stroke). Scope choice to confirm before locking: the design block keeps
-      controlled trials, crossover, case-series, single-case / single-subject
-      experimental designs and syntheses, and drops uncontrolled single-case
-      reports (below the §2 sample threshold anyway).
+      not_stroke). The design block keeps controlled trials, crossover,
+      case-series, single-case / single-subject experimental designs and
+      syntheses, and drops uncontrolled single-case reports (below the §2
+      sample threshold anyway).
     pubmed: ${aphasia} AND ${therapy} AND ${trial_design}
     openalex: ${aphasia} AND ${therapy} AND ${trial_design}
     scopus: ${aphasia} AND ${therapy} AND ${trial_design}
@@ -278,23 +358,24 @@ strategies:
     buckets: [reviews]
     for: [q4_synthesis]
     notes: >-
-      Scope choice to confirm before locking: systematic reviews, meta-analyses
-      and scoping reviews of aphasia from any source; narrative reviews only when
-      the record names stroke (all narrative aphasia reviews: ~4,400 PubMed hits).
-    pubmed: ${aphasia} AND (${systematic} OR (${stroke} AND ${review}))
-    openalex: ${aphasia} AND (${systematic} OR (${stroke} AND ${review}))
-    scopus: ${aphasia} AND (${systematic} OR (${stroke} AND ${review}))
+      Decided 2026-10-27: systematic reviews, meta-analyses and scoping reviews
+      of aphasia; narrative reviews only when they cover neuroimaging (or lesion)
+      evidence in stroke — the same rule is an eligibility criterion (§2,
+      narrative_review_out_of_scope).
+    pubmed: ${aphasia} AND (${systematic} OR (${stroke} AND ${imaging} AND ${review}))
+    openalex: ${aphasia} AND (${systematic} OR (${stroke} AND ${imaging} AND ${review}))
+    scopus: ${aphasia} AND (${systematic} OR (${stroke} AND ${imaging} AND ${review}))
 
   - id: q5_recruitment_meta
     question: recruitment (healthy-volunteer language mapping) — syntheses only
     buckets: []
     for: [q5_recruitment]
     notes: >-
-      Scope choice to confirm before locking: healthy-volunteer imaging enters
-      only through coordinate-based meta-analyses (ALE, MKDA, SDM) and
-      systematic reviews, not primary studies; primary healthy-volunteer
-      studies (e.g. Saur 2008) stay out (not_stroke) unless reached by citation
-      chasing from an included paper and justified there.
+      Decided 2026-10-27: healthy-volunteer imaging enters only through
+      coordinate-based meta-analyses (ALE, MKDA, SDM) and systematic reviews,
+      not primary studies. A pillar primary study the field relies on (e.g.
+      Saur 2008) enters by citation chasing from an included paper, with the
+      reason recorded (§3, `screen.py chase`).
     pubmed: >-
       ("Language"[Mesh] OR language[tiab] OR naming[tiab] OR semantic*[tiab] OR phonolog*[tiab]
       OR syntax[tiab] OR syntactic[tiab] OR "speech production"[tiab] OR "sentence comprehension"[tiab]

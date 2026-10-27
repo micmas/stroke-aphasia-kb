@@ -247,12 +247,14 @@ findings:
     supports: claim
     quote: (citation from clinical knowledge — not formally extracted)
   filled:
-    by: model:gemma4:31b-it-q8_0
+    by: tool:backfill.py
     date: '2026-10-27'
     tool: backfill.py
-    fields: []
-    unresolved:
+    fields:
     - therapy
+  therapy:
+    id: melodic_intonation_therapy
+    name: Melodic Intonation Therapy (MIT)
 source:
 - migrated_from: _legacy_v1/therapies/mit.md
 - basis: Schlaug 2008, van der Meulen 2012, Stahl 2013 (not formally extracted)

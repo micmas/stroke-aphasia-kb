@@ -22109,6 +22109,10 @@
    "strength": "moderate",
    "target": "anomic_aphasia",
    "target_kind": "impairment",
+   "therapy": {
+    "id": "constraint_induced_aphasia_therapy",
+    "name": "Constraint-Induced Aphasia Therapy (CIAT / CILT)"
+   },
    "time_post_onset": null
   },
   {
@@ -22343,6 +22347,10 @@
    "strength": "moderate",
    "target": "apraxia_of_speech",
    "target_kind": "impairment",
+   "therapy": {
+    "id": "melodic_intonation_therapy",
+    "name": "Melodic Intonation Therapy (MIT)"
+   },
    "time_post_onset": null
   },
   {
@@ -22464,6 +22472,10 @@
    "strength": "weak",
    "target": "left_temporal_fusiform_cortex_anterior",
    "target_kind": "region",
+   "therapy": {
+    "id": "phonological_component_analysis",
+    "name": "Phonological Component Analysis (PCA)"
+   },
    "time_post_onset": "11–172 months post-onset (chronic)"
   },
   {
@@ -22564,6 +22576,10 @@
    "strength": "weak",
    "target": "right_lingual_gyrus",
    "target_kind": "region",
+   "therapy": {
+    "id": "phonological_component_analysis",
+    "name": "Phonological Component Analysis (PCA)"
+   },
    "time_post_onset": "11–172 months post-onset (chronic)"
   },
   {
@@ -22685,6 +22701,10 @@
    "strength": "weak",
    "target": "left_temporal_fusiform_cortex_anterior",
    "target_kind": "region",
+   "therapy": {
+    "id": "phonological_component_analysis",
+    "name": "Phonological Component Analysis (PCA)"
+   },
    "time_post_onset": "11–172 months post-onset (chronic)"
   },
   {
@@ -22785,6 +22805,10 @@
    "strength": "weak",
    "target": "right_lingual_gyrus",
    "target_kind": "region",
+   "therapy": {
+    "id": "phonological_component_analysis",
+    "name": "Phonological Component Analysis (PCA)"
+   },
    "time_post_onset": "11–172 months post-onset (chronic)"
   },
   {
@@ -37860,9 +37884,13 @@
     "fullTextOnly": false,
     "label": "Language"
    },
+   "narrative_review_out_of_scope": {
+    "fullTextOnly": false,
+    "label": "Narrative review out of scope"
+   },
    "not_aphasia": {
     "fullTextOnly": false,
-    "label": "No language or communication outcome"
+    "label": "No language, communication or cognitive outcome"
    },
    "not_extractable": {
     "fullTextOnly": true,
@@ -37883,6 +37911,10 @@
    "other": {
     "fullTextOnly": false,
     "label": "Other (see note)"
+   },
+   "out_of_date_range": {
+    "fullTextOnly": false,
+    "label": "Outside the publication years"
    }
   },
   "searches": [],
@@ -37907,9 +37939,9 @@
   }
  },
  "version": {
-  "commit": "8b00307",
-  "contentDigest": "161e3638ebcce8d9",
-  "date": "2026-10-26",
+  "commit": "7a89c33",
+  "contentDigest": "c4d01e85c468f594",
+  "date": "2026-10-27",
   "entries": {
    "impairments": 13,
    "predictors": 10,

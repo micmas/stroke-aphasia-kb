@@ -64,8 +64,9 @@ REASONS: dict[str, dict] = {
     "not_stroke": {"label": "Not (post-)stroke", "ft_only": False,
                    "text": "The population is not stroke (tumour, TBI, primary progressive aphasia, "
                            "dementia, healthy only without a stroke question)."},
-    "not_aphasia": {"label": "No language or communication outcome", "ft_only": False,
-                    "text": "No aphasia / language / communication measure is reported."},
+    "not_aphasia": {"label": "No language, communication or cognitive outcome", "ft_only": False,
+                    "text": "No aphasia / language / communication (prosody included) or domain-general cognitive "
+                            "measure is reported (e.g. motor recovery only, spatial neglect only)."},
     "design_out_of_scope": {"label": "Design out of scope", "ft_only": False,
                             "text": "Reports no lesion–behaviour, therapy-response, recovery-predictor or "
                                     "network evidence the schema can hold (e.g. pure modelling, instrument "
@@ -74,6 +75,12 @@ REASONS: dict[str, dict] = {
                         "text": "Editorial, letter, conference abstract, protocol, erratum or thesis."},
     "insufficient_sample": {"label": "Insufficient sample", "ft_only": False,
                             "text": "Below the sample threshold set in docs/SCREENING.md for the question asked."},
+    "narrative_review_out_of_scope": {"label": "Narrative review out of scope", "ft_only": False,
+                                      "text": "A narrative (non-systematic) review that does not cover neuroimaging or "
+                                              "lesion evidence in stroke."},
+    "out_of_date_range": {"label": "Outside the publication years", "ft_only": False,
+                          "text": "Published before the protocol's first year (screening/strategies.yaml `years`) and not "
+                                  "entered as a pillar paper by citation chasing."},
     "language": {"label": "Language", "ft_only": False,
                  "text": "Not available in a language the screener reads."},
     "duplicate_report": {"label": "Duplicate report of an included study", "ft_only": False,
@@ -710,6 +717,32 @@ def expand_query(strategies: dict, sid: str, db: str) -> str:
     return " ".join(out.split())
 
 
+def strategy_years(strategies: dict, sid: str | None = None) -> str | None:
+    """The publication-year window of a strategy: its own `years`, else the protocol's."""
+    if sid:
+        st = strategy(strategies, sid)
+        if st.get("years"):
+            return str(st["years"])
+    return str(strategies["years"]) if strategies.get("years") else None
+
+
+def year_window(spec: str | None) -> tuple[int | None, int | None]:
+    m = re.match(r"^\s*(\d{4})?\s*-\s*(\d{4})?\s*$", str(spec or ""))
+    if not m:
+        return None, None
+    return (int(m.group(1)) if m.group(1) else None), (int(m.group(2)) if m.group(2) else None)
+
+
+def query_for_run(strategies: dict, sid: str, db: str) -> str:
+    """The string to run in a database's own interface. For Scopus the year window
+    is part of the string (PUBYEAR); PubMed and OpenAlex get it as a filter."""
+    q = expand_query(strategies, sid, db)
+    lo, hi = year_window(strategy_years(strategies, sid))
+    if db == "scopus" and (lo or hi):
+        q = f"({q})" + (f" AND PUBYEAR > {lo - 1}" if lo else "") + (f" AND PUBYEAR < {hi + 1}" if hi else "")
+    return q
+
+
 def protocol_fingerprint(root: Path = ROOT) -> str:
     h = hashlib.sha256()
     for rel in PROTOCOL_FILES:
@@ -829,7 +862,17 @@ def recall(candidates: list[dict], searches: list[dict], strategies: dict, bucke
     before screening; a strategy that misses papers its question should find
     needs another term. missed: the benchmark papers no search found, for
     the curator to classify (out of scope under §2, or a search gap)."""
-    bench = [c for c in candidates if is_benchmark(c) and not c.get("duplicate_of")]
+    bench_all = [c for c in candidates if is_benchmark(c) and not c.get("duplicate_of")]
+    lo, hi = year_window(strategy_years(strategies))
+    in_window = (lambda c: not ((lo and (c.get("year") or 9999) < lo) or (hi and (c.get("year") or 0) > hi)))
+    # A benchmark paper the protocol has since excluded at full text (for a reason other than
+    # not retrieving it) is out of scope: it no longer counts against the searches.
+    def out_of_scope(c):
+        d = last_decision(c, "full_text")
+        return bool(d and d.get("decision") == "exclude" and d.get("reason") != "not_retrieved" and not _legacy(d))
+    outside = [c for c in bench_all if not in_window(c)]
+    excluded = [c for c in bench_all if in_window(c) and out_of_scope(c)]
+    bench = [c for c in bench_all if in_window(c) and not out_of_scope(c)]
     s_by_id = {str(s.get("id")): s for s in searches}
 
     def found_by(c):
@@ -864,7 +907,11 @@ def recall(candidates: list[dict], searches: list[dict], strategies: dict, bucke
                             "recall": (len(hit) / len(scope)) if (scope and runs) else None,
                             "missed": [r["id"] for r in scope if sid not in r["strategies"]] if runs else []})
     by_db = collections.Counter(d for r in found for d in r["databases"])
-    return {"benchmark": len(rows), "found": len(found),
+    brief = (lambda c: {"id": c["id"], "key": c.get("key"), "year": c.get("year"), "title": c.get("title"),
+                        "reason": (last_decision(c, "full_text") or {}).get("reason")})
+    return {"benchmark": len(rows), "found": len(found), "benchmarkAll": len(bench_all),
+            "window": strategy_years(strategies), "outsideWindow": [brief(c) for c in outside],
+            "excludedUnderProtocol": [brief(c) for c in excluded],
             "recall": (len(found) / len(rows)) if rows and searches else None,
             "byDatabase": dict(by_db), "byStrategy": by_strategy,
             "missed": [r for r in rows if not r["searches"]]}
@@ -902,7 +949,17 @@ def agreement(candidates: list[dict], stage: str = "title_abstract") -> dict:
     pe = pa * pb + (1 - pa) * (1 - pb)
     kappa = (po - pe) / (1 - pe) if pe < 1 else 1.0
     table = collections.Counter((x, y) for _, x, y, _, _ in pairs)
+    per = {}
+    for who in sorted({str(b.get("by")) for *_, b in pairs}):
+        sub = [x for x in pairs if str(x[4].get("by")) == who]
+        m = len(sub)
+        o = sum(1 for _, x, y, _, _ in sub if x == y) / m
+        a_ = sum(1 for _, x, _, _, _ in sub if x == "include") / m
+        b_ = sum(1 for _, _, y, _, _ in sub if y == "include") / m
+        e = a_ * b_ + (1 - a_) * (1 - b_)
+        per[who] = {"pairs": m, "observed": o, "kappa": (o - e) / (1 - e) if e < 1 else 1.0}
     return {"stage": stage, "pairs": n, "skipped": skipped, "observed": po, "expected": pe, "kappa": kappa,
+            "byCheckScreener": per,
             "table": {f"{x}/{y}": v for (x, y), v in sorted(table.items())},
             "screeners": sorted({str(a.get("by")) for _, _, _, a, _ in pairs} | {str(b.get("by")) for *_, b in pairs}),
             "disagreements": [{"id": c["id"], "title": c.get("title"), "record": x, "check": y,

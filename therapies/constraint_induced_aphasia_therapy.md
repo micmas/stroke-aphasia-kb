@@ -310,14 +310,16 @@ findings:
       of individuals with chronic aphasia.
     supports: sample
   filled:
-    by: model:gemma4:31b-it-q8_0
+    by: tool:backfill.py
     date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
-    unresolved:
     - therapy
+  therapy:
+    id: constraint_induced_aphasia_therapy
+    name: Constraint-Induced Aphasia Therapy (CIAT / CILT)
 source:
 - migrated_from: _legacy_v1/therapies/ciat.md
 - basis: Pulvermüller 2001, Maher 2006 (not formally extracted)

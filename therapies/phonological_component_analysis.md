@@ -1,5 +1,5 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: phonological_component_analysis
 name: Phonological Component Analysis (PCA)
 kind: therapy
@@ -237,14 +237,16 @@ findings:
   target: left_temporal_fusiform_cortex_anterior
   target_kind: region
   filled:
-    by: model:gemma4:31b-it-q8_0
+    by: tool:backfill.py
     date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
-    unresolved:
     - therapy
+  therapy:
+    id: phonological_component_analysis
+    name: Phonological Component Analysis (PCA)
 - author_limitations:
   - Small sample (n=10) without active control group.
   - No significant correlation between rsFC changes and naming improvement — therapy-driven
@@ -357,14 +359,16 @@ findings:
   target: right_lingual_gyrus
   target_kind: region
   filled:
-    by: model:gemma4:31b-it-q8_0
+    by: tool:backfill.py
     date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
-    unresolved:
     - therapy
+  therapy:
+    id: phonological_component_analysis
+    name: Phonological Component Analysis (PCA)
 - author_limitations:
   - Small sample (n=10) without an active control group; healthy controls showed stable
     rsFC over 5 weeks in a prior publication, supporting therapy-related interpretation.
@@ -534,14 +538,16 @@ findings:
   target: left_temporal_fusiform_cortex_anterior
   target_kind: region
   filled:
-    by: model:gemma4:31b-it-q8_0
+    by: tool:backfill.py
     date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
-    unresolved:
     - therapy
+  therapy:
+    id: phonological_component_analysis
+    name: Phonological Component Analysis (PCA)
 - author_limitations:
   - Small sample (n=10) without active control group.
   - No significant correlation between rsFC changes and naming improvement — therapy-driven
@@ -654,14 +660,16 @@ findings:
   target: right_lingual_gyrus
   target_kind: region
   filled:
-    by: model:gemma4:31b-it-q8_0
+    by: tool:backfill.py
     date: '2026-10-27'
     tool: backfill.py
     fields:
     - cohort
     - phase
-    unresolved:
     - therapy
+  therapy:
+    id: phonological_component_analysis
+    name: Phonological Component Analysis (PCA)
 source: extracted
 notes: 'This is a therapy-anchored draft (PCA → rsFC changes). The anchor is the therapy
   because the
