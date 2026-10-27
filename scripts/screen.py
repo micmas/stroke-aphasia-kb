@@ -509,7 +509,11 @@ def cmd_import_all(args) -> int:
     if not paths:
         raise SystemExit(f"no file matches {args.files}")
     groups: dict[str, dict] = {}
+    done = {(str(x.get("database")), f.strip()) for x in S.load_searches() for f in str(x.get("file") or "").split(",") if f.strip()}
     for p in paths:
+        if (args.db, Path(p).name) in done:
+            print(f"  skipped {Path(p).name}: already imported (a recorded {args.db} search names this file)")
+            continue
         got = parse_export_name(Path(p).stem, args.db, known)
         if got is None:
             print(f"  skipped {Path(p).name}: name is not {args.db}_<strategy id>_<count>.ris (strategy ids: screen.py strategies)")
