@@ -250,3 +250,55 @@ searches:
     fingerprint: bf2a8e24bc92
     commit: 34ce419
     locked: true
+- id: S009
+  database: openalex
+  query: >-
+    (aphasia OR aphasic OR dysphasia OR anomia OR "word finding" OR "word retrieval" OR "naming impairment"
+    OR "language impairment" OR "language deficit" OR "language disorder" OR "apraxia of speech" OR dysarthria
+    OR dysarthric) AND (stroke OR poststroke OR cerebrovascular OR infarct OR infarction OR "intracerebral
+    hemorrhage" OR "intracerebral haemorrhage" OR "brain damage" OR "brain damaged" OR "hemisphere damage"
+    OR "focal damage" OR "focal lesion") AND (lesion OR "symptom mapping" OR "voxel-based" OR VLSM OR
+    "lesion load" OR tractography OR "diffusion tensor" OR "white matter" OR fasciculus OR disconnection
+    OR connectome OR "neural correlates" OR neuroanatomy OR cortical OR subcortical OR MRI OR fMRI OR
+    perfusion OR hypoperfusion OR reorganization OR reorganisation OR plasticity)
+  date: '2026-10-27'
+  run_by: michele
+  hits: 6231
+  retrieved: 6236
+  for:
+  - q1_lesion_impairment
+  filters:
+    years: 2000-
+  strategy: q1_lesion_impairment
+  protocol:
+    version: 1
+    fingerprint: bf2a8e24bc92
+    commit: 34ce419
+    locked: true
+- id: S010
+  database: scopus
+  query: >-
+    (TITLE-ABS-KEY(aphasi* OR dysphasi* OR anomi* OR "word finding" OR "word retrieval" OR "naming impairment*"
+    OR "naming deficit*" OR "language impairment*" OR "language deficit*" OR "language disorder*" OR "apraxia
+    of speech" OR dysarthri*) AND TITLE-ABS-KEY(stroke* OR poststroke OR cerebrovascular OR infarct* OR
+    "intracerebral hemorrhage" OR "intracerebral haemorrhage" OR "brain damage*" OR "brain-damaged" OR
+    "hemisphere damage*" OR "left hemisphere lesion*" OR "focal damage" OR "focal lesion*") AND TITLE-ABS-KEY(lesion*
+    OR "symptom mapping" OR "voxel-based" OR "voxel-wise" OR VLSM OR "lesion load" OR tractograph* OR
+    "diffusion tensor" OR "white matter" OR fascicul* OR disconnect* OR connectom* OR "neural correlate*"
+    OR neuroanatom* OR "brain region*" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion
+    OR plasticity OR reorgani*)) AND PUBYEAR > 1999
+  date: '2026-10-27'
+  run_by: michele
+  hits: 98
+  retrieved: 98
+  for:
+  - q1_lesion_impairment
+  filters:
+    years: 2000-
+  file: scopus_q1.ris
+  strategy: q1_lesion_impairment
+  protocol:
+    version: 1
+    fingerprint: bf2a8e24bc92
+    commit: 34ce419
+    locked: true

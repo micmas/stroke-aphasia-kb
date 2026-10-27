@@ -546,3 +546,5 @@ add an `EXTRACTED` line for every run.
 2026-10-27 | SEARCHED | — | S006 pubmed | 4037 records | 1415 new candidates (register 9107→10522) | strategy q3_predictor_outcome v1 bf2a8e24bc92 | by: michele
 2026-10-27 | SEARCHED | — | S007 pubmed | 1704 records | 543 new candidates (register 10522→11065) | strategy q4_synthesis v1 bf2a8e24bc92 | by: michele
 2026-10-27 | SEARCHED | — | S008 pubmed | 908 records | 829 new candidates (register 11065→11894) | strategy q5_recruitment_meta v1 bf2a8e24bc92 | by: michele
+2026-10-27 | SEARCHED | — | S009 openalex | 6236 records | 3206 new candidates (register 11894→15100) | strategy q1_lesion_impairment v1 bf2a8e24bc92 | by: michele
+2026-10-27 | SEARCHED | — | S010 scopus | 98 records | 71 new candidates (register 15100→15171) | strategy q1_lesion_impairment v1 bf2a8e24bc92 | by: michele
