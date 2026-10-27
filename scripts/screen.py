@@ -486,9 +486,13 @@ def parse_export_name(stem: str, db: str, known: list[str]) -> tuple[str, int, s
     `scopus_q1_lesion_impairment_5312-b` → (…, 5312, "b") for an export split in parts.
     None when the name does not follow the convention or names no known strategy."""
     m = re.match(rf"^{re.escape(db)}_(?P<sid>.+?)_(?P<hits>\d+)(?:-(?P<part>[A-Za-z0-9]+))?$", stem)
-    if not m or m.group("sid") not in known:
-        return None
-    return m.group("sid"), int(m.group("hits")), m.group("part")
+    if m and m.group("sid") in known:
+        return m.group("sid"), int(m.group("hits")), m.group("part")
+    # no count in the name: scopus_<strategy id>[-part]
+    m = re.match(rf"^{re.escape(db)}_(?P<sid>.+?)(?:-(?P<part>[A-Za-z0-9]+))?$", stem)
+    if m and m.group("sid") in known:
+        return m.group("sid"), None, m.group("part")
+    return None
 
 
 def cmd_import_all(args) -> int:
@@ -512,8 +516,26 @@ def cmd_import_all(args) -> int:
             continue
         sid, hits, _ = got
         g = groups.setdefault(sid, {"hits": set(), "paths": []})
-        g["hits"].add(hits)
+        if hits is not None:
+            g["hits"].add(hits)
         g["paths"].append(p)
+    given = {}
+    for item in (args.counts or "").split(","):
+        if "=" in item:
+            k, v = item.split("=", 1)
+            given[k.strip()] = int(v.strip())
+    for sid in [k for k in known if k in groups]:
+        g = groups[sid]
+        if sid in given:
+            g["hits"] = {given[sid]}
+        if not g["hits"]:
+            if not sys.stdin.isatty():
+                raise SystemExit(f"{sid}: no count — put it in the file name or give --counts {sid}=<n>")
+            while True:
+                ans = input(f"  {sid}: how many results did {args.db} show for this search? ").strip().replace(",", "")
+                if ans.isdigit():
+                    g["hits"] = {int(ans)}
+                    break
     for sid in [k for k in known if k in groups]:
         g = groups[sid]
         if len(g["hits"]) > 1:
@@ -1430,6 +1452,7 @@ def _cli(argv=None) -> int:
     p = sub.add_parser("import-all", help="import every export matching a wildcard: <db>_<strategy>_<count>.ris")
     p.add_argument("--db", required=True, help="scopus | psycinfo | embase | web_of_science")
     p.add_argument("--files", required=True, help="a wildcard in quotes, e.g. '~/Downloads/scopus_*.ris'")
+    p.add_argument("--counts", help="counts not in the file names: q1_lesion_impairment=5312,q4_synthesis=812 (otherwise asked)")
     p.add_argument("--by", default="unknown")
     p.add_argument("--date", help="when the searches were run (default today)")
     p.add_argument("--notes")
