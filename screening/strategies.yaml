@@ -38,7 +38,7 @@
 # `screen.py strategies --show`. The upper limit is the search date.
 
 version: 2
-status: draft            # draft → locked (then commit) before the first --execute
+status: locked            # draft → locked (then commit) before the first --execute
 protocol_owner: michele
 amendments:
   - version: 2
