@@ -375,3 +375,53 @@ searches:
     fingerprint: 8d8dc2e70d35
     commit: 9ce9499
     locked: true
+- id: S013
+  database: scopus
+  query: >-
+    (TITLE-ABS-KEY(aphasi* OR dysphasi* OR anomi* OR "word finding" OR "word retrieval" OR "naming impairment*"
+    OR "naming deficit*" OR "language impairment*" OR "language deficit*" OR "language disorder*" OR "apraxia
+    of speech" OR dysarthri*) AND (TITLE-ABS-KEY("systematic review" OR meta-analy* OR "scoping review")
+    OR (TITLE-ABS-KEY(stroke* OR poststroke OR cerebrovascular OR infarct* OR "intracerebral hemorrhage"
+    OR "intracerebral haemorrhage" OR "brain damage*" OR "brain-damaged" OR "hemisphere damage*" OR "left
+    hemisphere lesion*" OR "focal damage" OR "focal lesion*") AND TITLE-ABS-KEY(lesion* OR "symptom mapping"
+    OR "voxel-based" OR "voxel-wise" OR VLSM OR "lesion load" OR tractograph* OR "diffusion tensor" OR
+    "white matter" OR fascicul* OR disconnect* OR connectom* OR "neural correlate*" OR neuroanatom* OR
+    "brain region*" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity
+    OR reorgani*) AND DOCTYPE(re)))) AND PUBYEAR > 1999
+  date: '2026-10-27'
+  run_by: michele
+  hits: 3503
+  retrieved: 3503
+  for:
+  - q4_synthesis
+  filters:
+    years: 2000-
+  file: scopus_q4_synthesis_3503.ris
+  strategy: q4_synthesis
+  protocol:
+    version: 2
+    fingerprint: 8d8dc2e70d35
+    commit: 9ce9499
+    locked: true
+- id: S014
+  database: scopus
+  query: >-
+    (TITLE-ABS-KEY(language OR naming OR semantic* OR phonolog* OR syntax OR syntactic OR "speech production"
+    OR "sentence comprehension" OR "word production" OR reading) AND TITLE-ABS-KEY(meta-analy* OR "activation
+    likelihood" OR "coordinate-based" OR MKDA) AND TITLE-ABS-KEY(fMRI OR "functional magnetic resonance"
+    OR "positron emission" OR neuroimaging)) AND PUBYEAR > 1999
+  date: '2026-10-27'
+  run_by: michele
+  hits: 1201
+  retrieved: 1201
+  for:
+  - q5_recruitment
+  filters:
+    years: 2000-
+  file: scopus_q5_recruitment_meta_1201.ris
+  strategy: q5_recruitment_meta
+  protocol:
+    version: 2
+    fingerprint: 8d8dc2e70d35
+    commit: 9ce9499
+    locked: true

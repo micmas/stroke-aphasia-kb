@@ -563,3 +563,5 @@ add an `EXTRACTED` line for every run.
 2026-10-27 | SEARCHED | — | S010 scopus | 1563 records | 427 new candidates (register 15152→15579) | strategy q1c_cognition_prosody_lesion v2 8d8dc2e70d35 | by: michele
 2026-10-27 | SEARCHED | — | S011 scopus | 3632 records | 986 new candidates (register 15579→16565) | strategy q2b_therapy_response_neural v2 8d8dc2e70d35 | by: michele
 2026-10-27 | SEARCHED | — | S012 scopus | 3432 records | 2 new candidates (register 16565→16567) | strategy q3_predictor_outcome v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S013 scopus | 3503 records | 1510 new candidates (register 16567→18077) | strategy q4_synthesis v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S014 scopus | 1201 records | 491 new candidates (register 18077→18568) | strategy q5_recruitment_meta v2 8d8dc2e70d35 | by: michele
