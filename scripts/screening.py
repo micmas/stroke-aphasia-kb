@@ -65,8 +65,9 @@ REASONS: dict[str, dict] = {
                    "text": "The population is not stroke (tumour, TBI, primary progressive aphasia, "
                            "dementia, healthy only without a stroke question)."},
     "not_aphasia": {"label": "No language, communication or cognitive outcome", "ft_only": False,
-                    "text": "No aphasia / language / communication (prosody included) or domain-general cognitive "
-                            "measure is reported (e.g. motor recovery only, spatial neglect only)."},
+                    "text": "No aphasia / language / communication (motor speech — dysarthria, apraxia of speech — and "
+                            "prosody included) or domain-general cognitive measure is reported (e.g. motor recovery "
+                            "only, spatial neglect only)."},
     "design_out_of_scope": {"label": "Design out of scope", "ft_only": False,
                             "text": "Reports no lesion–behaviour, therapy-response, recovery-predictor or "
                                     "network evidence the schema can hold (e.g. pure modelling, instrument "
