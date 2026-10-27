@@ -846,6 +846,26 @@ def cmd_chase(args) -> int:
     return 0
 
 
+def cmd_dedupe(args) -> int:
+    """Second de-duplication pass, after all imports: records the import could not merge
+    (no shared DOI/PMID, epub and print years differing by one)."""
+    candidates = S.load_candidates()
+    pairs = S.near_duplicates(candidates)
+    for keep, dup in pairs:
+        print(f"  {dup['id']} → {keep['id']}  {dup.get('year')}/{keep.get('year')}  {str(keep.get('title') or '')[:80]}")
+    print(f"{len(pairs)} likely duplicates.")
+    if not args.execute:
+        print("Dry run — nothing written. Add --execute.")
+        return 0
+    today = dt.date.today().isoformat()
+    for keep, dup in pairs:
+        S.merge_duplicate(keep, dup, args.by, today)
+    if pairs:
+        S.save_candidates(candidates)
+        _log("DEDUPED", "screening register", f"{len(pairs)} near-duplicates merged | by: {args.by}")
+    return 0
+
+
 def cmd_withdraw(args) -> int:
     """Take back a search record (an incomplete export, a wrong file): its record moves to
     `withdrawn` in searches.yaml with the reason, its source links are removed from the
@@ -1381,7 +1401,7 @@ def print_status(data: dict) -> None:
     print(f"  Identified: {idn['databases']['records']} records from {len(data['searches'])} database searches "
           f"({', '.join(f'{k} {v}' for k, v in idn['databases']['byDatabase'].items()) or 'none yet'}) · "
           f"{idn['other']['records']} from other sources ({', '.join(f'{k} {v}' for k, v in idn['other']['byKind'].items()) or 'none'}) · "
-          f"{idn['duplicatesRemoved']} duplicates merged")
+          f"{idn['duplicatesRemoved']} duplicates removed → {sc['screened']} unique database records")
     print(f"  Databases arm: {sc['screened']} screened → {sc['excludedTitleAbstract']} excluded at title/abstract "
           f"({sc['awaitingTitleAbstract']} awaiting, {sc['unsureTitleAbstract']} unsure) → {sc['sought']} sought → "
           f"{sc['notRetrieved']} not retrieved → {sc['assessed']} assessed → {sc['excludedFullText']} excluded "
@@ -1492,6 +1512,10 @@ def _cli(argv=None) -> int:
     p.add_argument("--date")
     p.add_argument("--execute", action="store_true")
     p.set_defaults(fn=cmd_stop)
+    p = sub.add_parser("dedupe", help="second de-duplication pass: same title, years ±1, no conflicting ids")
+    p.add_argument("--by", required=True)
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(fn=cmd_dedupe)
     p = sub.add_parser("withdraw", help="take back a recorded search (incomplete export, wrong file), with the reason")
     p.add_argument("id")
     p.add_argument("--why", required=True)

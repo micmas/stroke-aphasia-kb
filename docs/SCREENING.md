@@ -225,10 +225,17 @@ register through `screen.py backfill` (for what is already in
 2020 reports these as *identified via other methods*: they skip the
 title/abstract pass and go straight to full-text assessment.
 
-**De-duplication** is by DOI, then PMID, then normalised title + year.
-A record that matches an existing candidate adds its search to that
-candidate's `sources` instead of creating a new one; `duplicate_of` on
-a candidate marks a merge done by hand.
+**De-duplication** happens in two passes. (1) On import, by DOI, then
+PMID, then normalised title + year (never merging two records whose PMIDs
+or DOIs differ): a record that matches an existing candidate adds its
+search to that candidate's `sources` instead of creating a new one.
+(2) After the last import and before screening, `screen.py dedupe` finds
+what the first pass could not — the same title with publication years one
+apart (epub vs print) and no conflicting identifiers — and marks each with
+`duplicate_of` (the record with identifiers is kept; sources move to it).
+Duplicates noticed during screening are merged the same way. PRISMA
+"duplicates removed" is the database records retrieved minus the unique
+candidates they became.
 
 ## 4. Screening
 
