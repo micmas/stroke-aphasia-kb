@@ -68,6 +68,16 @@ UA = "stroke-aphasia-kb screen.py/1.0 (mailto:m.massontrottier@uq.edu.au)"
 MAILTO = "m.massontrottier@uq.edu.au"
 EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
 OPENALEX = "https://api.openalex.org/works"
+OPENALEX_KEY_HELP = ("OpenAlex now needs a free API key (without one, every request shares one small daily budget per "
+                     "network address — at UQ that is spent quickly). Get a key at https://openalex.org/settings/api, then "
+                     "`export OPENALEX_API_KEY=<key>` (add it to ~/.zshrc to keep it). Never commit the key.")
+
+
+def _openalex_auth() -> dict:
+    """api_key from the OPENALEX_API_KEY environment variable (never stored in the repo), plus mailto."""
+    import os
+    key = os.environ.get("OPENALEX_API_KEY", "").strip()
+    return {"api_key": key, "mailto": MAILTO} if key else {"mailto": MAILTO}
 LOG = ROOT / "logs/extraction_log.md"
 SHEET_DIR = ROOT / "screening" / "_sheet"
 STAGE_TEXT = {"title_abstract": "title/abstract", "full_text": "full text"}
@@ -258,10 +268,14 @@ def _openalex_abstract(inv: dict | None) -> str:
     return " ".join(w for _, w in sorted(pos))
 
 
+LAST_COST = [0.0]   # OpenAlex usage of the last run, in US$ (the API reports it per request)
+
+
 def openalex_search(query: str, years=(None, None), max_results: int = 2000, field: str = "search") -> tuple[list[dict], int]:
     """field 'search': OpenAlex relevance search (title, abstract, full text);
     field 'title_and_abstract': a boolean title+abstract filter — what the
     protocol strategies use, because it is reproducible and says where it looked."""
+    LAST_COST[0] = 0.0
     lo, hi = years
     filters = ["type:article|review"]
     if lo or hi:
@@ -276,10 +290,11 @@ def openalex_search(query: str, years=(None, None), max_results: int = 2000, fie
     out: list[dict] = []
     cursor, total = "*", 0
     while cursor and len(out) < max_results:
-        q = urllib.parse.urlencode({**params, "filter": ",".join(filters), "per-page": 200, "cursor": cursor, "mailto": MAILTO,
+        q = urllib.parse.urlencode({**params, **_openalex_auth(), "filter": ",".join(filters), "per-page": 200, "cursor": cursor,
                                     "select": "id,doi,title,publication_year,authorships,primary_location,abstract_inverted_index,ids,type"})
         data = json.loads(_get(f"{OPENALEX}?{q}", timeout=120))
         total = int(data.get("meta", {}).get("count") or 0)
+        LAST_COST[0] += float((data.get("meta") or {}).get("cost_usd") or 0)
         for w in data.get("results") or []:
             out.append(openalex_record(w))
         cursor = (data.get("meta") or {}).get("next_cursor")
@@ -440,6 +455,10 @@ def cmd_search(args) -> int:
                                              field="title_and_abstract" if args.strategy else args.oa_field)
         else:
             raise SystemExit("--db must be pubmed or openalex for a live search; use `import` for a file export")
+    except urllib.error.HTTPError as e:
+        if args.db == "openalex" and e.code in (401, 403, 429):
+            raise SystemExit(f"OpenAlex refused the request (HTTP {e.code}). {OPENALEX_KEY_HELP}")
+        raise SystemExit(f"{args.db} answered HTTP {e.code} ({e.reason}); try again later.")
     except (urllib.error.URLError, OSError) as e:
         raise SystemExit(f"{args.db} could not be reached ({e}). Run from a machine with network access, or run the "
                          f"search in the database's own interface and bring the export in with `screen.py import`.")
@@ -479,7 +498,8 @@ def _ingest(args, records, total, file) -> int:
     bench_hit = [c for c in S.benchmark_hits(records, candidates) if in_win(c)]
     before = len(candidates)
     new, known = add_records(records, sid, candidates, abstracts)
-    print(f"{sid} {args.db}: {total} hits, {len(records)} retrieved → {new} new candidates, {known} already in the register")
+    print(f"{sid} {args.db}: {total} hits, {len(records)} retrieved → {new} new candidates, {known} already in the register"
+          + (f" · OpenAlex usage ${LAST_COST[0]:.3f}" if args.db == "openalex" and LAST_COST[0] else ""))
     if bench_all:
         line = (f"  benchmark: {len(bench_hit)} of {len(bench_all)} legacy-included papers retrieved"
                 + (f" ({len(bench_every) - len(bench_all)} published outside {args.years} not counted)"
@@ -1086,7 +1106,7 @@ def cmd_fetch_abstracts(args) -> int:
         time.sleep(0.4)
     for c in [c for c in todo if not abstracts.get(c["id"]) and c.get("doi")][: args.max]:
         try:
-            q = urllib.parse.urlencode({"filter": f"doi:{c['doi']}", "select": "id,doi,title,publication_year,authorships,primary_location,abstract_inverted_index,ids,type", "mailto": MAILTO})
+            q = urllib.parse.urlencode({"filter": f"doi:{c['doi']}", "select": "id,doi,title,publication_year,authorships,primary_location,abstract_inverted_index,ids,type", **_openalex_auth()})
             data = json.loads(_get(f"{OPENALEX}?{q}"))
             for w in data.get("results") or []:
                 r = openalex_record(w)

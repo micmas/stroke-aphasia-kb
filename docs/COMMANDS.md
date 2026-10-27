@@ -58,6 +58,9 @@ python scripts/screen.py import --strategy q1_lesion_impairment --db scopus --fi
 python scripts/screen.py recall                      # relative recall against the benchmark, and what no search found
 python scripts/screen.py chase --doi 10.1038/384159a0 --cited-by C0123 --why "<entry / claim that needs it>" --by michele --execute
 
+# OpenAlex needs a free API key (https://openalex.org/settings/api); keep it out of the repo:
+export OPENALEX_API_KEY=<your key>                   # e.g. in ~/.zshrc
+
 # identify — ad-hoc searches (recorded and reported, not part of the protocol)
 python scripts/screen.py search --db pubmed --query '"aphasia"[tiab] AND stroke[tiab] AND (lesion[tiab] OR VLSM[tiab])' \
     --years 2000-2026 --for thalamus_basal_ganglia --by michele --execute
