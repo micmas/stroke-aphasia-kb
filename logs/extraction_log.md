@@ -565,3 +565,10 @@ add an `EXTRACTED` line for every run.
 2026-10-27 | SEARCHED | — | S012 scopus | 3432 records | 2 new candidates (register 16565→16567) | strategy q3_predictor_outcome v2 8d8dc2e70d35 | by: michele
 2026-10-27 | SEARCHED | — | S013 scopus | 3503 records | 1510 new candidates (register 16567→18077) | strategy q4_synthesis v2 8d8dc2e70d35 | by: michele
 2026-10-27 | SEARCHED | — | S014 scopus | 1201 records | 491 new candidates (register 18077→18568) | strategy q5_recruitment_meta v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S015 psycinfo | 2319 records | 986 new candidates (register 18568→19554) | strategy q1_lesion_impairment v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S016 psycinfo | 2389 records | 979 new candidates (register 19554→20533) | strategy q1b_language_lesion_mapping v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S017 psycinfo | 625 records | 79 new candidates (register 20533→20612) | strategy q1c_cognition_prosody_lesion v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S018 psycinfo | 533 records | 28 new candidates (register 20612→20640) | strategy q2b_therapy_response_neural v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S019 psycinfo | 841 records | 1 new candidates (register 20640→20641) | strategy q3_predictor_outcome v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S020 psycinfo | 918 records | 120 new candidates (register 20641→20761) | strategy q4_synthesis v2 8d8dc2e70d35 | by: michele
+2026-10-27 | SEARCHED | — | S021 psycinfo | 363 records | 51 new candidates (register 20761→20812) | strategy q5_recruitment_meta v2 8d8dc2e70d35 | by: michele
