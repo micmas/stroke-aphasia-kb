@@ -544,7 +544,12 @@ candidates:
   - search: S008
   - search: S012
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-27'
+    seq: 2
   benchmark: true
   legacy:
     decisions:
@@ -1931,7 +1936,12 @@ candidates:
   - search: S017
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-27'
+    seq: 15
   benchmark: true
   legacy:
     decisions:
@@ -2073,7 +2083,12 @@ candidates:
   - search: S016
   - search: S017
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-27'
+    seq: 10
   benchmark: true
   legacy:
     decisions:
@@ -2170,7 +2185,12 @@ candidates:
   - search: S009
   - search: S012
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-27'
+    seq: 13
   benchmark: true
   legacy:
     decisions:
@@ -2422,7 +2442,12 @@ candidates:
   - search: S008
   - search: S012
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-27'
+    seq: 11
   benchmark: true
   legacy:
     decisions:
@@ -2874,7 +2899,12 @@ candidates:
   - search: S018
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-27'
+    seq: 4
   benchmark: true
   legacy:
     decisions:
@@ -3283,7 +3313,12 @@ candidates:
   - search: S016
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-27'
+    seq: 3
   benchmark: true
   legacy:
     decisions:
@@ -3410,7 +3445,12 @@ candidates:
   - search: S003
   - search: S010
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-27'
+    seq: 8
   benchmark: true
   legacy:
     decisions:
@@ -3716,7 +3756,12 @@ candidates:
   - search: S006
   - search: S013
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-27'
+    seq: 1
   benchmark: true
   legacy:
     decisions:
@@ -4406,7 +4451,12 @@ candidates:
   - search: S015
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-27'
+    seq: 12
   benchmark: true
   legacy:
     decisions:
@@ -4441,7 +4491,12 @@ candidates:
   - search: S018
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-27'
+    seq: 14
   benchmark: true
   legacy:
     decisions:
@@ -95530,7 +95585,14 @@ candidates:
   sources:
   - search: S003
   - search: S010
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: exclude
+    reason: duplicate_report
+    by: michele
+    date: '2026-10-27'
+    seq: 9
+    note: same as [C0116 · S003, S010]
 - id: C6260
   doi: 10.1016/j.neuroimage.2019.01.052
   pmid: '30685330'
