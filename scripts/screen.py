@@ -14,6 +14,8 @@ pipeline; never writes to drafts/ or the canonical folders.
     python scripts/screen.py search --strategy q1_lesion_impairment --db pubmed --by michele --execute
     python scripts/screen.py import --strategy q1_lesion_impairment --db scopus --file ~/Downloads/scopus.ris --by michele --execute
     python scripts/screen.py recall                   # relative recall of the searches against the benchmark
+    python scripts/screen.py chase --doi 10.1038/384159a0 --cited-by C0123,C0201 \\
+        --why "Source of the insula claim the insula_apraxia_of_speech gap contests" --by michele --execute
     # ad-hoc searches (recorded, reported, but not part of the protocol)
     python scripts/screen.py search --db pubmed --query '"aphasia"[tiab] AND stroke[tiab] AND (lesion[tiab] OR VLSM[tiab])' \
                             --years 2000-2026 --for thalamus_basal_ganglia --by michele --execute
@@ -373,11 +375,11 @@ def _resolve_strategy(args) -> None:
     strategies = S.load_strategies()
     try:
         st = S.strategy(strategies, args.strategy)
-        args.query = S.expand_query(strategies, args.strategy, args.db)
+        args.query = S.query_for_run(strategies, args.strategy, args.db)
     except KeyError as e:
         raise SystemExit(str(e).strip('"'))
-    if not args.years and st.get("years"):
-        args.years = str(st["years"])
+    if not args.years:
+        args.years = S.strategy_years(strategies, args.strategy)
     if not args.for_ and st.get("for"):
         args.for_ = ",".join(str(x) for x in st["for"])
     if args.max is None:
@@ -499,14 +501,19 @@ def cmd_backfill(args) -> int:
 def cmd_strategies(args) -> int:
     strategies = S.load_strategies()
     if args.show:
+        db = args.db or "pubmed"
         try:
-            print(S.expand_query(strategies, args.show, args.db or "pubmed"))
+            print(S.query_for_run(strategies, args.show, db))
         except KeyError as e:
             raise SystemExit(str(e).strip('"'))
+        yrs = S.strategy_years(strategies, args.show)
+        if yrs and db != "scopus":
+            print(f"# publication years {yrs}: `screen.py search` applies them as a filter; set the same limit "
+                  f"by hand when running this string in the database's own interface", file=sys.stderr)
         return 0
     st = S.protocol_state()
     lock = "LOCKED" if st["locked"] else "not locked"
-    print(f"Protocol v{st['version']} · status {st['status']} · fingerprint {st['fingerprint']} · "
+    print(f"Protocol v{st['version']} · years {strategies.get('years') or 'all'} · status {st['status']} · fingerprint {st['fingerprint']} · "
           f"{'committed' if st['committed'] else ('uncommitted changes' if st['committed'] is False else 'git unknown')}"
           f"{' @ ' + st['commit'] if st['commit'] else ''} → {lock}")
     runs = S.load_searches()
@@ -560,6 +567,13 @@ def print_recall(data: dict, verbose: bool = False) -> None:
         return
     print(f"  Recall against the benchmark: {data['found']} of {data['benchmark']} legacy-included papers found by a database "
           f"search ({100 * data['recall']:.0f}%) · by database: " + (", ".join(f"{k} {v}" for k, v in data["byDatabase"].items()) or "—"))
+    left = []
+    if data.get("outsideWindow"):
+        left.append(f"{len(data['outsideWindow'])} published outside {data.get('window')}")
+    if data.get("excludedUnderProtocol"):
+        left.append(f"{len(data['excludedUnderProtocol'])} since excluded at full text")
+    if left:
+        print(f"    (of {data.get('benchmarkAll')} benchmark papers; not counted: {', '.join(left)})")
     if not verbose:
         return
     for x in data["byStrategy"]:
@@ -567,9 +581,13 @@ def print_recall(data: dict, verbose: bool = False) -> None:
             continue
         r = "not run" if x["recall"] is None else f"{x['found']}/{x['inScope']} = {100 * x['recall']:.0f}%"
         print(f"    {x['id']:<46} {r:<16} {', '.join(x['databases'])}")
+    if data.get("outsideWindow"):
+        print("  Outside the publication years (citation chasing if a pillar — `screen.py chase`):")
+        for m in data["outsideWindow"]:
+            print(f"    {m['id']}  {str(m.get('key') or ''):<26} {str(m.get('year') or ''):<5} {str(m.get('title') or '')[:80]}")
     if data["missed"]:
-        print(f"  Not found by any search ({len(data['missed'])}) — classify each: out of scope under §2 (it will be "
-              f"excluded at full text), or a search gap (amend the strategy):")
+        print(f"  Not found by any search ({len(data['missed'])}) — classify each: out of scope under §2 (exclude it at "
+              f"full text with that reason), a search gap (amend the strategy), or a pillar (`screen.py chase`):")
         for m in data["missed"]:
             print(f"    {m['id']}  {str(m.get('key') or ''):<26} {','.join(m['buckets']) or '—':<22} {str(m.get('title') or '')[:80]}")
 
@@ -585,11 +603,86 @@ def cmd_agreement(args) -> int:
         print(f"{STAGE_TEXT[stg]}: {a['pairs']} double-screened ({', '.join(a['screeners'])}) · observed agreement "
               f"{100 * a['observed']:.0f}% · Cohen's kappa {a['kappa']:.2f}" + (f" · {a['skipped']} with an unsure left out" if a["skipped"] else ""))
         print("  " + " · ".join(f"{k} {v}" for k, v in a["table"].items()) + "   (record/check)")
+        if len(a.get("byCheckScreener") or {}) > 1:
+            print("  by second screener: " + " · ".join(f"{w} {v['pairs']} pairs, kappa {v['kappa']:.2f}"
+                                                      for w, v in a["byCheckScreener"].items()))
         for d in a["disagreements"]:
             print(f"    {d['id']}  record {d['record']}{'/' + d['record_reason'] if d.get('record_reason') else ''} · "
                   f"check {d['check']}{'/' + d['check_reason'] if d.get('check_reason') else ''}  {str(d.get('title') or '')[:70]}")
         if a["disagreements"]:
             print("  Reconcile by discussion; record the agreed decision with `decide` (no --role) — it becomes the decision of record.")
+    return 0
+
+
+def cmd_chase(args) -> int:
+    """A pillar paper the searches cannot return (before the publication years, a
+    primary healthy-volunteer study, a record without an abstract, a review without
+    the search terms) enters by citation chasing from included papers, with the
+    reason it is needed. It goes to full-text assessment in the other-methods arm."""
+    candidates = S.load_candidates()
+    by_id = {c["id"]: c for c in candidates}
+    cited_by = [x.strip() for x in (args.cited_by or "").split(",") if x.strip()]
+    if not cited_by:
+        raise SystemExit("--cited-by needs at least one candidate id of an included paper that cites it")
+    if not args.why or len(args.why.strip()) < 20:
+        raise SystemExit("--why must say what the KB needs this paper for (which entry or claim), in a sentence")
+    if not args.by or args.by.lower() in ("model", "legacy", "agent"):
+        raise SystemExit("--by must name a person")
+    bad = []
+    for cid in cited_by:
+        c = by_id.get(cid)
+        d = S.last_decision(c, "full_text") if c else None
+        if not c:
+            bad.append(f"{cid}: not in the register")
+        elif not d or d.get("decision") != "include" or str(d.get("by")).lower() == "legacy":
+            bad.append(f"{cid}: not included under the protocol yet (full-text include by a person)")
+    if bad:
+        raise SystemExit("Citation chasing starts from included papers:\n  " + "\n  ".join(bad))
+    doi = S.norm_doi(args.doi)
+    probe = {"doi": doi, "title": args.title, "year": int(args.year) if args.year else None}
+    target = S.find_duplicate(probe, S.build_identity_index(candidates)) if (doi or args.title) else None
+    if target is not None and S.arm_of(target) == "databases":
+        print(f"{target['id']} was found by a database search ({', '.join(str(x.get('search')) for x in target.get('sources') or [] if isinstance(x, dict) and x.get('search'))}); "
+              f"it is screened in the databases arm — no citation chasing needed.")
+        return 0
+    if target is None:
+        rec = {"title": args.title, "year": probe["year"], "doi": doi}
+        if doi and not (args.title and args.year):
+            try:
+                import register_papers as RP
+                cr = RP.lookup(doi)
+            except Exception as e:  # noqa: BLE001
+                raise SystemExit(f"Crossref could not be reached ({str(e)[:60]}); give --title and --year")
+            if cr is None:
+                raise SystemExit(f"DOI {doi} not found at Crossref; give --title and --year")
+            _, first = RP._author_line(cr)
+            rec.update({"title": " ".join(cr.get("title") or [""]).rstrip(".") or args.title,
+                        "year": int(RP._year(cr)) if str(RP._year(cr)).isdigit() else probe["year"],
+                        "first_author": first or None})
+        if not rec.get("title"):
+            raise SystemExit("give --doi (looked up at Crossref) or --title and --year")
+        target = {k: v for k, v in {"id": S.next_id(candidates), "doi": doi, "title": rec["title"], "year": rec["year"],
+                                    "first_author": rec.get("first_author"), "sources": [], "skip_title_abstract": True,
+                                    "screening": []}.items() if v not in (None, "")}
+        target.setdefault("sources", [])
+        target.setdefault("screening", [])
+        candidates.append(target)
+        new = True
+    else:
+        new = False
+    src = {"kind": "citation_chasing", "cited_by": cited_by, "why": args.why.strip(), "by": args.by,
+           "date": args.date or dt.date.today().isoformat()}
+    target.setdefault("sources", []).append(src)
+    target["pillar"] = True
+    target["skip_title_abstract"] = True
+    print(f"{'new candidate' if new else 'existing candidate'} {target['id']} ({target.get('year')}) {str(target.get('title'))[:80]}\n"
+          f"  citation chasing from {', '.join(cited_by)}: {args.why.strip()}\n"
+          f"  → full-text assessment (other-methods arm); the year window and the healthy-volunteer rule do not apply to a pillar.")
+    if not args.execute:
+        print("Dry run — nothing written. Add --execute.")
+        return 0
+    S.save_candidates(candidates)
+    _log("CHASED", target["id"], f"cited by {', '.join(cited_by)} | {args.why.strip()[:120]} | by: {args.by}")
     return 0
 
 
@@ -1078,6 +1171,16 @@ def _cli(argv=None) -> int:
     p = sub.add_parser("recall", help="relative recall of the database searches against the benchmark")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_recall)
+    p = sub.add_parser("chase", help="enter a pillar paper by citation chasing from included papers (with the reason)")
+    p.add_argument("--doi")
+    p.add_argument("--title", help="when there is no DOI, or Crossref cannot be reached")
+    p.add_argument("--year")
+    p.add_argument("--cited-by", required=True, help="comma-separated candidate ids of included papers that cite it")
+    p.add_argument("--why", required=True, help="what the KB needs it for (entry / claim)")
+    p.add_argument("--by", required=True)
+    p.add_argument("--date")
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(fn=cmd_chase)
     p = sub.add_parser("agreement", help="Cohen's kappa between decisions of record and a second screener's check decisions")
     p.add_argument("--stage", help="ta | ft (default both)")
     p.set_defaults(fn=cmd_agreement)

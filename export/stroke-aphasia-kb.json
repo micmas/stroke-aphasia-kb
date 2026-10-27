@@ -357,6 +357,24 @@
     "phonological_production"
    ]
   },
+  "anomia": {
+   "aliases": [
+    "naming impairment",
+    "naming deficit",
+    "word-finding difficulty",
+    "word retrieval deficit",
+    "confrontation naming impairment",
+    "naming",
+    "confrontation_naming"
+   ],
+   "bucket": "impairments",
+   "id": "anomia",
+   "kind": "impairment",
+   "name": "Anomia (word-finding / naming impairment)",
+   "review_tier": "B",
+   "reviewer": "human:michele",
+   "status": "approved"
+  },
   "anomic_aphasia": {
    "bucket": "impairments",
    "id": "anomic_aphasia",
@@ -37939,11 +37957,11 @@
   }
  },
  "version": {
-  "commit": "7a89c33",
-  "contentDigest": "c4d01e85c468f594",
+  "commit": "76b0c44",
+  "contentDigest": "61d8f8baea3d9b81",
   "date": "2026-10-27",
   "entries": {
-   "impairments": 13,
+   "impairments": 14,
    "predictors": 10,
    "regions": 22,
    "therapies": 8

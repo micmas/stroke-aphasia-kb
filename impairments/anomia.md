@@ -3,7 +3,7 @@ schema_version: 2.8
 id: anomia
 name: Anomia (word-finding / naming impairment)
 kind: impairment
-status: draft
+status: approved
 created_by: agent:cowork-claude
 created_on: '2026-10-27'
 aliases:
@@ -14,21 +14,23 @@ aliases:
 - confrontation naming impairment
 - naming
 - confrontation_naming
-short_definition: Difficulty retrieving and producing the intended word, measured by
-  confrontation naming (BNT, PNT, WAB-R naming) or by word-finding in discourse; a symptom
-  present to some degree in every aphasia type, not a syndrome.
+short_definition: Difficulty retrieving and producing the intended word, measured
+  by confrontation naming (BNT, PNT, WAB-R naming) or by word-finding in discourse;
+  a symptom present to some degree in every aphasia type, not a syndrome.
 assessment:
 - Boston Naming Test (BNT)
 - Philadelphia Naming Test (PNT)
 - Western Aphasia Battery (WAB-R) Naming and Word Finding
 - Comprehensive Aphasia Test (CAT) naming
 findings: []
-notes: Symptom entry (schema v2.8). Findings about naming performance target this entry;
-  `anomic_aphasia` is reserved for the classified syndrome. Created when the 2026-10-27
-  retargeting moved naming findings off `anomic_aphasia`; needs a person's approval
-  (new entry, Tier B).
+notes: Symptom entry (schema v2.8). Findings about naming performance target this
+  entry; `anomic_aphasia` is reserved for the classified syndrome. Created when the
+  2026-10-27 retargeting moved naming findings off `anomic_aphasia`; needs a person's
+  approval (new entry, Tier B).
+reviewer: human:michele
+reviewed_on: '2026-10-27'
+review_tier: B
 ---
-
 # Anomia
 
 Word-finding and naming impairment: the symptom that every aphasia

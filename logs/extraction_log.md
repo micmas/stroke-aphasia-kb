@@ -536,3 +536,4 @@ add an `EXTRACTED` line for every run.
 2026-10-27 | BACKFILLED | — | constraint_induced_aphasia_therapy | therapy | 1 finding(s) filled from the therapy entry itself | tool: backfill.py
 2026-10-27 | BACKFILLED | — | melodic_intonation_therapy | therapy | 1 finding(s) filled from the therapy entry itself | tool: backfill.py
 2026-10-27 | BACKFILLED | — | phonological_component_analysis | therapy | 4 finding(s) filled from the therapy entry itself | tool: backfill.py
+2026-10-27 | APPROVED | ? | anomia | reviewer: human:michele | tier: B
