@@ -236,11 +236,19 @@ class Store:
                 return
             S.save_candidates(self.candidates)
             self.mtime = self.path.stat().st_mtime
-            SC._log("SCREENED", f"{self.stage} (screen_app{' check' if self.check else ''})",
-                    f"{self.unsaved} decisions/undos | by: {self.by}")
             self.dirty, self.unsaved, self.error = False, 0, ""
             if JOURNAL.exists():
                 JOURNAL.unlink()
+
+    def log_session(self) -> None:
+        """One log line for the session, written on quit."""
+        if not self.session:
+            return
+        n: dict[str, int] = {}
+        for _, rec in self.session:
+            n[rec.get("decision")] = n.get(rec.get("decision"), 0) + 1
+        SC._log("SCREENED", f"{self.stage} (screen_app{' check' if self.check else ''})",
+                f"{len(self.session)} decisions: " + ", ".join(f"{k} {v}" for k, v in sorted(n.items())) + f" | by: {self.by}")
 
     def saver(self) -> None:
         while True:
@@ -330,13 +338,13 @@ h1{font-size:1rem;margin:0;color:var(--accent)}
 .bar{position:relative;height:8px;background:var(--line);border-radius:4px;flex:1;min-width:160px;overflow:hidden}
 .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--accent)}.bar b{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--fg);opacity:.5}
 .chk{font-variant-numeric:tabular-nums}.ok{color:var(--inc)}
-main{max-width:900px;margin:0 auto;padding:1.2rem 1rem 6rem}
+main{max-width:900px;margin:0 auto;padding:1.2rem 1rem 12rem}
 .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.2rem 1.4rem}
 .title{font-size:1.25rem;font-weight:650;line-height:1.35;margin:0 0 .4rem}
 .meta{font-size:.88rem;color:var(--muted)}.meta a{color:var(--accent)}
 .abstract{margin:.9rem 0 0;white-space:pre-wrap}
 .sug{margin-top:.8rem;font-size:.88rem;border-left:3px solid var(--accent);padding:.3rem .7rem;color:var(--muted)}
-.actions{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:.6rem 1rem}
+.actions{position:fixed;left:0;right:0;bottom:0;background:var(--bg);border-top:1px solid var(--line);padding:.6rem 1rem;box-shadow:0 -6px 16px rgba(0,0,0,.06)}
 .actions .row{max-width:900px;margin:0 auto;gap:.45rem}
 button{font:inherit;font-size:.88rem;border-radius:7px;border:1px solid var(--line);background:var(--card);color:var(--fg);padding:.35rem .65rem;cursor:pointer}
 button kbd{font-family:ui-monospace,Menlo,monospace;font-size:.78rem;opacity:.7;margin-right:.3rem}
@@ -411,8 +419,10 @@ document.addEventListener('keydown',e=>{
   else if(/^[1-9]$/.test(e.key)){const r=S.reasons[Number(e.key)-1];if(r&&r[0]!=='other')decide('exclude',r[0])}
   else if(e.key==='0'){if($('note').value.trim())decide('exclude','other');else{$('note').focus();flash('Other: write the note, then press 0','#9a6b00')}}
 });
+function pad(){const h=document.querySelector('.actions').offsetHeight;document.querySelector('main').style.paddingBottom=(h+32)+'px'}
+new ResizeObserver(pad).observe(document.querySelector('.actions'));window.addEventListener('resize',pad);
 setInterval(async()=>{S=await api('/api/state');renderState()},4000);
-(async()=>{S=await api('/api/state');renderState();renderButtons();await advance()})();
+(async()=>{S=await api('/api/state');renderState();renderButtons();pad();await advance()})();
 </script></body></html>"""
 
 
@@ -441,6 +451,8 @@ def main(argv=None) -> int:
         pass
     finally:
         STORE.save()
+        if not STORE.error:
+            STORE.log_session()
         print("saved." if not STORE.error else STORE.error)
     return 0
 
