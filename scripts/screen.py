@@ -255,6 +255,10 @@ def parse_pubmed_xml(data: bytes) -> list[dict]:
         out.append({"pmid": pmid, "doi": doi, "title": title.rstrip("."), "year": int(ym.group(0)) if ym else None,
                     "authors": authors, "journal": art.findtext(".//Journal/Title") or art.findtext(".//Book/BookTitle") or "",
                     "abstract": " ".join(parts), "book": book or None,
+                    "doc_type": "book" if book else ("preprint" if any((pt.text or "") == "Preprint" for pt in art.findall(".//PublicationType"))
+                                                     else "conference" if any((pt.text or "") == "Congress" for pt in art.findall(".//PublicationType"))
+                                                     else "journal"),
+                    "doc_type_raw": "PubmedBookArticle" if book else "PubmedArticle",
                     "pub_types": [pt.text for pt in art.findall(".//PublicationType") if pt.text]})
     return out
 
@@ -321,7 +325,7 @@ def parse_ris(text: str) -> list[dict]:
             continue
         tag, val = m.group(1), m.group(2).strip()
         if tag == "TY":
-            rec = {"authors": [], "title": "", "abstract": ""}
+            rec = {"authors": [], "title": "", "abstract": "", "doc_type_raw": val}
         elif not rec:
             continue                      # a tag outside a TY … ER record
         elif tag == "ER":
@@ -343,10 +347,15 @@ def parse_ris(text: str) -> list[dict]:
             rec.setdefault("journal", val)
         elif tag in ("AN", "ID", "C1", "C2") and re.fullmatch(r"\d{6,9}", val):   # Scopus puts the PubMed ID in C2
             rec.setdefault("pmid", val)
+        elif tag == "M3":                                                       # Scopus: document type
+            rec["doc_subtype"] = val
         elif tag == "UR" and "doi.org" in val and not rec.get("doi"):
             rec["doi"] = S.norm_doi(val)
     for r in out:
         r["title"] = r["title"].rstrip(".")
+        r["doc_type"] = S.doc_type_from_export(r.get("doc_type_raw"), r.get("doc_subtype"))
+        if r.get("doc_subtype"):
+            r["doc_type_raw"] = f"{r.get('doc_type_raw')}/{r['doc_subtype']}"
     return out
 
 
@@ -387,7 +396,7 @@ def add_records(records: list[dict], search_id: str, candidates: list[dict], abs
             srcs = dup.setdefault("sources", [])
             if not any(isinstance(s, dict) and s.get("search") == search_id for s in srcs):
                 srcs.append({"search": search_id})
-            for k in ("doi", "pmid", "openalex", "journal", "year"):
+            for k in ("doi", "pmid", "openalex", "journal", "year", "doc_type", "doc_type_raw"):
                 if not dup.get(k) and r.get(k):
                     dup[k] = r[k]
             if r.get("abstract") and not abstracts.get(dup["id"]):
@@ -397,6 +406,7 @@ def add_records(records: list[dict], search_id: str, candidates: list[dict], abs
                 "title": r.get("title"), "year": r.get("year"),
                 "first_author": (r.get("authors") or [""])[0].split(",")[0].split(" ")[0] if r.get("authors") else None,
                 "authors": ", ".join(r.get("authors") or [])[:400] or None, "journal": r.get("journal") or None,
+                "doc_type": r.get("doc_type"), "doc_type_raw": r.get("doc_type_raw"),
                 "sources": [{"search": search_id}], "screening": []}
         cand = {k: v for k, v in cand.items() if v not in (None, "", [])}
         cand.setdefault("screening", [])
@@ -867,6 +877,72 @@ def cmd_dedupe(args) -> int:
     return 0
 
 
+def cmd_grey(args) -> int:
+    """Grey literature (protocol v4): theses, books/chapters and conference records are
+    excluded at title/abstract by rule, before screening; preprints stay eligible.
+
+    --from DIR re-reads the Scopus/PsycINFO exports named in searches.yaml to learn each
+    record's own type (RIS TY, Scopus document type) — more precise than the DOI and the
+    source title, which are used otherwise."""
+    candidates = S.load_candidates()
+    types = [t.strip() for t in args.types.split(",") if t.strip()]
+    bad = [t for t in types if t not in S.GREY_TYPES]
+    if bad:
+        raise SystemExit(f"unknown type(s) {bad}; known: {', '.join(S.GREY_TYPES)}")
+    learned = 0
+    if args.from_:
+        src = Path(args.from_).expanduser()
+        index = S.build_identity_index([c for c in candidates if not c.get("duplicate_of")])
+        for s in S.load_searches():
+            if s.get("database") not in ("scopus", "psycinfo", "embase", "web_of_science"):
+                continue
+            for name in [f.strip() for f in str(s.get("file") or "").split(",") if f.strip()]:
+                p = src / name
+                if not p.exists():
+                    print(f"  {name}: not in {src}")
+                    continue
+                for r in parse_ris(p.read_text(encoding="utf-8-sig", errors="replace")):
+                    c = S.find_duplicate(r, index)
+                    if c is not None and r.get("doc_type") and c.get("doc_type") in (None, "", "journal") \
+                            and r["doc_type"] != c.get("doc_type"):
+                        if c.get("doc_type") == "journal":       # a journal record elsewhere wins
+                            continue
+                        c["doc_type"], c["doc_type_raw"] = r["doc_type"], r.get("doc_type_raw")
+                        learned += 1
+        print(f"record types learned from the exports: {learned}")
+    rows = {r["id"]: r for r in S.enrich(candidates, {})}
+    todo = [c for c in candidates if rows[c["id"]]["stage"] == "awaiting_ta" and rows[c["id"]]["arm"] == "databases"]
+    hits = collections.defaultdict(list)
+    preprints = 0
+    for c in todo:
+        t, why = S.doc_type(c)
+        if t in types:
+            hits[t].append((c, why))
+        elif t == "preprint":
+            preprints += 1
+    for t in types:
+        print(f"{S.GREY_TYPES[t]}: {len(hits[t])}")
+        for c, why in hits[t][: args.show]:
+            print(f"    {c['id']}  {str(c.get('year') or ''):<5} {str(c.get('title') or '')[:70]}  [{why}]")
+    print(f"preprints (eligible, kept): {preprints}")
+    total = sum(len(v) for v in hits.values())
+    if not args.execute:
+        print(f"Dry run — {total} records would be excluded by rule (grey_literature). Add --execute.")
+        return 0
+    today = dt.date.today().isoformat()
+    for t, items in hits.items():
+        for c, why in items:
+            err = _apply_decision(c, "title_abstract", "exclude", "grey_literature", args.by, f"rule: {why}", today)
+            if err:
+                raise SystemExit(f"{c['id']}: {err}")
+            c["screening"][-1]["rule"] = f"grey_literature:{t}"
+    S.save_candidates(candidates)
+    _log("GREY-EXCLUDED", "title_abstract", f"{total} records by rule ({', '.join(f'{t} {len(v)}' for t, v in hits.items())}) "
+         f"| types learned {learned} | by: {args.by}")
+    print(f"{total} records excluded by rule before screening.")
+    return 0
+
+
 def cmd_withdraw(args) -> int:
     """Take back a search record (an incomplete export, a wrong file): its record moves to
     `withdrawn` in searches.yaml with the reason, its source links are removed from the
@@ -1038,7 +1114,8 @@ def rank_order(candidates: list[dict], todo_ids: list[str], abstracts: dict[str,
                 continue
             if d.get("decision") == "include":
                 pos.add(c["id"])
-            elif d.get("decision") == "exclude" and d.get("reason") not in ("not_screened_stopping_rule", "not_retrieved"):
+            elif (d.get("decision") == "exclude" and not d.get("rule")
+                  and d.get("reason") not in ("not_screened_stopping_rule", "not_retrieved")):
                 neg.add(c["id"])
     order = [i for i, _ in P.rank(texts, pos, neg, list(todo_ids), seed=cfg["seed"])]
     return order, {"model": cfg.get("model", "tfidf_naive_bayes"), "relevant": len(pos), "priors": len(prior),
@@ -1411,7 +1488,10 @@ def print_status(data: dict) -> None:
     print(f"  Identified: {idn['databases']['records']} records from {len(data['searches'])} database searches "
           f"({', '.join(f'{k} {v}' for k, v in idn['databases']['byDatabase'].items()) or 'none yet'}) · "
           f"{idn['other']['records']} from other sources ({', '.join(f'{k} {v}' for k, v in idn['other']['byKind'].items()) or 'none'}) · "
-          f"{idn['duplicatesRemoved']} duplicates removed → {sc['screened']} unique database records")
+          f"{idn['duplicatesRemoved']} duplicates removed"
+          + (f" · {idn.get('removedByRule')} removed by rule before screening (grey literature: "
+             + ", ".join(f"{k} {v}" for k, v in (idn.get('removedByRuleTypes') or {}).items()) + ")" if idn.get("removedByRule") else "")
+          + f" → {sc['screened']} records to screen")
     print(f"  Databases arm: {sc['screened']} screened → {sc['excludedTitleAbstract']} excluded at title/abstract "
           f"({sc['awaitingTitleAbstract']} awaiting, {sc['unsureTitleAbstract']} unsure) → {sc['sought']} sought → "
           f"{sc['notRetrieved']} not retrieved → {sc['assessed']} assessed → {sc['excludedFullText']} excluded "
@@ -1621,6 +1701,13 @@ def _cli(argv=None) -> int:
     p.add_argument("--by", required=True)
     p.add_argument("--execute", action="store_true")
     p.set_defaults(fn=cmd_dedupe)
+    p = sub.add_parser("grey", help="exclude grey literature by rule (theses, books/chapters, conference records)")
+    p.add_argument("--from", dest="from_", help="folder with the Scopus/PsycINFO exports, to read each record's own type")
+    p.add_argument("--types", default="thesis,book,conference")
+    p.add_argument("--show", type=int, default=8, help="examples to print per type")
+    p.add_argument("--by", required=True)
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(fn=cmd_grey)
     p = sub.add_parser("withdraw", help="take back a recorded search (incomplete export, wrong file), with the reason")
     p.add_argument("id")
     p.add_argument("--why", required=True)

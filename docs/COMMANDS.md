@@ -45,7 +45,8 @@ python scripts/screen_app.py --by michele --stage ft           # full text
 python scripts/screen_app.py --by alex --check --sample 0.2 --seed 1   # second screener, blind
 ```
 
-Keys: `i` include · `u` unsure · `1`–`9` exclude with that reason · `0` Other (note first) · `n` note · `z` undo.
+Keys: `i` include · `u` unsure · `1`–`9` exclude with that reason · `0` Other (note first) · `n` note · `z` undo ·
+`a` accept the suggestion shown · `p` hide/show the PDF (full text: the PDF from `papers/` sits beside the record).
 Decisions are saved as you go (journal `screening/_sheet/app_journal.jsonl`, register a few seconds later, and on Ctrl-C);
 re-ranked every `--rerank` decisions (default 50). Offline. Don't run other register-writing commands while it is open.
 
@@ -110,6 +111,7 @@ python scripts/screen.py list --stage awaiting_ft    # ids of what is waiting (o
 | `chase` | Enters a pillar paper by citation chasing (before 2000, primary healthy-volunteer study, no abstract …): `--cited-by` must name papers included under the protocol and `--why` says what the KB needs it for. Existing candidate → source added; else Crossref record from the DOI (or `--title --year`). Goes to full text, other-methods arm. Logs `CHASED`. | `--doi` or `--title --year` · `--cited-by` `--why` `--by` `--date` `--execute` |
 | `sheet --ranked` | Title/abstract sheet ordered by the prioritisation model (SCREENING.md §4.1), the top `--batch` records (default 200); prints the stopping-rule status. Keys `1`–`9` exclude with that reason and move on. | `--ranked` `--batch 200` |
 | `fulltext` | The full-text stage, paper by paper: what is waiting for assessment (already extracted before the protocol, or not), and for papers included at full text the next step — register, fetch the PDF, extract (with the commands), review — or "in the KB". Also lists papers excluded at full text that still have findings. | — |
+| `grey` | Grey literature by rule (protocol v4): theses, books/chapters, conference records → excluded before screening with the evidence (`rule: …`); preprints kept. `--from ~/Downloads` re-reads the Scopus/PsycINFO exports for each record's own type. | `--from` `--types` `--show` `--by` `--execute` |
 | `progress` | Prioritised screening against the stopping rule: share screened, last run of exclusions, validation papers screened. | `--json` |
 | `stop` | Once the stopping rule is met, records every database record still awaiting title/abstract as not screened (`not_screened_stopping_rule`). Logs `SCREEN-STOPPED`. | `--by` `--date` `--execute` |
 | `--strategy all_questions` | One search per database that ORs every question strategy (q1–q5): one export instead of seven (`strategies --show all_questions --db psycinfo`; file `psycinfo_all_questions.ris`). Counts in overall and per-database recall, not per strategy. | with `search`, `import`, `import-all`, `strategies --show` |

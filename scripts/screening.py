@@ -68,14 +68,6 @@ REASONS: dict[str, dict] = {
                     "text": "No aphasia / language / communication (motor speech — dysarthria, apraxia of speech — and "
                             "prosody included) or domain-general cognitive measure is reported (e.g. motor recovery "
                             "only, spatial neglect only)."},
-    "design_out_of_scope": {"label": "Design out of scope", "ft_only": False,
-                            "text": "Reports no lesion–behaviour, therapy-response, recovery-predictor or "
-                                    "network evidence the schema can hold (e.g. pure modelling, instrument "
-                                    "validation without brain or outcome data)."},
-    "not_full_report": {"label": "Not a full report", "ft_only": False,
-                        "text": "Editorial, letter, conference abstract, protocol, erratum or thesis."},
-    "insufficient_sample": {"label": "Insufficient sample", "ft_only": False,
-                            "text": "Below the sample threshold set in docs/SCREENING.md for the question asked."},
     "no_imaging_primary": {"label": "Primary study without imaging", "ft_only": False,
                            "text": "A primary study with no brain imaging or lesion data related to the outcome (e.g. a "
                                    "therapy trial or a clinical prognostic cohort); under the imaging-anchored scope its "
@@ -83,21 +75,32 @@ REASONS: dict[str, dict] = {
     "narrative_review_out_of_scope": {"label": "Narrative review out of scope", "ft_only": False,
                                       "text": "A narrative (non-systematic) review that does not cover neuroimaging or "
                                               "lesion evidence in stroke."},
+    "design_out_of_scope": {"label": "Design out of scope", "ft_only": False,
+                            "text": "Reports no lesion–behaviour, therapy-response, recovery-predictor or "
+                                    "network evidence the schema can hold (e.g. pure modelling, instrument "
+                                    "validation without brain or outcome data)."},
+    "not_full_report": {"label": "Not a full report", "ft_only": False,
+                        "text": "Editorial, letter, commentary, protocol or erratum."},
+    "grey_literature": {"label": "Thesis, book or conference record", "ft_only": False,
+                        "text": "A thesis or dissertation, a book or book chapter, or a conference abstract or "
+                                "proceedings paper (protocol v4); preprints are eligible."},
+    "duplicate_report": {"label": "Duplicate report of an included study", "ft_only": False,
+                         "text": "A secondary publication of a cohort already included; note which."},
     "out_of_date_range": {"label": "Outside the publication years", "ft_only": False,
                           "text": "Published before the protocol's first year (screening/strategies.yaml `years`) and not "
                                   "entered as a pillar paper by citation chasing."},
-    "not_screened_stopping_rule": {"label": "Not screened (stopping rule met)", "ft_only": False,
-                                   "text": "Left unscreened when the prioritised-screening stopping rule was met "
-                                           "(docs/SCREENING.md §4.1); reported separately, not an exclusion for cause."},
+    "insufficient_sample": {"label": "Insufficient sample", "ft_only": False,
+                            "text": "Below the sample threshold set in docs/SCREENING.md for the question asked."},
     "language": {"label": "Language", "ft_only": False,
                  "text": "Not available in a language the screener reads."},
-    "duplicate_report": {"label": "Duplicate report of an included study", "ft_only": False,
-                         "text": "A secondary publication of a cohort already included; note which."},
     "not_retrieved": {"label": "Full text not retrieved", "ft_only": True,
                       "text": "The full text could not be obtained through the screener's access."},
     "not_extractable": {"label": "Not extractable as it stands", "ft_only": True,
                         "text": "Read in full, but the findings cannot be written into the schema with "
                                 "verbatim support (see the note)."},
+    "not_screened_stopping_rule": {"label": "Not screened (stopping rule met)", "ft_only": False,
+                                   "text": "Left unscreened when the prioritised-screening stopping rule was met "
+                                           "(docs/SCREENING.md §4.1); reported separately, not an exclusion for cause."},
     "other": {"label": "Other (see note)", "ft_only": False,
               "text": "Any other reason; the note is required."},
 }
@@ -309,6 +312,66 @@ def merge_duplicate(keep: dict, dup: dict, by: str, date: str) -> None:
         keep["benchmark"] = True
     dup["duplicate_of"] = keep["id"]
     dup["duplicate"] = {"by": by, "date": date}
+
+
+# ---------------------------------------------------------------------------
+# Document type: grey literature (protocol v4: theses, books/chapters, conference
+# records are excluded; preprints are eligible)
+# ---------------------------------------------------------------------------
+
+GREY_TYPES = {"thesis": "thesis or dissertation", "book": "book or book chapter", "conference": "conference abstract or paper"}
+RIS_TYPES = {"THES": "thesis", "BOOK": "book", "EBOOK": "book", "EDBOOK": "book", "CHAP": "book", "ECHAP": "book",
+             "CONF": "conference", "CPAPER": "conference", "ABST": "conference", "JOUR": "journal", "JFULL": "journal",
+             "EJOUR": "journal", "MGZN": "journal"}
+SCOPUS_TYPES = {"conference paper": "conference", "conference review": "conference", "book chapter": "book", "book": "book",
+                "article": "journal", "review": "journal", "letter": "journal", "note": "journal", "editorial": "journal",
+                "erratum": "journal", "short survey": "journal", "data paper": "journal"}
+_PREPRINT_DOI = re.compile(r"^10\.(1101|21203|31234|20944|2139|31219|64898)/")
+_PREPRINT_J = re.compile(r"preprint|research square|biorxiv|medrxiv|psyarxiv|\bssrn\b", re.I)
+_BOOK_DOI = re.compile(r"^10\.(1007/978-|1016/b978-|1016/b0-|1017/97[89]|1093/acprof|1093/oso/|4324/97[89]|1201/97[89]|1002/97[89]|1037/0000|5772/)")
+_THESIS_J = re.compile(r"dissertation|\bthes[ie]s\b", re.I)
+_BOOK_J = re.compile(r"handbook|encyclop[a]?edia|textbook|\bbook\b|companion to", re.I)
+_CONF_J = re.compile(r"\b(conference|symposium|workshop|congress|meeting|colloquium)\b|lecture notes in"
+                     r"|^proceedings of (?!the national academy|the royal society)|\bproc\.\s", re.I)
+
+
+def doc_type_from_export(ty: str | None, m3: str | None = None) -> str | None:
+    """The record type an export states: RIS TY, refined by Scopus's document type (M3)."""
+    t = SCOPUS_TYPES.get(str(m3 or "").strip().lower())
+    return t or RIS_TYPES.get(str(ty or "").strip().upper())
+
+
+# journals whose titles look like meetings
+_JOURNAL_NOT_MEETING = re.compile(r"^yeni symposium|^hemodialysis international", re.I)
+
+
+def doc_type(cand: dict) -> tuple[str | None, str]:
+    """(thesis | book | conference | preprint | journal | None, evidence). The export's own record
+    type wins; otherwise the DOI prefix and the source title are read."""
+    t = cand.get("doc_type")
+    if t in GREY_TYPES:
+        return t, f"export type {cand.get('doc_type_raw') or t}"
+    doi = norm_doi(cand.get("doi")) or ""
+    src = str(cand.get("journal") or "")
+    if _PREPRINT_DOI.match(doi) or _PREPRINT_J.search(src):
+        return "preprint", f"DOI {doi}" if doi else f"source: {src[:60]}"
+    if t == "journal":
+        return "journal", f"export type {cand.get('doc_type_raw') or t}"
+    if _THESIS_J.search(src):
+        return "thesis", f"source: {src[:60]}"
+    if _BOOK_DOI.match(doi):
+        return "book", f"DOI {doi}"
+    if _BOOK_J.search(src):
+        return "book", f"source: {src[:60]}"
+    if _CONF_J.search(src) and not _JOURNAL_NOT_MEETING.search(src):
+        return "conference", f"source: {src[:60]}"
+    return t, ""
+
+
+def ruled_out(cand: dict) -> bool:
+    """Excluded at title/abstract by a pre-specified rule (grey literature), not by reading."""
+    d = last_decision(cand, "title_abstract")
+    return bool(d and d.get("rule"))
 
 
 def find_duplicate(rec: dict, index: dict[str, dict]) -> dict | None:
@@ -583,7 +646,9 @@ def prisma_counts(rows: list[dict], searches: list[dict]) -> dict:
                 by_kind[k] += 1
     dups = [r for r in rows if r["stage"] == "duplicate"]
     live = [r for r in rows if r["stage"] != "duplicate"]
-    db = [r for r in live if r["arm"] == "databases"]
+    ruled = [r for r in live if r["arm"] == "databases" and ruled_out(r)]
+    ruled_types = collections.Counter(str((last_decision(r, "title_abstract") or {}).get("rule", "")).split(":")[-1] for r in ruled)
+    db = [r for r in live if r["arm"] == "databases" and not ruled_out(r)]
     other = [r for r in live if r["arm"] == "other"]
 
     def n(rs, *stages):
@@ -604,7 +669,9 @@ def prisma_counts(rows: list[dict], searches: list[dict]) -> dict:
             "other": {"records": len(other) + sum(1 for r in dups if r["arm"] == "other"), "byKind": dict(by_kind)},
             # PRISMA "duplicates removed": every database record that did not become a new
             # candidate (merged on import by DOI / PMID / title + year), plus merges made later
-            "duplicatesRemoved": max(0, sum(by_db.values()) - len(db) - sum(1 for r in dups if r["arm"] == "databases")) + len(dups),
+            "duplicatesRemoved": max(0, sum(by_db.values()) - len(db) - len(ruled) - sum(1 for r in dups if r["arm"] == "databases")) + len(dups),
+            # PRISMA 2020 "records removed before screening … for other reasons": grey literature by rule
+            "removedByRule": len(ruled), "removedByRuleTypes": dict(ruled_types),
             "duplicatesMerged": len(dups),
         },
         "screening": {
@@ -1062,7 +1129,7 @@ def stopping_state(candidates: list[dict], strategies: dict) -> dict:
     """Where prioritised screening stands against the stopping rule."""
     cfg = prioritised_config(strategies)
     stop = cfg["stop"]
-    db = [c for c in candidates if not c.get("duplicate_of") and arm_of(c) == "databases"]
+    db = [c for c in candidates if not c.get("duplicate_of") and arm_of(c) == "databases" and not ruled_out(c)]
     screened = [c for c in db if _person_ta(c) and _person_ta(c).get("reason") != "not_screened_stopping_rule"]
     events = []
     for c in db:
