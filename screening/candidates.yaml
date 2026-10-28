@@ -234,7 +234,12 @@ candidates:
   - search: S011
   - search: S015
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 43
   benchmark: true
   legacy:
     decisions:
@@ -291,7 +296,12 @@ candidates:
   - search: S008
   - search: S011
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 36
   benchmark: true
   legacy:
     decisions:
@@ -380,7 +390,12 @@ candidates:
   - search: S015
   - search: S016
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 17
   benchmark: true
   legacy:
     decisions:
@@ -479,7 +494,12 @@ candidates:
   - search: S018
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 19
   benchmark: true
   legacy:
     decisions:
@@ -514,7 +534,12 @@ candidates:
   - search: S018
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 25
   benchmark: true
   legacy:
     decisions:
@@ -787,7 +812,12 @@ candidates:
   - search: S018
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 22
   benchmark: true
   legacy:
     decisions:
@@ -1040,7 +1070,12 @@ candidates:
   - search: S018
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 27
   benchmark: true
   legacy:
     decisions:
@@ -1071,7 +1106,12 @@ candidates:
   - search: S011
   - search: S012
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 24
   benchmark: true
   legacy:
     decisions:
@@ -1126,7 +1166,12 @@ candidates:
   - search: S015
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 38
   benchmark: true
   legacy:
     decisions:
@@ -1181,7 +1226,12 @@ candidates:
   - search: S013
   - search: S020
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 29
   benchmark: true
   legacy:
     decisions:
@@ -1215,7 +1265,12 @@ candidates:
   - search: S016
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 50
   benchmark: true
   legacy:
     decisions:
@@ -1585,7 +1640,12 @@ candidates:
   - search: S016
   - search: S017
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 51
   benchmark: true
   legacy:
     decisions:
@@ -1669,7 +1729,12 @@ candidates:
   - search: S011
   - search: S012
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 23
   benchmark: true
   legacy:
     decisions:
@@ -1699,7 +1764,12 @@ candidates:
   - search: S013
   - search: S020
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 46
   benchmark: true
   legacy:
     decisions:
@@ -1976,7 +2046,12 @@ candidates:
   - search: S016
   - search: S018
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 20
   benchmark: true
   legacy:
     decisions:
@@ -2049,7 +2124,12 @@ candidates:
   - search: S015
   - search: S016
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 18
   benchmark: true
   legacy:
     decisions:
@@ -2121,7 +2201,12 @@ candidates:
   - search: S010
   - search: S012
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 42
   benchmark: true
   legacy:
     decisions:
@@ -2216,7 +2301,12 @@ candidates:
   - search: S009
   - search: S010
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 32
   benchmark: true
   legacy:
     decisions:
@@ -2250,7 +2340,12 @@ candidates:
   - search: S016
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 34
   benchmark: true
   legacy:
     decisions:
@@ -2299,7 +2394,13 @@ candidates:
     note: citations.md [seed] — Seed references (added 2026-10-20)
   - search: S006
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: exclude
+    reason: no_imaging_primary
+    by: michele
+    date: '2026-10-28'
+    seq: 48
   benchmark: true
   legacy:
     decisions:
@@ -2344,7 +2445,12 @@ candidates:
   - search: S013
   - search: S020
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 39
   benchmark: true
   legacy:
     decisions:
@@ -2665,7 +2771,12 @@ candidates:
   - search: S009
   - search: S012
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 31
   benchmark: true
   legacy:
     decisions:
@@ -2762,7 +2873,12 @@ candidates:
   - search: S016
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 35
   benchmark: true
   legacy:
     decisions:
@@ -3346,7 +3462,12 @@ candidates:
   - search: S008
   - search: S009
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 49
   benchmark: true
   legacy:
     decisions:
@@ -3499,7 +3620,12 @@ candidates:
   - search: S002
   - search: S004
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 40
   benchmark: true
   legacy:
     decisions:
@@ -3551,7 +3677,12 @@ candidates:
   - search: S009
   - search: S010
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 41
   benchmark: true
   legacy:
     decisions:
@@ -3579,7 +3710,12 @@ candidates:
   - search: S009
   - search: S016
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 26
   benchmark: true
   legacy:
     decisions:
@@ -3641,7 +3777,12 @@ candidates:
   - search: S017
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 16
   benchmark: true
   legacy:
     decisions:
@@ -3957,7 +4098,12 @@ candidates:
   - search: S001
   - search: S005
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 33
   benchmark: true
   legacy:
     decisions:
@@ -4012,7 +4158,12 @@ candidates:
   - search: S016
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 21
   benchmark: true
   legacy:
     decisions:
@@ -4086,7 +4237,12 @@ candidates:
   - search: S002
   - search: S009
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 45
   benchmark: true
   legacy:
     decisions:
@@ -4116,7 +4272,12 @@ candidates:
   - search: S015
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 53
   benchmark: true
   legacy:
     decisions:
@@ -4323,7 +4484,12 @@ candidates:
   - search: S013
   - search: S020
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 54
   benchmark: true
   legacy:
     decisions:
@@ -4359,7 +4525,12 @@ candidates:
   - search: S017
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 52
   benchmark: true
   legacy:
     decisions:
@@ -4420,7 +4591,12 @@ candidates:
   - search: S016
   - search: S017
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 30
   benchmark: true
   legacy:
     decisions:
@@ -4532,7 +4708,12 @@ candidates:
   - search: S018
   - search: S019
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 28
   benchmark: true
   legacy:
     decisions:
@@ -4592,7 +4773,12 @@ candidates:
   - search: S011
   - search: S012
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 37
   benchmark: true
   legacy:
     decisions:
@@ -18358,7 +18544,12 @@ candidates:
   sources:
   - search: S001
   - search: S005
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-28'
+    seq: 44
 - id: C1032
   doi: 10.12890/2023_003947
   pmid: '37455687'

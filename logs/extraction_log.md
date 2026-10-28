@@ -589,3 +589,4 @@ add an `EXTRACTED` line for every run.
 2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
 2026-10-27 | SCREENED | — | title_abstract (screen_app) | 1 decisions/undos | by: michele
 2026-10-27 | SCREENED | — | title_abstract (screen_app) | 3 decisions/undos | by: michele
+2026-10-28 | SCREENED | — | title_abstract (screen_app) | 38 decisions: exclude 1, include 37 | by: michele
