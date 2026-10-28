@@ -58,6 +58,13 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: unsure
+    rationale: >-
+      pillar candidate: no protocol search retrieved it; if the KB needs it, run screen.py chase once
+      an included paper citing it is in, then assess
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0003
   key: '@Marchina2011'
   doi: 10.1161/strokeaha.110.606103
@@ -370,6 +377,13 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: unsure
+    rationale: >-
+      pillar candidate: no protocol search retrieved it; if the KB needs it, run screen.py chase once
+      an included paper citing it is in, then assess
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0013
   key: '@Breining2022'
   doi: 10.1080/02687038.2021.1907291
@@ -714,6 +728,13 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: unsure
+    rationale: >-
+      pillar candidate: no protocol search retrieved it; if the KB needs it, run screen.py chase once
+      an included paper citing it is in, then assess
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0023
   key: '@Pulvermuller2001'
   doi: 10.1161/01.str.32.7.1621
@@ -736,6 +757,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0024
   key: '@Boyle2004'
   doi: 10.1044/1058-0360(2004/025
@@ -758,6 +785,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0025
   key: '@Breier2008'
   doi: 10.3174/ajnr.a0846
@@ -1146,6 +1179,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0037
   key: '@Stahl2013'
   doi: 10.3389/fnhum.2013.00035
@@ -1420,6 +1459,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0046
   key: '@Hillis2007'
   doi: 10.1212/01.wnl.0000265600.69385.6f
@@ -1495,6 +1540,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0049
   key: '@Basilakos2015'
   doi: 10.1161/strokeaha.115.009211
@@ -1551,6 +1602,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: out_of_date_range
+    rationale: published before 2000 (chase it if it is a pillar)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0051
   key: '@NadeauCrosson1997'
   doi: null
@@ -1573,6 +1630,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: out_of_date_range
+    rationale: published before 2000 (chase it if it is a pillar)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0052
   key: '@Radanovic2017'
   doi: 10.1016/j.bandl.2017.05.003
@@ -1623,6 +1686,13 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: unsure
+    rationale: >-
+      pillar candidate: no protocol search retrieved it; if the KB needs it, run screen.py chase once
+      an included paper citing it is in, then assess
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0054
   key: '@MirmanThye2018'
   doi: 10.1177/0963721418787486
@@ -1711,6 +1781,13 @@ candidates:
         a separate D
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: unsure
+    rationale: >-
+      individual-participant-data meta-analysis (a synthesis, possibly in scope); refused before as not
+      extractable — your call
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0057
   key: '@Mohr2017'
   doi: 10.3389/fnhum.2017.00332
@@ -2382,6 +2459,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0076
   key: '@Bhogal2003'
   doi: 10.1161/01.str.0000062343.64383.d0
@@ -2485,6 +2568,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0080
   key: '@Zumbansen2014'
   doi: 10.3389/fneur.2014.00007
@@ -2533,6 +2622,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0082
   key: '@Fridriksson2018JAMA'
   doi: 10.1001/jamaneurol.2018.2287
@@ -3093,6 +3188,13 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: narrative_review_out_of_scope
+    rationale: narrative review not centred on neuroimaging/lesion evidence in stroke (or chase it as
+      a pillar)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0099
   key: '@Catani2008'
   doi: 10.1016/j.cortex.2008.04.002
@@ -3116,6 +3218,13 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: narrative_review_out_of_scope
+    rationale: narrative review not centred on neuroimaging/lesion evidence in stroke (or chase it as
+      a pillar)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0100
   key: '@Dick2012'
   doi: 10.1093/brain/aws222
@@ -3138,6 +3247,13 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: narrative_review_out_of_scope
+    rationale: narrative review not centred on neuroimaging/lesion evidence in stroke (or chase it as
+      a pillar)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0101
   key: '@Binder2009'
   doi: 10.1093/cercor/bhp055
@@ -3216,6 +3332,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0104
   key: '@Wilson2019'
   doi: 10.1044/2019_jslhr-l-rsnp-19-0031
@@ -3238,6 +3360,13 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: unsure
+    rationale: >-
+      pillar candidate: no protocol search retrieved it; if the KB needs it, run screen.py chase once
+      an included paper citing it is in, then assess
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0105
   key: '@WilsonHula2019'
   doi: 10.1007/s11910-019-0971-6
@@ -3306,6 +3435,12 @@ candidates:
     note: citations.md [seed] — Seed references (added 2026-10-20)
   skip_title_abstract: true
   screening: []
+  suggestion_ft:
+    decision: exclude
+    reason: not_aphasia
+    rationale: rehabilitation review without an aphasia/language outcome focus
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0108
   key: '@Laver2025'
   doi: 10.1002/14651858.cd008349.pub5
@@ -3328,6 +3463,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: not_aphasia
+    rationale: rehabilitation review without an aphasia/language outcome focus
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0109
   key: '@Pflugshaupt2009'
   doi: 10.1093/brain/awp141
@@ -3375,6 +3516,13 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: unsure
+    rationale: >-
+      pillar candidate: no protocol search retrieved it; if the KB needs it, run screen.py chase once
+      an included paper citing it is in, then assess
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0111
   key: '@Baldo2011'
   doi: 10.1016/j.cortex.2010.07.001
@@ -3606,6 +3754,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0118
   key: '@Kasdan2025'
   doi: 10.1162/nol.a.9
@@ -3882,6 +4036,13 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: unsure
+    rationale: >-
+      pillar candidate: no protocol search retrieved it; if the KB needs it, run screen.py chase once
+      an included paper citing it is in, then assess
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0127
   key: '@Brady2022'
   doi: 10.1177/17474930221097477
@@ -4138,6 +4299,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: probably no imaging — check the methods for lesion or imaging data before accepting
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0136
   key: '@Wilson2023'
   doi: 10.1093/brain/awac129
@@ -4200,6 +4367,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0138
   key: '@Nouwens2017'
   doi: 10.1177/2396987317698327
@@ -4224,6 +4397,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0139
   key: '@Ramsey2017'
   doi: 10.1038/s41562-016-0038
@@ -4338,6 +4517,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0143
   key: '@Ross2008'
   doi: 10.1016/j.bandl.2007.04.007
@@ -4419,6 +4604,12 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0146
   key: '@Glascher2012'
   doi: 10.1073/pnas.1206608109
@@ -4468,6 +4659,13 @@ candidates:
       note: Entered the bibliography and was extracted before the screening register existed.
     rebaselined: '2026-10-27'
     protocol: 8d8dc2e70d35
+  suggestion_ft:
+    decision: exclude
+    reason: narrative_review_out_of_scope
+    rationale: narrative review not centred on neuroimaging/lesion evidence in stroke (or chase it as
+      a pillar)
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0148
   key: '@Simic2019'
   doi: 10.1080/09602011.2017.1307768
@@ -4879,6 +5077,13 @@ candidates:
     note: citations.md [seed] — Registered automatically
   skip_title_abstract: true
   screening: []
+  suggestion_ft:
+    decision: unsure
+    rationale: >-
+      pillar candidate: no protocol search retrieved it; if the KB needs it, run screen.py chase once
+      an included paper citing it is in, then assess
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0161
   key: '@Coppens2002'
   doi: 10.1016/s0093-934x(02)00510-2
@@ -4893,6 +5098,13 @@ candidates:
     note: citations.md [seed] — Registered automatically
   skip_title_abstract: true
   screening: []
+  suggestion_ft:
+    decision: unsure
+    rationale: >-
+      pillar candidate: no protocol search retrieved it; if the KB needs it, run screen.py chase once
+      an included paper citing it is in, then assess
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0162
   key: '@Pendlebury2009'
   doi: 10.1016/s1474-4422(09)70236-4
@@ -4907,6 +5119,12 @@ candidates:
     note: citations.md [seed] — Registered automatically
   skip_title_abstract: true
   screening: []
+  suggestion_ft:
+    decision: exclude
+    reason: design_out_of_scope
+    rationale: 'dementia prevalence meta-analysis: no lesion or imaging relation to an outcome'
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0163
   key: '@Lo2019'
   doi: 10.1212/wnl.0000000000008612
@@ -4919,6 +5137,12 @@ candidates:
     note: citations.md [seed] — Registered automatically
   skip_title_abstract: true
   screening: []
+  suggestion_ft:
+    decision: exclude
+    reason: no_imaging_primary
+    rationale: probably no imaging — check the methods for lesion or imaging data before accepting
+    by: claude (pre-fill from title)
+    date: '2026-10-28'
 - id: C0164
   key: '@Weaver2021'
   doi: 10.1016/s1474-4422(21)00060-0
@@ -18550,6 +18774,13 @@ candidates:
     by: michele
     date: '2026-10-28'
     seq: 44
+  suggestion_ft:
+    decision: exclude
+    reason: duplicate_report
+    note: preprint of C0018 (Teghipco 2024, Communications Medicine)
+    rationale: Research Square preprint of an included journal article
+    by: claude (pre-fill)
+    date: '2026-10-28'
 - id: C1032
   doi: 10.12890/2023_003947
   pmid: '37455687'

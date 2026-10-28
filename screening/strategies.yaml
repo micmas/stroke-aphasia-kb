@@ -37,10 +37,31 @@
 # `filters`), Scopus strings get `AND PUBYEAR > 1999` appended by
 # `screen.py strategies --show`. The upper limit is the search date.
 
-version: 3
+version: 4
 status: locked            # draft → locked (then commit) before the first --execute
 protocol_owner: michele
 amendments:
+  - version: 4
+    date: 2026-10-28
+    by: michele
+    what: >-
+      Grey literature is excluded: theses and dissertations, books and book
+      chapters, and conference abstracts and proceedings papers (reason
+      grey_literature; not_full_report keeps editorials, letters, commentaries,
+      protocols and errata). Preprints remain eligible. Records are identified by
+      rule before screening — the export's own record type (RIS TY, Scopus
+      document type) when known, else the DOI prefix (book DOIs) and the source
+      title — and reported as removed before screening (PRISMA 2020), with the
+      evidence on each record (`screen.py grey`).
+    why: >-
+      The knowledge base extracts findings with verbatim support from
+      peer-reviewed reports; theses, chapters and conference records repeat or
+      precede journal reports and are rarely extractable. Preprints are kept
+      because recent imaging studies often appear there first (a preprint and its
+      journal version are one study: duplicate_report).
+    when: >-
+      after 50 title/abstract decisions; none of them concerned a thesis, book or
+      conference record, so none changes.
   - version: 3
     date: 2026-10-27
     by: michele
