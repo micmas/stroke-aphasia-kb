@@ -59,6 +59,16 @@ time post onset — enters **only through systematic reviews and
 meta-analyses** (synthesis). A primary study without imaging is
 excluded with `no_imaging_primary`.
 
+**Peer-reviewed reports and preprints only (protocol v4).** Theses and
+dissertations, books and book chapters, and conference abstracts and
+proceedings papers are grey literature and excluded (`grey_literature`).
+They are identified by rule before screening (`screen.py grey`): the
+record type the export states (RIS `TY`, Scopus document type) when it is
+known, otherwise a book DOI prefix or the source title; each record keeps
+the evidence, and PRISMA reports them as removed before screening.
+Preprints are eligible; a preprint and its journal version are one study
+(`duplicate_report`).
+
 **Publication years: 2000 onward** (`years` in
 `screening/strategies.yaml`). Earlier papers enter only as pillar papers
 by citation chasing.
