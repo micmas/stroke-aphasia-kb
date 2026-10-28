@@ -51,6 +51,7 @@ class Store:
         self.by_id = {c["id"]: c for c in self.candidates}
         self.strategies = S.load_strategies()
         self.abstracts = SC.load_abstracts()
+        self.facts = S.kb_facts() if stage == "full_text" else {}
         self.mtime = self.path.stat().st_mtime if self.path.exists() else 0
         self.session: list[tuple[str, dict]] = []
         self.dirty, self.last_change, self.unsaved, self.error = False, 0.0, 0, ""
@@ -120,7 +121,9 @@ class Store:
             else:
                 self._rerank_async()
         else:
-            self.queue = sorted(todo)
+            # full text: papers included at title/abstract first, then the other-methods arm
+            arm = {c["id"]: S.arm_of(c) for c in self.candidates}
+            self.queue = sorted(todo, key=lambda i: (arm.get(i) != "databases", i))
 
     def _rerank_async(self) -> None:
         if self.ranking:
@@ -179,14 +182,19 @@ class Store:
             if (ROOT / "papers" / f"{stem}.pdf").exists():
                 pdf = f"/pdf/{stem}.pdf"
         sug = c.get("suggestion") if (self.stage == "title_abstract" and not self.check) else None
-        prev = None
+        prev, kb = None, None
         if self.stage == "full_text" and not self.check:
             d = S.last_decision(c, "title_abstract")
-            prev = d.get("decision") if d else None
+            prev = d.get("decision") if d else ("other methods" + (" · pillar" if c.get("pillar") else ""))
+            f = self.facts.get(c.get("key") or "") or {}
+            if f.get("approved_findings"):
+                kb = f"already in the KB: {f['approved_findings']} findings"
+            elif f.get("draft_open"):
+                kb = "already extracted: drafts in review"
         return {"id": cid, "title": c.get("title") or "", "year": c.get("year"), "journal": c.get("journal") or "",
                 "authors": (c.get("authors") or "")[:200], "doi": c.get("doi"), "pmid": c.get("pmid"),
                 "abstract": self.abstracts.get(cid, ""), "sources": srcs, "key": None if blind else c.get("key"),
-                "pdf": pdf, "suggestion": sug, "previous": prev}
+                "pdf": pdf, "suggestion": sug, "previous": prev, "kb": kb}
 
     # -- decisions -------------------------------------------------------------------
     def decide(self, cid: str, decision: str, reason: str | None, note: str | None) -> dict:
@@ -396,6 +404,8 @@ function renderCard(){
   if(c.pmid){meta.append(' · ',el('a',{href:'https://pubmed.ncbi.nlm.nih.gov/'+c.pmid,target:'_blank',rel:'noopener',text:'PubMed'}))}
   if(c.pdf){meta.append(' · ',el('a',{href:c.pdf,target:'_blank',text:'PDF'}))}
   meta.append(el('span',{class:'small',text:'  ['+c.id+(c.key?' '+c.key:'')+(c.sources.length?' · '+c.sources.join(', '):'')+(c.previous?' · title/abstract: '+c.previous:'')+']'}));
+  if(c.kb){meta.append(el('div',{class:'small',style:'margin-top:.3rem;color:var(--inc)',text:c.kb+' — if you include it, no new extraction is needed'}))}
+  if(S.stage==='full_text'&&!c.pdf){meta.append(el('div',{class:'small',style:'margin-top:.3rem',text:'No PDF in papers/ yet — read it from the DOI link.'}))}
   const card=el('div',{class:'card'},el('p',{class:'title',text:c.title}),meta,el('div',{class:'abstract',text:c.abstract||'(no abstract)'}));
   if(c.suggestion){card.append(el('div',{class:'sug',text:`Model suggests ${c.suggestion.decision}${c.suggestion.reason&&c.suggestion.reason!=='none'?' ('+c.suggestion.reason+')':''} — ${c.suggestion.rationale||''} [suggestion, not a decision]`}))}
   box.append(card);window.scrollTo(0,0);
