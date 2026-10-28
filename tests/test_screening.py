@@ -454,6 +454,35 @@ class Prioritised(unittest.TestCase):
         self.assertFalse(st["met"])                    # the include broke the run of exclusions
 
 
+class GreyLiterature(unittest.TestCase):
+    def test_doc_type(self):
+        dt = lambda **k: S.doc_type({"id": "C1", **k})[0]
+        self.assertEqual(dt(journal="Dissertation Abstracts International: Section B"), "thesis")
+        self.assertEqual(dt(doi="10.1016/b978-0-443-15646-5.00008-7", journal="Handbook of clinical neurology"), "book")
+        self.assertEqual(dt(journal="Annual International Conference of the IEEE Engineering in Medicine"), "conference")
+        self.assertEqual(dt(journal="Proceedings of the National Academy of Sciences of the USA"), None)
+        self.assertEqual(dt(journal="Yeni Symposium"), None)
+        self.assertEqual(dt(doi="10.21203/rs.3.rs-3126126/v1", journal="Research square"), "preprint")
+        self.assertEqual(dt(doi="10.1101/2025.09.17.25335931"), "preprint")
+        self.assertEqual(dt(doc_type="book", doc_type_raw="CHAP", journal="Brain"), "book")             # export type wins
+        self.assertEqual(dt(doc_type="journal", journal="Proceedings of the Royal Society B"), "journal")
+        self.assertEqual(S.doc_type_from_export("JOUR", "Conference Paper"), "conference")
+        self.assertEqual(S.doc_type_from_export("THES"), "thesis")
+        (r,) = screen.parse_ris("TY  - CHAP\nTI  - A chapter on aphasia and the brain\nM3  - Book Chapter\nPY  - 2019\nER  - \n")
+        self.assertEqual((r["doc_type"], r["doc_type_raw"]), ("book", "CHAP/Book Chapter"))
+
+    def test_rule_exclusions_leave_the_screening_pool(self):
+        c1 = {"id": "C0001", "title": "t1", "year": 2010, "sources": [{"search": "S001"}], "screening": []}
+        c2 = {"id": "C0002", "title": "t2", "year": 2010, "sources": [{"search": "S001"}], "screening": []}
+        self.assertIsNone(screen._apply_decision(c2, "title_abstract", "exclude", "grey_literature", "michele", "rule: source x", "2026-10-28"))
+        c2["screening"][-1]["rule"] = "grey_literature:thesis"
+        st = S.stopping_state([c1, c2], {"years": "2000-"})
+        self.assertEqual((st["records"], st["screened"]), (1, 0))
+        p = S.prisma_counts(S.enrich([c1, c2], {}), [{"id": "S001", "database": "pubmed", "retrieved": 2}])
+        self.assertEqual((p["identification"]["removedByRule"], p["identification"]["duplicatesRemoved"], p["screening"]["screened"]),
+                         (1, 0, 1))
+
+
 class Chase(unittest.TestCase):
     def test_pillar_by_citation_chasing(self):
         inc = {"id": "C0001", "title": "Included lesion study of naming", "year": 2015, "sources": [{"search": "S001"}],

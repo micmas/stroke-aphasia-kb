@@ -194,7 +194,9 @@ class Store:
         return {"id": cid, "title": c.get("title") or "", "year": c.get("year"), "journal": c.get("journal") or "",
                 "authors": (c.get("authors") or "")[:200], "doi": c.get("doi"), "pmid": c.get("pmid"),
                 "abstract": self.abstracts.get(cid, ""), "sources": srcs, "key": None if blind else c.get("key"),
-                "pdf": pdf, "suggestion": sug, "previous": prev, "kb": kb}
+                "pdf": pdf, "suggestion": sug, "previous": prev, "kb": kb,
+                "docType": S.doc_type(c)[0],
+                "suggestionFt": c.get("suggestion_ft") if (self.stage == "full_text" and not self.check) else None}
 
     # -- decisions -------------------------------------------------------------------
     def decide(self, cid: str, decision: str, reason: str | None, note: str | None) -> dict:
@@ -347,6 +349,19 @@ h1{font-size:1rem;margin:0;color:var(--accent)}
 .bar i{position:absolute;left:0;top:0;bottom:0;background:var(--accent)}.bar b{position:absolute;top:-2px;bottom:-2px;width:2px;background:var(--fg);opacity:.5}
 .chk{font-variant-numeric:tabular-nums}.ok{color:var(--inc)}
 main{max-width:900px;margin:0 auto;padding:1.2rem 1rem 12rem}
+#pdfpane{display:none}
+body.split main{max-width:none;display:grid;grid-template-columns:minmax(360px,1fr) minmax(420px,1.2fr);gap:1rem;
+  padding:1rem 1rem 0;height:calc(100vh - var(--hdr,90px) - var(--act,120px));overflow:hidden}
+body.split #card{overflow:auto;padding-bottom:1rem;min-height:0}
+body.split #pdfpane{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card);min-height:0}
+#pdfpane iframe{flex:1;width:100%;border:0;background:#fff}
+#pdfpane .none{margin:auto;text-align:center;padding:2rem;color:var(--muted)}
+#pdfpane .bar2{font-size:.8rem;color:var(--muted);padding:.3rem .6rem;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;gap:.5rem}
+body.split.hidepdf main{grid-template-columns:1fr}body.split.hidepdf #pdfpane{display:none}
+@media (max-width:1000px){body.split main{grid-template-columns:1fr;height:auto;overflow:visible}body.split #pdfpane{height:85vh}}
+.badge{display:inline-block;font-size:.75rem;border:1px solid var(--line);border-radius:999px;padding:0 .45rem;margin-left:.4rem;color:var(--muted)}
+.badge.grey{border-color:var(--exc);color:var(--exc)}
+.sugft{margin-top:.8rem;font-size:.9rem;border-left:3px solid var(--uns);padding:.35rem .7rem}
 .card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.2rem 1.4rem}
 .title{font-size:1.25rem;font-weight:650;line-height:1.35;margin:0 0 .4rem}
 .meta{font-size:.88rem;color:var(--muted)}.meta a{color:var(--accent)}
@@ -366,7 +381,7 @@ button.exc{border-color:color-mix(in srgb,var(--exc) 50%,var(--line))}button.exc
 <header><div class=row><h1 id=h1>Screening</h1><div class=bar title="screened / records; mark = minimum share"><i id=bar></i><b id=floor></b></div>
 <span class="chk small" id=checks></span></div>
 <div class="row small muted" id=sub></div><div id=err></div></header>
-<main><div id=card></div></main>
+<main><div id=card></div><div id=pdfpane></div></main>
 <div class=actions><div class=row id=btns></div></div>
 <div class=flash id=flash></div>
 <script>
@@ -407,8 +422,15 @@ function renderCard(){
   if(c.kb){meta.append(el('div',{class:'small',style:'margin-top:.3rem;color:var(--inc)',text:c.kb+' — if you include it, no new extraction is needed'}))}
   if(S.stage==='full_text'&&!c.pdf){meta.append(el('div',{class:'small',style:'margin-top:.3rem',text:'No PDF in papers/ yet — read it from the DOI link.'}))}
   const card=el('div',{class:'card'},el('p',{class:'title',text:c.title}),meta,el('div',{class:'abstract',text:c.abstract||'(no abstract)'}));
+  if(c.docType&&c.docType!=='journal'){card.querySelector('.title').append(el('span',{class:'badge'+(['thesis','book','conference'].includes(c.docType)?' grey':''),text:c.docType}))}
   if(c.suggestion){card.append(el('div',{class:'sug',text:`Model suggests ${c.suggestion.decision}${c.suggestion.reason&&c.suggestion.reason!=='none'?' ('+c.suggestion.reason+')':''} — ${c.suggestion.rationale||''} [suggestion, not a decision]`}))}
-  box.append(card);window.scrollTo(0,0);
+  if(c.suggestionFt){const g=c.suggestionFt, lab=(S.reasons.find(r=>r[0]===g.reason)||[0,g.reason])[1];
+    card.insertBefore(el('div',{class:'sugft'},el('b',{text:`Suggested: ${g.decision}${g.reason?' — '+lab:''}`}),` · ${g.rationale||''} `,el('span',{class:'muted small',text:`[${g.by}; press a to accept, or decide yourself]`})),card.querySelector('.abstract'))}
+  box.append(card);window.scrollTo(0,0);box.scrollTop=0;
+  if(S.stage==='full_text'){if(!document.body.classList.contains('split')){document.body.classList.add('split');pad()}const pane=$('pdfpane');
+    if(c.pdf){if(pane.dataset.src!==c.pdf){pane.innerHTML='';pane.append(el('div',{class:'bar2'},el('span',{text:c.key||c.id}),el('span',{text:'click the left side to use the keys again · p hides/shows the PDF'})),el('iframe',{src:c.pdf+'#view=FitH',title:'PDF'}));pane.dataset.src=c.pdf}}
+    else{pane.dataset.src='';pane.innerHTML='';const n=el('div',{class:'none'},el('p',{text:'No PDF in papers/ for this record.'}));
+      if(c.doi)n.append(el('p',{},el('a',{href:'https://doi.org/'+c.doi,target:'_blank',rel:'noopener',text:'Open the publisher page'}),' (it opens in a new tab: publishers do not allow their pages inside another page).'));pane.append(n)}}
 }
 async function fill(){if(Q.length<4){const skip=[cur&&cur.id,...Q.map(x=>x.id)].filter(Boolean).join(',');const r=await api('/api/next?n=10&skip='+encodeURIComponent(skip));for(const x of r.cards)if(!Q.find(y=>y.id===x.id)&&(!cur||cur.id!==x.id))Q.push(x)}}
 async function advance(){await fill();cur=Q.shift()||null;renderCard();fill()}
@@ -426,11 +448,15 @@ document.addEventListener('keydown',e=>{
   if(e.metaKey||e.ctrlKey||e.altKey)return;
   if(e.key==='i')decide('include');else if(e.key==='u')decide('unsure');else if(e.key==='z')undo();
   else if(e.key==='n'){$('note').focus();e.preventDefault()}
+  else if(e.key==='p'){document.body.classList.toggle('hidepdf')}
+  else if(e.key==='a'){const g=cur&&cur.suggestionFt;if(g){if(g.note&&!$('note').value)$('note').value=g.note;decide(g.decision,g.reason)}else flash('no suggestion for this record','#9a6b00')}
   else if(/^[1-9]$/.test(e.key)){const r=S.reasons[Number(e.key)-1];if(r&&r[0]!=='other')decide('exclude',r[0])}
   else if(e.key==='0'){if($('note').value.trim())decide('exclude','other');else{$('note').focus();flash('Other: write the note, then press 0','#9a6b00')}}
 });
-function pad(){const h=document.querySelector('.actions').offsetHeight;document.querySelector('main').style.paddingBottom=(h+32)+'px'}
-new ResizeObserver(pad).observe(document.querySelector('.actions'));window.addEventListener('resize',pad);
+function pad(){const h=document.querySelector('.actions').offsetHeight, hd=document.querySelector('header').offsetHeight;
+  document.documentElement.style.setProperty('--act',h+'px');document.documentElement.style.setProperty('--hdr',hd+'px');
+  document.querySelector('main').style.paddingBottom=document.body.classList.contains('split')&&innerWidth>1000?'0':(h+32)+'px'}
+new ResizeObserver(pad).observe(document.querySelector('.actions'));new ResizeObserver(pad).observe(document.querySelector('header'));window.addEventListener('resize',pad);
 setInterval(async()=>{S=await api('/api/state');renderState()},4000);
 (async()=>{S=await api('/api/state');renderState();renderButtons();pad();await advance()})();
 </script></body></html>"""
