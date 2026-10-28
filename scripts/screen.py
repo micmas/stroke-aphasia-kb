@@ -47,6 +47,7 @@ screening/abstracts.jsonl (git-ignored) and are re-fetchable.
 from __future__ import annotations
 
 import argparse
+import collections
 import csv
 import datetime as dt
 import html
@@ -1448,6 +1449,99 @@ def cmd_status(args) -> int:
     return 0
 
 
+def cmd_fulltext(args) -> int:
+    """What the full-text stage needs, paper by paper: assess (with or without a PDF),
+    and for included papers the next pipeline step — register, fetch the PDF, extract,
+    review — or nothing because they are already in the KB."""
+    candidates = S.load_candidates()
+    facts = S.kb_facts()
+    rows = S.enrich(candidates, facts)
+    papers_known = (ROOT / "papers").is_dir()
+
+    def pdf_of(r):
+        kb = r.get("kb") or {}
+        if not papers_known:
+            return None
+        return bool(r.get("key") and (facts.get(r["key"]) or {}).get("pdf"))
+
+    def line(r, extra=""):
+        kb = r.get("kb") or {}
+        state = {"in_kb": f"in the KB ({kb.get('approved_findings')} findings)", "in_review": "extracted, in review",
+                 "rejected": "extracted, drafts rejected"}.get(kb.get("state") or "", "")
+        pdf = {True: "PDF", False: "no PDF", None: "PDF ?"}[pdf_of(r)]
+        return (f"    {r['id']}  {str(r.get('key') or '—'):<26} {pdf:<7} {state:<28} {str(r.get('year') or ''):<5} "
+                f"{str(r.get('title') or '')[:70]}{extra}")
+
+    assess = [r for r in rows if r["stage"] in ("awaiting_ft", "unsure_ft")]
+    included = [r for r in rows if r["stage"] == "included"]
+    excluded_with_findings = [r for r in rows if r["stage"] == "excluded_ft" and (r.get("kb") or {}).get("state") in ("in_kb", "in_review")]
+    if not papers_known:
+        print("(papers/ is not reachable from here, so PDF presence is unknown — run this on the computer that has the PDFs)\n")
+
+    other = [r for r in assess if r["arm"] == "other"]
+    assess = [r for r in assess if r["arm"] == "databases"]
+    print(f"1. Included at title/abstract, to assess at full text: {len(assess)}  →  "
+          f"python scripts/screen_app.py --by <you> --stage ft")
+    done_before = [r for r in assess if (r.get("kb") or {}).get("state") in ("in_kb", "in_review", "rejected")]
+    fresh = [r for r in assess if r not in done_before]
+    if done_before:
+        print(f"   already extracted before the protocol ({len(done_before)}): assess only; if included, their findings stand "
+              f"(no new extraction)")
+        for r in done_before:
+            print(line(r))
+    if fresh:
+        print(f"   not extracted yet ({len(fresh)}): open the PDF from the DOI link in the app; nothing to download before deciding")
+        for r in fresh:
+            print(line(r, f"  https://doi.org/{r['doi']}" if r.get("doi") else ""))
+
+    if other:
+        chased = [r for r in other if r.get("pillar")]
+        rest = [r for r in other if not r.get("pillar")]
+        print(f"\n   Other methods ({len(other)}): legacy papers no protocol search retrieved"
+              + (f", {len(chased)} entered as pillars by citation chasing" if chased else "")
+              + ". Each is either a pillar (screen.py chase, once a paper citing it is included) or is excluded at "
+                "full text with its reason (out_of_date_range, not_stroke, narrative_review_out_of_scope, "
+                "no_imaging_primary …) — see screen.py recall.")
+        for r in chased + rest:
+            print(line(r, "  [pillar]" if r.get("pillar") else ""))
+
+    print(f"\n2. Included at full text: {len(included)}")
+    steps = collections.OrderedDict((k, []) for k in ("register", "pdf", "extract", "review", "done"))
+    for r in included:
+        st = (r.get("kb") or {}).get("state")
+        if not r.get("key"):
+            steps["register"].append(r)
+        elif st == "in_kb":
+            steps["done"].append(r)
+        elif st in ("in_review", "rejected"):
+            steps["review"].append(r)
+        elif pdf_of(r) is False:
+            steps["pdf"].append(r)
+        else:
+            steps["extract"].append(r)
+    text = {"register": "no citation key yet  →  python scripts/screen.py register --execute",
+            "pdf": "registered, no PDF  →  save the PDFs in ~/Downloads, then python scripts/intake_papers.py --from ~/Downloads --execute",
+            "extract": "PDF present, not extracted  →  python scripts/extract.py --pdf papers/<Key>.pdf  (one per paper; 20–30 min each)",
+            "review": "extracted, drafts to review  →  python scripts/review_app.py, then promote.py",
+            "done": "in the knowledge base — nothing to do"}
+    for k, rs in steps.items():
+        if rs:
+            print(f"   {text[k]}: {len(rs)}")
+            for r in rs:
+                print(line(r, f"  https://doi.org/{r['doi']}" if k == "pdf" and r.get("doi") else ""))
+    if steps["extract"]:
+        print("   commands:")
+        for r in steps["extract"]:
+            print(f"     python scripts/extract.py --pdf papers/{str(r['key']).lstrip('@')}.pdf")
+
+    if excluded_with_findings:
+        print(f"\n3. Excluded at full text but still with findings in drafts or the KB: {len(excluded_with_findings)} — "
+              f"their findings no longer have a protocol basis (reject the drafts / retire the findings)")
+        for r in excluded_with_findings:
+            print(line(r, f"  [{r.get('reason')}]"))
+    return 0
+
+
 def cmd_list(args) -> int:
     rows = S.enrich(S.load_candidates(), S.kb_facts())
     if args.stage:
@@ -1513,6 +1607,8 @@ def _cli(argv=None) -> int:
     p = sub.add_parser("recall", help="relative recall of the database searches against the benchmark")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_recall)
+    p = sub.add_parser("fulltext", help="the full-text stage: what to assess, and for included papers the next step")
+    p.set_defaults(fn=cmd_fulltext)
     p = sub.add_parser("progress", help="prioritised screening against the stopping rule")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_progress)
