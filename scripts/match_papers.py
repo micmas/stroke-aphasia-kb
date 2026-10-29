@@ -214,13 +214,21 @@ def _cli(argv=None) -> int:
 
     cites = read_citations(args.citations)
     keys_lower = {k.lstrip("@").lower(): k for k in cites}
-    planned, unmatched, taken = [], [], []
+    planned, unmatched, taken, linked = [], [], [], []
+    try:   # PDFs the screening register already links to a record (screen.py pdfs)
+        import screening as _S
+        by_file = {c["pdf_file"]: c["id"] for c in _S.load_candidates() if c.get("pdf_file") and not c.get("duplicate_of")}
+    except Exception:  # noqa: BLE001
+        by_file = {}
     for f in sorted(args.papers_dir.iterdir()):
         if f.suffix.lower() not in (".pdf", ".txt") or f.name.startswith("."):
             continue
         stem = f.stem
         if stem.endswith("_annotated") or stem.lower() in keys_lower:
             continue   # already named, or an annotated copy
+        if f.name in by_file:
+            linked.append((f.name, by_file[f.name]))
+            continue
         try:
             text = first_pages_text(f)
         except Exception as e:  # noqa: BLE001
@@ -233,7 +241,12 @@ def _cli(argv=None) -> int:
             continue
         target = args.papers_dir / f"{key.lstrip('@')}{f.suffix.lower()}"
         if target.exists():
-            taken.append((f.name, key, target.name))
+            if how == "probable":   # an author/year/title guess, not a duplicate: say so
+                dois = sorted({_norm_doi(d) for d in _DOI.findall(text)})[:3]
+                unmatched.append((f.name, f"no match (an author of {key} is on it, but {target.name} exists); "
+                                          f"DOIs seen: {', '.join(dois) or 'none'}"))
+            else:
+                taken.append((f.name, key, target.name))
             continue
         planned.append((f, target, how))
 
@@ -246,8 +259,12 @@ def _cli(argv=None) -> int:
         print(f"{'renamed' if do else 'would rename':12} {f.name}  →  {target.name}   [{tag}]")
     for name, key, tname in taken:
         print(f"{'duplicate':12} {name}  matches {key} but {tname} already exists — left alone")
+    for name, cid in linked:
+        print(f"{'linked':12} {name}  →  {cid} in the screening register (renamed by screen.py register when included)")
     for name, why in unmatched:
         print(f"{'unmatched':12} {name}  ({why})")
+    if unmatched:
+        print("\n(unmatched files: python scripts/screen.py pdfs links the ones that belong to a screening record)")
     if planned and not args.execute:
         print("\nDry run. Add --execute to rename"
               + (" (and --allow-probable for the non-DOI matches)."

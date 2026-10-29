@@ -148,10 +148,19 @@ def _cli(argv=None) -> int:
           f"{len(missing_keys)} missing"
           + (f"  →  python scripts/kb_status.py --papers-needed" if missing_keys else ""))
     if st.get("papers_unmatched"):
-        print(f"  {len(st['papers_unmatched'])} file(s) match no citation key: "
-              + ", ".join(st["papers_unmatched"][:8])
-              + (" …" if len(st["papers_unmatched"]) > 8 else ""))
-        print("  (add a @Key to citations.md, or remove the file)")
+        try:
+            import screening as _S
+            linked = {c["pdf_file"] for c in _S.load_candidates() if c.get("pdf_file")}
+        except Exception:  # noqa: BLE001
+            linked = set()
+        waiting = [n for n in st["papers_unmatched"] if n in linked]
+        loose = [n for n in st["papers_unmatched"] if n not in linked]
+        if waiting:
+            print(f"  {len(waiting)} file(s) linked to screening records, renamed on inclusion (screen.py register)")
+        if loose:
+            print(f"  {len(loose)} file(s) match no citation key and no screening record: "
+                  + ", ".join(loose[:8]) + (" …" if len(loose) > 8 else ""))
+            print("  (python scripts/screen.py pdfs to link them; otherwise chase the paper or move the file out)")
 
     if args.extract:
         _banner(6, "Extract papers that have no findings yet  (extract.py --batch)")

@@ -1725,6 +1725,14 @@ def link_pdfs(candidates: list[dict], verbose: bool = True) -> dict:
             if d in by_doi:
                 hit, how = by_doi[d], f"DOI {d}"
                 break
+        if hit is None:   # the DOI's suffix as the file name: 1745-6215-14-24.pdf, awr240.pdf
+            slug = re.sub(r"[^a-z0-9]", "", f.stem.lower())
+            if len(slug) >= 5:
+                for d, c in by_doi.items():
+                    parts = d.split("/")[1:]
+                    if slug in {re.sub(r"[^a-z0-9]", "", "/".join(parts)), re.sub(r"[^a-z0-9]", "", parts[-1] if parts else "")}:
+                        hit, how = c, "DOI in the file name"
+                        break
         if hit is None:
             fw = set(_title_words(f.stem.replace("-", " ").replace("_", " ")))
             best, score = None, 0.0
@@ -1742,6 +1750,10 @@ def link_pdfs(candidates: list[dict], verbose: bool = True) -> dict:
             continue
         if hit.get("pdf_file") == f.name:
             out["already"].append((hit["id"], f.name))
+            continue
+        st = rows[hit["id"]]["stage"] if hit["id"] in rows else ""
+        if st in ("excluded_ta", "excluded_ft", "duplicate"):
+            out["unknown"].append((f.name, [f"belongs to {hit['id']}, {S.STAGE_LABELS.get(st, st)} — not needed"]))
             continue
         key_pdf = papers / f"{str(hit.get('key') or '').lstrip('@')}.pdf" if hit.get("key") else None
         if key_pdf is not None and key_pdf.exists():
