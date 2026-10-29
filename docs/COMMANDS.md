@@ -59,6 +59,28 @@ python scripts/promote.py --approve drafts/<bucket>/<file>.md --reviewer michele
 git add -A && git commit -m "…" && git pull --rebase --autostash && git push
 ```
 
+### The same, for every included paper at once
+
+```bash
+python scripts/screen.py register --execute                    # every included paper without a key
+python scripts/screen.py fulltext                              # "registered, no PDF": the download list (DOI links)
+python scripts/intake_papers.py --from ~/Downloads --execute   # every downloaded PDF that matches a registered paper
+python scripts/screen.py extract                               # dry run: the queue (included, PDF, no findings)
+python scripts/screen.py extract --execute                     # extract them one after another (≈ 25 min each; --limit N)
+python scripts/auto_review.py --all --llm-review               # checks, tiers and model opinion on every pending draft
+python scripts/review_app.py                                   # index of every draft; review paper by paper, mark passages
+python scripts/refocus.py --all --execute                      # findings for every paper with pending marks
+python scripts/promote.py --list                               # what is left for you
+for f in drafts/*/*__<Key>.md; do python scripts/promote.py --approve "$f" --reviewer michele; done   # a paper you reviewed
+git add -A && git commit -m "…" && git pull --rebase --autostash && git push
+```
+
+Approval stays a person's act per paper: approve the drafts of a paper
+once you have reviewed it (`--reject … --reason` for the ones you do not
+accept). `auto_review.py --all --llm-review` may itself promote Tier A
+drafts a model approved unanimously; add `--no-model-approve` to keep
+every approval yours.
+
 ---
 
 ## 0. Finding and screening papers — the screening register
@@ -202,6 +224,7 @@ python scripts/screen.py fulltext                                # what is left:
 | `agreement` | Cohen's kappa between decisions of record and check decisions per stage (unsure counts as include at title/abstract), the 2×2 table and each disagreement. | `--stage ta\|ft` |
 | `fulltext` | The full-text stage, paper by paper: what is waiting for assessment (already extracted before the protocol, or not), and for papers included at full text the next step — register, fetch the PDF, extract (with the commands), review — or "in the KB". Also lists papers excluded at full text that still have findings. | — |
 | `chase` | Enters a pillar paper by citation chasing (before 2000, primary healthy-volunteer study, no abstract …): `--cited-by` must name papers included under the protocol and `--why` says what the KB needs it for. Existing candidate → source added; else Crossref record from the DOI (or `--title --year`). Goes to full text, other-methods arm. Logs `CHASED`. | `--doi` or `--title --year` · `--cited-by` `--why` `--by` `--date` `--execute` |
+| `extract` | The screening-aware batch: extracts every paper included at full text that has its PDF and no findings yet, one `extract.py` run after another (a failure is reported, the next one runs). Dry run lists the queue. | `--limit N` `--model` `--num-ctx` `--max-tokens` `--timeout` `--lean` `--execute` |
 | `register` | Included candidates without a key: Crossref record from the DOI → `citations.md` block (house format, `[seed]`, note says which candidate) and `key:` set; existing DOIs are linked instead. Network. | `--execute` |
 | `list` | Candidates with id, derived stage, KB state, key and title. | `--stage` |
 | `fetch-abstracts` | Fills `screening/abstracts.jsonl` from PubMed (by PMID) then OpenAlex (by DOI). Network. | `--max` |
