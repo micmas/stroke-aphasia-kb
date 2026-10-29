@@ -600,3 +600,4 @@ add an `EXTRACTED` line for every run.
 2026-10-30 | GREY-EXCLUDED | — | title_abstract | 52 records by rule (conference 16, book 11, thesis 25) | types learned 0 | by: michele
 2026-10-30 | SCREENED | — | full_text:exclude 1 | 1 decisions | by: michele
 2026-10-29 | SCREENED | — | full_text:exclude 1 | 1 decisions | by: michele
+2026-10-30 | SCREENED | — | title_abstract (screen_app) | 56 decisions: exclude 1, include 55 | by: michele
