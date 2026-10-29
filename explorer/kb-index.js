@@ -247,8 +247,13 @@ export function buildScreeningIndex(kb) {
   for (const c of candidates) if (c.key) byKeyMap.set(c.key, c);
   return {
     candidates, byId, byKey: byKeyMap, searches, coverage: sc.coverage || [], prisma: sc.prisma || null,
+    omitted: sc.omitted || { awaitingTitleAbstract: 0, removedByRule: 0 },
     reasons: sc.reasons || {}, sourceKinds: sc.sourceKinds || {}, present: Boolean(kb.screening && (sc.candidates || []).length),
     reasonLabel: (r) => sc.reasons?.[r]?.label || String(r || '').replace(/_/g, ' '),
+    /** The decision that put a candidate where it is (last one of record at its stage). */
+    lastDecision: (c) => { const st = /_ft$|^included$|^not_retrieved$/.test(c.stage) ? 'full_text' : 'title_abstract'; let d = null; for (const x of c.history || []) if (x.stage === st && !x.role) d = x; return d; },
+    /** "Smith 2021" for lists. */
+    authorYear: (c) => `${c.first_author || String(c.key || '').replace(/^@/, '').replace(/[0-9]{4}.*$/, '') || c.id}${c.year ? ` ${c.year}` : ''}`,
   };
 }
 
