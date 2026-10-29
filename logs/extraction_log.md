@@ -591,3 +591,4 @@ add an `EXTRACTED` line for every run.
 2026-10-27 | SCREENED | — | title_abstract (screen_app) | 3 decisions/undos | by: michele
 2026-10-28 | SCREENED | — | title_abstract (screen_app) | 38 decisions: exclude 1, include 37 | by: michele
 2026-10-29 | GREY-EXCLUDED | — | title_abstract | 1342 records by rule (conference 263, book 857, thesis 222) | types learned 19170 | by: michele
+2026-10-30 | SCREENED | — | full_text (screen_app) | 67 decisions: exclude 8, include 59 | by: michele
