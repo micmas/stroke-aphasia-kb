@@ -1,106 +1,184 @@
 # Aphasia KB — command reference
 
-Every command the knowledge base uses, in the order a paper moves
-through them, with every option. Run from the **repository root** with
-the venv active (`source .venv/bin/activate`). Policy (who may approve
-what) is in [`GOVERNANCE.md`](GOVERNANCE.md); the procedure in prose is
-in [`HOWTO.md`](HOWTO.md).
+Every command, **in the order the work flows**: from the protocol and the
+searches, through screening, to extracted findings reviewed into the
+knowledge base. Each section starts with the commands as you run them,
+then lists every option. Run from the **repository root** with the venv
+active (`source .venv/bin/activate`). The method is in
+[`SCREENING.md`](SCREENING.md) (finding and choosing papers),
+[`HOWTO.md`](HOWTO.md) (extracting and reviewing) and
+[`GOVERNANCE.md`](GOVERNANCE.md) (who may decide and approve what).
 
-**Dry run is the default.** Every command that renames, moves or
-rewrites files only prints what it would do until you add `--execute`.
-The exceptions are `extract.py`, `promote.py` and `auto_review.py`,
-which act when run (each has its own preview flag, listed below).
-
----
-
-## The everyday sequence
-
-```
-# 1. add papers: drop PDFs into papers/ (= OneDrive calmar-papers), any name
-python scripts/intake_papers.py                                      # preview
-python scripts/intake_papers.py --execute --allow-probable --extract # register, rename, clean, OCR, extract
-
-# 2. review
-python scripts/normalize_drafts.py --execute                         # mechanical fixes to drafts
-python scripts/auto_review.py --all --llm-review --require-pdf-match # model clears Tier A
-python scripts/review_sheet.py --all --fix-pages --fill-phase        # sheets in drafts/_review/
-python scripts/promote.py --list                                     # what is left for you
-python scripts/promote.py --approve drafts/<bucket>/<file>.md --reviewer human:michele
-python scripts/promote.py --reject  drafts/<bucket>/<file>.md --reviewer human:michele --reason "..."
-
-# 3. check and publish
-python scripts/kb_status.py
-git add -A && git commit -m "..." && git pull --rebase --autostash && git push
-```
+**Dry run is the default.** Every command that writes only prints what it
+would do until you add `--execute`. The exceptions act when run:
+`screen_app.py` and `screen.py decide` (each decision is the act),
+`extract.py`, `promote.py` and `auto_review.py` (each has its own preview
+flag, listed below).
 
 ---
 
-## 0. Finding papers — the screening register
+## The flow at a glance
 
-### `screen_app.py` — the screening workbench
+| Step | What happens | Command | Section |
+|---|---|---|---|
+| 1 | Protocol: strategies written and locked *(once; again on each amendment)* | `screen.py strategies` · lock · `screen.py rebaseline` | [0.1](#01-protocol) |
+| 2 | Identification: run and import the searches, remove duplicates and grey literature *(once; again when a search is re-run)* | `screen.py search` · `import-all` · `dedupe` · `grey` · `recall` | [0.2](#02-identification) |
+| 3 | Title/abstract screening, prioritised, until the stopping rule is met | `screen_app.py --by <you>` · `screen.py progress` · `stop` | [0.3](#03-titleabstract-screening) |
+| 4 | Second screener on a 20 % blind sample; agreement | `screen_app.py --check` · `screen.py agreement` | [0.4](#04-second-screener) |
+| 5 | Full-text assessment (PDF beside the record); pillar papers by citation chasing | `screen.py fulltext` · `screen_app.py --stage ft` · `screen.py chase` | [0.5](#05-full-text-assessment) |
+| 6 | Hand-over: citation entry and PDF for each paper included at full text | `screen.py register` · `intake_papers.py --from ~/Downloads` | [0.6](#06-hand-over-to-the-knowledge-base) · [1](#1-getting-papers-in) |
+| 7 | Extraction, one paper at a time | `extract.py --pdf papers/<Key>.pdf` | [2](#2-extracting) |
+| 8 | Review: checks, the workbench, focused re-extraction, approval | `auto_review.py` · `review_app.py` · `refocus.py` · `promote.py` | [3](#3-reviewing) |
+| 9 | Report and sync | `screen.py status` · `kb_status.py` · git | [4](#4-checking-the-kb) · [8](#8-git-and-the-papers-folder) |
 
+A paper reaches extraction only after it was included at full text
+(`screen.py fulltext` lists what each paper needs next). Do not use
+`intake_papers.py --extract` or `extract.py --batch` any more: they
+extract every PDF that has no findings, screened or not.
+
+### A screening session
+
+```bash
+git pull
+python scripts/screen_app.py --by michele                 # title/abstract   (--stage ft for full text)
+python scripts/screen.py progress                         # the stopping rule
+git add screening logs && git commit -m "Screening session" && git push
 ```
-python scripts/screen_app.py --by michele                      # title/abstract, ranked; opens http://127.0.0.1:8767/
-python scripts/screen_app.py --by michele --stage ft           # full text
-python scripts/screen_app.py --by alex --check --sample 0.2 --seed 1   # second screener, blind
+
+### From an included paper to reviewed findings
+
+```bash
+python scripts/screen.py fulltext                         # what each included paper needs next
+python scripts/screen.py register --execute               # citation entries and keys
+python scripts/intake_papers.py --from ~/Downloads --execute   # PDFs into papers/<Key>.pdf, cleaned, OCR'd
+python scripts/extract.py --pdf papers/<Key>.pdf          # one paper (20–30 min)
+python scripts/auto_review.py --draft drafts/<bucket>/<file>.md --llm-review   # optional checks and tier
+python scripts/review_app.py --citation <Key>             # findings beside the highlighted paper
+python scripts/refocus.py --citation <Key> --execute      # findings for passages you marked
+python scripts/promote.py --approve drafts/<bucket>/<file>.md --reviewer michele
+git add -A && git commit -m "…" && git pull --rebase --autostash && git push
 ```
 
-Keys: `i` include · `u` unsure · `1`–`9` exclude with that reason · `0` Other (note first) · `n` note · `z` undo ·
-`a` accept the suggestion shown · `p` hide/show the PDF (full text: the PDF from `papers/` sits beside the record).
-Decisions are saved as you go (journal `screening/_sheet/app_journal.jsonl`, register a few seconds later, and on Ctrl-C);
-re-ranked every `--rerank` decisions (default 50). Offline. Don't run other register-writing commands while it is open.
+---
 
+## 0. Finding and screening papers — the screening register
 
-### `screen.py` — search, screen, hand over
+The systematic front end (protocol: [`SCREENING.md`](SCREENING.md)).
+`screen.py` and `screen_app.py` record every search, every candidate and
+every decision in `screening/`, and hand papers included at full text to
+`citations.md`. Neither touches `drafts/` or the canonical folders. The
+stage of a candidate is derived, never typed (SCREENING.md §5).
 
-The systematic front end of the pipeline (protocol: [`SCREENING.md`](SCREENING.md)).
-It records every search, every candidate and every decision in
-`screening/`, and hands included papers to `citations.md` so the
-everyday sequence below takes over. Nothing it does touches `drafts/`
-or the canonical folders.
+### 0.1 Protocol
 
+```bash
+python scripts/screen.py strategies                              # strategies, version, years, fingerprint, LOCKED?
+python scripts/screen.py strategies --show q1_lesion_impairment --db scopus   # the exact string for a database
+python scripts/screen.py strategies --show all_questions --db psycinfo        # every question strategy in one string
+# lock: set `status: locked` in screening/strategies.yaml, commit and push both protocol files
+python scripts/screen.py rebaseline --execute                    # once, at the restart
 ```
-# protocol (once, then on each amendment)
-python scripts/screen.py strategies                  # strategies, protocol fingerprint, lock state, what has been run
-python scripts/screen.py strategies --show q1_lesion_impairment --db scopus   # the string to paste into Scopus
-python scripts/screen.py rebaseline --execute        # legacy decisions → `legacy`; legacy includes → recall benchmark
 
-# identify — protocol searches (dry run first: hits + how many benchmark papers they retrieve)
+An amendment is a change to `screening/strategies.yaml` or `SCREENING.md`
+after locking: bump `version`, add an entry under `amendments` (what, why,
+when), commit — the lock holds again once both files are committed.
+
+### 0.2 Identification
+
+```bash
+# PubMed (live; dry run first: hits and how many benchmark papers they retrieve)
 python scripts/screen.py search --strategy q1_lesion_impairment --db pubmed --by michele
 python scripts/screen.py search --strategy q1_lesion_impairment --db pubmed --by michele --execute
-python scripts/screen.py import --strategy q1_lesion_impairment --db scopus --file ~/Downloads/scopus.ris --hits 5312 --by michele --execute   # --hits = the count Scopus showed
-python scripts/screen.py recall                      # relative recall against the benchmark, and what no search found
-python scripts/screen.py chase --doi 10.1038/384159a0 --cited-by C0123 --why "<entry / claim that needs it>" --by michele --execute
-
-# OpenAlex needs a free API key (https://openalex.org/settings/api); keep it out of the repo:
-export OPENALEX_API_KEY=<your key>                   # e.g. in ~/.zshrc
-
-# identify — ad-hoc searches (recorded and reported, not part of the protocol)
-python scripts/screen.py search --db pubmed --query '"aphasia"[tiab] AND stroke[tiab] AND (lesion[tiab] OR VLSM[tiab])' \
-    --years 2000-2026 --for thalamus_basal_ganglia --by michele --execute
-python scripts/screen.py search --db openalex --query 'aphasia stroke lesion symptom mapping' --for right_hemisphere --by michele --execute
-python scripts/screen.py import --file ~/Downloads/scopus.ris --db scopus --query '<the query as run>' --for <gap> --by michele --execute
-python scripts/screen.py backfill --execute          # once: citations.md as it stood → other-source candidates
-python scripts/screen.py fetch-abstracts             # fill the local abstract cache for the sheet / the model
-
-# screen
-python scripts/screen.py assist                      # local model's suggestion per title/abstract (never a decision)
-python scripts/screen.py sheet --ranked --batch 200  # the 200 most likely relevant first → decide → download CSV → repeat
-python scripts/screen.py progress                    # where the stopping rule stands
-python scripts/screen.py stop --by michele --execute # once it is met: the rest recorded as not screened
-python scripts/screen.py sheet                       # unranked sheet (all awaiting)
-python scripts/screen.py decide --csv ~/Downloads/decisions_title_abstract_<date>.csv --by michele
-python scripts/screen.py sheet --stage full_text     # the full-text pass, same loop
-python scripts/screen.py decide --id C0012 --stage full_text --decision exclude --reason not_retrieved --by michele
-python scripts/screen.py sheet --check --sample 0.2 --seed 1   # blind 20 % sample for a second screener
-python scripts/screen.py decide --csv ~/Downloads/check.csv --by <second screener> --role check
-python scripts/screen.py agreement                   # Cohen's kappa + the disagreements to reconcile
-
-# hand over and report
-python scripts/screen.py register --execute          # included candidates → citations.md blocks (Crossref), key set
-python scripts/screen.py status                      # PRISMA 2020 numbers + evidence-gap coverage (--json for scripts)
-python scripts/screen.py list --stage awaiting_ft    # ids of what is waiting (or a KB state: in_review, no_pdf …)
+# Scopus / PsycINFO: paste the string in the database, export RIS (Abstract + PubMed ID), name it <db>_<strategy>[_<count>].ris
+python scripts/screen.py import-all --db scopus --files '~/Downloads/scopus_*.ris' --by michele --execute
+python scripts/screen.py import --strategy q4_synthesis --db scopus --file ~/Downloads/scopus_q4.ris --hits 3503 --by michele --execute
+python scripts/screen.py withdraw S010 --why "export held one page only" --by michele --execute   # take a bad import back
+# after the last import
+python scripts/screen.py dedupe --by michele --execute           # second duplicate pass
+python scripts/screen.py grey --from ~/Downloads --by michele --execute   # theses, books, conference records out by rule
+python scripts/screen.py recall                                  # coverage of the benchmark papers
+python scripts/screen.py status                                  # PRISMA identification numbers
 ```
+
+OpenAlex (not searched since amendment v3) needs a free API key:
+`export OPENALEX_API_KEY=<key>` in `~/.zshrc`, never in the repository.
+Ad-hoc searches (`search --query …`, `import --query …`) are recorded and
+reported but are not part of the protocol.
+
+### 0.3 Title/abstract screening
+
+```bash
+python scripts/screen_app.py --by michele                        # opens http://127.0.0.1:8767/ — ranked, saves as you go
+python scripts/screen.py progress                                # the three stopping checks
+python scripts/screen.py stop --by michele --execute             # once the rule is met: the rest recorded as not screened
+```
+
+`screen_app.py` keys: `i` include · `u` unsure · `1`–`9` exclude with that
+reason (1 not stroke · 2 no language/cognitive outcome · 3 no imaging ·
+4 narrative review · 5 design · 6 not a full report · 7 thesis/book/conference ·
+8 duplicate · 9 before 2000) · `0` Other (write the note first) · `n` note ·
+`z` undo · `a` accept the suggestion shown. Decisions are journalled at once
+(`screening/_sheet/app_journal.jsonl`) and the register is saved a few
+seconds later and on Ctrl-C; the queue is re-ranked every `--rerank`
+decisions. Offline. Close it before running other commands that write the
+register (`decide`, `import`, `dedupe`, `grey`, `chase`).
+
+Optional: `python scripts/screen.py assist` asks the local model for a
+suggestion on each title/abstract (shown in the app, never a decision).
+Without the app: `screen.py sheet --ranked --batch 200`, then
+`screen.py decide --csv <downloaded file> --by michele`, and repeat.
+
+### 0.4 Second screener
+
+```bash
+python scripts/screen_app.py --by alex --check --sample 0.2 --seed 1        # blind: no prior decision, no suggestion
+python scripts/screen_app.py --by alex --check --stage ft --sample 0.2 --seed 1
+python scripts/screen.py agreement                               # Cohen's kappa per stage, per second screener, disagreements
+```
+
+Disagreements are settled by discussion and the agreed decision recorded
+in the app as a normal decision (it becomes the decision of record). Report
+the seed.
+
+### 0.5 Full-text assessment
+
+```bash
+python scripts/screen.py fulltext                                # paper by paper: what to assess, and each included paper's next step
+python scripts/screen_app.py --by michele --stage ft             # the record on the left, its PDF from papers/ on the right
+python scripts/screen.py chase --doi 10.1038/nn1050 --cited-by C0123 \
+    --why "VLSM method behind the regions/ lesion maps" --by michele --execute   # a pillar paper no search returned
+python scripts/screen.py decide --id C1031 --stage ft --decision exclude --reason duplicate_report \
+    --note "preprint of C0018" --by michele                      # one decision by hand
+```
+
+In the app, full text adds `p` (hide/show the PDF; click the left side
+after scrolling the PDF to use the keys again). Papers kept at
+title/abstract come first, then the other-methods arm (legacy papers no
+search returned: exclude with their reason, or chase them as pillars once
+a paper citing them is included).
+
+### 0.6 Hand-over to the knowledge base
+
+```bash
+python scripts/screen.py register --execute                      # included papers without a key → citations.md entry + key (Crossref)
+python scripts/intake_papers.py --from ~/Downloads --execute     # their PDFs → papers/<Key>.pdf (section 1)
+python scripts/screen.py fulltext                                # what is left: PDF, extract (commands listed), review
+```
+
+### `screen_app.py` — options
+
+| Option | Meaning |
+|---|---|
+| `--by NAME` | The person screening (required; not `model`, `legacy`, `agent`). |
+| `--stage ta\|ft` | Title/abstract (default, ranked) or full text (split view with the PDF). |
+| `--check` | Second screener: a blind random sample of records that already have a decision of record. |
+| `--sample F` | With `--check`: a fraction (0.2) or a number (50). |
+| `--seed N` | With `--check`: random seed (default 1; report it). |
+| `--rerank N` | Re-rank the title/abstract queue after N decisions (default 50). |
+| `--port N` | Default 8767 (the review workbench uses 8766). |
+| `--no-browser` | Do not open the browser. |
+
+### `screen.py` — every subcommand, in the order of the flow
 
 | Subcommand | What it does | Options |
 |---|---|---|
@@ -108,30 +186,33 @@ python scripts/screen.py list --stage awaiting_ft    # ids of what is waiting (o
 | `rebaseline` | Moves every `by: legacy` decision into the candidate's `legacy` record and marks legacy includes `benchmark: true`, so each paper is screened afresh under the protocol. Nothing is deleted. Idempotent. | `--date` `--execute` |
 | `search` | Live PubMed (E-utilities) or OpenAlex query; hits become candidates, de-duplicated by DOI / PMID / title+year; the search is one record in `screening/searches.yaml`. With `--strategy` the query, years and `--for` come from the protocol, the run records the strategy and protocol fingerprint, nothing is capped, an incomplete retrieval is refused, and `--execute` is refused until the protocol is locked. Every run (dry or not) reports how many benchmark papers it retrieved. PubMed queries over 10,000 hits are split by publication year. Network. | `--strategy` or `--query` · `--db pubmed\|openalex` `--years 2000-2026` `--for gap,entry` `--by` `--max` `--oa-field` `--notes` `--allow-unlocked` `--execute` |
 | `import` | The same from a RIS or CSV export (Scopus, Embase, PsycINFO, Web of Science); with `--strategy` the recorded query is the protocol's string for that database, otherwise give the query and date so the record is complete. | `--file` `--db` `--strategy` or `--query` · `--date` `--years` `--for` `--by` `--execute` |
-| `chase` | Enters a pillar paper by citation chasing (before 2000, primary healthy-volunteer study, no abstract …): `--cited-by` must name papers included under the protocol and `--why` says what the KB needs it for. Existing candidate → source added; else Crossref record from the DOI (or `--title --year`). Goes to full text, other-methods arm. Logs `CHASED`. | `--doi` or `--title --year` · `--cited-by` `--why` `--by` `--date` `--execute` |
-| `sheet --ranked` | Title/abstract sheet ordered by the prioritisation model (SCREENING.md §4.1), the top `--batch` records (default 200); prints the stopping-rule status. Keys `1`–`9` exclude with that reason and move on. | `--ranked` `--batch 200` |
-| `fulltext` | The full-text stage, paper by paper: what is waiting for assessment (already extracted before the protocol, or not), and for papers included at full text the next step — register, fetch the PDF, extract (with the commands), review — or "in the KB". Also lists papers excluded at full text that still have findings. | — |
-| `grey` | Grey literature by rule (protocol v4): theses, books/chapters, conference records → excluded before screening with the evidence (`rule: …`); preprints kept. `--from ~/Downloads` re-reads the Scopus/PsycINFO exports for each record's own type. | `--from` `--types` `--show` `--by` `--execute` |
-| `progress` | Prioritised screening against the stopping rule: share screened, last run of exclusions, validation papers screened. | `--json` |
-| `stop` | Once the stopping rule is met, records every database record still awaiting title/abstract as not screened (`not_screened_stopping_rule`). Logs `SCREEN-STOPPED`. | `--by` `--date` `--execute` |
-| `--strategy all_questions` | One search per database that ORs every question strategy (q1–q5): one export instead of seven (`strategies --show all_questions --db psycinfo`; file `psycinfo_all_questions.ris`). Counts in overall and per-database recall, not per strategy. | with `search`, `import`, `import-all`, `strategies --show` |
 | `import-all` | Imports every export matching a wildcard, one search record per strategy. Names carry the strategy and, optionally, the count the database showed: `scopus_q1_lesion_impairment.ris` or `scopus_q1_lesion_impairment_5312.ris`; a split export adds `-a`, `-b`. A count not in the name is asked for (or given with `--counts`). | `--db` `--files '~/Downloads/scopus_*.ris'` `--counts id=n,…` `--by` `--date` `--execute` |
-| `dedupe` | Second de-duplication pass after all imports: same title, years ±1, no conflicting PMID/DOI → `duplicate_of` (record with identifiers kept, sources merged). Logs `DEDUPED`. | `--by` `--execute` |
+| `--strategy all_questions` | One search per database that ORs every question strategy (q1–q5): one export instead of seven (`strategies --show all_questions --db psycinfo`; file `psycinfo_all_questions.ris`). Counts in overall and per-database recall, not per strategy. | with `search`, `import`, `import-all`, `strategies --show` |
 | `withdraw` | Takes back a recorded search (an incomplete export, a wrong file): the record moves to `withdrawn` in `searches.yaml` with the reason, candidates that came only from it leave the register, the id is never reused. Logs `SEARCH-WITHDRAWN`. | `<id>` `--why` `--by` `--execute` |
+| `dedupe` | Second de-duplication pass after all imports: same title, years ±1, no conflicting PMID/DOI → `duplicate_of` (record with identifiers kept, sources merged). Logs `DEDUPED`. | `--by` `--execute` |
+| `grey` | Grey literature by rule (protocol v4): theses, books/chapters, conference records → excluded before screening with the evidence (`rule: …`); preprints kept. `--from ~/Downloads` re-reads the Scopus/PsycINFO exports for each record's own type. | `--from` `--types` `--show` `--by` `--execute` |
 | `recall` | Relative recall: benchmark papers found by any database search, per strategy (against the benchmark papers in its KB folders) and per database, and the list no search found. | `--json` |
-| `backfill` | Every `citations.md` key not in the register becomes an *other-source* candidate; extracted keys are stamped included `by: legacy`, `[refused]` excluded, seeds left awaiting assessment. Idempotent. | `--date` `--execute` |
+| `status` | The protocol version and lock, the PRISMA numbers (both arms), recall against the benchmark, kappa if double-screened, where included papers stand in the KB, and found / included / in-KB per evidence gap. | `--json` |
 | `assist` | The local model (role `screen`, else `review`, in `models.yaml`) reads title + abstract against SCREENING.md §2 and writes `suggestion`. Ollama. | `--model` `--ids` `--max` `--redo` |
 | `sheet` | One HTML card per candidate awaiting the pass, with the suggestion, keyboard shortcuts and a CSV download. Written to `screening/_sheet/` (git-ignored). Title/abstract cards are blind: no citation key, no hand-picked or legacy provenance. `--check` writes a blind random sample of already-decided candidates for a second screener (no prior decision, no suggestion). | `--stage title_abstract\|full_text` `--for gap` `--ids` `--out` · `--check --sample 0.2 --seed 1` |
+| `sheet --ranked` | Title/abstract sheet ordered by the prioritisation model (SCREENING.md §4.1), the top `--batch` records (default 200); prints the stopping-rule status. Keys `1`–`9` exclude with that reason and move on. | `--ranked` `--batch 200` |
 | `decide` | Records decisions from the sheet's CSV or one by hand; an exclusion needs a reason, `other` and `duplicate_report` need a note, `--by` must be a person. Appends `SCREENED` to the log. Acts at once. `--role check` records a second screener's decision for the agreement statistic (never the decision of record; must be a different person). | `--csv` or `--id --stage --decision --reason --note` · `--by` `--date` `--role check` |
+| `progress` | Prioritised screening against the stopping rule: share screened, last run of exclusions, validation papers screened. | `--json` |
+| `stop` | Once the stopping rule is met, records every database record still awaiting title/abstract as not screened (`not_screened_stopping_rule`). Logs `SCREEN-STOPPED`. | `--by` `--date` `--execute` |
 | `agreement` | Cohen's kappa between decisions of record and check decisions per stage (unsure counts as include at title/abstract), the 2×2 table and each disagreement. | `--stage ta\|ft` |
+| `fulltext` | The full-text stage, paper by paper: what is waiting for assessment (already extracted before the protocol, or not), and for papers included at full text the next step — register, fetch the PDF, extract (with the commands), review — or "in the KB". Also lists papers excluded at full text that still have findings. | — |
+| `chase` | Enters a pillar paper by citation chasing (before 2000, primary healthy-volunteer study, no abstract …): `--cited-by` must name papers included under the protocol and `--why` says what the KB needs it for. Existing candidate → source added; else Crossref record from the DOI (or `--title --year`). Goes to full text, other-methods arm. Logs `CHASED`. | `--doi` or `--title --year` · `--cited-by` `--why` `--by` `--date` `--execute` |
 | `register` | Included candidates without a key: Crossref record from the DOI → `citations.md` block (house format, `[seed]`, note says which candidate) and `key:` set; existing DOIs are linked instead. Network. | `--execute` |
-| `fetch-abstracts` | Fills `screening/abstracts.jsonl` from PubMed (by PMID) then OpenAlex (by DOI). Network. | `--max` |
-| `status` | The protocol version and lock, the PRISMA numbers (both arms), recall against the benchmark, kappa if double-screened, where included papers stand in the KB, and found / included / in-KB per evidence gap. | `--json` |
 | `list` | Candidates with id, derived stage, KB state, key and title. | `--stage` |
-
-The stage of a candidate is derived, never typed: see SCREENING.md §5.
+| `fetch-abstracts` | Fills `screening/abstracts.jsonl` from PubMed (by PMID) then OpenAlex (by DOI). Network. | `--max` |
+| `backfill` | Every `citations.md` key not in the register becomes an *other-source* candidate; extracted keys are stamped included `by: legacy`, `[refused]` excluded, seeds left awaiting assessment. Idempotent. | `--date` `--execute` |
 
 ## 1. Getting papers in
+
+For papers included at full text (step 6 of the flow): `screen.py register`
+gives each one its citation entry, then `intake_papers.py --from ~/Downloads`
+brings the downloaded PDFs in under their keys. `screen.py fulltext` lists
+which included papers still lack a PDF, with their DOI links.
 
 ### `intake_papers.py` — everything between the download and the extractor
 
@@ -144,7 +225,7 @@ re-running is safe and resumes an interrupted batch.
 | *(none)* | Dry run of every step. |
 | `--execute` | Apply all steps. |
 | `--allow-probable` | Also rename files matched only by author + year + title (PDFs that print no DOI, e.g. Lancet, Neurology). The dry run shows which. |
-| `--extract` | Afterwards run `extract.py --batch` on every paper with no findings yet. With `--execute` it extracts; without, it lists the queue. |
+| `--extract` | Afterwards run `extract.py --batch` on every paper with no findings yet. With `--execute` it extracts; without, it lists the queue. **Not for screened work:** it does not check full-text inclusion — extract included papers one by one (section 2). |
 | `--from DIR` | First copy PDFs out of `DIR` (e.g. `~/Downloads`) whose DOI matches a cited paper that has no PDF yet. Nothing is moved; other files are ignored. |
 | `--no-register` | Skip step 1: do not create `citations.md` entries for unknown PDFs. |
 | `--no-ocr` | Skip the OCR step. |
@@ -217,6 +298,15 @@ Run after writing citation blocks by hand. Needs network; read-only.
 
 ## 2. Extracting
 
+Step 7 of the flow: one paper at a time, for papers included at full text
+(`screen.py fulltext` prints the command for each one that has its PDF and
+no findings yet).
+
+```bash
+python scripts/extract.py --pdf papers/<Key>.pdf --dry-run    # the prompt only
+python scripts/extract.py --pdf papers/<Key>.pdf              # 20–30 min; drafts in drafts/<bucket>/
+```
+
 ### `extract.py` — the local model reads a paper and writes drafts
 
 Writes `drafts/<bucket>/<id>__<Key>.md`, the annotated PDF and an
@@ -227,7 +317,7 @@ retries once with a larger budget if a genuine output overflows.
 | Option | Meaning |
 |---|---|
 | `--pdf FILE …` | Extract these PDFs (one or more). Works even if the paper already has findings. |
-| `--batch` | Every PDF in `papers/` with no findings yet. Skips `[refused]` papers, PDFs over 60 pages, and PDFs with no `citations.md` entry. |
+| `--batch` | Every PDF in `papers/` with no findings yet. Skips `[refused]` papers, PDFs over 60 pages, and PDFs with no `citations.md` entry. **Does not check full-text inclusion** — not for screened work. |
 | `--citation @Key` | Force the key (single `--pdf` only; normally inferred from the filename). |
 | `--out-dir DIR` | Sandbox: write drafts under `DIR/drafts/`, no annotated PDF, no log line. For benchmarks and second opinions. |
 | `--dry-run` | Build the prompt, don't call the model; saves it to `_extraction_dry_run.txt`. |
@@ -326,6 +416,22 @@ test in `MODELS.md` §3, and the way to merge a `reextract.py` sandbox run.
 ---
 
 ## 3. Reviewing
+
+Step 8 of the flow, per paper: optional automatic checks
+(`auto_review.py`), then the workbench (`review_app.py`) to correct
+findings against the highlighted paper and mark passages the extraction
+missed, `refocus.py` for those marks, and `promote.py` to approve or
+reject each draft. `normalize_drafts.py` and `review_sheet.py` are the
+older, batch-oriented tools.
+
+```bash
+python scripts/auto_review.py --draft drafts/<bucket>/<file>.md --llm-review   # checks, tier, model opinion
+python scripts/review_app.py --citation <Key>                                 # http://127.0.0.1:8766/
+python scripts/refocus.py --citation <Key> --execute                          # after marking passages
+python scripts/promote.py --list
+python scripts/promote.py --approve drafts/<bucket>/<file>.md --reviewer michele
+python scripts/promote.py --reject  drafts/<bucket>/<file>.md --reviewer michele --reason "..."
+```
 
 ### `normalize_drafts.py` — apply the save-time repairs to existing drafts
 
@@ -449,16 +555,20 @@ that still has a pending mark.
 | `--reject FILE` | Mark `status: rejected` in place, log REJECTED. |
 | `--reviewer human:<name>` | Required for approve/reject. `model:<tag>` only for Tier A and only if it didn't extract the draft. |
 | `--reason "..."` | Why rejected (goes to the log). |
+| `--tier A\|B` | Tier from `auto_review.py`; required (as A) for a model reviewer. |
+| `--extractor agent:<tag>` | Who extracted the draft (default: its `created_by`). |
 
 Approval is refused while the draft has a pending reviewer mark
 (`review_app.py`); resolved marks are dropped from the canonical copy,
 per-finding `edits` records are kept.
-| `--tier A\|B` | Tier from `auto_review.py`; required (as A) for a model reviewer. |
-| `--extractor agent:<tag>` | Who extracted the draft (default: its `created_by`). |
 
 ---
 
 ## 4. Checking the KB
+
+Step 9 of the flow. For the screening side: `screen.py status` (PRISMA
+numbers, recall, kappa), `screen.py recall`, `screen.py progress` and
+`screen.py fulltext` (section 0).
 
 ### `kb_status.py` — counts and gaps
 
