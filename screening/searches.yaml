@@ -736,3 +736,88 @@ searches:
     fingerprint: 4b2d56278386
     commit: a189a7f
     locked: true
+- id: S023
+  database: scopus
+  query: >-
+    (TITLE-ABS-KEY(aphasi* OR dysphasi* OR anomi* OR "word finding" OR "word retrieval" OR "naming impairment*"
+    OR "naming deficit*" OR "language impairment*" OR "language deficit*" OR "language disorder*" OR "apraxia
+    of speech" OR dysarthri*) AND TITLE-ABS-KEY(therap* OR treatment* OR rehabilit* OR intervention* OR
+    training OR tDCS OR rTMS OR "brain stimulation" OR "transcranial magnetic stimulation" OR "transcranial
+    direct current stimulation" OR pharmacotherap*) AND TITLE-ABS-KEY(respond* OR responder* OR "treatment
+    response" OR "response to treatment" OR "response to therapy" OR "treatment outcome*" OR "treatment-induced"
+    OR "treatment gains" OR "therapy gains" OR generali* OR "treatment effect*" OR improvement* OR gain*
+    OR benefit* OR "therapy outcome*" OR "treatment success" OR "therapy success") AND TITLE-ABS-KEY(predict*
+    OR prognos* OR moderat* OR determinant* OR "individual differences" OR "individual variability" OR
+    "patient characteristics" OR "patient factors" OR "patient-related" OR "baseline characteristics"
+    OR "baseline severity" OR "factors associated" OR responsiveness OR "who benefit*" OR "who respond*")
+    AND (TITLE-ABS-KEY(stroke* OR poststroke OR cerebrovascular OR infarct* OR "intracerebral hemorrhage"
+    OR "intracerebral haemorrhage" OR "brain damage*" OR "brain-damaged" OR "hemisphere damage*" OR "left
+    hemisphere lesion*" OR "focal damage" OR "focal lesion*") OR TITLE-ABS-KEY("aphasia therapy" OR "aphasia
+    treatment" OR "aphasia rehabilitation" OR "speech therapy" OR "language therapy" OR "speech and language
+    therapy"))) AND PUBYEAR > 1999
+  date: '2026-10-30'
+  run_by: michele
+  hits: 1695
+  retrieved: 1695
+  for:
+  - q2_therapy_response
+  filters:
+    years: 2000-
+  file: scopus_q2c_therapy_response_patient_factors_1695.ris
+  strategy: q2c_therapy_response_patient_factors
+  protocol:
+    version: 5
+    fingerprint: 4b2d56278386
+    commit: a189a7f
+    locked: true
+- id: S024
+  database: psycinfo
+  query: >-
+    (DE "Aphasia" OR DE "Dysarthria" OR TI (aphasi* OR dysphasi* OR anomi* OR "word finding" OR "word
+    retrieval" OR "naming impairment*" OR "naming deficit*" OR "language impairment*" OR "language deficit*"
+    OR "language disorder*" OR "apraxia of speech" OR dysarthri*) OR AB (aphasi* OR dysphasi* OR anomi*
+    OR "word finding" OR "word retrieval" OR "naming impairment*" OR "naming deficit*" OR "language impairment*"
+    OR "language deficit*" OR "language disorder*" OR "apraxia of speech" OR dysarthri*)) AND (DE "Speech
+    Therapy" OR DE "Language Therapy" OR DE "Transcranial Magnetic Stimulation" OR TI (therap* OR treatment*
+    OR rehabilit* OR intervention* OR training OR tDCS OR rTMS OR "brain stimulation" OR "transcranial
+    magnetic stimulation" OR "transcranial direct current stimulation" OR pharmacotherap*) OR AB (therap*
+    OR treatment* OR rehabilit* OR intervention* OR training OR tDCS OR rTMS OR "brain stimulation" OR
+    "transcranial magnetic stimulation" OR "transcranial direct current stimulation" OR pharmacotherap*))
+    AND (TI (respond* OR responder* OR "treatment response" OR "response to treatment" OR "response to
+    therapy" OR "treatment outcome*" OR "treatment-induced" OR "treatment gains" OR "therapy gains" OR
+    generali* OR "treatment effect*" OR improvement* OR gain* OR benefit* OR "therapy outcome*" OR "treatment
+    success" OR "therapy success") OR AB (respond* OR responder* OR "treatment response" OR "response
+    to treatment" OR "response to therapy" OR "treatment outcome*" OR "treatment-induced" OR "treatment
+    gains" OR "therapy gains" OR generali* OR "treatment effect*" OR improvement* OR gain* OR benefit*
+    OR "therapy outcome*" OR "treatment success" OR "therapy success")) AND (DE "Prognosis" OR TI (predict*
+    OR prognos* OR moderat* OR determinant* OR "individual differences" OR "individual variability" OR
+    "patient characteristics" OR "patient factors" OR "patient-related" OR "baseline characteristics"
+    OR "baseline severity" OR "factors associated" OR responsiveness OR "who benefit*" OR "who respond*")
+    OR AB (predict* OR prognos* OR moderat* OR determinant* OR "individual differences" OR "individual
+    variability" OR "patient characteristics" OR "patient factors" OR "patient-related" OR "baseline characteristics"
+    OR "baseline severity" OR "factors associated" OR responsiveness OR "who benefit*" OR "who respond*"))
+    AND ((DE "Cerebrovascular Accidents" OR DE "Cerebrovascular Disorders" OR TI (stroke* OR poststroke
+    OR cerebrovascular OR infarct* OR "intracerebral hemorrhage" OR "intracerebral haemorrhage" OR "brain
+    damage*" OR "brain-damaged" OR "hemisphere damage*" OR "left hemisphere lesion*" OR "focal damage"
+    OR "focal lesion*") OR AB (stroke* OR poststroke OR cerebrovascular OR infarct* OR "intracerebral
+    hemorrhage" OR "intracerebral haemorrhage" OR "brain damage*" OR "brain-damaged" OR "hemisphere damage*"
+    OR "left hemisphere lesion*" OR "focal damage" OR "focal lesion*")) OR (DE "Speech Therapy" OR DE
+    "Language Therapy" OR TI ("aphasia therapy" OR "aphasia treatment" OR "aphasia rehabilitation" OR
+    "speech therapy" OR "language therapy" OR "speech and language therapy") OR AB ("aphasia therapy"
+    OR "aphasia treatment" OR "aphasia rehabilitation" OR "speech therapy" OR "language therapy" OR "speech
+    and language therapy")))
+  date: '2026-10-30'
+  run_by: michele
+  hits: 479
+  retrieved: 479
+  for:
+  - q2_therapy_response
+  filters:
+    years: 2000-
+  file: psycinfo_q2c_therapy_response_patient_factors_479.ris
+  strategy: q2c_therapy_response_patient_factors
+  protocol:
+    version: 5
+    fingerprint: 4b2d56278386
+    commit: a189a7f
+    locked: true

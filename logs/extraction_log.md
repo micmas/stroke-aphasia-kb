@@ -594,3 +594,7 @@ add an `EXTRACTED` line for every run.
 2026-10-30 | SCREENED | — | full_text (screen_app) | 67 decisions: exclude 8, include 59 | by: michele
 2026-10-30 | SEARCHED | — | S022 pubmed | 1136 records | 676 new candidates (register 20812→21488) | strategy q2c_therapy_response_patient_factors v5 4b2d56278386 | by: michele
 2026-10-30 | GREY-EXCLUDED | — | title_abstract | 3 records by rule (book 3, thesis 0, conference 0) | types learned 0 | by: michele
+2026-10-30 | SEARCHED | — | S023 scopus | 1695 records | 640 new candidates (register 21488→22128) | strategy q2c_therapy_response_patient_factors v5 4b2d56278386 | by: michele
+2026-10-30 | SEARCHED | — | S024 psycinfo | 479 records | 91 new candidates (register 22128→22219) | strategy q2c_therapy_response_patient_factors v5 4b2d56278386 | by: michele
+2026-10-30 | DEDUPED | — | screening register | 2 near-duplicates merged | by: michele
+2026-10-30 | GREY-EXCLUDED | — | title_abstract | 52 records by rule (conference 16, book 11, thesis 25) | types learned 0 | by: michele
