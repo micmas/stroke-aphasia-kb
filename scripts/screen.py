@@ -1622,6 +1622,56 @@ def cmd_fulltext(args) -> int:
     return 0
 
 
+def to_extract() -> list[tuple[dict, Path]]:
+    """Papers included at full text that have their PDF and no findings yet, with the PDF path."""
+    candidates = S.load_candidates()
+    facts = S.kb_facts()
+    out = []
+    for r in S.enrich(candidates, facts):
+        if r["stage"] != "included" or not r.get("key"):
+            continue
+        if ((r.get("kb") or {}).get("state")) not in ("awaiting_extraction",):
+            continue
+        pdf = ROOT / "papers" / f"{str(r['key']).lstrip('@')}.pdf"
+        if pdf.exists():
+            out.append((r, pdf))
+    return out
+
+
+def cmd_extract(args) -> int:
+    """Extract every paper included at full text that has its PDF and no findings yet —
+    the screening-aware batch (extract.py --batch does not check inclusion). One
+    extract.py run per paper, in turn; a failure is reported and the next one runs."""
+    import subprocess
+    todo = to_extract()
+    if args.limit:
+        todo = todo[: args.limit]
+    if not todo:
+        print("nothing to extract: no paper included at full text has a PDF and no findings (screen.py fulltext)")
+        return 0
+    print(f"{len(todo)} paper(s) to extract (≈ {25 * len(todo)} min):")
+    for r, pdf in todo:
+        print(f"    {r['id']}  {str(r['key']):<26} papers/{pdf.name}")
+    if not args.execute:
+        print("Dry run — nothing extracted. Add --execute.")
+        return 0
+    extra = []
+    for flag in ("model", "num_ctx", "max_tokens", "timeout"):
+        v = getattr(args, flag)
+        if v:
+            extra += [f"--{flag.replace('_', '-')}", str(v)]
+    if args.lean:
+        extra.append("--lean")
+    failed = []
+    for i, (r, pdf) in enumerate(todo, 1):
+        print(f"\n[{i}/{len(todo)}] {r['key']}", flush=True)
+        rc = subprocess.call([sys.executable, str(ROOT / "scripts" / "extract.py"), "--pdf", str(pdf)] + extra, cwd=ROOT)
+        if rc:
+            failed.append(str(r["key"]))
+    print(f"\nextracted {len(todo) - len(failed)} of {len(todo)}" + (f"; failed: {', '.join(failed)}" if failed else ""))
+    return 1 if failed else 0
+
+
 def cmd_list(args) -> int:
     rows = S.enrich(S.load_candidates(), S.kb_facts())
     if args.stage:
@@ -1689,6 +1739,15 @@ def _cli(argv=None) -> int:
     p.set_defaults(fn=cmd_recall)
     p = sub.add_parser("fulltext", help="the full-text stage: what to assess, and for included papers the next step")
     p.set_defaults(fn=cmd_fulltext)
+    p = sub.add_parser("extract", help="extract every paper included at full text that has its PDF and no findings yet")
+    p.add_argument("--limit", type=int, help="only the first N papers")
+    p.add_argument("--model", help="extract.py --model")
+    p.add_argument("--num-ctx", dest="num_ctx", type=int)
+    p.add_argument("--max-tokens", dest="max_tokens", type=int)
+    p.add_argument("--timeout", type=int, help="seconds per paper (extract.py default 3600)")
+    p.add_argument("--lean", action="store_true")
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(fn=cmd_extract)
     p = sub.add_parser("progress", help="prioritised screening against the stopping rule")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_progress)

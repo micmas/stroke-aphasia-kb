@@ -7,6 +7,7 @@ those passages and nothing else.
     python scripts/refocus.py drafts/regions/left_angular_gyrus__Breining2022.md             # dry run: the plan and prompt size
     python scripts/refocus.py drafts/regions/left_angular_gyrus__Breining2022.md --execute   # call the model, merge the findings
     python scripts/refocus.py --citation Breining2022 --execute                              # every draft of the paper with pending marks
+    python scripts/refocus.py --all --execute                                               # every paper with pending marks, one call each
 
 review_app.py saves marks under a draft as `reviewer_marks` (page, verbatim
 quote, the reviewer's note). This script gathers the pending ones for a
@@ -289,10 +290,25 @@ def _cli(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("drafts", nargs="*", type=Path, help="draft file(s) with pending reviewer_marks")
     ap.add_argument("--citation", help="every draft of this paper (@Key or Key)")
+    ap.add_argument("--all", action="store_true", help="every paper that has drafts with pending marks (one model call per paper)")
     ap.add_argument("--model", help="override models.yaml role `extract`")
     ap.add_argument("--timeout", type=int, default=3600)
     ap.add_argument("--execute", action="store_true", help="call the model (default: dry run)")
     args = ap.parse_args(argv)
+    if args.all:
+        by_key: dict[str, list[Path]] = {}
+        for b in BUCKETS:
+            for p in sorted((DRAFTS / b).glob("*__*.md")):
+                if pending_marks([p]):
+                    by_key.setdefault(p.stem.split("__", 1)[1], []).append(p)
+        if not by_key:
+            print("no draft has pending reviewer marks")
+            return 0
+        print(f"{len(by_key)} paper(s) with pending marks: {', '.join(sorted(by_key))}")
+        rc = 0
+        for key in sorted(by_key):
+            rc |= run(by_key[key], args.execute, args.model, args.timeout)
+        return rc
     paths = list(args.drafts)
     if args.citation:
         paths += [p for p in drafts_for(args.citation.lstrip("@")) if p not in paths]
