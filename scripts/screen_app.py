@@ -470,7 +470,7 @@ def main(argv=None) -> int:
     ap.add_argument("--sample", type=float, default=0.2, help="with --check: fraction (0.2) or number (50)")
     ap.add_argument("--seed", type=int, default=1, help="with --check: random seed (report it)")
     ap.add_argument("--rerank", type=int, default=50, help="re-rank after this many decisions (title/abstract)")
-    ap.add_argument("--port", type=int, default=8766)
+    ap.add_argument("--port", type=int, default=8767)
     ap.add_argument("--no-browser", action="store_true")
     args = ap.parse_args(argv)
     global STORE
