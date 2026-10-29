@@ -40,7 +40,7 @@ git add -A && git commit -m "..." && git pull --rebase --autostash && git push
 ### `screen_app.py` — the screening workbench
 
 ```
-python scripts/screen_app.py --by michele                      # title/abstract, ranked; opens http://127.0.0.1:8766/
+python scripts/screen_app.py --by michele                      # title/abstract, ranked; opens http://127.0.0.1:8767/
 python scripts/screen_app.py --by michele --stage ft           # full text
 python scripts/screen_app.py --by alex --check --sample 0.2 --seed 1   # second screener, blind
 ```
