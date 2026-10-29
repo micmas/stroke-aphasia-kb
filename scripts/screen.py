@@ -1549,8 +1549,9 @@ def cmd_fulltext(args) -> int:
         state = {"in_kb": f"in the KB ({kb.get('approved_findings')} findings)", "in_review": "extracted, in review",
                  "rejected": "extracted, drafts rejected"}.get(kb.get("state") or "", "")
         pdf = {True: "PDF", False: "no PDF", None: "PDF ?"}[pdf_of(r)]
+        doi = f"  https://doi.org/{S.norm_doi(r['doi'])}" if r.get("doi") and pdf_of(r) is not True and "doi.org" not in extra else ""
         return (f"    {r['id']}  {str(r.get('key') or '—'):<26} {pdf:<7} {state:<28} {str(r.get('year') or ''):<5} "
-                f"{str(r.get('title') or '')[:70]}{extra}")
+                f"{str(r.get('title') or '')[:70]}{extra}{doi}")
 
     assess = [r for r in rows if r["stage"] in ("awaiting_ft", "unsure_ft")]
     included = [r for r in rows if r["stage"] == "included"]
@@ -1572,7 +1573,7 @@ def cmd_fulltext(args) -> int:
     if fresh:
         print(f"   not extracted yet ({len(fresh)}): open the PDF from the DOI link in the app; nothing to download before deciding")
         for r in fresh:
-            print(line(r, f"  https://doi.org/{r['doi']}" if r.get("doi") else ""))
+            print(line(r))
 
     if other:
         chased = [r for r in other if r.get("pillar")]
@@ -1600,7 +1601,7 @@ def cmd_fulltext(args) -> int:
         else:
             steps["extract"].append(r)
     text = {"register": "no citation key yet  →  python scripts/screen.py register --execute",
-            "pdf": "registered, no PDF  →  save the PDFs in ~/Downloads, then python scripts/intake_papers.py --from ~/Downloads --execute",
+            "pdf": "registered, no PDF  →  save the PDFs into papers/ (the OneDrive calmar-papers folder), any file name, then python scripts/intake_papers.py --execute --no-register",
             "extract": "PDF present, not extracted  →  python scripts/extract.py --pdf papers/<Key>.pdf  (one per paper; 20–30 min each)",
             "review": "extracted, drafts to review  →  python scripts/review_app.py, then promote.py",
             "done": "in the knowledge base — nothing to do"}
@@ -1608,11 +1609,25 @@ def cmd_fulltext(args) -> int:
         if rs:
             print(f"   {text[k]}: {len(rs)}")
             for r in rs:
-                print(line(r, f"  https://doi.org/{r['doi']}" if k == "pdf" and r.get("doi") else ""))
+                print(line(r))
     if steps["extract"]:
         print("   commands:")
         for r in steps["extract"]:
             print(f"     python scripts/extract.py --pdf papers/{str(r['key']).lstrip('@')}.pdf")
+
+    # every paper the full-text stage still needs a PDF for, with its DOI
+    need = [r for r in assess + other + included if pdf_of(r) is False]
+    if need:
+        papers_dir = (ROOT / "papers").resolve() if (ROOT / "papers").exists() else ROOT / "papers"
+        print(f"\nPapers without a PDF in papers/ ({len(need)}) — download each from its DOI into {papers_dir}")
+        print("   (any file name; then python scripts/intake_papers.py --execute --no-register renames it to <Key>.pdf;"
+              " a paper with no key yet gets one from python scripts/screen.py register --execute once it is included)")
+        waiting = _unrenamed_pdfs({S.norm_doi(r.get("doi")): r["id"] for r in need if r.get("doi")})
+        for r in need:
+            doi = f"https://doi.org/{S.norm_doi(r['doi'])}" if r.get("doi") else "(no DOI: search the title)"
+            got = waiting.get(r["id"])
+            print(f"    {str(r.get('key') or r['id']):<26} {doi:<55} {str(r.get('year') or ''):<5} {str(r.get('title') or '')[:60]}"
+                  + (f"\n        ↳ already in papers/ as {got} — run intake_papers.py to rename it" if got else ""))
 
     if excluded_with_findings:
         print(f"\n3. Excluded at full text but still with findings in drafts or the KB: {len(excluded_with_findings)} — "
@@ -1620,6 +1635,32 @@ def cmd_fulltext(args) -> int:
         for r in excluded_with_findings:
             print(line(r, f"  [{r.get('reason')}]"))
     return 0
+
+
+def _unrenamed_pdfs(wanted: dict[str, str]) -> dict[str, str]:
+    """PDFs in papers/ not yet named after a citation key whose first pages carry one of
+    the wanted DOIs: {candidate id: file name}. Empty when papers/ is not reachable."""
+    papers = ROOT / "papers"
+    if not wanted or not papers.is_dir():
+        return {}
+    keys = {k.lstrip("@").lower() for k in S.citation_blocks()}
+    try:
+        import match_papers
+    except Exception:  # noqa: BLE001
+        return {}
+    out = {}
+    for f in sorted(papers.glob("*.pdf")):
+        if f.stem.lower() in keys or f.stem.endswith("_annotated"):
+            continue
+        try:
+            text = match_papers.first_pages_text(f)
+        except Exception:  # noqa: BLE001
+            continue
+        for m in re.finditer(r"10\.\d{4,9}/[^\s\"<>]+", text or ""):
+            cid = wanted.get(S.norm_doi(m.group(0)))
+            if cid and cid not in out:
+                out[cid] = f.name
+    return out
 
 
 def to_extract() -> list[tuple[dict, Path]]:

@@ -26,7 +26,7 @@ flag, listed below).
 | 3 | Title/abstract screening, prioritised, until the stopping rule is met | `screen_app.py --by <you>` · `screen.py progress` · `stop` | [0.3](#03-titleabstract-screening) |
 | 4 | Second screener on a 20 % blind sample; agreement | `screen_app.py --check` · `screen.py agreement` | [0.4](#04-second-screener) |
 | 5 | Full-text assessment (PDF beside the record); pillar papers by citation chasing | `screen.py fulltext` · `screen_app.py --stage ft` · `screen.py chase` | [0.5](#05-full-text-assessment) |
-| 6 | Hand-over: citation entry and PDF for each paper included at full text | `screen.py register` · `intake_papers.py --from ~/Downloads` | [0.6](#06-hand-over-to-the-knowledge-base) · [1](#1-getting-papers-in) |
+| 6 | Hand-over: citation entry and PDF for each paper included at full text | `screen.py register` · PDFs into `papers/` · `intake_papers.py --execute --no-register` | [0.6](#06-hand-over-to-the-knowledge-base) · [1](#1-getting-papers-in) |
 | 7 | Extraction, one paper at a time | `extract.py --pdf papers/<Key>.pdf` | [2](#2-extracting) |
 | 8 | Review: checks, the workbench, focused re-extraction, approval | `auto_review.py` · `review_app.py` · `refocus.py` · `promote.py` | [3](#3-reviewing) |
 | 9 | Report and sync | `screen.py status` · `kb_status.py` · git | [4](#4-checking-the-kb) · [8](#8-git-and-the-papers-folder) |
@@ -50,7 +50,7 @@ git add screening logs && git commit -m "Screening session" && git push
 ```bash
 python scripts/screen.py fulltext                         # what each included paper needs next
 python scripts/screen.py register --execute               # citation entries and keys
-python scripts/intake_papers.py --from ~/Downloads --execute   # PDFs into papers/<Key>.pdf, cleaned, OCR'd
+python scripts/intake_papers.py --execute --no-register       # PDFs saved into papers/ (OneDrive calmar-papers) → <Key>.pdf, cleaned, OCR'd
 python scripts/extract.py --pdf papers/<Key>.pdf          # one paper (20–30 min)
 python scripts/auto_review.py --draft drafts/<bucket>/<file>.md --llm-review   # optional checks and tier
 python scripts/review_app.py --citation <Key>             # findings beside the highlighted paper
@@ -63,8 +63,9 @@ git add -A && git commit -m "…" && git pull --rebase --autostash && git push
 
 ```bash
 python scripts/screen.py register --execute                    # every included paper without a key
-python scripts/screen.py fulltext                              # "registered, no PDF": the download list (DOI links)
-python scripts/intake_papers.py --from ~/Downloads --execute   # every downloaded PDF that matches a registered paper
+python scripts/screen.py fulltext                              # ends with "Papers without a PDF": key + DOI link for each
+# download each into papers/ = ~/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers (any file name)
+python scripts/intake_papers.py --execute --no-register        # renames them to <Key>.pdf by their DOI, strips cover pages, OCR
 python scripts/screen.py extract                               # dry run: the queue (included, PDF, no findings)
 python scripts/screen.py extract --execute                     # extract them one after another (≈ 25 min each; --limit N)
 python scripts/auto_review.py --all --llm-review               # checks, tiers and model opinion on every pending draft
@@ -183,7 +184,7 @@ a paper citing them is included).
 
 ```bash
 python scripts/screen.py register --execute                      # included papers without a key → citations.md entry + key (Crossref)
-python scripts/intake_papers.py --from ~/Downloads --execute     # their PDFs → papers/<Key>.pdf (section 1)
+python scripts/intake_papers.py --execute --no-register         # PDFs saved into papers/ → <Key>.pdf (section 1)
 python scripts/screen.py fulltext                                # what is left: PDF, extract (commands listed), review
 ```
 
@@ -222,7 +223,7 @@ python scripts/screen.py fulltext                                # what is left:
 | `progress` | Prioritised screening against the stopping rule: share screened, last run of exclusions, validation papers screened. | `--json` |
 | `stop` | Once the stopping rule is met, records every database record still awaiting title/abstract as not screened (`not_screened_stopping_rule`). Logs `SCREEN-STOPPED`. | `--by` `--date` `--execute` |
 | `agreement` | Cohen's kappa between decisions of record and check decisions per stage (unsure counts as include at title/abstract), the 2×2 table and each disagreement. | `--stage ta\|ft` |
-| `fulltext` | The full-text stage, paper by paper: what is waiting for assessment (already extracted before the protocol, or not), and for papers included at full text the next step — register, fetch the PDF, extract (with the commands), review — or "in the KB". Also lists papers excluded at full text that still have findings. | — |
+| `fulltext` | Ends with **Papers without a PDF**: every paper still needing one, with its key and `https://doi.org/…` link, and any PDF already sitting in `papers/` under another name that carries its DOI. The full-text stage, paper by paper: what is waiting for assessment (already extracted before the protocol, or not), and for papers included at full text the next step — register, fetch the PDF, extract (with the commands), review — or "in the KB". Also lists papers excluded at full text that still have findings. | — |
 | `chase` | Enters a pillar paper by citation chasing (before 2000, primary healthy-volunteer study, no abstract …): `--cited-by` must name papers included under the protocol and `--why` says what the KB needs it for. Existing candidate → source added; else Crossref record from the DOI (or `--title --year`). Goes to full text, other-methods arm. Logs `CHASED`. | `--doi` or `--title --year` · `--cited-by` `--why` `--by` `--date` `--execute` |
 | `extract` | The screening-aware batch: extracts every paper included at full text that has its PDF and no findings yet, one `extract.py` run after another (a failure is reported, the next one runs). Dry run lists the queue. | `--limit N` `--model` `--num-ctx` `--max-tokens` `--timeout` `--lean` `--execute` |
 | `register` | Included candidates without a key: Crossref record from the DOI → `citations.md` block (house format, `[seed]`, note says which candidate) and `key:` set; existing DOIs are linked instead. Network. | `--execute` |
@@ -233,9 +234,14 @@ python scripts/screen.py fulltext                                # what is left:
 ## 1. Getting papers in
 
 For papers included at full text (step 6 of the flow): `screen.py register`
-gives each one its citation entry, then `intake_papers.py --from ~/Downloads`
-brings the downloaded PDFs in under their keys. `screen.py fulltext` lists
-which included papers still lack a PDF, with their DOI links.
+gives each one its citation entry; download the PDFs straight into `papers/`
+(the OneDrive `calmar-papers` folder) under any name, then
+`intake_papers.py --execute --no-register` renames each to `<Key>.pdf` by its
+DOI, strips cover pages and OCRs scans. `screen.py fulltext` ends with every
+paper still lacking a PDF, with its DOI link. Use `--no-register` with
+screened work: without it, a PDF that matches no citation gets a new
+`citations.md` entry of its own, bypassing screening. (`--from DIR` still
+pulls matching PDFs out of another folder, e.g. `~/Downloads`.)
 
 ### `intake_papers.py` — everything between the download and the extractor
 
