@@ -699,3 +699,40 @@ searches:
     fingerprint: 8d8dc2e70d35
     commit: 9ce9499
     locked: true
+- id: S022
+  database: pubmed
+  query: >-
+    ("Aphasia"[Mesh] OR aphasi*[tiab] OR dysphasi*[tiab] OR anomi*[tiab] OR "word finding"[tiab] OR "word
+    retrieval"[tiab] OR "naming impairment*"[tiab] OR "naming deficit*"[tiab] OR "language impairment*"[tiab]
+    OR "language deficit*"[tiab] OR "language disorder*"[tiab] OR "apraxia of speech"[tiab] OR "Dysarthria"[Mesh]
+    OR dysarthri*[tiab]) AND ("Language Therapy"[Mesh] OR "Speech Therapy"[Mesh] OR "Transcranial Direct
+    Current Stimulation"[Mesh] OR "Transcranial Magnetic Stimulation"[Mesh] OR therap*[tiab] OR treatment*[tiab]
+    OR rehabilit*[tiab] OR intervention*[tiab] OR training[tiab] OR tDCS[tiab] OR rTMS[tiab] OR "brain
+    stimulation"[tiab] OR pharmacotherap*[tiab]) AND (respond*[tiab] OR responder*[tiab] OR "treatment
+    response"[tiab] OR "response to treatment"[tiab] OR "response to therapy"[tiab] OR "treatment outcome*"[tiab]
+    OR "treatment-induced"[tiab] OR "treatment gains"[tiab] OR "therapy gains"[tiab] OR generali*[tiab]
+    OR "treatment effect*"[tiab] OR improvement*[tiab] OR gain*[tiab] OR benefit*[tiab] OR "therapy outcome*"[tiab]
+    OR "treatment success"[tiab] OR "therapy success"[tiab]) AND ("Prognosis"[Mesh] OR predict*[tiab]
+    OR prognos*[tiab] OR moderat*[tiab] OR determinant*[tiab] OR "individual differences"[tiab] OR "individual
+    variability"[tiab] OR "patient characteristics"[tiab] OR "patient factors"[tiab] OR "patient-related"[tiab]
+    OR "baseline characteristics"[tiab] OR "baseline severity"[tiab] OR "factors associated"[tiab] OR
+    responsiveness[tiab] OR "who benefit*"[tiab] OR "who respond*"[tiab]) AND (("Stroke"[Mesh] OR "Brain
+    Infarction"[Mesh] OR "Intracranial Hemorrhages"[Mesh] OR stroke*[tiab] OR poststroke[tiab] OR cerebrovascular[tiab]
+    OR infarct*[tiab] OR "intracerebral hemorrhage"[tiab] OR "intracerebral haemorrhage"[tiab] OR "brain
+    damage*"[tiab] OR "brain-damaged"[tiab] OR "hemisphere damage*"[tiab] OR "left hemisphere lesion*"[tiab]
+    OR "focal damage"[tiab] OR "focal lesion*"[tiab]) OR ("Language Therapy"[Mesh] OR "Speech Therapy"[Mesh]
+    OR "aphasia therapy"[tiab] OR "aphasia treatment"[tiab] OR "aphasia rehabilitation"[tiab]))
+  date: '2026-10-30'
+  run_by: michele
+  hits: 1136
+  retrieved: 1136
+  for:
+  - q2_therapy_response
+  filters:
+    years: 2000-
+  strategy: q2c_therapy_response_patient_factors
+  protocol:
+    version: 5
+    fingerprint: 4b2d56278386
+    commit: a189a7f
+    locked: true

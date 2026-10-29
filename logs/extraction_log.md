@@ -592,3 +592,5 @@ add an `EXTRACTED` line for every run.
 2026-10-28 | SCREENED | — | title_abstract (screen_app) | 38 decisions: exclude 1, include 37 | by: michele
 2026-10-29 | GREY-EXCLUDED | — | title_abstract | 1342 records by rule (conference 263, book 857, thesis 222) | types learned 19170 | by: michele
 2026-10-30 | SCREENED | — | full_text (screen_app) | 67 decisions: exclude 8, include 59 | by: michele
+2026-10-30 | SEARCHED | — | S022 pubmed | 1136 records | 676 new candidates (register 20812→21488) | strategy q2c_therapy_response_patient_factors v5 4b2d56278386 | by: michele
+2026-10-30 | GREY-EXCLUDED | — | title_abstract | 3 records by rule (book 3, thesis 0, conference 0) | types learned 0 | by: michele
