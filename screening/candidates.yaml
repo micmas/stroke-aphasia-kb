@@ -2023,6 +2023,20 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 114
+  - stage: full_text
+    decision: exclude
+    reason: duplicate_report
+    by: michele
+    date: '2026-10-30'
+    seq: 122
+    note: NIHR HTA monograph of the RELEASE IPD meta-analysis; journal report included as C0127 (@Brady2022)
+  - stage: full_text
+    decision: exclude
+    reason: duplicate_report
+    by: michele
+    date: '2026-10-29'
+    seq: 123
+    note: NIHR HTA monograph of the RELEASE IPD meta-analysis; journal report included as C0127 (@Brady2022)
   legacy:
     decisions:
     - stage: full_text
