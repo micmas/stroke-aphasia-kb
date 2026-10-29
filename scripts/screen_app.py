@@ -177,10 +177,13 @@ class Store:
             srcs += [S.SOURCE_KINDS.get(s.get("kind"), s.get("kind")) for s in c.get("sources") or []
                      if isinstance(s, dict) and s.get("kind")]
         pdf = None
-        if self.stage == "full_text" and c.get("key"):
-            stem = str(c["key"]).lstrip("@")
-            if (ROOT / "papers" / f"{stem}.pdf").exists():
-                pdf = f"/pdf/{stem}.pdf"
+        if self.stage == "full_text":
+            from urllib.parse import quote
+            stem = str(c.get("key") or "").lstrip("@")
+            if stem and (ROOT / "papers" / f"{stem}.pdf").exists():
+                pdf = f"/pdf/{quote(stem)}.pdf"
+            elif c.get("pdf_file") and (ROOT / "papers" / c["pdf_file"]).exists():
+                pdf = f"/pdf/{quote(c['pdf_file'])}"         # saved under its download name (screen.py pdfs)
         sug = c.get("suggestion") if (self.stage == "title_abstract" and not self.check) else None
         prev, kb = None, None
         if self.stage == "full_text" and not self.check:

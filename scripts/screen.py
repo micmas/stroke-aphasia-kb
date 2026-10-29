@@ -1410,9 +1410,23 @@ def cmd_register(args) -> int:
         print(f"{'register' if args.execute else 'would register':16} {c['id']} → @{key}")
     for cid, why in manual:
         print(f"{'needs a hand':16} {cid}  ({why})")
+    # a PDF already saved under its download name (screen.py pdfs) takes the key's name
+    renames = []
+    for c in candidates:
+        f = c.get("pdf_file")
+        if f and c.get("key") and rows.get(c["id"], {}).get("stage") == "included":
+            src, dst = ROOT / "papers" / f, ROOT / "papers" / f"{str(c['key']).lstrip('@')}.pdf"
+            if src.exists() and not dst.exists():
+                renames.append((c, src, dst))
+    for c, src, dst in renames:
+        print(f"{'rename' if args.execute else 'would rename':16} papers/{src.name}  →  papers/{dst.name}")
     if not args.execute:
-        print(f"Dry run: {len(blocks)} entries would be appended to citations.md, {linked} candidates linked to existing keys.")
+        print(f"Dry run: {len(blocks)} entries would be appended to citations.md, {linked} candidates linked to existing keys, "
+              f"{len(renames)} PDFs renamed.")
         return 0
+    for c, src, dst in renames:
+        src.rename(dst)
+        c.pop("pdf_file", None)
     if blocks:
         path = ROOT / "citations.md"
         text = path.read_text(encoding="utf-8").rstrip("\n") + "\n"
@@ -1423,7 +1437,7 @@ def cmd_register(args) -> int:
             text += "\n"
         text += "\n".join(blocks)
         path.write_text(text, encoding="utf-8")
-    if blocks or linked:
+    if blocks or linked or renames:
         S.save_candidates(candidates)
         _log("REGISTERED", "screening → citations.md", f"{len(blocks)} entries appended, {linked} linked to existing keys")
     print(f"{len(blocks)} entries appended to citations.md; {linked} linked. Next: fetch the PDFs into papers/ and run intake_papers.py.")
@@ -1539,9 +1553,10 @@ def cmd_fulltext(args) -> int:
     papers_known = (ROOT / "papers").is_dir()
 
     def pdf_of(r):
-        kb = r.get("kb") or {}
         if not papers_known:
             return None
+        if r.get("pdf_file") and (ROOT / "papers" / r["pdf_file"]).exists():
+            return True
         return bool(r.get("key") and (facts.get(r["key"]) or {}).get("pdf"))
 
     def line(r, extra=""):
@@ -1549,6 +1564,8 @@ def cmd_fulltext(args) -> int:
         state = {"in_kb": f"in the KB ({kb.get('approved_findings')} findings)", "in_review": "extracted, in review",
                  "rejected": "extracted, drafts rejected"}.get(kb.get("state") or "", "")
         pdf = {True: "PDF", False: "no PDF", None: "PDF ?"}[pdf_of(r)]
+        if pdf == "PDF" and r.get("pdf_file") and not (r.get("key") and (facts.get(r["key"]) or {}).get("pdf")):
+            pdf = "PDF*"                       # linked under its download name; register renames it
         doi = f"  https://doi.org/{S.norm_doi(r['doi'])}" if r.get("doi") and pdf_of(r) is not True and "doi.org" not in extra else ""
         return (f"    {r['id']}  {str(r.get('key') or '—'):<26} {pdf:<7} {state:<28} {str(r.get('year') or ''):<5} "
                 f"{str(r.get('title') or '')[:70]}{extra}{doi}")
@@ -1622,12 +1639,12 @@ def cmd_fulltext(args) -> int:
         print(f"\nPapers without a PDF in papers/ ({len(need)}) — download each from its DOI into {papers_dir}")
         print("   (any file name; then python scripts/intake_papers.py --execute --no-register renames it to <Key>.pdf;"
               " a paper with no key yet gets one from python scripts/screen.py register --execute once it is included)")
-        waiting = _unrenamed_pdfs({S.norm_doi(r.get("doi")): r["id"] for r in need if r.get("doi")})
+        waiting = {cid: name for cid, name, _ in link_pdfs(candidates)["linked"]}
         for r in need:
             doi = f"https://doi.org/{S.norm_doi(r['doi'])}" if r.get("doi") else "(no DOI: search the title)"
             got = waiting.get(r["id"])
             print(f"    {str(r.get('key') or r['id']):<26} {doi:<55} {str(r.get('year') or ''):<5} {str(r.get('title') or '')[:60]}"
-                  + (f"\n        ↳ already in papers/ as {got} — run intake_papers.py to rename it" if got else ""))
+                  + (f"\n        ↳ already in papers/ as {got} — run screen.py pdfs --execute to link it" if got else ""))
 
     if excluded_with_findings:
         print(f"\n3. Excluded at full text but still with findings in drafts or the KB: {len(excluded_with_findings)} — "
@@ -1661,6 +1678,101 @@ def _unrenamed_pdfs(wanted: dict[str, str]) -> dict[str, str]:
             if cid and cid not in out:
                 out[cid] = f.name
     return out
+
+
+_TITLE_STOP = set("""the and for with from that this were was are into than their after during between among within
+study analysis evidence patients patient stroke post poststroke chronic acute aphasia aphasic""".split())
+
+
+def _title_words(t: str) -> list[str]:
+    return [w for w in re.findall(r"[a-z]{4,}", str(t or "").lower()) if w not in _TITLE_STOP]
+
+
+def link_pdfs(candidates: list[dict], verbose: bool = True) -> dict:
+    """PDFs in papers/ not named after a citation key, linked to their screening record.
+
+    The paper's own DOI is the first DOI on its first pages that matches a candidate
+    exactly (a reference DOI further down is only used when the first one matches no
+    candidate); a file with no usable DOI is matched on its file name against the
+    titles of records awaiting full text or included. Sets `pdf_file` on the candidate.
+    Returns {"linked": [(cid, file, how)], "unknown": [(file, dois)], "skipped": [...]}."""
+    papers = ROOT / "papers"
+    out = {"linked": [], "unknown": [], "already": []}
+    if not papers.is_dir():
+        return out
+    keys = {k.lstrip("@").lower() for k in S.citation_blocks()}
+    import match_papers
+    live = [c for c in candidates if not c.get("duplicate_of")]
+    by_doi = {}
+    for c in live:
+        d = S.norm_doi(c.get("doi"))
+        if d:
+            by_doi.setdefault(d, c)
+    rows = {r["id"]: r for r in S.enrich(live, {})}
+    open_ = [c for c in live if rows[c["id"]]["stage"] in ("awaiting_ft", "unsure_ft", "included", "awaiting_ta", "unsure_ta")]
+    linked_files = {c.get("pdf_file") for c in live if c.get("pdf_file")}
+    for f in sorted(papers.glob("*.pdf")):
+        if f.stem.lower() in keys or f.stem.endswith("_annotated"):
+            continue
+        try:
+            text = match_papers.first_pages_text(f) or ""
+        except Exception:  # noqa: BLE001
+            text = ""
+        dois = list(dict.fromkeys(S.norm_doi(m.group(0)) for m in re.finditer(r"10\.\d{4,9}/[^\s\"<>]+", text)))
+        dois = [d for d in dois if d]
+        hit, how = None, ""
+        for d in dois:
+            if d in by_doi:
+                hit, how = by_doi[d], f"DOI {d}"
+                break
+        if hit is None:
+            fw = set(_title_words(f.stem.replace("-", " ").replace("_", " ")))
+            best, score = None, 0.0
+            for c in open_:
+                tw = _title_words(c.get("title"))[:8]
+                if len(tw) < 4:
+                    continue
+                sc = sum(1 for w in tw if w in fw) / len(tw)
+                if sc > score:
+                    best, score = c, sc
+            if best is not None and score >= 0.75:
+                hit, how = best, f"file name ~ title ({score:.0%})"
+        if hit is None:
+            out["unknown"].append((f.name, dois[:3]))
+            continue
+        if hit.get("pdf_file") == f.name:
+            out["already"].append((hit["id"], f.name))
+            continue
+        key_pdf = papers / f"{str(hit.get('key') or '').lstrip('@')}.pdf" if hit.get("key") else None
+        if key_pdf is not None and key_pdf.exists():
+            out["unknown"].append((f.name, [f"a second copy of {hit['id']} {hit['key']} (papers/{key_pdf.name} exists)"]))
+            continue
+        hit["pdf_file"] = f.name
+        out["linked"].append((hit["id"], f.name, how))
+    return out
+
+
+def cmd_pdfs(args) -> int:
+    """Link the PDFs saved in papers/ (any file name) to their screening records, so the
+    full-text pass shows them and `register` names them <Key>.pdf on inclusion."""
+    candidates = S.load_candidates()
+    res = link_pdfs(candidates)
+    for cid, name, how in res["linked"]:
+        print(f"  {'linked' if args.execute else 'would link':10} {cid}  ←  {name}   [{how}]")
+    if res["already"]:
+        print(f"  already linked: {len(res['already'])}")
+    if res["unknown"]:
+        print(f"  not in the register ({len(res['unknown'])}): a paper the searches did not return, or a second copy —"
+              f" chase it (screen.py chase) if the KB needs it, otherwise move it out of papers/")
+        for name, dois in res["unknown"]:
+            print(f"      {name}  ({', '.join(dois) or 'no DOI found'})")
+    if not args.execute:
+        print("Dry run — nothing written. Add --execute.")
+        return 0
+    if res["linked"]:
+        S.save_candidates(candidates)
+        _log("PDFS-LINKED", "screening register", f"{len(res['linked'])} PDFs linked to their records")
+    return 0
 
 
 def to_extract() -> list[tuple[dict, Path]]:
@@ -1789,6 +1901,9 @@ def _cli(argv=None) -> int:
     p.add_argument("--lean", action="store_true")
     p.add_argument("--execute", action="store_true")
     p.set_defaults(fn=cmd_extract)
+    p = sub.add_parser("pdfs", help="link PDFs saved in papers/ (any name) to their screening records")
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(fn=cmd_pdfs)
     p = sub.add_parser("progress", help="prioritised screening against the stopping rule")
     p.add_argument("--json", action="store_true")
     p.set_defaults(fn=cmd_progress)
