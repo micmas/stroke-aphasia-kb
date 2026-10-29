@@ -34,8 +34,10 @@ stroke, at least one of:
   (executive function, working memory, cognitive control) (regions/,
   impairments/);
 - **therapy → response**: the neural correlates or imaging/lesion
-  predictors of response to a named therapy or ingredient (therapies/,
-  ingredients/);
+  predictors of response to a named therapy or ingredient, or the patient
+  characteristics (demographic, clinical, cognitive, linguistic, genetic)
+  that predict or moderate that response — with or without imaging
+  (protocol v5) (therapies/, ingredients/, predictors/);
 - **predictor → outcome**: a lesion or imaging predictor of aphasia
   severity or recovery, alone or with demographic, clinical or genetic
   predictors (predictors/);
@@ -57,7 +59,11 @@ outcome. Evidence without imaging — the efficacy of a therapy,
 clinical and demographic predictors such as age, initial severity or
 time post onset — enters **only through systematic reviews and
 meta-analyses** (synthesis). A primary study without imaging is
-excluded with `no_imaging_primary`.
+excluded with `no_imaging_primary` — **except** (protocol v5) one that
+relates patient characteristics to the response to a named therapy
+(responder, moderator or prediction analyses; controlled designs
+preferred, the design recorded). A report of a therapy's overall effect
+with no analysis of who responds stays excluded.
 
 **Peer-reviewed reports and preprints only (protocol v4).** Theses and
 dissertations, books and book chapters, and conference abstracts and
@@ -84,7 +90,7 @@ reports; change this list and `screening.REASONS` together.
 |---|---|---|
 | `not_stroke` | the population is not (post-)stroke: tumour, TBI, primary progressive aphasia, dementia, developmental; or healthy-only with no language-mapping question | both passes |
 | `not_aphasia` | no aphasia, language, communication (motor speech — dysarthria, apraxia of speech — and prosody included) or domain-general cognitive outcome is reported (e.g. motor recovery only, spatial neglect only) | both passes |
-| `no_imaging_primary` | a primary study with no brain imaging or lesion data related to the outcome (e.g. a therapy trial, a clinical prognostic cohort); its evidence enters through syntheses (§1) | both passes |
+| `no_imaging_primary` | a primary study with no brain imaging or lesion data related to the outcome (e.g. a therapy trial reporting overall efficacy only, a clinical prognostic cohort); its evidence enters through syntheses (§1). Not for a study relating patient characteristics to therapy response (v5) | both passes |
 | `narrative_review_out_of_scope` | a narrative (non-systematic) review that does not cover neuroimaging or lesion evidence in stroke | both passes |
 | `out_of_date_range` | published before 2000 (the protocol's `years`) and not entered as a pillar paper by citation chasing | both passes |
 | `design_out_of_scope` | nothing the schema can hold: no lesion–behaviour, therapy-response, predictor or network evidence (pure psycholinguistic modelling, instrument validation without brain or outcome data, qualitative studies of lived experience) | both passes |

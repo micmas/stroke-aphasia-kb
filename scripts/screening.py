@@ -70,8 +70,9 @@ REASONS: dict[str, dict] = {
                             "only, spatial neglect only)."},
     "no_imaging_primary": {"label": "Primary study without imaging", "ft_only": False,
                            "text": "A primary study with no brain imaging or lesion data related to the outcome (e.g. a "
-                                   "therapy trial or a clinical prognostic cohort); under the imaging-anchored scope its "
-                                   "evidence enters through systematic reviews and meta-analyses."},
+                                   "therapy trial reporting overall efficacy only, a clinical prognostic cohort); its "
+                                   "evidence enters through systematic reviews and meta-analyses. Not for a study that "
+                                   "relates patient characteristics to therapy response (protocol v5)."},
     "narrative_review_out_of_scope": {"label": "Narrative review out of scope", "ft_only": False,
                                       "text": "A narrative (non-systematic) review that does not cover neuroimaging or "
                                               "lesion evidence in stroke."},

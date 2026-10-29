@@ -37,10 +37,31 @@
 # `filters`), Scopus strings get `AND PUBYEAR > 1999` appended by
 # `screen.py strategies --show`. The upper limit is the search date.
 
-version: 4
+version: 5
 status: locked            # draft → locked (then commit) before the first --execute
 protocol_owner: michele
 amendments:
+  - version: 5
+    date: 2026-10-30
+    by: michele
+    what: >-
+      Behavioural primary studies are in scope when they relate patient
+      characteristics (demographic, clinical, cognitive, linguistic, genetic) to
+      the response to a named therapy — ideally a controlled one. A study that
+      reports a therapy's overall effect with no analysis of who responds stays
+      out (no_imaging_primary; its evidence comes from syntheses). New strategy
+      q2c_therapy_response_patient_factors; the response block gains
+      improvement / gain / benefit / therapy outcome / treatment success terms
+      (used by q2c only); new block patient_factors.
+    why: >-
+      Which patients benefit from which therapy informs practice and the
+      CALMaR reports even without imaging; these moderator / responder analyses
+      are not pooled by most efficacy meta-analyses, so the syntheses route
+      alone would miss them.
+    when: >-
+      after 50 title/abstract decisions; the one exclusion they contain for
+      no_imaging_primary (C0076 Bhogal 2003: therapy intensity, not patient
+      characteristics) stands.
   - version: 4
     date: 2026-10-28
     by: michele
@@ -115,6 +136,10 @@ years: 2000-
 # Prioritised title/abstract screening (docs/SCREENING.md §4.1): the sheet is
 # ordered by a model retrained on every decision; screening stops when all three
 # conditions below hold, and the records left unscreened are reported as such.
+# Calibration of amendment v5 (PubMed, E-utilities, 2026-10-30): q2c 1,136 records 2000-
+# (497 without the added response terms, which missed Simic 2019). Retrieves Gilmore 2019,
+# Simic 2019, Brady 2022 (precision rehabilitation), Fridriksson 2018 BDNF; efficacy-only trials
+# (Breitenstein 2017, Godecke 2021, Nouwens 2017) are not retrieved, as intended.
 prioritised_screening:
   model: tfidf_naive_bayes      # scripts/prioritise.py
   seed: 20261027                # benchmark split and cold-start sampling
@@ -286,7 +311,13 @@ blocks:
     response: >-
       (respond*[tiab] OR responder*[tiab] OR "treatment response"[tiab] OR "response to treatment"[tiab]
       OR "response to therapy"[tiab] OR "treatment outcome*"[tiab] OR "treatment-induced"[tiab]
-      OR "treatment gains"[tiab] OR "therapy gains"[tiab] OR generali*[tiab] OR "treatment effect*"[tiab])
+      OR "treatment gains"[tiab] OR "therapy gains"[tiab] OR generali*[tiab] OR "treatment effect*"[tiab]
+      OR improvement*[tiab] OR gain*[tiab] OR benefit*[tiab] OR "therapy outcome*"[tiab] OR "treatment success"[tiab] OR "therapy success"[tiab])
+    patient_factors: >-
+      ("Prognosis"[Mesh] OR predict*[tiab] OR prognos*[tiab] OR moderat*[tiab] OR determinant*[tiab]
+      OR "individual differences"[tiab] OR "individual variability"[tiab] OR "patient characteristics"[tiab]
+      OR "patient factors"[tiab] OR "patient-related"[tiab] OR "baseline characteristics"[tiab] OR "baseline severity"[tiab]
+      OR "factors associated"[tiab] OR responsiveness[tiab] OR "who benefit*"[tiab] OR "who respond*"[tiab])
     predictor: >-
       ("Prognosis"[Mesh] OR "Recovery of Function"[Mesh] OR "Longitudinal Studies"[Mesh] OR predict*[tiab]
       OR prognos*[tiab] OR recover*[tiab] OR longitudinal[tiab] OR determinant*[tiab] OR "risk factor*"[tiab])
@@ -349,7 +380,12 @@ blocks:
     response: >-
       (responder OR responders OR "treatment response" OR "response to treatment" OR "response to therapy"
       OR "treatment outcome" OR "treatment-induced" OR "treatment gains" OR "therapy gains" OR generalization
-      OR generalisation OR "treatment effect")
+      OR generalisation OR "treatment effect" OR improvement OR improvements OR gains OR benefit OR benefits OR "therapy outcome" OR "treatment success" OR "therapy success")
+    patient_factors: >-
+      (predictor OR predictors OR predicts OR prediction OR prognostic OR moderator OR moderators OR determinants
+      OR "individual differences" OR "individual variability" OR "patient characteristics" OR "patient factors"
+      OR "patient-related" OR "baseline characteristics" OR "baseline severity" OR "factors associated"
+      OR responsiveness OR "who benefit" OR "who respond")
     predictor: >-
       (predictor OR predictors OR prediction OR predicts OR prognosis OR prognostic OR recovery
       OR longitudinal OR determinants OR "risk factors")
@@ -410,7 +446,11 @@ blocks:
     response: >-
       TITLE-ABS-KEY(respond* OR responder* OR "treatment response" OR "response to treatment"
       OR "response to therapy" OR "treatment outcome*" OR "treatment-induced" OR "treatment gains"
-      OR "therapy gains" OR generali* OR "treatment effect*")
+      OR "therapy gains" OR generali* OR "treatment effect*" OR improvement* OR gain* OR benefit* OR "therapy outcome*" OR "treatment success" OR "therapy success")
+    patient_factors: >-
+      TITLE-ABS-KEY(predict* OR prognos* OR moderat* OR determinant* OR "individual differences" OR "individual variability"
+      OR "patient characteristics" OR "patient factors" OR "patient-related" OR "baseline characteristics"
+      OR "baseline severity" OR "factors associated" OR responsiveness OR "who benefit*" OR "who respond*")
     predictor: >-
       TITLE-ABS-KEY(predict* OR prognos* OR recover* OR longitudinal OR determinant* OR "risk factor*")
     systematic: TITLE-ABS-KEY("systematic review" OR meta-analy* OR "scoping review")
@@ -506,11 +546,9 @@ blocks:
       trial" OR crossover OR "cross-over" OR "case series" OR "single-case" OR "multiple baseline" OR "single
       subject" OR "single-subject" OR "systematic review" OR meta-analy*))
     response: >-
-      (TI (respond* OR responder* OR "treatment response" OR "response to treatment" OR "response to therapy"
-      OR "treatment outcome*" OR "treatment-induced" OR "treatment gains" OR "therapy gains" OR generali* OR
-      "treatment effect*") OR AB (respond* OR responder* OR "treatment response" OR "response to treatment" OR
-      "response to therapy" OR "treatment outcome*" OR "treatment-induced" OR "treatment gains" OR "therapy
-      gains" OR generali* OR "treatment effect*"))
+      (TI (respond* OR responder* OR "treatment response" OR "response to treatment" OR "response to therapy" OR "treatment outcome*" OR "treatment-induced" OR "treatment gains" OR "therapy gains" OR generali* OR "treatment effect*" OR improvement* OR gain* OR benefit* OR "therapy outcome*" OR "treatment success" OR "therapy success") OR AB (respond* OR responder* OR "treatment response" OR "response to treatment" OR "response to therapy" OR "treatment outcome*" OR "treatment-induced" OR "treatment gains" OR "therapy gains" OR generali* OR "treatment effect*" OR improvement* OR gain* OR benefit* OR "therapy outcome*" OR "treatment success" OR "therapy success"))
+    patient_factors: >-
+      (DE "Prognosis" OR TI (predict* OR prognos* OR moderat* OR determinant* OR "individual differences" OR "individual variability" OR "patient characteristics" OR "patient factors" OR "patient-related" OR "baseline characteristics" OR "baseline severity" OR "factors associated" OR responsiveness OR "who benefit*" OR "who respond*") OR AB (predict* OR prognos* OR moderat* OR determinant* OR "individual differences" OR "individual variability" OR "patient characteristics" OR "patient factors" OR "patient-related" OR "baseline characteristics" OR "baseline severity" OR "factors associated" OR responsiveness OR "who benefit*" OR "who respond*"))
     predictor: >-
       (DE "Prognosis" OR DE "Recovery (Disorders)" OR TI (predict* OR prognos* OR recover* OR longitudinal OR
       determinant* OR "risk factor*") OR AB (predict* OR prognos* OR recover* OR longitudinal OR determinant*
@@ -578,6 +616,20 @@ strategies:
     openalex: ${aphasia} AND ${therapy} AND ${imaging_strict} AND (${stroke} OR ${aphasia_therapy})
     scopus: ${aphasia} AND ${therapy} AND ${imaging_strict} AND (${stroke} OR ${aphasia_therapy})
     psycinfo: ${aphasia} AND ${therapy} AND ${imaging_strict} AND (${stroke} OR ${aphasia_therapy})
+
+  - id: q2c_therapy_response_patient_factors
+    question: therapy → response (patient characteristics that predict or moderate response; no imaging required)
+    buckets: [therapies, ingredients, predictors]
+    for: [q2_therapy_response]
+    notes: >-
+      Amendment v5. Eligible only when the report relates patient
+      characteristics to the response to a named therapy (responder, moderator
+      or prediction analyses); a report of overall efficacy alone is
+      no_imaging_primary.
+    pubmed: ${aphasia} AND ${therapy} AND ${response} AND ${patient_factors} AND (${stroke} OR ${aphasia_therapy})
+    openalex: ${aphasia} AND ${therapy} AND ${response} AND ${patient_factors} AND (${stroke} OR ${aphasia_therapy})
+    scopus: ${aphasia} AND ${therapy} AND ${response} AND ${patient_factors} AND (${stroke} OR ${aphasia_therapy})
+    psycinfo: ${aphasia} AND ${therapy} AND ${response} AND ${patient_factors} AND (${stroke} OR ${aphasia_therapy})
 
   - id: q3_predictor_outcome
     question: predictor → outcome, with brain imaging (lesion and imaging predictors of severity and recovery)
