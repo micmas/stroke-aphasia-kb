@@ -148,12 +148,17 @@ def match_one(text: str, cites: dict[str, dict],
     low = text.lower()
     by_doi = {v["doi"]: k for k, v in cites.items() if v.get("doi")}
 
-    # 1. DOI printed in the text
-    for d in {_norm_doi(d) for d in _DOI.findall(text)}:
+    # 1. DOI printed in the text. The first DOI on the first pages is the paper's own;
+    #    a cut-off DOI is forgiven only for that one — a truncated reference DOI further
+    #    down (a line break in "awx36\n3") must not name the paper after a paper it cites.
+    found = list(dict.fromkeys(_norm_doi(d) for d in _DOI.findall(text)))
+    for d in found:
         if d in by_doi:
             return by_doi[d], "doi"
+    if found:
+        own = found[0]
         for cd, k in by_doi.items():   # trailing char lost / extra punctuation
-            short, long_ = sorted((d, cd), key=len)
+            short, long_ = sorted((own, cd), key=len)
             if len(short) >= len(long_) - 2 and long_.startswith(short) \
                     and re.search(r"\d", short.split("/", 1)[-1]):
                 return k, "doi"

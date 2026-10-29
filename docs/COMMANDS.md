@@ -65,7 +65,9 @@ git add -A && git commit -m "…" && git pull --rebase --autostash && git push
 python scripts/screen.py register --execute                    # every included paper without a key
 python scripts/screen.py fulltext                              # ends with "Papers without a PDF": key + DOI link for each
 # download each into papers/ = ~/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers (any file name)
-python scripts/intake_papers.py --execute --no-register        # renames them to <Key>.pdf by their DOI, strips cover pages, OCR
+python scripts/screen.py pdfs --execute                        # links each saved PDF to its record by DOI (or title); the app shows it
+python scripts/screen.py register --execute                    # on inclusion: citation entry + key, and the linked PDF renamed <Key>.pdf
+python scripts/intake_papers.py --execute --no-register        # strips cover pages, OCRs scans (and renames any PDF of a cited paper)
 python scripts/screen.py extract                               # dry run: the queue (included, PDF, no findings)
 python scripts/screen.py extract --execute                     # extract them one after another (≈ 25 min each; --limit N)
 python scripts/auto_review.py --all --llm-review               # checks, tiers and model opinion on every pending draft
@@ -223,6 +225,7 @@ python scripts/screen.py fulltext                                # what is left:
 | `progress` | Prioritised screening against the stopping rule: share screened, last run of exclusions, validation papers screened. | `--json` |
 | `stop` | Once the stopping rule is met, records every database record still awaiting title/abstract as not screened (`not_screened_stopping_rule`). Logs `SCREEN-STOPPED`. | `--by` `--date` `--execute` |
 | `agreement` | Cohen's kappa between decisions of record and check decisions per stage (unsure counts as include at title/abstract), the 2×2 table and each disagreement. | `--stage ta\|ft` |
+| `pdfs` | Links PDFs saved in `papers/` under any name to their screening records — the paper's own DOI on its first pages (the first that matches a record), else the file name against the titles awaiting full text — and sets `pdf_file`. The full-text app then shows them; `register` renames each to `<Key>.pdf` when its paper is included. Lists PDFs that match no record (not returned by the searches, or a second copy). Download PDFs before the full-text decision if you like. | `--execute` |
 | `fulltext` | Ends with **Papers without a PDF**: every paper still needing one, with its key and `https://doi.org/…` link, and any PDF already sitting in `papers/` under another name that carries its DOI. The full-text stage, paper by paper: what is waiting for assessment (already extracted before the protocol, or not), and for papers included at full text the next step — register, fetch the PDF, extract (with the commands), review — or "in the KB". Also lists papers excluded at full text that still have findings. | — |
 | `chase` | Enters a pillar paper by citation chasing (before 2000, primary healthy-volunteer study, no abstract …): `--cited-by` must name papers included under the protocol and `--why` says what the KB needs it for. Existing candidate → source added; else Crossref record from the DOI (or `--title --year`). Goes to full text, other-methods arm. Logs `CHASED`. | `--doi` or `--title --year` · `--cited-by` `--why` `--by` `--date` `--execute` |
 | `extract` | The screening-aware batch: extracts every paper included at full text that has its PDF and no findings yet, one `extract.py` run after another (a failure is reported, the next one runs). Dry run lists the queue. | `--limit N` `--model` `--num-ctx` `--max-tokens` `--timeout` `--lean` `--execute` |
