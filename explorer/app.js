@@ -62,7 +62,7 @@ function parseRoute() {
   const [path, qs = ''] = raw.split('?');
   const params = new URLSearchParams(qs);
   const filters = {};
-  for (const [k, v] of params) { if (k === 'q' || k === 'sort' || k === 'kind' || k === 'min' || k === 'entries' || k === 'find') continue; (filters[k] ||= []).push(v); }
+  for (const [k, v] of params) { if (k === 'q' || k === 'sort' || k === 'kind' || k === 'min' || k === 'entries' || k === 'find' || k === 'box') continue; (filters[k] ||= []).push(v); }
   return { path: decodeURI(path), params, filters, segments: path.split('/').filter(Boolean).map(decodeURIComponent) };
 }
 
@@ -486,7 +486,8 @@ function prismaDiagram(index) {
   const lines = [];
   const text = (x, yy, t, cls = '') => s('text', { x, y: yy, class: `pr-text ${cls}` }, t);
   const fit = (t, w, px) => { const max = Math.max(4, Math.floor(w / px)); return String(t).length > max ? `${String(t).slice(0, max - 1)}…` : String(t); };
-  const box = ({ x, y: yy, w, title, n, sub, link, cls = '' }) => {
+  const box = ({ x, y: yy, w, title, n, sub, link, cls = '', params = null, id = null }) => {
+    if (params && id) link = coverageHref({ ...params, box: id });
     const g = s('g', { class: `pr-box ${cls}` });
     g.append(s('rect', { x, y: yy, width: w, height: boxH, rx: 6 }));
     g.append(text(x + 10, yy + 20, fit(title, w - 16, 5.5), 'pr-title'));
@@ -495,7 +496,11 @@ function prismaDiagram(index) {
     g.append(line);
     if (link) {
       const a = s('a', { href: link, class: 'pr-link' });
-      a.append(s('title', { text: `${title}: ${n}${sub ? ` (${sub})` : ''} — open these candidates` }));
+      if (params && cls.includes('pr-out')) {
+        a.addEventListener('mouseenter', (e) => showTip(e, index, title, params));
+        a.addEventListener('mousemove', moveTip);
+        a.addEventListener('mouseleave', hideTip);
+      } else a.append(s('title', { text: `${title}: ${n}${sub ? ` (${sub})` : ''} — open these candidates` }));
       a.append(g);
       return a;
     }
@@ -514,32 +519,33 @@ function prismaDiagram(index) {
   const sideX = (col) => col + main + gapX;
   // row 0
   nodes.push(box({ x: colL, y, w: main, title: 'Records from databases', n: idn.databases.records, sub: dbSub, link: coverageHref({ arm: 'databases' }) }));
-  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Duplicates merged', n: idn.duplicatesRemoved, link: coverageHref({ stage: 'duplicate' }), cls: 'pr-side' }));
+  const removedSub = [`${idn.duplicatesRemoved} duplicates`, idn.removedByRule ? `${idn.removedByRule} grey literature` : null].filter(Boolean).join(' · ');
+  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Removed before screening', n: idn.duplicatesRemoved + (idn.removedByRule || 0), sub: removedSub, params: { stage: 'duplicate' }, id: 'removed', cls: 'pr-side pr-out' }));
   nodes.push(box({ x: colR, y, w: main + gapX + side, title: 'Records from other sources', n: idn.other.records, sub: otSub, link: coverageHref({ arm: 'other' }) }));
   arrowH(colL + main, sideX(colL), y + boxH / 2);
   rows.push(y);
   y += boxH + rowGap;
   // row 1
   nodes.push(box({ x: colL, y, w: main, title: 'Records screened (title/abstract)', n: db.screened, sub: db.awaitingTitleAbstract ? `${db.awaitingTitleAbstract} awaiting` : null, link: coverageHref({ arm: 'databases', stage: dbStages }) }));
-  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Excluded at title/abstract', n: db.excludedTitleAbstract, sub: db.unsureTitleAbstract ? `${db.unsureTitleAbstract} unsure` : null, link: coverageHref({ arm: 'databases', stage: 'excluded_ta' }), cls: 'pr-side pr-out' }));
+  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Excluded at title/abstract', n: db.excludedTitleAbstract, sub: db.unsureTitleAbstract ? `${db.unsureTitleAbstract} unsure` : null, params: { arm: 'databases', stage: 'excluded_ta' }, id: 'excluded_ta', cls: 'pr-side pr-out' }));
   nodes.push(box({ x: colR, y, w: main, title: 'Reports sought for retrieval', n: ot.sought, link: coverageHref({ arm: 'other', stage: dbStages }) }));
-  nodes.push(box({ x: sideX(colR), y, w: side, title: 'Not retrieved', n: ot.notRetrieved, link: coverageHref({ arm: 'other', stage: 'not_retrieved' }), cls: 'pr-side pr-out' }));
+  nodes.push(box({ x: sideX(colR), y, w: side, title: 'Not retrieved', n: ot.notRetrieved, params: { arm: 'other', stage: 'not_retrieved' }, id: 'other_not_retrieved', cls: 'pr-side pr-out' }));
   arrowV(colL + main / 2, rows[0] + boxH, y); arrowV(colR + main / 2, rows[0] + boxH, y);
   arrowH(colL + main, sideX(colL), y + boxH / 2); arrowH(colR + main, sideX(colR), y + boxH / 2);
   rows.push(y);
   y += boxH + rowGap;
   // row 2
   nodes.push(box({ x: colL, y, w: main, title: 'Reports sought for retrieval', n: db.sought, link: coverageHref({ arm: 'databases', stage: soughtStages }) }));
-  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Not retrieved', n: db.notRetrieved, link: coverageHref({ arm: 'databases', stage: 'not_retrieved' }), cls: 'pr-side pr-out' }));
+  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Not retrieved', n: db.notRetrieved, params: { arm: 'databases', stage: 'not_retrieved' }, id: 'db_not_retrieved', cls: 'pr-side pr-out' }));
   nodes.push(box({ x: colR, y, w: main, title: 'Reports assessed for eligibility', n: ot.assessed, sub: ot.awaitingFullText ? `${ot.awaitingFullText} awaiting` : null, link: coverageHref({ arm: 'other', stage: ['excluded_ft', 'included', 'awaiting_ft', 'unsure_ft', 'awaiting_ta', 'unsure_ta', 'excluded_ta'] }) }));
-  nodes.push(box({ x: sideX(colR), y, w: side, title: 'Excluded', n: ot.excludedFullText, sub: fmtReasons(ot.excludedFullTextReasons) || null, link: coverageHref({ arm: 'other', stage: ['excluded_ft', 'excluded_ta'] }), cls: 'pr-side pr-out' }));
+  nodes.push(box({ x: sideX(colR), y, w: side, title: 'Excluded', n: ot.excludedFullText, sub: fmtReasons(ot.excludedFullTextReasons) || null, params: { arm: 'other', stage: ['excluded_ft', 'excluded_ta'] }, id: 'other_excluded', cls: 'pr-side pr-out' }));
   arrowV(colL + main / 2, rows[1] + boxH, y); arrowV(colR + main / 2, rows[1] + boxH, y);
   arrowH(colL + main, sideX(colL), y + boxH / 2); arrowH(colR + main, sideX(colR), y + boxH / 2);
   rows.push(y);
   y += boxH + rowGap;
   // row 3 (databases arm only)
   nodes.push(box({ x: colL, y, w: main, title: 'Reports assessed for eligibility', n: db.assessed, sub: db.awaitingFullText ? `${db.awaitingFullText} awaiting` : null, link: coverageHref({ arm: 'databases', stage: ['excluded_ft', 'included', 'awaiting_ft', 'unsure_ft'] }) }));
-  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Excluded at full text', n: db.excludedFullText, sub: fmtReasons(db.excludedFullTextReasons) || null, link: coverageHref({ arm: 'databases', stage: 'excluded_ft' }), cls: 'pr-side pr-out' }));
+  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Excluded at full text', n: db.excludedFullText, sub: fmtReasons(db.excludedFullTextReasons) || null, params: { arm: 'databases', stage: 'excluded_ft' }, id: 'excluded_ft', cls: 'pr-side pr-out' }));
   arrowV(colL + main / 2, rows[2] + boxH, y);
   arrowH(colL + main, sideX(colL), y + boxH / 2);
   rows.push(y);
@@ -558,7 +564,7 @@ function prismaDiagram(index) {
   lines.push(s('line', { x1: incX + main / 2, y1: rows[4] + boxH, x2: incX + main / 2, y2: rows[4] + boxH + 18, class: 'pr-arrow pr-bus' }));
   kbStates.forEach(([st, title], i) => {
     const x = kbX0 + i * (kbW + kbGap);
-    nodes.push(box({ x, y, w: kbW, title, n: inc.kb?.[st] ?? 0, link: coverageHref({ stage: 'included', kb: st }), cls: st === 'in_kb' ? 'pr-kb pr-included' : st === 'rejected' || st === 'refused' ? 'pr-kb pr-out' : 'pr-kb' }));
+    nodes.push(box({ x, y, w: kbW, title, n: inc.kb?.[st] ?? 0, params: { stage: 'included', kb: st }, id: `kb_${st}`, cls: st === 'in_kb' ? 'pr-kb pr-included' : st === 'rejected' || st === 'refused' ? 'pr-kb pr-out' : 'pr-kb' }));
     arrowV(x + kbW / 2, rows[4] + boxH + 18, y);
   });
   y += boxH + 16;
@@ -568,6 +574,66 @@ function prismaDiagram(index) {
   svg.append(s('defs', {}, s('marker', { id: 'pr-head', viewBox: '0 0 10 10', refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, orient: 'auto-start-reverse' }, s('path', { d: 'M0 0 L10 5 L0 10 z', class: 'pr-head' }))));
   svg.append(...lines, ...nodes);
   return svg;
+}
+
+// The papers behind a PRISMA box: who (author, year), what, and why they left.
+const boxFilter = (params) => Object.fromEntries(Object.entries(params).map(([k, v]) => [k, Array.isArray(v) ? v : [v]]));
+const boxRows = (index, params) => index.screening.candidates.filter((c) => matches(c, boxFilter(params), ''));
+function whyText(index, c) {
+  const sc = index.screening;
+  if (c.stage === 'duplicate') return `duplicate of ${c.duplicate_of || '?'}`;
+  if (c.stage === 'included') return KB_STATE_TEXT[c.kb] || c.kb;
+  const d = sc.lastDecision(c);
+  const r = c.reason && c.reason !== 'not excluded' ? sc.reasonLabel(c.reason) : (d ? d.decision : STAGE_TEXT[c.stage] || c.stage);
+  return d?.note ? `${r} — ${d.note}` : r;
+}
+function tipEl() {
+  let t = document.getElementById('prtip');
+  if (!t) { t = h('div', { id: 'prtip', class: 'prtip', role: 'tooltip' }); document.body.append(t); }
+  return t;
+}
+function showTip(e, index, title, params) {
+  const sc = index.screening;
+  const rows = boxRows(index, params);
+  const idn = sc.prisma?.identification || {};
+  const t = tipEl();
+  const extra = params.stage === 'duplicate'
+    ? [`${idn.duplicatesRemoved ?? 0} duplicates merged on import and after; ${idn.removedByRule || 0} grey-literature records removed by rule (${Object.entries(idn.removedByRuleTypes || {}).map(([k, v]) => `${k} ${v}`).join(', ') || 'none'}). Counted, not listed.`] : [];
+  t.replaceChildren(h('b', { text: title }),
+    rows.length ? h('ul', {}, rows.slice(0, 12).map((c) => h('li', {}, h('span', { class: 'ay', text: sc.authorYear(c) }), ' — ', h('span', { text: whyText(index, c) })))) : (extra.length ? '' : h('p', { class: 'muted', text: 'No paper listed here.' })),
+    ...extra.map((x) => h('p', { class: 'small muted', text: x })),
+    rows.length > 12 ? h('p', { class: 'small muted', text: `+${rows.length - 12} more — click for the full list` }) : rows.length ? h('p', { class: 'small muted', text: 'Click for the list with titles' }) : '');
+  t.classList.add('on'); moveTip(e);
+}
+function moveTip(e) {
+  const t = tipEl(); const pad = 14;
+  const x = Math.min(e.clientX + pad, window.innerWidth - t.offsetWidth - 8);
+  const y = e.clientY + pad + t.offsetHeight > window.innerHeight ? e.clientY - t.offsetHeight - pad : e.clientY + pad;
+  t.style.left = `${Math.max(8, x)}px`; t.style.top = `${Math.max(8, y)}px`;
+}
+function hideTip() { document.getElementById('prtip')?.classList.remove('on'); }
+
+const BOX_TITLES = { removed: 'Removed before screening', excluded_ta: 'Excluded at title/abstract', excluded_ft: 'Excluded at full text',
+  other_excluded: 'Other sources: excluded', db_not_retrieved: 'Full text not retrieved', other_not_retrieved: 'Other sources: not retrieved' };
+function boxPanel(index, route, rows) {
+  const id = route.params.get('box');
+  if (!id) return null;
+  hideTip();
+  const sc = index.screening;
+  const title = BOX_TITLES[id] || (id.startsWith('kb_') ? `Included — ${KB_STATE_TEXT[id.slice(3)] || id.slice(3)}` : id);
+  const idn = sc.prisma?.identification || {};
+  return h('section', { id: 'boxlist', class: 'panel box-panel' },
+    h('div', { class: 'results-head' }, h('h2', { text: `${title}: ${rows.length} paper${rows.length === 1 ? '' : 's'} listed` }),
+      h('a', { class: 'small', href: '#/coverage', text: 'close ×' })),
+    id === 'removed' ? h('p', { class: 'small muted', text: `This box counts ${idn.duplicatesRemoved ?? 0} duplicates and ${idn.removedByRule || 0} grey-literature records (theses, books, conference records, removed by rule); only duplicates merged after import are listed.` }) : null,
+    rows.length ? h('table', { class: 'cand-list box-list' },
+      h('thead', {}, h('tr', {}, h('th', { text: 'Paper' }), h('th', { text: 'Title' }), h('th', { text: 'Why' }), h('th', { text: 'Decided' }))),
+      h('tbody', {}, rows.slice(0, 400).map((c) => { const d = sc.lastDecision(c); return h('tr', {},
+        h('td', {}, c.key && (index.byPaper.has(c.key) || index.kb.citations?.[c.key]) ? h('a', { href: paperHref(c.key), text: sc.authorYear(c) }) : h('b', { text: sc.authorYear(c) }), h('div', { class: 'small muted', text: c.id })),
+        h('td', {}, h('span', { text: c.title || '(no title)' }), c.doi ? h('div', { class: 'small' }, h('a', { href: `https://doi.org/${c.doi}`, rel: 'noopener', target: '_blank', text: c.doi })) : null),
+        h('td', { text: whyText(index, c) }),
+        h('td', { class: 'small muted', text: d ? `${d.by}${d.date ? ` · ${d.date}` : ''}` : '—' })); }))) : null,
+    rows.length > 400 ? h('p', { class: 'small muted', text: `First 400 of ${rows.length}; the full list is in the Candidates table below.` }) : null);
 }
 
 function coverage(index, route) {
@@ -663,13 +729,14 @@ function coverage(index, route) {
     h('div', { class: 'page-head' }, h('h1', { text: 'Coverage' }), h('span', { class: 'muted small', text: `${sc.candidates.length} candidates · ${searches.length} searches · ${inc.total} included · ${inc.kb?.in_kb ?? 0} in the knowledge base` })),
     h('p', {}, 'How the literature was searched and screened, and where every candidate paper stands: identified, screened, excluded (and why), included, extracted, approved into the knowledge base or rejected. The register is kept by ', h('code', { text: 'scripts/screen.py' }), ' under the protocol in SCREENING.md; decisions are made by a named person, and papers that entered the bibliography before the register existed are shown as "other sources" with legacy decisions.'),
     h('div', { class: 'tiles' },
-      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(sc.candidates.length) }), h('div', { class: 'label', text: 'candidate papers' }), h('div', { class: 'detail', text: `${p?.identification.databases.records ?? 0} database records · ${p?.identification.other.records ?? 0} from other sources` })),
-      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(decided) }), h('div', { class: 'label', text: 'screened' }), h('div', { class: 'detail', text: `${awaiting} awaiting a decision` })),
+      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(sc.candidates.length + (sc.omitted.awaitingTitleAbstract || 0) + (sc.omitted.removedByRule || 0)) }), h('div', { class: 'label', text: 'candidate papers' }), h('div', { class: 'detail', text: `${p?.identification.databases.records ?? 0} database records · ${p?.identification.other.records ?? 0} from other sources` })),
+      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(decided) }), h('div', { class: 'label', text: 'screened' }), h('div', { class: 'detail', text: `${awaiting + (sc.omitted.awaitingTitleAbstract || 0)} awaiting a decision` })),
       h('div', { class: 'tile' }, h('div', { class: 'value', text: String(inc.total) }), h('div', { class: 'label', text: 'included' }), h('div', { class: 'detail', text: `${[...excludedReasons.values()].reduce((a, b) => a + b, 0)} excluded` })),
       h('div', { class: 'tile' }, h('div', { class: 'value', text: String(inc.kb?.in_kb ?? 0) }), h('div', { class: 'label', text: 'in the knowledge base' }), h('div', { class: 'detail', text: `${inc.approvedFindings} approved findings · ${inc.kb?.in_review ?? 0} in review` }))),
     h('h2', { text: 'Flow of papers (PRISMA 2020)' }),
-    h('p', { class: 'small muted', text: 'Click a box to list the candidates it counts. Pink boxes are exits; the knowledge-base row shows where included papers stand in the extraction and review pipeline.' }),
+    h('p', { class: 'small muted', text: 'Hover over a pink box (an exit) to see its papers: author, year and why. Click any box to list its papers with titles just below the diagram. The knowledge-base row shows where included papers stand in the extraction and review pipeline.' }),
     h('div', { class: 'prisma-wrap' }, prismaDiagram(index)),
+    boxPanel(index, route, rows),
     h('div', { class: 'grid-2' },
       h('section', {}, h('h2', { text: 'Why candidates were excluded' }),
         excludedReasons.size ? barList([...excludedReasons.entries()].map(([r, n]) => ({ id: r, n, label: sc.reasonLabel(r) })).sort((a, b) => b.n - a.n), { link: (x) => coverageHref({ reason: x.id }) }) : h('p', { class: 'muted', text: 'Nothing excluded yet.' }),
@@ -683,6 +750,7 @@ function coverage(index, route) {
     h('h2', { text: 'Searches' }),
     searchTable,
     h('h2', { id: 'candidates', text: 'Candidates' }),
+    sc.omitted.awaitingTitleAbstract || sc.omitted.removedByRule ? h('p', { class: 'small muted', text: `Listed: every candidate someone has decided on, and everything past title/abstract. Counted in the flow above but not listed: ${sc.omitted.awaitingTitleAbstract || 0} records awaiting title/abstract screening and ${sc.omitted.removedByRule || 0} grey-literature records removed by rule.` }) : null,
     h('div', { class: 'two-col' },
       h('aside', { class: 'facets', 'aria-label': 'Filters' }, search, facetNodes),
       h('section', {},
@@ -739,6 +807,7 @@ function render() {
     if (a.getAttribute('href') === `#${current}`) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   }
   if (head === 'finding' || location.hash.includes('#f-')) { /* permalinks scroll via :target */ }
+  else if (head === 'coverage' && route.params.get('box')) document.getElementById('boxlist')?.scrollIntoView({ block: 'start' });
   else window.scrollTo(0, 0);
   document.title = `${head ? `${head[0].toUpperCase()}${head.slice(1)}${rest[0] ? ` · ${index.name(rest[0])}` : ''} · ` : ''}Stroke aphasia KB`;
 }

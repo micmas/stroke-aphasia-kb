@@ -287,22 +287,41 @@ def screening(root: Path) -> dict:
     export; the Python counts are the reference the page displays."""
     data = _screening.collect(root)
     candidates = []
+    # Only candidates someone has decided on (or that are past title/abstract) are listed:
+    # the records still awaiting title/abstract screening and those removed by rule before
+    # screening (grey literature) are counted, not listed — tens of thousands of rows would
+    # make the export too large for the explorer and the webapp.
+    omitted = {"awaitingTitleAbstract": 0, "removedByRule": 0}
     for r in data["candidates"]:
+        if r["stage"] == "awaiting_ta":
+            omitted["awaitingTitleAbstract"] += 1
+            continue
+        if _screening.ruled_out(r):
+            omitted["removedByRule"] += 1
+            continue
         item = {k: _clean(r.get(k)) for k in CANDIDATE_FIELDS if _present(r.get(k))}
         item["sources"] = [{"search": s["search"]} if s.get("search") else {"kind": s.get("kind")}
                            for s in (r.get("sources") or []) if isinstance(s, dict)]
-        item["history"] = [{k: _clean(d.get(k)) for k in ("stage", "decision", "reason", "by", "date", "role") if _present(d.get(k))}
+        item["history"] = [{k: (_clean(d.get(k))[:240] if k == "note" else _clean(d.get(k)))
+                            for k in ("stage", "decision", "reason", "by", "date", "role", "note") if _present(d.get(k))}
                            for d in (r.get("screening") or [])]
         if r.get("suggestion"):
             s = r["suggestion"]
             item["suggestion"] = {k: _clean(s.get(k)) for k in ("stage", "decision", "reason", "model", "date") if _present(s.get(k))}
         candidates.append(item)
     searches = [{k: _clean(v) for k, v in s.items() if k not in ("notes",)} for s in data["searches"]]
+    listed = {c["id"] for c in candidates}
+    coverage = []
+    for g in data["coverage"]:
+        g2 = {k: _clean(v) for k, v in g.items() if k not in ("need", "candidates")} | {"need": g.get("need")}
+        g2["candidates"] = [cid for cid in g.get("candidates") or [] if cid in listed]
+        coverage.append(g2)
     return {
         "searches": searches,
         "candidates": candidates,
+        "omitted": omitted,
         "prisma": _clean(data["prisma"]),
-        "coverage": [{k: _clean(v) for k, v in g.items() if k != "need"} | {"need": g.get("need")} for g in data["coverage"]],
+        "coverage": coverage,
         "reasons": data["reasons"],
         "sourceKinds": data["sourceKinds"],
         "stageLabels": data["stageLabels"],

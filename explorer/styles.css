@@ -315,3 +315,15 @@ a.chip:hover { border-color: var(--blue); text-decoration: none; }
 .timeline li.kb::before { background: var(--cyan); }
 .timeline .when { color: var(--ink-2); font-variant-numeric: tabular-nums; margin-right: .5rem; }
 @media (max-width: 640px) { .prisma { min-width: 600px; } }
+
+/* PRISMA box details: hover tip and the list below the diagram */
+.prtip { position: fixed; z-index: 50; max-width: 440px; background: var(--surface); color: var(--ink); border: 1px solid var(--line-strong);
+  border-radius: var(--radius); box-shadow: 0 6px 24px rgba(0,0,0,.14); padding: .55rem .75rem; font-size: .85rem; line-height: 1.35;
+  pointer-events: none; opacity: 0; transition: opacity .12s; }
+.prtip.on { opacity: 1; }
+.prtip ul { margin: .35rem 0 .2rem; padding-left: 1.1rem; }
+.prtip li { margin: .12rem 0; }
+.prtip .ay { font-weight: 600; }
+.box-panel { margin: .2rem 0 1.2rem; }
+.box-panel .results-head h2 { margin: 0; font-size: 1.05rem; }
+.box-list td { vertical-align: top; }
