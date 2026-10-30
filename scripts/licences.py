@@ -222,6 +222,9 @@ def check(key: str, doi: str | None, pdf: Path | None, email: str | None, pause:
             time.sleep(pause)
     text = pdf_text(pdf) if pdf and pdf.exists() else None
     rec = classify(cr, up, text)
+    if up and up.get("is_oa"):   # where to read it free: the best open copy (publisher or repository)
+        best = up.get("best_oa_location") or {}
+        rec["oa_url"] = best.get("url_for_landing_page") or best.get("url") or best.get("url_for_pdf")
     rec.update({"doi": doi, "checked": date.today().isoformat(),
                 "consulted": [s for s, ok in (("crossref", cr is not None), ("unpaywall", up is not None), ("pdf", text is not None)) if ok]})
     if errors:

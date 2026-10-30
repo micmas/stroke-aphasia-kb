@@ -377,8 +377,8 @@ function papers(index) {
   const cited = Object.keys(index.kb.citations || {}).length;
   return frag(
     h('div', { class: 'page-head' }, h('h1', { text: 'Papers' }), h('span', { class: 'muted small', text: `${index.papers.length} papers with findings · ${cited} bibliography entries` })),
-    h('p', { class: 'small' }, h('a', { href: '#/licences', text: 'Licences of all bibliography entries' }),
-      licences ? ` — ${Object.values(licences).filter((r) => r.category === 'cc').length} under Creative Commons, ${Object.keys(licences).length} checked` : ' — not looked up yet'),
+    h('p', { class: 'small' }, h('a', { href: '#/licences', text: 'Licences of these papers' }),
+      licences ? ` — ${index.papers.filter((p) => licences[p.key]?.category === 'cc').length} under Creative Commons, ${index.papers.filter((p) => licences[p.key]).length} of ${index.papers.length} checked` : ' — not looked up yet'),
     h('p', { class: 'small', text: 'Source PDFs are not redistributed; the bibliography carries a DOI for every key. Open a paper to read its findings in page order and check each quote against the PDF.' }),
     index.screening.present ? h('p', { class: 'small muted' }, 'Papers that were screened but have no findings yet are listed under ', h('a', { href: '#/coverage', text: 'Coverage' }), '.') : null,
     table);
@@ -388,7 +388,7 @@ function papers(index) {
 const LICENCE_ORDER = ['cc', 'cc_manuscript', 'free_to_read', 'rights_reserved', 'unknown', 'unchecked'];
 function licencesView(index, route) {
   const lic = index.kb.licences || {};
-  const keys = [...new Set([...Object.keys(index.kb.citations || {}), ...Object.keys(lic)])];
+  const keys = [...index.byPaper.keys()].filter((k) => (index.byPaper.get(k) || []).length);   // papers with findings in this export
   const rows = keys.map((key) => {
     const rec = lic[key];
     const findings = (index.byPaper.get(key) || []).length;
@@ -404,7 +404,7 @@ function licencesView(index, route) {
     h('div', { class: 'label' }, c === 'unchecked' ? h('span', { class: 'badge badge-licence badge-licence-unknown', text: 'not checked yet' }) : licenceBadge({ category: c })));
   return frag(
     h('div', { class: 'page-head' }, h('h1', { text: 'Licences' }),
-      h('span', { class: 'muted small', text: `${keys.length} bibliography entries · ${Object.keys(lic).length} checked` })),
+      h('span', { class: 'muted small', text: `${keys.length} papers with findings · ${keys.filter((k) => lic[k]).length} checked` })),
     h('p', { class: 'small', text: 'What each paper may be reused under, from Crossref, Unpaywall and the PDF’s own licence statement (screen.py licences). Under a Creative Commons licence the quoted passages are reused under that licence with the citation as attribution; for every other paper they are short quotations for checking a claim. Source PDFs are not redistributed.' }),
     Object.keys(lic).length ? null : h('p', { class: 'caveat', text: 'No licence has been looked up yet: run "python scripts/screen.py licences --execute" and re-export.' }),
     h('div', { class: 'tiles' }, LICENCE_ORDER.filter((c) => counts[c]).map(tile)),
@@ -420,7 +420,8 @@ function licencesView(index, route) {
         h('td', { class: 'num', text: String(r.findings) }),
         h('td', { class: 'small' },
           r.doi ? h('a', { href: `https://doi.org/${r.doi}`, rel: 'noopener', target: '_blank', text: 'DOI' }) : null,
-          r.rec?.url ? frag(r.doi ? ' · ' : '', h('a', { href: r.rec.url, rel: 'noopener', target: '_blank', text: /creativecommons|terms|licen|rights|pages/i.test(r.rec.url) ? 'terms' : 'free copy' })) : null))))));
+          r.rec?.oa_url ? frag(r.doi ? ' · ' : '', h('a', { href: r.rec.oa_url, rel: 'noopener', target: '_blank', text: 'free copy' })) : null,
+          r.rec?.url && r.rec.url !== r.rec.oa_url ? frag(' · ', h('a', { href: r.rec.url, rel: 'noopener', target: '_blank', text: /creativecommons|terms|licen|rights|pages|policies/i.test(r.rec.url) ? 'terms' : 'source' })) : null))))));
 }
 
 function paper(index, key) {
@@ -440,7 +441,8 @@ function paper(index, key) {
       return h('p', { class: 'small' }, 'Licence ', licenceBadge(lic),
         lic.label && !['cc', 'cc_manuscript'].includes(lic.category) ? ` ${lic.label}` : '',
         lic.version ? ` · ${lic.version}` : '',
-        lic.url ? frag(' · ', h('a', { href: lic.url, rel: 'noopener', target: '_blank', text: 'terms' })) : '',
+        lic.oa_url ? frag(' · ', h('a', { href: lic.oa_url, rel: 'noopener', target: '_blank', text: 'free copy' })) : '',
+        lic.url && lic.url !== lic.oa_url ? frag(' · ', h('a', { href: lic.url, rel: 'noopener', target: '_blank', text: 'terms' })) : '',
         lic.source ? h('span', { class: 'muted', text: ` · from ${lic.source}${lic.checked ? `, ${lic.checked}` : ''}` }) : null);
     })(),
     h('p', { class: 'small muted', text: `${plural(rows.length, 'finding')} across ${plural(new Set(rows.map((r) => r.source_id)).size, 'entry', 'entries')} · approved by a person: ${prov.human} · model: ${prov.model} · legacy: ${prov.legacy}` }),
