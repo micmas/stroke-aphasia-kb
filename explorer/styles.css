@@ -337,3 +337,5 @@ a.chip:hover { border-color: var(--blue); text-decoration: none; }
 .badge-licence-free_to_read { background: var(--panel); color: var(--ink); border-color: var(--blue); }
 .badge-licence-rights_reserved { background: var(--panel); color: var(--ink-2); border-color: var(--line-strong); }
 .badge-licence-unknown { background: transparent; color: var(--ink-2); border-color: var(--line-strong); border-style: dashed; }
+.tile-link { text-decoration: none; color: inherit; cursor: pointer; }
+.tile-link.active { outline: 2px solid var(--blue); }
