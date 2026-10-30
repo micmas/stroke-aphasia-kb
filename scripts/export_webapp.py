@@ -107,7 +107,7 @@ def licences(root: Path) -> dict[str, dict]:
     if not path.exists():
         return {}
     data = (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("papers") or {}
-    keep = ("category", "label", "url", "version", "source", "checked")
+    keep = ("category", "label", "url", "oa_url", "version", "source", "checked")
     return {k: {f: v[f] for f in keep if v.get(f) is not None} for k, v in data.items() if isinstance(v, dict)}
 
 

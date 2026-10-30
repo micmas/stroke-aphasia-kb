@@ -1938,6 +1938,94 @@ def cmd_extract(args) -> int:
     return 1 if failed else 0
 
 
+_FACTS: dict | None = None
+
+
+def has_findings(key: str) -> bool:
+    """The KB holds findings from this paper: approved, or drafts not rejected."""
+    global _FACTS
+    if _FACTS is None:
+        _FACTS = S.kb_facts()
+    f = _FACTS.get(key) or {}
+    return bool(f.get("approved_findings") or (f.get("drafts", 0) - f.get("draft_rejected", 0)) > 0)
+
+
+def citation_status() -> list[tuple[str, str, str]]:
+    """(key, verdict, why) for every citations.md entry: keep / remove / retire."""
+    cites = S.citation_blocks(ROOT)
+    rows = S.enrich(S.load_candidates(), S.kb_facts())
+    stages: dict[str, set] = {}
+    for r in rows:
+        if r.get("key"):
+            stages.setdefault(r["key"], set()).add(r["stage"])
+    out = []
+    for key, rec in cites.items():
+        st = stages.get(key, set())
+        found = has_findings(key)
+        excluded = st and st <= {"excluded_ta", "excluded_ft", "duplicate", "not_retrieved"}
+        if found and excluded:
+            out.append((key, "retire", f"has findings but was excluded ({', '.join(sorted(st))}) — retire its findings first"))
+        elif found:
+            out.append((key, "keep", "findings in the KB"))
+        elif "included" in st:
+            out.append((key, "keep", "included at full text, awaiting extraction"))
+        elif rec.get("tag") == "refused":
+            out.append((key, "remove", "tagged [refused], no findings" + (f"; register: {', '.join(sorted(st))}" if st else "")))
+        else:
+            out.append((key, "remove", "no findings, not included" + (f" (register: {', '.join(sorted(st))})" if st else " (not in the register)")))
+    return out
+
+
+def remove_citation_blocks(text: str, keys: set[str]) -> str:
+    """citations.md without the `## @Key` blocks of `keys` (each block runs to the next `## ` heading or `---`)."""
+    out, skip = [], False
+    for line in text.splitlines(keepends=True):
+        if line.startswith("## ") or line.strip() == "---":
+            m = S._CITE_HEAD.match(line)
+            skip = bool(m and m.group(1) in keys)
+        if not skip:
+            out.append(line)
+    return re.sub(r"\n{3,}", "\n\n", "".join(out))
+
+
+def cmd_citations(args) -> int:
+    """citations.md holds the papers the KB uses: papers with findings and papers included at
+    full text that are waiting for extraction. Everything else leaves it (the screening register
+    keeps each candidate's DOI, title and decision; `register` re-adds a paper if it is included
+    later). Papers excluded at screening that still have findings are listed to retire first."""
+    status = citation_status()
+    groups = collections.defaultdict(list)
+    for key, verdict, why in status:
+        groups[verdict].append((key, why))
+    print(f"citations.md: {len(status)} entries · keep {len(groups['keep'])} · remove {len(groups['remove'])} · "
+          f"retire first {len(groups['retire'])}")
+    for verdict in ("remove", "retire"):
+        for key, why in sorted(groups[verdict]):
+            print(f"  {verdict:<7} {key:<28} {why}")
+    if args.show_kept:
+        for key, why in sorted(groups["keep"]):
+            print(f"  keep    {key:<28} {why}")
+    if not groups["remove"]:
+        return 0
+    if not args.execute:
+        print("Dry run — nothing removed. Add --execute (after any extraction run has finished: extract.py writes citations.md too).")
+        return 0
+    gone = {k for k, _ in groups["remove"]}
+    path = ROOT / "citations.md"
+    path.write_text(remove_citation_blocks(path.read_text(encoding="utf-8"), gone), encoding="utf-8")
+    candidates = S.load_candidates()
+    cleared = 0
+    for c in candidates:
+        if c.get("key") in gone:
+            c["former_key"] = c.pop("key")
+            cleared += 1
+    if cleared:
+        S.save_candidates(candidates)
+    _log("CITATIONS-PRUNED", f"{len(gone)} citations.md entries", f"no findings, not included: {', '.join(sorted(gone))}")
+    print(f"removed {len(gone)} entries from citations.md; {cleared} register candidate(s) keep the key as former_key")
+    return 0
+
+
 LICENCES = ROOT / "screening" / "licences.yaml"
 
 
@@ -1958,13 +2046,18 @@ def cmd_licences(args) -> int:
         print("  " + " · ".join(f"{L.CATEGORY_TEXT[c]} {n}" for c, n in L.summary(done).items() if n))
         return 0
     cites = S.citation_blocks(ROOT)
-    keys = [k if k.startswith("@") else f"@{k}" for k in args.key] if args.key else sorted(cites)
+    if args.key:
+        keys = [k if k.startswith("@") else f"@{k}" for k in args.key]
+    elif args.all_cited:
+        keys = sorted(cites)
+    else:   # the papers the KB actually holds findings from (approved or draft)
+        keys = sorted(k for k in cites if has_findings(k))
     todo = [k for k in keys if args.refresh or k not in done or done[k].get("errors")]
     checked = len(keys) - len(todo)
     if args.limit:
         todo = todo[: args.limit]
     email = args.email or os.environ.get("UNPAYWALL_EMAIL") or MAILTO
-    print(f"{len(keys)} paper(s) in the bibliography · {checked} already checked · checking {len(todo)}"
+    print(f"{len(keys)} paper(s) {'with findings' if not (args.key or args.all_cited) else 'selected'} · {checked} already checked · checking {len(todo)}"
           f" (Crossref{', Unpaywall' if email else ''}, then the PDF's first and last pages)")
     if not todo:
         print("  nothing to check (--refresh to look again)")
@@ -2059,8 +2152,13 @@ def _cli(argv=None) -> int:
     p.set_defaults(fn=cmd_recall)
     p = sub.add_parser("fulltext", help="the full-text stage: what to assess, and for included papers the next step")
     p.set_defaults(fn=cmd_fulltext)
+    p = sub.add_parser("citations", help="keep citations.md to the papers the KB uses; list the rest (dry run) or remove them")
+    p.add_argument("--show-kept", action="store_true", help="also list the entries that stay")
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(fn=cmd_citations)
     p = sub.add_parser("licences", help="the licence of each paper in the bibliography (Crossref, Unpaywall, the PDF) → screening/licences.yaml")
     p.add_argument("--key", action="append", help="only this @Key (repeatable)")
+    p.add_argument("--all-cited", action="store_true", help="every citations.md entry, not only the papers with findings")
     p.add_argument("--refresh", action="store_true", help="look again at papers already checked")
     p.add_argument("--limit", type=int, help="only the first N")
     p.add_argument("--email", help="e-mail for Unpaywall and Crossref's polite pool (default: UNPAYWALL_EMAIL, else the repository's contact)")
