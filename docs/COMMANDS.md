@@ -30,7 +30,7 @@ flag, listed below).
 | 7 | Extraction, one paper at a time | `extract.py --pdf papers/<Key>.pdf` | [2](#2-extracting) |
 | 8 | Review: checks, the workbench, focused re-extraction, approval | `auto_review.py` · `review_app.py` · `refocus.py` · `promote.py` | [3](#3-reviewing) |
 | 9 | Report and sync | `screen.py status` · `kb_status.py` · git | [4](#4-checking-the-kb) · [8](#8-git-and-the-papers-folder) |
-| 10 | Refresh the frozen copies: explorer, webapp and notebook, each as approved-only and approved + drafts | `refresh_snapshots.py --commit` | [4](#refresh_snapshotspy--the-explorer-webapp-and-notebook-copies) |
+| 10 | Snapshot, whenever you choose: commit the KB and refresh the explorer, webapp and notebook copies (approved-only and approved + drafts) | `snapshot.py` | [4](#snapshotpy--commit-a-snapshot-explorer-webapp-and-notebook-copies) |
 
 A paper reaches extraction only after it was included at full text
 (`screen.py fulltext` lists what each paper needs next). Do not use
@@ -70,7 +70,7 @@ python scripts/screen.py pdfs --execute                        # links each save
 python scripts/screen.py register --execute                    # on inclusion: citation entry + key, and the linked PDF renamed <Key>.pdf
 python scripts/intake_papers.py --execute --no-register        # strips cover pages, OCRs scans (and renames any PDF of a cited paper)
 python scripts/screen.py extract                               # dry run: the queue (included, PDF, no findings)
-python scripts/screen.py extract --execute                     # extract them one after another (≈ 25 min each; --limit N)
+python scripts/screen.py extract --execute                     # extract them one after another (≈ 25 min each; --limit N; PDFs over 60 pages skipped, --max-pages N)
 python scripts/screen.py extract --backfill --execute          # bring included papers' findings up to the current schema (missing fields only)
 python scripts/screen.py extract --reextract-below 2.7 --execute  # re-extract included papers whose findings are still old drafts (≈ 25 min each)
 python scripts/auto_review.py --all --llm-review               # checks, tiers and model opinion on every pending draft
@@ -78,7 +78,7 @@ python scripts/review_app.py                                   # index of every 
 python scripts/refocus.py --all --execute                      # findings for every paper with pending marks
 python scripts/promote.py --list                               # what is left for you
 for f in drafts/*/*__<Key>.md; do python scripts/promote.py --approve "$f" --reviewer michele; done   # a paper you reviewed
-python scripts/refresh_snapshots.py --commit                   # explorer exports, webapp assets, calmar's submodule — both versions
+python scripts/snapshot.py                                     # whenever you want: commit + explorer, webapp, notebook copies (both versions)
 git pull --rebase --autostash && git push                      # then push calmar and the webapp branch
 ```
 
@@ -91,7 +91,6 @@ python scripts/screen.py extract --execute 2>&1 | tee -a logs/weekend.log
 python scripts/screen.py extract --reextract-below 2.7 --execute 2>&1 | tee -a logs/weekend.log   # before backfill: re-extracted papers need none
 python scripts/screen.py extract --backfill --execute 2>&1 | tee -a logs/weekend.log
 python scripts/auto_review.py --all --llm-review 2>&1 | tee -a logs/weekend.log
-python scripts/refresh_snapshots.py --commit 2>&1 | tee -a logs/weekend.log
 ```
 
 Approval stays a person's act per paper: approve the drafts of a paper
@@ -619,7 +618,9 @@ Step 9 of the flow. For the screening side: `screen.py status` (PRISMA
 numbers, recall, kappa), `screen.py recall`, `screen.py progress` and
 `screen.py fulltext` (section 0).
 
-### `refresh_snapshots.py` — the explorer, webapp and notebook copies
+### `snapshot.py` — commit a snapshot: explorer, webapp and notebook copies
+
+Run it whenever you want; nothing runs it for you.
 
 Three places hold a frozen copy of the KB. Each gets both versions:
 approved findings only, and approved + unreviewed drafts (every draft
@@ -633,7 +634,8 @@ finding marked as such).
 
 | Option | Meaning |
 |---|---|
-| `--commit` | Commit the KB's changes first (entries, drafts, logs, register), then the exports, the webapp assets (on its current branch, never `main`) and calmar's submodule pointer. Never pushes. |
+| *(default)* | Commit the KB's changes first (entries, drafts, logs, register), then the exports, the webapp assets (on its current branch, never `main`) and calmar's submodule pointer. Never pushes. |
+| `--no-commit` | Write the copies, commit nothing. |
 | `--only explorer webapp notebook` | Refresh only these. |
 | `--webapp DIR`, `--calmar DIR` | Where the other checkouts are (default: beside this one in `~/GITHUB`). |
 

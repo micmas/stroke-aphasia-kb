@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Refresh every frozen copy of the knowledge base after findings change.
+"""Commit a snapshot of the knowledge base and refresh every frozen copy of it.
 
 The KB is read in three places that each hold a snapshot:
 
@@ -16,17 +16,17 @@ The KB is read in three places that each hold a snapshot:
              approved-only or approved + drafts with its `evidence` setting, so
              refreshing it means moving the submodule to this KB's HEAD.
 
-Run it after extraction, backfill or review — by hand or as the last step of a
-batch. Without --commit it writes the snapshots and leaves every repository's
-changes for you to look at; with --commit it first commits the KB's own changes
-(so the snapshots record a commit, not a dirty tree), then commits the
-exports, the webapp assets (on the webapp's current branch, never on main) and
-the calmar submodule pointer. Nothing is pushed: push the KB first, then calmar
-and the webapp branch.
+Run it whenever you want the copies to catch up with the KB — it is never run
+for you. It first commits the KB's own changes (entries, drafts, logs, register;
+so every copy records a commit, not a dirty tree), then writes and commits the
+explorer exports, the webapp assets (on the webapp's current branch, never on
+main) and the calmar submodule pointer. Nothing is pushed: push the KB first,
+then calmar and the webapp branch. --no-commit writes the copies and commits
+nothing, to look before you snapshot.
 
-    python scripts/refresh_snapshots.py                 # write all three, commit nothing
-    python scripts/refresh_snapshots.py --commit        # commit KB, exports, webapp branch, calmar pointer
-    python scripts/refresh_snapshots.py --only explorer # just the two explorer exports
+    python scripts/snapshot.py                     # commit + refresh all three
+    python scripts/snapshot.py --no-commit         # refresh only, commit nothing
+    python scripts/snapshot.py --only explorer     # just the two explorer exports
 """
 from __future__ import annotations
 
@@ -84,7 +84,7 @@ def refresh_kb_commit(args) -> None:
         return
     n = len(dirty.splitlines())
     if not args.commit:
-        print(f"KB: {n} uncommitted file(s) — the snapshots will record a dirty tree (--commit commits them first)")
+        print(f"KB: {n} uncommitted file(s) — the snapshots will record a dirty tree (run without --no-commit to commit them first)")
         return
     h = commit(ROOT, KB_CONTENT, f"KB snapshot {date.today().isoformat()}: extraction, backfill and review results ({n} files)")
     print(f"KB: committed {n} file(s) as {h}")
@@ -148,7 +148,7 @@ def refresh_notebook(args) -> None:
     git(sub, "checkout", "-q", "--detach", head)
     print(f"notebook: calmar's stroke-aphasia-kb/ now at {head[:7]} (the notebook's evidence setting picks approved or all)")
     if git(ROOT, "status", "--porcelain"):
-        print("notebook: note — uncommitted KB changes are not in the submodule (run with --commit to include them)")
+        print("notebook: note — uncommitted KB changes are not in the submodule (run without --no-commit to include them)")
     if args.commit:
         h = commit(calmar, ["stroke-aphasia-kb"], f"stroke-aphasia-kb → {head[:7]}")
         print(f"notebook: {'committed ' + h + ' in calmar' if h else 'pointer unchanged'}")
@@ -157,7 +157,8 @@ def refresh_notebook(args) -> None:
 def main(argv=None) -> int:
     p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0],
                                 formatter_class=argparse.RawDescriptionHelpFormatter, epilog=__doc__.split("\n\n", 1)[1])
-    p.add_argument("--commit", action="store_true", help="commit the KB changes first, then each snapshot (never pushes)")
+    p.add_argument("--no-commit", dest="commit", action="store_false",
+                   help="write the copies but commit nothing (default: commit the KB, then each copy; never pushes)")
     p.add_argument("--only", nargs="+", choices=TARGETS, help="refresh only these (default: all three)")
     p.add_argument("--webapp", default=str(GITHUB / "webapps" / "apps" / "calmar"), help="the webapp's apps/calmar folder")
     p.add_argument("--calmar", default=str(GITHUB / "calmar"), help="the calmar repository (holds the submodule)")

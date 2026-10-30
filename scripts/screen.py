@@ -1803,6 +1803,16 @@ def to_extract() -> list[tuple[dict, Path]]:
     return out
 
 
+def pdf_pages(pdf: Path) -> int | None:
+    """Page count of a PDF, or None when it cannot be read here."""
+    try:
+        import fitz  # PyMuPDF
+        with fitz.open(pdf) as doc:
+            return doc.page_count
+    except Exception:  # noqa: BLE001
+        return None
+
+
 def included_findings_versions() -> dict[str, dict]:
     """@Key of each paper included at full text → {"drafts": {schema versions}, "canon": {…}, "row": enriched row}."""
     from aphasia_kb import parse_markdown
@@ -1882,6 +1892,20 @@ def cmd_extract(args) -> int:
                 print("Dry run — nothing re-extracted. Add --execute.")
         return 0
     todo = to_extract()
+    too_long = []
+    if args.max_pages:
+        kept = []
+        for r, pdf in todo:
+            n = pdf_pages(pdf)
+            (too_long if n and n > args.max_pages else kept).append((r, pdf, n) if n and n > args.max_pages else (r, pdf))
+        todo = kept
+    if too_long:
+        print(f"skipped — more than {args.max_pages} pages (a long review or report; the model reads the whole text in one call "
+              f"and a 100+ page PDF can sit for hours before the first token):")
+        for r, pdf, n in too_long:
+            print(f"    {r['id']}  {str(r['key']):<26} papers/{pdf.name}  {n} pages")
+        print("  extract one anyway: screen.py extract --max-pages 0 --limit 1 … or extract.py --pdf papers/<Key>.pdf;"
+              " or reconsider the full-text decision")
     if args.limit:
         todo = todo[: args.limit]
     if not todo:
@@ -1984,6 +2008,8 @@ def _cli(argv=None) -> int:
     p.add_argument("--max-tokens", dest="max_tokens", type=int)
     p.add_argument("--timeout", type=int, help="seconds per paper (extract.py default 3600)")
     p.add_argument("--lean", action="store_true")
+    p.add_argument("--max-pages", type=int, default=60, metavar="N",
+                   help="skip PDFs longer than N pages (default 60; 0 = no limit)")
     p.add_argument("--backfill", action="store_true", help="fill missing current-schema fields of included papers (backfill.py)")
     p.add_argument("--reextract-below", metavar="VERSION", help="re-extract included papers whose drafts are in files older than this schema, e.g. 2.7")
     p.add_argument("--execute", action="store_true")

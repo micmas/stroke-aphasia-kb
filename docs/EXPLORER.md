@@ -91,7 +91,7 @@ surfaces.
 python3 scripts/export_webapp.py --out export/stroke-aphasia-kb.json --fixtures export --indent 1
 python3 scripts/export_webapp.py --include approved,in_review,draft --out export/stroke-aphasia-kb-drafts.json
 npm test                  # the JavaScript port against the fresh fixtures
-# or all copies at once (explorer, webapp, notebook): python3 scripts/refresh_snapshots.py
+# or all copies at once (explorer, webapp, notebook): python3 scripts/snapshot.py --no-commit
 
 The explorer's **Findings** switch (`?kb=drafts`) shows the second export:
 approved findings plus unreviewed drafts, with a warning on the overview
