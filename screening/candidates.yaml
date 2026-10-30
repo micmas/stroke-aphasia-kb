@@ -8402,6 +8402,7 @@ candidates:
   screening: []
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: imag.a.1050.pdf
 - id: C0307
   doi: 10.1186/s13256-026-06194-6
   pmid: '42343368'
@@ -15506,6 +15507,7 @@ candidates:
     seq: 164
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: awaf036.pdf
 - id: C0708
   doi: 10.1093/braincomms/fcae370
   pmid: '39845737'
@@ -16783,6 +16785,7 @@ candidates:
   screening: []
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: 1-s2.0-S0028393224002227-main.pdf
 - id: C0781
   doi: 10.1186/s12906-024-04658-0
   pmid: '39358731'
@@ -17825,6 +17828,7 @@ candidates:
     seq: 168
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: awae195.pdf
 - id: C0844
   doi: 10.1016/j.radcr.2024.05.011
   pmid: '38872752'
@@ -21090,6 +21094,7 @@ candidates:
     rationale: Research Square preprint of an included journal article
     by: claude (pre-fill)
     date: '2026-10-28'
+  pdf_file: v1_covered_3cd671bd-1fe9-4e66-9f8b-9c7a6730af0e.pdf
 - id: C1032
   doi: 10.12890/2023_003947
   pmid: '37455687'
@@ -21420,6 +21425,7 @@ candidates:
     seq: 179
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: 1-s2.0-S2213158223001419-main.pdf
 - id: C1051
   doi: 10.1186/s12883-023-03249-9
   pmid: '37316776'
@@ -26627,6 +26633,7 @@ candidates:
     seq: 173
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: 1-s2.0-S266695602100074X-main.pdf
 - id: C1337
   doi: 10.1097/wnn.0000000000000294
   pmid: '35239599'
@@ -26781,6 +26788,7 @@ candidates:
     seq: 169
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: fcac001.pdf
 - id: C1345
   doi: 10.1016/j.neuroimage.2022.119001
   pmid: '35172200'
@@ -29516,6 +29524,7 @@ candidates:
     seq: 180
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: fnhum-15-672665.pdf
 - id: C1496
   doi: 10.1007/s00234-021-02762-3
   pmid: '34244817'
@@ -31284,6 +31293,8 @@ candidates:
     seq: 162
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: >-
+    wilmskoetter-et-al-2021-indirect-white-matter-pathways-are-associated-with-treated-naming-improvement-in-aphasia.pdf
 - id: C1597
   doi: 10.1080/02687038.2019.1693026
   pmid: '33716377'
@@ -33573,6 +33584,7 @@ candidates:
     seq: 158
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: 1-s2.0-S1053811920308600-main.pdf
 - id: C1729
   doi: 10.1007/s13760-020-01493-1
   pmid: '32948996'
@@ -35407,6 +35419,7 @@ candidates:
     seq: 167
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: fneur-11-00120.pdf
 - id: C1830
   doi: 10.11477/mf.1416201509
   pmid: '32152254'
@@ -36970,6 +36983,7 @@ candidates:
     seq: 153
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: jocn_a_01478.pdf
 - id: C1917
   doi: 10.1016/j.wneu.2019.09.141
   pmid: '31589986'
@@ -40450,6 +40464,7 @@ candidates:
     seq: 161
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: s00429-018-1716-z.pdf
 - id: C2118
   doi: 10.5692/clinicalneurol.cn-001170
   pmid: '30068812'
@@ -40635,6 +40650,8 @@ candidates:
     seq: 175
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: >-
+    wright-et-al-2018-leukoaraiosis-is-independently-associated-with-naming-outcome-in-poststroke-aphasia.pdf
 - id: C2128
   doi: 10.1002/hbm.24289
   pmid: '29972618'
@@ -42501,6 +42518,7 @@ candidates:
     seq: 165
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: 1-s2.0-S2213158217302802-main.pdf
 - id: C2235
   doi: 10.1016/j.cortex.2017.10.006
   pmid: '29157937'
@@ -42653,6 +42671,7 @@ candidates:
     seq: 171
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: bilateral-hemispheric-changes-and-language-outcomes-in.pdf
 - id: C2243
   doi: 10.1007/s11883-017-0686-6
   pmid: '29116473'
@@ -44693,6 +44712,7 @@ candidates:
     seq: 157
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: fneur-08-00054.pdf
 - id: C2357
   doi: 10.1155/2017/2761913
   pmid: '28270937'
@@ -44912,6 +44932,7 @@ candidates:
     seq: 178
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: pillay-et-al-2017-lesion-localization-of-speech-comprehension-deficits-in-chronic-aphasia.pdf
 - id: C2369
   doi: 10.1097/md.0000000000005995
   pmid: '28178140'
@@ -51353,6 +51374,7 @@ candidates:
     seq: 155
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: fnhum-08-00845.pdf
 - id: C2739
   doi: 10.1007/s00429-014-0926-2
   pmid: '25359657'
@@ -51381,6 +51403,7 @@ candidates:
     seq: 159
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: s00429-014-0926-2.pdf
 - id: C2740
   doi: 10.1007/s00429-014-0925-3
   pmid: '25352157'
@@ -52111,6 +52134,7 @@ candidates:
     seq: 176
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: bhu152.pdf
 - id: C2781
   doi: 10.1371/journal.pone.0101805
   pmid: '24992634'
@@ -59531,6 +59555,7 @@ candidates:
     seq: 151
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: awr240.pdf
 - id: C3213
   doi: 10.2217/fnl.10.44
   pmid: '21088709'
@@ -59556,6 +59581,7 @@ candidates:
     seq: 152
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: From singing to speaking  facilitating recovery from nonfluent aphasia.pdf
 - id: C3214
   doi: 10.1093/brain/awr198
   pmid: '21908872'
@@ -104347,6 +104373,7 @@ candidates:
   screening: []
   doc_type: journal
   doc_type_raw: JOUR
+  pdf_file: fcae364.pdf
 - id: C6025
   doi: 10.3389/fmed.2024.1433380
   pmid: '39380730'
@@ -109962,6 +109989,7 @@ candidates:
     seq: 156
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: 6822.full.pdf
 - id: C6376
   doi: 10.2147/ndt.s78037
   pmid: '25914535'
@@ -127004,6 +127032,7 @@ candidates:
     seq: 170
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: 2021-predictors-of-poststroke-aphasia-recovery.pdf
 - id: C7443
   doi: 10.1177/0269215521999554
   pmid: '33706572'
@@ -264443,6 +264472,7 @@ candidates:
   screening: []
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: 1-s2.0-S0165032725019214-main.pdf
 - id: C16576
   doi: 10.3389/fneur.2026.1696228
   title: >-
@@ -332278,6 +332308,7 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 172
+  pdf_file: 1745-6215-14-24.pdf
 - id: C21301
   doi: 10.1111/j.1460-6984.2012.00202.x
   pmid: '23317383'

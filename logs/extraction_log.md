@@ -601,3 +601,6 @@ add an `EXTRACTED` line for every run.
 2026-10-30 | SCREENED | — | full_text:exclude 1 | 1 decisions | by: michele
 2026-10-29 | SCREENED | — | full_text:exclude 1 | 1 decisions | by: michele
 2026-10-30 | SCREENED | — | title_abstract (screen_app) | 56 decisions: exclude 1, include 55 | by: michele
+2026-10-30 | PDFS-LINKED | — | screening register | 20 PDFs linked to their records
+2026-10-30 | PDFS-LINKED | — | screening register | 7 PDFs linked to their records
+2026-10-30 | PDFS-LINKED | — | screening register | 2 PDFs linked to their records
