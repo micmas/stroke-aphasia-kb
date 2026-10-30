@@ -352,6 +352,8 @@ function matrix(index, route) {
 
 function papers(index) {
   const sortKey = { key: 'key' };
+  const licences = Object.keys(index.kb.licences || {}).length ? index.kb.licences : null;
+  if (licences) for (const p of index.papers) p.licence = (licences[p.key] || {}).category || 'zz';
   const table = h('table', { class: 'paper-list sortable' });
   const render = (by, dir) => {
     const rows = index.papers.slice().sort((a, b) => {
@@ -361,12 +363,13 @@ function papers(index) {
     });
     const head = (label, k, numeric = false) => h('th', { class: numeric ? 'num' : '' }, h('button', { type: 'button', 'aria-sort': by === k ? (dir === 'asc' ? 'ascending' : 'descending') : 'none', onclick: () => render(k, by === k && dir === 'desc' ? 'asc' : 'desc'), text: label }));
     table.replaceChildren(
-      h('thead', {}, h('tr', {}, head('Key', 'key'), head('First author', 'author'), head('Year', 'year', true), head('Findings', 'n', true), head('Person-approved', 'human', true), h('th', { text: 'Entries' }), index.screening.present ? h('th', { text: 'Screening' }) : null)),
+      h('thead', {}, h('tr', {}, head('Key', 'key'), head('First author', 'author'), head('Year', 'year', true), head('Findings', 'n', true), head('Person-approved', 'human', true), h('th', { text: 'Entries' }), licences ? head('Licence', 'licence') : null, index.screening.present ? h('th', { text: 'Screening' }) : null)),
       h('tbody', {}, rows.map((p) => h('tr', {},
         h('td', {}, h('a', { class: 'chip', href: paperHref(p.key), text: p.key })),
         h('td', { text: p.author }), h('td', { class: 'num', text: p.year ? String(p.year) : '—' }),
         h('td', { class: 'num', text: String(p.n) }), h('td', { class: 'num', text: String(p.human) }),
         h('td', { class: 'small' }, p.entries.slice(0, 4).map((id, i) => [i ? ', ' : '', entryLink(index, id)]), p.entries.length > 4 ? ` +${p.entries.length - 4}` : ''),
+        licences ? h('td', {}, licenceBadge(licences[p.key])) : null,
         index.screening.present ? h('td', {}, (() => { const c = index.screening.byKey.get(p.key); return c ? h('a', { href: coverageHref({ q: c.id }), title: `${c.id} · ${STAGE_TEXT[c.stage] || c.stage}` }, stageBadge(c.stage)) : h('span', { class: 'muted small', text: 'not in the register' }); })()) : null))));
   };
   render('n', 'desc');
@@ -389,6 +392,15 @@ function paper(index, key) {
     h('div', { class: 'page-head' }, h('h1', { text: k })),
     text ? h('p', { text }) : h('p', { class: 'muted', text: 'Not in the bibliography.' }),
     p?.doi ? h('p', { class: 'small' }, 'DOI ', h('a', { href: `https://doi.org/${p.doi}`, rel: 'noopener', target: '_blank', text: p.doi })) : null,
+    (() => {
+      const lic = index.kb.licences?.[k];
+      if (!lic) return null;
+      return h('p', { class: 'small' }, 'Licence ', licenceBadge(lic),
+        lic.label && !['cc', 'cc_manuscript'].includes(lic.category) ? ` ${lic.label}` : '',
+        lic.version ? ` · ${lic.version}` : '',
+        lic.url ? frag(' · ', h('a', { href: lic.url, rel: 'noopener', target: '_blank', text: 'terms' })) : '',
+        lic.source ? h('span', { class: 'muted', text: ` · from ${lic.source}${lic.checked ? `, ${lic.checked}` : ''}` }) : null);
+    })(),
     h('p', { class: 'small muted', text: `${plural(rows.length, 'finding')} across ${plural(new Set(rows.map((r) => r.source_id)).size, 'entry', 'entries')} · approved by a person: ${prov.human} · model: ${prov.model} · legacy: ${prov.legacy}` }),
     screeningPanel(index, k),
     rows.length ? h('h2', { text: 'Findings, in page order' }) : h('p', { class: 'muted', text: 'No approved finding cites this paper in this export.' }),
@@ -477,6 +489,20 @@ function s(tag, attrs = {}, ...children) {
 }
 
 const coverageHref = (params = {}) => href('/coverage', params);
+const LICENCE_TEXT = { cc: 'Creative Commons', cc_manuscript: 'CC (manuscript)', free_to_read: 'free to read', rights_reserved: 'rights reserved', unknown: 'not known' };
+const LICENCE_TITLE = {
+  cc: 'The published version is under a Creative Commons licence',
+  cc_manuscript: 'Only the accepted manuscript is under a Creative Commons licence; the published version is not',
+  free_to_read: 'A free copy exists, without an open licence',
+  rights_reserved: 'Publisher terms: quoted here as short attributed passages only',
+  unknown: 'No licence metadata found (screen.py licences)',
+};
+function licenceBadge(rec) {
+  if (!rec) return h('span', { class: 'muted small', text: '—' });
+  const c = rec.category || 'unknown';
+  const label = c === 'cc' || c === 'cc_manuscript' ? (rec.label || LICENCE_TEXT[c]) : LICENCE_TEXT[c] || c;
+  return h('span', { class: `badge badge-licence badge-licence-${c}`, title: `${LICENCE_TITLE[c] || ''}${rec.label && rec.label !== label ? ` — ${rec.label}` : ''}${rec.source ? ` (from ${rec.source})` : ''}`, text: label });
+}
 const stageBadge = (stage) => h('span', { class: `badge badge-stage badge-stage-${stage}`, title: STAGE_TEXT[stage] || stage, text: STAGE_TEXT[stage] || String(stage || '').replace(/_/g, ' ') });
 const kbBadge = (state) => h('span', { class: `badge badge-kb badge-kb-${String(state).replace(/\s+/g, '-')}`, text: KB_STATE_TEXT[state] || String(state || '').replace(/_/g, ' ') });
 

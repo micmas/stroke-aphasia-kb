@@ -330,3 +330,10 @@ a.chip:hover { border-color: var(--blue); text-decoration: none; }
 .box-panel { margin: .2rem 0 1.2rem; }
 .box-panel .results-head h2 { margin: 0; font-size: 1.05rem; }
 .box-list td { vertical-align: top; }
+
+/* ---- paper licences (screen.py licences) ---- */
+.badge-licence-cc { background: var(--cyan); color: #10303a; }
+.badge-licence-cc_manuscript { background: var(--blue-tint); color: var(--ink); border-color: var(--blue); }
+.badge-licence-free_to_read { background: var(--panel); color: var(--ink); border-color: var(--blue); }
+.badge-licence-rights_reserved { background: var(--panel); color: var(--ink-2); border-color: var(--line-strong); }
+.badge-licence-unknown { background: transparent; color: var(--ink-2); border-color: var(--line-strong); border-style: dashed; }

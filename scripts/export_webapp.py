@@ -101,6 +101,16 @@ def citations(root: Path) -> dict[str, str]:
     return {key: text for key, (text, _) in _citation_blocks(root).items()}
 
 
+def licences(root: Path) -> dict[str, dict]:
+    """``@Key -> {category, label, url, version, source}`` from screening/licences.yaml (screen.py licences)."""
+    path = root / "screening" / "licences.yaml"
+    if not path.exists():
+        return {}
+    data = (yaml.safe_load(path.read_text(encoding="utf-8")) or {}).get("papers") or {}
+    keep = ("category", "label", "url", "version", "source", "checked")
+    return {k: {f: v[f] for f in keep if v.get(f) is not None} for k, v in data.items() if isinstance(v, dict)}
+
+
 def citation_links(root: Path) -> dict[str, str]:
     """``@Key -> https://doi.org/...`` for every entry whose block carries a ``doi:`` line (or a URL)."""
     return {key: link for key, (_, link) in _citation_blocks(root).items() if link}
@@ -345,6 +355,7 @@ def export(root: Path, include) -> dict:
         "rules": rules(root),
         "citations": citations(root),
         "citationLinks": citation_links(root),
+        "licences": licences(root),
         "screening": screening(root),
     }
 
