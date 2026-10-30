@@ -159,6 +159,12 @@ then the rest.
   open licences and are never redistributed; `papers/` is git-ignored.
 - `source_passages` are short attributed quotations for verification.
   They are not a substitute for the paper and the KB links the DOI.
+- Each paper's licence is recorded from metadata (`screen.py licences` →
+  `screening/licences.yaml`: Crossref, Unpaywall, the PDF's own licence
+  statement) and shown in the explorer. Under a Creative Commons
+  licence the passages are reused under that licence's terms (attribution
+  is the citation and DOI); for `rights_reserved` and `free_to_read`
+  papers they stay short quotations for verification, nothing more.
 - Extraction of copyrighted PDFs runs on the local model only. The
   cloud-API path is retired; `OLLAMA_HOST` pointing off-machine is a
   configuration error, and the scripts warn.

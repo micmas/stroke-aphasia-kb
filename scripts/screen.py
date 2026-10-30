@@ -64,6 +64,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]  # repository root (this file lives in scripts/)
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # sibling modules in scripts/
 import screening as S  # noqa: E402
+import licences as L  # noqa: E402
 
 UA = "stroke-aphasia-kb screen.py/1.0 (mailto:m.massontrottier@uq.edu.au)"
 MAILTO = "m.massontrottier@uq.edu.au"
@@ -1526,6 +1527,9 @@ def print_status(data: dict) -> None:
     for stg, a in (data.get("agreement") or {}).items():
         if a.get("pairs"):
             print(f"  Dual screening at {STAGE_TEXT[stg]}: {a['pairs']} pairs, kappa {a['kappa']:.2f}")
+    lic = licence_summary()
+    if lic:
+        print("  Licences (screen.py licences): " + " · ".join(f"{L.CATEGORY_TEXT[c]} {n}" for c, n in lic.items() if n))
     cov = [g for g in data["coverage"] if g.get("kind")]
     if cov:
         print("  Coverage of evidence gaps (found / included / in KB / approved findings):")
@@ -1934,6 +1938,60 @@ def cmd_extract(args) -> int:
     return 1 if failed else 0
 
 
+LICENCES = ROOT / "screening" / "licences.yaml"
+
+
+def licence_summary() -> dict[str, int] | None:
+    papers = L.load(LICENCES)
+    return L.summary(papers) if papers else None
+
+
+def cmd_licences(args) -> int:
+    """Look up the licence of every paper in the bibliography (Crossref, Unpaywall, the PDF's own
+    pages) and keep it in screening/licences.yaml. Papers already checked are skipped unless --refresh."""
+    import os
+    done = L.load(LICENCES)
+    if args.show:
+        width = max((len(k) for k in done), default=10)
+        for key, rec in sorted(done.items(), key=lambda kv: (L.CATEGORIES.index(kv[1].get("category", "unknown")), kv[0])):
+            print(f"  {key:<{width}}  {rec.get('category', 'unknown'):<16} {rec.get('label') or '':<40} {rec.get('source') or ''}")
+        print("  " + " · ".join(f"{L.CATEGORY_TEXT[c]} {n}" for c, n in L.summary(done).items() if n))
+        return 0
+    cites = S.citation_blocks(ROOT)
+    keys = [k if k.startswith("@") else f"@{k}" for k in args.key] if args.key else sorted(cites)
+    todo = [k for k in keys if args.refresh or k not in done or done[k].get("errors")]
+    checked = len(keys) - len(todo)
+    if args.limit:
+        todo = todo[: args.limit]
+    email = args.email or os.environ.get("UNPAYWALL_EMAIL") or MAILTO
+    print(f"{len(keys)} paper(s) in the bibliography · {checked} already checked · checking {len(todo)}"
+          f" (Crossref{', Unpaywall' if email else ''}, then the PDF's first and last pages)")
+    if not todo:
+        print("  nothing to check (--refresh to look again)")
+    found = dict(done)
+    for i, key in enumerate(todo, 1):
+        doi = (cites.get(key) or {}).get("doi")
+        pdf = ROOT / "papers" / f"{key.lstrip('@')}.pdf"
+        rec = L.check(key, S.norm_doi(doi) if doi else None, pdf, email)
+        found[key] = rec
+        err = f"  ⚠ {'; '.join(rec['errors'])}" if rec.get("errors") else ""
+        print(f"  [{i}/{len(todo)}] {key:<28} {rec.get('category', 'unknown'):<16} {rec.get('label') or '':<40} "
+              f"{rec.get('source') or ('no DOI' if not doi else '')}{err}", flush=True)
+        if args.execute and i % 20 == 0:
+            L.save(LICENCES, found)
+    print("  " + " · ".join(f"{L.CATEGORY_TEXT[c]} {n}" for c, n in L.summary(found).items() if n))
+    if args.execute:
+        L.save(LICENCES, found)
+        print(f"saved {LICENCES.relative_to(ROOT)}")
+    elif todo:
+        print("Dry run — nothing saved. Add --execute.")
+    errors = [k for k in todo if found[k].get("errors")]
+    if errors:
+        print(f"{len(errors)} lookup(s) failed (network?): re-run later; they are retried while their record has errors."
+              if args.execute else f"{len(errors)} lookup(s) failed (network?).")
+    return 0
+
+
 def cmd_list(args) -> int:
     rows = S.enrich(S.load_candidates(), S.kb_facts())
     if args.stage:
@@ -2001,6 +2059,14 @@ def _cli(argv=None) -> int:
     p.set_defaults(fn=cmd_recall)
     p = sub.add_parser("fulltext", help="the full-text stage: what to assess, and for included papers the next step")
     p.set_defaults(fn=cmd_fulltext)
+    p = sub.add_parser("licences", help="the licence of each paper in the bibliography (Crossref, Unpaywall, the PDF) → screening/licences.yaml")
+    p.add_argument("--key", action="append", help="only this @Key (repeatable)")
+    p.add_argument("--refresh", action="store_true", help="look again at papers already checked")
+    p.add_argument("--limit", type=int, help="only the first N")
+    p.add_argument("--email", help="e-mail for Unpaywall and Crossref's polite pool (default: UNPAYWALL_EMAIL, else the repository's contact)")
+    p.add_argument("--show", action="store_true", help="list what is recorded, by category")
+    p.add_argument("--execute", action="store_true", help="save to screening/licences.yaml")
+    p.set_defaults(fn=cmd_licences)
     p = sub.add_parser("extract", help="extract every paper included at full text that has its PDF and no findings yet")
     p.add_argument("--limit", type=int, help="only the first N papers")
     p.add_argument("--model", help="extract.py --model")

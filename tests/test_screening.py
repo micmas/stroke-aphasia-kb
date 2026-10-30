@@ -523,5 +523,40 @@ class Chase(unittest.TestCase):
             S.load_candidates, S.save_candidates, screen._log = orig
 
 
+class LicenceTest(unittest.TestCase):
+    """screen.py licences: the category from Crossref, Unpaywall and the PDF's own text (no network)."""
+
+    def test_labels(self):
+        import licences as L
+        self.assertEqual(L.cc_label("http://creativecommons.org/licenses/by-nc-nd/4.0/"), "CC BY-NC-ND 4.0")
+        self.assertEqual(L.cc_label("https://creativecommons.org/publicdomain/zero/1.0/"), "CC0")
+        self.assertEqual(L.cc_label("cc-by"), "CC BY")
+        self.assertIsNone(L.cc_label("publisher-specific-oa"))
+        self.assertEqual(L.cc_from_text("under the terms of the Creative Commons Attribution 4.0 International License"), "CC BY 4.0")
+        self.assertEqual(L.cc_from_text("open access under the CC BY-NC-ND license (http://creativecommons.org/licenses/by-nc-nd/4.0/)"),
+                         "CC BY-NC-ND 4.0")
+        self.assertIsNone(L.cc_from_text("© 2016 Elsevier Ltd. All rights reserved."))
+
+    def test_classify(self):
+        import licences as L
+        oup = [{"content-version": "vor", "URL": "https://academic.oup.com/pages/standard-publication-reuse-rights"}]
+        tdm = [{"content-version": "tdm", "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"}]
+        cc = [{"content-version": "vor", "URL": "http://creativecommons.org/licenses/by/4.0/"}]
+        self.assertEqual(L.classify(tdm + cc, None)["category"], "cc")
+        self.assertEqual(L.classify(tdm + cc, None)["label"], "CC BY 4.0")
+        self.assertEqual(L.classify(oup, None)["category"], "rights_reserved")
+        self.assertEqual(L.classify(tdm, {"is_oa": False})["label"], "publisher TDM licence (text mining only)")
+        bronze = {"is_oa": True, "best_oa_location": {"license": None, "version": "publishedVersion", "url": "u"}}
+        self.assertEqual(L.classify(oup, bronze)["category"], "free_to_read")
+        green = dict(bronze, oa_locations=[bronze["best_oa_location"], {"license": "cc-by", "version": "acceptedVersion", "url": "pmc"}])
+        self.assertEqual(L.classify(oup, green)["category"], "cc_manuscript")
+        am = [{"content-version": "am", "URL": "http://creativecommons.org/licenses/by/4.0/"}]
+        self.assertEqual(L.classify(oup + am, None)["category"], "cc_manuscript")
+        pdf = "This is an open access article under the CC BY license (http://creativecommons.org/licenses/by/4.0/)."
+        self.assertEqual(L.classify(None, None, pdf)["category"], "cc")
+        self.assertEqual(L.classify(None, None)["category"], "unknown")
+        self.assertEqual(L.summary({"@A": {"category": "cc"}, "@B": {}})["unknown"], 1)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)
