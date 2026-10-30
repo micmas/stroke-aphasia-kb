@@ -1065,6 +1065,36 @@ def write_report(draft_path: Path, verdict: str, checks: list[Check],
 # Promotion
 # ============================================================
 
+_SCREENING_BY_KEY: dict | None = None
+
+
+def screening_block(draft_path: Path) -> str | None:
+    """Why a model may not promote this draft under the screening protocol
+    (docs/SCREENING.md): its paper is not included at full text. None = allowed.
+    A person can still approve it with promote.py."""
+    global _SCREENING_BY_KEY
+    try:
+        import screening as _S
+    except Exception:  # noqa: BLE001
+        return None
+    if _SCREENING_BY_KEY is None:
+        try:
+            _SCREENING_BY_KEY = {c["key"]: c for c in _S.load_candidates() if c.get("key") and not c.get("duplicate_of")}
+        except Exception:  # noqa: BLE001
+            _SCREENING_BY_KEY = {}
+    if not _SCREENING_BY_KEY:
+        return None
+    m = re.match(r"^(.*)__(\S+)\.md$", draft_path.name)
+    key = f"@{m.group(2)}" if m else None
+    c = _SCREENING_BY_KEY.get(key)
+    if c is None:
+        return f"{key or draft_path.name} is not in the screening register"
+    stage, _ = _S.stage_of(c)
+    if stage != "included":
+        return f"{key} ({c['id']}) is {_S.STAGE_LABELS.get(stage, stage)} — not included at full text"
+    return None
+
+
 def auto_promote(draft_path: Path, reviewer: str, *,
                  tier: str | None = None,
                  extractor: str | None = None) -> tuple[bool, str]:
@@ -1542,7 +1572,11 @@ def review_many(drafts: list[Path], *,
             elif llm and llm.get("verdict_override"):
                 print(f"      ↻ LLM overrode: {llm['verdict_override']}")
 
-        if verdict == Verdict.APPROVE and promote and not dry_run:
+        blocked = screening_block(d) if (verdict == Verdict.APPROVE and promote and not dry_run) else None
+        if blocked:
+            if verbose:
+                print(f"  ⏸ not promoted: {blocked} — the model's verdict is recorded; a person can approve it later")
+        elif verdict == Verdict.APPROVE and promote and not dry_run:
             ok, out = auto_promote(
                 d, reviewer=f"model:{(llm or {}).get('model') or model}",
                 tier="A", extractor=(llm or {}).get("extractor"))
