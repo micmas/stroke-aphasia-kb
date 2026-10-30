@@ -1,5 +1,5 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: age
 name: Age at stroke
 kind: predictor
@@ -31,6 +31,7 @@ findings:
     handedness: not_reported
     language: English
     phase: not_reported
+    cohort: HCUP
   statistics:
     threshold: p(uncorrected)<0.05
     effect_size: t(274.83) = 2.11
@@ -61,6 +62,18 @@ findings:
     page: 11
     quote: It has to be said, however, that this analysis used a somewhat crude proxy for stroke severity.
     supports: limitation
+  - section: added by backfill
+    page: 2
+    quote: 'I then compare the results of the meta-analysis to data from a large American patient database
+      (Healthcare Cost and Utilization Project (HCUP) under Agency for Healthcare Research and Quality,
+      U.S. Department of Health & Human Services: https://hcupnet.ahrq.gov).'
+    supports: sample
   region_definition:
     kind: not_reported
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
 ---

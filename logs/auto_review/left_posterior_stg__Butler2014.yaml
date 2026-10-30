@@ -330,6 +330,170 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-23T13:54:48'
+- run_id: 5
+  timestamp: '2026-10-30T14:52:04'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 7/9 quotes (78%) — anchored 1, elided 1, exact 6, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.statistics (p.6): Results are thresholded at P = 0.001 voxel-level,
+      P < 0.001 family-wise error (F…'
+    - '  - [anchored] f1.imaging_details (p.4): High resolution structural T1-weighted
+      MRI scans were acquired on a 3.0 T Philip…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft incorrectly identifies the relationship as 'causal'. The
+        paper uses Voxel-Based Correlational Methodology (VBCM) to show that performance
+        is 'uniquely correlated with' or 'uniquely related to' specific brain regions.
+        In neuroimaging, correlation does not equal causation. The draft also claims
+        damage 'is associated with' impairment, but the relationship type is explicitly
+        tagged as 'causal', which is a mismatch with the correlational nature of the
+        study.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is tagged as 'causal', but the paper describes a
+          correlational study (VBCM) where results are 'uniquely correlated with'
+          or 'uniquely related to' regions. The authors do not claim a causal link.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ incorrectly identifies the relationship as 'causal'. The paper uses Voxel-Based\
+      \ Correlational Methodology (VBCM) to show that performance is 'uniquely correlated\
+      \ with' or 'uniquely related to' specific brain regions. In neuroimaging, correlation\
+      \ does not equal causation. The draft also claims damage 'is associated with'\
+      \ impairment, but the relationship type is explicitly tagged as 'causal', which\
+      \ is a mismatch with the correlational nature of the study.\",\n  \"per_finding\"\
+      : [\n    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"\
+      passage_supports_field\": true,\n      \"relationship_faithful\": false,\n \
+      \     \"strength_fair\": true,\n      \"numbers_match\": true,\n      \"limitations_captured\"\
+      : true,\n      \"omissions\": \"\",\n      \"concern\""
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 6
+  timestamp: '2026-10-31T00:28:57'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 7/9 quotes (78%) — anchored 1, elided 1, exact 6, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.statistics (p.6): Results are thresholded at P = 0.001 voxel-level,
+      P < 0.001 family-wise error (F…'
+    - '  - [anchored] f1.imaging_details (p.4): High resolution structural T1-weighted
+      MRI scans were acquired on a 3.0 T Philip…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The finding claims a causal relationship ('Damage to... is associated
+        with...'), but the paper explicitly describes the methodology as a 'voxel-based
+        correlational methodology' (VBCM) and states that the results show where tissue
+        integrity 'relates to' or 'covaries uniquely with' performance. In neuroimaging,
+        'associated with' in a correlational study does not support a causal claim.
+        Additionally, the claim includes 'middle temporal gyrus' as a primary region,
+        whereas the text lists 'mid to posterior middle and superior temporal gyri'.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper describes
+          a correlational (VBCM) design. The authors use terms like 'uniquely correlated
+          with' and 'uniquely related to', which are correlational, not causal.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The finding\
+      \ claims a causal relationship ('Damage to... is associated with...'), but the\
+      \ paper explicitly describes the methodology as a 'voxel-based correlational\
+      \ methodology' (VBCM) and states that the results show where tissue integrity\
+      \ 'relates to' or 'covaries uniquely with' performance. In neuroimaging, 'associated\
+      \ with' in a correlational study does not support a causal claim. Additionally,\
+      \ the claim includes 'middle temporal gyrus' as a primary region, whereas the\
+      \ text lists 'mid to posterior middle and superior temporal gyri'.\",\n  \"\
+      per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n\
+      \      \"passage_supports_field\": true,\n      \"relationship_faithful\": false,\n\
+      \      \"strength_fair\": true,\n      \"numbers_match\": true,\n"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T00:28:57'
 latest_verdict: checks_passed
 latest_mode: with_llm_review

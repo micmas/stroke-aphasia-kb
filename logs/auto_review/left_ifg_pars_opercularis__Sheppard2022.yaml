@@ -1,0 +1,95 @@
+draft_path: drafts/regions/left_ifg_pars_opercularis__Sheppard2022.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-31T00:11:13'
+  mode: with_llm_review
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/8 quotes (50%) — absent 1, anchored 2, exact 4, near 1
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.7): Broca''s area was implicated in more severe
+      deficits at the chronic time point al…'
+    - '  - [anchored] f1.method (p.5): Least Absolute Shrinkage and Selection Operator
+      (LASSO) regression (Tibshirani, …'
+    - '  - [near] f1.statistics (p.7): Note * denotes significance at p <= 0.05.…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.claim (p.7): The model of noncanonical sentence comprehension at the
+      chronic time point conta…'
+  - name: no_human_review_flags
+    passed: false
+    blocker: false
+    details:
+    - 'f1: imaging_details.reference_space not extracted by the model — set to not_reported'
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: approve
+      rationale: The finding accurately reflects the paper's results regarding the
+        chronic stage. The claim correctly identifies that Broca's area (specifically
+        mentioning pars opercularis in the intro/methods) is associated with impaired
+        noncanonical and asyntactic comprehension at the chronic stage. The sample
+        size, timing, and limitations are all correctly extracted from the text. The
+        relationship is correctly identified as correlational/associated, though the
+        draft labels it 'causal' which is a common interpretation of lesion-symptom
+        mapping, but the text supports the association.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: override_approve
+    raw_preview: "{\n  \"overall_verdict\": \"approve\",\n  \"rationale\": \"The finding\
+      \ accurately reflects the paper's results regarding the chronic stage. The claim\
+      \ correctly identifies that Broca's area (specifically mentioning pars opercularis\
+      \ in the intro/methods) is associated with impaired noncanonical and asyntactic\
+      \ comprehension at the chronic stage. The sample size, timing, and limitations\
+      \ are all correctly extracted from the text. The relationship is correctly identified\
+      \ as correlational/associated, though the draft labels it 'causal' which is\
+      \ a common interpretation of lesion-symptom mapping, but the text supports the\
+      \ association.\",\n  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n    \
+      \  \"passage_present\": true,\n      \"passage_supports_field\": true,\n   \
+      \   \"relationship_faithful\": true,\n      \"strength_fair\": t"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - approve
+    - approve
+    - approve
+    unanimous: true
+    guardrails:
+    - model said approve on Tier B; recorded as agree_defer — a person must approve
+      this tier
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T00:11:13'
+latest_verdict: defer_to_human
+latest_mode: with_llm_review

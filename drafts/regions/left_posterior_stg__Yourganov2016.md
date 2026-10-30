@@ -1,5 +1,5 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: left_posterior_stg
 name: Left Posterior Superior Temporal Gyrus
 kind: classical
@@ -28,6 +28,7 @@ findings:
     handedness: not_reported
     language: not_reported
     phase: chronic
+    cohort: not_reported
   statistics:
     threshold: p < 0.05 with Bonferroni's correction
     effect_size: not_reported
@@ -84,6 +85,34 @@ findings:
       could potentially discard the features that might be predictive when used in combination with other
       features.
     supports: limitation
+  - section: added by backfill
+    page: 1
+    quote: we applied a predictive multivariate framework to investigate the relationship between language
+      deficits in human participants with chronic aphasia and the topological distribution of structural
+      brain damage
+    supports: method
+  - section: added by backfill
+    page: 3
+    quote: we only considered gray-matter regions that were damaged in at least 4 of 90 participants
+    supports: method
+  - section: added by backfill
+    page: 4
+    quote: The threshold for significance of correlation was 0.05 with Bonferroni’s correction for multiple
+      comparisons
+    supports: method
+  lesion_mapping:
+    analysis: multivariate
+    n_analysed: 90
+    min_lesion_overlap: '>= 4 patients'
+    lesion_volume_correction: not_reported
+    multiple_comparisons: bonferroni
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - lesion_mapping
 - id: f2
   target: auditory_comprehension
   target_kind: impairment
@@ -104,6 +133,7 @@ findings:
     handedness: not_reported
     language: not_reported
     phase: chronic
+    cohort: not_reported
   statistics:
     threshold: p < 0.05 with Bonferroni's correction
     effect_size: not_reported
@@ -135,6 +165,34 @@ findings:
       gyrus, the pole and the posterior part of the middle temporal gyrus, the amygdala, and the dorsal
       part of the middle frontal gyrus
     supports: claim
+  - section: added by backfill
+    page: 1
+    quote: we applied a predictive multivariate framework to investigate the relationship between language
+      deficits in human participants with chronic aphasia and the topological distribution of structural
+      brain damage
+    supports: method
+  - section: added by backfill
+    page: 3
+    quote: we only considered gray-matter regions that were damaged in at least 4 of 90 participants
+    supports: method
+  - section: added by backfill
+    page: 4
+    quote: The threshold for significance of correlation was 0.05 with Bonferroni’s correction for multiple
+      comparisons
+    supports: method
+  lesion_mapping:
+    analysis: multivariate
+    n_analysed: 90
+    min_lesion_overlap: '>= 4 patients'
+    lesion_volume_correction: not_reported
+    multiple_comparisons: bonferroni
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - lesion_mapping
 - id: f3
   target: speech_repetition
   target_kind: impairment
@@ -155,6 +213,7 @@ findings:
     handedness: not_reported
     language: not_reported
     phase: chronic
+    cohort: not_reported
   statistics:
     threshold: p < 0.05 with Bonferroni's correction
     effect_size: not_reported
@@ -185,6 +244,34 @@ findings:
     quote: for predicting speech repetition scores, the posterior part of the superior and the middle
       temporal gyri
     supports: claim
+  - section: added by backfill
+    page: 1
+    quote: we applied a predictive multivariate framework to investigate the relationship between language
+      deficits in human participants with chronic aphasia and the topological distribution of structural
+      brain damage
+    supports: method
+  - section: added by backfill
+    page: 3
+    quote: we only considered gray-matter regions that were damaged in at least 4 of 90 participants
+    supports: method
+  - section: added by backfill
+    page: 4
+    quote: The threshold for significance of correlation was 0.05 with Bonferroni’s correction for multiple
+      comparisons
+    supports: method
+  lesion_mapping:
+    analysis: multivariate
+    n_analysed: 90
+    min_lesion_overlap: '>= 4 patients'
+    lesion_volume_correction: not_reported
+    multiple_comparisons: bonferroni
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - lesion_mapping
 - id: f4
   target: anomia
   target_kind: impairment
@@ -205,6 +292,7 @@ findings:
     handedness: not_reported
     language: not_reported
     phase: chronic
+    cohort: not_reported
   statistics:
     threshold: p < 0.05 with Bonferroni's correction
     effect_size: not_reported
@@ -236,10 +324,38 @@ findings:
     quote: for predicting naming scores, the PSTG, the pole of the superior and middle temporal gyri,
       and the triangular part of the inferior frontal gyrus.
     supports: claim
+  - section: added by backfill
+    page: 1
+    quote: we applied a predictive multivariate framework to investigate the relationship between language
+      deficits in human participants with chronic aphasia and the topological distribution of structural
+      brain damage
+    supports: method
+  - section: added by backfill
+    page: 3
+    quote: we only considered gray-matter regions that were damaged in at least 4 of 90 participants
+    supports: method
+  - section: added by backfill
+    page: 4
+    quote: The threshold for significance of correlation was 0.05 with Bonferroni’s correction for multiple
+      comparisons
+    supports: method
   edits:
   - by: tool:retarget_symptoms.py
     date: '2026-10-26'
     fields:
     - target
+  lesion_mapping:
+    analysis: multivariate
+    n_analysed: 90
+    min_lesion_overlap: '>= 4 patients'
+    lesion_volume_correction: not_reported
+    multiple_comparisons: bonferroni
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - lesion_mapping
 ---
 Findings from Yourganov 2016 using multivariate SVR to predict WAB scores from lesion maps and connectomes.

@@ -1,0 +1,92 @@
+draft_path: drafts/_backup/bilateral_middle_frontal_gyrus_recovery__Fridriksson2010Anomia.20261030-154205.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-30T23:27:24'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/6 quotes (83%) — anchored 1, exact 5
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.3): Z (Gaussianised T/F) statistic images were
+      thresholded using clusters determined…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The finding claims increased activation in the 'left middle frontal
+        gyrus' is associated with improved naming. While the paper does report a Z-score
+        of 2.96 for the Middle frontal gyrus (Table 1), the claim in the draft is
+        a general association, whereas the paper's primary finding (and the provided
+        [claim] passage) describes a relationship between 'modulation of cortical
+        areas in the left posterior and anterior hemisphere'. The draft focuses on
+        a specific sub-region (MFG) which is part of the anterior cluster, but the
+        paper's main takeaway is the broader hemispheric modulation.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The draft identifies the 'left middle frontal gyrus' as the target.
+          While Table 1 lists the Middle frontal gyrus as a local maximum in the anterior
+          cluster with Z=2.96, the paper's central claim (and the quoted passage)
+          refers more broadly to the 'left posterior and anterior hemisphere'. The
+          draft is technically accurate regarding the specific voxel, but the scope
+          is narrower than the paper's primary conclusion.
+        verdict: agree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The finding\
+      \ claims increased activation in the 'left middle frontal gyrus' is associated\
+      \ with improved naming. While the paper does report a Z-score of 2.96 for the\
+      \ Middle frontal gyrus (Table 1), the claim in the draft is a general association,\
+      \ whereas the paper's primary finding (and the provided [claim] passage) describes\
+      \ a relationship between 'modulation of cortical areas in the left posterior\
+      \ and anterior hemisphere'. The draft focuses on a specific sub-region (MFG)\
+      \ which is part of the anterior cluster, but the paper's main takeaway is the\
+      \ broader hemispheric modulation.\",\n  \"per_finding\": [\n    {\n      \"\
+      id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": true,\n      \"strength_"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-30T23:27:24'
+latest_verdict: checks_passed
+latest_mode: with_llm_review

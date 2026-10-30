@@ -159,8 +159,80 @@ findings:
     fields:
     - cohort
     - phase
+- id: f2
+  target: severity_metric
+  target_kind: predictor
+  claim: Initial aphasia severity is the strongest predictor of language outcomes
+    during the early subacute phase (10-14 days post-stroke).
+  direction: likely
+  relationship: correlational
+  citation: '@OsaGarcia2020'
+  method: behavioral_only
+  design: longitudinal
+  strength: moderate
+  evidence_quality: cohort
+  instrument: Composite Score (CS)
+  score_band: all severities
+  interpretation: Initial severity accounts for the majority of variance in early
+    subacute outcomes.
+  sample:
+    n: 20
+    population: individuals with post-stroke aphasia
+    time_post_onset: <72 h (initial) and 10-14 days (follow-up)
+    phase: longitudinal
+    age_range: mean 71.6 (SD 12.45)
+    handedness: all right-handed
+    language: French or English
+  statistics:
+    threshold: P < 0.001
+    effect_size: R2 = 0.673
+    p_value: <0.001
+  confounders_controlled: []
+  confounders_not_controlled:
+  - age
+  region_definition:
+    kind: not_reported
+    description: Behavioural predictor
+  author_limitations:
+  - Small sample size.
+  - Lack of quantitative measures of bilingualism.
+  provenance:
+    extracted_by: agent
+    extracted_on: 2026-01-01
+    paper_section: Results, page 5
+    confidence: high
+    flags: []
+  source_passages:
+  - section: Results
+    page: 5
+    quote: Regressions with lesion size, lesion load, and initial severity were found
+      to be significant, accounting, respectively, for 39, 26.5, and 67.3% of the
+      variance of the dependent variable.
+    supports: statistics
+  - section: Conclusions
+    page: 1
+    quote: Initial aphasia severity was the best predictor of early post-stroke aphasia
+      outcome, whereas lesion measures, though highly correlated, show less influence
+      on the prediction model.
+    supports: claim
+  - section: Materials and Methods
+    page: 3
+    quote: Twenty participants took part in this study... Initial language assessments
+      took place within the first 72 h (mean = 2.3 days) after stroke onset, and the
+      follow-up took place 7-15 days later (mean = 10.55 days).
+    supports: sample
+  - section: Discussion
+    page: 7
+    quote: Limitations of this study include the small sample size... Another limitation
+      of the present study is the lack of quantitative measures of bilingualism...
+    supports: limitation
+  review:
+    reviewer: model:gemma4:26b
+    reviewed_on: '2026-10-30'
+    tier: A
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
 source: curated
-last_reviewed: 2026-05-06
+last_reviewed: '2026-10-30'
 notes: 'Lazar et al. 2010 (Stroke) is a 4-page paper using n=21 mild-to-moderate aphasic
 
   stroke patients from the PARIS database. The key finding is that initial WAB composite

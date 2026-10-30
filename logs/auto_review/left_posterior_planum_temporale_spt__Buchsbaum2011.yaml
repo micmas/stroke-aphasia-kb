@@ -383,6 +383,191 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-23T13:54:08'
+- run_id: 5
+  timestamp: '2026-10-30T14:51:35'
+  mode: with_llm_review
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 11/11 quotes (100%) — elided 2, exact 9
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Buchsbaum2011: sample.n disagrees: [14, 105]'
+  review_tier: B
+  tier_reasons:
+  - new entry id (not appending to an existing entry)
+  - 'f2: strength=''strong'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: 'The draft contains a significant error in f2: the sample size is
+        correctly identified as 105 in the text, but the ''statistics'' field incorrectly
+        claims ''33% of subjects showed significant activation in Spt''. The text
+        actually states that 33% was the *peak percentage of overlap* in Spt (referring
+        to the lesion/fMRI conjunction) or that 33% of subjects showed activation
+        in the *encoding* maps (p. 4, p. 6). The 33% figure is not the effect size
+        for Spt recruitment in the healthy cohort.'
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f2
+        passage_present: true
+        passage_supports_field: false
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: false
+        limitations_captured: true
+        omissions: ''
+        concern: The statistics field claims '33% of subjects showed significant activation
+          in Spt', but the text uses the 33% figure to describe the peak percentage
+          of overlap in Spt (p. 6) or the encoding threshold (p. 4). It does not state
+          that 33% of the 105 subjects showed Spt activation.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ contains a significant error in f2: the sample size is correctly identified\
+      \ as 105 in the text, but the 'statistics' field incorrectly claims '33% of\
+      \ subjects showed significant activation in Spt'. The text actually states that\
+      \ 33% was the *peak percentage of overlap* in Spt (referring to the lesion/fMRI\
+      \ conjunction) or that 33% of subjects showed activation in the *encoding* maps\
+      \ (p. 4, p. 6). The 33% figure is not the effect size for Spt recruitment in\
+      \ the healthy cohort.\",\n  \"per_finding\": [\n    {\n      \"id\": \"f1\"\
+      ,\n      \"passage_present\": true,\n      \"passage_supports_field\": true,\n\
+      \      \"relationship_faithful\": true,\n      \"strength_fair\": true,\n  \
+      \    \"numbers_match\": true,\n      \"limitations_captured\": true,\n     \
+      \ \"omissions\":"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 6
+  timestamp: '2026-10-31T00:27:56'
+  mode: with_llm_review
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 11/11 quotes (100%) — elided 2, exact 9
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Buchsbaum2011: sample.n disagrees: [14, 105]'
+  review_tier: B
+  tier_reasons:
+  - new entry id (not appending to an existing entry)
+  - 'f2: strength=''strong'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: f1 is accurate, but f2 contains a significant error regarding the
+        sample size and statistics. The draft claims n=105 for f2, which is the total
+        number of subjects in the aggregate analysis, but the statistics provided
+        for f2 (33% of subjects showing activation) actually refers to the peak percentage
+        of overlap in Spt mentioned in the context of the lesion study (f1), not the
+        fMRI recruitment result. The fMRI results for Spt activation are described
+        as being part of a conjunction analysis with a threshold of 22%.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f2
+        passage_present: true
+        passage_supports_field: false
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: false
+        limitations_captured: true
+        omissions: ''
+        concern: The statistics field for f2 incorrectly attributes the '33%' value
+          (which the paper uses to describe the modest peak percentage of overlap
+          in Spt in the lesion analysis) to the fMRI recruitment effect. The paper
+          states the conjunction threshold was 22%, and the 33% figure is explicitly
+          linked to the 'peak percentage of overlap in Spt' in the discussion of anatomical
+          variability/lesion overlap.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"f1 is accurate,\
+      \ but f2 contains a significant error regarding the sample size and statistics.\
+      \ The draft claims n=105 for f2, which is the total number of subjects in the\
+      \ aggregate analysis, but the statistics provided for f2 (33% of subjects showing\
+      \ activation) actually refers to the peak percentage of overlap in Spt mentioned\
+      \ in the context of the lesion study (f1), not the fMRI recruitment result.\
+      \ The fMRI results for Spt activation are described as being part of a conjunction\
+      \ analysis with a threshold of 22%.\",\n  \"per_finding\": [\n    {\n      \"\
+      id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": true,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captur"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T00:27:56'
 latest_verdict: defer_to_human
 latest_mode: with_llm_review

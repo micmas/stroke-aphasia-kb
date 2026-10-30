@@ -1,5 +1,5 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: wernickes_aphasia
 name: Wernicke's aphasia
 kind: impairment
@@ -38,6 +38,8 @@ findings:
     inclusion_criteria: right-handed; chronic left-hemisphere stroke; aphasia present
     exclusion_criteria: absence of aphasia; MRI contraindications; apraxia-of-speech-driven
       deficit; bilateral lesion; multiple sclerosis.
+    phase: chronic
+    cohort: not_reported
   statistics:
     threshold: binomial-distribution test, FDR-corrected (p<0.05)
     effect_size: predictive relevance Z = 1.76 (Table 3)
@@ -141,6 +143,34 @@ findings:
       group in our sample. Despite the sample size limitation, the brain areas that
       we found to predict Wernicke's aphasia include the classical Wernicke's area
       and its neighbourhood, which is consistent with the existing literature
+  - section: added by backfill
+    page: 1
+    quote: We utilized multivariate classification in a cross-validation framework
+      to predict the type of chronic aphasia from the spatial pattern of brain damage.
+    supports: method
+  - section: added by backfill
+    page: 5
+    quote: Our cohort is a group of 98 chronic stroke patients with aphasia.
+    supports: method
+  - section: added by backfill
+    page: 6
+    quote: All patients were at least 6 months post-stroke, and the mean time since
+      stroke onset was 40.1 months (SD= 49.6; range = 6–276).
+    supports: sample
+  lesion_mapping:
+    analysis: multivariate
+    n_analysed: 98
+    min_lesion_overlap: not_reported
+    lesion_volume_correction: not_reported
+    multiple_comparisons: fdr
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - lesion_mapping
+    - phase
 - id: f2
   target: left_heschls_gyrus
   target_kind: region
@@ -160,6 +190,8 @@ findings:
     age_range: mean 58 years (SD 11.9)
     handedness: all right-handed
     language: English
+    phase: chronic
+    cohort: not_reported
   statistics:
     threshold: binomial test, FDR-corrected
     effect_size: predictive relevance Z = 1.61 (Table 3)
@@ -222,6 +254,34 @@ findings:
     supports: statistics
     quote: False discovery rate (Genovese et al., 2002) was used to correct for multiple
       comparisons.
+  - section: added by backfill
+    page: 1
+    quote: We utilized multivariate classification in a cross-validation framework
+      to predict the type of chronic aphasia from the spatial pattern of brain damage.
+    supports: method
+  - section: added by backfill
+    page: 5
+    quote: Our cohort is a group of 98 chronic stroke patients with aphasia.
+    supports: method
+  - section: added by backfill
+    page: 6
+    quote: All patients were at least 6 months post-stroke, and the mean time since
+      stroke onset was 40.1 months (SD= 49.6; range = 6–276).
+    supports: sample
+  lesion_mapping:
+    analysis: multivariate
+    n_analysed: 98
+    min_lesion_overlap: not_reported
+    lesion_volume_correction: not_reported
+    multiple_comparisons: fdr
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - lesion_mapping
+    - phase
 - id: f3
   target: left_temporal_pole_mtg
   target_kind: region
@@ -241,6 +301,8 @@ findings:
     age_range: mean 58 years (SD 11.9)
     handedness: all right-handed
     language: English
+    phase: chronic
+    cohort: not_reported
   statistics:
     threshold: binomial test, FDR-corrected
     effect_size: predictive relevance Z = 1.47 (Table 3)
@@ -310,6 +372,34 @@ findings:
     supports: statistics
     quote: False discovery rate (Genovese et al., 2002) was used to correct for multiple
       comparisons.
+  - section: added by backfill
+    page: 1
+    quote: We utilized multivariate classification in a cross-validation framework
+      to predict the type of chronic aphasia from the spatial pattern of brain damage.
+    supports: method
+  - section: added by backfill
+    page: 5
+    quote: Our cohort is a group of 98 chronic stroke patients with aphasia.
+    supports: method
+  - section: added by backfill
+    page: 6
+    quote: All patients were at least 6 months post-stroke, and the mean time since
+      stroke onset was 40.1 months (SD= 49.6; range = 6–276).
+    supports: sample
+  lesion_mapping:
+    analysis: multivariate
+    n_analysed: 98
+    min_lesion_overlap: not_reported
+    lesion_volume_correction: not_reported
+    multiple_comparisons: fdr
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - lesion_mapping
+    - phase
 - id: f4
   target: left_pallidum
   target_kind: region
@@ -329,6 +419,8 @@ findings:
     age_range: mean 58 years (SD 11.9)
     handedness: all right-handed
     language: English
+    phase: chronic
+    cohort: not_reported
   statistics:
     threshold: binomial test, FDR-corrected
     effect_size: predictive relevance Z = 1.45 (Table 3)
@@ -390,6 +482,34 @@ findings:
     supports: statistics
     quote: False discovery rate (Genovese et al., 2002) was used to correct for multiple
       comparisons.
+  - section: added by backfill
+    page: 1
+    quote: We utilized multivariate classification in a cross-validation framework
+      to predict the type of chronic aphasia from the spatial pattern of brain damage.
+    supports: method
+  - section: added by backfill
+    page: 5
+    quote: Our cohort is a group of 98 chronic stroke patients with aphasia.
+    supports: method
+  - section: added by backfill
+    page: 6
+    quote: All patients were at least 6 months post-stroke, and the mean time since
+      stroke onset was 40.1 months (SD= 49.6; range = 6–276).
+    supports: sample
+  lesion_mapping:
+    analysis: multivariate
+    n_analysed: 98
+    min_lesion_overlap: not_reported
+    lesion_volume_correction: not_reported
+    multiple_comparisons: fdr
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - lesion_mapping
+    - phase
 - id: f5
   target: left_temporal_pole_stg
   target_kind: region
@@ -409,6 +529,8 @@ findings:
     age_range: mean 58 years (SD 11.9)
     handedness: all right-handed
     language: English
+    phase: chronic
+    cohort: not_reported
   statistics:
     threshold: binomial test, FDR-corrected
     effect_size: predictive relevance Z = 1.34 (Table 3)
@@ -469,6 +591,34 @@ findings:
     supports: statistics
     quote: False discovery rate (Genovese et al., 2002) was used to correct for multiple
       comparisons.
+  - section: added by backfill
+    page: 1
+    quote: We utilized multivariate classification in a cross-validation framework
+      to predict the type of chronic aphasia from the spatial pattern of brain damage.
+    supports: method
+  - section: added by backfill
+    page: 5
+    quote: Our cohort is a group of 98 chronic stroke patients with aphasia.
+    supports: method
+  - section: added by backfill
+    page: 6
+    quote: All patients were at least 6 months post-stroke, and the mean time since
+      stroke onset was 40.1 months (SD= 49.6; range = 6–276).
+    supports: sample
+  lesion_mapping:
+    analysis: multivariate
+    n_analysed: 98
+    min_lesion_overlap: not_reported
+    lesion_volume_correction: not_reported
+    multiple_comparisons: fdr
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - lesion_mapping
+    - phase
 - id: f6
   target: left_superior_temporal_gyrus
   target_kind: region
@@ -488,6 +638,8 @@ findings:
     age_range: mean 58 years (SD 11.9)
     handedness: all right-handed
     language: English
+    phase: chronic
+    cohort: not_reported
   statistics:
     threshold: binomial test, FDR-corrected
     effect_size: predictive relevance Z = 1.31 (Table 3)
@@ -550,6 +702,34 @@ findings:
     supports: statistics
     quote: False discovery rate (Genovese et al., 2002) was used to correct for multiple
       comparisons.
+  - section: added by backfill
+    page: 1
+    quote: We utilized multivariate classification in a cross-validation framework
+      to predict the type of chronic aphasia from the spatial pattern of brain damage.
+    supports: method
+  - section: added by backfill
+    page: 5
+    quote: Our cohort is a group of 98 chronic stroke patients with aphasia.
+    supports: method
+  - section: added by backfill
+    page: 6
+    quote: All patients were at least 6 months post-stroke, and the mean time since
+      stroke onset was 40.1 months (SD= 49.6; range = 6–276).
+    supports: sample
+  lesion_mapping:
+    analysis: multivariate
+    n_analysed: 98
+    min_lesion_overlap: not_reported
+    lesion_volume_correction: not_reported
+    multiple_comparisons: fdr
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - lesion_mapping
+    - phase
 - id: f7
   target: left_putamen
   target_kind: region
@@ -569,6 +749,8 @@ findings:
     age_range: mean 58 years (SD 11.9)
     handedness: all right-handed
     language: English
+    phase: chronic
+    cohort: not_reported
   statistics:
     threshold: binomial test, FDR-corrected
     effect_size: predictive relevance Z = 1.3 (Table 3)
@@ -636,6 +818,34 @@ findings:
     supports: statistics
     quote: False discovery rate (Genovese et al., 2002) was used to correct for multiple
       comparisons.
+  - section: added by backfill
+    page: 1
+    quote: We utilized multivariate classification in a cross-validation framework
+      to predict the type of chronic aphasia from the spatial pattern of brain damage.
+    supports: method
+  - section: added by backfill
+    page: 5
+    quote: Our cohort is a group of 98 chronic stroke patients with aphasia.
+    supports: method
+  - section: added by backfill
+    page: 6
+    quote: All patients were at least 6 months post-stroke, and the mean time since
+      stroke onset was 40.1 months (SD= 49.6; range = 6–276).
+    supports: sample
+  lesion_mapping:
+    analysis: multivariate
+    n_analysed: 98
+    min_lesion_overlap: not_reported
+    lesion_volume_correction: not_reported
+    multiple_comparisons: fdr
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - lesion_mapping
+    - phase
 source: agent_draft
 last_reviewed: null
 notes: 'Re-extraction draft from Yourganov 2015. Seven findings recorded —

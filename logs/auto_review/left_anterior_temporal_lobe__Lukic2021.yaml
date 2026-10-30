@@ -1,0 +1,93 @@
+draft_path: drafts/regions/left_anterior_temporal_lobe__Lukic2021.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-30T23:51:18'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/2 quotes (100%) — exact 2
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - 'f1: strength=''strong'''
+  - 'f2: strength=''strong'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft incorrectly labels the relationship as 'causal' for both
+        findings. The paper uses VLSM to examine 'the relationship between lesions...
+        and both sentence comprehension and production' and reports 'associations'
+        or 'negative relationships' between lesion volume and performance. In lesion-symptom
+        mapping, these are correlational findings, not causal evidence. Additionally,
+        f2's claim that the region is 'specifically' for production is a strong interpretation
+        of the 'over sentence comprehension' contrast.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper describes
+          an association/relationship between lesion volume and performance (correlational).
+        verdict: disagree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper describes
+          an association/relationship between lesion volume and performance (correlational).
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ incorrectly labels the relationship as 'causal' for both findings. The paper\
+      \ uses VLSM to examine 'the relationship between lesions... and both sentence\
+      \ comprehension and production' and reports 'associations' or 'negative relationships'\
+      \ between lesion volume and performance. In lesion-symptom mapping, these are\
+      \ correlational findings, not causal evidence. Additionally, f2's claim that\
+      \ the region is 'specifically' for production is a strong interpretation of\
+      \ the 'over sentence comprehension' contrast.\",\n  \"per_finding\": [\n   \
+      \ {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": false,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captur"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-30T23:51:18'
+latest_verdict: checks_passed
+latest_mode: with_llm_review

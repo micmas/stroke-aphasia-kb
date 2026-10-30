@@ -406,6 +406,8 @@ findings:
     inclusion_criteria: post-stroke aphasia; left hemisphere stroke; WAB-R assessment
       available.
     exclusion_criteria: not_reported
+    phase: chronic
+    cohort: ARC
   statistics:
     threshold: paired t-test across 20 repeats of cross-validation (stratified, nested)
     effect_size: CNN F1 M=0.70, SD=0.01; balanced accuracy M=0.77, SD=0.01; Cohen's
@@ -521,6 +523,25 @@ findings:
     page: 11
     quote: in modest samples of chronic stroke patients, deep learning can be effective
     supports: limitation
+  - section: added by backfill
+    page: not_reported
+    quote: Two-hundred and thirteen individuals (age = 57.98 +/−11.34, 62% male) with
+      chronic left strokes (mean years post-stroke = 3.2 +/−3.7) that participated
+      in studies conducted at the Center for the Study of Aphasia Recovery (C-STAR)
+      were analyzed retrospectively in the present work.
+    supports: sample
+  - section: added by backfill
+    page: 14
+    quote: 'Data from the majority of participants analyzed here are freely available
+      to download as part of our Aphasia Recovery Cohort (ARC) database121: https://openneuro.org/datasets/ds004884/versions/1.0.1.'
+    supports: sample
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - phase
 - id: f4
   target: severity_metric
   target_kind: predictor
@@ -553,6 +574,8 @@ findings:
     recruitment: University of South Carolina and Medical University of South Carolina.
     inclusion_criteria: post-stroke aphasia; left hemisphere stroke; WAB-R available.
     exclusion_criteria: not_reported
+    phase: chronic
+    cohort: ARC
   statistics:
     threshold: two-sample t-tests on ROI-normalized saliency; p<0.0001 for all left
       and right hemisphere ROI comparisons
@@ -643,6 +666,25 @@ findings:
     page: 12
     quote: CNNs can be successfully deployed outside their current niche
     supports: limitation
+  - section: added by backfill
+    page: not_reported
+    quote: Two-hundred and thirteen individuals (age = 57.98 +/−11.34, 62% male) with
+      chronic left strokes (mean years post-stroke = 3.2 +/−3.7) that participated
+      in studies conducted at the Center for the Study of Aphasia Recovery (C-STAR)
+      were analyzed retrospectively in the present work.
+    supports: sample
+  - section: added by backfill
+    page: 14
+    quote: 'Data from the majority of participants analyzed here are freely available
+      to download as part of our Aphasia Recovery Cohort (ARC) database121: https://openneuro.org/datasets/ds004884/versions/1.0.1.'
+    supports: sample
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - phase
 - id: f5
   target: severity_metric
   target_kind: predictor

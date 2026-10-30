@@ -1,0 +1,112 @@
+draft_path: drafts/therapies/melodic_intonation_therapy__Schlaug2010.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-31T01:04:12'
+  mode: with_llm_review
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/7 quotes (57%) — anchored 2, exact 4, near 1
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f2.claim (p.659): The pronounced differences in activation observed
+      in the post- versus pre-therap…'
+    - '  - [near] f2.confounders (p.661): the rate of speaking/singing remains the
+      same for all assessments, so true treat…'
+    - '  - [anchored] f3.limitation (p.659): The most likely explanation for these
+      imaging results are changes in myelination…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Schlaug2010: sample.n disagrees: [1, 6]'
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - 'f2: has provenance.flags'
+  - 'f3: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft contains a deterministic check failure regarding the sample
+        size for f1 (n=6) vs the imaging findings (n=1). While the paper describes
+        a case series of 6 for behavioral results and a single patient for imaging,
+        the draft's internal consistency is flagged. I am deferring because the relationship
+        between the behavioral findings (f1) and the imaging findings (f2, f3) is
+        not explicitly stated as being the same group of people in the text, though
+        it is implied. I will evaluate findings individually.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f3
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ contains a deterministic check failure regarding the sample size for f1 (n=6)\
+      \ vs the imaging findings (n=1). While the paper describes a case series of\
+      \ 6 for behavioral results and a single patient for imaging, the draft's internal\
+      \ consistency is flagged. I am deferring because the relationship between the\
+      \ behavioral findings (f1) and the imaging findings (f2, f3) is not explicitly\
+      \ stated as being the same group of people in the text, though it is implied.\
+      \ I will evaluate findings individually.\",\n  \"per_finding\": [\n    {\n \
+      \     \"id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": true,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captured\": tru"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T01:04:12'
+latest_verdict: defer_to_human
+latest_mode: with_llm_review

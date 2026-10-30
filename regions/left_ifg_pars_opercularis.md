@@ -1,5 +1,5 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: left_ifg_pars_opercularis
 name: Left IFG Pars Opercularis (Broca's area, dorsal stream hub)
 kind: classical
@@ -1045,6 +1045,7 @@ findings:
     handedness: not_reported
     language: not_reported
     phase: chronic
+    cohort: not_reported
   statistics:
     threshold: p < 0.05 with Bonferroni's correction
     effect_size: not_reported
@@ -1076,15 +1077,217 @@ findings:
       scores were the precentral gyrus, opercular part of inferior frontal gyrus,
       and the posterior part of the superior temporal gyrus (PSTG)
     supports: claim
+  - section: added by backfill
+    page: 1
+    quote: we applied a predictive multivariate framework to investigate the relationship
+      between language deficits in human participants with chronic aphasia and the
+      topological distribution of structural brain damage
+    supports: method
+  - section: added by backfill
+    page: 3
+    quote: we only considered gray-matter regions that were damaged in at least 4
+      of 90 participants
+    supports: method
+  - section: added by backfill
+    page: 4
+    quote: The threshold for significance of correlation was 0.05 with Bonferroni’s
+      correction for multiple comparisons
+    supports: method
   review:
     reviewer: model:gemma4:26b
     reviewed_on: '2026-10-22'
     tier: A
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+  lesion_mapping:
+    analysis: multivariate
+    n_analysed: 90
+    min_lesion_overlap: '>= 4 patients'
+    lesion_volume_correction: not_reported
+    multiple_comparisons: bonferroni
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - lesion_mapping
+- id: f9
+  target: syntactic_processing
+  target_kind: impairment
+  claim: Damage to the left IFG pars opercularis is associated with impaired noncanonical
+    sentence comprehension, though its role is likely complementary to posterior temporal
+    areas.
+  direction: likely
+  relationship: causal
+  citation: '@Kristinsson2020'
+  method: RLSM
+  design: cross-sectional
+  strength: moderate
+  evidence_quality: cohort
+  sample:
+    n: 104
+    population: acute left-hemisphere stroke patients with aphasia
+    time_post_onset: <20 days poststroke
+    phase: acute
+    age_range: mean 65.2 (SD 10.0) years
+    handedness: not_reported
+    language: English and Icelandic
+    cohort: not_reported
+  statistics:
+    threshold: alpha level of .05
+    effect_size: accounted for 4.6% of variance in non-CAN score; 3.8% of variance
+      in non-CAN residual score
+    p_value: <.001
+  lesion_mapping:
+    analysis: region_based
+    n_analysed: 104
+    min_lesion_overlap: not_reported
+    lesion_volume_correction: covariate
+    multiple_comparisons: not_reported
+  confounders_controlled:
+  - lesion volume
+  confounders_not_controlled: []
+  region_definition:
+    kind: atlas
+    atlas: Faria et al. (2012)
+    description: IFG pars opercularis (IFGop)
+  imaging_details:
+    field_strength: 1.5T or 3T
+    preprocessing_pipeline: SPM5 unified segmentation and normalization (Icelandic)
+      or Clinical Toolbox/SPM12 enantiomorphic normalization (US)
+    reference_space: MNI152
+    atlases_used:
+    - Faria et al. (2012)
+  author_limitations:
+  - ROI-based approach compromises spatial resolution compared to voxel-based methods.
+  - Only a single measure of sentence comprehension was used.
+  - Behavioral performance was only examined in relation to structural damage, not
+    cerebral perfusion.
+  provenance:
+    extracted_by: agent
+    extracted_on: 2026-01-01
+    paper_section: Results, page 8-9
+    confidence: high
+    flags: []
+  source_passages:
+  - section: Results
+    page: 8
+    quote: Non-CAN score was best predicted by damage to pMTG, AG, IFGop, STG, and
+      MTGpole... Step-wise inclusion of AG, IFGop, STG, and MTG accounted for additional
+      6.9%, 4.6%, 3.2%, and 3.1%, respectively.
+    supports: claim
+  - section: Results
+    page: 9
+    quote: When variance accounted for by performance on CAN sentence structures was
+      regressed out, the model predictive of non-CAN residual score included pSTG,
+      IFGop, SMG, and IFGtri... IFGop accounted for an additional 3.8% of the variance
+    supports: statistics
+  - section: Discussion
+    page: 14
+    quote: Each ROI treated as an independent variable in our models is represented
+      by a single number (proportional damage), regardless of the size of the ROI.
+      Consequently, spatial resolution is compromised.
+    supports: limitation
+  review:
+    reviewer: model:gemma4:26b
+    reviewed_on: '2026-10-31'
+    tier: A
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+- id: f10
+  target: severity_metric
+  target_kind: predictor
+  claim: Lower fractional anisotropy in the left pars opercularis is associated with
+    severe aphasia in chronic stroke patients.
+  direction: likely
+  relationship: correlational
+  citation: '@Lee2018'
+  method: DTI
+  design: cross-sectional
+  strength: moderate
+  evidence_quality: cohort
+  sample:
+    n: 23
+    population: chronic left hemisphere stroke with aphasia
+    time_post_onset: more than 6 months since onset of stroke
+    phase: chronic
+    age_range: mean 69.3-69.8 years
+    handedness: right handedness before the stroke
+    language: native Korean speaker
+  statistics:
+    threshold: Bonferroni-corrected P < 0.05
+    effect_size: 0.20 +/- 0.01 (severe group) vs 0.26 +/- 0.02 (control)
+  confounders_controlled:
+  - ' age'
+  confounders_not_controlled:
+  - ' lesion volume'
+  region_definition:
+    kind: atlas
+    atlas: Harvard-Oxford Cortical and Subcortical Atlas
+    description: pars opercularis identified via Harvard-Oxford atlas inbuilt in FSL
+      5.0.10
+  imaging_details:
+    field_strength: 3T
+    modalities:
+    - modality: DTI
+      voxel_size_mm:
+      - 2
+      - 2
+      - 2
+      TR_ms: 9700
+      TE_ms: 92.0
+      n_directions: 30
+      b_values:
+      - 1000
+      slice_thickness_mm: 2
+    preprocessing_pipeline: FSL 5.0.10 eddy current correction + SPM12 nonlinear transformation
+      to MNI space + 4mm Gaussian smoothing
+    reference_space: MNI152
+    atlases_used:
+    - Harvard-Oxford Cortical and Subcortical Atlas
+  author_limitations:
+  - Small sample size, making it impossible to compare mild and moderate groups.
+  - Potential bias from cognitive defects affecting language skills.
+  - High average patient age and long duration after stroke may reflect brain degeneration.
+  provenance:
+    extracted_by: agent
+    extracted_on: 2026-01-01
+    paper_section: Results, page 3
+    confidence: high
+    flags: []
+  source_passages:
+  - section: Results
+    page: 3
+    quote: Relative to the control group, group 2 exhibited significantly lower FA
+      in the bilateral pars opercularis... (corrected P < 0.05).
+    supports: claim
+  - section: Patients and methods
+    page: 2
+    quote: Twenty-three patients with left hemisphere stroke with aphasia were recruited...
+      (f) more than 6 months since onset of stroke
+    supports: sample
+  - section: MRI preprocessing
+    page: 2
+    quote: Specific areas of the brain were identified in accordance with the Harvard-Oxford
+      Cortical and Subcortical Atlas inbuilt in FSL 5.0.10.
+    supports: region_definition
+  - section: Statistical analysis
+    page: 2
+    quote: Significance was set at Bonferroni-corrected P value of less than 0.05.
+    supports: statistics
+  - section: Discussion
+    page: 5
+    quote: Our study has several limitations, with the first one being its small sample
+      size.
+    supports: limitation
+  review:
+    reviewer: model:gemma4:26b
+    reviewed_on: '2026-10-31'
+    tier: A
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
 source: draft
 reviewer: auto-reviewer
 reviewed_on: '2026-05-06'
-last_reviewed: '2026-10-22'
+last_reviewed: '2026-10-31'
 ---
 # Left IFG Pars Opercularis — Fridriksson 2018 Anatomy (RLSM + CLSM)
 

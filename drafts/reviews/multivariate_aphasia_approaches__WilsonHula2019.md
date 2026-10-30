@@ -1,17 +1,17 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: multivariate_aphasia_approaches__WilsonHula2019
-name: Multivariate Approaches to Understanding Aphasia
+name: Multivariate Approaches to Understanding Aphasia and its Neural Substrates
 kind: review
 status: draft
 created_by: agent:ollama-extract-cli/gemma4:31b-it-q8_0
-created_on: 2026-10-21
+created_on: 2026-10-30
 findings:
 - id: f1
-  target: aphasia_severity
-  target_kind: predictor
-  claim: Aphasia is inherently multifactorial, and traditional characterizations by subtype and severity
-    have limited explanatory power regarding underlying neural substrates.
+  target: aphasia
+  target_kind: impairment
+  claim: Aphasia is inherently multifactorial in both its neural substrates and its symptomatology, meaning
+    it is not well captured by simple characterizations of subtype or severity.
   direction: likely
   relationship: synthesis
   citation: '@WilsonHula2019'
@@ -23,22 +23,25 @@ findings:
   provenance:
     extracted_by: agent
     extracted_on: 2026-01-01
-    paper_section: Abstract
+    paper_section: Introduction
     confidence: high
     flags: []
   source_passages:
   - section: Abstract
     page: 1
-    quote: Aphasia is often characterized in terms of subtype and severity, yet these constructs have
-      limited explanatory power, because aphasia is inherently multifactorial both in its neural substrates
-      and in its symptomatology.
+    quote: aphasia is inherently multifactorial both in its neural substrates and in its symptomatology.
+    supports: claim
+  - section: Introduction
+    page: 2
+    quote: This situation is not well captured simply by characterizing patients in terms of aphasia subtype
+      or severity.
     supports: claim
 - id: f2
-  target: multivariate_lsm
-  target_kind: region
-  claim: Multivariate lesion-symptom mapping (MLSM) generally outperforms univariate VLSM in identifying
-    brain regions associated with specific language deficits, particularly in synthetic data with multiple
-    contributing regions.
+  target: aphasia
+  target_kind: impairment
+  claim: Multivariate lesion-symptom mapping (MLSM) generally outperforms univariate approaches in identifying
+    brain regions associated with specific speech and language deficits, particularly when multiple regions
+    contribute to an outcome.
   direction: likely
   relationship: synthesis
   citation: '@WilsonHula2019'
@@ -50,10 +53,9 @@ findings:
   provenance:
     extracted_by: agent
     extracted_on: 2026-01-01
-    paper_section: Abstract
+    paper_section: Multivariate analysis of the neural substrates of aphasia
     confidence: high
-    flags:
-    - 'target_kind: region used for a method-based synthesis'
+    flags: []
   source_passages:
   - section: Abstract
     page: 1
@@ -61,63 +63,17 @@ findings:
       mapping for identifying brain regions where damage is associated with specific speech and language
       deficits.
     supports: claim
+  - section: Multivariate analysis of the neural substrates of aphasia
+    page: 5
+    quote: In synthetic data in which damage to multiple regions may contribute to behavioral outcomes,
+      multivariate approaches have been shown to outperform univariate approaches in identifying all relevant
+      regions.
+    supports: claim
 - id: f3
-  target: left_superior_temporal_gyrus
-  target_kind: region
-  claim: Speech recognition processes are localized to the superior temporal gyrus, while speech production
-    is localized to the supramarginal gyrus.
-  direction: likely
-  relationship: synthesis
-  citation: '@WilsonHula2019'
-  method: narrative_review
-  design: narrative-review
-  evidence_quality: narrative-review
-  strength: moderate
-  primary_papers_cited:
-  - '@Mirman2015'
-  author_limitations: []
-  provenance:
-    extracted_by: agent
-    extracted_on: 2026-01-01
-    paper_section: Multivariate analysis of the neural substrates of aphasia
-    confidence: high
-    flags: []
-  source_passages:
-  - section: Multivariate analysis of the neural substrates of aphasia
-    page: 5
-    quote: Some highlights include a dissociation between speech recognition and speech production processes,
-      which were localized to the superior temporal gyrus and supramarginal gyrus respectively [30]
-    supports: claim
-- id: f4
-  target: left_posterior_stg
-  target_kind: region
-  claim: Sentence comprehension is localized to the posterior temporal cortex.
-  direction: likely
-  relationship: synthesis
-  citation: '@WilsonHula2019'
-  method: narrative_review
-  design: narrative-review
-  evidence_quality: narrative-review
-  strength: moderate
-  primary_papers_cited:
-  - '@Fridriksson2018Anatomy'
-  author_limitations: []
-  provenance:
-    extracted_by: agent
-    extracted_on: 2026-01-01
-    paper_section: Multivariate analysis of the neural substrates of aphasia
-    confidence: high
-    flags: []
-  source_passages:
-  - section: Multivariate analysis of the neural substrates of aphasia
-    page: 5
-    quote: and localization of sentence comprehension to posterior temporal cortex [32].
-    supports: claim
-- id: f5
-  target: left_arcuate_fasciculus
-  target_kind: region
+  target: aphasia
+  target_kind: impairment
   claim: Reduced interhemispheric connectivity between homotopic regions is highly predictive of deficits
-    in higher functions, including language.
+    in higher functions, including language, following stroke.
   direction: likely
   relationship: synthesis
   citation: '@WilsonHula2019'
@@ -133,14 +89,13 @@ findings:
     extracted_on: 2026-01-01
     paper_section: Multivariate analysis of the neural substrates of aphasia
     confidence: high
-    flags:
-    - target is a proxy for network connectivity
+    flags: []
   source_passages:
   - section: Multivariate analysis of the neural substrates of aphasia
     page: 6
     quote: Most saliently, they showed that reduced interhemispheric connectivity between homotopic regions
-      is highly predictive of deficits in higher functions, including language [68•].
+      is highly predictive of deficits in higher functions, including language.
     supports: claim
 ---
 
-This review surveys the shift from univariate to multivariate statistical approaches in aphasia research, emphasizing that aphasia is a multidimensional disorder both behaviorally and neurally.
+This review surveys the application of multivariate statistical techniques (PCA, FA, MLSM, and Machine Learning) to aphasia research, arguing that the multidimensional nature of the disorder requires these approaches over traditional univariate or syndrome-based classifications.

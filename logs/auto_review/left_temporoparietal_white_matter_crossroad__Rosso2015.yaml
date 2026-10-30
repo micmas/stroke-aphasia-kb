@@ -1,0 +1,87 @@
+draft_path: drafts/regions/left_temporoparietal_white_matter_crossroad__Rosso2015.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-31T00:45:25'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/8 quotes (75%) — anchored 1, exact 6, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.sample (p.288): Twenty-three right-handed patients (14 males,
+      mean +/- standard deviation [SD] a…'
+    - '  - [anchored] f1.imaging_details (p.288): anatomical 3-dimensional T1-weighted
+      MPRAGE images (TR = 2.3 seconds; TE = 4.18 …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The relationship is incorrectly labeled as 'causal'. The paper describes
+        a cross-sectional correlation ('associated with', 'correlated well with')
+        and explicitly discusses the possibility of Wallerian degeneration (a remote
+        effect) versus a direct effect. Labeling a correlation as causal in a cross-sectional
+        study is a violation of the relationship_faithful check.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The finding claims a 'causal' relationship, but the study is cross-sectional
+          and the authors explicitly discuss that the correlation could be a 'remote
+          effect' (Wallerian degeneration) rather than a direct causal effect of the
+          lesion.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The relationship\
+      \ is incorrectly labeled as 'causal'. The paper describes a cross-sectional\
+      \ correlation ('associated with', 'correlated well with') and explicitly discusses\
+      \ the possibility of Wallerian degeneration (a remote effect) versus a direct\
+      \ effect. Labeling a correlation as causal in a cross-sectional study is a violation\
+      \ of the relationship_faithful check.\",\n  \"per_finding\": [\n    {\n    \
+      \  \"id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": false,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captured\": true,\n   \
+      \   \"omissions\": \"\",\n      \"concern\": \"The finding claims a 'causal'\
+      \ relationship, but the study is cross-sectional and the authors expli"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T00:45:25'
+latest_verdict: checks_passed
+latest_mode: with_llm_review

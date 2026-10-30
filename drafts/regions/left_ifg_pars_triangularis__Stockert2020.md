@@ -1,5 +1,5 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: left_ifg_pars_triangularis
 name: Left IFG Pars Triangularis (BA 45)
 kind: classical
@@ -28,6 +28,7 @@ findings:
     handedness: not_reported
     language: German
     phase: mixed
+    cohort: not_reported
   statistics:
     threshold: P < 0.05, two-tailed
     effect_size: not_reported
@@ -90,4 +91,10 @@ findings:
     quote: it might in part also be explained by the auditory comprehension paradigms used to map language
       activation. These may have been more sensitive to mapping dysfunction of temporal cortex
     supports: limitation
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
 ---

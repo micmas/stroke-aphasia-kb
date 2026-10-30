@@ -320,6 +320,166 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-23T12:53:11'
+- run_id: 5
+  timestamp: '2026-10-30T14:26:17'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/6 quotes (83%) — elided 1, exact 4, near 1
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.statistics (p.6): Results are thresholded at P = 0.001 voxel-level,
+      P < 0.001 family-wise error (F…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The relationship is incorrectly labeled as 'causal'. The paper describes
+        a Voxel-Based Correlational Methodology (VBCM), which identifies associations/correlations
+        between tissue integrity and behavioral scores. The authors explicitly state
+        that the results show where 'tissue concentration covaries uniquely with a
+        given principle component' and use terms like 'uniquely related' or 'correlated',
+        which are correlational, not causal.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the study uses VBCM
+          (correlational methodology) to show that tissue integrity 'covaries' with
+          or is 'related to' behavioral scores. The paper does not establish a causal
+          link.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The relationship\
+      \ is incorrectly labeled as 'causal'. The paper describes a Voxel-Based Correlational\
+      \ Methodology (VBCM), which identifies associations/correlations between tissue\
+      \ integrity and behavioral scores. The authors explicitly state that the results\
+      \ show where 'tissue concentration covaries uniquely with a given principle\
+      \ component' and use terms like 'uniquely related' or 'correlated', which are\
+      \ correlational, not causal.\",\n  \"per_finding\": [\n    {\n      \"id\":\
+      \ \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": false,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captured\": true,\n   \
+      \   \"omissions\": \"\",\n      \"concern\": \"The relationship is recorded\
+      \ a"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 6
+  timestamp: '2026-10-30T23:54:56'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/6 quotes (83%) — elided 1, exact 4, near 1
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.statistics (p.6): Results are thresholded at P = 0.001 voxel-level,
+      P < 0.001 family-wise error (F…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The relationship is incorrectly labeled as 'causal'. The paper uses
+        Voxel-Based Correlational Methodology (VBCM) to show that phonological performance
+        is 'uniquely related' or 'uniquely correlated' with specific brain regions.
+        In neuroimaging, these are correlational findings, not causal ones. The draft
+        also claims 'Damage to the left arcuate fasciculus is associated with...',
+        which is a correlation, but the metadata explicitly tags the relationship
+        as 'causal'.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is tagged as 'causal', but the study is a cross-sectional
+          correlational study (VBCM) showing associations/correlations, not causation.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The relationship\
+      \ is incorrectly labeled as 'causal'. The paper uses Voxel-Based Correlational\
+      \ Methodology (VBCM) to show that phonological performance is 'uniquely related'\
+      \ or 'uniquely correlated' with specific brain regions. In neuroimaging, these\
+      \ are correlational findings, not causal ones. The draft also claims 'Damage\
+      \ to the left arcuate fasciculus is associated with...', which is a correlation,\
+      \ but the metadata explicitly tags the relationship as 'causal'.\",\n  \"per_finding\"\
+      : [\n    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"\
+      passage_supports_field\": true,\n      \"relationship_faithful\": false,\n \
+      \     \"strength_fair\": true,\n      \"numbers_match\": true,\n      \"limitations_captured\"\
+      : true,\n      \"omissions\": \"\",\n      \"concern\":"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-30T23:54:56'
 latest_verdict: checks_passed
 latest_mode: with_llm_review

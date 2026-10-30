@@ -379,6 +379,240 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-23T12:30:26'
+- run_id: 6
+  timestamp: '2026-10-30T10:16:25'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/4 quotes (100%) — exact 4
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: A
+  tier_reasons: []
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft claims age is not a 'clinically relevant independent predictor,'
+        but the paper actually states that age *was* significant in one analysis (univariate),
+        though its effect size was minimal (p < 0.001, 10 years = <0.1 point). While
+        the multiple regression (independence) supports the 'no effect' claim, the
+        draft's phrasing is slightly at odds with the paper's nuance regarding univariate
+        significance.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: The paper notes that age *was* univariately correlated with aphasia
+          score (r = -0.14, p < 0.001), which qualifies the 'no effect' claim, though
+          the multiple regression supports the lack of independent predictive power.
+        concern: The draft presents a 'no effect' claim that ignores the univariate
+          significance mentioned in the results, which could be misleading without
+          context.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ claims age is not a 'clinically relevant independent predictor,' but the paper\
+      \ actually states that age *was* significant in one analysis (univariate), though\
+      \ its effect size was minimal (p < 0.001, 10 years = <0.1 point). While the\
+      \ multiple regression (independence) supports the 'no effect' claim, the draft's\
+      \ phrasing is slightly at odds with the paper's nuance regarding univariate\
+      \ significance.\",\n  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n   \
+      \   \"passage_present\": true,\n      \"passage_supports_field\": true,\n  \
+      \    \"relationship_faithful\": true,\n      \"strength_fair\": true,\n    \
+      \  \"numbers_match\": true,\n      \"limitations_captured\": true,\n      \"\
+      omissions\": \"The paper notes that age *was* univariately correlated with aphasia\
+      \ score (r "
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 7
+  timestamp: '2026-10-30T14:00:21'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/4 quotes (100%) — exact 4
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: A
+  tier_reasons: []
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft claims age is not a clinically relevant independent predictor
+        of aphasia recovery. While the paper states 'the influence of age was minimal'
+        (p.1) and 'Age, sex, side of stroke lesion, comorbidity, prior stroke, and
+        handedness were thus not related to recovery from aphasia' (p.5), it also
+        notes that 'Age was significant in one analysis, but of a minimal size' (p.6).
+        The draft's claim of 'no effect' is a slightly stronger interpretation than
+        the paper's nuanced 'minimal' effect, though it is mostly supported.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ claims age is not a clinically relevant independent predictor of aphasia recovery.\
+      \ While the paper states 'the influence of age was minimal' (p.1) and 'Age,\
+      \ sex, side of stroke lesion, comorbidity, prior stroke, and handedness were\
+      \ thus not related to recovery from aphasia' (p.5), it also notes that 'Age\
+      \ was significant in one analysis, but of a minimal size' (p.6). The draft's\
+      \ claim of 'no effect' is a slightly stronger interpretation than the paper's\
+      \ nuanced 'minimal' effect, though it is mostly supported.\",\n  \"per_finding\"\
+      : [\n    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"\
+      passage_supports_field\": true,\n      \"relationship_faithful\": true,\n  \
+      \    \"strength_fair\": true,\n      \"numbers_match\": true,\n      \"limitations_"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 8
+  timestamp: '2026-10-30T23:31:16'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/4 quotes (100%) — exact 4
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: A
+  tier_reasons: []
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft claim is slightly imprecise. The paper states age was not
+        a 'clinically relevant' predictor of outcome (discussion, p.7), but it also
+        notes that age *was* significant in one analysis (determinants of aphasia,
+        p.3) and had a 'minimal' influence on recovery (p.1). The draft's claim that
+        it is 'not a clinically relevant independent predictor' is supported by the
+        discussion, but the finding is nuanced in the results. I defer to ensure the
+        distinction between 'determinants of aphasia' and 'predictors of recovery'
+        is clear.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The draft conflates two different analyses. In the 'Determinants
+          of Aphasia' section (p.3), age *was* univariately correlated with aphasia
+          score (r = -0.14, p < 0.001). However, in the 'Factors Related to Recovery'
+          section (p.5) and the 'Discussion' (p.7), the authors conclude age was not
+          a clinically relevant predictor of *recovery* (outcome). The draft correctly
+          identifies the target as 'prognosis/outcome', but the quoted passage for
+          the claim (p.5) actually refers to the regression for *recovery*, not the
+          univariate determinant of aphasia. This distinction is vital.
+        verdict: agree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ claim is slightly imprecise. The paper states age was not a 'clinically relevant'\
+      \ predictor of outcome (discussion, p.7), but it also notes that age *was* significant\
+      \ in one analysis (determinants of aphasia, p.3) and had a 'minimal' influence\
+      \ on recovery (p.1). The draft's claim that it is 'not a clinically relevant\
+      \ independent predictor' is supported by the discussion, but the finding is\
+      \ nuanced in the results. I defer to ensure the distinction between 'determinants\
+      \ of aphasia' and 'predictors of recovery' is clear.\",\n  \"per_finding\":\
+      \ [\n    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"\
+      passage_supports_field\": true,\n      \"relationship_faithful\": true,\n  \
+      \    \"strength_fair\": true,\n      \"numbers_match\": true,\n      \"li"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-30T23:31:16'
 latest_verdict: checks_passed
 latest_mode: with_llm_review

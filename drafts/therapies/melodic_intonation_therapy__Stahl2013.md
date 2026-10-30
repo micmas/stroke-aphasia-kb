@@ -1,5 +1,5 @@
 ---
-schema_version: 2.6
+schema_version: 2.8
 id: melodic_intonation_therapy
 name: Melodic Intonation Therapy (MIT)
 kind: therapy
@@ -32,6 +32,7 @@ findings:
     age_range: 40-72 years (mean 56, SD 10)
     handedness: all right-handed
     language: German native-speakers
+    cohort: not_reported
   statistics:
     threshold: alpha level of 0.05
     effect_size: F(2, 11) = 49.86, p < 0.001, partial eta2 = 0.90
@@ -87,6 +88,11 @@ findings:
     quote: It should be noted that the current experiment did not include a control treatment for rhythmic
       therapy.
     supports: limitation
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
 ---
-
 Findings from @Stahl2013 indicate that both singing and rhythmic therapy significantly improve the production of formulaic phrases compared to standard speech therapy, suggesting that rhythm, rather than melody specifically, may be the primary driver of this specific recovery path.

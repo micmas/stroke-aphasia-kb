@@ -1,0 +1,2227 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+skipped — more than 60 pages (a long review or report; the model reads the whole text in one call and a 100+ page PDF can sit for hours before the first token):
+    C0107  @Hazelton2022              papers/Hazelton2022.pdf  135 pages
+  extract one anyway: screen.py extract --max-pages 0 --limit 1 … or extract.py --pdf papers/<Key>.pdf; or reconsider the full-text decision
+31 paper(s) to extract (≈ 775 min):
+    C0057  @Mohr2017                  papers/Mohr2017.pdf
+    C0148  @Simic2019                 papers/Simic2019.pdf
+    C0160  @Marien2004                papers/Marien2004.pdf
+    C0161  @Coppens2002               papers/Coppens2002.pdf
+    C0163  @Lo2019                    papers/Lo2019.pdf
+    C0707  @Jiang2025                 papers/Jiang2025.pdf
+    C0843  @Casilio2025               papers/Casilio2025.pdf
+    C0953  @Ding2023                  papers/Ding2023.pdf
+    C1050  @Akkad2023                 papers/Akkad2023.pdf
+    C1336  @Adezati2022               papers/Adezati2022.pdf
+    C1344  @MartinezMolina2022        papers/MartinezMolina2022.pdf
+    C1495  @Ivanova2021               papers/Ivanova2021.pdf
+    C1596  @Wilmskoetter2021          papers/Wilmskoetter2021.pdf
+    C1728  @Lukic2021                 papers/Lukic2021.pdf
+    C1829  @OsaGarcia2020             papers/OsaGarcia2020.pdf
+    C1916  @Kristinsson2020           papers/Kristinsson2020.pdf
+    C2117  @Woollams2018              papers/Woollams2018.pdf
+    C2127  @Wright2018                papers/Wright2018.pdf
+    C2234  @Halai2018                 papers/Halai2018.pdf
+    C2242  @Lee2018                   papers/Lee2018.pdf
+    C2356  @Xing2017                  papers/Xing2017.pdf
+    C2368  @Pillay2017                papers/Pillay2017.pdf
+    C2738  @Basilakos2014             papers/Basilakos2014.pdf
+    C2739  @Han2016                   papers/Han2016.pdf
+    C2769  @Rosso2015                 papers/Rosso2015.pdf
+    C2780  @Fridriksson2015           papers/Fridriksson2015.pdf
+    C3212  @Stahl2011                 papers/Stahl2011.pdf
+    C3213  @Schlaug2010               papers/Schlaug2010.pdf
+    C4853  @Sheppard2022              papers/Sheppard2022.pdf
+    C6375  @Bi2015                    papers/Bi2015.pdf
+    C7442  @Ali2021                   papers/Ali2021.pdf
+
+[1/31] @Mohr2017
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Mohr2017.pdf ===  started 2026-10-30 16:22:41
+  PDF: 5 pages, ~28,481 chars extracted
+  Citation key: @Mohr2017
+  Prompt: 218,312 chars (~54,578 tokens)
+  Model call started 16:22:41 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=90,112, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 10 out tokens (0.0 tok/s, 6m00s)
+  … 797 out tokens (1.7 tok/s, 8m00s)
+  ← 69615 in + 1318 out tokens in 556s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 6% (peak 25%)  ·  RAM peak 85%  ✓ stayed fully on GPU
+  Model call finished 16:31:57 (took 9m 15s)
+  ✓ wrote drafts/reviews/neuroplasticity_poststroke_aphasia__Mohr2017.md   [rewrote created_by; frontmatter not parseable (while scanning a double-quoted scalar
+  in "<unicode string>", line 35, column 16:
+            quote: "The reasons for the heterogenei ... 
+                   ^
+found unknown escape character 'd'
+  in "<unicode string>", line 35, column 174:
+     ...  site, symptom severity, etc. [\dots] the specific impact of non ... 
+                                         ^); left as written]
+  ⚠ neuroplasticity_poststroke_aphasia__Mohr2017.md: frontmatter does not parse — fix by hand (while scanning a double-quoted scalar)
+  ⚠ 1 validation issue(s) — drafts saved anyway for review.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (1 draft(s))
+(no output)
+  ⚠ annotator returned 1
+Traceback (most recent call last):
+  File "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py", line 522, in <module>
+    main()
+  File "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py", line 513, in main
+    pdf_path = _ensure_canonical_pdf(args.pdf, args.draft,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py", line 269, in _ensure_canonical_pdf
+    key = _citation_key_from_drafts(draft_paths)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py", line 237, in _citation_key_from_drafts
+    fm, _ = parse_markdown(Path(dp))
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/aphasia_kb.py", line 71, in parse_markdown
+    fm = yaml.safe_load(m.group("yaml")) or {}
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/__init__.py", line 125, in safe_load
+    return load(stream, SafeLoader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/__init__.py", line 81, in load
+    return loader.get_single_data()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/constructor.py", line 49, in get_single_data
+    node = self.get_single_node()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 36, in get_single_node
+    document = self.compose_document()
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 55, in compose_document
+    node = self.compose_node(None, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 82, in compose_node
+    node = self.compose_sequence_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 111, in compose_sequence_node
+    node.value.append(self.compose_node(node, index))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 82, in compose_node
+    node = self.compose_sequence_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 111, in compose_sequence_node
+    node.value.append(self.compose_node(node, index))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 64, in compose_node
+    if self.check_event(AliasEvent):
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/parser.py", line 98, in check_event
+    self.current_event = self.state()
+                         ^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/parser.py", line 449, in parse_block_mapping_value
+    if not self.check_token(KeyToken, ValueToken, BlockEndToken):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/scanner.py", line 116, in check_token
+    self.fetch_more_tokens()
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/scanner.py", line 251, in fetch_more_tokens
+    return self.fetch_double()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/scanner.py", line 655, in fetch_double
+    self.fetch_flow_scalar(style='"')
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/scanner.py", line 666, in fetch_flow_scalar
+    self.tokens.append(self.scan_flow_scalar(style))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/scanner.py", line 1152, in scan_flow_scalar
+    chunks.extend(self.scan_flow_scalar_non_spaces(double, start_mark))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/scanner.py", line 1223, in scan_flow_scalar_non_spaces
+    raise ScannerError("while scanning a double-quoted scalar", start_mark,
+yaml.scanner.ScannerError: while scanning a double-quoted scalar
+  in "<unicode string>", line 35, column 16:
+            quote: "The reasons for the heterogenei ... 
+                   ^
+found unknown escape character 'd'
+  in "<unicode string>", line 35, column 174:
+     ...  site, symptom severity, etc. [\dots] the specific impact of non ... 
+                                         ^
+
+  Summary: Extracted a narrative review on neuroplasticity and intensive aphasia therapy, focusing on hemispheric reorganization and predictors of recovery.
+  For reviewer: The paper is an 'Opinion' piece but functions as a narrative review synthesizing multiple primary studies. I have used the `reviews` bucket and `method: narrative_review` as per schema v2.4.
+  Done 16:31:57 — total 9m 16s for this paper
+
+Finished 2026-10-30 16:31:57: 1 ok, 0 failed, 9m 16s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[2/31] @Simic2019
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Simic2019.pdf ===  started 2026-10-30 16:31:57
+  PDF: 45 pages, ~157,139 chars extracted
+  Citation key: @Simic2019
+  Prompt: 346,973 chars (~86,743 tokens)
+  Model call started 16:31:58 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=135,168, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 8m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 10m00s)
+  … 194 out tokens (0.3 tok/s, 12m00s)
+  … 910 out tokens (1.1 tok/s, 14m00s)
+  ← 109943 in + 1602 out tokens in 953s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 9% (peak 31%)  ·  RAM peak 65%  ✓ stayed fully on GPU
+  Model call finished 16:47:51 (took 15m 53s)
+  ✓ wrote drafts/predictors/executive_functions__Simic2019.md   [rewrote created_by]
+  ⚠ executive_functions__Simic2019.md: 1 validation issue(s):
+      /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/executive_functions__Simic2019.md: finding[1] (id=f2): therapy {id, name} is required for a responder finding in v2.8 (which intervention was given)
+  ⚠ 1 validation issue(s) — drafts saved anyway for review.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (1 draft(s))
+  Missed: 0 passage(s)
+  Summary: Extracted a systematic review on the relationship between baseline executive control and language therapy outcomes, specifically noting the positive correlation for naming therapy in moderate-to-severe aphasia and the lack of correlation for CIAT.
+  For reviewer: The paper is a systematic review, so findings are coded as `method: narrative_review` and `relationship: synthesis` (or `correlational`/`responder` where the review synthesizes those specific types of primary evidence). I anchored the findings in the `executive_functions` predictor entry as the primary claim is about the predictive value of EC.
+  Done 16:47:52 — total 15m 54s for this paper
+
+Finished 2026-10-30 16:47:52: 1 ok, 0 failed, 15m 54s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[3/31] @Marien2004
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Marien2004.pdf ===  started 2026-10-30 16:47:52
+  PDF: 34 pages, ~166,404 chars extracted
+  Citation key: @Marien2004
+  Prompt: 356,240 chars (~89,060 tokens)
+  Model call started 16:47:52 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=139,264, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 8m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 10m00s)
+  … 506 out tokens (0.7 tok/s, 12m00s)
+  … 1,260 out tokens (1.5 tok/s, 14m00s)
+  ← 115629 in + 1700 out tokens in 909s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 6% (peak 18%)  ·  RAM peak 63%  ✓ stayed fully on GPU
+  Model call finished 17:03:01 (took 15m 09s)
+  ✓ wrote drafts/reviews/crossed_aphasia_dextrals__Marien2004.md   [rewrote created_by; review id crossed_aphasia_dextrals → crossed_aphasia_dextrals__Marien2004 (one entry per review paper)]
+  ✓ 1 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (1 draft(s))
+  Missed: 1 passage(s)
+  Summary: Extracted a systematic review of crossed aphasia in dextrals, focusing on diagnostic criteria, aphasia type distribution, and associated cognitive deficits.
+  For reviewer: The paper is a systematic review of case reports. I have used the 'reviews' bucket and 'narrative_review' method as per schema v2.4. The findings are syntheses of the author's analysis of the 49 'reliable' cases.
+  Done 17:03:03 — total 15m 11s for this paper
+
+Finished 2026-10-30 17:03:03: 1 ok, 0 failed, 15m 11s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[4/31] @Coppens2002
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Coppens2002.pdf ===  started 2026-10-30 17:03:03
+  PDF: 39 pages, ~123,838 chars extracted
+  Citation key: @Coppens2002
+  Prompt: 313,676 chars (~78,419 tokens)
+  Model call started 17:03:04 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=122,880, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 8m00s)
+  … 374 out tokens (0.6 tok/s, 10m00s)
+  … 1,153 out tokens (1.6 tok/s, 12m00s)
+  ← 105356 in + 1476 out tokens in 769s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 8% (peak 50%)  ·  RAM peak 63%  ✓ stayed fully on GPU
+  Model call finished 17:15:53 (took 12m 49s)
+  ✓ wrote drafts/reviews/crossed_aphasia__Coppens2002.md   [rewrote created_by; review id crossed_aphasia → crossed_aphasia__Coppens2002 (one entry per review paper)]
+  ⚠ crossed_aphasia__Coppens2002.md: 2 validation issue(s):
+      /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/reviews/crossed_aphasia__Coppens2002.md: finding[1] (id=f2): target 'crossed_aphasia' is an aphasia syndrome but the claim is about a symptom; target the symptom entry (anomia, fluency, …) unless the paper classifies by syndrome
+      /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/reviews/crossed_aphasia__Coppens2002.md: finding[2] (id=f3): target 'crossed_aphasia' is an aphasia syndrome but the claim is about a symptom; target the symptom entry (anomia, fluency, …) unless the paper classifies by syndrome
+  ⚠ 2 validation issue(s) — drafts saved anyway for review.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (1 draft(s))
+  Missed: 2 passage(s)
+  Summary: Extracted a systematic review of crossed aphasia, focusing on its clinical comparability to left-hemisphere aphasia, gender differences in familial sinistrality, and the lateralization of oral praxis.
+  For reviewer: The paper is a systematic review of case reports. I have used the 'reviews' bucket and 'narrative_review' method as per schema v2.4. Findings are synthesis-based.
+  Done 17:15:56 — total 12m 52s for this paper
+
+Finished 2026-10-30 17:15:56: 1 ok, 0 failed, 12m 52s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[5/31] @Lo2019
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Lo2019.pdf ===  started 2026-10-30 17:15:56
+  PDF: 16 pages, ~63,893 chars extracted
+  Citation key: @Lo2019
+  Prompt: 253,721 chars (~63,430 tokens)
+  Model call started 17:15:56 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=102,400, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 70 out tokens (0.2 tok/s, 6m00s)
+  … 903 out tokens (1.9 tok/s, 8m00s)
+  … 1,762 out tokens (2.9 tok/s, 10m00s)
+  ← 80574 in + 2027 out tokens in 636s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 8% (peak 50%)  ·  RAM peak 61%  ✓ stayed fully on GPU
+  Model call finished 17:26:32 (took 10m 35s)
+  ✓ wrote drafts/predictors/severity_metric__Lo2019.md   [rewrote created_by; name 'Aphasia Severity Metric' → canonical 'Aphasia severity metric (instrument-agnostic)']
+  ✓ wrote drafts/predictors/severity_metric__Lo2019_f2.md   [rewrote created_by; name 'Aphasia Severity Metric' → canonical 'Aphasia severity metric (instrument-agnostic)']
+  ✓ 2 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (2 draft(s))
+  Missed: 0 passage(s)
+  Summary: Extracted risk factors (diabetes, past stroke) for poststroke cognitive impairment from a large international IPD meta-analysis.
+  For reviewer: The paper focuses on general cognitive impairment (PSCI) rather than aphasia specifically, but includes language as a domain. I have mapped these to the severity_metric predictor as they describe global cognitive outcomes.
+  Done 17:26:34 — total 10m 37s for this paper
+
+Finished 2026-10-30 17:26:34: 1 ok, 0 failed, 10m 37s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[6/31] @Jiang2025
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Jiang2025.pdf ===  started 2026-10-30 17:26:34
+  PDF: 13 pages, ~74,005 chars extracted
+  Citation key: @Jiang2025
+  Prompt: 263,839 chars (~65,959 tokens)
+  Model call started 17:26:34 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=106,496, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … 695 out tokens (1.4 tok/s, 8m00s)
+  … 1,541 out tokens (2.6 tok/s, 10m00s)
+  … 2,394 out tokens (3.3 tok/s, 12m00s)
+  … 3,244 out tokens (3.9 tok/s, 14m00s)
+  ← 81056 in + 3367 out tokens in 857s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 8% (peak 15%)  ·  RAM peak 61%  ✓ stayed fully on GPU
+  Model call finished 17:40:51 (took 14m 17s)
+  ✓ wrote drafts/regions/right_dorsolateral_prefrontal_cortex__Jiang2025.md   [rewrote created_by]
+  ✓ wrote drafts/regions/right_inferior_frontal_gyrus__Jiang2025.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_inferior_frontal_gyrus__Jiang2025.md   [rewrote created_by; f1: sample.phase 'subacute' → mixed (range '1-2 weeks' straddles bands)]
+  ✓ 3 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (3 draft(s))
+  Missed: 0 passage(s)
+  Summary: Extracted longitudinal effective connectivity findings from Jiang 2025 regarding MDN-to-LN and within-LN interactions during aphasia recovery.
+  For reviewer: The study uses Dynamic Causal Modelling (DCM) to assess effective connectivity. I have mapped these as 'correlational' because while DCM models 'causal' influences, it is based on fMRI BOLD signals. I have flagged the cohort overlap with Stockert 2020/2022.
+  Done 17:40:53 — total 14m 19s for this paper
+
+Finished 2026-10-30 17:40:53: 1 ok, 0 failed, 14m 19s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[7/31] @Casilio2025
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Casilio2025.pdf ===  started 2026-10-30 17:40:53
+  PDF: 22 pages, ~120,600 chars extracted
+  Citation key: @Casilio2025
+  Prompt: 310,438 chars (~77,609 tokens)
+  Model call started 17:40:53 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=122,880, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … 47 out tokens (0.1 tok/s, 8m00s)
+  … 833 out tokens (1.4 tok/s, 10m00s)
+  … 1,634 out tokens (2.3 tok/s, 12m00s)
+  … 2,440 out tokens (2.9 tok/s, 14m00s)
+  … 3,242 out tokens (3.4 tok/s, 16m00s)
+  … 4,042 out tokens (3.7 tok/s, 18m00s)
+  ← 96081 in + 4108 out tokens in 1089s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 8% (peak 50%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 17:59:02 (took 18m 08s)
+  ✓ wrote drafts/regions/left_superior_temporal_gyrus__Casilio2025.md   [rewrote created_by; name 'Left Superior Temporal Gyrus' → canonical 'Left Superior Temporal Gyrus (Dorsal Stream Node)']
+  ✓ wrote drafts/regions/left_supramarginal_gyrus__Casilio2025.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_precentral_gyrus__Casilio2025.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_basal_ganglia__Casilio2025.md   [rewrote created_by]
+  ✓ 4 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (4 draft(s))
+  Missed: 8 passage(s)
+  Summary: Extracted 4 region-anchored findings linking APROCSA dimensions (Paraphasia, Logopenia, Agrammatism, Motor speech) to left-hemisphere regions in acute stroke.
+  For reviewer: The paper uses a novel measurement system (APROCSA). I have mapped 'Paraphasia' and 'Logopenia' to 'anomia' as they both reflect lexical-semantic/phonological access deficits. 'Agrammatism' is mapped to 'syntactic_processing' and 'Motor speech' to 'form_to_articulation'. All findings are from the acute phase (1-5 days post-onset).
+  Done 17:59:11 — total 18m 17s for this paper
+
+Finished 2026-10-30 17:59:11: 1 ok, 0 failed, 18m 17s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[8/31] @Ding2023
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Ding2023.pdf ===  started 2026-10-30 17:59:11
+  PDF: 13 pages, ~58,486 chars extracted
+  Citation key: @Ding2023
+  Prompt: 248,318 chars (~62,079 tokens)
+  Model call started 17:59:11 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=102,400, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 160 out tokens (0.4 tok/s, 6m00s)
+  … 990 out tokens (2.1 tok/s, 8m00s)
+  … 1,849 out tokens (3.1 tok/s, 10m00s)
+  … 2,715 out tokens (3.8 tok/s, 12m00s)
+  … 3,576 out tokens (4.3 tok/s, 14m00s)
+  ← 78054 in + 4103 out tokens in 913s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 8% (peak 25%)  ·  RAM peak 61%  ✓ stayed fully on GPU
+  Model call finished 18:14:24 (took 15m 12s)
+  ✓ wrote drafts/regions/left_arcuate_fasciculus__Ding2023.md   [rewrote created_by; name 'Left Arcuate Fasciculus' → canonical 'Left arcuate fasciculus']
+  ✓ wrote drafts/regions/left_frontal_aslant_tract__Ding2023.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_superior_longitudinal_fasciculus__Ding2023.md   [rewrote created_by]
+  ✓ wrote drafts/predictors/lesion_volume__Ding2023.md   [rewrote created_by; name 'Total Lesion Volume' → canonical 'Total lesion volume'; f1: region_definition.kind → not_reported]
+  ✓ 4 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (4 draft(s))
+  Missed: 3 passage(s)
+  Summary: Extracted lesion correlates of informative spoken discourse (CIUs), identifying the left AF, FAT, and SLF as critical substrates, and confirming the predictive value of total lesion volume.
+  For reviewer: Created a new impairment target 'discourse_content' to capture the Correct Information Unit (CIU) measures. The paper uses a combination of MLPA (SCCAN), disconnection LSM, and tract-wise partial correlations.
+  Done 18:14:27 — total 15m 15s for this paper
+
+Finished 2026-10-30 18:14:27: 1 ok, 0 failed, 15m 15s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[9/31] @Akkad2023
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Akkad2023.pdf ===  started 2026-10-30 18:14:27
+  PDF: 9 pages, ~66,782 chars extracted
+  Citation key: @Akkad2023
+  Prompt: 256,615 chars (~64,153 tokens)
+  Model call started 18:14:27 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=106,496, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … 606 out tokens (1.3 tok/s, 8m00s)
+  … 1,433 out tokens (2.4 tok/s, 10m00s)
+  … 2,288 out tokens (3.2 tok/s, 12m00s)
+  … 3,140 out tokens (3.7 tok/s, 14m00s)
+  ← 82657 in + 3218 out tokens in 850s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 13%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 18:28:37 (took 14m 10s)
+  ✓ wrote drafts/regions/left_ifg_pars_triangularis__Akkad2023.md   [rewrote created_by; name 'Left Inferior Frontal Gyrus Pars Triangularis' → canonical 'Left IFG Pars Triangularis (BA 45)']
+  ✓ wrote drafts/regions/left_posterior_stg__Akkad2023.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_middle_temporal_gyrus__Akkad2023.md   [rewrote created_by; name 'Left Middle Temporal Gyrus' → canonical 'Left Middle Temporal Gyrus (Ventral Stream Node)']
+  ✓ 3 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (3 draft(s))
+  Missed: 1 passage(s)
+  Summary: Extracted VBCM findings linking left IFG to executive functions, left pSTG to verbal working memory, and left MTG to semantics in chronic aphasia.
+  For reviewer: The paper uses VBCM on PCA factors. I have mapped these factors to the closest existing impairment IDs: Factor 2 -> executive_functions, Factor 3 -> verbal_working_memory (forward-looking), Factor 4 -> semantics. Note that the authors explicitly discuss the non-linguistic nature of the IFG findings.
+  Done 18:28:38 — total 14m 11s for this paper
+
+Finished 2026-10-30 18:28:38: 1 ok, 0 failed, 14m 11s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[10/31] @Adezati2022
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Adezati2022.pdf ===  started 2026-10-30 18:28:38
+  PDF: 6 pages, ~43,023 chars extracted
+  Citation key: @Adezati2022
+  Prompt: 232,860 chars (~58,215 tokens)
+  Model call started 18:28:38 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=98,304, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 159 out tokens (0.4 tok/s, 6m00s)
+  … 1,002 out tokens (2.1 tok/s, 8m00s)
+  … 1,868 out tokens (3.1 tok/s, 10m00s)
+  ← 74896 in + 2273 out tokens in 655s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 10% (peak 25%)  ·  RAM peak 61%  ✓ stayed fully on GPU
+  Model call finished 18:39:34 (took 10m 55s)
+  ✓ wrote drafts/regions/left_posterior_stg__Adezati2022.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_ifg_pars_triangularis__Adezati2022.md   [rewrote created_by; name 'Left Inferior Frontal Gyrus Pars Triangularis' → canonical 'Left IFG Pars Triangularis (BA 45)']
+  ✓ 2 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (2 draft(s))
+  Missed: 2 passage(s)
+  Summary: Extracted lesion correlates of auditory sentence comprehension (Token Test) involving the posterior STG and left IFG pars triangularis.
+  For reviewer: The paper uses Colin27 space rather than MNI152; I have flagged this in provenance. The target is 'syntactic_processing' as the paper discusses sentence-level comprehension and combinatorial processing.
+  Done 18:39:35 — total 10m 56s for this paper
+
+Finished 2026-10-30 18:39:35: 1 ok, 0 failed, 10m 56s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[11/31] @MartinezMolina2022
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  MartinezMolina2022.pdf ===  started 2026-10-30 18:39:35
+  PDF: 10 pages, ~41,943 chars extracted
+  Citation key: @MartinezMolina2022
+  Prompt: 231,795 chars (~57,948 tokens)
+  Model call started 18:39:35 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=98,304, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 264 out tokens (0.7 tok/s, 6m00s)
+  … 1,122 out tokens (2.3 tok/s, 8m00s)
+  … 2,002 out tokens (3.3 tok/s, 10m00s)
+  … 2,884 out tokens (4.0 tok/s, 12m00s)
+  … 3,765 out tokens (4.5 tok/s, 14m00s)
+  … 4,638 out tokens (4.8 tok/s, 16m00s)
+  ← 73175 in + 5250 out tokens in 1043s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 8% (peak 16%)  ·  RAM peak 61%  ✓ stayed fully on GPU
+  Model call finished 18:56:58 (took 17m 23s)
+  ✓ wrote drafts/regions/left_superior_temporal_gyrus__MartinezMolina2022.md   [rewrote created_by; name 'Left Superior Temporal Gyrus' → canonical 'Left Superior Temporal Gyrus (Dorsal Stream Node)'; f2: lesion_mapping inferred + flag]
+  ✓ wrote drafts/regions/left_middle_temporal_gyrus__MartinezMolina2022.md   [rewrote created_by; name 'Left Middle Temporal Gyrus' → canonical 'Left Middle Temporal Gyrus (Ventral Stream Node)'; f2: lesion_mapping inferred + flag]
+  ✓ wrote drafts/regions/left_middle_frontal_gyrus__MartinezMolina2022.md   [rewrote created_by; f2: lesion_mapping inferred + flag]
+  ✓ 3 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (3 draft(s))
+  Missed: 6 passage(s)
+  Summary: Extracted lesion-symptom and VBM findings linking left temporal and frontal regions to speech and singing production in chronic aphasia.
+  For reviewer: Created new target impairment 'singing_production' as it is the primary focus of the paper. Findings for spontaneous speech were mapped to 'fluency' per schema v2.8 symptom rules.
+  Done 18:57:02 — total 17m 26s for this paper
+
+Finished 2026-10-30 18:57:02: 1 ok, 0 failed, 17m 26s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[12/31] @Ivanova2021
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Ivanova2021.pdf ===  started 2026-10-30 18:57:02
+  PDF: 15 pages, ~80,706 chars extracted
+  Citation key: @Ivanova2021
+  Prompt: 270,544 chars (~67,636 tokens)
+  Model call started 18:57:02 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=110,592, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … 453 out tokens (0.9 tok/s, 8m00s)
+  … 1,291 out tokens (2.2 tok/s, 10m00s)
+  … 2,139 out tokens (3.0 tok/s, 12m00s)
+  … 2,985 out tokens (3.6 tok/s, 14m00s)
+  ← 85306 in + 3224 out tokens in 873s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 12%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 19:11:36 (took 14m 33s)
+  ✓ wrote drafts/regions/left_arcuate_fasciculus__Ivanova2021.md   [added missing closing ---; rewrote created_by; name 'Left Arcuate Fasciculus' → canonical 'Left arcuate fasciculus']
+  ✓ 1 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (1 draft(s))
+  Missed: 3 passage(s)
+  Summary: Extracted 3 findings from Ivanova 2021 linking specific segments of the left arcuate fasciculus (long, anterior, posterior) to naming, fluency, and comprehension beyond cortical damage.
+  For reviewer: The paper uses a 3-segment model (Catani) and a 2-segment model (Glasser & Rilling). I have anchored the primary findings to the Catani segments as they provided the most distinct results beyond cortical areas. Note that the sample size for analysis was n=32 after one outlier was removed.
+  Done 19:11:38 — total 14m 35s for this paper
+
+Finished 2026-10-30 19:11:38: 1 ok, 0 failed, 14m 35s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[13/31] @Wilmskoetter2021
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Wilmskoetter2021.pdf ===  started 2026-10-30 19:11:38
+  PDF: 10 pages, ~46,120 chars extracted
+  Citation key: @Wilmskoetter2021
+  Prompt: 235,968 chars (~58,992 tokens)
+  Model call started 19:11:38 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=98,304, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 218 out tokens (0.6 tok/s, 6m00s)
+  … 1,078 out tokens (2.2 tok/s, 8m00s)
+  … 1,961 out tokens (3.3 tok/s, 10m00s)
+  … 2,850 out tokens (4.0 tok/s, 12m00s)
+  … 3,733 out tokens (4.4 tok/s, 14m00s)
+  ← 73775 in + 4310 out tokens in 919s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 10%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 19:26:57 (took 15m 18s)
+  ✓ wrote drafts/regions/left_ifg_pars_opercularis__Wilmskoetter2021.md   [rewrote created_by; name 'Left Inferior Frontal Gyrus Pars Opercularis' → canonical "Left IFG Pars Opercularis (Broca's area, dorsal stream hub)"]
+  ✓ wrote drafts/regions/left_angular_gyrus__Wilmskoetter2021.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_middle_temporal_gyrus__Wilmskoetter2021.md   [rewrote created_by; name 'Left Middle Temporal Gyrus' → canonical 'Left Middle Temporal Gyrus (Ventral Stream Node)']
+  ✓ 3 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (3 draft(s))
+  Missed: 0 passage(s)
+  Summary: Extracted findings on the role of direct and indirect white matter connections (IFGop, AG, MTG) in predicting naming treatment response in chronic aphasia.
+  For reviewer: The study uses a specific 'propagation steps' metric for indirect connectivity. I have mapped these to 'responder' relationships as they predict treatment outcome. Note the cohort overlap with the Fridriksson 2018 JAMA trial.
+  Done 19:27:00 — total 15m 21s for this paper
+
+Finished 2026-10-30 19:27:00: 1 ok, 0 failed, 15m 21s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[14/31] @Lukic2021
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Lukic2021.pdf ===  started 2026-10-30 19:27:00
+  PDF: 10 pages, ~67,794 chars extracted
+  Citation key: @Lukic2021
+  Prompt: 257,628 chars (~64,407 tokens)
+  Model call started 19:27:00 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=106,496, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … 592 out tokens (1.2 tok/s, 8m00s)
+  … 1,438 out tokens (2.4 tok/s, 10m00s)
+  … 2,295 out tokens (3.2 tok/s, 12m00s)
+  … 3,147 out tokens (3.7 tok/s, 14m00s)
+  … 3,995 out tokens (4.2 tok/s, 16m00s)
+  ← 83122 in + 4521 out tokens in 1033s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 8% (peak 67%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 19:44:13 (took 17m 13s)
+  ✓ wrote drafts/regions/left_superior_temporal_gyrus__Lukic2021.md   [rewrote created_by; name 'Left Superior Temporal Gyrus' → canonical 'Left Superior Temporal Gyrus (Dorsal Stream Node)']
+  ✓ wrote drafts/regions/left_anterior_temporal_lobe__Lukic2021.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_angular_gyrus__Lukic2021.md   [rewrote created_by]
+  ✓ 3 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (3 draft(s))
+  Missed: 2 passage(s)
+  Summary: Extracted VLSM findings linking left temporal and parietal regions to sentence production and comprehension, with a specific focus on noncanonical syntax.
+  For reviewer: The paper explicitly factors out verb processing to isolate sentence-level deficits. I have created three region-anchored drafts. Note that the authors found no significant frontal effects after this control, which they discuss as a potential power issue or a reflection of the IFG's role in verb retrieval.
+  Done 19:44:16 — total 17m 15s for this paper
+
+Finished 2026-10-30 19:44:16: 1 ok, 0 failed, 17m 15s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[15/31] @OsaGarcia2020
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  OsaGarcia2020.pdf ===  started 2026-10-30 19:44:16
+MuPDF error: format error: out of range code encountered in lzw decode
+
+MuPDF error: library error: FT_New_Memory_Face(UVHQSY+HelveticaNeueLTStd-Lt): unknown file format
+
+  PDF: 9 pages, ~49,276 chars extracted
+  Citation key: @OsaGarcia2020
+  Prompt: 239,117 chars (~59,779 tokens)
+  Model call started 19:44:16 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=98,304, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 33 out tokens (0.1 tok/s, 6m00s)
+  … 873 out tokens (1.8 tok/s, 8m00s)
+  … 1,741 out tokens (2.9 tok/s, 10m00s)
+  ← 77326 in + 2109 out tokens in 650s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 15%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 19:55:06 (took 10m 49s)
+  ✓ wrote drafts/predictors/initial_aphasia_severity__OsaGarcia2020.md   [rewrote created_by; name 'Initial Aphasia Severity' → canonical 'Initial aphasia severity (acute WAB composite)']
+  ✓ wrote drafts/regions/right_arcuate_fasciculus__OsaGarcia2020.md   [rewrote created_by]
+  ✓ 2 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (2 draft(s))
+  Missed: 0 passage(s)
+  Summary: Extracted findings on initial aphasia severity and right arcuate fasciculus FA as predictors of early subacute recovery.
+  For reviewer: The paper uses a custom 'Composite Score' (CS) for severity; I have mapped this to the 'severity_metric' predictor. Note that while right AF FA was significant in univariate/backwards regression, it lost significance in the hierarchical model when initial severity was included.
+  Done 19:55:07 — total 10m 50s for this paper
+
+Finished 2026-10-30 19:55:07: 1 ok, 0 failed, 10m 50s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[16/31] @Kristinsson2020
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Kristinsson2020.pdf ===  started 2026-10-30 19:55:07
+  PDF: 16 pages, ~82,953 chars extracted
+  Citation key: @Kristinsson2020
+  Prompt: 272,799 chars (~68,199 tokens)
+  Model call started 19:55:07 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=110,592, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … 375 out tokens (0.8 tok/s, 8m00s)
+  … 1,206 out tokens (2.0 tok/s, 10m00s)
+  … 2,052 out tokens (2.8 tok/s, 12m00s)
+  … 2,895 out tokens (3.4 tok/s, 14m00s)
+  … 3,734 out tokens (3.9 tok/s, 16m00s)
+  ← 86690 in + 4264 out tokens in 1035s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 13%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 20:12:22 (took 17m 15s)
+  ✓ wrote drafts/regions/left_posterior_middle_temporal_gyrus__Kristinsson2020.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_angular_gyrus__Kristinsson2020.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_posterior_stg__Kristinsson2020.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_ifg_pars_opercularis__Kristinsson2020.md   [rewrote created_by; name 'Left Inferior Frontal Gyrus Pars Opercularis' → canonical "Left IFG Pars Opercularis (Broca's area, dorsal stream hub)"]
+  ✓ 4 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (4 draft(s))
+  Missed: 2 passage(s)
+  Summary: Extracted 4 region-anchored findings linking pMTG, AG, pSTG, and IFGop to syntactic processing in acute aphasia.
+  For reviewer: The paper uses an ROI-based approach (RLSM) rather than voxel-based (VLSM), which the authors explicitly list as a limitation regarding spatial resolution. I have mapped the findings to the symptom 'syntactic_processing' per v2.8 rules.
+  Done 20:12:24 — total 17m 17s for this paper
+
+Finished 2026-10-30 20:12:24: 1 ok, 0 failed, 17m 17s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[17/31] @Woollams2018
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Woollams2018.pdf ===  started 2026-10-30 20:12:25
+  PDF: 18 pages, ~82,117 chars extracted
+  Citation key: @Woollams2018
+  Prompt: 271,957 chars (~67,989 tokens)
+  Model call started 20:12:25 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=110,592, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … 328 out tokens (0.7 tok/s, 8m00s)
+  … 1,157 out tokens (1.9 tok/s, 10m00s)
+  … 2,000 out tokens (2.8 tok/s, 12m00s)
+  ← 87976 in + 2365 out tokens in 772s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 40%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 20:25:16 (took 12m 51s)
+  ✓ wrote drafts/regions/left_anterior_temporal_lobe__Woollams2018.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_ifg_pars_opercularis__Woollams2018.md   [rewrote created_by; name 'Left Inferior Frontal Gyrus Pars Opercularis' → canonical "Left IFG Pars Opercularis (Broca's area, dorsal stream hub)"]
+  ✓ 2 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (2 draft(s))
+  Missed: 2 passage(s)
+  Summary: Extracted VBCM findings linking left ATL to semantics and left IFG/opercular regions to phonology in chronic stroke aphasia.
+  For reviewer: The authors explicitly chose not to control for lesion volume to avoid biasing against reading-specific regions; this is noted in confounders_not_controlled and author_limitations.
+  Done 20:25:20 — total 12m 55s for this paper
+
+Finished 2026-10-30 20:25:20: 1 ok, 0 failed, 12m 55s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[18/31] @Wright2018
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Wright2018.pdf ===  started 2026-10-30 20:25:20
+  PDF: 7 pages, ~34,789 chars extracted
+  Citation key: @Wright2018
+  Prompt: 224,624 chars (~56,156 tokens)
+  Model call started 20:25:20 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=94,208, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 344 out tokens (1.0 tok/s, 6m00s)
+  … 1,215 out tokens (2.5 tok/s, 8m00s)
+  ← 71391 in + 1891 out tokens in 571s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 23%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 20:34:51 (took 9m 30s)
+  ✓ wrote drafts/predictors/imaging_metric__Wright2018.md   [rewrote created_by]
+  ✓ 1 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (1 draft(s))
+  Missed: 0 passage(s)
+  Summary: Extracted the independent association between right hemisphere leukoaraiosis and naming/fluency outcomes in chronic aphasia.
+  For reviewer: The paper uses a rating scale (CHS) for leukoaraiosis, which is a scalar imaging metric. I have anchored these findings in a predictor entry for imaging_metric. Note that the sample is chronic (>= 3 months post-stroke).
+  Done 20:34:51 — total 9m 31s for this paper
+
+Finished 2026-10-30 20:34:51: 1 ok, 0 failed, 9m 31s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[19/31] @Halai2018
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Halai2018.pdf ===  started 2026-10-30 20:34:52
+  PDF: 9 pages, ~64,276 chars extracted
+  Citation key: @Halai2018
+  Prompt: 254,109 chars (~63,527 tokens)
+  Model call started 20:34:52 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=102,400, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … 678 out tokens (1.4 tok/s, 8m00s)
+  … 1,528 out tokens (2.5 tok/s, 10m00s)
+  … 2,389 out tokens (3.3 tok/s, 12m00s)
+  … 3,247 out tokens (3.9 tok/s, 14m00s)
+  ← 81589 in + 3655 out tokens in 896s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 50%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 20:49:47 (took 14m 55s)
+  ✓ wrote drafts/regions/left_anterior_temporal_lobe__Halai2018.md   [straightened smart quotes; rewrote created_by]
+  ✓ wrote drafts/regions/left_precentral_gyrus__Halai2018.md   [straightened smart quotes; rewrote created_by]
+  ✓ wrote drafts/regions/left_superior_temporal_gyrus__Halai2018.md   [straightened smart quotes; rewrote created_by; name 'Left Superior Temporal Gyrus' → canonical 'Left Superior Temporal Gyrus (Dorsal Stream Node)']
+  ✓ 3 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (3 draft(s))
+  Missed: 3 passage(s)
+  Summary: Extracted 3 region-anchored findings linking the left ATL, precentral gyrus, and STG to semantics, fluency, and phonological working memory using VBCM on 46 chronic stroke patients.
+  For reviewer: The paper uses a two-step PCA to fuse naming errors and neuropsychological tests into 'factors'. I have mapped these factors to the closest existing impairment IDs (semantics, fluency, phonological_recognition). Note that 'phonological working memory' is mapped to phonological_recognition as it includes auditory discrimination and repetition.
+  Done 20:49:49 — total 14m 57s for this paper
+
+Finished 2026-10-30 20:49:49: 1 ok, 0 failed, 14m 57s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[20/31] @Lee2018
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Lee2018.pdf ===  started 2026-10-30 20:49:49
+  PDF: 6 pages, ~27,292 chars extracted
+  Citation key: @Lee2018
+  Prompt: 217,121 chars (~54,280 tokens)
+  Model call started 20:49:50 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=90,112, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 425 out tokens (1.2 tok/s, 6m00s)
+  … 1,303 out tokens (2.7 tok/s, 8m00s)
+  … 2,200 out tokens (3.7 tok/s, 10m00s)
+  … 3,100 out tokens (4.3 tok/s, 12m00s)
+  ← 69777 in + 3333 out tokens in 750s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 8% (peak 50%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 21:02:20 (took 12m 30s)
+  ✓ wrote drafts/regions/left_ifg_pars_opercularis__Lee2018.md   [rewrote created_by; name 'Left Inferior Frontal Gyrus Pars Opercularis' → canonical "Left IFG Pars Opercularis (Broca's area, dorsal stream hub)"]
+  ✓ wrote drafts/regions/right_ifg_pars_opercularis__Lee2018.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_arcuate_fasciculus_slf__Lee2018.md   [rewrote created_by; name 'Left Superior Longitudinal Fasciculus' → canonical 'Left Arcuate Fasciculus and Superior Longitudinal Fascicle (Dorsal Language Pathway)']
+  ✓ 3 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (3 draft(s))
+  Missed: 3 passage(s)
+  Summary: Extracted structural (VBM) and connectivity (DTI) correlates of aphasia severity in chronic LH stroke, highlighting bilateral hemispheric integrity.
+  For reviewer: The paper reports 'bilateral' findings for several regions; I have split these into separate region-anchored drafts. Note that the severe group also showed significantly lower left hemispheric white matter volume (VBM), but the FA findings are more specific to the language network.
+  Done 21:02:22 — total 12m 32s for this paper
+
+Finished 2026-10-30 21:02:22: 1 ok, 0 failed, 12m 32s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[21/31] @Xing2017
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Xing2017.pdf ===  started 2026-10-30 21:02:22
+  PDF: 9 pages, ~46,388 chars extracted
+  Citation key: @Xing2017
+  Prompt: 236,219 chars (~59,054 tokens)
+  Model call started 21:02:22 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=98,304, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 303 out tokens (0.8 tok/s, 6m00s)
+  … 1,156 out tokens (2.4 tok/s, 8m00s)
+  … 2,034 out tokens (3.4 tok/s, 10m00s)
+  … 2,914 out tokens (4.0 tok/s, 12m00s)
+  … 3,793 out tokens (4.5 tok/s, 14m00s)
+  … 4,670 out tokens (4.9 tok/s, 16m00s)
+  ← 75217 in + 5030 out tokens in 1008s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 16%)  ·  RAM peak 61%  ✓ stayed fully on GPU
+  Model call finished 21:19:10 (took 16m 48s)
+  ✓ wrote drafts/regions/left_uncinate_fasciculus__Xing2017.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_inferior_longitudinal_fasciculus__Xing2017.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_inferior_fronto_occipital_fasciculus__Xing2017.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_arcuate_fasciculus__Xing2017.md   [rewrote created_by; name 'Left Arcuate Fasciculus' → canonical 'Left arcuate fasciculus']
+  ✓ 4 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (4 draft(s))
+  Missed: 0 passage(s)
+  Summary: Extracted white matter tract correlates of word- and sentence-level auditory comprehension from a DTI study of 40 chronic aphasia patients.
+  For reviewer: The paper dissociates word-level (UF, IFOF) and sentence-level (ILF, IFOF) comprehension. Note that for the Arcuate Fasciculus, only lesion load was significant, not DTI integrity metrics, resulting in a 'mixed' direction finding.
+  Done 21:19:11 — total 16m 49s for this paper
+
+Finished 2026-10-30 21:19:11: 1 ok, 0 failed, 16m 49s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[22/31] @Pillay2017
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Pillay2017.pdf ===  started 2026-10-30 21:19:11
+  PDF: 6 pages, ~29,909 chars extracted
+  Citation key: @Pillay2017
+  Prompt: 219,744 chars (~54,936 tokens)
+  Model call started 21:19:11 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=94,208, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 446 out tokens (1.2 tok/s, 6m00s)
+  … 1,328 out tokens (2.8 tok/s, 8m00s)
+  ← 69015 in + 1413 out tokens in 491s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 13%)  ·  RAM peak 61%  ✓ stayed fully on GPU
+  Model call finished 21:27:22 (took 8m 10s)
+  ✓ wrote drafts/regions/left_middle_temporal_gyrus__Pillay2017.md   [rewrote created_by; name 'Left Middle Temporal Gyrus' → canonical 'Left Middle Temporal Gyrus (Ventral Stream Node)']
+  ✓ 1 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (1 draft(s))
+  Missed: 1 passage(s)
+  Summary: Extracted a finding linking the mid-to-posterior left MTG to multiword spoken language comprehension deficits, controlling for general language processes (picture naming) and lesion volume.
+  For reviewer: The paper uses 'Auditory Description Naming' (ADN) and 'Auditory Sentence Comprehension' (ASC) to isolate multiword integration. I have mapped this to 'form_to_meaning' as it describes the integration of spoken language into conceptual representations.
+  Done 21:27:23 — total 8m 11s for this paper
+
+Finished 2026-10-30 21:27:23: 1 ok, 0 failed, 8m 11s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[23/31] @Basilakos2014
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Basilakos2014.pdf ===  started 2026-10-30 21:27:23
+  PDF: 9 pages, ~47,210 chars extracted
+  Citation key: @Basilakos2014
+  Prompt: 237,051 chars (~59,262 tokens)
+  Model call started 21:27:23 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=98,304, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 95 out tokens (0.3 tok/s, 6m00s)
+  … 944 out tokens (2.0 tok/s, 8m00s)
+  … 1,816 out tokens (3.0 tok/s, 10m00s)
+  … 2,697 out tokens (3.7 tok/s, 12m00s)
+  … 3,569 out tokens (4.2 tok/s, 14m00s)
+  … 4,441 out tokens (4.6 tok/s, 16m00s)
+  ← 76358 in + 5036 out tokens in 1041s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 8% (peak 33%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 21:44:44 (took 17m 20s)
+  ✓ wrote drafts/regions/left_anterior_arcuate_fasciculus__Basilakos2014.md   [rewrote created_by; name 'Left Anterior Arcuate Fasciculus' → canonical 'Left anterior arcuate fasciculus']
+  ✓ wrote drafts/regions/left_frontal_aslant_tract__Basilakos2014.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_uncinate_fasciculus__Basilakos2014.md   [removed a stray { or }; rewrote created_by; frontmatter not parseable (while parsing a block mapping
+  in "<unicode string>", line 93, column 5:
+      - id: f2
+        ^
+expected <block end>, but found '}'
+  in "<unicode string>", line 175, column 5:
+        }
+        ^); left as written]
+  ⚠ left_uncinate_fasciculus__Basilakos2014.md: frontmatter does not parse — fix by hand (while parsing a block mapping)
+  ⚠ 1 validation issue(s) — drafts saved anyway for review.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (3 draft(s))
+(no output)
+  ⚠ annotator returned 1
+Traceback (most recent call last):
+  File "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py", line 522, in <module>
+    main()
+  File "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py", line 513, in main
+    pdf_path = _ensure_canonical_pdf(args.pdf, args.draft,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py", line 269, in _ensure_canonical_pdf
+    key = _citation_key_from_drafts(draft_paths)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py", line 237, in _citation_key_from_drafts
+    fm, _ = parse_markdown(Path(dp))
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/aphasia_kb.py", line 71, in parse_markdown
+    fm = yaml.safe_load(m.group("yaml")) or {}
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/__init__.py", line 125, in safe_load
+    return load(stream, SafeLoader)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/__init__.py", line 81, in load
+    return loader.get_single_data()
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/constructor.py", line 49, in get_single_data
+    node = self.get_single_node()
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 36, in get_single_node
+    document = self.compose_document()
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 55, in compose_document
+    node = self.compose_node(None, None)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 133, in compose_mapping_node
+    item_value = self.compose_node(node, item_key)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 82, in compose_node
+    node = self.compose_sequence_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 111, in compose_sequence_node
+    node.value.append(self.compose_node(node, index))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 84, in compose_node
+    node = self.compose_mapping_node(anchor)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/composer.py", line 127, in compose_mapping_node
+    while not self.check_event(MappingEndEvent):
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/parser.py", line 98, in check_event
+    self.current_event = self.state()
+                         ^^^^^^^^^^^^
+  File "/Users/uqmmasso/GITHUB/calmar/.venv/lib/python3.12/site-packages/yaml/parser.py", line 438, in parse_block_mapping_key
+    raise ParserError("while parsing a block mapping", self.marks[-1],
+yaml.parser.ParserError: while parsing a block mapping
+  in "<unicode string>", line 93, column 5:
+      - id: f2
+        ^
+expected <block end>, but found '}'
+  in "<unicode string>", line 175, column 5:
+        }
+        ^
+
+  Summary: Extracted findings linking the left anterior arcuate fasciculus, frontal aslant tract, and uncinate fasciculus to speech fluency and semantic processing using VBCM.
+  For reviewer: The paper uses VBCM (voxel-based correlational methodology) as per Tyler et al. 2005. I have created a new entry for the left_frontal_aslant_tract. The cohort is from the USC Aphasia Lab and likely overlaps with other Fridriksson/Rorden papers.
+  Done 21:44:44 — total 17m 21s for this paper
+
+Finished 2026-10-30 21:44:44: 1 ok, 0 failed, 17m 21s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[24/31] @Han2016
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Han2016.pdf ===  started 2026-10-30 21:44:44
+  PDF: 13 pages, ~57,299 chars extracted
+  Citation key: @Han2016
+  Prompt: 247,129 chars (~61,782 tokens)
+  Model call started 21:44:45 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=102,400, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 37 out tokens (0.1 tok/s, 6m00s)
+  … 883 out tokens (1.8 tok/s, 8m00s)
+  ← 77547 in + 1537 out tokens in 570s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 33%)  ·  RAM peak 63%  ✓ stayed fully on GPU
+  Model call finished 21:54:15 (took 9m 30s)
+  ✓ wrote drafts/regions/left_arcuate_fasciculus_slf__Han2016.md   [rewrote created_by; name 'Left Arcuate Fasciculus / Superior Longitudinal Fasciculus' → canonical 'Left Arcuate Fasciculus and Superior Longitudinal Fascicle (Dorsal Language Pathway)']
+  ✓ 1 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (1 draft(s))
+  Missed: 1 passage(s)
+  Summary: Extracted the role of the left SLF in phonological encoding from Han et al. 2016 using both structural lesion percentage and DTI FA values.
+  For reviewer: The paper uses 'SLF' and 'AF' interchangeably (noted in footnote 1), so I anchored this to the existing `left_arcuate_fasciculus_slf` entry. The sample includes both stroke and TBI, but the authors performed validation on stroke patients specifically.
+  Done 21:54:16 — total 9m 31s for this paper
+
+Finished 2026-10-30 21:54:16: 1 ok, 0 failed, 9m 31s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[25/31] @Rosso2015
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Rosso2015.pdf ===  started 2026-10-30 21:54:16
+  PDF: 9 pages, ~39,380 chars extracted
+  Citation key: @Rosso2015
+  Prompt: 229,213 chars (~57,303 tokens)
+  Model call started 21:54:16 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=94,208, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 245 out tokens (0.7 tok/s, 6m00s)
+  … 1,095 out tokens (2.3 tok/s, 8m00s)
+  … 1,973 out tokens (3.3 tok/s, 10m00s)
+  ← 72918 in + 2688 out tokens in 696s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 15%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 22:05:52 (took 11m 36s)
+  ✓ wrote drafts/regions/left_temporoparietal_white_matter_crossroad__Rosso2015.md   [rewrote created_by]
+  ✓ wrote drafts/predictors/lesion_volume__Rosso2015.md   [rewrote created_by; name 'Lesion Volume' → canonical 'Total lesion volume']
+  ✓ 2 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (2 draft(s))
+  Missed: 3 passage(s)
+  Summary: Extracted findings linking a specific temporoparietal white matter region (AF/IFOF intersection) to global aphasia severity and analyzed the relative predictive value of this region versus total lesion volume.
+  For reviewer: Created a new region ID 'left_temporoparietal_white_matter_crossroad' as the paper describes a specific intersection of AF and IFOF. The finding on lesion volume is correlational and the paper explicitly argues that the regional damage mediates the volume effect.
+  Done 22:05:55 — total 11m 39s for this paper
+
+Finished 2026-10-30 22:05:55: 1 ok, 0 failed, 11m 39s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[26/31] @Fridriksson2015
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Fridriksson2015.pdf ===  started 2026-10-30 22:05:55
+  PDF: 8 pages, ~46,258 chars extracted
+  Citation key: @Fridriksson2015
+  Prompt: 236,103 chars (~59,025 tokens)
+  Model call started 22:05:55 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=98,304, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 156 out tokens (0.4 tok/s, 6m00s)
+  … 1,010 out tokens (2.1 tok/s, 8m00s)
+  … 1,887 out tokens (3.1 tok/s, 10m00s)
+  ← 75073 in + 2643 out tokens in 702s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 12%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 22:17:37 (took 11m 42s)
+  ✓ wrote drafts/regions/left_ifg_pars_opercularis__Fridriksson2015.md   [rewrote created_by; name 'Left Inferior Frontal Gyrus Pars Opercularis' → canonical "Left IFG Pars Opercularis (Broca's area, dorsal stream hub)"]
+  ✓ wrote drafts/regions/left_superior_temporal_gyrus__Fridriksson2015.md   [rewrote created_by; name 'Left Superior Temporal Gyrus' → canonical 'Left Superior Temporal Gyrus (Dorsal Stream Node)']
+  ✓ 2 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (2 draft(s))
+  Missed: 2 passage(s)
+  Summary: Extracted two findings from Fridriksson 2015 showing that Broca's aphasia is associated with damage to both the left pars opercularis and the left superior temporal gyrus.
+  For reviewer: The paper emphasizes that damage to the pars opercularis alone is not sufficient for Broca's aphasia; the combination with STG damage is the key finding. I have split this into two region-anchored drafts.
+  Done 22:17:40 — total 11m 44s for this paper
+
+Finished 2026-10-30 22:17:40: 1 ok, 0 failed, 11m 44s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[27/31] @Stahl2011
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Stahl2011.pdf ===  started 2026-10-30 22:17:40
+  PDF: 11 pages, ~59,078 chars extracted
+  Citation key: @Stahl2011
+  Prompt: 248,912 chars (~62,228 tokens)
+  Model call started 22:17:40 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=102,400, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 31 out tokens (0.1 tok/s, 6m00s)
+  … 878 out tokens (1.8 tok/s, 8m00s)
+  … 1,749 out tokens (2.9 tok/s, 10m00s)
+  ← 77831 in + 2002 out tokens in 634s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 13%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 22:28:14 (took 10m 34s)
+  ✓ wrote drafts/regions/left_basal_ganglia__Stahl2011.md   [rewrote created_by]
+  ✓ wrote drafts/therapies/melodic_intonation_therapy__Stahl2011.md   [rewrote created_by; name 'Melodic Intonation Therapy' → canonical 'Melodic Intonation Therapy (MIT)']
+  ✓ 2 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (2 draft(s))
+  Missed: 1 passage(s)
+  Summary: Extracted findings on the role of rhythm vs melody in speech production and the influence of basal ganglia lesions and lyric memory.
+  For reviewer: The paper specifically dissociates 'melodic intoning' from 'rhythmic speech'. I have created a region-anchored finding for the basal ganglia's role in rhythm and a therapy-anchored finding for the lack of effect of singing (melodic intoning) relative to rhythmic speech.
+  Done 22:28:15 — total 10m 35s for this paper
+
+Finished 2026-10-30 22:28:15: 1 ok, 0 failed, 10m 35s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[28/31] @Schlaug2010
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Schlaug2010.pdf ===  started 2026-10-30 22:28:16
+  PDF: 9 pages, ~47,457 chars extracted
+  Citation key: @Schlaug2010
+  Prompt: 237,294 chars (~59,323 tokens)
+  Model call started 22:28:16 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=98,304, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 158 out tokens (0.4 tok/s, 6m00s)
+  … 1,014 out tokens (2.1 tok/s, 8m00s)
+  … 1,897 out tokens (3.2 tok/s, 10m00s)
+  … 2,781 out tokens (3.9 tok/s, 12m00s)
+  ← 75153 in + 2994 out tokens in 749s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 8% (peak 33%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 22:40:45 (took 12m 28s)
+  ✓ wrote drafts/therapies/melodic_intonation_therapy__Schlaug2010.md   [rewrote created_by; name 'Melodic Intonation Therapy' → canonical 'Melodic Intonation Therapy (MIT)']
+  ✓ wrote drafts/regions/right_arcuate_fasciculus__Schlaug2010.md   [rewrote created_by]
+  ✓ 2 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (2 draft(s))
+  Missed: 1 passage(s)
+  Summary: Extracted behavioral and neuroimaging findings for Melodic Intonation Therapy (MIT), including spontaneous speech gains and right-hemisphere reorganization (IFG and Arcuate Fasciculus).
+  For reviewer: The imaging findings (fMRI and DTI) are based on a single patient (n=1) as illustrated in the figures, though the behavioral finding (f1) is from a case series of 6. I have flagged the n=1 findings in provenance.
+  Done 22:40:48 — total 12m 31s for this paper
+
+Finished 2026-10-30 22:40:48: 1 ok, 0 failed, 12m 31s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[29/31] @Sheppard2022
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Sheppard2022.pdf ===  started 2026-10-30 22:40:48
+  PDF: 12 pages, ~82,933 chars extracted
+  Citation key: @Sheppard2022
+  Prompt: 272,773 chars (~68,193 tokens)
+  Model call started 22:40:48 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=110,592, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … 557 out tokens (1.2 tok/s, 8m00s)
+  … 1,395 out tokens (2.3 tok/s, 10m00s)
+  … 2,243 out tokens (3.1 tok/s, 12m00s)
+  … 3,089 out tokens (3.7 tok/s, 14m00s)
+  … 3,931 out tokens (4.1 tok/s, 16m00s)
+  ← 86523 in + 4505 out tokens in 1042s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 12%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 22:58:10 (took 17m 22s)
+  ✓ wrote drafts/regions/left_supramarginal_gyrus__Sheppard2022.md   [rewrote created_by; f1: reference_space → not_reported + flag; f1: atlases_used → []]
+  ✓ wrote drafts/regions/left_arcuate_fasciculus_slf__Sheppard2022.md   [rewrote created_by; name 'Left Superior Longitudinal Fasciculus' → canonical 'Left Arcuate Fasciculus and Superior Longitudinal Fascicle (Dorsal Language Pathway)'; f1: reference_space → not_reported + flag; f1: atlases_used → []]
+  ✓ wrote drafts/regions/left_ifg_pars_opercularis__Sheppard2022.md   [rewrote created_by; name 'Left Inferior Frontal Gyrus Pars Opercularis' → canonical "Left IFG Pars Opercularis (Broca's area, dorsal stream hub)"; f1: reference_space → not_reported + flag; f1: atlases_used → []]
+  ✓ wrote drafts/regions/left_posterior_stg__Sheppard2022.md   [rewrote created_by; f1: reference_space → not_reported + flag; f1: atlases_used → []]
+  ✓ 4 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (4 draft(s))
+  Missed: 3 passage(s)
+  Summary: Extracted longitudinal LSM findings linking SMG/SLF to acute syntactic deficits and Broca's area/pSTG to chronic syntactic deficits.
+  For reviewer: The paper makes a strong distinction between acute predictors (SMG, SLF) and chronic predictors (Broca's, pSTG). I have split these into separate findings based on the recovery phase.
+  Done 22:58:13 — total 17m 24s for this paper
+
+Finished 2026-10-30 22:58:13: 1 ok, 0 failed, 17m 24s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[30/31] @Bi2015
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Bi2015.pdf ===  started 2026-10-30 22:58:13
+  PDF: 14 pages, ~89,380 chars extracted
+  Citation key: @Bi2015
+  Prompt: 279,208 chars (~69,802 tokens)
+  Model call started 22:58:13 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=110,592, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 6m00s)
+  … 543 out tokens (1.1 tok/s, 8m00s)
+  … 1,375 out tokens (2.3 tok/s, 10m00s)
+  … 2,222 out tokens (3.1 tok/s, 12m00s)
+  … 3,063 out tokens (3.6 tok/s, 14m00s)
+  … 3,901 out tokens (4.1 tok/s, 16m00s)
+  … 4,736 out tokens (4.4 tok/s, 18m00s)
+  ← 87130 in + 5036 out tokens in 1123s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 15%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 23:16:56 (took 18m 43s)
+  ✓ wrote drafts/regions/left_arcuate_fasciculus_slf__Bi2015.md   [rewrote created_by; name 'Left Arcuate Fasciculus / Superior Longitudinal Fasciculus' → canonical 'Left Arcuate Fasciculus and Superior Longitudinal Fascicle (Dorsal Language Pathway)']
+  ✓ wrote drafts/regions/left_inferior_frontooccipital_fasciculus__Bi2015.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_uncinate_fasciculus__Bi2015.md   [rewrote created_by]
+  ✓ wrote drafts/regions/left_anterior_thalamic_radiation__Bi2015.md   [rewrote created_by]
+  ✓ 4 draft(s) validated clean.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (4 draft(s))
+  Missed: 2 passage(s)
+  Summary: Extracted causal links between left hemisphere white matter tracts (SLF, IFOF, UF, ATR) and tool use/conceptual processing deficits in a cohort of 86 brain-damaged patients.
+  For reviewer: The paper uses 'tool use' and 'tool concept' as targets; I have used forward-looking IDs 'tool_use' and 'tool_concept' as these are not in the existing impairments list. The findings are based on a conjunction of lesion percentage and FA values.
+  Done 23:16:58 — total 18m 45s for this paper
+
+Finished 2026-10-30 23:16:58: 1 ok, 0 failed, 18m 45s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+[31/31] @Ali2021
+✓ gemma4:31b-it-q8_0 available at http://localhost:11434  (model from models.yaml)
+
+=== [1/1]  Ali2021.pdf ===  started 2026-10-30 23:16:58
+  PDF: 10 pages, ~51,476 chars extracted
+  Citation key: @Ali2021
+  Prompt: 241,306 chars (~60,326 tokens)
+  Model call started 23:16:59 (gemma4:31b-it-q8_0, num_ctx=auto); progress every 2 min, loops cut early.
+  → local gemma4:31b-it-q8_0 @ http://localhost:11434 (num_ctx=98,304, num_predict=16,000, temp=0.0, think=off)
+  … reading the prompt — no token yet (0.0 tok/s, 2m00s)
+  … reading the prompt — no token yet (0.0 tok/s, 4m00s)
+  … 96 out tokens (0.3 tok/s, 6m00s)
+  … 948 out tokens (2.0 tok/s, 8m00s)
+  … 1,820 out tokens (3.0 tok/s, 10m00s)
+  ← 76351 in + 1849 out tokens in 603s (done_reason=stop)
+  resource: GPU offload min 100% / avg 100%  ·  CPU avg 7% (peak 25%)  ·  RAM peak 62%  ✓ stayed fully on GPU
+  Model call finished 23:27:02 (took 10m 03s)
+  ✓ wrote drafts/predictors/age__Ali2021.md   [rewrote created_by; name 'Age' → canonical 'Age at stroke'; f1: region_definition.kind → not_reported]
+  ✓ wrote drafts/predictors/time_post_onset__Ali2021.md   [rewrote created_by; name 'Time Post-Onset' → canonical 'Time post-stroke onset'; f1: region_definition.kind → not_reported]
+  ⚠ time_post_onset__Ali2021.md: 1 validation issue(s):
+      /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Ali2021.md: predictor_type='clinical' requires assessment (non-empty list of test names)
+  ⚠ 1 validation issue(s) — drafts saved anyway for review.
+  → annotator: /Users/uqmmasso/GITHUB/calmar/.venv/bin/python /Users/uqmmasso/GITHUB/stroke-aphasia-kb/scripts/annotate_paper.py --pdf ... (2 draft(s))
+  Missed: 0 passage(s)
+  Summary: Extracted demographic (age) and clinical (time post-onset) predictors of language recovery from a large IPD meta-analysis.
+  For reviewer: The paper uses a standardized measurement for multiple instruments; I have mapped these to the 'severity_metric' predictor as the target. The sample is a large IPD meta-analysis (RELEASE cohort).
+  Done 23:27:03 — total 10m 04s for this paper
+
+Finished 2026-10-30 23:27:03: 1 ok, 0 failed, 10m 04s total.
+Review with: cd /Users/uqmmasso/GITHUB/stroke-aphasia-kb && python scripts/promote.py --list
+
+extracted 31 of 31
+✓ gemma4:26b available at http://localhost:11434  (model from models.yaml)
+  votes=3  ·  model approval: Tier A only; Tier B always goes to a person
+
+→ [1/321]  drafts/_backup/bilateral_middle_frontal_gyrus_recovery__Fridriksson2010Anomia.20261030-154205.md   (23:27:03)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [2/321]  drafts/impairments/alexia__Brookshire2014.md   (23:27:24 · 113m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) cross_finding_consistency: @Brookshire2014: sample.n disagrees: [67, 99]
+
+→ [3/321]  drafts/impairments/anomic_aphasia__Hope2017.md   (23:27:45 · 111m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [4/321]  drafts/impairments/executive_functions__Butler2014.md   (23:28:01 · 103m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [5/321]  drafts/impairments/pure_alexia__Pflugshaupt2009.md   (23:28:24 · 107m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [6/321]  drafts/impairments/recurring_utterances__Rodrigues2014.md   (23:28:40 · 102m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [7/321]  drafts/impairments/rhythm_production__Kasdan2025.md   (23:29:03 · 104m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [8/321]  drafts/predictors/age__Ali2021.md   (23:29:29 · 109m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [9/321]  drafts/predictors/age__Brady2022.md   (23:29:43 · 104m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [10/321]  drafts/predictors/age__ElHachioui2013.md   (23:29:59 · 101m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [11/321]  drafts/predictors/age__Forkel2014.md   (23:30:11 · 97m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [12/321]  drafts/predictors/age__Hope2017.md   (23:30:29 · 96m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [13/321]  drafts/predictors/age__Laska2001.md   (23:30:45 · 95m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [14/321]  drafts/predictors/age__Pedersen1995.md   (23:30:57 · 92m left at this rate)
+  ○ [+LLM] checks_passed  · tier A
+
+→ [15/321]  drafts/predictors/age__Sheppard2020.md   (23:31:16 · 92m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [16/321]  drafts/predictors/age__Wallentin2018.md   (23:31:28 · 89m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [17/321]  drafts/predictors/education__Brookshire2014.md   (23:31:46 · 89m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [18/321]  drafts/predictors/education__Ramsey2017.md   (23:32:00 · 88m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [19/321]  drafts/predictors/executive_functions__Gilmore2019.md   (23:32:17 · 88m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [20/321]  drafts/predictors/executive_functions__Simic2019.md   (23:32:30 · 86m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/executive_functions__Simic2019.md: finding[1] (id=f2): therapy {id, name} is required for a responder finding in v2.8 (which intervention was given)
+
+→ [21/321]  drafts/predictors/imaging_metric__Billot2022.md   (23:32:30 · 82m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [22/321]  drafts/predictors/imaging_metric__Hope2018.md   (23:32:45 · 81m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [23/321]  drafts/predictors/imaging_metric__Wright2018.md   (23:32:59 · 80m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [24/321]  drafts/predictors/initial_aphasia_severity__Benghanem2019.md   (23:33:17 · 80m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [25/321]  drafts/predictors/initial_aphasia_severity__Lazar2008.md   (23:33:30 · 79m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [26/321]  drafts/predictors/initial_aphasia_severity__OsaGarcia2020.md   (23:33:41 · 78m left at this rate)
+MuPDF error: format error: out of range code encountered in lzw decode
+
+MuPDF error: library error: FT_New_Memory_Face(UVHQSY+HelveticaNeueLTStd-Lt): unknown file format
+
+MuPDF error: format error: out of range code encountered in lzw decode
+
+MuPDF error: library error: FT_New_Memory_Face(UVHQSY+HelveticaNeueLTStd-Lt): unknown file format
+
+  ✓ [+LLM] auto_approve  · tier A
+      ↻ LLM overrode: approve
+  → promoted
+
+→ [27/321]  drafts/predictors/initial_aphasia_severity__Pedersen1995.md   (23:33:58 · 78m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [28/321]  drafts/predictors/lesion_volume__Basilakos2019.md   (23:34:11 · 77m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [29/321]  drafts/predictors/lesion_volume__Benghanem2019.md   (23:34:31 · 78m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [30/321]  drafts/predictors/lesion_volume__Corbetta2015.md   (23:34:45 · 77m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [31/321]  drafts/predictors/lesion_volume__Ding2023.md   (23:35:04 · 77m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [32/321]  drafts/predictors/lesion_volume__Forkel2014.md   (23:35:19 · 77m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [33/321]  drafts/predictors/lesion_volume__Goldenberg1994.md   (23:35:40 · 77m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: OCR scan: occasional character errors in the 1994 PDF (e.g., 'Selves' for 'Selne
+
+→ [34/321]  drafts/predictors/lesion_volume__Hope2013.md   (23:35:51 · 76m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [35/321]  drafts/predictors/lesion_volume__Hope2017.md   (23:36:08 · 76m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [36/321]  drafts/predictors/lesion_volume__Kristinsson2021.md   (23:36:24 · 76m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [37/321]  drafts/predictors/lesion_volume__Lazar2008.md   (23:36:50 · 77m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [38/321]  drafts/predictors/lesion_volume__Rosso2015.md   (23:37:01 · 76m left at this rate)
+  ✓ [+LLM] auto_approve  · tier A
+      ↻ LLM overrode: approve
+  → promoted
+
+→ [39/321]  drafts/predictors/lesion_volume__SkipperKallal2017.md   (23:37:13 · 75m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [40/321]  drafts/predictors/lesion_volume__Thye2018.md   (23:37:32 · 75m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [41/321]  drafts/predictors/lesion_volume__Yourganov2016.md   (23:37:50 · 75m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [42/321]  drafts/predictors/leukoaraiosis__Basilakos2019.md   (23:38:06 · 75m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [43/321]  drafts/predictors/severity_metric__Basilakos2019.md   (23:38:22 · 75m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [44/321]  drafts/predictors/severity_metric__Billot2022.md   (23:38:38 · 74m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [45/321]  drafts/predictors/severity_metric__Brady2022.md   (23:38:54 · 74m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [46/321]  drafts/predictors/severity_metric__Breitenstein2017.md   (23:39:10 · 74m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/severity_metric__Breitenstein2017.md: missing required file-level field: status
+
+→ [47/321]  drafts/predictors/severity_metric__Brookshire2014.md   (23:39:10 · 72m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [48/321]  drafts/predictors/severity_metric__ElHachioui2013.md   (23:39:24 · 72m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [49/321]  drafts/predictors/severity_metric__Fridriksson2018JAMA.md   (23:39:37 · 71m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [50/321]  drafts/predictors/severity_metric__Geranmayeh2017.md   (23:39:50 · 70m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [51/321]  drafts/predictors/severity_metric__Gilmore2019.md   (23:40:07 · 70m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 1/3 quotes (33%) — absent 1, anchored 1, exact 1
+
+→ [52/321]  drafts/predictors/severity_metric__Hartwigsen2019.md   (23:40:07 · 69m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [53/321]  drafts/predictors/severity_metric__Johnson2019.md   (23:40:39 · 70m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [54/321]  drafts/predictors/severity_metric__Kristinsson2021.md   (23:40:56 · 70m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [55/321]  drafts/predictors/severity_metric__Leonard2008.md   (23:41:21 · 70m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 3/4 quotes (75%) — absent 1, exact 3
+
+→ [56/321]  drafts/predictors/severity_metric__Lo2019.md   (23:41:21 · 69m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 2/4 quotes (50%) — absent 1, anchored 1, exact 2
+
+→ [57/321]  drafts/predictors/severity_metric__Lo2019_f2.md   (23:41:21 · 67m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 2/4 quotes (50%) — absent 1, anchored 1, exact 2
+
+→ [58/321]  drafts/predictors/severity_metric__Munsch2016.md   (23:41:21 · 66m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [59/321]  drafts/predictors/severity_metric__Ramsey2017.md   (23:41:38 · 66m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [60/321]  drafts/predictors/severity_metric__Rapcsak2009.md   (23:41:55 · 66m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [61/321]  drafts/predictors/severity_metric__Siegel2016.md   (23:42:19 · 66m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [62/321]  drafts/predictors/severity_metric__Wilson2023.md   (23:42:36 · 66m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [63/321]  drafts/predictors/sex__Brady2022.md   (23:42:59 · 66m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [64/321]  drafts/predictors/sex__Wallentin2018.md   (23:43:15 · 66m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) cross_finding_consistency: @Wallentin2018: sample.n disagrees: [48362, 1967038]
+
+→ [65/321]  drafts/predictors/therapy_intensity__Bhogal2003.md   (23:43:37 · 66m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/therapy_intensity__Bhogal2003.md: finding[0] (id=f1): predictor triplet partially set (have ['instrument'], missing ['score_band', 'interpretation']); fill all three or none
+
+→ [66/321]  drafts/predictors/time_post_onset__Ali2021.md   (23:43:37 · 65m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Ali2021.md: predictor_type='clinical' requires assessment (non-empty list of test names)
+
+→ [67/321]  drafts/predictors/time_post_onset__Brady2022.md   (23:43:37 · 64m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Brady2022.md: predictor_type='clinical' requires assessment (non-empty list of test names)
+
+→ [68/321]  drafts/predictors/time_post_onset__Hope2013.md   (23:43:37 · 62m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2013.md: predictor_type='clinical' requires assessment (non-empty list of test names)
+
+→ [69/321]  drafts/predictors/time_post_onset__Hope2017.md   (23:43:38 · 61m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md: predictor_type='clinical' requires assessment (non-empty list of test names)
+
+→ [70/321]  drafts/predictors/time_post_onset__vanderMeulen2014.md   (23:43:38 · 60m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__vanderMeulen2014.md: predictor_type='clinical' requires assessment (non-empty list of test names)
+
+→ [71/321]  drafts/regions/bilateral_middle_frontal_gyrus_recovery__Fridriksson2010Anomia.md   (23:43:38 · 59m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [72/321]  drafts/regions/corpus_callosum__Geschwind1965.md   (23:43:56 · 59m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [73/321]  drafts/regions/global_structural_network__Bonilha2016.md   (23:44:30 · 60m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [74/321]  drafts/regions/left_angular_gyrus__Binder2009.md   (23:44:46 · 60m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [75/321]  drafts/regions/left_angular_gyrus__Dronkers2004.md   (23:45:40 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [76/321]  drafts/regions/left_angular_gyrus__Geschwind1965.md   (23:46:04 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [77/321]  drafts/regions/left_angular_gyrus__Henseler2014.md   (23:46:43 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [78/321]  drafts/regions/left_angular_gyrus__Kristinsson2020.md   (23:47:03 · 63m left at this rate)
+  ✓ [+LLM] auto_approve  · tier A
+      ↻ LLM overrode: approve
+  → promoted
+
+→ [79/321]  drafts/regions/left_angular_gyrus__Lukic2021.md   (23:47:26 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [80/321]  drafts/regions/left_angular_gyrus__Wilmskoetter2021.md   (23:47:55 · 63m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 2/3 quotes (67%) — absent 1, exact 2
+
+→ [81/321]  drafts/regions/left_angular_gyrus__Zhao2018.md   (23:47:55 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [82/321]  drafts/regions/left_anterior_arcuate_fasciculus__Basilakos2014.md   (23:48:19 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [83/321]  drafts/regions/left_anterior_arcuate_fasciculus__Fridriksson2013.md   (23:48:38 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [84/321]  drafts/regions/left_anterior_arcuate_fasciculus__GajardoVidal2021.md   (23:48:54 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [85/321]  drafts/regions/left_anterior_temporal_lobe__Butler2014.md   (23:49:18 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [86/321]  drafts/regions/left_anterior_temporal_lobe__Halai2017.md   (23:49:42 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [87/321]  drafts/regions/left_anterior_temporal_lobe__Halai2018.md   (23:50:08 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [88/321]  drafts/regions/left_anterior_temporal_lobe__Henseler2014.md   (23:50:29 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [89/321]  drafts/regions/left_anterior_temporal_lobe__Lukic2021.md   (23:50:49 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [90/321]  drafts/regions/left_anterior_temporal_lobe__Robson2014.md   (23:51:18 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [91/321]  drafts/regions/left_anterior_temporal_lobe__Schwartz2009.md   (23:51:51 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [92/321]  drafts/regions/left_anterior_temporal_lobe__Woollams2018.md   (23:52:17 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [93/321]  drafts/regions/left_anterior_thalamic_radiation__Bi2015.md   (23:52:40 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [94/321]  drafts/regions/left_anterior_thalamic_radiation__Han2013.md   (23:53:09 · 64m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [95/321]  drafts/regions/left_anterior_thalamic_radiation__Li2017.md   (23:53:30 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [96/321]  drafts/regions/left_arcuate_fasciculus__Alyahya2020.md   (23:53:57 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [97/321]  drafts/regions/left_arcuate_fasciculus__Breier2008.md   (23:54:16 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [98/321]  drafts/regions/left_arcuate_fasciculus__Butler2014.md   (23:54:30 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [99/321]  drafts/regions/left_arcuate_fasciculus__Ding2023.md   (23:54:56 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [100/321]  drafts/regions/left_arcuate_fasciculus__Fridriksson2010.md   (23:55:14 · 63m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [101/321]  drafts/regions/left_arcuate_fasciculus__Hosomi2009.md   (23:55:28 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [102/321]  drafts/regions/left_arcuate_fasciculus__Ivanova2016.md   (23:55:40 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [103/321]  drafts/regions/left_arcuate_fasciculus__Ivanova2021.md   (23:56:06 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier A
+
+→ [104/321]  drafts/regions/left_arcuate_fasciculus__Oeckel2021.md   (23:56:45 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [105/321]  drafts/regions/left_arcuate_fasciculus__Ramsey2017.md   (23:57:00 · 62m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [106/321]  drafts/regions/left_arcuate_fasciculus__Xing2017.md   (23:57:21 · 62m left at this rate)
+  ✓ [+LLM] auto_approve  · tier A
+      ↻ LLM overrode: approve
+  → promoted
+
+→ [107/321]  drafts/regions/left_arcuate_fasciculus_slf__Bates2003.md   (23:57:36 · 61m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [108/321]  drafts/regions/left_arcuate_fasciculus_slf__Bi2015.md   (23:57:49 · 61m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [109/321]  drafts/regions/left_arcuate_fasciculus_slf__Han2016.md   (23:58:17 · 61m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [110/321]  drafts/regions/left_arcuate_fasciculus_slf__Kummerer2013.md   (23:58:33 · 61m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [111/321]  drafts/regions/left_arcuate_fasciculus_slf__Lee2018.md   (23:58:49 · 60m left at this rate)
+  ✓ [+LLM] auto_approve  · tier A
+      ↻ LLM overrode: approve
+  → promoted
+
+→ [112/321]  drafts/regions/left_arcuate_fasciculus_slf__Li2017.md   (23:59:01 · 60m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [113/321]  drafts/regions/left_arcuate_fasciculus_slf__Sheppard2022.md   (23:59:24 · 60m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [114/321]  drafts/regions/left_basal_ganglia__Casilio2025.md   (23:59:45 · 60m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 1/4 quotes (25%) — absent 1, anchored 2, exact 1
+
+→ [115/321]  drafts/regions/left_basal_ganglia__Stahl2011.md   (23:59:45 · 59m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [116/321]  drafts/regions/left_dorsal_anterior_cingulate_cortex__Brownsett2014.md   (00:00:02 · 59m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [117/321]  drafts/regions/left_dorsolateral_prefrontal_cortex__Bates2003.md   (00:00:21 · 58m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [118/321]  drafts/regions/left_dorsomedial_prefrontal_cortex__Binder2009.md   (00:00:30 · 58m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [119/321]  drafts/regions/left_extreme_capsule__Butler2014.md   (00:01:23 · 59m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [120/321]  drafts/regions/left_extreme_capsule__Kummerer2013.md   (00:01:48 · 58m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [121/321]  drafts/regions/left_extreme_capsule__Oeckel2021.md   (00:02:05 · 58m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [122/321]  drafts/regions/left_frontal_aslant_tract__Basilakos2014.md   (00:02:19 · 58m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [123/321]  drafts/regions/left_frontal_aslant_tract__Ding2023.md   (00:02:36 · 58m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [124/321]  drafts/regions/left_frontal_aslant_tract__Li2017.md   (00:02:54 · 57m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [125/321]  drafts/regions/left_fusiform_gyrus__Binder2009.md   (00:03:18 · 57m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [126/321]  drafts/regions/left_fusiform_gyrus__Pflugshaupt2009.md   (00:04:12 · 58m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [127/321]  drafts/regions/left_hemisphere_intrahemispheric_connectivity__Siegel2016.md   (00:04:32 · 58m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [128/321]  drafts/regions/left_heschls_gyrus__Thye2018.md   (00:04:52 · 57m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [129/321]  drafts/regions/left_hippocampus__Meinzer2010.md   (00:05:13 · 57m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [130/321]  drafts/regions/left_ifg_pars_opercularis__Alyahya2020.md   (00:05:35 · 57m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [131/321]  drafts/regions/left_ifg_pars_opercularis__Dronkers2004.md   (00:06:02 · 57m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [132/321]  drafts/regions/left_ifg_pars_opercularis__Fridriksson2010.md   (00:06:28 · 57m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [133/321]  drafts/regions/left_ifg_pars_opercularis__Fridriksson2010Anomia.md   (00:06:46 · 56m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [134/321]  drafts/regions/left_ifg_pars_opercularis__Fridriksson2015.md   (00:07:04 · 56m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [135/321]  drafts/regions/left_ifg_pars_opercularis__GajardoVidal2021.md   (00:07:21 · 56m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [136/321]  drafts/regions/left_ifg_pars_opercularis__Hillis2004.md   (00:07:46 · 56m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [137/321]  drafts/regions/left_ifg_pars_opercularis__Hillis2006.md   (00:08:02 · 55m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [138/321]  drafts/regions/left_ifg_pars_opercularis__Kristinsson2020.md   (00:08:16 · 55m left at this rate)
+  ✓ [+LLM] auto_approve  · tier A
+      ↻ LLM overrode: approve
+  → promoted
+
+→ [139/321]  drafts/regions/left_ifg_pars_opercularis__Lacey2017.md   (00:08:40 · 55m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [140/321]  drafts/regions/left_ifg_pars_opercularis__Lee2018.md   (00:08:55 · 54m left at this rate)
+  ✓ [+LLM] auto_approve  · tier A
+      ↻ LLM overrode: approve
+  → promoted
+
+→ [141/321]  drafts/regions/left_ifg_pars_opercularis__Ochfeld2010.md   (00:09:09 · 54m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 8/16 quotes (50%) — absent 4, anchored 4, elided 2, exact 6
+      ⨯ (sft) cross_finding_consistency: @Ochfeld2010: sample.n disagrees: [20, 30, 50]
+
+→ [142/321]  drafts/regions/left_ifg_pars_opercularis__Rapcsak2009.md   (00:09:09 · 53m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [143/321]  drafts/regions/left_ifg_pars_opercularis__Rogalsky2018.md   (00:09:51 · 53m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [144/321]  drafts/regions/left_ifg_pars_opercularis__Schwartz2012.md   (00:10:20 · 53m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [145/321]  drafts/regions/left_ifg_pars_opercularis__Sheppard2022.md   (00:10:46 · 53m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [146/321]  drafts/regions/left_ifg_pars_opercularis__Wilmskoetter2021.md   (00:11:13 · 53m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [147/321]  drafts/regions/left_ifg_pars_opercularis__Woollams2018.md   (00:11:34 · 53m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [148/321]  drafts/regions/left_ifg_pars_orbitalis__Binder2009.md   (00:12:01 · 53m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [149/321]  drafts/regions/left_ifg_pars_triangularis__Adezati2022.md   (00:12:56 · 53m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [150/321]  drafts/regions/left_ifg_pars_triangularis__Akkad2023.md   (00:13:11 · 53m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [151/321]  drafts/regions/left_ifg_pars_triangularis__Dronkers2004.md   (00:13:33 · 53m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [152/321]  drafts/regions/left_ifg_pars_triangularis__GajardoVidal2021.md   (00:13:58 · 52m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [153/321]  drafts/regions/left_ifg_pars_triangularis__Matchin2020.md   (00:14:23 · 52m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [154/321]  drafts/regions/left_ifg_pars_triangularis__Saur2006.md   (00:14:39 · 52m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [155/321]  drafts/regions/left_ifg_pars_triangularis__Schwartz2009.md   (00:14:57 · 51m left at this rate)
+  ○ [+LLM] checks_passed  · tier A
+
+→ [156/321]  drafts/regions/left_ifg_pars_triangularis__Stockert2020.md   (00:15:23 · 51m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [157/321]  drafts/regions/left_inferior_frontal_gyrus__Jiang2025.md   (00:15:44 · 51m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [158/321]  drafts/regions/left_inferior_frontal_occipital_fasciculus__Ivanova2016.md   (00:16:01 · 51m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [159/321]  drafts/regions/left_inferior_fronto_occipital_fasciculus__Han2013.md   (00:16:26 · 50m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [160/321]  drafts/regions/left_inferior_fronto_occipital_fasciculus__Li2017.md   (00:16:49 · 50m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [161/321]  drafts/regions/left_inferior_fronto_occipital_fasciculus__Xing2017.md   (00:17:14 · 50m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [162/321]  drafts/regions/left_inferior_frontooccipital_fasciculus__Bi2015.md   (00:17:28 · 50m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [163/321]  drafts/regions/left_inferior_longitudinal_fasciculus__Fridriksson2013.md   (00:17:54 · 49m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [164/321]  drafts/regions/left_inferior_longitudinal_fasciculus__Ivanova2016.md   (00:18:11 · 49m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [165/321]  drafts/regions/left_inferior_longitudinal_fasciculus__Xing2017.md   (00:18:35 · 49m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [166/321]  drafts/regions/left_inferior_temporal_gyrus__Pflugshaupt2009.md   (00:18:49 · 48m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [167/321]  drafts/regions/left_insula__Rapcsak2009.md   (00:19:05 · 48m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [168/321]  drafts/regions/left_middle_frontal_gyrus__Alyahya2020.md   (00:19:35 · 48m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [169/321]  drafts/regions/left_middle_frontal_gyrus__Dronkers2004.md   (00:19:54 · 48m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [170/321]  drafts/regions/left_middle_frontal_gyrus__Glascher2012.md   (00:20:17 · 47m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [171/321]  drafts/regions/left_middle_frontal_gyrus__Lacey2017.md   (00:20:31 · 47m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [172/321]  drafts/regions/left_middle_frontal_gyrus__MartinezMolina2022.md   (00:20:43 · 47m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f2: lesion_mapping (v2.7 design) not extracted by the model — filled from statistics
+
+→ [173/321]  drafts/regions/left_middle_frontal_gyrus__Schumacher2019.md   (00:21:01 · 46m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [174/321]  drafts/regions/left_middle_longitudinal_fasciculus__Dick2012.md   (00:21:23 · 46m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [175/321]  drafts/regions/left_middle_temporal_gyrus__Akkad2023.md   (00:21:56 · 46m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [176/321]  drafts/regions/left_middle_temporal_gyrus__Baldo2013.md   (00:22:14 · 46m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [177/321]  drafts/regions/left_middle_temporal_gyrus__Bates2003.md   (00:22:28 · 45m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [178/321]  drafts/regions/left_middle_temporal_gyrus__Binder2009.md   (00:22:40 · 45m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [179/321]  drafts/regions/left_middle_temporal_gyrus__Dronkers2004.md   (00:23:29 · 45m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [180/321]  drafts/regions/left_middle_temporal_gyrus__Fridriksson2010Anomia.md   (00:23:52 · 45m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [181/321]  drafts/regions/left_middle_temporal_gyrus__Hillis2006.md   (00:24:06 · 44m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [182/321]  drafts/regions/left_middle_temporal_gyrus__MartinezMolina2022.md   (00:24:19 · 44m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f2: lesion_mapping (v2.7 design) not extracted by the model — filled from statistics
+      ⨯ (sft) cross_finding_consistency: @MartinezMolina2022: sample.n disagrees: [20, 43]
+
+→ [183/321]  drafts/regions/left_middle_temporal_gyrus__Pillay2017.md   (00:24:40 · 44m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [184/321]  drafts/regions/left_middle_temporal_gyrus__Schwartz2009.md   (00:24:51 · 43m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [185/321]  drafts/regions/left_middle_temporal_gyrus__Wilmskoetter2021.md   (00:25:14 · 43m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 2/3 quotes (67%) — absent 1, exact 2
+
+→ [186/321]  drafts/regions/left_middle_temporal_gyrus__Zhao2018.md   (00:25:14 · 42m left at this rate)
+  ○ [+LLM] checks_passed  · tier A
+
+→ [187/321]  drafts/regions/left_occipito_temporal_sulcus__Pflugshaupt2009.md   (00:25:37 · 42m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [188/321]  drafts/regions/left_parietal_association_cortex__Bates2003.md   (00:25:57 · 42m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [189/321]  drafts/regions/left_postcentral_gyrus__Hillis2004.md   (00:26:07 · 41m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 1/4 quotes (25%) — absent 1, anchored 1, exact 1, near 1
+
+→ [190/321]  drafts/regions/left_posterior_cingulate_gyrus__Binder2009.md   (00:26:07 · 41m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [191/321]  drafts/regions/left_posterior_middle_temporal_gyrus__Kristinsson2020.md   (00:27:00 · 41m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [192/321]  drafts/regions/left_posterior_planum_temporale_spt__Buchsbaum2011.md   (00:27:25 · 41m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) cross_finding_consistency: @Buchsbaum2011: sample.n disagrees: [14, 105]
+
+→ [193/321]  drafts/regions/left_posterior_stg__Adezati2022.md   (00:27:56 · 40m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [194/321]  drafts/regions/left_posterior_stg__Akkad2023.md   (00:28:10 · 40m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [195/321]  drafts/regions/left_posterior_stg__Butler2014.md   (00:28:31 · 40m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [196/321]  drafts/regions/left_posterior_stg__Corbetta2015.md   (00:28:57 · 39m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [197/321]  drafts/regions/left_posterior_stg__Kasdan2025.md   (00:29:16 · 39m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [198/321]  drafts/regions/left_posterior_stg__Kristinsson2020.md   (00:29:45 · 39m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [199/321]  drafts/regions/left_posterior_stg__Matchin2020.md   (00:30:06 · 39m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [200/321]  drafts/regions/left_posterior_stg__Rogalsky2018.md   (00:30:24 · 38m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [201/321]  drafts/regions/left_posterior_stg__Sheppard2022.md   (00:30:57 · 38m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [202/321]  drafts/regions/left_posterior_stg__Wilson2023.md   (00:31:17 · 38m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [203/321]  drafts/regions/left_posterior_stg__Yourganov2016.md   (00:31:41 · 38m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [204/321]  drafts/regions/left_posterior_temporal_white_matter_bottleneck__Griffis2017.md   (00:32:06 · 37m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [205/321]  drafts/regions/left_precentral_gyrus__Casilio2025.md   (00:32:32 · 37m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 1/4 quotes (25%) — absent 1, anchored 2, exact 1
+
+→ [206/321]  drafts/regions/left_precentral_gyrus__Fridriksson2010Anomia.md   (00:32:32 · 37m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [207/321]  drafts/regions/left_precentral_gyrus__Halai2017.md   (00:32:44 · 36m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [208/321]  drafts/regions/left_precentral_gyrus__Halai2018.md   (00:33:13 · 36m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [209/321]  drafts/regions/left_precentral_gyrus__Rapcsak2009.md   (00:33:31 · 36m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [210/321]  drafts/regions/left_precentral_gyrus__Schwartz2012.md   (00:34:05 · 35m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [211/321]  drafts/regions/left_precentral_gyrus_insula__Baldo2011.md   (00:34:26 · 35m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [212/321]  drafts/regions/left_precentral_gyrus_insula__Bates2003.md   (00:34:41 · 35m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [213/321]  drafts/regions/left_precentral_gyrus_insula__Hillis2004.md   (00:34:53 · 34m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [214/321]  drafts/regions/left_presma_dacc__Geranmayeh2017.md   (00:35:06 · 34m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [215/321]  drafts/regions/left_rostral_anterior_cingulate_cortex__Glascher2012.md   (00:35:23 · 34m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [216/321]  drafts/regions/left_superior_longitudinal_fasciculus__Breier2008.md   (00:35:36 · 33m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [217/321]  drafts/regions/left_superior_longitudinal_fasciculus__Ding2023.md   (00:35:48 · 33m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [218/321]  drafts/regions/left_superior_temporal_gyrus__Baldo2013.md   (00:36:07 · 33m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [219/321]  drafts/regions/left_superior_temporal_gyrus__Casilio2025.md   (00:36:27 · 32m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 1/4 quotes (25%) — absent 1, anchored 2, exact 1
+
+→ [220/321]  drafts/regions/left_superior_temporal_gyrus__DeWitt2012.md   (00:36:27 · 32m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 4/8 quotes (50%) — absent 2, anchored 2, exact 4
+      ⨯ (sft) cross_finding_consistency: @DeWitt2012: sample.n disagrees: [26, 32]
+
+→ [221/321]  drafts/regions/left_superior_temporal_gyrus__Dronkers2004.md   (00:36:27 · 31m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [222/321]  drafts/regions/left_superior_temporal_gyrus__Fridriksson2015.md   (00:36:51 · 31m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [223/321]  drafts/regions/left_superior_temporal_gyrus__Halai2017.md   (00:37:05 · 31m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [224/321]  drafts/regions/left_superior_temporal_gyrus__Halai2018.md   (00:37:31 · 30m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [225/321]  drafts/regions/left_superior_temporal_gyrus__Lacey2017.md   (00:37:51 · 30m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [226/321]  drafts/regions/left_superior_temporal_gyrus__Leff2009.md   (00:38:04 · 30m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (blk) no_contradictions: f1 has non-empty contradictions
+
+→ [227/321]  drafts/regions/left_superior_temporal_gyrus__Lukic2021.md   (00:38:35 · 30m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [228/321]  drafts/regions/left_superior_temporal_gyrus__MartinezMolina2022.md   (00:38:57 · 29m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f2: lesion_mapping (v2.7 design) not extracted by the model — filled from statistics
+
+→ [229/321]  drafts/regions/left_superior_temporal_gyrus__Munsch2016.md   (00:39:16 · 29m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [230/321]  drafts/regions/left_superior_temporal_gyrus__Rapcsak2009.md   (00:39:33 · 29m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [231/321]  drafts/regions/left_superior_temporal_gyrus__Thiel2013.md   (00:40:00 · 28m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [232/321]  drafts/regions/left_superior_temporal_gyrus_wernicke__Dronkers2004.md   (00:40:13 · 28m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [233/321]  drafts/regions/left_superior_temporal_gyrus_wernicke__Geschwind1965.md   (00:40:35 · 28m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [234/321]  drafts/regions/left_superior_temporal_gyrus_wernicke__Hillis2006.md   (00:41:07 · 27m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [235/321]  drafts/regions/left_superior_temporal_gyrus_wernickes__Hillis2001.md   (00:41:18 · 27m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/regions/left_superior_temporal_gyrus_wernickes__Hillis2001.md: finding[0] (id=f1): unknown method['PWI']; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+
+→ [236/321]  drafts/regions/left_superior_temporal_sulcus__Binder2009.md   (00:41:18 · 27m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [237/321]  drafts/regions/left_superior_temporal_sulcus__DeWitt2012.md   (00:42:08 · 27m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [238/321]  drafts/regions/left_supramarginal_gyrus__Casilio2025.md   (00:42:16 · 26m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 1/4 quotes (25%) — absent 1, anchored 2, exact 1
+
+→ [239/321]  drafts/regions/left_supramarginal_gyrus__Fridriksson2010.md   (00:42:16 · 26m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [240/321]  drafts/regions/left_supramarginal_gyrus__Lacey2017.md   (00:42:27 · 25m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [241/321]  drafts/regions/left_supramarginal_gyrus__Rapcsak2009.md   (00:42:39 · 25m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [242/321]  drafts/regions/left_supramarginal_gyrus__Schwartz2012.md   (00:43:08 · 25m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [243/321]  drafts/regions/left_supramarginal_gyrus__Sheppard2022.md   (00:43:30 · 24m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [244/321]  drafts/regions/left_supramarginal_gyrus_premotor__Fridriksson2010Anomia.md   (00:43:51 · 24m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [245/321]  drafts/regions/left_temporal_fusiform_cortex_posterior__Schumacher2019.md   (00:44:04 · 24m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [246/321]  drafts/regions/left_temporal_lobe__Bonilha2016.md   (00:44:27 · 24m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [247/321]  drafts/regions/left_temporoparietal_junction__Benghanem2019.md   (00:44:42 · 23m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [248/321]  drafts/regions/left_temporoparietal_junction__Fridriksson2010.md   (00:44:56 · 23m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [249/321]  drafts/regions/left_temporoparietal_white_matter_crossroad__Rosso2015.md   (00:45:10 · 22m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [250/321]  drafts/regions/left_thalamus__Sebastian2014.md   (00:45:25 · 22m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [251/321]  drafts/regions/left_uncinate_fasciculus__Basilakos2014.md   (00:45:40 · 22m left at this rate)
+  ✗ ERROR: ParserError('while parsing a block mapping', <yaml.error.Mark object at 0x115157740>, "expected <block end>, but found '}'", <yaml.error.Mark object at 0x115180980>)
+
+→ [252/321]  drafts/regions/left_uncinate_fasciculus__Bi2015.md   (00:45:40 · 21m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [253/321]  drafts/regions/left_uncinate_fasciculus__Fridriksson2013.md   (00:46:04 · 21m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) cross_finding_consistency: @Fridriksson2013: sample.n disagrees: [26, 64]
+
+→ [254/321]  drafts/regions/left_uncinate_fasciculus__Han2013.md   (00:46:22 · 21m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [255/321]  drafts/regions/left_uncinate_fasciculus__Li2017.md   (00:46:42 · 21m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [256/321]  drafts/regions/left_uncinate_fasciculus__Xing2017.md   (00:47:06 · 20m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [257/321]  drafts/regions/left_ventromedial_prefrontal_cortex__Glascher2012.md   (00:47:20 · 20m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [258/321]  drafts/regions/right_amygdala__Sheppard2020.md   (00:47:35 · 20m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [259/321]  drafts/regions/right_arcuate_fasciculus__Forkel2014.md   (00:47:47 · 19m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [260/321]  drafts/regions/right_arcuate_fasciculus__OsaGarcia2020.md   (00:48:05 · 19m left at this rate)
+MuPDF error: format error: out of range code encountered in lzw decode
+
+MuPDF error: library error: FT_New_Memory_Face(UVHQSY+HelveticaNeueLTStd-Lt): unknown file format
+
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 2/4 quotes (50%) — absent 1, anchored 1, exact 2
+
+→ [261/321]  drafts/regions/right_arcuate_fasciculus__Schlaug2010.md   (00:48:05 · 19m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [262/321]  drafts/regions/right_dlpfc__Stockert2020.md   (00:48:24 · 18m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [263/321]  drafts/regions/right_dorsolateral_prefrontal_cortex__Jiang2025.md   (00:48:45 · 18m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [264/321]  drafts/regions/right_frontal_operculum__Ross2008.md   (00:49:03 · 18m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [265/321]  drafts/regions/right_ifg_pars_opercularis__Lee2018.md   (00:49:41 · 17m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [266/321]  drafts/regions/right_ifg_pars_opercularis__Turkeltaub2011.md   (00:49:52 · 17m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [267/321]  drafts/regions/right_ifg_pars_triangularis__Saur2006.md   (00:50:03 · 17m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [268/321]  drafts/regions/right_ifg_pars_triangularis__Turkeltaub2011.md   (00:50:20 · 16m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [269/321]  drafts/regions/right_inferior_frontal_gyrus__Jiang2025.md   (00:50:32 · 16m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [270/321]  drafts/regions/right_insula__Lukic2017.md   (00:50:49 · 16m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [271/321]  drafts/regions/right_lateral_frontal_cortex__Benjamin2014.md   (00:51:11 · 15m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 2/6 quotes (33%) — absent 2, anchored 2, exact 2
+
+→ [272/321]  drafts/regions/right_medial_frontal_cortex__Benjamin2014.md   (00:51:11 · 15m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [273/321]  drafts/regions/right_middle_temporal_gyrus__Hope2017.md   (00:51:30 · 15m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/regions/right_middle_temporal_gyrus__Hope2017.md: finding[0] (id=f1): unknown method='VBM'; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+
+→ [274/321]  drafts/regions/right_middle_temporal_gyrus__Lukic2017.md   (00:51:30 · 14m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [275/321]  drafts/regions/right_motor_cortex__SkipperKallal2017.md   (00:51:48 · 14m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [276/321]  drafts/regions/right_posterior_perisylvian_cortex__Benjamin2014.md   (00:52:06 · 14m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [277/321]  drafts/regions/right_posterior_stg__Sheppard2020.md   (00:52:18 · 13m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [278/321]  drafts/regions/right_precentral_gyrus__Hope2017.md   (00:52:30 · 13m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/regions/right_precentral_gyrus__Hope2017.md: finding[0] (id=f1): unknown method='VBM'; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+
+→ [279/321]  drafts/regions/right_superior_temporal_gyrus__Xing2016.md   (00:52:30 · 13m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/regions/right_superior_temporal_gyrus__Xing2016.md: finding[0] (id=f1): unknown method='VBM'; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+
+→ [280/321]  drafts/regions/right_supplementary_motor_area__Lukic2017.md   (00:52:30 · 12m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [281/321]  drafts/regions/right_supramarginal_gyrus__Xing2016.md   (00:52:49 · 12m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/regions/right_supramarginal_gyrus__Xing2016.md: finding[0] (id=f1): unknown method='VBM'; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+
+→ [282/321]  drafts/regions/right_temporal_operculum__Ross2008.md   (00:52:49 · 12m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [283/321]  drafts/regions/right_thalamus__Ross2008.md   (00:53:23 · 11m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [284/321]  drafts/regions/right_thalamus__Sebastian2014.md   (00:54:05 · 11m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [285/321]  drafts/reviews/affective_prosody_localization__Durfee2021.md   (00:54:23 · 11m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [286/321]  drafts/reviews/aphasia_prognosis_predictors__Plowman2012.md   (00:54:51 · 11m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [287/321]  drafts/reviews/arcuate_fasciculus_disconnection__Catani2008.md   (00:55:11 · 10m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [288/321]  drafts/reviews/cerebral_small_vessel_disease_cognition__Biesbroek2017.md   (00:55:29 · 10m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [289/321]  drafts/reviews/connectional_anatomy_of_language__Dick2012.md   (00:55:48 · 10m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [290/321]  drafts/reviews/crossed_aphasia__Coppens2002.md   (00:56:34 · 9m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) schema_valid: /Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/reviews/crossed_aphasia__Coppens2002.md: finding[1] (id=f2): target 'crossed_aphasia' is an aphasia syndrome but the claim is about a symptom; target the symptom entry (anomia, fluency, …) unless the paper classifies by syndrome
+
+→ [291/321]  drafts/reviews/crossed_aphasia_dextrals__Marien2004.md   (00:56:34 · 9m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [292/321]  drafts/reviews/dual_stream_speech_processing__Hickok2007.md   (00:57:39 · 9m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [293/321]  drafts/reviews/dysarthria_interventions__Mitchell2017.md   (00:58:05 · 9m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [294/321]  drafts/reviews/language_mapping_methods__Wilson2019.md   (00:58:50 · 8m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [295/321]  drafts/reviews/lesion_mapping_methods__Karnath2018.md   (00:59:07 · 8m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [296/321]  drafts/reviews/melodic_intonation_therapy__Zumbansen2014.md   (00:59:35 · 8m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [297/321]  drafts/reviews/melodic_intonation_therapy__vanderMeulen2012.md   (00:59:58 · 7m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [298/321]  drafts/reviews/multivariate_aphasia_approaches__WilsonHula2019.md   (01:00:16 · 7m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [299/321]  drafts/reviews/neuroplasticity_language_network__Hartwigsen2019.md   (01:00:35 · 7m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [300/321]  drafts/reviews/neuroplasticity_poststroke_aphasia__Mohr2017.md   (01:01:21 · 6m left at this rate)
+  ✗ ERROR: ScannerError('while scanning a double-quoted scalar', <yaml.error.Mark object at 0x115196ed0>, "found unknown escape character 'd'", <yaml.error.Mark object at 0x115194e90>)
+
+→ [301/321]  drafts/reviews/right_hemisphere_communication_profiles__Cote2007.md   (01:01:21 · 6m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [302/321]  drafts/reviews/thalamic_aphasia__Fritsch2022.md   (01:01:35 · 6m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [303/321]  drafts/therapies/cognitive_linguistic_treatment__Nouwens2017.md   (01:01:58 · 5m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [304/321]  drafts/therapies/constraint_induced_aphasia_therapy__Maher2006.md   (01:02:10 · 5m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [305/321]  drafts/therapies/constraint_induced_aphasia_therapy__Pulvermuller2001.md   (01:02:28 · 5m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) cross_finding_consistency: @Pulvermuller2001: sample.n disagrees: [10, 17]
+
+→ [306/321]  drafts/therapies/intensive_aphasia_therapy__Godecke2021.md   (01:02:50 · 5m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [307/321]  drafts/therapies/intensive_speech_and_language_therapy__Breitenstein2017.md   (01:03:07 · 4m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [308/321]  drafts/therapies/intention_treatment__Benjamin2014.md   (01:03:23 · 4m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [309/321]  drafts/therapies/melodic_intonation_therapy__Schlaug2008.md   (01:03:36 · 4m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [310/321]  drafts/therapies/melodic_intonation_therapy__Schlaug2010.md   (01:03:51 · 3m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) cross_finding_consistency: @Schlaug2010: sample.n disagrees: [1, 6]
+
+→ [311/321]  drafts/therapies/melodic_intonation_therapy__Stahl2011.md   (01:04:12 · 3m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [312/321]  drafts/therapies/melodic_intonation_therapy__Stahl2013.md   (01:04:28 · 3m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [313/321]  drafts/therapies/melodic_intonation_therapy__vanderMeulen2014.md   (01:04:47 · 2m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [314/321]  drafts/therapies/phonological_component_analysis__Leonard2008.md   (01:05:07 · 2m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [315/321]  drafts/therapies/semantic_feature_analysis__Boyle2004.md   (01:05:23 · 2m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) cross_finding_consistency: @Boyle2004: sample.n disagrees: [1, 2]
+
+→ [316/321]  drafts/therapies/tdcs_aphasia_treatment__Fridriksson2018JAMA.md   (01:05:57 · 1m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [317/321]  drafts/therapies/tms_right_ifg__Thiel2013.md   (01:06:10 · 1m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) no_human_review_flags: f1: imaging_details.reference_space not extracted by the model — set to not_reported
+
+→ [318/321]  drafts/therapies/treatment_of_underlying_forms__Thompson2003.md   (01:06:25 · 1m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [319/321]  drafts/therapies/treatment_of_underlying_forms__Thompson2003_f2.md   (01:06:42 · 0m left at this rate)
+  ✗ [    ] auto_reject  · tier B
+      ⨯ (blk) pdf_quote_match: matched 4/6 quotes (67%) — absent 2, exact 4
+
+→ [320/321]  drafts/therapies/typicality_semantic_feature_analysis__Efstratiadou2018.md   (01:06:42 · 0m left at this rate)
+  ○ [+LLM] checks_passed  · tier B
+
+→ [321/321]  drafts/therapies/virtual_reality_rehabilitation__Laver2025.md   (01:07:08 · 0m left at this rate)
+  ⚠ [+LLM] defer_to_human  · tier B
+      ⨯ (sft) cross_finding_consistency: @Laver2025: sample.n disagrees: [279, 689, 871, 1495, 2830]
+
+Summary: 256 checks_passed, 7 model-approved, 0 provisional, 26 defer, 30 reject  · tier A 11 / tier B 308  (promoted=7, failed_promote=0)

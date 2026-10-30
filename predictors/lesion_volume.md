@@ -1176,12 +1176,71 @@ findings:
     tool: backfill.py
     fields:
     - cohort
+- id: f11
+  target: severity_metric
+  target_kind: predictor
+  claim: Total infarct volume correlates with global aphasia severity, but this relationship
+    is mediated by damage to the temporoparietal white matter crossroad.
+  direction: likely
+  relationship: correlational
+  citation: '@Rosso2015'
+  method: behavioral_only
+  design: cross-sectional
+  strength: moderate
+  evidence_quality: cohort
+  sample:
+    n: 23
+    population: chronic poststroke aphasic patients
+    time_post_onset: mean +/- SD time poststroke = 16 +/- 21 months
+    phase: chronic
+    age_range: mean +/- SD age = 57 +/- 19 years
+    handedness: all right-handed
+    language: French native speaker
+  statistics:
+    threshold: not_reported
+    effect_size: correlation coefficient = -0.549
+    p_value: P = .006
+  confounders_controlled: []
+  confounders_not_controlled: []
+  region_definition:
+    kind: not_reported
+    description: Global infarct volume
+  author_limitations:
+  - The number of subjects was relatively low, limiting the subgroup analysis.
+  provenance:
+    extracted_by: agent
+    extracted_on: 2026-01-01
+    paper_section: Results, page 291
+    confidence: high
+    flags: []
+  source_passages:
+  - section: Results
+    page: 291
+    quote: Infarct volumes were also well correlated (correlation coefficient = -0.549,
+      95% CI = -0.177 to -0.784, P = .006, adjusted R2 = 0.269).
+    supports: claim
+  - section: Discussion
+    page: 293
+    quote: the relationship between aphasia global severity and infarct size was no
+      longer significant when we took into account damage to the area defined by our
+      voxel-based analysis.
+    supports: claim
+  - section: Discussion
+    page: 293
+    quote: First, although the total sample size was in the higher range of published
+      DTI studies, the number of subjects was relatively low
+    supports: limitation
+  review:
+    reviewer: model:gemma4:26b
+    reviewed_on: '2026-10-30'
+    tier: A
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
 notes: Starter entry for schema v2.3. Lesion volume is the single most-controlled-for
   covariate in lesion-symptom mapping. Findings here should be reserved for *predictive*
   claims (volume → severity / recovery / therapy response), not the trivial "bigger
   lesion = more damage" tautology. Be careful to track whether a paper measures volume
   in native or MNI space — ratios change with normalisation.
-last_reviewed: '2026-10-23'
+last_reviewed: '2026-10-30'
 ---
 # Total lesion volume
 
