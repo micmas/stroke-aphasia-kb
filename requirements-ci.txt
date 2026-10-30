@@ -1,0 +1,4 @@
+# Minimal dependencies for the repository's Python and browser-parity checks.
+pandas>=2.0
+PyYAML>=6.0
+PyMuPDF>=1.23
