@@ -36,6 +36,7 @@ export const FACETS = [
   { key: 'target_kind', label: 'Target type', order: ['impairment', 'region', 'therapy', 'predictor', 'prognosis'] },
   { key: 'relationship', label: 'Relationship', order: ['causal', 'correlational', 'recruitment', 'responder', 'treatment_response', 'synthesis'] },
   { key: 'strength', label: 'Strength', order: ['strong', 'moderate', 'weak'] },
+  { key: 'source_status', label: 'Status', order: ['approved', 'in_review', 'draft'] },
   { key: 'review_kind', label: 'Review provenance', order: ['human', 'model', 'legacy', 'none'] },
   { key: 'stage', label: 'Recovery stage', order: ['acute', 'subacute', 'chronic', 'not stated'] },
   { key: 'method', label: 'Method', order: null },
