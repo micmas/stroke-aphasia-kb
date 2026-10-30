@@ -1443,7 +1443,7 @@
    "lm_volume_correction": null,
    "method": "fMRI_activation",
    "phase": "longitudinal",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "adults with mild-moderate aphasia following left hemispheric infarct",
    "region_definition": {
     "atlas": "Harvard-Oxford cortical atlas; AAL for subcortical",
@@ -1456,11 +1456,13 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 59.0 years (SD 11.0)",
+    "cohort": "not_reported",
     "exclusion_criteria": "Previous stroke resulting in aphasia; other neurological condition.",
     "handedness": "not_reported",
     "inclusion_criteria": "Left hemisphere infarct; language difficulties at stroke onset; premorbidly fluent English; no previous stroke with aphasia.",
     "language": "English (premorbidly fluent)",
     "n": 26,
+    "phase": "longitudinal",
     "population": "adults with mild-moderate aphasia following left hemispheric infarct",
     "recruitment": "Recruited from acute stroke wards; previous publications used same dataset (Geranmayeh et al. 2016, 2017).",
     "time_post_onset": "2 weeks (T1) and 4 months (T2) post-stroke"
@@ -1551,7 +1553,7 @@
    "lm_volume_correction": null,
    "method": "fMRI_activation",
    "phase": "longitudinal",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "adults with mild-moderate aphasia following left hemispheric infarct",
    "region_definition": {
     "atlas": "Harvard-Oxford cortical atlas",
@@ -1564,11 +1566,13 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 59.0 years (SD 11.0)",
+    "cohort": "not_reported",
     "exclusion_criteria": "Previous stroke with aphasia; other neurological condition.",
     "handedness": "not_reported",
     "inclusion_criteria": "Left hemisphere infarct; language difficulties at stroke onset.",
     "language": "English (premorbidly fluent)",
     "n": 26,
+    "phase": "longitudinal",
     "population": "adults with mild-moderate aphasia following left hemispheric infarct",
     "recruitment": "Same cohort as f1.",
     "time_post_onset": "2 weeks (T1) and 4 months (T2) post-stroke"
@@ -1643,7 +1647,7 @@
    "lm_volume_correction": null,
    "method": "fMRI_activation",
    "phase": "longitudinal",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "adults with mild-moderate aphasia following left hemispheric infarct",
    "region_definition": {
     "atlas": "Harvard-Oxford cortical atlas; AAL subcortical",
@@ -1656,11 +1660,13 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 59.0 years (SD 11.0)",
+    "cohort": "not_reported",
     "exclusion_criteria": "Previous stroke with aphasia; other neurological condition.",
     "handedness": "not_reported",
     "inclusion_criteria": "Left hemisphere infarct; language difficulties at stroke onset.",
     "language": "English (premorbidly fluent)",
     "n": 26,
+    "phase": "longitudinal",
     "population": "adults with mild-moderate aphasia following left hemispheric infarct",
     "recruitment": "Same cohort as f1.",
     "time_post_onset": "2 weeks (T1) and 4 months (T2) post-stroke"
@@ -1738,7 +1744,7 @@
    "lm_volume_correction": null,
    "method": "fMRI_activation",
    "phase": "early_subacute",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "adults with mild-moderate aphasia at 2 weeks post-stroke",
    "region_definition": {
     "atlas": "Harvard-Oxford cortical atlas",
@@ -1751,11 +1757,13 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 59.0 years (SD 11.0)",
+    "cohort": "not_reported",
     "exclusion_criteria": "Previous stroke with aphasia; other neurological condition.",
     "handedness": "not_reported",
     "inclusion_criteria": "Left hemisphere infarct; language difficulties at stroke onset.",
     "language": "English (premorbidly fluent)",
     "n": 26,
+    "phase": "early_subacute",
     "population": "adults with mild-moderate aphasia at 2 weeks post-stroke",
     "recruitment": "Same cohort as f1.",
     "time_post_onset": "2 weeks post-stroke (T1 only)"
@@ -1775,6 +1783,12 @@
      "quote": "Mean activation extracted from this cluster was significantly positively associated with T1 PC1 score (beta = 0.54, P = 7.1  10–5), even after including lesion volume, years of education and age (beta = 0.51, P = 0.0004)",
      "section": "Results — Activation positively associated with fluency at 2 weeks post-stroke",
      "supports": "statistics"
+    },
+    {
+     "page": 3,
+     "quote": "at 2 weeks (time point 1, T1) and 4 months (time point 2, T2) post-stroke.",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "regions/bilateral_middle_frontal_gyrus_recovery.md",
@@ -2044,6 +2058,101 @@
    "target": "action_naming",
    "target_kind": "impairment",
    "time_post_onset": "acute (mean scan 2.2 days post-stroke)"
+  },
+  {
+   "author_limitations": [
+    "ROI-based approach compromises spatial resolution compared to voxel-based methods.",
+    "Only a single measure of sentence comprehension was used.",
+    "Behavioral performance was only examined in relation to structural damage, not cerebral perfusion."
+   ],
+   "citation": "@Kristinsson2020",
+   "claim": "Damage to the left angular gyrus is a significant predictor of performance on canonical sentences in acute aphasia.",
+   "cohort": null,
+   "cohort_group": "@Kristinsson2020",
+   "cohort_source": null,
+   "confidence": "high",
+   "design": "cross-sectional",
+   "design_cautions": [
+    "multiple-comparison correction not stated"
+   ],
+   "direction": "likely",
+   "evidence_quality": "cohort",
+   "flags": [],
+   "id": "f3",
+   "lm_analysis": "region_based",
+   "lm_correction": "not_reported",
+   "lm_n": 104.0,
+   "lm_orientation": null,
+   "lm_source": "stated",
+   "lm_volume_correction": "covariate",
+   "method": "RLSM",
+   "phase": "acute",
+   "phase_source": "stated",
+   "population": "acute left-hemisphere stroke patients with aphasia",
+   "region_definition": {
+    "atlas": "Faria et al. (2012)",
+    "description": "angular gyrus (AG)",
+    "kind": "atlas"
+   },
+   "relationship": "causal",
+   "review": {
+    "extractor": "agent:ollama-extract-cli/gemma4:31b-it-q8_0",
+    "reviewed_on": "2026-10-30",
+    "reviewer": "model:gemma4:26b",
+    "tier": "A"
+   },
+   "review_kind": "model",
+   "review_tier": "A",
+   "reviewer": "model:gemma4:26b",
+   "sample": {
+    "age_range": "mean 65.2 (SD 10.0) years",
+    "cohort": "not_reported",
+    "handedness": "not_reported",
+    "language": "English and Icelandic",
+    "n": 104,
+    "phase": "acute",
+    "population": "acute left-hemisphere stroke patients with aphasia",
+    "time_post_onset": "<20 days poststroke"
+   },
+   "sample_n": 104,
+   "source_id": "left_angular_gyrus",
+   "source_kind": "region",
+   "source_passages": [
+    {
+     "page": 1,
+     "quote": "Damage to the angular gyrus was the strongest predictor for performance on canonical sentences",
+     "section": "Abstract",
+     "supports": "claim"
+    },
+    {
+     "page": 8,
+     "quote": "CAN scores were best predicted by damage to AG, MTG, MTGpole, SMG, and STG... Beta values for AG and MTG were negative, and damage to these areas accounted for 24.8% and 9.5% of the variance in performance, respectively.",
+     "section": "Results",
+     "supports": "statistics"
+    },
+    {
+     "page": 14,
+     "quote": "Each ROI treated as an independent variable in our models is represented by a single number (proportional damage), regardless of the size of the ROI. Consequently, spatial resolution is compromised.",
+     "section": "Discussion",
+     "supports": "limitation"
+    }
+   ],
+   "source_path": "regions/left_angular_gyrus.md",
+   "source_status": "approved",
+   "stages": [
+    "acute"
+   ],
+   "stat_effect_size": "accounted for 24.8% of the variance in performance on CAN scores",
+   "stat_threshold": "alpha level of .05",
+   "statistics": {
+    "effect_size": "accounted for 24.8% of the variance in performance on CAN scores",
+    "p_value": "<.001",
+    "threshold": "alpha level of .05"
+   },
+   "strength": "moderate",
+   "target": "syntactic_processing",
+   "target_kind": "impairment",
+   "time_post_onset": "<20 days poststroke"
   },
   {
    "author_limitations": [
@@ -3341,6 +3450,108 @@
   },
   {
    "author_limitations": [
+    "Lack of objective measures of individual tracts in patients due to varied lesions; used group-based probability maps.",
+    "Did not determine involvement of left hemisphere cortical areas."
+   ],
+   "citation": "@Xing2017",
+   "claim": "Direct lesion load in the left arcuate fasciculus is associated with sentence-level comprehension deficits in chronic post-stroke aphasia, although white matter integrity metrics (FA/MD) are not.",
+   "cohort": null,
+   "cohort_group": "@Xing2017",
+   "cohort_source": null,
+   "confidence": "high",
+   "design": "cross-sectional",
+   "design_cautions": [],
+   "direction": "mixed",
+   "evidence_quality": "cohort",
+   "flags": [],
+   "id": "f11",
+   "lm_analysis": null,
+   "lm_correction": null,
+   "lm_n": null,
+   "lm_orientation": null,
+   "lm_source": null,
+   "lm_volume_correction": null,
+   "method": "DTI",
+   "phase": "chronic",
+   "phase_source": "stated",
+   "population": "chronic left hemisphere stroke survivors",
+   "region_definition": {
+    "description": "Reconstructed using probabilistic tractography in healthy older participants.",
+    "kind": "tract"
+   },
+   "relationship": "causal",
+   "review": {
+    "extractor": "agent:ollama-extract-cli/gemma4:31b-it-q8_0",
+    "reviewed_on": "2026-10-30",
+    "reviewer": "model:gemma4:26b",
+    "tier": "A"
+   },
+   "review_kind": "model",
+   "review_tier": "A",
+   "reviewer": "model:gemma4:26b",
+   "sample": {
+    "age_range": "59.6 +/- 10.1 years",
+    "handedness": "33/6/1 (R/L/ambidextrous)",
+    "language": "native English speaker",
+    "n": 40,
+    "phase": "chronic",
+    "population": "chronic left hemisphere stroke survivors",
+    "time_post_onset": "at least 6 months post-stroke"
+   },
+   "sample_n": 40,
+   "source_id": "left_arcuate_fasciculus",
+   "source_kind": "region",
+   "source_passages": [
+    {
+     "page": 1,
+     "quote": "Lesion overlap, but not white matter integrity, in the arcuate fasciculus related to sentence-level comprehension deficits.",
+     "section": "Abstract",
+     "supports": "claim"
+    },
+    {
+     "page": 2,
+     "quote": "Forty (14 females) chronic left hemisphere stroke survivors were recruited... native English speaker; at least 6 months post-stroke",
+     "section": "Materials and Methods - Participants",
+     "supports": "sample"
+    },
+    {
+     "page": 4,
+     "quote": "Partial correlations showed that when controlling for total lesion volume, the number of lesioned voxels in the AF and ILF related to SLC scores",
+     "section": "Results",
+     "supports": "statistics"
+    },
+    {
+     "page": 4,
+     "quote": "DTI metrics of the left AF did not relate to either WLC or SLC scores (all uncorrected P > 0.10).",
+     "section": "Results",
+     "supports": "statistics"
+    },
+    {
+     "page": 8,
+     "quote": "First, lack of objective measures of the individual tracts in patients is a main caveat of this study.",
+     "section": "Discussion",
+     "supports": "limitation"
+    }
+   ],
+   "source_path": "regions/left_arcuate_fasciculus.md",
+   "source_status": "approved",
+   "stages": [
+    "chronic"
+   ],
+   "stat_effect_size": "not_reported",
+   "stat_threshold": "P < 0.05 (lesion load); P > 0.10 (DTI metrics)",
+   "statistics": {
+    "effect_size": "not_reported",
+    "p_value": "not_reported",
+    "threshold": "P < 0.05 (lesion load); P > 0.10 (DTI metrics)"
+   },
+   "strength": "moderate",
+   "target": "syntactic_processing",
+   "target_kind": "impairment",
+   "time_post_onset": "at least 6 months post-stroke"
+  },
+  {
+   "author_limitations": [
     "Functional segregation into two streams was produced by an artificial experimental situation; in natural speech both networks may interact closely.",
     "Only healthy volunteers were studied; the mapping of tract function to aphasia syndromes is speculative/inferred.",
     "The study used a single DTI tractography method; results may differ with alternative tractography approaches."
@@ -3778,6 +3989,109 @@
    "target": "speech_repetition",
    "target_kind": "impairment",
    "time_post_onset": "not_reported (healthy controls)"
+  },
+  {
+   "author_limitations": [
+    "Small sample size, making it impossible to compare mild and moderate groups.",
+    "Potential bias from cognitive defects affecting language skills.",
+    "High average patient age and long duration after stroke may reflect brain degeneration."
+   ],
+   "citation": "@Lee2018",
+   "claim": "Lower fractional anisotropy in the left superior longitudinal fasciculus is associated with severe aphasia in chronic stroke patients.",
+   "cohort": null,
+   "cohort_group": "@Lee2018",
+   "cohort_source": null,
+   "confidence": "high",
+   "design": "cross-sectional",
+   "design_cautions": [],
+   "direction": "likely",
+   "evidence_quality": "cohort",
+   "flags": [],
+   "id": "f5",
+   "lm_analysis": null,
+   "lm_correction": null,
+   "lm_n": null,
+   "lm_orientation": null,
+   "lm_source": null,
+   "lm_volume_correction": null,
+   "method": "DTI",
+   "phase": "chronic",
+   "phase_source": "stated",
+   "population": "chronic left hemisphere stroke with aphasia",
+   "region_definition": {
+    "atlas": "Harvard-Oxford Cortical and Subcortical Atlas",
+    "description": "superior longitudinal fasciculus identified via Harvard-Oxford atlas inbuilt in FSL 5.0.10",
+    "kind": "atlas"
+   },
+   "relationship": "correlational",
+   "review": {
+    "extractor": "agent:ollama-extract-cli/gemma4:31b-it-q8_0",
+    "reviewed_on": "2026-10-30",
+    "reviewer": "model:gemma4:26b",
+    "tier": "A"
+   },
+   "review_kind": "model",
+   "review_tier": "A",
+   "reviewer": "model:gemma4:26b",
+   "sample": {
+    "age_range": "mean 69.3-69.8 years",
+    "handedness": "right handedness before the stroke",
+    "language": "native Korean speaker",
+    "n": 23,
+    "phase": "chronic",
+    "population": "chronic left hemisphere stroke with aphasia",
+    "time_post_onset": "more than 6 months since onset of stroke"
+   },
+   "sample_n": 23,
+   "source_id": "left_arcuate_fasciculus_slf",
+   "source_kind": "region",
+   "source_passages": [
+    {
+     "page": 3,
+     "quote": "Relative to the control group, group 2 exhibited significantly lower FA in the bilateral pars opercularis... and superior longitudinal fasciculus (corrected P < 0.05).",
+     "section": "Results",
+     "supports": "claim"
+    },
+    {
+     "page": 2,
+     "quote": "Twenty-three patients with left hemisphere stroke with aphasia were recruited... (f) more than 6 months since onset of stroke",
+     "section": "Patients and methods",
+     "supports": "sample"
+    },
+    {
+     "page": 2,
+     "quote": "Specific areas of the brain were identified in accordance with the Harvard-Oxford Cortical and Subcortical Atlas inbuilt in FSL 5.0.10.",
+     "section": "MRI preprocessing",
+     "supports": "region_definition"
+    },
+    {
+     "page": 2,
+     "quote": "Significance was set at Bonferroni-corrected P value of less than 0.05.",
+     "section": "Statistical analysis",
+     "supports": "statistics"
+    },
+    {
+     "page": 5,
+     "quote": "Our study has several limitations, with the first one being its small sample size.",
+     "section": "Discussion",
+     "supports": "limitation"
+    }
+   ],
+   "source_path": "regions/left_arcuate_fasciculus_slf.md",
+   "source_status": "approved",
+   "stages": [
+    "chronic"
+   ],
+   "stat_effect_size": "0.20 +/- 0.01 (severe group) vs 0.27 +/- 0.02 (control)",
+   "stat_threshold": "Bonferroni-corrected P < 0.05",
+   "statistics": {
+    "effect_size": "0.20 +/- 0.01 (severe group) vs 0.27 +/- 0.02 (control)",
+    "threshold": "Bonferroni-corrected P < 0.05"
+   },
+   "strength": "moderate",
+   "target": "severity_metric",
+   "target_kind": "predictor",
+   "time_post_onset": "more than 6 months since onset of stroke"
   },
   {
    "author_limitations": [
@@ -5572,7 +5886,7 @@
    "lm_correction": "bonferroni",
    "lm_n": 90.0,
    "lm_orientation": "specificity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
@@ -5595,6 +5909,7 @@
    "reviewer": "model:gemma4:26b",
    "sample": {
     "age_range": "mean 58.8 years",
+    "cohort": "not_reported",
     "handedness": "not_reported",
     "language": "not_reported",
     "n": 90,
@@ -5611,6 +5926,24 @@
      "quote": "For lesion-based analysis, the most important regions for predicting fluency scores were the precentral gyrus, opercular part of inferior frontal gyrus, and the posterior part of the superior temporal gyrus (PSTG)",
      "section": "Results",
      "supports": "claim"
+    },
+    {
+     "page": 1,
+     "quote": "we applied a predictive multivariate framework to investigate the relationship between language deficits in human participants with chronic aphasia and the topological distribution of structural brain damage",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 3,
+     "quote": "we only considered gray-matter regions that were damaged in at least 4 of 90 participants",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 4,
+     "quote": "The threshold for significance of correlation was 0.05 with Bonferroni’s correction for multiple comparisons",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "regions/left_ifg_pars_opercularis.md",
@@ -5628,6 +5961,204 @@
    "target": "fluency",
    "target_kind": "impairment",
    "time_post_onset": "mean 42.8 months"
+  },
+  {
+   "author_limitations": [
+    "ROI-based approach compromises spatial resolution compared to voxel-based methods.",
+    "Only a single measure of sentence comprehension was used.",
+    "Behavioral performance was only examined in relation to structural damage, not cerebral perfusion."
+   ],
+   "citation": "@Kristinsson2020",
+   "claim": "Damage to the left IFG pars opercularis is associated with impaired noncanonical sentence comprehension, though its role is likely complementary to posterior temporal areas.",
+   "cohort": null,
+   "cohort_group": "@Kristinsson2020",
+   "cohort_source": null,
+   "confidence": "high",
+   "design": "cross-sectional",
+   "design_cautions": [
+    "multiple-comparison correction not stated"
+   ],
+   "direction": "likely",
+   "evidence_quality": "cohort",
+   "flags": [],
+   "id": "f9",
+   "lm_analysis": "region_based",
+   "lm_correction": "not_reported",
+   "lm_n": 104.0,
+   "lm_orientation": null,
+   "lm_source": "stated",
+   "lm_volume_correction": "covariate",
+   "method": "RLSM",
+   "phase": "acute",
+   "phase_source": "stated",
+   "population": "acute left-hemisphere stroke patients with aphasia",
+   "region_definition": {
+    "atlas": "Faria et al. (2012)",
+    "description": "IFG pars opercularis (IFGop)",
+    "kind": "atlas"
+   },
+   "relationship": "causal",
+   "review": {
+    "extractor": "agent:ollama-extract-cli/gemma4:31b-it-q8_0",
+    "reviewed_on": "2026-10-31",
+    "reviewer": "model:gemma4:26b",
+    "tier": "A"
+   },
+   "review_kind": "model",
+   "review_tier": "A",
+   "reviewer": "model:gemma4:26b",
+   "sample": {
+    "age_range": "mean 65.2 (SD 10.0) years",
+    "cohort": "not_reported",
+    "handedness": "not_reported",
+    "language": "English and Icelandic",
+    "n": 104,
+    "phase": "acute",
+    "population": "acute left-hemisphere stroke patients with aphasia",
+    "time_post_onset": "<20 days poststroke"
+   },
+   "sample_n": 104,
+   "source_id": "left_ifg_pars_opercularis",
+   "source_kind": "region",
+   "source_passages": [
+    {
+     "page": 8,
+     "quote": "Non-CAN score was best predicted by damage to pMTG, AG, IFGop, STG, and MTGpole... Step-wise inclusion of AG, IFGop, STG, and MTG accounted for additional 6.9%, 4.6%, 3.2%, and 3.1%, respectively.",
+     "section": "Results",
+     "supports": "claim"
+    },
+    {
+     "page": 9,
+     "quote": "When variance accounted for by performance on CAN sentence structures was regressed out, the model predictive of non-CAN residual score included pSTG, IFGop, SMG, and IFGtri... IFGop accounted for an additional 3.8% of the variance",
+     "section": "Results",
+     "supports": "statistics"
+    },
+    {
+     "page": 14,
+     "quote": "Each ROI treated as an independent variable in our models is represented by a single number (proportional damage), regardless of the size of the ROI. Consequently, spatial resolution is compromised.",
+     "section": "Discussion",
+     "supports": "limitation"
+    }
+   ],
+   "source_path": "regions/left_ifg_pars_opercularis.md",
+   "source_status": "approved",
+   "stages": [
+    "acute"
+   ],
+   "stat_effect_size": "accounted for 4.6% of variance in non-CAN score; 3.8% of variance in non-CAN residual score",
+   "stat_threshold": "alpha level of .05",
+   "statistics": {
+    "effect_size": "accounted for 4.6% of variance in non-CAN score; 3.8% of variance in non-CAN residual score",
+    "p_value": "<.001",
+    "threshold": "alpha level of .05"
+   },
+   "strength": "moderate",
+   "target": "syntactic_processing",
+   "target_kind": "impairment",
+   "time_post_onset": "<20 days poststroke"
+  },
+  {
+   "author_limitations": [
+    "Small sample size, making it impossible to compare mild and moderate groups.",
+    "Potential bias from cognitive defects affecting language skills.",
+    "High average patient age and long duration after stroke may reflect brain degeneration."
+   ],
+   "citation": "@Lee2018",
+   "claim": "Lower fractional anisotropy in the left pars opercularis is associated with severe aphasia in chronic stroke patients.",
+   "cohort": null,
+   "cohort_group": "@Lee2018",
+   "cohort_source": null,
+   "confidence": "high",
+   "design": "cross-sectional",
+   "design_cautions": [],
+   "direction": "likely",
+   "evidence_quality": "cohort",
+   "flags": [],
+   "id": "f10",
+   "lm_analysis": null,
+   "lm_correction": null,
+   "lm_n": null,
+   "lm_orientation": null,
+   "lm_source": null,
+   "lm_volume_correction": null,
+   "method": "DTI",
+   "phase": "chronic",
+   "phase_source": "stated",
+   "population": "chronic left hemisphere stroke with aphasia",
+   "region_definition": {
+    "atlas": "Harvard-Oxford Cortical and Subcortical Atlas",
+    "description": "pars opercularis identified via Harvard-Oxford atlas inbuilt in FSL 5.0.10",
+    "kind": "atlas"
+   },
+   "relationship": "correlational",
+   "review": {
+    "extractor": "agent:ollama-extract-cli/gemma4:31b-it-q8_0",
+    "reviewed_on": "2026-10-31",
+    "reviewer": "model:gemma4:26b",
+    "tier": "A"
+   },
+   "review_kind": "model",
+   "review_tier": "A",
+   "reviewer": "model:gemma4:26b",
+   "sample": {
+    "age_range": "mean 69.3-69.8 years",
+    "handedness": "right handedness before the stroke",
+    "language": "native Korean speaker",
+    "n": 23,
+    "phase": "chronic",
+    "population": "chronic left hemisphere stroke with aphasia",
+    "time_post_onset": "more than 6 months since onset of stroke"
+   },
+   "sample_n": 23,
+   "source_id": "left_ifg_pars_opercularis",
+   "source_kind": "region",
+   "source_passages": [
+    {
+     "page": 3,
+     "quote": "Relative to the control group, group 2 exhibited significantly lower FA in the bilateral pars opercularis... (corrected P < 0.05).",
+     "section": "Results",
+     "supports": "claim"
+    },
+    {
+     "page": 2,
+     "quote": "Twenty-three patients with left hemisphere stroke with aphasia were recruited... (f) more than 6 months since onset of stroke",
+     "section": "Patients and methods",
+     "supports": "sample"
+    },
+    {
+     "page": 2,
+     "quote": "Specific areas of the brain were identified in accordance with the Harvard-Oxford Cortical and Subcortical Atlas inbuilt in FSL 5.0.10.",
+     "section": "MRI preprocessing",
+     "supports": "region_definition"
+    },
+    {
+     "page": 2,
+     "quote": "Significance was set at Bonferroni-corrected P value of less than 0.05.",
+     "section": "Statistical analysis",
+     "supports": "statistics"
+    },
+    {
+     "page": 5,
+     "quote": "Our study has several limitations, with the first one being its small sample size.",
+     "section": "Discussion",
+     "supports": "limitation"
+    }
+   ],
+   "source_path": "regions/left_ifg_pars_opercularis.md",
+   "source_status": "approved",
+   "stages": [
+    "chronic"
+   ],
+   "stat_effect_size": "0.20 +/- 0.01 (severe group) vs 0.26 +/- 0.02 (control)",
+   "stat_threshold": "Bonferroni-corrected P < 0.05",
+   "statistics": {
+    "effect_size": "0.20 +/- 0.01 (severe group) vs 0.26 +/- 0.02 (control)",
+    "threshold": "Bonferroni-corrected P < 0.05"
+   },
+   "strength": "moderate",
+   "target": "severity_metric",
+   "target_kind": "predictor",
+   "time_post_onset": "more than 6 months since onset of stroke"
   },
   {
    "author_limitations": [
@@ -10682,11 +11213,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (Broca's n=33; Wernicke's n=7; conduction n=13; global n=10; anomic n=35)",
    "region_definition": {
     "atlas": "AALCTS (custom union of AAL grey-matter and Catani–Thiebaut de Schotten white-matter atlases; CTS arcuate split into anterior, long, and posterior segments)",
@@ -10699,11 +11230,13 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9, range 31–80)",
+    "cohort": "not_reported",
     "exclusion_criteria": "absence of aphasia; MRI contraindications; apraxia-of-speech-driven deficit; bilateral lesion; multiple sclerosis; transcortical motor aphasia (one such patient excluded for sample-size reasons).",
     "handedness": "all right-handed",
     "inclusion_criteria": "right-handed; chronic left-hemisphere stroke; aphasia present",
     "language": "English (recruited in South Carolina, USA)",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (Broca's n=33; Wernicke's n=7; conduction n=13; global n=10; anomic n=35)",
     "recruitment": "referrals from local neurologists and print/radio advertisements; behavioural assessment May 2007–Oct 2014 at the University of South Carolina.",
     "time_post_onset": ">=6 months post-stroke; mean 40.1 months (SD 49.6, range 6–276)"
@@ -10759,6 +11292,18 @@
      "quote": "the classification accuracy for the pairing of the two non-fluent aphasia types (global versus Broca's aphasia) was at chance level. This poor result could be driven by the similarity in the patterns of brain damage in non-fluent aphasia.",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -10805,11 +11350,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "Catani–Thiebaut de Schotten 2008 (CTS); arcuate split into long, anterior, and posterior segments",
@@ -10822,9 +11367,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -10873,6 +11420,24 @@
      "quote": "the differences in classification accuracy between atlases were not significant (Friedman test for column effects: p = 0.355; Wilcoxon signed-rank test between CTS and AALCTS atlases: p = 0.106).",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -10917,11 +11482,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "AALCTS (AAL grey-matter component); HarvardOxford-cort-maxprob-thr25-2mm index 44 in the canonical KB",
@@ -10934,9 +11499,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -10979,6 +11546,24 @@
      "quote": "Damage to these areas has previously been reported as critical lesion locations associated with Broca's aphasia; moreover, Broca's aphasia is not present when damage is limited to Broca's area or to the basal ganglia (Damasio, 1992; Alexander et al., 1987, Mohr et al., 1978).",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -11022,11 +11607,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "AAL",
@@ -11039,9 +11624,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -11078,6 +11665,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -11121,11 +11726,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "AAL",
@@ -11138,9 +11743,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -11177,6 +11784,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -11220,11 +11845,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "AAL",
@@ -11237,9 +11862,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -11276,6 +11903,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -11319,11 +11964,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "AAL",
@@ -11336,9 +11981,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -11375,6 +12022,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -11422,11 +12087,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (Broca's n=33; Wernicke's n=7; conduction n=13; global n=10; anomic n=35)",
    "region_definition": {
     "atlas": "AALCTS (custom union of AAL grey-matter and Catani–Thiebaut de Schotten white-matter atlases; CTS arcuate split into anterior, long, and posterior segments)",
@@ -11439,11 +12104,13 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9, range 31–80)",
+    "cohort": "not_reported",
     "exclusion_criteria": "absence of aphasia; MRI contraindications; apraxia-of-speech-driven deficit; bilateral lesion; multiple sclerosis; transcortical motor aphasia (one such patient excluded for sample-size reasons).",
     "handedness": "all right-handed",
     "inclusion_criteria": "right-handed; chronic left-hemisphere stroke; aphasia present",
     "language": "English (recruited in South Carolina, USA)",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (Broca's n=33; Wernicke's n=7; conduction n=13; global n=10; anomic n=35)",
     "recruitment": "referrals from local neurologists and print/radio advertisements; behavioural assessment May 2007–Oct 2014 at the University of South Carolina.",
     "time_post_onset": ">=6 months post-stroke; mean 40.1 months (SD 49.6, range 6–276)"
@@ -11499,6 +12166,18 @@
      "quote": "the classification accuracy for the pairing of the two non-fluent aphasia types (global versus Broca's aphasia) was at chance level. This poor result could be driven by the similarity in the patterns of brain damage in non-fluent aphasia.",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -11545,11 +12224,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "Catani–Thiebaut de Schotten 2008 (CTS); arcuate split into long, anterior, and posterior segments",
@@ -11562,9 +12241,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -11613,6 +12294,24 @@
      "quote": "the differences in classification accuracy between atlases were not significant (Friedman test for column effects: p = 0.355; Wilcoxon signed-rank test between CTS and AALCTS atlases: p = 0.106).",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -11657,11 +12356,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "AALCTS (AAL grey-matter component); HarvardOxford-cort-maxprob-thr25-2mm index 44 in the canonical KB",
@@ -11674,9 +12373,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -11719,6 +12420,24 @@
      "quote": "Damage to these areas has previously been reported as critical lesion locations associated with Broca's aphasia; moreover, Broca's aphasia is not present when damage is limited to Broca's area or to the basal ganglia (Damasio, 1992; Alexander et al., 1987, Mohr et al., 1978).",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -11762,11 +12481,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "AAL",
@@ -11779,9 +12498,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -11818,6 +12539,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -11861,11 +12600,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "AAL",
@@ -11878,9 +12617,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -11917,6 +12658,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -11960,11 +12719,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "AAL",
@@ -11977,9 +12736,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -12016,6 +12777,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -12059,11 +12838,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "AAL",
@@ -12076,9 +12855,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -12115,6 +12896,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/brocas_aphasia.md",
@@ -12160,11 +12959,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (Broca's n=33; Wernicke's n=7; conduction n=13; global n=10; anomic n=35)",
    "region_definition": {
     "atlas": "Catani–Thiebaut de Schotten 2008 (CTS); arcuate split into long, anterior, and posterior segments",
@@ -12177,11 +12976,13 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 58 years (SD 11.9, range 31–80)",
+    "cohort": "not_reported",
     "exclusion_criteria": "absence of aphasia; MRI contraindications; apraxia-of-speech-driven deficit; bilateral lesion; multiple sclerosis.",
     "handedness": "all right-handed",
     "inclusion_criteria": "right-handed; chronic left-hemisphere stroke; aphasia present",
     "language": "English (recruited in South Carolina, USA)",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (Broca's n=33; Wernicke's n=7; conduction n=13; global n=10; anomic n=35)",
     "recruitment": "referrals from local neurologists and print/radio advertisements; behavioural assessment May 2007–Oct 2014 at the University of South Carolina.",
     "time_post_onset": ">=6 months post-stroke; mean 40.1 months (SD 49.6, range 6–276)"
@@ -12231,6 +13032,24 @@
      "quote": "Conduction aphasia is thought to be linked to damage of regions in the neighbourhood of temporo-parietal junction (Damasio, 1992; Hickok et al., 2000; Dick & Tremblay, 2012). Our results are consistent with this picture: in our sample, conduction aphasia is associated with damage to Heschl's gyrus and the adjacent white-matter tracts (posterior segment of the arcuate fasciculus; optic radiations).",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/conduction_aphasia.md",
@@ -12276,11 +13095,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "AAL",
@@ -12293,9 +13112,11 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -12332,6 +13153,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/conduction_aphasia.md",
@@ -12377,11 +13216,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia",
    "region_definition": {
     "atlas": "Catani–Thiebaut de Schotten 2008 (CTS)",
@@ -12394,9 +13233,11 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -12439,6 +13280,24 @@
      "quote": "in our sample, conduction aphasia is associated with damage to Heschl's gyrus and the adjacent white-matter tracts (posterior segment of the arcuate fasciculus; optic radiations).",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/conduction_aphasia.md",
@@ -16406,11 +17265,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "AAL",
@@ -16423,11 +17282,13 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9, range 31–80)",
+    "cohort": "not_reported",
     "exclusion_criteria": "absence of aphasia; MRI contraindications; apraxia-of-speech-driven deficit; bilateral lesion; multiple sclerosis.",
     "handedness": "all right-handed",
     "inclusion_criteria": "right-handed; chronic left-hemisphere stroke; aphasia present",
     "language": "English (recruited in South Carolina, USA)",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "recruitment": "referrals from local neurologists and print/radio advertisements; behavioural assessment May 2007–Oct 2014 at the University of South Carolina.",
     "time_post_onset": ">=6 months post-stroke; mean 40.1 months (SD 49.6, range 6–276)"
@@ -16471,6 +17332,24 @@
      "quote": "the classification accuracy for the pairing of the two non-fluent aphasia types (global versus Broca's aphasia) was at chance level. This poor result could be driven by the similarity in the patterns of brain damage in non-fluent aphasia.",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -16516,11 +17395,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "AAL",
@@ -16533,9 +17412,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -16572,6 +17453,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -16612,11 +17511,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "AAL",
@@ -16629,9 +17528,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -16668,6 +17569,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -16711,11 +17630,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "AAL",
@@ -16728,9 +17647,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -16767,6 +17688,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -16810,11 +17749,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "AAL",
@@ -16827,9 +17766,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -16866,6 +17807,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -16906,11 +17865,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "Catani–Thiebaut de Schotten 2008 (CTS)",
@@ -16923,9 +17882,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -16962,6 +17923,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -17005,11 +17984,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "AAL",
@@ -17022,9 +18001,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -17061,6 +18042,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -17105,11 +18104,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "Catani–Thiebaut de Schotten 2008 (CTS)",
@@ -17122,9 +18121,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -17167,6 +18168,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -17212,11 +18231,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "AAL",
@@ -17229,11 +18248,13 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9, range 31–80)",
+    "cohort": "not_reported",
     "exclusion_criteria": "absence of aphasia; MRI contraindications; apraxia-of-speech-driven deficit; bilateral lesion; multiple sclerosis.",
     "handedness": "all right-handed",
     "inclusion_criteria": "right-handed; chronic left-hemisphere stroke; aphasia present",
     "language": "English (recruited in South Carolina, USA)",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "recruitment": "referrals from local neurologists and print/radio advertisements; behavioural assessment May 2007–Oct 2014 at the University of South Carolina.",
     "time_post_onset": ">=6 months post-stroke; mean 40.1 months (SD 49.6, range 6–276)"
@@ -17277,6 +18298,24 @@
      "quote": "the classification accuracy for the pairing of the two non-fluent aphasia types (global versus Broca's aphasia) was at chance level. This poor result could be driven by the similarity in the patterns of brain damage in non-fluent aphasia.",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -17322,11 +18361,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "AAL",
@@ -17339,9 +18378,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -17378,6 +18419,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -17418,11 +18477,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "AAL",
@@ -17435,9 +18494,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -17474,6 +18535,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -17517,11 +18596,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "AAL",
@@ -17534,9 +18613,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -17573,6 +18654,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -17616,11 +18715,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "AAL",
@@ -17633,9 +18732,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -17672,6 +18773,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -17712,11 +18831,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "Catani–Thiebaut de Schotten 2008 (CTS)",
@@ -17729,9 +18848,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -17768,6 +18889,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -17811,11 +18950,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "AAL",
@@ -17828,9 +18967,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -17867,6 +19008,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -17911,11 +19070,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
    "region_definition": {
     "atlas": "Catani–Thiebaut de Schotten 2008 (CTS)",
@@ -17928,9 +19087,11 @@
    "reviewer": "auto-reviewer",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (global subgroup n=10)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -17973,6 +19134,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/global_aphasia.md",
@@ -21319,11 +22498,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
    "region_definition": {
     "atlas": "AAL",
@@ -21336,11 +22515,13 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 58 years (SD 11.9, range 31–80)",
+    "cohort": "not_reported",
     "exclusion_criteria": "absence of aphasia; MRI contraindications; apraxia-of-speech-driven deficit; bilateral lesion; multiple sclerosis.",
     "handedness": "all right-handed",
     "inclusion_criteria": "right-handed; chronic left-hemisphere stroke; aphasia present",
     "language": "English (recruited in South Carolina, USA)",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
     "recruitment": "referrals from local neurologists and print/radio advertisements; behavioural assessment May 2007–Oct 2014 at the University of South Carolina.",
     "time_post_onset": ">=6 months post-stroke; mean 40.1 months (SD 49.6, range 6–276)"
@@ -21384,6 +22565,24 @@
      "quote": "The group of patients with Wernicke's aphasia was the smallest (n=7) patient group in our sample. Despite the sample size limitation, the brain areas that we found to predict Wernicke's aphasia include the classical Wernicke's area and its neighbourhood, which is consistent with the existing literature",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/wernickes_aphasia.md",
@@ -21430,11 +22629,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
    "region_definition": {
     "atlas": "AAL",
@@ -21447,9 +22646,11 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -21486,6 +22687,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/wernickes_aphasia.md",
@@ -21530,11 +22749,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
    "region_definition": {
     "atlas": "AAL",
@@ -21547,9 +22766,11 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -21592,6 +22813,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/wernickes_aphasia.md",
@@ -21636,11 +22875,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
    "region_definition": {
     "atlas": "AAL",
@@ -21653,9 +22892,11 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -21692,6 +22933,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/wernickes_aphasia.md",
@@ -21735,11 +22994,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
    "region_definition": {
     "atlas": "AAL",
@@ -21752,9 +23011,11 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -21791,6 +23052,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/wernickes_aphasia.md",
@@ -21835,11 +23114,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
    "region_definition": {
     "atlas": "AAL",
@@ -21852,9 +23131,11 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -21891,6 +23172,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/wernickes_aphasia.md",
@@ -21935,11 +23234,11 @@
    "lm_correction": "fdr",
    "lm_n": 98.0,
    "lm_orientation": "sensitivity",
-   "lm_source": "inferred",
+   "lm_source": "filled",
    "lm_volume_correction": "not_reported",
    "method": "MLPA",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
    "region_definition": {
     "atlas": "AAL",
@@ -21952,9 +23251,11 @@
    "reviewer": "michele",
    "sample": {
     "age_range": "mean 58 years (SD 11.9)",
+    "cohort": "not_reported",
     "handedness": "all right-handed",
     "language": "English",
     "n": 98,
+    "phase": "chronic",
     "population": "chronic left-hemisphere stroke patients with aphasia (Wernicke's subgroup n=7)",
     "time_post_onset": ">=6 months post-stroke (mean 40.1 months)"
    },
@@ -21997,6 +23298,24 @@
      "quote": "False discovery rate (Genovese et al., 2002) was used to correct for multiple comparisons.",
      "section": "Methods 2.6",
      "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "We utilized multivariate classification in a cross-validation framework to predict the type of chronic aphasia from the spatial pattern of brain damage.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 5,
+     "quote": "Our cohort is a group of 98 chronic stroke patients with aphasia.",
+     "section": "added by backfill",
+     "supports": "method"
+    },
+    {
+     "page": 6,
+     "quote": "All patients were at least 6 months post-stroke, and the mean time since stroke onset was 40.1 months (SD= 49.6; range = 6–276).",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "impairments/wernickes_aphasia.md",
@@ -22374,8 +23693,8 @@
    "lm_source": null,
    "lm_volume_correction": null,
    "method": "clinical_RCT",
-   "phase": "not_reported",
-   "phase_source": "none",
+   "phase": "chronic",
+   "phase_source": "stated",
    "population": "chronic acquired AOS and aphasia",
    "region_definition": {
     "description": "Behavioural outcome measure; no region definition applies.",
@@ -22386,7 +23705,9 @@
    "review_tier": "legacy",
    "reviewer": "agent:claude-sonnet-4-6",
    "sample": {
+    "cohort": "not_reported",
     "n": 11,
+    "phase": "chronic",
     "population": "chronic acquired AOS and aphasia"
    },
    "sample_n": 11,
@@ -22398,6 +23719,12 @@
      "quote": "(citation from clinical knowledge — not formally extracted)",
      "section": "migrated entry",
      "supports": "claim"
+    },
+    {
+     "page": "not_reported",
+     "quote": "To restrict influences related to spontaneous recovery, all patients were at least 6 months post-infarction at the time of testing, suggesting a chronic post-stroke stage.",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "therapies/melodic_intonation_therapy.md",
@@ -26883,6 +28210,101 @@
   },
   {
    "author_limitations": [
+    "Small sample size.",
+    "Lack of quantitative measures of bilingualism."
+   ],
+   "citation": "@OsaGarcia2020",
+   "claim": "Initial aphasia severity is the strongest predictor of language outcomes during the early subacute phase (10-14 days post-stroke).",
+   "cohort": null,
+   "cohort_group": "@OsaGarcia2020",
+   "cohort_source": null,
+   "confidence": "high",
+   "design": "longitudinal",
+   "design_cautions": [],
+   "direction": "likely",
+   "evidence_quality": "cohort",
+   "flags": [],
+   "id": "f2",
+   "instrument": "Composite Score (CS)",
+   "lm_analysis": null,
+   "lm_correction": null,
+   "lm_n": null,
+   "lm_orientation": null,
+   "lm_source": null,
+   "lm_volume_correction": null,
+   "method": "behavioral_only",
+   "phase": "longitudinal",
+   "phase_source": "stated",
+   "population": "individuals with post-stroke aphasia",
+   "region_definition": {
+    "description": "Behavioural predictor",
+    "kind": "not_reported"
+   },
+   "relationship": "correlational",
+   "review": {
+    "extractor": "agent:ollama-extract-cli/gemma4:31b-it-q8_0",
+    "reviewed_on": "2026-10-30",
+    "reviewer": "model:gemma4:26b",
+    "tier": "A"
+   },
+   "review_kind": "model",
+   "review_tier": "A",
+   "reviewer": "model:gemma4:26b",
+   "sample": {
+    "age_range": "mean 71.6 (SD 12.45)",
+    "handedness": "all right-handed",
+    "language": "French or English",
+    "n": 20,
+    "phase": "longitudinal",
+    "population": "individuals with post-stroke aphasia",
+    "time_post_onset": "<72 h (initial) and 10-14 days (follow-up)"
+   },
+   "sample_n": 20,
+   "source_id": "initial_aphasia_severity",
+   "source_kind": "predictor",
+   "source_passages": [
+    {
+     "page": 5,
+     "quote": "Regressions with lesion size, lesion load, and initial severity were found to be significant, accounting, respectively, for 39, 26.5, and 67.3% of the variance of the dependent variable.",
+     "section": "Results",
+     "supports": "statistics"
+    },
+    {
+     "page": 1,
+     "quote": "Initial aphasia severity was the best predictor of early post-stroke aphasia outcome, whereas lesion measures, though highly correlated, show less influence on the prediction model.",
+     "section": "Conclusions",
+     "supports": "claim"
+    },
+    {
+     "page": 3,
+     "quote": "Twenty participants took part in this study... Initial language assessments took place within the first 72 h (mean = 2.3 days) after stroke onset, and the follow-up took place 7-15 days later (mean = 10.55 days).",
+     "section": "Materials and Methods",
+     "supports": "sample"
+    },
+    {
+     "page": 7,
+     "quote": "Limitations of this study include the small sample size... Another limitation of the present study is the lack of quantitative measures of bilingualism...",
+     "section": "Discussion",
+     "supports": "limitation"
+    }
+   ],
+   "source_path": "predictors/initial_aphasia_severity.md",
+   "source_status": "approved",
+   "stages": [],
+   "stat_effect_size": "R2 = 0.673",
+   "stat_threshold": "P < 0.001",
+   "statistics": {
+    "effect_size": "R2 = 0.673",
+    "p_value": "<0.001",
+    "threshold": "P < 0.001"
+   },
+   "strength": "moderate",
+   "target": "severity_metric",
+   "target_kind": "predictor",
+   "time_post_onset": "<72 h (initial) and 10-14 days (follow-up)"
+  },
+  {
+   "author_limitations": [
     "Lesion volume measured in MNI-normalised space (warping inflates apparent volume relative to native space).",
     "Automated lesion identification (Seghier 2008) detects abnormal-tissue-class voxels — captures gliosis and atrophy alongside the primary lesion.",
     "U-threshold of 0.5 was used (vs. default 0.3) — different from many other groups' pipelines."
@@ -27999,6 +29421,95 @@
   },
   {
    "author_limitations": [
+    "The number of subjects was relatively low, limiting the subgroup analysis."
+   ],
+   "citation": "@Rosso2015",
+   "claim": "Total infarct volume correlates with global aphasia severity, but this relationship is mediated by damage to the temporoparietal white matter crossroad.",
+   "cohort": null,
+   "cohort_group": "@Rosso2015",
+   "cohort_source": null,
+   "confidence": "high",
+   "design": "cross-sectional",
+   "design_cautions": [],
+   "direction": "likely",
+   "evidence_quality": "cohort",
+   "flags": [],
+   "id": "f11",
+   "lm_analysis": null,
+   "lm_correction": null,
+   "lm_n": null,
+   "lm_orientation": null,
+   "lm_source": null,
+   "lm_volume_correction": null,
+   "method": "behavioral_only",
+   "phase": "chronic",
+   "phase_source": "stated",
+   "population": "chronic poststroke aphasic patients",
+   "region_definition": {
+    "description": "Global infarct volume",
+    "kind": "not_reported"
+   },
+   "relationship": "correlational",
+   "review": {
+    "extractor": "agent:ollama-extract-cli/gemma4:31b-it-q8_0",
+    "reviewed_on": "2026-10-30",
+    "reviewer": "model:gemma4:26b",
+    "tier": "A"
+   },
+   "review_kind": "model",
+   "review_tier": "A",
+   "reviewer": "model:gemma4:26b",
+   "sample": {
+    "age_range": "mean +/- SD age = 57 +/- 19 years",
+    "handedness": "all right-handed",
+    "language": "French native speaker",
+    "n": 23,
+    "phase": "chronic",
+    "population": "chronic poststroke aphasic patients",
+    "time_post_onset": "mean +/- SD time poststroke = 16 +/- 21 months"
+   },
+   "sample_n": 23,
+   "source_id": "lesion_volume",
+   "source_kind": "predictor",
+   "source_passages": [
+    {
+     "page": 291,
+     "quote": "Infarct volumes were also well correlated (correlation coefficient = -0.549, 95% CI = -0.177 to -0.784, P = .006, adjusted R2 = 0.269).",
+     "section": "Results",
+     "supports": "claim"
+    },
+    {
+     "page": 293,
+     "quote": "the relationship between aphasia global severity and infarct size was no longer significant when we took into account damage to the area defined by our voxel-based analysis.",
+     "section": "Discussion",
+     "supports": "claim"
+    },
+    {
+     "page": 293,
+     "quote": "First, although the total sample size was in the higher range of published DTI studies, the number of subjects was relatively low",
+     "section": "Discussion",
+     "supports": "limitation"
+    }
+   ],
+   "source_path": "predictors/lesion_volume.md",
+   "source_status": "approved",
+   "stages": [
+    "chronic"
+   ],
+   "stat_effect_size": "correlation coefficient = -0.549",
+   "stat_threshold": "not_reported",
+   "statistics": {
+    "effect_size": "correlation coefficient = -0.549",
+    "p_value": "P = .006",
+    "threshold": "not_reported"
+   },
+   "strength": "moderate",
+   "target": "severity_metric",
+   "target_kind": "predictor",
+   "time_post_onset": "mean +/- SD time poststroke = 16 +/- 21 months"
+  },
+  {
+   "author_limitations": [
     "Small sample size (n=76) relative to number of features; addressed via nested cross-validation and supervised feature selection.",
     "Greater proportion of male participants may bias results.",
     "Pipeline mismatch between Cohort 1 and Cohort 2 for lesion segmentation and DTI preprocessing introduces variability.",
@@ -28254,9 +29765,9 @@
    ],
    "citation": "@Teghipco2024",
    "claim": "A 3D convolutional neural network applied to whole-brain morphometry (tissue volumes from T1/T2) and lesion anatomy predicts severe post-stroke aphasia (WAB-AQ <50) with significantly higher balanced accuracy and F1 score than support vector machines, achieving median balanced accuracy of 77% and F1 of 0.70 in chronic stroke patients.",
-   "cohort": null,
+   "cohort": "ARC",
    "cohort_group": "POLAR",
-   "cohort_source": null,
+   "cohort_source": "filled",
    "confidence": "high",
    "design": "cross-sectional",
    "design_cautions": [],
@@ -28275,7 +29786,7 @@
    "lm_volume_correction": null,
    "method": "computational_model",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic post-stroke aphasia; left hemisphere stroke",
    "region_definition": {
     "description": "No single region anchor — whole-brain 8mm downsampled morphometric map (grey matter, white matter, CSF, lesion) in MNI152 space used as CNN input. Region importance assessed via Grad-CAM++ saliency maps and SHAP values averaged across 20 cross-validation repeats.",
@@ -28287,11 +29798,13 @@
    "reviewer": "human:michele",
    "sample": {
     "age_range": "not_reported",
+    "cohort": "ARC",
     "exclusion_criteria": "not_reported",
     "handedness": "not_reported",
     "inclusion_criteria": "post-stroke aphasia; left hemisphere stroke; WAB-R assessment available.",
     "language": "not_reported",
     "n": 231,
+    "phase": "chronic",
     "population": "chronic post-stroke aphasia; left hemisphere stroke",
     "recruitment": "University of South Carolina and Medical University of South Carolina (Siemens 3T Prisma).",
     "time_post_onset": "chronic (time post-stroke not precisely reported; imaging within 10 days of WAB-R evaluation)"
@@ -28347,6 +29860,18 @@
      "quote": "in modest samples of chronic stroke patients, deep learning can be effective",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": "not_reported",
+     "quote": "Two-hundred and thirteen individuals (age = 57.98 +/−11.34, 62% male) with chronic left strokes (mean years post-stroke = 3.2 +/−3.7) that participated in studies conducted at the Center for the Study of Aphasia Recovery (C-STAR) were analyzed retrospectively in the present work.",
+     "section": "added by backfill",
+     "supports": "sample"
+    },
+    {
+     "page": 14,
+     "quote": "Data from the majority of participants analyzed here are freely available to download as part of our Aphasia Recovery Cohort (ARC) database121: https://openneuro.org/datasets/ds004884/versions/1.0.1.",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "predictors/severity_metric.md",
@@ -28375,9 +29900,9 @@
    ],
    "citation": "@Teghipco2024",
    "claim": "CNN saliency maps reveal that right hemisphere morphometry is significantly more predictive of severe aphasia (WAB-AQ <50) while left hemisphere morphometry is more predictive of non-severe aphasia, with distinct subgroups showing individualized patterns implicating language, attention, and aging networks beyond the canonical language system.",
-   "cohort": null,
+   "cohort": "ARC",
    "cohort_group": "POLAR",
-   "cohort_source": null,
+   "cohort_source": "filled",
    "confidence": "high",
    "design": "cross-sectional",
    "design_cautions": [],
@@ -28397,7 +29922,7 @@
    "lm_volume_correction": null,
    "method": "computational_model",
    "phase": "chronic",
-   "phase_source": "inferred",
+   "phase_source": "stated",
    "population": "chronic post-stroke aphasia; left hemisphere stroke",
    "region_definition": {
     "description": "Regions of interest defined as lesion, perilesional, extralesional, and their right-hemisphere homologs. Grad-CAM++ saliency maps from CNN averaged across cross-validation repeats, then compared between severe and non-severe predictions using two-sample t-tests. Subtype clustering (consensus clustering of saliency maps) revealed 7 severe and 6 non-severe subgroups with distinct morphometry patterns.",
@@ -28409,11 +29934,13 @@
    "reviewer": "human:michele",
    "sample": {
     "age_range": "not_reported",
+    "cohort": "ARC",
     "exclusion_criteria": "not_reported",
     "handedness": "not_reported",
     "inclusion_criteria": "post-stroke aphasia; left hemisphere stroke; WAB-R available.",
     "language": "not_reported",
     "n": 231,
+    "phase": "chronic",
     "population": "chronic post-stroke aphasia; left hemisphere stroke",
     "recruitment": "University of South Carolina and Medical University of South Carolina.",
     "time_post_onset": "chronic"
@@ -28457,6 +29984,18 @@
      "quote": "CNNs can be successfully deployed outside their current niche",
      "section": "Discussion",
      "supports": "limitation"
+    },
+    {
+     "page": "not_reported",
+     "quote": "Two-hundred and thirteen individuals (age = 57.98 +/−11.34, 62% male) with chronic left strokes (mean years post-stroke = 3.2 +/−3.7) that participated in studies conducted at the Center for the Study of Aphasia Recovery (C-STAR) were analyzed retrospectively in the present work.",
+     "section": "added by backfill",
+     "supports": "sample"
+    },
+    {
+     "page": 14,
+     "quote": "Data from the majority of participants analyzed here are freely available to download as part of our Aphasia Recovery Cohort (ARC) database121: https://openneuro.org/datasets/ds004884/versions/1.0.1.",
+     "section": "added by backfill",
+     "supports": "sample"
     }
    ],
    "source_path": "predictors/severity_metric.md",
@@ -29794,6 +31333,1447 @@
    "time_post_onset": "10 patients entered at 2 months post-CVA, six at 3–4 months, two at 6–7 months post-CVA"
   }
  ],
+ "licences": {
+  "@Adezati2022": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Akkad2023": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Ali2021": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1161/strokeaha.120.031162",
+   "version": "published"
+  },
+  "@Alyahya2018NounVerb": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Alyahya2020": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Baldo2006": {
+   "category": "cc_manuscript",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://archive-ouverte.unige.ch/unige:10170",
+   "version": "preprint"
+  },
+  "@Baldo2011": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://www.elsevier.com/tdm/userlicense/1.0/",
+   "version": "tdm"
+  },
+  "@Baldo2013": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "http://europepmc.org/articles/PMC3613759",
+   "version": "accepted manuscript"
+  },
+  "@Barbieri2023": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1016/j.cortex.2022.11.008",
+   "version": "accepted manuscript"
+  },
+  "@Basilakos2014": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.3389/fnhum.2014.00845",
+   "version": "published"
+  },
+  "@Basilakos2015": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4442076",
+   "version": "accepted manuscript"
+  },
+  "@Basilakos2019": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6693961",
+   "version": "accepted manuscript"
+  },
+  "@Bates2003": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "http://www.springer.com/tdm",
+   "version": "tdm"
+  },
+  "@Benghanem2019": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "http://www.springer.com/tdm",
+   "version": "tdm"
+  },
+  "@Benjamin2014": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4090303",
+   "version": "accepted manuscript"
+  },
+  "@Bhogal2003": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Bi2015": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-SA 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+   "version": "published"
+  },
+  "@Biesbroek2017": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Billot2022": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-ND",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1161/strokeaha.121.036749",
+   "version": "published"
+  },
+  "@Binder2009": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/cercor/bhp055",
+   "version": "published"
+  },
+  "@Bonilha2014": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4504196",
+   "version": "accepted manuscript"
+  },
+  "@Bonilha2016": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4703576",
+   "version": "accepted manuscript"
+  },
+  "@Boyle2004": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Brady2016": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1002/14651858.cd000425.pub4",
+   "version": "published"
+  },
+  "@Brady2022": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Brady2022RELEASE": {
+   "category": "unknown",
+   "checked": "2026-10-30"
+  },
+  "@Breier2008": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.3174/ajnr.a0846",
+   "version": "published"
+  },
+  "@Breining2022": {
+   "category": "cc_manuscript",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC",
+   "source": "unpaywall",
+   "url": "https://digitalcommons.chapman.edu/comm_science_articles/30",
+   "version": "preprint"
+  },
+  "@Breitenstein2017": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "other oa",
+   "source": "unpaywall",
+   "url": "https://research.manchester.ac.uk/files/56719525/THELANCET_D_16_06318R1_as_accepted_01.11.2016.pdf",
+   "version": "preprint"
+  },
+  "@Brookshire2014": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Brownsett2014": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/brain/awt289",
+   "version": "published"
+  },
+  "@Buchsbaum2011": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3090694",
+   "version": "accepted manuscript"
+  },
+  "@Butler2014": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/brain/awu286",
+   "version": "published"
+  },
+  "@Casilio2025": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Catani2008": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1016/j.cortex.2008.04.002",
+   "version": "published"
+  },
+  "@Coppens2002": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://www.elsevier.com/tdm/userlicense/1.0/",
+   "version": "tdm"
+  },
+  "@Corbetta2015": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1016/j.neuron.2015.02.027",
+   "version": "published"
+  },
+  "@Cote2007": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Crosson1999": {
+   "category": "unknown",
+   "checked": "2026-10-30"
+  },
+  "@DeWitt2012": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3286918",
+   "version": "published"
+  },
+  "@DenOuden2019": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6445708",
+   "version": "published"
+  },
+  "@Dick2012": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Ding2023": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Dresang2022": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1101/2021.07.28.21260995",
+   "version": "accepted manuscript"
+  },
+  "@Dronkers1996": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "http://www.springer.com/tdm",
+   "version": "tdm"
+  },
+  "@Dronkers2004": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "other oa",
+   "source": "unpaywall",
+   "url": "http://hdl.handle.net/11858/00-001M-0000-0012-6912-A",
+   "version": "preprint"
+  },
+  "@Durfee2021": {
+   "category": "cc_manuscript",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-ND",
+   "source": "unpaywall",
+   "url": "https://digitalcommons.chapman.edu/comm_science_articles/31",
+   "version": "preprint"
+  },
+  "@Efstratiadou2018": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@ElHachioui2013": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Elsner2019": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Forkel2014": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/brain/awu113",
+   "version": "published"
+  },
+  "@Fridriksson2010": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-SA 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+   "version": "published"
+  },
+  "@Fridriksson2010Anomia": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-SA 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+   "version": "published"
+  },
+  "@Fridriksson2013": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3808690",
+   "version": "published"
+  },
+  "@Fridriksson2015": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/cercor/bhu152",
+   "version": "published"
+  },
+  "@Fridriksson2018": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1073/pnas.1614038114",
+   "version": "published"
+  },
+  "@Fridriksson2018Anatomy": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "http://europepmc.org/pmc/articles/PMC5837461",
+   "version": "published"
+  },
+  "@Fridriksson2018BDNF": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-ND 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+   "version": "published"
+  },
+  "@Fridriksson2018JAMA": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1001/jamaneurol.2018.2287",
+   "version": "published"
+  },
+  "@Fritsch2022": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0",
+   "version": "published"
+  },
+  "@GajardoVidal2021": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Geranmayeh2017": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Geschwind1965": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Gilmore2019": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1016/j.apmr.2018.12.024",
+   "version": "accepted manuscript"
+  },
+  "@Glascher2012": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3437894",
+   "version": "published"
+  },
+  "@Godecke2021": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by-nc/4.0/",
+   "version": "published"
+  },
+  "@Goldenberg1994": {
+   "category": "unknown",
+   "checked": "2026-10-30"
+  },
+  "@Griffis2017": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-ND 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+   "version": "published"
+  },
+  "@Halai2017": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Halai2018": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Han2013": {
+   "category": "cc_manuscript",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "http://nrs.harvard.edu/urn-3:HUL.InstRepos:33719908",
+   "version": "preprint"
+  },
+  "@Han2016": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "http://www.springer.com/tdm",
+   "version": "tdm"
+  },
+  "@Hartwigsen2019": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://www.elsevier.com/tdm/userlicense/1.0/",
+   "version": "tdm"
+  },
+  "@Harvey2022": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/9855303",
+   "version": "accepted manuscript"
+  },
+  "@Hazelton2022": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/9631864",
+   "version": "published"
+  },
+  "@Henseler2014": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Hickok2007": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "http://www.springer.com/tdm",
+   "version": "tdm"
+  },
+  "@Hillis2001": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher terms (onlinelibrary.wiley.com)",
+   "source": "crossref",
+   "url": "http://onlinelibrary.wiley.com/termsAndConditions#vor",
+   "version": "vor"
+  },
+  "@Hillis2002": {
+   "category": "unknown",
+   "checked": "2026-10-30"
+  },
+  "@Hillis2004": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Hillis2006": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-SA 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+   "version": "published"
+  },
+  "@Hillis2007": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Hope2013": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 3.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/3.0/",
+   "version": "published"
+  },
+  "@Hope2017": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Hope2018": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Hosomi2009": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "http://www.springer.com/tdm",
+   "version": "tdm"
+  },
+  "@Hu2025": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-ND 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+   "version": "published"
+  },
+  "@Itabashi2015": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Ivanova2016": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "other oa",
+   "source": "unpaywall",
+   "url": "https://research.rug.nl/en/publications/feded747-0ece-4748-8ec2-4b31677b2382",
+   "version": "published"
+  },
+  "@Ivanova2021": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Jiang2025": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Johnson2019": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6802862",
+   "version": "published"
+  },
+  "@Karnath2018": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/5777219",
+   "version": "accepted manuscript"
+  },
+  "@Kasdan2025": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Kristinsson2020": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7132331",
+   "version": "accepted manuscript"
+  },
+  "@Kristinsson2021": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-ND 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+   "version": "published"
+  },
+  "@Kristinsson2025": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Kummerer2013": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/brain/aws354",
+   "version": "published"
+  },
+  "@Lacey2017": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1177/1545968316688797",
+   "version": "published"
+  },
+  "@Laska2001": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher terms (onlinelibrary.wiley.com)",
+   "source": "crossref",
+   "url": "http://onlinelibrary.wiley.com/termsAndConditions#vor",
+   "version": "vor"
+  },
+  "@Laver2025": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/12178777",
+   "version": "published"
+  },
+  "@Lazar2008": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Lazar2010": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1161/strokeaha.109.577338",
+   "version": "published"
+  },
+  "@Lee2018": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Leff2009": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/brain/awp273",
+   "version": "published"
+  },
+  "@Leonard2008": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Li2017": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://www.elsevier.com/tdm/userlicense/1.0/",
+   "version": "tdm"
+  },
+  "@Lo2019": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-ND",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1212/wnl.0000000000008612",
+   "version": "published"
+  },
+  "@Lukic2017": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Lukic2021": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-ND 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by-nc-nd/4.0/",
+   "version": "published"
+  },
+  "@Maher2006": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher terms (cambridge.org)",
+   "source": "crossref",
+   "url": "https://www.cambridge.org/core/terms",
+   "version": "unspecified"
+  },
+  "@Marchina2011": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1161/strokeaha.110.606103",
+   "version": "published"
+  },
+  "@Marien2004": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://www.elsevier.com/tdm/userlicense/1.0/",
+   "version": "tdm"
+  },
+  "@MartinezMolina2022": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@MassonTrottier2021": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Matchin2020": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1162/nol_a_00010",
+   "version": "published"
+  },
+  "@Meinzer2010": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://www.elsevier.com/tdm/userlicense/1.0/",
+   "version": "tdm"
+  },
+  "@Mirman2015": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1038/ncomms7762",
+   "version": "published"
+  },
+  "@MirmanThye2018": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://journals.sagepub.com/page/policies/text-and-data-mining-license",
+   "version": "tdm"
+  },
+  "@Mitchell2017": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1002/14651858.cd002088.pub3",
+   "version": "published"
+  },
+  "@Mohr2017": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.3389/fnhum.2017.00332",
+   "version": "published"
+  },
+  "@Munsch2016": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@NadeauCrosson1997": {
+   "category": "unknown",
+   "checked": "2026-10-30"
+  },
+  "@Naeser2005": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://www.elsevier.com/tdm/userlicense/1.0/",
+   "version": "tdm"
+  },
+  "@Nouwens2017": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by-nc/4.0/",
+   "version": "published"
+  },
+  "@Ochfeld2010": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1161/strokeaha.109.570374",
+   "version": "published"
+  },
+  "@Oeckel2021": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@OsaGarcia2020": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Pedersen1995": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher terms (onlinelibrary.wiley.com)",
+   "source": "crossref",
+   "url": "http://onlinelibrary.wiley.com/termsAndConditions#vor",
+   "version": "vor"
+  },
+  "@Pedersen2004": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher terms (karger.com)",
+   "source": "crossref",
+   "url": "https://www.karger.com/Services/SiteLicenses",
+   "version": "vor"
+  },
+  "@Pendlebury2009": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://www.elsevier.com/tdm/userlicense/1.0/",
+   "version": "tdm"
+  },
+  "@Pflugshaupt2009": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/brain/awp141",
+   "version": "published"
+  },
+  "@Pillay2017": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1212/wnl.0000000000003683",
+   "version": "published"
+  },
+  "@Plowman2012": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher terms (onlinelibrary.wiley.com)",
+   "source": "crossref",
+   "url": "http://onlinelibrary.wiley.com/termsAndConditions#vor",
+   "version": "vor"
+  },
+  "@Pulvermuller2001": {
+   "category": "cc_manuscript",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-ND",
+   "source": "unpaywall",
+   "url": "http://nbn-resolving.de/urn:nbn:de:bsz:352-opus-41933",
+   "version": "preprint"
+  },
+  "@Radanovic2017": {
+   "category": "unknown",
+   "checked": "2026-10-30"
+  },
+  "@Ramsey2017": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/5508212",
+   "version": "accepted manuscript"
+  },
+  "@Rapcsak2009": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/2689874",
+   "version": "accepted manuscript"
+  },
+  "@Raymer": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Robson2014": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/brain/awt373",
+   "version": "published"
+  },
+  "@Robson2019": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "other oa",
+   "source": "unpaywall",
+   "url": "https://research.manchester.ac.uk/en/publications/a1c6da4d-9be9-4ec8-848c-b67f7d4833d7",
+   "version": "published"
+  },
+  "@Rodrigues2014": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Rogalsky2018": {
+   "category": "cc_manuscript",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-ND",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1101/192245",
+   "version": "accepted manuscript"
+  },
+  "@Ross2008": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://www.elsevier.com/tdm/userlicense/1.0/",
+   "version": "tdm"
+  },
+  "@Rosso2015": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://journals.sagepub.com/page/policies/text-and-data-mining-license",
+   "version": "tdm"
+  },
+  "@Rost2022": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Saur2006": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Saur2008": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/2584675",
+   "version": "published"
+  },
+  "@Schlaug2008": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3010734",
+   "version": "accepted manuscript"
+  },
+  "@Schlaug2010": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/2982746",
+   "version": "accepted manuscript"
+  },
+  "@Schumacher2019": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Schwartz2009": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/2792374",
+   "version": "published"
+  },
+  "@Schwartz2012": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/brain/aws300",
+   "version": "published"
+  },
+  "@Sebastian2014": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.3389/fneur.2014.00231",
+   "version": "published"
+  },
+  "@Shekari2022": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Sheppard2020": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1212/wnl.0000000000008870",
+   "version": "published"
+  },
+  "@Sheppard2022": {
+   "category": "cc_manuscript",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-ND",
+   "source": "unpaywall",
+   "url": "https://digitalcommons.chapman.edu/comm_science_articles/62",
+   "version": "preprint"
+  },
+  "@Siegel2016": {
+   "category": "cc_manuscript",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC-ND",
+   "source": "unpaywall",
+   "url": "http://hdl.handle.net/11577/3220825",
+   "version": "preprint"
+  },
+  "@Simic2019": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "http://hdl.handle.net/1807/106230",
+   "version": "preprint"
+  },
+  "@Simic2023": {
+   "category": "unknown",
+   "checked": "2026-10-30"
+  },
+  "@SkipperKallal2017": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Stahl2011": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY-NC",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/brain/awr240",
+   "version": "published"
+  },
+  "@Stahl2013": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.3389/fnhum.2013.00035",
+   "version": "published"
+  },
+  "@Stefaniak2022": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Stockert2020": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/brain/awaa023",
+   "version": "published"
+  },
+  "@Teghipco2024": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "https://creativecommons.org/licenses/by/4.0",
+   "version": "published"
+  },
+  "@Thiel2013": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "no open copy known",
+   "source": "unpaywall"
+  },
+  "@Thompson2003": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/1995234",
+   "version": "accepted manuscript"
+  },
+  "@Thye2018": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Turkeltaub2011": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1212/wnl.0b013e31821a44c1",
+   "version": "published"
+  },
+  "@Walker2011": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/3109088",
+   "version": "accepted manuscript"
+  },
+  "@Wallentin2018": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Watila2015": {
+   "category": "unknown",
+   "checked": "2026-10-30"
+  },
+  "@Weaver2021": {
+   "category": "cc_manuscript",
+   "checked": "2026-10-30",
+   "label": "CC BY-SA",
+   "source": "unpaywall",
+   "url": "http://eprints.gla.ac.uk/249421/",
+   "version": "preprint"
+  },
+  "@White2024": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY 4.0",
+   "source": "crossref",
+   "url": "http://creativecommons.org/licenses/by/4.0/",
+   "version": "published"
+  },
+  "@Wilmskoetter2021": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/8068606",
+   "version": "accepted manuscript"
+  },
+  "@Wilson2019": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7203526",
+   "version": "published"
+  },
+  "@Wilson2021": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "pdf",
+   "version": "published (as in the PDF)"
+  },
+  "@Wilson2023": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1093/brain/awac129",
+   "version": "published"
+  },
+  "@WilsonHula2019": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/7236806",
+   "version": "accepted manuscript"
+  },
+  "@Woollams2018": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1007/s00429-018-1716-z",
+   "version": "published"
+  },
+  "@Wright2018": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1212/wnl.0000000000005945",
+   "version": "published"
+  },
+  "@Xing2016": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4990653",
+   "version": "published"
+  },
+  "@Xing2017": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.3389/fneur.2017.00054",
+   "version": "published"
+  },
+  "@Yourganov2015Predicting": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/4689665",
+   "version": "accepted manuscript"
+  },
+  "@Yourganov2016": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.1523/jneurosci.4396-15.2016",
+   "version": "published"
+  },
+  "@Zhao2018": {
+   "category": "free_to_read",
+   "checked": "2026-10-30",
+   "label": "free to read",
+   "source": "unpaywall",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/6092771",
+   "version": "published"
+  },
+  "@Zumbansen2014": {
+   "category": "cc",
+   "checked": "2026-10-30",
+   "label": "CC BY",
+   "source": "unpaywall",
+   "url": "https://doi.org/10.3389/fneur.2014.00007",
+   "version": "published"
+  },
+  "@vanderMeulen2012": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://www.elsevier.com/tdm/userlicense/1.0/",
+   "version": "tdm"
+  },
+  "@vanderMeulen2014": {
+   "category": "rights_reserved",
+   "checked": "2026-10-30",
+   "label": "publisher TDM licence (text mining only)",
+   "source": "crossref",
+   "url": "https://journals.sagepub.com/page/policies/text-and-data-mining-license",
+   "version": "tdm"
+  }
+ },
  "mapping": {
   "atlasLabels": {
    "AAL": [
@@ -32131,7 +35111,7 @@
       "regions/left_middle_temporal_gyrus",
       "regions/left_superior_temporal_gyrus"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32175,7 +35155,7 @@
       "regions/left_ifg_pars_triangularis",
       "regions/left_posterior_stg"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32240,7 +35220,7 @@
       "impairments/global_aphasia",
       "impairments/wernickes_aphasia"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32312,7 +35292,7 @@
       "impairments/form_to_articulation",
       "impairments/form_to_meaning"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32378,7 +35358,7 @@
       "predictors/bdnf_val66met",
       "therapies/tdcs_aphasia_treatment"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32424,7 +35404,7 @@
      "entries": [
       "therapies/phonological_component_analysis"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32467,7 +35447,7 @@
      "entries": [
       "regions/left_angular_gyrus"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32532,7 +35512,7 @@
      "entries": [
       "regions/bilateral_middle_frontal_gyrus_recovery"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32605,7 +35585,7 @@
       "therapies/treatment_of_underlying_forms",
       "therapies/typicality_semantic_feature_analysis"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32685,7 +35665,7 @@
      "entries": [
       "predictors/severity_metric"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32741,7 +35721,7 @@
      "entries": [
       "predictors/severity_metric"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -32814,7 +35794,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -32853,7 +35833,7 @@
      "entries": [
       "therapies/constraint_induced_aphasia_therapy"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -32894,7 +35874,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -32942,7 +35922,7 @@
      "entries": [
       "therapies/melodic_intonation_therapy"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -33011,7 +35991,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -33068,7 +36048,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -33134,7 +36114,7 @@
      "draft_rejected": 0,
      "drafts": 6,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -33206,7 +36186,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "cited"
     },
@@ -33269,7 +36249,7 @@
      "entries": [
       "therapies/constraint_induced_aphasia_therapy"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -33317,7 +36297,7 @@
      "entries": [
       "therapies/melodic_intonation_therapy"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -33381,7 +36361,7 @@
      "entries": [
       "reviews/constraint_induced_language_therapy__Raymer"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -33437,7 +36417,7 @@
      "entries": [
       "impairments/syntactic_processing"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -33508,7 +36488,7 @@
      "entries": [
       "regions/left_precentral_gyrus"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -33564,7 +36544,7 @@
      "entries": [
       "therapies/tms_right_ifg__Naeser2005"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -33605,7 +36585,7 @@
      "entries": [
       "predictors/initial_aphasia_severity"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -33655,7 +36635,7 @@
      "entries": [
       "regions/left_precentral_gyrus"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -33710,7 +36690,7 @@
      "entries": [
       "regions/left_temporobasal__Goldenberg1994"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -33745,7 +36725,7 @@
      "entries": [
       "reviews/subcortical_aphasia__NadeauCrosson1997"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "re-extracted-as-review"
     },
@@ -33788,7 +36768,7 @@
      "entries": [
       "reviews/basal_ganglia_aphasia__Radanovic2017"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "re-extracted-as-review"
     },
@@ -33836,7 +36816,7 @@
      "entries": [
       "reviews/thalamic_language_mechanisms__Crosson1999"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "re-extracted-as-review"
     },
@@ -33879,7 +36859,7 @@
      "entries": [
       "reviews/lsm_language_systems_review__MirmanThye2018"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -33938,7 +36918,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -33997,7 +36977,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "refused",
      "tag": "refused"
     },
@@ -34037,10 +37017,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 1,
+     "drafts": 0,
      "entries": [],
-     "pdf": false,
-     "state": "in_review",
+     "pdf": true,
+     "state": "awaiting_extraction",
      "tag": "seed"
     },
     "key": "@Mohr2017",
@@ -34101,7 +37081,7 @@
      "entries": [
       "reviews/aphasia_therapy_neuroplasticity_fmri__Shekari2022"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -34157,7 +37137,7 @@
      "entries": [
       "reviews/aphasia_prognosis_predictors__Watila2015"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -34255,7 +37235,7 @@
      "entries": [
       "reviews/neuroplasticity_poststroke_aphasia__Wilson2021"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -34320,7 +37300,7 @@
      "entries": [
       "regions/left_precentral_gyrus"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -34405,7 +37385,7 @@
       "regions/left_superior_temporal_gyrus_wernickes",
       "regions/left_supramarginal_gyrus_premotor"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -34476,7 +37456,7 @@
      "entries": [
       "regions/left_ifg_pars_opercularis"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -34554,7 +37534,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34620,7 +37600,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34691,7 +37671,7 @@
      "entries": [
       "regions/left_frontal_white_matter_bottleneck"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -34757,7 +37737,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34819,7 +37799,7 @@
      "entries": [
       "regions/left_anterior_temporal_lobe"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -34867,7 +37847,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34930,7 +37910,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -34967,7 +37947,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35016,7 +37996,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35060,7 +38040,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35096,7 +38076,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35148,7 +38128,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35196,7 +38176,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35250,7 +38230,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35310,7 +38290,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35364,7 +38344,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35442,7 +38422,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35511,7 +38491,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35591,7 +38571,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35625,7 +38605,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35657,9 +38637,9 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 5,
+     "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35694,7 +38674,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35729,7 +38709,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35770,7 +38750,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35823,7 +38803,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -35857,7 +38837,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -35898,7 +38878,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "extracted"
     },
@@ -35939,7 +38919,7 @@
      "entries": [
       "regions/left_ifg_pars_opercularis"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -35981,7 +38961,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36049,7 +39029,7 @@
      "entries": [
       "regions/left_ifg_pars_opercularis"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -36118,7 +39098,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36172,7 +39152,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36213,7 +39193,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36254,7 +39234,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36308,7 +39288,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36368,7 +39348,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36419,7 +39399,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36464,7 +39444,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36535,7 +39515,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36576,7 +39556,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36630,7 +39610,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36678,7 +39658,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36744,7 +39724,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36801,7 +39781,7 @@
       "predictors/lesion_volume",
       "predictors/severity_metric"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -36851,7 +39831,7 @@
      "entries": [
       "predictors/age"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -36902,7 +39882,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36965,7 +39945,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37007,7 +39987,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37055,7 +40035,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37115,7 +40095,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37163,7 +40143,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37211,7 +40191,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37264,7 +40244,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37305,7 +40285,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37350,7 +40330,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37392,7 +40372,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37452,7 +40432,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37530,7 +40510,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37593,7 +40573,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37646,7 +40626,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37712,7 +40692,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37783,7 +40763,7 @@
      "entries": [
       "predictors/lesion_volume"
      ],
-     "pdf": false,
+     "pdf": true,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -37861,7 +40841,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37924,10 +40904,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 1,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Marien2004",
@@ -37958,10 +40938,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 1,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Coppens2002",
@@ -37996,7 +40976,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": false,
+     "pdf": true,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -38029,10 +41009,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 2,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Lo2019",
@@ -38070,10 +41050,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 3,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Jiang2025",
@@ -38145,10 +41125,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 4,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Casilio2025",
@@ -38193,10 +41173,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 4,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Ding2023",
@@ -38294,10 +41274,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 3,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Akkad2023",
@@ -38363,10 +41343,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 2,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Adezati2022",
@@ -38420,10 +41400,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 3,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@MartinezMolina2022",
@@ -38504,10 +41484,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 1,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Ivanova2021",
@@ -38561,10 +41541,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 3,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Wilmskoetter2021",
@@ -38630,10 +41610,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 3,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Lukic2021",
@@ -38688,12 +41668,14 @@
     "id": "C1829",
     "journal": "Frontiers in neurology",
     "kb": {
-     "approved_findings": 0,
+     "approved_findings": 1,
      "draft_rejected": 0,
-     "drafts": 0,
-     "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "drafts": 1,
+     "entries": [
+      "predictors/initial_aphasia_severity"
+     ],
+     "pdf": true,
+     "state": "in_kb",
      "tag": "seed"
     },
     "key": "@OsaGarcia2020",
@@ -38748,12 +41730,15 @@
     "id": "C1916",
     "journal": "Journal of cognitive neuroscience",
     "kb": {
-     "approved_findings": 0,
+     "approved_findings": 2,
      "draft_rejected": 0,
-     "drafts": 0,
-     "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "drafts": 2,
+     "entries": [
+      "regions/left_angular_gyrus",
+      "regions/left_ifg_pars_opercularis"
+     ],
+     "pdf": true,
+     "state": "in_kb",
      "tag": "seed"
     },
     "key": "@Kristinsson2020",
@@ -38816,10 +41801,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 2,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Woollams2018",
@@ -38870,10 +41855,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 1,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Wright2018",
@@ -38927,10 +41912,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 3,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Halai2018",
@@ -38982,12 +41967,15 @@
     "id": "C2242",
     "journal": "Neuroreport",
     "kb": {
-     "approved_findings": 0,
+     "approved_findings": 2,
      "draft_rejected": 0,
-     "drafts": 0,
-     "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "drafts": 1,
+     "entries": [
+      "regions/left_arcuate_fasciculus_slf",
+      "regions/left_ifg_pars_opercularis"
+     ],
+     "pdf": true,
+     "state": "in_kb",
      "tag": "seed"
     },
     "key": "@Lee2018",
@@ -39048,12 +42036,14 @@
     "id": "C2356",
     "journal": "Frontiers in neurology",
     "kb": {
-     "approved_findings": 0,
+     "approved_findings": 1,
      "draft_rejected": 0,
-     "drafts": 0,
-     "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "drafts": 3,
+     "entries": [
+      "regions/left_arcuate_fasciculus"
+     ],
+     "pdf": true,
+     "state": "in_kb",
      "tag": "seed"
     },
     "key": "@Xing2017",
@@ -39107,10 +42097,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 1,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Pillay2017",
@@ -39152,6 +42142,56 @@
     "arm": "databases",
     "decided_by": "michele",
     "decided_on": "2026-10-30",
+    "doi": "10.1007/s10548-016-0503-5",
+    "first_author": "Yang",
+    "history": [
+     {
+      "by": "michele",
+      "date": "2026-10-30",
+      "decision": "include",
+      "stage": "title_abstract"
+     }
+    ],
+    "id": "C2467",
+    "journal": "Brain topography",
+    "pmid": "27324257",
+    "sources": [
+     {
+      "search": "S001"
+     },
+     {
+      "search": "S002"
+     },
+     {
+      "search": "S005"
+     },
+     {
+      "search": "S008"
+     },
+     {
+      "search": "S009"
+     },
+     {
+      "search": "S012"
+     },
+     {
+      "search": "S015"
+     },
+     {
+      "search": "S016"
+     },
+     {
+      "search": "S019"
+     }
+    ],
+    "stage": "awaiting_ft",
+    "title": "Beyond the Arcuate Fasciculus: Damage to Ventral and Dorsal Language Pathways in Aphasia",
+    "year": 2017
+   },
+   {
+    "arm": "databases",
+    "decided_by": "michele",
+    "decided_on": "2026-10-30",
     "doi": "10.3389/fnhum.2014.00845",
     "first_author": "Basilakos",
     "history": [
@@ -39173,10 +42213,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 2,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Basilakos2014",
@@ -39239,10 +42279,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 1,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Han2016",
@@ -39303,12 +42343,14 @@
     "id": "C2769",
     "journal": "Neurorehabilitation and neural repair",
     "kb": {
-     "approved_findings": 0,
+     "approved_findings": 1,
      "draft_rejected": 0,
-     "drafts": 0,
-     "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "drafts": 1,
+     "entries": [
+      "predictors/lesion_volume"
+     ],
+     "pdf": true,
+     "state": "in_kb",
      "tag": "seed"
     },
     "key": "@Rosso2015",
@@ -39362,10 +42404,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 2,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Fridriksson2015",
@@ -39419,10 +42461,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 2,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Stahl2011",
@@ -39485,10 +42527,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 2,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Schlaug2010",
@@ -39548,10 +42590,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 4,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Sheppard2022",
@@ -39631,10 +42673,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 4,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Bi2015",
@@ -39676,10 +42718,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 2,
      "entries": [],
-     "pdf": false,
-     "state": "awaiting_extraction",
+     "pdf": true,
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Ali2021",
@@ -40258,7 +43300,7 @@
     ]
    },
    {
-    "approved_findings": 138,
+    "approved_findings": 145,
     "areas": [],
     "candidates": [
      "C0004",
@@ -40346,6 +43388,7 @@
      "C2242",
      "C2356",
      "C2368",
+     "C2467",
      "C2738",
      "C2739",
      "C2769",
@@ -40358,7 +43401,7 @@
     ],
     "found": 15498,
     "id": "q1_lesion_impairment",
-    "in_kb": 26,
+    "in_kb": 31,
     "included": 92,
     "kind": null,
     "need": null,
@@ -40367,7 +43410,7 @@
     "suggested": []
    },
    {
-    "approved_findings": 70,
+    "approved_findings": 71,
     "areas": [],
     "candidates": [
      "C0008",
@@ -40413,7 +43456,7 @@
     ],
     "found": 6057,
     "id": "q2_therapy_response",
-    "in_kb": 15,
+    "in_kb": 16,
     "included": 34,
     "kind": null,
     "need": null,
@@ -40422,7 +43465,7 @@
     "suggested": []
    },
    {
-    "approved_findings": 95,
+    "approved_findings": 101,
     "areas": [],
     "candidates": [
      "C0004",
@@ -40479,6 +43522,7 @@
      "C2127",
      "C2242",
      "C2356",
+     "C2467",
      "C2738",
      "C2739",
      "C2780",
@@ -40487,7 +43531,7 @@
     ],
     "found": 4258,
     "id": "q3_predictor_outcome",
-    "in_kb": 19,
+    "in_kb": 23,
     "included": 58,
     "kind": null,
     "need": null,
@@ -40553,7 +43597,7 @@
    "refused"
   ],
   "omitted": {
-   "awaitingTitleAbstract": 20664,
+   "awaitingTitleAbstract": 20663,
    "removedByRule": 1397
   },
   "prisma": {
@@ -40587,11 +43631,11 @@
     }
    },
    "included": {
-    "approvedFindings": 170,
+    "approvedFindings": 177,
     "kb": {
-     "awaiting_extraction": 30,
-     "in_kb": 36,
-     "in_review": 55,
+     "awaiting_extraction": 2,
+     "in_kb": 41,
+     "in_review": 78,
      "no_pdf": 0,
      "not_registered": 0,
      "refused": 0,
@@ -40617,8 +43661,8 @@
    },
    "screening": {
     "assessed": 109,
-    "awaitingFullText": 0,
-    "awaitingTitleAbstract": 20664,
+    "awaitingFullText": 1,
+    "awaitingTitleAbstract": 20663,
     "excludedFullText": 6,
     "excludedFullTextReasons": {
      "duplicate_report": 1,
@@ -40633,7 +43677,7 @@
     "included": 103,
     "notRetrieved": 0,
     "screened": 20776,
-    "sought": 109,
+    "sought": 110,
     "unsureFullText": 0,
     "unsureTitleAbstract": 0
    }
@@ -41271,19 +44315,19 @@
   }
  },
  "version": {
-  "commit": "0204916",
-  "contentDigest": "01cced0c4d0084d7",
-  "date": "2026-10-30",
+  "commit": "9f65510",
+  "contentDigest": "4959b3b0c6e2146b",
+  "date": "2026-10-31",
   "entries": {
    "impairments": 14,
    "predictors": 10,
    "regions": 22,
    "therapies": 8
   },
-  "exportedOn": "2026-10-30",
-  "findings": 240,
+  "exportedOn": "2026-10-31",
+  "findings": 247,
   "findingsReviewed": 47,
-  "papers": 48,
+  "papers": 53,
   "statuses": [
    "approved"
   ]
