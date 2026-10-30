@@ -37,10 +37,26 @@
 # `filters`), Scopus strings get `AND PUBYEAR > 1999` appended by
 # `screen.py strategies --show`. The upper limit is the search date.
 
-version: 5
+version: 6
 status: locked            # draft → locked (then commit) before the first --execute
 protocol_owner: michele
 amendments:
+  - version: 6
+    date: 2026-10-30
+    by: michele
+    what: >-
+      Reason vocabulary only: therapy_no_patient_factors ("therapy study, no
+      patient-characteristic analysis") is split from no_imaging_primary, for a
+      therapy study without imaging that reports overall effect but relates no
+      patient characteristic to the response. Scope and searches unchanged.
+    why: >-
+      Amendment v5 made the patient-characteristics analysis the deciding point
+      for therapy studies; the PRISMA report should say so rather than count them
+      as "no imaging".
+    when: >-
+      during title/abstract and full-text screening; earlier therapy exclusions
+      recorded as no_imaging_primary may be re-recorded with the new reason
+      (a new decision supersedes, both kept).
   - version: 5
     date: 2026-10-30
     by: michele

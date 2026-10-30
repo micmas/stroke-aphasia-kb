@@ -70,9 +70,8 @@ REASONS: dict[str, dict] = {
                             "only, spatial neglect only)."},
     "no_imaging_primary": {"label": "Primary study without imaging", "ft_only": False,
                            "text": "A primary study with no brain imaging or lesion data related to the outcome (e.g. a "
-                                   "therapy trial reporting overall efficacy only, a clinical prognostic cohort); its "
-                                   "evidence enters through systematic reviews and meta-analyses. Not for a study that "
-                                   "relates patient characteristics to therapy response (protocol v5)."},
+                                   "clinical prognostic cohort); its evidence enters through systematic reviews and "
+                                   "meta-analyses. A therapy study is therapy_no_patient_factors instead (protocol v6)."},
     "narrative_review_out_of_scope": {"label": "Narrative review out of scope", "ft_only": False,
                                       "text": "A narrative (non-systematic) review that does not cover neuroimaging or "
                                               "lesion evidence in stroke."},
@@ -87,6 +86,10 @@ REASONS: dict[str, dict] = {
                                 "proceedings paper (protocol v4); preprints are eligible."},
     "duplicate_report": {"label": "Duplicate report of an included study", "ft_only": False,
                          "text": "A secondary publication of a cohort already included; note which."},
+    "therapy_no_patient_factors": {"label": "Therapy study, no patient-characteristic analysis", "ft_only": False,
+                                   "text": "A therapy study (trial, case series, single-case design) without imaging that "
+                                           "reports the therapy's overall effect but relates no patient characteristic to "
+                                           "the response (protocol v5-v6); its efficacy evidence enters through syntheses."},
     "out_of_date_range": {"label": "Outside the publication years", "ft_only": False,
                           "text": "Published before the protocol's first year (screening/strategies.yaml `years`) and not "
                                   "entered as a pillar paper by citation chasing."},

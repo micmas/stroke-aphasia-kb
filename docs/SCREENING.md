@@ -59,7 +59,8 @@ outcome. Evidence without imaging — the efficacy of a therapy,
 clinical and demographic predictors such as age, initial severity or
 time post onset — enters **only through systematic reviews and
 meta-analyses** (synthesis). A primary study without imaging is
-excluded with `no_imaging_primary` — **except** (protocol v5) one that
+excluded with `no_imaging_primary` (a therapy study:
+`therapy_no_patient_factors`, protocol v6) — **except** (protocol v5) one that
 relates patient characteristics to the response to a named therapy
 (responder, moderator or prediction analyses; controlled designs
 preferred, the design recorded). A report of a therapy's overall effect
@@ -90,7 +91,8 @@ reports; change this list and `screening.REASONS` together.
 |---|---|---|
 | `not_stroke` | the population is not (post-)stroke: tumour, TBI, primary progressive aphasia, dementia, developmental; or healthy-only with no language-mapping question | both passes |
 | `not_aphasia` | no aphasia, language, communication (motor speech — dysarthria, apraxia of speech — and prosody included) or domain-general cognitive outcome is reported (e.g. motor recovery only, spatial neglect only) | both passes |
-| `no_imaging_primary` | a primary study with no brain imaging or lesion data related to the outcome (e.g. a therapy trial reporting overall efficacy only, a clinical prognostic cohort); its evidence enters through syntheses (§1). Not for a study relating patient characteristics to therapy response (v5) | both passes |
+| `no_imaging_primary` | a primary study with no brain imaging or lesion data related to the outcome (e.g. a clinical prognostic cohort, a natural-recovery study); its evidence enters through syntheses (§1). Not for a therapy study (next row) | both passes |
+| `therapy_no_patient_factors` | a therapy study without imaging (trial, case series, single-case design) that reports the therapy's overall effect but relates no patient characteristic to the response; its efficacy evidence enters through syntheses (§1; protocol v6) | both passes |
 | `narrative_review_out_of_scope` | a narrative (non-systematic) review that does not cover neuroimaging or lesion evidence in stroke | both passes |
 | `out_of_date_range` | published before 2000 (the protocol's `years`) and not entered as a pillar paper by citation chasing | both passes |
 | `design_out_of_scope` | nothing the schema can hold: no lesion–behaviour, therapy-response, predictor or network evidence (pure psycholinguistic modelling, instrument validation without brain or outcome data, qualitative studies of lived experience) | both passes |

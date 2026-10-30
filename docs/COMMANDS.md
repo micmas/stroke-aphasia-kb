@@ -141,7 +141,8 @@ python scripts/screen.py stop --by michele --execute             # once the rule
 `screen_app.py` keys: `i` include · `u` unsure · `1`–`9` exclude with that
 reason (1 not stroke · 2 no language/cognitive outcome · 3 no imaging ·
 4 narrative review · 5 design · 6 not a full report · 7 thesis/book/conference ·
-8 duplicate · 9 before 2000) · `0` Other (write the note first) · `n` note ·
+8 duplicate · 9 therapy study without patient-characteristic analysis; "before 2000" and the
+rest are buttons) · `0` Other (write the note first) · `n` note ·
 `z` undo · `a` accept the suggestion shown. Decisions are journalled at once
 (`screening/_sheet/app_journal.jsonl`) and the register is saved a few
 seconds later and on Ctrl-C; the queue is re-ranked every `--rerank`
