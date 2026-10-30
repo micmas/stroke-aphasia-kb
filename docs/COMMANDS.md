@@ -30,6 +30,7 @@ flag, listed below).
 | 7 | Extraction, one paper at a time | `extract.py --pdf papers/<Key>.pdf` | [2](#2-extracting) |
 | 8 | Review: checks, the workbench, focused re-extraction, approval | `auto_review.py` · `review_app.py` · `refocus.py` · `promote.py` | [3](#3-reviewing) |
 | 9 | Report and sync | `screen.py status` · `kb_status.py` · git | [4](#4-checking-the-kb) · [8](#8-git-and-the-papers-folder) |
+| 10 | Refresh the frozen copies: explorer, webapp and notebook, each as approved-only and approved + drafts | `refresh_snapshots.py --commit` | [4](#refresh_snapshotspy--the-explorer-webapp-and-notebook-copies) |
 
 A paper reaches extraction only after it was included at full text
 (`screen.py fulltext` lists what each paper needs next). Do not use
@@ -77,7 +78,20 @@ python scripts/review_app.py                                   # index of every 
 python scripts/refocus.py --all --execute                      # findings for every paper with pending marks
 python scripts/promote.py --list                               # what is left for you
 for f in drafts/*/*__<Key>.md; do python scripts/promote.py --approve "$f" --reviewer michele; done   # a paper you reviewed
-git add -A && git commit -m "…" && git pull --rebase --autostash && git push
+python scripts/refresh_snapshots.py --commit                   # explorer exports, webapp assets, calmar's submodule — both versions
+git pull --rebase --autostash && git push                      # then push calmar and the webapp branch
+```
+
+### Unattended: a batch over a weekend
+
+```bash
+setopt interactive_comments
+caffeinate -i -s &                                             # keep the Mac awake (plugged in); kill %1 afterwards
+python scripts/screen.py extract --execute 2>&1 | tee -a logs/weekend.log
+python scripts/screen.py extract --reextract-below 2.7 --execute 2>&1 | tee -a logs/weekend.log   # before backfill: re-extracted papers need none
+python scripts/screen.py extract --backfill --execute 2>&1 | tee -a logs/weekend.log
+python scripts/auto_review.py --all --llm-review 2>&1 | tee -a logs/weekend.log
+python scripts/refresh_snapshots.py --commit 2>&1 | tee -a logs/weekend.log
 ```
 
 Approval stays a person's act per paper: approve the drafts of a paper
@@ -604,6 +618,26 @@ per-finding `edits` records are kept.
 Step 9 of the flow. For the screening side: `screen.py status` (PRISMA
 numbers, recall, kappa), `screen.py recall`, `screen.py progress` and
 `screen.py fulltext` (section 0).
+
+### `refresh_snapshots.py` — the explorer, webapp and notebook copies
+
+Three places hold a frozen copy of the KB. Each gets both versions:
+approved findings only, and approved + unreviewed drafts (every draft
+finding marked as such).
+
+| Copy | What is refreshed | How to see the two versions |
+|---|---|---|
+| explorer | `export/stroke-aphasia-kb.json` and `export/stroke-aphasia-kb-drafts.json` (GitHub Pages rebuilds both on push) | the **Findings** switch in the header; *Status* facet |
+| webapp | `apps/calmar` assets `aphasia-kb` and `aphasia-kb-drafts` via its `scripts/sync_kb.py --both` | **Knowledge-base evidence** under Run analysis |
+| notebook | calmar's `stroke-aphasia-kb/` submodule moved to this KB's HEAD | the report's `evidence` setting (`approved`, `in_review`, `all`) |
+
+| Option | Meaning |
+|---|---|
+| `--commit` | Commit the KB's changes first (entries, drafts, logs, register), then the exports, the webapp assets (on its current branch, never `main`) and calmar's submodule pointer. Never pushes. |
+| `--only explorer webapp notebook` | Refresh only these. |
+| `--webapp DIR`, `--calmar DIR` | Where the other checkouts are (default: beside this one in `~/GITHUB`). |
+
+Push the KB first — calmar and the webapp point at its commits.
 
 ### `kb_status.py` — counts and gaps
 

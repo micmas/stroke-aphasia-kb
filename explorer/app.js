@@ -1,7 +1,9 @@
 // Stroke aphasia KB explorer — views and routing.
 //
-// A static page: it loads export/stroke-aphasia-kb.json (or the file named by
-// ?kb=<url>, or one chosen with the "Open a local export" control), indexes
+// A static page: it loads export/stroke-aphasia-kb.json (approved findings), or
+// with ?kb=drafts export/stroke-aphasia-kb-drafts.json (approved + drafts; the
+// "Findings" switch in the header), or the file named by ?kb=<url>, or one
+// chosen with the "Open a local export" control, indexes
 // it with kb-index.js and renders one view per hash route:
 //   #/                       overview
 //   #/findings?facet=value   faceted finding browser (query string = filters)
@@ -17,7 +19,8 @@ import {
   SCREENING_FACETS, STAGE_TEXT, KB_STATE_TEXT, ARM_TEXT,
 } from './kb-index.js';
 
-const DEFAULT_KB = '../export/stroke-aphasia-kb.json';
+const KB_VERSIONS = { approved: '../export/stroke-aphasia-kb.json', drafts: '../export/stroke-aphasia-kb-drafts.json' };
+const DEFAULT_KB = KB_VERSIONS.approved;
 const PAGE = 60;
 const state = { index: null, source: null, sourceLabel: '', shown: PAGE };
 
@@ -195,6 +198,9 @@ function overview(index) {
       h('span', { class: 'muted small', text: `export of KB ${v.commit || 'uncommitted'}${v.date ? ` (${v.date})` : ''} · digest ${v.contentDigest || '?'} · exported ${v.exportedOn || '?'} · statuses: ${(v.statuses || []).join(', ')}` })),
     h('p', {}, 'A curated, source-traceable literature base linking stroke lesion locations to aphasia impairments, therapy responses and recovery predictors. Every finding is one claim from one paper with the verbatim passages that support it. This page lets you read the base itself; CALMaR uses the same export to turn a lesion into a cited report.'),
     h('p', { class: 'caveat', text: 'Findings are group-level literature associations with their citations and review provenance, not clinical predictions. Research use only.' }),
+    (v.statuses || []).some((s) => s !== 'approved')
+      ? h('p', { class: 'caveat drafts', text: `This view includes findings nobody has approved yet (statuses: ${(v.statuses || []).join(', ')}). Filter by Status on the Findings page to separate them.` })
+      : null,
     h('div', { class: 'tiles' },
       h('div', { class: 'tile' }, h('div', { class: 'value', text: String(Object.keys(entries).length) }), h('div', { class: 'label', text: 'entries' }),
         h('div', { class: 'detail', text: Object.entries(buckets).map(([b, n]) => `${n} ${b}`).join(' · ') })),
@@ -851,7 +857,17 @@ function init() {
     try { use(JSON.parse(await file.text()), `${file.name} (local)`, true); } catch (err) { document.getElementById('main').replaceChildren(h('p', { class: 'error', text: `${file.name}: ${err.message}` })); }
   });
   window.addEventListener('hashchange', () => { state.shown = PAGE; render(); });
-  load(params.get('kb') || DEFAULT_KB);
+  const kb = params.get('kb');
+  const select = document.getElementById('kbVersion');
+  if (kb && !KB_VERSIONS[kb]) select.closest('label').hidden = true;   // an explicit URL: no switch
+  else select.value = kb || 'approved';
+  select.addEventListener('change', () => {
+    const next = new URLSearchParams(location.search);
+    if (select.value === 'approved') next.delete('kb'); else next.set('kb', select.value);
+    const q = next.toString();
+    location.search = q ? `?${q}` : '';   // reloads with the other export, keeps the #route
+  });
+  load(KB_VERSIONS[kb] || kb || DEFAULT_KB);
 }
 
 init();
