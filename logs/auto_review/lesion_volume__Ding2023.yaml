@@ -1,0 +1,90 @@
+draft_path: drafts/predictors/lesion_volume__Ding2023.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-30T23:35:19'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 0/3 quotes (0%) — anchored 1, near 2
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.6): All CIU measures were also significantly correlated
+      with total lesion size (r < …'
+    - '  - [near] f1.sample (p.3): The data set consisted of behavioural data from
+      80 participants who had suffered…'
+    - '  - [near] f1.limitation (p.11): The present results shed light on persistent
+      impairments in spoken discourse but…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: approve
+      rationale: The finding accurately reflects the paper's results. The claim correctly
+        identifies the correlation between total lesion size and the three CIU measures
+        (quantity, efficiency, informativeness). The statistics (r < -0.29, P < 0.02)
+        match the text on page 6. The sample description and the stated limitation
+        regarding recovery vs. persistent impairment are also verbatim and correctly
+        attributed.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: override_approve
+    raw_preview: "{\n  \"overall_verdict\": \"approve\",\n  \"rationale\": \"The finding\
+      \ accurately reflects the paper's results. The claim correctly identifies the\
+      \ correlation between total lesion size and the three CIU measures (quantity,\
+      \ efficiency, informativeness). The statistics (r < -0.29, P < 0.02) match the\
+      \ text on page 6. The sample description and the stated limitation regarding\
+      \ recovery vs. persistent impairment are also verbatim and correctly attributed.\"\
+      ,\n  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"passage_present\"\
+      : true,\n      \"passage_supports_field\": true,\n      \"relationship_faithful\"\
+      : true,\n      \"strength_fair\": true,\n      \"numbers_match\": true,\n  \
+      \    \"limitations_captured\": true,\n      \"omissions\": \"\",\n      \"concern\"\
+      : \"\",\n      \"verdict\": \"agree\"\n    }\n  ]\n}"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - approve
+    - approve
+    - approve
+    unanimous: true
+    guardrails:
+    - model said approve on Tier B; recorded as agree_defer — a person must approve
+      this tier
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-30T23:35:19'
+latest_verdict: checks_passed
+latest_mode: with_llm_review

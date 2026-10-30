@@ -1877,3 +1877,211 @@ Strategic infarct locations for post-stroke cognitive impairment: a pooled analy
 doi:10.1016/s1474-4422(21)00060-0
 
 > Registered by hand on 2026-10-23 from the PDF (HAL accepted manuscript; citation and DOI from its cover page; file: Werring_PSCI_manuscript_R1_final_cleaned.pdf); Crossref was not reachable from the machine that did it. Check the entry; add a note on why the paper is in the KB.
+
+## @Jiang2025  [seed]
+Jiang Z, Kuhnke P, Stockert A, Wawrzyniak M, Halai A, Saur D, Hartwigsen G.
+Dynamic reorganization of task-related network interactions in post-stroke aphasia recovery.
+*Brain*. 2025;148(10):3563-3575.
+doi:10.1093/brain/awaf036
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C0707). Included by the screening register (C0707; docs/SCREENING.md). Check the entry.
+
+## @Casilio2025  [seed]
+Casilio M, Kasdan AV, Bryan K, Shibata K, Schneck SM, Levy DF, Entrup JL, Onuscheck C, de Riesthal M, Wilson SM.
+Four dimensions of naturalistic language production in aphasia after stroke.
+*Brain*. 2025;148(1):291-312.
+doi:10.1093/brain/awae195
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C0843). Included by the screening register (C0843; docs/SCREENING.md). Check the entry.
+
+## @Ding2023  [seed]
+Ding J, Middleton EL, Mirman D.
+Impaired discourse content in aphasia is associated with frontal white matter damage.
+*Brain Communications*. 2023;5(6).
+doi:10.1093/braincomms/fcad310
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C0953). Included by the screening register (C0953; docs/SCREENING.md). Check the entry.
+
+## @Akkad2023  [seed]
+Akkad H, Hope TMH, Howland C, Ondobaka S, Pappa K, Nardo D, Duncan J, Leff AP, Crinion J.
+Mapping spoken language and cognitive deficits in post-stroke aphasia.
+*NeuroImage: Clinical*. 2023;39:103452.
+doi:10.1016/j.nicl.2023.103452
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C1050). Included by the screening register (C1050; docs/SCREENING.md). Check the entry.
+
+## @Adezati2022  [seed]
+Adezati E, Thye M, Edmondson-Stait AJ, Szaflarski JP, Mirman D.
+Lesion correlates of auditory sentence comprehension deficits in post-stroke aphasia.
+*Neuroimage: Reports*. 2022;2(1):100076.
+doi:10.1016/j.ynirp.2021.100076
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C1336). Included by the screening register (C1336; docs/SCREENING.md). Check the entry.
+
+## @MartinezMolina2022  [seed]
+Martínez-Molina N, Siponkoski ST, Pitkäniemi A, Moisseinen N, Kuusela L, Pekkola J, Laitinen S, Särkämö ER, Melkas S, Kleber B, Schlaug G, Sihvonen A, et al.
+Neuroanatomical correlates of speech and singing production in chronic post-stroke aphasia.
+*Brain Communications*. 2022;4(1).
+doi:10.1093/braincomms/fcac001
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C1344). Included by the screening register (C1344; docs/SCREENING.md). Check the entry.
+
+## @Ivanova2021  [seed]
+Ivanova MV, Zhong A, Turken A, Baldo JV, Dronkers NF.
+Functional Contributions of the Arcuate Fasciculus to Language Processing.
+*Front. Hum. Neurosci.*. 2021;15.
+doi:10.3389/fnhum.2021.672665
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C1495). Included by the screening register (C1495; docs/SCREENING.md). Check the entry.
+
+## @Wilmskoetter2021  [seed]
+Wilmskoetter J, Fridriksson J, Basilakos A, Phillip Johnson L, Marebwa B, Rorden C, Warner G, Hickok G, Hillis AE, Bonilha L.
+Indirect White Matter Pathways Are Associated With Treated Naming Improvement in Aphasia.
+*Neurorehabil Neural Repair*. 2021;35(4):346-355.
+doi:10.1177/1545968321999052
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C1596). Included by the screening register (C1596; docs/SCREENING.md). Check the entry.
+
+## @Lukic2021  [seed]
+Lukic S, Thompson CK, Barbieri E, Chiappetta B, Bonakdarpour B, Kiran S, Rapp B, Parrish TB, Caplan D.
+Common and distinct neural substrates of sentence production and comprehension.
+*NeuroImage*. 2021;224:117374.
+doi:10.1016/j.neuroimage.2020.117374
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C1728). Included by the screening register (C1728; docs/SCREENING.md). Check the entry.
+
+## @OsaGarcia2020  [seed]
+Osa García A, Brambati SM, Brisebois A, Désilets-Barnabé M, Houzé B, Bedetti C, Rochon E, Leonard C, Desautels A, Marcotte K.
+Predicting Early Post-stroke Aphasia Outcome From Initial Aphasia Severity.
+*Front. Neurol.*. 2020;11.
+doi:10.3389/fneur.2020.00120
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C1829). Included by the screening register (C1829; docs/SCREENING.md). Check the entry.
+
+## @Kristinsson2020  [seed]
+Kristinsson S, Thors H, Yourganov G, Magnusdottir S, Hjaltason H, Stark BC, Basilakos A, den Ouden DB, Bonilha L, Rorden C, Hickok G, Hillis A, et al.
+Brain Damage Associated with Impaired Sentence Processing in Acute Aphasia.
+*Journal of Cognitive Neuroscience*. 2020;32(2):256-271.
+doi:10.1162/jocn_a_01478
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C1916). Included by the screening register (C1916; docs/SCREENING.md). Check the entry.
+
+## @Woollams2018  [seed]
+Woollams AM, Halai A, Lambon Ralph MA.
+Mapping the intersection of language and reading: the neural bases of the primary systems hypothesis.
+*Brain Struct Funct*. 2018;223(8):3769-3786.
+doi:10.1007/s00429-018-1716-z
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C2117). Included by the screening register (C2117; docs/SCREENING.md). Check the entry.
+
+## @Wright2018  [seed]
+Wright A, Tippett D, Saxena S, Sebastian R, Breining B, Faria A, Hillis AE.
+Leukoaraiosis is independently associated with naming outcome in poststroke aphasia.
+*Neurology*. 2018;91(6).
+doi:10.1212/wnl.0000000000005945
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C2127). Included by the screening register (C2127; docs/SCREENING.md). Check the entry.
+
+## @Halai2018  [seed]
+Halai AD, Woollams AM, Lambon Ralph MA.
+Triangulation of language-cognitive impairments, naming errors and their neural bases post-stroke.
+*NeuroImage: Clinical*. 2018;17:465-473.
+doi:10.1016/j.nicl.2017.10.037
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C2234). Included by the screening register (C2234; docs/SCREENING.md). Check the entry.
+
+## @Lee2018  [seed]
+Lee WM, Kyeong S, Park EY, Yang HS, Kang H, Kim DH.
+Bilateral hemispheric changes and language outcomes in chronic left hemisphere stroke.
+*NeuroReport*. 2018;29(1):30-35.
+doi:10.1097/wnr.0000000000000929
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C2242). Included by the screening register (C2242; docs/SCREENING.md). Check the entry.
+
+## @Xing2017  [seed]
+Xing S, Lacey EH, Skipper-Kallal LM, Zeng J, Turkeltaub PE.
+White Matter Correlates of Auditory Comprehension Outcomes in Chronic Post-Stroke Aphasia.
+*Front. Neurol.*. 2017;8.
+doi:10.3389/fneur.2017.00054
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C2356). Included by the screening register (C2356; docs/SCREENING.md). Check the entry.
+
+## @Pillay2017  [seed]
+Pillay SB, Binder JR, Humphries C, Gross WL, Book DS.
+Lesion localization of speech comprehension deficits in chronic aphasia.
+*Neurology*. 2017;88(10):970-975.
+doi:10.1212/wnl.0000000000003683
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C2368). Included by the screening register (C2368; docs/SCREENING.md). Check the entry.
+
+## @Basilakos2014  [seed]
+Basilakos A, Fillmore PT, Rorden C, Guo D, Bonilha L, Fridriksson J.
+Regional White Matter Damage Predicts Speech Fluency in Chronic Post-Stroke Aphasia.
+*Front. Hum. Neurosci.*. 2014;8.
+doi:10.3389/fnhum.2014.00845
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C2738). Included by the screening register (C2738; docs/SCREENING.md). Check the entry.
+
+## @Han2016  [seed]
+Han Z, Ma Y, Gong G, Huang R, Song L, Bi Y.
+White matter pathway supporting phonological encoding in speech production: a multi-modal imaging study of brain damage patients.
+*Brain Struct Funct*. 2016;221(1):577-589.
+doi:10.1007/s00429-014-0926-2
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C2739). Included by the screening register (C2739; docs/SCREENING.md). Check the entry.
+
+## @Rosso2015  [seed]
+Rosso C, Vargas P, Valabregue R, Arbizu C, Henry-Amar F, Leger A, Lehéricy S, Samson Y.
+Aphasia Severity in Chronic Stroke Patients.
+*Neurorehabil Neural Repair*. 2015;29(3):287-295.
+doi:10.1177/1545968314543926
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C2769). Included by the screening register (C2769; docs/SCREENING.md). Check the entry.
+
+## @Fridriksson2015  [seed]
+Fridriksson J, Fillmore P, Guo D, Rorden C.
+Chronic Broca's Aphasia Is Caused by Damage to Broca's and Wernicke's Areas.
+*Cereb. Cortex*. 2015;25(12):4689-4696.
+doi:10.1093/cercor/bhu152
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C2780). Included by the screening register (C2780; docs/SCREENING.md). Check the entry.
+
+## @Stahl2011  [seed]
+Stahl B, Kotz SA, Henseler I, Turner R, Geyer S.
+Rhythm in disguise: why singing may not hold the key to recovery from aphasia.
+*Brain*. 2011;134(10):3083-3093.
+doi:10.1093/brain/awr240
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C3212). Included by the screening register (C3212; docs/SCREENING.md). Check the entry.
+
+## @Schlaug2010  [seed]
+Schlaug G, Norton A, Marchina S, Zipse L, Wan CY.
+From singing to speaking: facilitating recovery from nonfluent aphasia.
+*Future Neurol.*. 2010;5(5):657-665.
+doi:10.2217/fnl.10.44
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C3213). Included by the screening register (C3213; docs/SCREENING.md). Check the entry.
+
+## @Sheppard2022  [seed]
+Sheppard SM, Meier EL, Kim KT, Breining BL, Keator LM, Tang B, Caffo BS, Hillis AE.
+Neural correlates of syntactic comprehension: A longitudinal study.
+*Brain and Language*. 2022;225:105068.
+doi:10.1016/j.bandl.2021.105068
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C4853). Included by the screening register (C4853; docs/SCREENING.md). Check the entry.
+
+## @Bi2015  [seed]
+Bi Y, Han Z, Zhong S, Ma Y, Gong G, Huang R, Song L, Fang Y, He Y, Caramazza A.
+The White Matter Structural Network Underlying Human Tool Use and Tool Understanding.
+*J. Neurosci.*. 2015;35(17):6822-6835.
+doi:10.1523/jneurosci.3709-14.2015
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C6375). Included by the screening register (C6375; docs/SCREENING.md). Check the entry.
+
+## @Ali2021  [seed]
+The REhabilitation and recovery of peopLE with Aphasia after StrokE (RELEASE) Collaborators, Ali M, VandenBerg K, Williams LJ, Williams LR, Abo M, Becker F, Bowen A, Brandenburg C, Breitenstein C, Bruehl S, Copland DA, et al.
+Predictors of Poststroke Aphasia Recovery.
+*Stroke*. 2021;52(5):1778-1787.
+doi:10.1161/strokeaha.120.031162
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C7442). Included by the screening register (C7442; docs/SCREENING.md). Check the entry.

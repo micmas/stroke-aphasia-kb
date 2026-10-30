@@ -131,6 +131,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 135
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 181
   benchmark: true
   legacy:
     decisions:
@@ -203,6 +208,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 125
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 182
   benchmark: true
   legacy:
     decisions:
@@ -796,6 +806,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 174
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 183
   benchmark: true
   legacy:
     decisions:
@@ -1103,6 +1118,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 149
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 184
   benchmark: true
   legacy:
     decisions:
@@ -1231,6 +1251,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 131
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 185
   benchmark: true
   legacy:
     decisions:
@@ -1618,6 +1643,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 144
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 186
   benchmark: true
   legacy:
     decisions:
@@ -1824,6 +1854,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 127
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 187
   benchmark: true
   legacy:
     decisions:
@@ -1927,6 +1962,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 150
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 188
   benchmark: true
   legacy:
     decisions:
@@ -2037,6 +2077,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 140
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 189
   benchmark: true
   legacy:
     decisions:
@@ -2260,6 +2305,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 147
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 190
   benchmark: true
   legacy:
     decisions:
@@ -2300,6 +2350,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 130
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 191
   benchmark: true
   legacy:
     decisions:
@@ -2538,6 +2593,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 154
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 192
   benchmark: true
   legacy:
     decisions:
@@ -3319,6 +3379,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 148
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 193
   benchmark: true
   legacy:
     decisions:
@@ -3396,6 +3461,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 132
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 194
   benchmark: true
   legacy:
     decisions:
@@ -3439,6 +3509,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 139
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 195
   benchmark: true
   legacy:
     decisions:
@@ -3904,7 +3979,12 @@ candidates:
     date: '2026-10-26'
     note: citations.md [seed] — Seed references (added 2026-10-20)
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 237
   benchmark: true
   legacy:
     decisions:
@@ -3945,6 +4025,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 141
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 196
   benchmark: true
   legacy:
     decisions:
@@ -3998,7 +4083,12 @@ candidates:
     date: '2026-10-26'
     note: citations.md [seed] — Seed references (added 2026-10-20)
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 238
   suggestion_ft:
     decision: exclude
     reason: not_aphasia
@@ -4016,7 +4106,12 @@ candidates:
     date: '2026-10-26'
     note: citations.md [seed] — Seed references (added 2026-10-20)
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 239
   benchmark: true
   legacy:
     decisions:
@@ -4051,6 +4146,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 138
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 197
   benchmark: true
   legacy:
     decisions:
@@ -4076,7 +4176,13 @@ candidates:
     date: '2026-10-26'
     note: citations.md [seed] — Seed references (added 2026-10-20)
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: exclude
+    reason: not_full_report
+    by: michele
+    date: '2026-10-30'
+    seq: 240
   benchmark: true
   legacy:
     decisions:
@@ -4119,6 +4225,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 126
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 198
   benchmark: true
   legacy:
     decisions:
@@ -4349,7 +4460,12 @@ candidates:
     date: '2026-10-26'
     note: citations.md [seed] — Seed references (added 2026-10-20)
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 241
   benchmark: true
   legacy:
     decisions:
@@ -4531,6 +4647,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 137
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 200
   benchmark: true
   legacy:
     decisions:
@@ -4671,7 +4792,12 @@ candidates:
     date: '2026-10-26'
     note: 'citations.md [seed] — Seed references (added 2026-10-21): atlas-mapping evidence gaps'
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 242
   benchmark: true
   legacy:
     decisions:
@@ -4782,6 +4908,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 133
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 201
   benchmark: true
   legacy:
     decisions:
@@ -4853,6 +4984,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 142
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 202
   benchmark: true
   legacy:
     decisions:
@@ -4888,6 +5024,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 128
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 203
   benchmark: true
   legacy:
     decisions:
@@ -4985,6 +5126,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 124
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 204
   benchmark: true
   legacy:
     decisions:
@@ -5098,7 +5244,13 @@ candidates:
     date: '2026-10-26'
     note: citations.md [seed] — Registered automatically
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: exclude
+    reason: therapy_no_patient_factors
+    by: michele
+    date: '2026-10-30'
+    seq: 243
   benchmark: true
   legacy:
     decisions:
@@ -5214,6 +5366,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 146
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 205
   benchmark: true
   legacy:
     decisions:
@@ -5247,6 +5404,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 134
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 206
   benchmark: true
   legacy:
     decisions:
@@ -5321,6 +5483,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 143
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 207
   benchmark: true
   legacy:
     decisions:
@@ -5346,7 +5513,12 @@ candidates:
     date: '2026-10-26'
     note: citations.md [seed] — Registered automatically
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 244
   benchmark: true
   legacy:
     decisions:
@@ -5383,6 +5555,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 145
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 208
   benchmark: true
   legacy:
     decisions:
@@ -5408,7 +5585,13 @@ candidates:
     date: '2026-10-26'
     note: citations.md [seed] — Registered automatically
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: exclude
+    reason: therapy_no_patient_factors
+    by: michele
+    date: '2026-10-30'
+    seq: 245
   benchmark: true
   legacy:
     decisions:
@@ -5543,6 +5726,11 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 129
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 209
   benchmark: true
   legacy:
     decisions:
@@ -5903,7 +6091,12 @@ candidates:
     date: '2026-10-26'
     note: citations.md [seed] — Registered automatically
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 247
   suggestion_ft:
     decision: unsure
     rationale: >-
@@ -5924,7 +6117,12 @@ candidates:
     date: '2026-10-26'
     note: citations.md [seed] — Registered automatically
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 248
   suggestion_ft:
     decision: unsure
     rationale: >-
@@ -5945,7 +6143,14 @@ candidates:
     date: '2026-10-26'
     note: citations.md [seed] — Registered automatically
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: exclude
+    reason: other
+    by: michele
+    date: '2026-10-30'
+    seq: 249
+    note: out of topic - pre-stroke and post-stroke dementia
   suggestion_ft:
     decision: exclude
     reason: design_out_of_scope
@@ -5963,7 +6168,12 @@ candidates:
     date: '2026-10-26'
     note: citations.md [seed] — Registered automatically
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 250
   suggestion_ft:
     decision: exclude
     reason: no_imaging_primary
@@ -15505,9 +15715,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 164
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 210
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: awaf036.pdf
+  key: '@Jiang2025'
 - id: C0708
   doi: 10.1093/braincomms/fcae370
   pmid: '39845737'
@@ -17826,9 +18041,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 168
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 211
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: awae195.pdf
+  key: '@Casilio2025'
 - id: C0844
   doi: 10.1016/j.radcr.2024.05.011
   pmid: '38872752'
@@ -19754,8 +19974,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 177
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 212
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Ding2023'
 - id: C0954
   doi: 10.2490/prm.20230041
   pmid: '38024960'
@@ -21423,9 +21649,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 179
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 213
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: 1-s2.0-S2213158223001419-main.pdf
+  key: '@Akkad2023'
 - id: C1051
   doi: 10.1186/s12883-023-03249-9
   pmid: '37316776'
@@ -26631,9 +26862,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 173
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 214
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: 1-s2.0-S266695602100074X-main.pdf
+  key: '@Adezati2022'
 - id: C1337
   doi: 10.1097/wnn.0000000000000294
   pmid: '35239599'
@@ -26786,9 +27022,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 169
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 215
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: fcac001.pdf
+  key: '@MartinezMolina2022'
 - id: C1345
   doi: 10.1016/j.neuroimage.2022.119001
   pmid: '35172200'
@@ -29522,9 +29763,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 180
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 216
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: fnhum-15-672665.pdf
+  key: '@Ivanova2021'
 - id: C1496
   doi: 10.1007/s00234-021-02762-3
   pmid: '34244817'
@@ -31291,10 +31537,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 162
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 217
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: >-
-    wilmskoetter-et-al-2021-indirect-white-matter-pathways-are-associated-with-treated-naming-improvement-in-aphasia.pdf
+  key: '@Wilmskoetter2021'
 - id: C1597
   doi: 10.1080/02687038.2019.1693026
   pmid: '33716377'
@@ -33582,9 +33832,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 158
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 218
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: 1-s2.0-S1053811920308600-main.pdf
+  key: '@Lukic2021'
 - id: C1729
   doi: 10.1007/s13760-020-01493-1
   pmid: '32948996'
@@ -35417,9 +35672,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 167
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 219
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: fneur-11-00120.pdf
+  key: '@OsaGarcia2020'
 - id: C1830
   doi: 10.11477/mf.1416201509
   pmid: '32152254'
@@ -36981,9 +37241,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 153
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 220
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: jocn_a_01478.pdf
+  key: '@Kristinsson2020'
 - id: C1917
   doi: 10.1016/j.wneu.2019.09.141
   pmid: '31589986'
@@ -40462,9 +40727,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 161
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 221
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: s00429-018-1716-z.pdf
+  key: '@Woollams2018'
 - id: C2118
   doi: 10.5692/clinicalneurol.cn-001170
   pmid: '30068812'
@@ -40648,10 +40918,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 175
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 222
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: >-
-    wright-et-al-2018-leukoaraiosis-is-independently-associated-with-naming-outcome-in-poststroke-aphasia.pdf
+  key: '@Wright2018'
 - id: C2128
   doi: 10.1002/hbm.24289
   pmid: '29972618'
@@ -42516,9 +42790,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 165
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 224
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: 1-s2.0-S2213158217302802-main.pdf
+  key: '@Halai2018'
 - id: C2235
   doi: 10.1016/j.cortex.2017.10.006
   pmid: '29157937'
@@ -42669,9 +42948,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 171
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 225
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: bilateral-hemispheric-changes-and-language-outcomes-in.pdf
+  key: '@Lee2018'
 - id: C2243
   doi: 10.1007/s11883-017-0686-6
   pmid: '29116473'
@@ -44710,9 +44994,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 157
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 226
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: fneur-08-00054.pdf
+  key: '@Xing2017'
 - id: C2357
   doi: 10.1155/2017/2761913
   pmid: '28270937'
@@ -44930,9 +45219,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 178
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 227
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: pillay-et-al-2017-lesion-localization-of-speech-comprehension-deficits-in-chronic-aphasia.pdf
+  key: '@Pillay2017'
 - id: C2369
   doi: 10.1097/md.0000000000005995
   pmid: '28178140'
@@ -46666,7 +46960,12 @@ candidates:
   - search: S015
   - search: S016
   - search: S019
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 251
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C2468
@@ -51372,9 +51671,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 155
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 228
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: fnhum-08-00845.pdf
+  key: '@Basilakos2014'
 - id: C2739
   doi: 10.1007/s00429-014-0926-2
   pmid: '25359657'
@@ -51401,9 +51705,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 159
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 229
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: s00429-014-0926-2.pdf
+  key: '@Han2016'
 - id: C2740
   doi: 10.1007/s00429-014-0925-3
   pmid: '25352157'
@@ -51923,8 +52232,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 166
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 230
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Rosso2015'
 - id: C2770
   pmid: '25087758'
   title: '[Intracranial hemorrhage caused by neurosyphilis: a case report]'
@@ -52132,9 +52447,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 176
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 231
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: bhu152.pdf
+  key: '@Fridriksson2015'
 - id: C2781
   doi: 10.1371/journal.pone.0101805
   pmid: '24992634'
@@ -59553,9 +59873,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 151
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 232
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: awr240.pdf
+  key: '@Stahl2011'
 - id: C3213
   doi: 10.2217/fnl.10.44
   pmid: '21088709'
@@ -59579,9 +59904,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 152
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 233
   doc_type: journal
   doc_type_raw: JOUR/Review
-  pdf_file: From singing to speaking  facilitating recovery from nonfluent aphasia.pdf
+  key: '@Schlaug2010'
 - id: C3214
   doi: 10.1093/brain/awr198
   pmid: '21908872'
@@ -86065,8 +86395,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 163
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 234
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Sheppard2022'
 - id: C4854
   doi: 10.1016/j.ecoenv.2021.113118
   pmid: '34979314'
@@ -109987,9 +110323,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 156
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 235
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: 6822.full.pdf
+  key: '@Bi2015'
 - id: C6376
   doi: 10.2147/ndt.s78037
   pmid: '25914535'
@@ -127030,9 +127371,14 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 170
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-10-30'
+    seq: 236
   doc_type: journal
   doc_type_raw: JOUR/Review
-  pdf_file: 2021-predictors-of-poststroke-aphasia-recovery.pdf
+  key: '@Ali2021'
 - id: C7443
   doi: 10.1177/0269215521999554
   pmid: '33706572'
@@ -332308,6 +332654,12 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 172
+  - stage: full_text
+    decision: exclude
+    reason: not_full_report
+    by: michele
+    date: '2026-10-30'
+    seq: 223
   pdf_file: 1745-6215-14-24.pdf
 - id: C21301
   doi: 10.1111/j.1460-6984.2012.00202.x

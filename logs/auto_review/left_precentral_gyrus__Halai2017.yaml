@@ -174,6 +174,182 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-23T14:01:14'
+- run_id: 3
+  timestamp: '2026-10-30T14:56:02'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/9 quotes (67%) — anchored 2, elided 3, exact 3, near 1
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.11): Performance on the speech quanta factor was
+      uniquely related to a cluster in the…'
+    - '  - [near] f1.statistics (p.9): Results are thresholded at p < .005 voxel-level,
+      p <= .001 family-wise error (FW…'
+    - '  - [anchored] f1.imaging_details (p.5): High-resolution structural T1-weighted
+      MRI scans were acquired on a 3.0 T Philip…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The claim states damage to the left precentral gyrus is 'uniquely
+        associated' with reduced speech quanta. However, the paper explicitly states
+        in Section 3.4 and 3.6 that after adding a covariate for lesion volume, 'no
+        signiﬁcant clusters remained for F1' (the speech quanta factor). The finding
+        is only true when lesion volume is *not* controlled, which is a critical qualification
+        omitted in the claim.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: false
+        omissions: 'The finding is only significant when lesion volume is not controlled.
+          The paper states: ''After adding a co-variate for lesion volume, no signiﬁcant
+          clusters remained for F1 or F2'' (Section 3.4) and ''no signiﬁcant cluster
+          remains for any factor after lesion volume correction'' (Fig 2E caption).
+          The draft presents the result as a robust finding without mentioning that
+          it disappears when accounting for lesion size.'
+        concern: The draft presents a result that the authors themselves qualify as
+          being confounded by lesion size and disappearing upon correction. Presenting
+          it as a primary finding without this limitation is misleading.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The claim\
+      \ states damage to the left precentral gyrus is 'uniquely associated' with reduced\
+      \ speech quanta. However, the paper explicitly states in Section 3.4 and 3.6\
+      \ that after adding a covariate for lesion volume, 'no signiﬁcant clusters remained\
+      \ for F1' (the speech quanta factor). The finding is only true when lesion volume\
+      \ is *not* controlled, which is a critical qualification omitted in the claim.\"\
+      ,\n  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"passage_present\"\
+      : true,\n      \"passage_supports_field\": true,\n      \"relationship_faithful\"\
+      : true,\n      \"strength_fair\": true,\n      \"numbers_match\": true,\n  \
+      \    \"limitations_captured\": false,\n      \"omissions\": \"The finding is\
+      \ only significant when lesion volume is not controlled. The paper s"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 4
+  timestamp: '2026-10-31T00:33:13'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/9 quotes (67%) — anchored 2, elided 3, exact 3, near 1
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.11): Performance on the speech quanta factor was
+      uniquely related to a cluster in the…'
+    - '  - [near] f1.statistics (p.9): Results are thresholded at p < .005 voxel-level,
+      p <= .001 family-wise error (FW…'
+    - '  - [anchored] f1.imaging_details (p.5): High-resolution structural T1-weighted
+      MRI scans were acquired on a 3.0 T Philip…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft claims a 'causal' relationship and states the association
+        is 'unique'. However, the paper describes a 'voxel-based correlational methodology
+        (VBCM)' and uses the term 'correlated' throughout. In neuroimaging, correlation
+        does not equal causation. Additionally, the finding is not 'unique' in the
+        sense of being the only correlate; the paper explicitly mentions the association
+        with the superior insula, putamen, and white matter tracts as part of the
+        same cluster. The claim of 'uniquely associated' is also potentially misleading
+        as it refers to the PCA factor's unique correlation, not the anatomical region's
+        exclusivity.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The draft labels the relationship as 'causal', but the paper uses
+          a correlational methodology (VBCM) and describes the results as 'correlations'.
+          The claim that the association is 'uniquely associated' is also a misinterpretation
+          of the paper's statement that the *factor* was uniquely related to a *cluster*
+          containing several regions (precentral gyrus, insula, putamen, etc.).
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ claims a 'causal' relationship and states the association is 'unique'. However,\
+      \ the paper describes a 'voxel-based correlational methodology (VBCM)' and uses\
+      \ the term 'correlated' throughout. In neuroimaging, correlation does not equal\
+      \ causation. Additionally, the finding is not 'unique' in the sense of being\
+      \ the only correlate; the paper explicitly mentions the association with the\
+      \ superior insula, putamen, and white matter tracts as part of the same cluster.\
+      \ The claim of 'uniquely associated' is also potentially misleading as it refers\
+      \ to the PCA factor's unique correlation, not the anatomical region's exclusivity.\"\
+      ,\n  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"passage_present\"\
+      : true,\n      \"passage_supports_field\": true,\n   "
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T00:33:13'
 latest_verdict: checks_passed
 latest_mode: with_llm_review

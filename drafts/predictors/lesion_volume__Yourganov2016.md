@@ -1,5 +1,5 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: lesion_volume
 name: Total lesion volume
 kind: predictor
@@ -32,6 +32,7 @@ findings:
     handedness: not_reported
     language: not_reported
     phase: chronic
+    cohort: not_reported
   statistics:
     threshold: p < 0.000005
     effect_size: r = 0.5698 to 0.6971
@@ -57,5 +58,11 @@ findings:
     supports: statistics
   region_definition:
     kind: not_reported
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
 ---
 Findings from Yourganov 2016 regarding the predictive value of total lesion volume.

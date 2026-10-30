@@ -315,6 +315,168 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-23T13:28:59'
+- run_id: 5
+  timestamp: '2026-10-30T14:41:00'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/6 quotes (100%) — exact 6
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: A
+  tier_reasons: []
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The claim states that damage to the left lateral prefrontal cortex
+        (BA 45) is 'associated with semantic naming errors', but the paper's results
+        show that this association was statistically eliminated (not significant)
+        once the analysis controlled for non-verbal semantic comprehension (NVcomp).
+        The draft incorrectly presents this as a finding of the study rather than
+        a finding that was subsequently nullified by the authors' own filtering process.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: false
+        numbers_match: true
+        limitations_captured: true
+        omissions: The draft fails to mention that the association with BA 45/46 was
+          not a robust finding of the primary model, as it disappeared when controlling
+          for NVcomp (conceptualization).
+        concern: The claim is misleading. While the unﬁltered analysis showed an association,
+          the authors explicitly state that 'No voxels exceeded threshold' in BA 45/46
+          after filtering for NVcomp. Therefore, the study's conclusion is that the
+          effect is likely due to shared processes with non-verbal comprehension,
+          not a direct association with semantic naming errors itself.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The claim\
+      \ states that damage to the left lateral prefrontal cortex (BA 45) is 'associated\
+      \ with semantic naming errors', but the paper's results show that this association\
+      \ was statistically eliminated (not significant) once the analysis controlled\
+      \ for non-verbal semantic comprehension (NVcomp). The draft incorrectly presents\
+      \ this as a finding of the study rather than a finding that was subsequently\
+      \ nullified by the authors' own filtering process.\",\n  \"per_finding\": [\n\
+      \    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": false,\n      \"strength_fair\": false,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captured\": true,\n   \
+      \   \"omissions\": \"The draft fails to mention that the"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 6
+  timestamp: '2026-10-31T00:15:23'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/6 quotes (100%) — exact 6
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: A
+  tier_reasons: []
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The finding claims a causal relationship ('is associated with...
+        but this effect is mediated by...') which the paper does not establish. The
+        paper reports a correlation (VLSM) and suggests a possible mechanism (mental
+        search/conceptualization), but the relationship is correlational, not causal.
+        Additionally, the claim that the effect is 'mediated' by conceptualization
+        is a hypothesis/interpretation, whereas the statistical analysis (regressing
+        out NVcomp) actually showed that the prefrontal effect *disappeared* when
+        controlling for conceptualization, meaning the prefrontal association was
+        likely a byproduct of the conceptualization deficit rather than a separate
+        process mediated by it.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The claim describes a causal relationship ('is associated with...
+          but this effect is mediated by...') which is a misinterpretation of the
+          correlational VLSM results and the subsequent filtering analysis. The paper
+          states that when controlling for NVcomp (conceptualization), the prefrontal
+          effect was eliminated, suggesting the prefrontal association was not a distinct
+          process but was confounded by/dependent on conceptualization processes.
+          The draft also incorrectly frames the relationship as causal.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The finding\
+      \ claims a causal relationship ('is associated with... but this effect is mediated\
+      \ by...') which the paper does not establish. The paper reports a correlation\
+      \ (VLSM) and suggests a possible mechanism (mental search/conceptualization),\
+      \ but the relationship is correlational, not causal. Additionally, the claim\
+      \ that the effect is 'mediated' by conceptualization is a hypothesis/interpretation,\
+      \ whereas the statistical analysis (regressing out NVcomp) actually showed that\
+      \ the prefrontal effect *disappeared* when controlling for conceptualization,\
+      \ meaning the prefrontal association was likely a byproduct of the conceptualization\
+      \ deficit rather than a separate process mediated by it.\",\n  \"per_finding\"\
+      : [\n    {\n      \"id\": \"f1\",\n      \"passa"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T00:15:23'
 latest_verdict: checks_passed
 latest_mode: with_llm_review

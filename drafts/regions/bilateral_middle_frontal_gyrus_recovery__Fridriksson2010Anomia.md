@@ -5,7 +5,7 @@ name: Bilateral Middle Frontal Gyrus and Right Temporo-Occipital MTG — Fluency
 kind: classical
 status: draft
 created_by: agent:ollama-extract-cli/gemma4:31b-it-q8_0
-created_on: 2026-10-20
+created_on: '2026-10-20'
 hemisphere: left
 findings:
 - id: f1
@@ -75,7 +75,7 @@ findings:
     dynamics of change needed to support recovery.
   provenance:
     extracted_by: agent
-    extracted_on: 2026-01-01
+    extracted_on: '2026-01-01'
     paper_section: 'Results - Primary outcome: fMRI results'
     confidence: high
     flags:
@@ -88,7 +88,7 @@ findings:
       and modulation of cortical areas in the left posterior and anterior hemisphere
     supports: claim
   - section: Materials and Methods
-    page: 2
+    page: 1
     quote: Twenty-six patients (14 women) with chronic stroke and concomitant aphasia were included.
     supports: sample
   - section: Materials and Methods
@@ -123,6 +123,10 @@ findings:
     date: '2026-10-26'
     fields:
     - target
+  - by: human:michele
+    date: '2026-10-30'
+    fields:
+    - source_passages
   therapy:
     id: cueing_hierarchy
     name: cueing hierarchy

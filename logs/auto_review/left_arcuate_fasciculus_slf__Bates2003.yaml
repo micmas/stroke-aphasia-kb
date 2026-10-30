@@ -305,6 +305,160 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-23T12:56:33'
+- run_id: 5
+  timestamp: '2026-10-30T14:28:05'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/3 quotes (100%) — elided 1, exact 2
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - 'f1: strength=''strong'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft claims a causal relationship ('Damage to... is associated
+        with...'), but the paper describes a cross-sectional VLSM study which identifies
+        associations/correlations. Furthermore, the paper explicitly states in the
+        limitations that an area may emerge as relevant due to a 'diaschitic effect'
+        (indirect consequence), which contradicts a direct causal claim. The relationship
+        is recorded as 'causal' when the evidence is correlational.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper describes
+          a correlational VLSM study and explicitly notes that findings could be due
+          to 'diaschitic effects' (indirect consequences) rather than direct causality.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ claims a causal relationship ('Damage to... is associated with...'), but the\
+      \ paper describes a cross-sectional VLSM study which identifies associations/correlations.\
+      \ Furthermore, the paper explicitly states in the limitations that an area may\
+      \ emerge as relevant due to a 'diaschitic effect' (indirect consequence), which\
+      \ contradicts a direct causal claim. The relationship is recorded as 'causal'\
+      \ when the evidence is correlational.\",\n  \"per_finding\": [\n    {\n    \
+      \  \"id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": false,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captured\": true,\n   \
+      \   \"omissions\": \"\",\n      \"concern\": \"The relationship is re"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 6
+  timestamp: '2026-10-30T23:57:49'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/3 quotes (100%) — elided 1, exact 2
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - 'f1: strength=''strong'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The paper text provided is a mixture of two different articles. The
+        first few pages belong to Bates et al. (2003) regarding VLSM and aphasia,
+        which matches the finding. However, the paper text also includes a large section
+        from a completely unrelated article (Mayr et al.) about 'Conflict adaptation
+        effects'. While the specific finding f1 appears to be supported by the Bates
+        et al. portion of the text, the presence of unrelated, potentially conflicting
+        text in the provided 'paper text layer' makes verification unreliable.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The provided text layer is a composite of two different papers. The
+          finding relates to the Bates et al. paper, which is present, but the document
+          also contains a large section of a different paper (Mayr et al.) about 'Conflict
+          adaptation'. This makes the document integrity suspect for a clean verification.
+        verdict: agree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The paper\
+      \ text provided is a mixture of two different articles. The first few pages\
+      \ belong to Bates et al. (2003) regarding VLSM and aphasia, which matches the\
+      \ finding. However, the paper text also includes a large section from a completely\
+      \ unrelated article (Mayr et al.) about 'Conflict adaptation effects'. While\
+      \ the specific finding f1 appears to be supported by the Bates et al. portion\
+      \ of the text, the presence of unrelated, potentially conflicting text in the\
+      \ provided 'paper text layer' makes verification unreliable.\",\n  \"per_finding\"\
+      : [\n    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"\
+      passage_supports_field\": true,\n      \"relationship_faithful\": true,\n  \
+      \    \"strength_fair\": true,\n      \"numbers_match\": true,\n      \"limitatio"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-30T23:57:49'
 latest_verdict: checks_passed
 latest_mode: with_llm_review

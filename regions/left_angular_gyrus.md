@@ -315,6 +315,85 @@ findings:
     fields:
     - cohort
     - lesion_mapping
+- id: f3
+  target: syntactic_processing
+  target_kind: impairment
+  claim: Damage to the left angular gyrus is a significant predictor of performance
+    on canonical sentences in acute aphasia.
+  direction: likely
+  relationship: causal
+  citation: '@Kristinsson2020'
+  method: RLSM
+  design: cross-sectional
+  strength: moderate
+  evidence_quality: cohort
+  sample:
+    n: 104
+    population: acute left-hemisphere stroke patients with aphasia
+    time_post_onset: <20 days poststroke
+    phase: acute
+    age_range: mean 65.2 (SD 10.0) years
+    handedness: not_reported
+    language: English and Icelandic
+    cohort: not_reported
+  statistics:
+    threshold: alpha level of .05
+    effect_size: accounted for 24.8% of the variance in performance on CAN scores
+    p_value: <.001
+  lesion_mapping:
+    analysis: region_based
+    n_analysed: 104
+    min_lesion_overlap: not_reported
+    lesion_volume_correction: covariate
+    multiple_comparisons: not_reported
+  confounders_controlled:
+  - lesion volume
+  confounders_not_controlled: []
+  region_definition:
+    kind: atlas
+    atlas: Faria et al. (2012)
+    description: angular gyrus (AG)
+  imaging_details:
+    field_strength: 1.5T or 3T
+    preprocessing_pipeline: SPM5 unified segmentation and normalization (Icelandic)
+      or Clinical Toolbox/SPM12 enantiomorphic normalization (US)
+    reference_space: MNI152
+    atlases_used:
+    - Faria et al. (2012)
+  author_limitations:
+  - ROI-based approach compromises spatial resolution compared to voxel-based methods.
+  - Only a single measure of sentence comprehension was used.
+  - Behavioral performance was only examined in relation to structural damage, not
+    cerebral perfusion.
+  provenance:
+    extracted_by: agent
+    extracted_on: 2026-01-01
+    paper_section: Results, page 8
+    confidence: high
+    flags: []
+  source_passages:
+  - section: Abstract
+    page: 1
+    quote: Damage to the angular gyrus was the strongest predictor for performance
+      on canonical sentences
+    supports: claim
+  - section: Results
+    page: 8
+    quote: CAN scores were best predicted by damage to AG, MTG, MTGpole, SMG, and
+      STG... Beta values for AG and MTG were negative, and damage to these areas accounted
+      for 24.8% and 9.5% of the variance in performance, respectively.
+    supports: statistics
+  - section: Discussion
+    page: 14
+    quote: Each ROI treated as an independent variable in our models is represented
+      by a single number (proportional damage), regardless of the size of the ROI.
+      Consequently, spatial resolution is compromised.
+    supports: limitation
+  review:
+    reviewer: model:gemma4:26b
+    reviewed_on: '2026-10-30'
+    tier: A
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
 source: extracted
 notes: 'PPA EXCLUSION: This paper includes both acute stroke (N=37 with imaging) and
   primary progressive
@@ -354,4 +433,5 @@ notes: 'PPA EXCLUSION: This paper includes both acute stroke (N=37 with imaging)
   DOI: 10.1080/02687038.2021.1907291'
 reviewer: michele
 reviewed_on: '2026-05-06'
+last_reviewed: '2026-10-30'
 ---

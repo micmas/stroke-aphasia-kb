@@ -85,6 +85,170 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-23T13:41:25'
+- run_id: 2
+  timestamp: '2026-10-30T14:45:57'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/8 quotes (75%) — anchored 2, elided 2, exact 4
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.4): Unless noted otherwise, we applied the
+      threshold at voxel-level P = 0.001 and fa…'
+    - '  - [anchored] f1.imaging_details (p.4): High resolution structural T1-weighted
+      MRI scans were acquired on a 3.0 T Philip…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft incorrectly identifies the relationship as 'causal'. The
+        paper uses a voxel-based correlational methodology (VBCM) to show that brain
+        abnormality is 'associated with' or 'correlated with' component scores. In
+        scientific literature, correlation does not imply causation, and the authors
+        explicitly describe this as a correlational study. Additionally, the claim
+        specifies 'left middle frontal gyrus', while the text describes 'left lateral
+        (middle and inferior frontal gyrus)', which is slightly less precise.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper describes
+          a correlational methodology (VBCM) and uses the term 'associated with'.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ incorrectly identifies the relationship as 'causal'. The paper uses a voxel-based\
+      \ correlational methodology (VBCM) to show that brain abnormality is 'associated\
+      \ with' or 'correlated with' component scores. In scientific literature, correlation\
+      \ does not imply causation, and the authors explicitly describe this as a correlational\
+      \ study. Additionally, the claim specifies 'left middle frontal gyrus', while\
+      \ the text describes 'left lateral (middle and inferior frontal gyrus)', which\
+      \ is slightly less precise.\",\n  \"per_finding\": [\n    {\n      \"id\": \"\
+      f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\": true,\n\
+      \      \"relationship_faithful\": false,\n      \"strength_fair\": true,\n \
+      \     \"numbers_match\": true,\n      \"limitations_capt"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 3
+  timestamp: '2026-10-31T00:21:23'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/8 quotes (75%) — anchored 2, elided 2, exact 4
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.4): Unless noted otherwise, we applied the
+      threshold at voxel-level P = 0.001 and fa…'
+    - '  - [anchored] f1.imaging_details (p.4): High resolution structural T1-weighted
+      MRI scans were acquired on a 3.0 T Philip…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft incorrectly identifies the relationship as 'causal'. The
+        paper describes a 'voxel-based correlational methodology (VBCM)' and states
+        that the component was 'uniquely correlated with' specific regions. Correlation
+        does not imply causation, and the draft's claim of a causal relationship is
+        a misinterpretation of the statistical method used.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper explicitly
+          uses a correlational methodology (VBCM) and describes the relationship as
+          a 'correlation'.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ incorrectly identifies the relationship as 'causal'. The paper describes a\
+      \ 'voxel-based correlational methodology (VBCM)' and states that the component\
+      \ was 'uniquely correlated with' specific regions. Correlation does not imply\
+      \ causation, and the draft's claim of a causal relationship is a misinterpretation\
+      \ of the statistical method used.\",\n  \"per_finding\": [\n    {\n      \"\
+      id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": false,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captured\": true,\n   \
+      \   \"omissions\": \"\",\n      \"concern\": \"The relationship is recorded\
+      \ as 'causal', but the paper explicitly uses a correlational methodology (VBCM)\
+      \ and des"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T00:21:23'
 latest_verdict: checks_passed
 latest_mode: with_llm_review

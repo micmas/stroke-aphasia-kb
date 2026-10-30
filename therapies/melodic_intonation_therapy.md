@@ -223,6 +223,8 @@ findings:
   sample:
     n: 11
     population: chronic acquired AOS and aphasia
+    phase: chronic
+    cohort: not_reported
   evidence_quality: RCT
   strength: moderate
   provenance:
@@ -246,11 +248,19 @@ findings:
     page: 0
     supports: claim
     quote: (citation from clinical knowledge — not formally extracted)
+  - section: added by backfill
+    page: not_reported
+    quote: To restrict influences related to spontaneous recovery, all patients were
+      at least 6 months post-infarction at the time of testing, suggesting a chronic
+      post-stroke stage.
+    supports: sample
   filled:
-    by: tool:backfill.py
-    date: '2026-10-27'
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
     tool: backfill.py
     fields:
+    - cohort
+    - phase
     - therapy
   therapy:
     id: melodic_intonation_therapy

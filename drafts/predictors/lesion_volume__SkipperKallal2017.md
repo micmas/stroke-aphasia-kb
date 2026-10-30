@@ -1,5 +1,5 @@
 ---
-schema_version: 2.6
+schema_version: 2.8
 id: lesion_volume
 name: Total lesion volume
 kind: predictor
@@ -32,6 +32,7 @@ findings:
     age_range: mean 59.8 (SD 10.1)
     handedness: mixed
     language: native English speakers
+    cohort: not_reported
   statistics:
     threshold: cluster corrected P < 0.01
     effect_size: not_reported
@@ -114,6 +115,11 @@ findings:
     quote: This effect may not reflect plasticity at all but rather the increased effort required for
       language tasks by people with larger lesions.
     supports: limitation
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
 ---
-
 Notes: Finding f1 targets a forward-looking ID `right_hemisphere_recruitment` to capture the general phenomenon of contralesional shift.

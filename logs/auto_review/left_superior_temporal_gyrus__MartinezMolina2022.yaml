@@ -1,0 +1,99 @@
+draft_path: drafts/regions/left_superior_temporal_gyrus__MartinezMolina2022.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-31T00:39:16'
+  mode: with_llm_review
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/8 quotes (38%) — anchored 5, elided 1, exact 2
+    - '5 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.6): Lesions linked to poor spontaneous singing were
+      located exclusively in left temp…'
+    - '  - [anchored] f1.sample (p.3): Forty-five chronic stroke patients (25 females,
+      mean age = 64.4 + 10.2 years) we…'
+    - '  - [anchored] f1.statistics (p.6): In addition, a cluster size threshold [family-wise
+      error (FWE) rate; P < 0.05] w…'
+  - name: no_human_review_flags
+    passed: false
+    blocker: false
+    details:
+    - 'f2: lesion_mapping (v2.7 design) not extracted by the model — filled from statistics'
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f2: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: f1 is incorrectly labeled as 'causal'. The paper describes an association/link
+        between lesion location and performance using SVR-LSM, which is a correlational/associative
+        method. Labeling it as 'causal' is a violation of the relationship_faithful
+        check. f2 is correctly identified as correlational.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is labeled as 'causal', but the paper describes
+          an association/link found via SVR-LSM (lesion-symptom mapping), which is
+          a correlational/associative method, not a causal experiment.
+        verdict: disagree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"f1 is incorrectly\
+      \ labeled as 'causal'. The paper describes an association/link between lesion\
+      \ location and performance using SVR-LSM, which is a correlational/associative\
+      \ method. Labeling it as 'causal' is a violation of the relationship_faithful\
+      \ check. f2 is correctly identified as correlational.\",\n  \"per_finding\"\
+      : [\n    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"\
+      passage_supports_field\": true,\n      \"relationship_faithful\": false,\n \
+      \     \"strength_fair\": true,\n      \"numbers_match\": true,\n      \"limitations_captured\"\
+      : true,\n      \"omissions\": \"\",\n      \"concern\": \"The relationship is\
+      \ labeled as 'causal', but the paper describes an association/link found via\
+      \ SVR-LSM (lesion-symptom mapping), which is a correlational/associative "
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T00:39:16'
+latest_verdict: defer_to_human
+latest_mode: with_llm_review

@@ -1,5 +1,5 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: bilateral_middle_frontal_gyrus_recovery
 name: Bilateral Middle Frontal Gyrus and Right Temporo-Occipital MTG — Fluency Recovery
 kind: classical
@@ -62,6 +62,8 @@ findings:
     inclusion_criteria: Left hemisphere infarct; language difficulties at stroke onset;
       premorbidly fluent English; no previous stroke with aphasia.
     exclusion_criteria: Previous stroke resulting in aphasia; other neurological condition.
+    phase: longitudinal
+    cohort: not_reported
   statistics:
     threshold: voxel-wise cluster-forming p < 0.005 (uncorrected), cluster-level p
       < 0.05 FWE corrected
@@ -169,6 +171,14 @@ findings:
     quote: Statistical thresholding used a voxel-wise cluster forming threshold of
       P < 0.005 (uncorrected) and a cluster-level threshold of P < 0.05 after familywise
       error correction
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    unresolved:
+    - phase
 - id: f2
   target: semantic_executive_recovery
   target_kind: impairment
@@ -191,6 +201,8 @@ findings:
     recruitment: Same cohort as f1.
     inclusion_criteria: Left hemisphere infarct; language difficulties at stroke onset.
     exclusion_criteria: Previous stroke with aphasia; other neurological condition.
+    phase: longitudinal
+    cohort: not_reported
   statistics:
     threshold: voxel-wise cluster-forming p < 0.005 (uncorrected), cluster-level p
       < 0.05 FWE
@@ -262,6 +274,14 @@ findings:
     quote: no regions were associated with semantic/executive change before controlling
       for T1 score, yet bilateral ATL clusters were negatively associated with semantic/executive
       recovery after controlling for T1 score
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    unresolved:
+    - phase
 - id: f3
   target: phonology_recovery
   target_kind: impairment
@@ -284,6 +304,8 @@ findings:
     recruitment: Same cohort as f1.
     inclusion_criteria: Left hemisphere infarct; language difficulties at stroke onset.
     exclusion_criteria: Previous stroke with aphasia; other neurological condition.
+    phase: longitudinal
+    cohort: not_reported
   statistics:
     threshold: voxel-wise cluster-forming p < 0.005 (uncorrected), cluster-level p
       < 0.05 FWE
@@ -365,6 +387,14 @@ findings:
     supports: claim
     quote: activation change in the ventromedial prefrontal cortex, dorso-medial frontal
       poles and precuneus was negatively correlated with phonological recovery
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    unresolved:
+    - phase
 - id: f4
   target: fluency
   target_kind: impairment
@@ -387,6 +417,8 @@ findings:
     recruitment: Same cohort as f1.
     inclusion_criteria: Left hemisphere infarct; language difficulties at stroke onset.
     exclusion_criteria: Previous stroke with aphasia; other neurological condition.
+    phase: early_subacute
+    cohort: not_reported
   statistics:
     threshold: voxel-wise cluster-forming p < 0.005 (uncorrected), cluster-level p
       < 0.05 FWE
@@ -448,6 +480,17 @@ findings:
     quote: Mean activation extracted from this cluster was significantly positively
       associated with T1 PC1 score (beta = 0.54, P = 7.1  10–5), even after including
       lesion volume, years of education and age (beta = 0.51, P = 0.0004)
+  - section: added by backfill
+    page: 3
+    quote: at 2 weeks (time point 1, T1) and 4 months (time point 2, T2) post-stroke.
+    supports: sample
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
+    - phase
 reviewer: michele
 reviewed_on: '2026-05-06'
 ---

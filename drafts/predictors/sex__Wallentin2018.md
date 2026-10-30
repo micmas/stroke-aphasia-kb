@@ -1,5 +1,5 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: sex
 name: Patient sex
 kind: predictor
@@ -31,6 +31,7 @@ findings:
     handedness: not_reported
     language: not_reported
     phase: not_reported
+    cohort: not_reported
   statistics:
     threshold: p<0.001
     effect_size: ratio 1.14 (1.10-1.18 95% CI), Cohen's d 0.37
@@ -64,6 +65,12 @@ findings:
     supports: limitation
   region_definition:
     kind: not_reported
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
 - id: f2
   target: aphasia_severity
   target_kind: impairment
@@ -83,6 +90,7 @@ findings:
     handedness: not_reported
     language: English
     phase: not_reported
+    cohort: HCUP
   statistics:
     threshold: p = 0.1
     effect_size: t(273.11) = -1.64
@@ -115,6 +123,18 @@ findings:
     quote: It is important to note that the database does not offer information about age for any individual
       patient. These data are all summery data for the participating states for a particular year (2011-2014).
     supports: limitation
+  - section: added by backfill
+    page: 2
+    quote: 'I then compare the results of the meta-analysis to data from a large American patient database
+      (Healthcare Cost and Utilization Project (HCUP) under Agency for Healthcare Research and Quality,
+      U.S. Department of Health & Human Services: https://hcupnet.ahrq.gov).'
+    supports: sample
   region_definition:
     kind: not_reported
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
 ---

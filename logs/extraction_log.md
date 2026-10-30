@@ -604,3 +604,83 @@ add an `EXTRACTED` line for every run.
 2026-10-30 | PDFS-LINKED | — | screening register | 20 PDFs linked to their records
 2026-10-30 | PDFS-LINKED | — | screening register | 7 PDFs linked to their records
 2026-10-30 | PDFS-LINKED | — | screening register | 2 PDFs linked to their records
+2026-10-30 | PDFS-LINKED | — | screening register | 3 PDFs linked to their records
+2026-10-30 | SCREENED | — | full_text (screen_app) | 68 decisions: exclude 5, include 63 | by: michele
+2026-10-30 | REGISTERED | — | screening → citations.md | 26 entries appended, 0 linked to existing keys
+2026-10-30 | BACKFILLED | @SkipperKallal2017 | cohort | 2 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-30 | BACKFILLED | @Stahl2013 | cohort, phase | 3 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-30 | BACKFILLED | @Stefaniak2022 | cohort, phase | 5 value(s) written, 3 not (no quote found) across 4 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-30 | BACKFILLED | @Stockert2020 | cohort | 2 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-30 | BACKFILLED | @Teghipco2024 | cohort, phase | 4 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-30 | BACKFILLED | @vanderMeulen2014 | cohort | 3 value(s) written, 0 not (no quote found) across 3 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-30 | BACKFILLED | @Wallentin2018 | cohort | 3 value(s) written, 0 not (no quote found) across 3 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-30 | BACKFILLED | @Wilson2023 | cohort, lesion_mapping | 3 value(s) written, 0 not (no quote found) across 2 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-30 | BACKFILLED | @Xing2016 | cohort | 4 value(s) written, 0 not (no quote found) across 4 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-30 | BACKFILLED | @Yourganov2015Predicting | cohort, lesion_mapping, phase | 120 value(s) written, 0 not (no quote found) across 40 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-30 | BACKFILLED | @Yourganov2016 | cohort, lesion_mapping | 11 value(s) written, 0 not (no quote found) across 6 finding(s) | model: gemma4:31b-it-q8_0
+2026-10-30 | RE-EXTRACTED | @Catani2008 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | RE-EXTRACTED | @Dick2012 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | RE-EXTRACTED | @Durfee2021 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | RE-EXTRACTED | @Fritsch2022 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | RE-EXTRACTED | @Glascher2012 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | RE-EXTRACTED | @Hickok2007 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | RE-EXTRACTED | @Karnath2018 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | RE-EXTRACTED | @Mohr2017 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | RE-EXTRACTED | @Plowman2012 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | RE-EXTRACTED | @Simic2019 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | RE-EXTRACTED | @Wilson2019 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | RE-EXTRACTED | @WilsonHula2019 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | RE-EXTRACTED | @vanderMeulen2014 | previous drafts moved to _compare/superseded/2026-10-30/ | current extractor (thinking off)
+2026-10-30 | EXTRACTED | @Catani2008 | arcuate_fasciculus_disconnection | narrative review of AF anatomy and disconnection paradigm
+2026-10-30 | EXTRACTED | @Dick2012 | connectional_anatomy_of_language, left_middle_longitudinal_fasciculus | Review of white matter pathways for language
+2026-10-30 | EXTRACTED | @Durfee2021 | affective_prosody_localization | systematic review of RH prosody localization
+2026-10-30 | EXTRACTED | @Fritsch2022 | thalamic_aphasia | narrative review of thalamic aphasia phenotypes and anatomy
+2026-10-30 | EXTRACTED | @Glascher2012 | left_rostral_anterior_cingulate_cortex, left_middle_frontal_gyrus, left_ventromedial_prefrontal_cortex | VLSM analysis of 344 patients on cognitive control and decision-making tasks.
+2026-10-30 | EXTRACTED | @Hickok2007 | dual_stream_speech_processing | narrative review of dual-stream model
+2026-10-30 | EXTRACTED | @Karnath2018 | lesion_mapping_methods | narrative review of VLBM and MLBM methods
+2026-10-30 | EXTRACTED | @Mohr2017 | neuroplasticity_poststroke_aphasia_mohr2017 | narrative review of therapy-induced plasticity
+2026-10-30 | EXTRACTED | @Plowman2012 | aphasia_prognosis_predictors__Plowman2012 | narrative review of prognostic factors
+2026-10-30 | SCREENED | — | title_abstract (screen_app) | 1 decisions: include 1 | by: michele
+2026-10-30 | REVIEW-EDITED | @Fridriksson2010Anomia | bilateral_middle_frontal_gyrus_recovery | f1:source_passages | 0 reviewer mark(s) pending | reviewer: human:michele
+2026-10-30 | EXTRACTED | @Mohr2017 | neuroplasticity_poststroke_aphasia_mohr2017 | narrative review of therapy-induced plasticity
+2026-10-30 | EXTRACTED | @Wilson2019 | language_mapping_methods | Review of adaptive fMRI paradigms for language mapping
+2026-10-30 | EXTRACTED | @WilsonHula2019 | multivariate_aphasia_approaches | narrative review of multivariate methods
+2026-10-30 | EXTRACTED | @vanderMeulen2014 | melodic_intonation_therapy, time_post_onset | RCT on subacute severe nonfluent aphasia; MIT effective for repetition and communication; earlier start predicts better outcome.
+2026-10-30 | EXTRACTED | @Mohr2017 | neuroplasticity_poststroke_aphasia_mohr2017 | narrative review of therapy-induced plasticity
+2026-10-30 | EXTRACTED | @Simic2019 | executive_functions | Systematic review of EC as a predictor of therapy success
+2026-10-30 | EXTRACTED | @Marien2004 | crossed_aphasia_dextrals | Review of 152 cases, 49 reliable CAD; findings on aphasia types, written language severity, and acalculia.
+2026-10-30 | EXTRACTED | @Coppens2002 | crossed_aphasia | systematic review of 167 cases
+2026-10-30 | EXTRACTED | @Lo2019 | severity_metric | Risk factors for PSCI extracted from STROKOG consortium data.
+2026-10-30 | EXTRACTED | @Jiang2025 | right_dorsolateral_prefrontal_cortex, right_inferior_frontal_gyrus, left_inferior_frontal_gyrus | longitudinal fMRI DCM study on acute/subacute/chronic aphasia
+2026-10-30 | EXTRACTED | @Casilio2025 | left_superior_temporal_gyrus, left_supramarginal_gyrus, left_precentral_gyrus, left_basal_ganglia | 4 findings from acute cohort (n=118) using VLSM
+2026-10-30 | EXTRACTED | @Ding2023 | left_arcuate_fasciculus, left_frontal_aslant_tract, left_superior_longitudinal_fasciculus, lesion_volume | identified dorsal white matter tracts as key correlates of discourse informativeness
+2026-10-30 | EXTRACTED | @Akkad2023 | left_ifg_pars_triangularis, left_posterior_stg, left_middle_temporal_gyrus | VBCM analysis of PCA factors in n=36 chronic aphasia patients
+2026-10-30 | EXTRACTED | @Adezati2022 | left_posterior_stg, left_ifg_pars_triangularis | VLSM/MLPA on n=50 chronic aphasia patients
+2026-10-30 | EXTRACTED | @MartinezMolina2022 | left_superior_temporal_gyrus, left_middle_temporal_gyrus, left_middle_frontal_gyrus | SVR-LSM and VBM analysis of speech vs singing production
+2026-10-30 | EXTRACTED | @Ivanova2021 | left_arcuate_fasciculus | 3 findings on tract segment contributions to language
+2026-10-30 | EXTRACTED | @Wilmskoetter2021 | left_ifg_pars_opercularis, left_angular_gyrus, left_middle_temporal_gyrus | 3 drafts, confidence: high
+2026-10-30 | EXTRACTED | @Lukic2021 | left_superior_temporal_gyrus, left_anterior_temporal_lobe, left_angular_gyrus | VLSM analysis of sentence processing in 76 chronic aphasia patients.
+2026-10-30 | EXTRACTED | @OsaGarcia2020 | initial_aphasia_severity, right_arcuate_fasciculus | Predictors of early subacute aphasia outcome
+2026-10-30 | EXTRACTED | @Kristinsson2020 | left_posterior_middle_temporal_gyrus, left_angular_gyrus, left_posterior_stg, left_ifg_pars_opercularis | ROI-based regression on acute aphasia sample (n=104)
+2026-10-30 | EXTRACTED | @Woollams2018 | left_anterior_temporal_lobe, left_ifg_pars_opercularis | VBCM analysis of phonology/semantics factors
+2026-10-30 | EXTRACTED | @Wright2018 | imaging_metric | RH leukoaraiosis predicts naming and fluency
+2026-10-30 | EXTRACTED | @Halai2018 | left_anterior_temporal_lobe, left_precentral_gyrus, left_superior_temporal_gyrus | VBCM analysis of fused impairment-paraphasia factors
+2026-10-30 | EXTRACTED | @Lee2018 | left_ifg_pars_opercularis, right_ifg_pars_opercularis, left_arcuate_fasciculus_slf | DTI/VBM correlates of aphasia severity
+2026-10-30 | EXTRACTED | @Xing2017 | left_uncinate_fasciculus, left_inferior_longitudinal_fasciculus, left_inferior_fronto_occipital_fasciculus, left_arcuate_fasciculus | DTI correlations of tract integrity and lesion load with WLC and SLC.
+2026-10-30 | EXTRACTED | @Pillay2017 | left_middle_temporal_gyrus | VLSM study on 51 chronic LH stroke patients; MTG identified as specific substrate for multiword integration.
+2026-10-30 | EXTRACTED | @Basilakos2014 | left_anterior_arcuate_fasciculus, left_frontal_aslant_tract, left_uncinate_fasciculus | VBCM analysis of 76 chronic stroke patients
+2026-10-30 | EXTRACTED | @Han2016 | left_arcuate_fasciculus_slf | Causal link between left SLF integrity and phonological production deficits.
+2026-10-30 | EXTRACTED | @Rosso2015 | left_temporoparietal_white_matter_crossroad, lesion_volume | DTI regression and correlation analysis of global aphasia severity
+2026-10-30 | EXTRACTED | @Fridriksson2015 | left_ifg_pars_opercularis, left_superior_temporal_gyrus | VLSM study (n=70) showing Broca's aphasia requires damage to both Broca's and Wernicke's areas.
+2026-10-30 | EXTRACTED | @Stahl2011 | left_basal_ganglia, melodic_intonation_therapy | Basal ganglia lesions predict rhythm benefit; singing showed no effect over rhythmic speech.
+2026-10-30 | EXTRACTED | @Schlaug2010 | melodic_intonation_therapy, right_arcuate_fasciculus | 3 findings extracted from a special report including case-series data.
+2026-10-30 | EXTRACTED | @Sheppard2022 | left_supramarginal_gyrus, left_arcuate_fasciculus_slf, left_ifg_pars_opercularis, left_posterior_stg | longitudinal LASSO regression on acute vs chronic sentence comprehension
+2026-10-30 | EXTRACTED | @Bi2015 | left_arcuate_fasciculus_slf, left_inferior_frontooccipital_fasciculus, left_uncinate_fasciculus, left_anterior_thalamic_radiation | Causal role of WM tracts in tool processing using tractography and VLSM/VFSM.
+2026-10-30 | EXTRACTED | @Ali2021 | age, time_post_onset | IPD meta-analysis of 174 studies; age <55 and enrollment <1 month predict greatest recovery.
+2026-10-30 | MODEL-APPROVED | @OsaGarcia2020 | initial_aphasia_severity | reviewer: model:gemma4:26b | extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0 | tier: A
+2026-10-30 | MODEL-APPROVED | @Rosso2015 | lesion_volume | reviewer: model:gemma4:26b | extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0 | tier: A
+2026-10-30 | MODEL-APPROVED | @Kristinsson2020 | left_angular_gyrus | reviewer: model:gemma4:26b | extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0 | tier: A
+2026-10-30 | MODEL-APPROVED | @Xing2017 | left_arcuate_fasciculus | reviewer: model:gemma4:26b | extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0 | tier: A
+2026-10-30 | MODEL-APPROVED | @Lee2018 | left_arcuate_fasciculus_slf | reviewer: model:gemma4:26b | extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0 | tier: A
+2026-10-31 | MODEL-APPROVED | @Kristinsson2020 | left_ifg_pars_opercularis | reviewer: model:gemma4:26b | extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0 | tier: A
+2026-10-31 | MODEL-APPROVED | @Lee2018 | left_ifg_pars_opercularis | reviewer: model:gemma4:26b | extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0 | tier: A

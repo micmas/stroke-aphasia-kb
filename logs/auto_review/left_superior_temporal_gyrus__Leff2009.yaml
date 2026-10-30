@@ -606,6 +606,270 @@ runs:
     extractor: agent:claude-sonnet-4-6
     independent: true
     papers_missing: []
-last_run: '2026-10-23T14:08:51'
+- run_id: 7
+  timestamp: '2026-10-30T15:00:37'
+  mode: with_llm_review
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: false
+    blocker: true
+    details:
+    - f1 has non-empty contradictions
+    - f2 has non-empty contradictions
+    - f3 has non-empty contradictions
+    - f4 has non-empty contradictions
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 26/28 quotes (93%) — absent 2, exact 26
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.region_definition (p.8): posterior superior temporal gyrus and sulcus
+      lateral and posterior to Heschl''s g…'
+    - '  - f3.region_definition (p.8): posterior superior temporal gyrus and sulcus
+      lateral and posterior to Heschl''s g…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f1: has contradictions'
+  - 'f2: has provenance.flags'
+  - 'f2: has contradictions'
+  - 'f3: has provenance.flags'
+  - 'f3: strength=''strong'''
+  - 'f3: has contradictions'
+  - 'f4: has provenance.flags'
+  - 'f4: has contradictions'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft contains duplicate findings (f1/f3 and f2/f4) and makes
+        strong causal claims ('is causally necessary') that are not supported by the
+        paper's cross-sectional, correlational VBCM design. The paper reports that
+        structural integrity 'predicted' or 'covaried with' capacity, which is a correlational
+        relationship. Additionally, the draft claims the region is 'causally necessary',
+        whereas the authors only suggest it is a 'substrate' or 'necessary' in the
+        context of their lesion-deficit model, which is a distinction in interpretation.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The claim states the region is 'causally necessary', but the study
+          is a cross-sectional correlational VBCM analysis. The paper uses terms like
+          'predicted' and 'covaried', which are correlational. The authors use the
+          word 'necessary' to contrast their lesion-deficit approach with functional
+          imaging, but the evidence provided is still statistical association.
+        verdict: disagree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The claim states the region is 'causally necessary' and 'supports'
+          a shared substrate, but the study design is correlational. The paper reports
+          correlations (r=0.22), not causal necessity.
+        verdict: disagree
+      - id: f3
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: Duplicate of f1. It also incorrectly frames a correlational finding
+          as a causal necessity.
+        verdict: disagree
+      - id: f4
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: Duplicate of f2. It also incorrectly frames a correlational finding
+          as a causal necessity.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ contains duplicate findings (f1/f3 and f2/f4) and makes strong causal claims\
+      \ ('is causally necessary') that are not supported by the paper's cross-sectional,\
+      \ correlational VBCM design. The paper reports that structural integrity 'predicted'\
+      \ or 'covaried with' capacity, which is a correlational relationship. Additionally,\
+      \ the draft claims the region is 'causally necessary', whereas the authors only\
+      \ suggest it is a 'substrate' or 'necessary' in the context of their lesion-deficit\
+      \ model, which is a distinction in interpretation.\",\n  \"per_finding\": [\n\
+      \    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": false,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": true,\n"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:claude-sonnet-4-6
+    independent: true
+    papers_missing: []
+- run_id: 8
+  timestamp: '2026-10-31T00:38:35'
+  mode: with_llm_review
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: false
+    blocker: true
+    details:
+    - f1 has non-empty contradictions
+    - f2 has non-empty contradictions
+    - f3 has non-empty contradictions
+    - f4 has non-empty contradictions
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 26/28 quotes (93%) — absent 2, exact 26
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.region_definition (p.8): posterior superior temporal gyrus and sulcus
+      lateral and posterior to Heschl''s g…'
+    - '  - f3.region_definition (p.8): posterior superior temporal gyrus and sulcus
+      lateral and posterior to Heschl''s g…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f1: has contradictions'
+  - 'f2: has provenance.flags'
+  - 'f2: has contradictions'
+  - 'f3: has provenance.flags'
+  - 'f3: strength=''strong'''
+  - 'f3: has contradictions'
+  - 'f4: has provenance.flags'
+  - 'f4: has contradictions'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft contains duplicate findings (f1/f3 and f2/f4). More importantly,
+        the draft claims a 'causal' relationship for both findings, whereas the paper
+        describes a correlational/predictive relationship based on a cross-sectional
+        VBCM study. The authors use terms like 'predicted' and 'covaried', not 'causally
+        necessary'. This is a significant error in the direction of the claim.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The claim states the region is 'causally necessary', but the paper
+          describes a correlational/predictive relationship (VBCM) and uses the word
+          'predicted'. Cross-sectional studies cannot establish causality.
+        verdict: disagree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The claim states the region is 'causally necessary', but the paper
+          describes a correlational relationship. The authors state the region 'predicts'
+          or 'correlates' with performance.
+        verdict: disagree
+      - id: f3
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: Duplicate of f1. Incorrectly claims causality ('causally necessary')
+          for a correlational finding.
+        verdict: disagree
+      - id: f4
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: Duplicate of f2. Incorrectly claims causality ('causally necessary')
+          for a correlational finding.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ contains duplicate findings (f1/f3 and f2/f4). More importantly, the draft\
+      \ claims a 'causal' relationship for both findings, whereas the paper describes\
+      \ a correlational/predictive relationship based on a cross-sectional VBCM study.\
+      \ The authors use terms like 'predicted' and 'covaried', not 'causally necessary'.\
+      \ This is a significant error in the direction of the claim.\",\n  \"per_finding\"\
+      : [\n    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"\
+      passage_supports_field\": true,\n      \"relationship_faithful\": false,\n \
+      \     \"strength_fair\": true,\n      \"numbers_match\": true,\n      \"limitations_captured\"\
+      : true,\n      \"omissions\": \"\",\n      \"concern\": \"The claim states the\
+      \ region is 'causally necessary', but the paper describes a corr"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:claude-sonnet-4-6
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T00:38:35'
 latest_verdict: defer_to_human
 latest_mode: with_llm_review

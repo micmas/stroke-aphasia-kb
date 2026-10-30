@@ -1,0 +1,105 @@
+draft_path: drafts/regions/left_middle_temporal_gyrus__MartinezMolina2022.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-31T00:24:40'
+  mode: with_llm_review
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/8 quotes (38%) — anchored 5, elided 1, exact 2
+    - '5 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.6): Lesions linked to poor spontaneous singing were
+      located exclusively in left temp…'
+    - '  - [anchored] f1.sample (p.3): Forty-five chronic stroke patients (25 females,
+      mean age = 64.4 + 10.2 years) we…'
+    - '  - [anchored] f1.statistics (p.6): In addition, a cluster size threshold [family-wise
+      error (FWE) rate; P < 0.05] w…'
+  - name: no_human_review_flags
+    passed: false
+    blocker: false
+    details:
+    - 'f2: lesion_mapping (v2.7 design) not extracted by the model — filled from statistics'
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@MartinezMolina2022: sample.n disagrees: [20, 43]'
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f2: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: 'f1 incorrectly claims a causal relationship (''Damage to... is associated
+        with...'') for a lesion-symptom mapping study which is inherently correlational/associational.
+        While the text uses ''associated with'', the draft''s ''relationship: causal''
+        tag is a misinterpretation of the study design. Additionally, f1''s sample
+        size (n=43) refers specifically to the subset with spontaneous singing data,
+        whereas the total cohort is n=45; the draft is technically correct but the
+        distinction is important.'
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is tagged as 'causal', but the paper describes an
+          association/correlation via SVR-LSM. The claim 'Damage... is associated
+          with' is a correlation, not a causal claim.
+        verdict: disagree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"f1 incorrectly\
+      \ claims a causal relationship ('Damage to... is associated with...') for a\
+      \ lesion-symptom mapping study which is inherently correlational/associational.\
+      \ While the text uses 'associated with', the draft's 'relationship: causal'\
+      \ tag is a misinterpretation of the study design. Additionally, f1's sample\
+      \ size (n=43) refers specifically to the subset with spontaneous singing data,\
+      \ whereas the total cohort is n=45; the draft is technically correct but the\
+      \ distinction is important.\",\n  \"per_finding\": [\n    {\n      \"id\": \"\
+      f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\": true,\n\
+      \      \"relationship_faithful\": false,\n      \"strength_fair\": true,\n \
+      \     \"numbers_match\": true,\n      \"limitations_captured\": true,\n    \
+      \  \"omissi"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T00:24:40'
+latest_verdict: defer_to_human
+latest_mode: with_llm_review

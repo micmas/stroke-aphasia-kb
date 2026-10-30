@@ -388,6 +388,199 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-23T14:02:21'
+- run_id: 5
+  timestamp: '2026-10-30T14:56:40'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/11 quotes (45%) — anchored 4, elided 1, exact 4, near 2
+    - '6 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): we were able to identify 31 participants for
+      the study (mean age = 60.07 years, …'
+    - '  - [near] f1.method (p.584): To determine if lesions involving specific perisylvian
+      cortical subdivisions had…'
+    - '  - [near] f1.limitation (p.588): we relied on a mix of clinical and research
+      scans which introduced some variabil…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft incorrectly identifies the relationship for both findings
+        as 'causal'. The paper explicitly describes these as 'lesion-deficit correlations'
+        and 'associations', specifically noting that the results are consistent with
+        'distributed network models' rather than a single causal site. The authors
+        also state that the results 'failed to identify a single cortical area essential
+        for... reading and spelling', which contradicts a direct causal claim for
+        the precentral gyrus.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper describes
+          a correlation/association within a distributed network model and explicitly
+          states that they failed to identify a single critical area.
+        verdict: disagree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper describes
+          a correlation/association. The authors use the term 'correlated' in the
+          text, not 'caused'.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ incorrectly identifies the relationship for both findings as 'causal'. The\
+      \ paper explicitly describes these as 'lesion-deficit correlations' and 'associations',\
+      \ specifically noting that the results are consistent with 'distributed network\
+      \ models' rather than a single causal site. The authors also state that the\
+      \ results 'failed to identify a single cortical area essential for... reading\
+      \ and spelling', which contradicts a direct causal claim for the precentral\
+      \ gyrus.\",\n  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"passage_present\"\
+      : true,\n      \"passage_supports_field\": true,\n      \"relationship_faithful\"\
+      : false,\n      \"strength_fair\": true,\n      \"numbers_match\": true,\n \
+      \     \"limitations_captured\": true,\n      \"omissions\": \"\",\n   "
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 6
+  timestamp: '2026-10-31T00:34:05'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/11 quotes (45%) — anchored 4, elided 1, exact 4, near 2
+    - '6 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): we were able to identify 31 participants for
+      the study (mean age = 60.07 years, …'
+    - '  - [near] f1.method (p.584): To determine if lesions involving specific perisylvian
+      cortical subdivisions had…'
+    - '  - [near] f1.limitation (p.588): we relied on a mix of clinical and research
+      scans which introduced some variabil…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft incorrectly labels the relationship as 'causal' for both
+        findings. The paper reports correlations (r values) and chi-square associations,
+        which are correlational/associational. The authors explicitly state that lesion-deficit
+        correlations 'may be produced by damage to a variety of perisylvian cortical
+        regions' and discuss the 'neural network' model, which is a distributed association
+        rather than a direct causal claim for a single area like the precentral gyrus.
+        This mismatch in relationship type requires a deferral.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper reports associations
+          and chi-square correlations. The authors discuss a distributed network rather
+          than a direct causal link for the precentral gyrus specifically.
+        verdict: disagree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper reports a
+          correlation (r = .451). A correlation is not a causal relationship.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ incorrectly labels the relationship as 'causal' for both findings. The paper\
+      \ reports correlations (r values) and chi-square associations, which are correlational/associational.\
+      \ The authors explicitly state that lesion-deficit correlations 'may be produced\
+      \ by damage to a variety of perisylvian cortical regions' and discuss the 'neural\
+      \ network' model, which is a distributed association rather than a direct causal\
+      \ claim for a single area like the precentral gyrus. This mismatch in relationship\
+      \ type requires a deferral.\",\n  \"per_finding\": [\n    {\n      \"id\": \"\
+      f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\": true,\n\
+      \      \"relationship_faithful\": false,\n      \"strength_fair\": true,\n \
+      \     \"numbers_match\": true,\n      \"lim"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T00:34:05'
 latest_verdict: checks_passed
 latest_mode: with_llm_review

@@ -1,5 +1,5 @@
 ---
-schema_version: 2.6
+schema_version: 2.8
 id: severity_metric
 name: Aphasia severity metric (instrument-agnostic)
 kind: predictor
@@ -38,6 +38,7 @@ findings:
     age_range: mean 62.6 (SD 13.6)
     handedness: 193 R; 20 L; 5 Am
     language: English
+    cohort: not_reported
   statistics:
     threshold: P < 0.0001
     effect_size: explained 44.9% of the variance
@@ -89,4 +90,10 @@ findings:
     page: 1036
     quote: Longitudinal data were acquired for only 121 (56%) of the individuals with aphasia.
     supports: limitation
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
 ---

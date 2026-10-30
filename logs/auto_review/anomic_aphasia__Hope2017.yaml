@@ -170,6 +170,255 @@ runs:
   review_tier: B
   tier_reasons:
   - PDF quote match not run or not passed
-last_run: '2026-10-23T12:28:13'
-latest_verdict: auto_reject
-latest_mode: deterministic_only
+- run_id: 6
+  timestamp: '2026-10-30T10:14:06'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — absent 1, anchored 1, exact 3
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.statistics (p.1724): ...we found changes in the spoken object naming
+      scores were significantly correl…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: approve
+      rationale: The finding accurately reflects the paper's core conclusion. The
+        claim regarding word-finding vs. articulation is explicitly supported by the
+        comparison between spoken object naming and auditory repetition (which requires
+        articulation). All statistics (r=0.71, p=0.001), sample details (n=28, mean
+        T1/T2), and the specific limitation regarding day-to-day experiences are correctly
+        extracted and verified against the text.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: override_approve
+    raw_preview: "{\n  \"overall_verdict\": \"approve\",\n  \"rationale\": \"The finding\
+      \ accurately reflects the paper's core conclusion. The claim regarding word-finding\
+      \ vs. articulation is explicitly supported by the comparison between spoken\
+      \ object naming and auditory repetition (which requires articulation). All statistics\
+      \ (r=0.71, p=0.001), sample details (n=28, mean T1/T2), and the specific limitation\
+      \ regarding day-to-day experiences are correctly extracted and verified against\
+      \ the text.\",\n  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"\
+      passage_present\": true,\n      \"passage_supports_field\": true,\n      \"\
+      relationship_faithful\": true,\n      \"strength_fair\": true,\n      \"numbers_match\"\
+      : true,\n      \"limitations_captured\": true,\n      \"omissions\": \"\",\n\
+      \      \"concern\": \"\",\n      \"verdict\": \"agree\"\n    }\n  ]\n}"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - approve
+    - approve
+    - approve
+    unanimous: true
+    guardrails:
+    - model said approve on Tier B; recorded as agree_defer — a person must approve
+      this tier
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 7
+  timestamp: '2026-10-30T13:57:06'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — absent 1, anchored 1, exact 3
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.statistics (p.1724): ...we found changes in the spoken object naming
+      scores were significantly correl…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: approve
+      rationale: The finding accurately reflects the paper's core conclusion. The
+        claim regarding word-finding vs. articulation is supported by the comparison
+        between spoken object naming, written object naming (no articulation), and
+        auditory repetition (high articulation). All statistics (r=0.71, p=0.001),
+        sample details (n=28, mean T1/T2 months), and limitations are correctly extracted
+        and verified against the text.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: override_approve
+    raw_preview: "{\n  \"overall_verdict\": \"approve\",\n  \"rationale\": \"The finding\
+      \ accurately reflects the paper's core conclusion. The claim regarding word-finding\
+      \ vs. articulation is supported by the comparison between spoken object naming,\
+      \ written object naming (no articulation), and auditory repetition (high articulation).\
+      \ All statistics (r=0.71, p=0.001), sample details (n=28, mean T1/T2 months),\
+      \ and limitations are correctly extracted and verified against the text.\",\n\
+      \  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"passage_present\"\
+      : true,\n      \"passage_supports_field\": true,\n      \"relationship_faithful\"\
+      : true,\n      \"strength_fair\": true,\n      \"numbers_match\": true,\n  \
+      \    \"limitations_captured\": true,\n      \"omissions\": \"\",\n      \"concern\"\
+      : \"\",\n      \"verdict\": \"agree\"\n    }\n  ]\n}"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - approve
+    - approve
+    - approve
+    unanimous: true
+    guardrails:
+    - model said approve on Tier B; recorded as agree_defer — a person must approve
+      this tier
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 8
+  timestamp: '2026-10-30T23:28:01'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — absent 1, anchored 1, exact 3
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.statistics (p.1724): ...we found changes in the spoken object naming
+      scores were significantly correl…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: approve
+      rationale: The finding accurately reflects the paper's conclusion that spoken
+        object naming changes are driven by word-retrieval (word-finding) rather than
+        articulation. The statistical values (r=0.71, p=0.001), sample details (n=28,
+        specific timeframes), and the authors' stated limitation regarding the complexity
+        of impairment-based measures vs. daily experience are all verified verbatim
+        from the text.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: override_approve
+    raw_preview: "{\n  \"overall_verdict\": \"approve\",\n  \"rationale\": \"The finding\
+      \ accurately reflects the paper's conclusion that spoken object naming changes\
+      \ are driven by word-retrieval (word-finding) rather than articulation. The\
+      \ statistical values (r=0.71, p=0.001), sample details (n=28, specific timeframes),\
+      \ and the authors' stated limitation regarding the complexity of impairment-based\
+      \ measures vs. daily experience are all verified verbatim from the text.\",\n\
+      \  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"passage_present\"\
+      : true,\n      \"passage_supports_field\": true,\n      \"relationship_faithful\"\
+      : true,\n      \"strength_fair\": true,\n      \"numbers_match\": true,\n  \
+      \    \"limitations_captured\": true,\n      \"omissions\": \"\",\n      \"concern\"\
+      : \"\",\n      \"verdict\": \"agree\"\n    }\n  ]\n}"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - approve
+    - approve
+    - approve
+    unanimous: true
+    guardrails:
+    - model said approve on Tier B; recorded as agree_defer — a person must approve
+      this tier
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-30T23:28:01'
+latest_verdict: checks_passed
+latest_mode: with_llm_review

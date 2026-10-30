@@ -395,6 +395,176 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-23T12:43:02'
+- run_id: 6
+  timestamp: '2026-10-30T14:16:56'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/6 quotes (83%) — anchored 1, exact 5
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.3): Z (Gaussianised T/F) statistic images were
+      thresholded using clusters determined…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The finding claims increased activation in the 'left middle frontal
+        gyrus' is associated with improved naming. While the paper does report a local
+        maximum in the Middle Frontal Gyrus (Table 1), the primary claim in the Results
+        section (p.4) and Discussion (p.5) refers more broadly to 'modulation of cortical
+        areas in the left posterior and anterior hemisphere' or 'left frontal and
+        parietal regions'. The draft is overly specific to one voxel cluster without
+        noting that the paper describes a wider network.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The claim is highly specific to the 'middle frontal gyrus', whereas
+          the paper's main takeaway is a broader network (frontal and parietal). While
+          the statistics for that specific voxel match, the draft presents a specific
+          anatomical finding as the central claim, which may be misleading regarding
+          the study's scope.
+        verdict: agree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The finding\
+      \ claims increased activation in the 'left middle frontal gyrus' is associated\
+      \ with improved naming. While the paper does report a local maximum in the Middle\
+      \ Frontal Gyrus (Table 1), the primary claim in the Results section (p.4) and\
+      \ Discussion (p.5) refers more broadly to 'modulation of cortical areas in the\
+      \ left posterior and anterior hemisphere' or 'left frontal and parietal regions'.\
+      \ The draft is overly specific to one voxel cluster without noting that the\
+      \ paper describes a wider network.\",\n  \"per_finding\": [\n    {\n      \"\
+      id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": true,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captured\": true"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 7
+  timestamp: '2026-10-30T23:43:56'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/6 quotes (83%) — anchored 1, exact 5
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.3): Z (Gaussianised T/F) statistic images were
+      thresholded using clusters determined…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft incorrectly identifies the target brain region for the
+        finding. The claim specifies the 'left middle frontal gyrus', but the paper's
+        primary result (and the provided quote for the claim) refers to 'left posterior
+        and anterior hemisphere' modulation. While the Middle Frontal Gyrus is listed
+        in Table 1 as part of the anterior cluster, the claim is too specific/narrow
+        compared to the broader finding described in the text, and the provided quote
+        does not explicitly mention the middle frontal gyrus.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The claim specifies the 'left middle frontal gyrus', but the quoted
+          passage provided for the [claim] refers to 'left posterior and anterior
+          hemisphere'. While the Middle Frontal Gyrus is in Table 1, the claim is
+          a specific subset of the broader result. More importantly, the direction
+          of the relationship is 'associated with', but the paper describes a 'positive
+          relationship' (correlation) used to predict outcome. The draft labels it
+          'treatment_response', which is acceptable given the context of the regression,
+          but the specificity of the anatomical target in the claim is not directly
+          supported by the quoted passage.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ incorrectly identifies the target brain region for the finding. The claim\
+      \ specifies the 'left middle frontal gyrus', but the paper's primary result\
+      \ (and the provided quote for the claim) refers to 'left posterior and anterior\
+      \ hemisphere' modulation. While the Middle Frontal Gyrus is listed in Table\
+      \ 1 as part of the anterior cluster, the claim is too specific/narrow compared\
+      \ to the broader finding described in the text, and the provided quote does\
+      \ not explicitly mention the middle frontal gyrus.\",\n  \"per_finding\": [\n\
+      \    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": true,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captured\": tru"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-30T23:43:56'
 latest_verdict: checks_passed
 latest_mode: with_llm_review

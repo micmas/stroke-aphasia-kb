@@ -1,0 +1,93 @@
+draft_path: drafts/regions/right_arcuate_fasciculus__Schlaug2010.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-31T00:48:24'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 1/2 quotes (50%) — anchored 1, exact 1
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.limitation (p.659): The most likely explanation for these
+      imaging results are changes in myelination…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft incorrectly claims a causal association ('is associated
+        with') for a finding that the paper explicitly describes as a 'strong trend
+        for a correlation (p = 0.08)' regarding CIUs and the AF. Furthermore, while
+        the DTI finding (Figure 2) shows a visible increase in the AF for one patient,
+        the text describes the CIU/AF relationship as a correlation, not a direct
+        finding of the DTI imaging itself. The draft also mischaracterizes the strength
+        of the evidence by omitting the p-value (0.08) which indicates a trend rather
+        than a significant association.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: false
+        numbers_match: false
+        limitations_captured: true
+        omissions: The paper states the change in CIUs showed a 'strong trend for
+          a correlation (p = 0.08)' with the change in the size of the right AF, whereas
+          the draft presents the claim as a direct association without noting the
+          non-significant p-value or the correlational nature of that specific link.
+        concern: The draft claims an association exists, but the paper reports a 'strong
+          trend for a correlation' with a p-value of 0.08, which is not statistically
+          significant. Additionally, the draft conflates the visual DTI observation
+          (which is a case study of one patient) with a general claim of association.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ incorrectly claims a causal association ('is associated with') for a finding\
+      \ that the paper explicitly describes as a 'strong trend for a correlation (p\
+      \ = 0.08)' regarding CIUs and the AF. Furthermore, while the DTI finding (Figure\
+      \ 2) shows a visible increase in the AF for one patient, the text describes\
+      \ the CIU/AF relationship as a correlation, not a direct finding of the DTI\
+      \ imaging itself. The draft also mischaracterizes the strength of the evidence\
+      \ by omitting the p-value (0.08) which indicates a trend rather than a significant\
+      \ association.\",\n  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n    \
+      \  \"passage_present\": true,\n      \"passage_supports_field\": true,\n   \
+      \   \"relationship_faithful\": false,\n      \"strength_fair\": false,\n   \
+      \   \"nu"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-31T00:48:24'
+latest_verdict: checks_passed
+latest_mode: with_llm_review

@@ -1,0 +1,2175 @@
+# Licence of each paper in the bibliography — written by `screen.py licences` (scripts/licences.py)
+# from Crossref, Unpaywall and the PDF's own pages. Categories: cc, cc_manuscript, free_to_read,
+# rights_reserved, unknown. Do not edit by hand; re-run with --refresh to update.
+papers:
+  '@Adezati2022':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.ynirp.2021.100076
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Akkad2023':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.nicl.2023.103452
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Ali2021':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.1161/strokeaha.120.031162
+    version: published
+    source: unpaywall
+    doi: 10.1161/strokeaha.120.031162
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Alyahya2018NounVerb':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.nicl.2018.01.023
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Alyahya2020':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1093/brain/awaa074
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Baldo2006':
+    category: cc_manuscript
+    label: CC BY
+    url: https://archive-ouverte.unige.ch/unige:10170
+    version: preprint
+    source: unpaywall
+    doi: 10.1017/s1355617706061078
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Baldo2011':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://www.elsevier.com/tdm/userlicense/1.0/
+    version: tdm
+    source: crossref
+    doi: 10.1016/j.cortex.2010.07.001
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Baldo2013':
+    category: free_to_read
+    label: free to read
+    url: http://europepmc.org/articles/PMC3613759
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1016/j.cortex.2012.03.001
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Barbieri2023':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1016/j.cortex.2022.11.008
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1016/j.cortex.2022.11.008
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Basilakos2014':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.3389/fnhum.2014.00845
+    version: published
+    source: unpaywall
+    doi: 10.3389/fnhum.2014.00845
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Basilakos2015':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/4442076
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1161/strokeaha.115.009211
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Basilakos2019':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/6693961
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1177/1545968319862561
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Bates2003':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: http://www.springer.com/tdm
+    version: tdm
+    source: crossref
+    doi: 10.1038/nn1050
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Benghanem2019':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: http://www.springer.com/tdm
+    version: tdm
+    source: crossref
+    doi: 10.1007/s00415-019-09259-3
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Benjamin2014':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/4090303
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1177/1545968313517754
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Bhogal2003':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1161/01.str.0000062343.64383.d0
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Bi2015':
+    category: cc
+    label: CC BY-NC-SA 4.0
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+    version: published
+    source: crossref
+    doi: 10.1523/jneurosci.3709-14.2015
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Biesbroek2017':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1042/cs20160452
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Billot2022':
+    category: cc
+    label: CC BY-NC-ND
+    url: https://doi.org/10.1161/strokeaha.121.036749
+    version: published
+    source: unpaywall
+    doi: 10.1161/strokeaha.121.036749
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Binder2009':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1093/cercor/bhp055
+    version: published
+    source: unpaywall
+    doi: 10.1093/cercor/bhp055
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Bonilha2014':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/4504196
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1161/strokeaha.113.004137
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Bonilha2016':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/4703576
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1177/1545968315593808
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Boyle2004':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1044/1058-0360(2004/025)
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Brady2016':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1002/14651858.cd000425.pub4
+    version: published
+    source: unpaywall
+    doi: 10.1002/14651858.cd000425.pub4
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Brady2022':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1177/17474930221097477
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Brady2022RELEASE':
+    category: unknown
+    checked: '2026-10-30'
+    consulted:
+    - pdf
+  '@Breier2008':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.3174/ajnr.a0846
+    version: published
+    source: unpaywall
+    doi: 10.3174/ajnr.a0846
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Breining2022':
+    category: cc_manuscript
+    label: CC BY-NC
+    url: https://digitalcommons.chapman.edu/comm_science_articles/30
+    version: preprint
+    source: unpaywall
+    doi: 10.1080/02687038.2021.1907291
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Breitenstein2017':
+    category: free_to_read
+    label: other oa
+    url: https://research.manchester.ac.uk/files/56719525/THELANCET_D_16_06318R1_as_accepted_01.11.2016.pdf
+    version: preprint
+    source: unpaywall
+    doi: 10.1016/s0140-6736(17)30067-3
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Brookshire2014':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1080/02687038.2014.945389
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Brownsett2014':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.1093/brain/awt289
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awt289
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Buchsbaum2011':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/3090694
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1016/j.bandl.2010.12.001
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Butler2014':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.1093/brain/awu286
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awu286
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Casilio2025':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1093/brain/awae195
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Catani2008':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1016/j.cortex.2008.04.002
+    version: published
+    source: unpaywall
+    doi: 10.1016/j.cortex.2008.04.002
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Coppens2002':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://www.elsevier.com/tdm/userlicense/1.0/
+    version: tdm
+    source: crossref
+    doi: 10.1016/s0093-934x(02)00510-2
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Corbetta2015':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1016/j.neuron.2015.02.027
+    version: published
+    source: unpaywall
+    doi: 10.1016/j.neuron.2015.02.027
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Cote2007':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1080/02687030701192331
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Crosson1999':
+    category: unknown
+    checked: '2026-10-30'
+    consulted:
+    - pdf
+  '@DeWitt2012':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/3286918
+    version: published
+    source: unpaywall
+    doi: 10.1073/pnas.1113427109
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@DenOuden2019':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/6445708
+    version: published
+    source: unpaywall
+    doi: 10.1002/hbm.24514
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Dick2012':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1093/brain/aws222
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Ding2023':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1093/braincomms/fcad310
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Dresang2022':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1101/2021.07.28.21260995
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1177/15459683221096391
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Dronkers1996':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: http://www.springer.com/tdm
+    version: tdm
+    source: crossref
+    doi: 10.1038/384159a0
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Dronkers2004':
+    category: free_to_read
+    label: other oa
+    url: http://hdl.handle.net/11858/00-001M-0000-0012-6912-A
+    version: preprint
+    source: unpaywall
+    doi: 10.1016/j.cognition.2003.11.002
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Durfee2021':
+    category: cc_manuscript
+    label: CC BY-NC-ND
+    url: https://digitalcommons.chapman.edu/comm_science_articles/31
+    version: preprint
+    source: unpaywall
+    doi: 10.1016/j.bandc.2021.105759
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Efstratiadou2018':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1044/2018_jslhr-l-16-0330
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@ElHachioui2013':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1136/jnnp-2012-302596
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Elsner2019':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1002/14651858.cd009760.pub4
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Forkel2014':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1093/brain/awu113
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awu113
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Fridriksson2010':
+    category: cc
+    label: CC BY-NC-SA 4.0
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+    version: published
+    source: crossref
+    doi: 10.1523/jneurosci.1120-10.2010
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Fridriksson2010Anomia':
+    category: cc
+    label: CC BY-NC-SA 4.0
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+    version: published
+    source: crossref
+    doi: 10.1523/jneurosci.2227-10.2010
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Fridriksson2013':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/3808690
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awt267
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Fridriksson2015':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1093/cercor/bhu152
+    version: published
+    source: unpaywall
+    doi: 10.1093/cercor/bhu152
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Fridriksson2018':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1073/pnas.1614038114
+    version: published
+    source: unpaywall
+    doi: 10.1073/pnas.1614038114
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Fridriksson2018Anatomy':
+    category: free_to_read
+    label: free to read
+    url: http://europepmc.org/pmc/articles/PMC5837461
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awx363
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Fridriksson2018BDNF':
+    category: cc
+    label: CC BY-NC-ND 4.0
+    url: http://creativecommons.org/licenses/by-nc-nd/4.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.brs.2018.08.009
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Fridriksson2018JAMA':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1001/jamaneurol.2018.2287
+    version: published
+    source: unpaywall
+    doi: 10.1001/jamaneurol.2018.2287
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Fritsch2022':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0
+    version: published
+    source: crossref
+    doi: 10.1007/s11910-022-01242-2
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@GajardoVidal2021':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1093/brain/awaa460
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Geranmayeh2017':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1093/brain/awx134
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Geschwind1965':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1093/brain/88.2.237
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Gilmore2019':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1016/j.apmr.2018.12.024
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1016/j.apmr.2018.12.024
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Glascher2012':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/3437894
+    version: published
+    source: unpaywall
+    doi: 10.1073/pnas.1206608109
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Godecke2021':
+    category: cc
+    label: CC BY-NC 4.0
+    url: https://creativecommons.org/licenses/by-nc/4.0/
+    version: published
+    source: crossref
+    doi: 10.1177/1747493020961926
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Goldenberg1994':
+    category: unknown
+    doi: 10.1006/brln.1994.1067
+    checked: '2026-10-30'
+    consulted:
+    - pdf
+  '@Griffis2017':
+    category: cc
+    label: CC BY-NC-ND 4.0
+    url: http://creativecommons.org/licenses/by-nc-nd/4.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.nicl.2017.02.019
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Halai2017':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.cortex.2016.04.016
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Halai2018':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.nicl.2017.10.037
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Han2013':
+    category: cc_manuscript
+    label: CC BY
+    url: http://nrs.harvard.edu/urn-3:HUL.InstRepos:33719908
+    version: preprint
+    source: unpaywall
+    doi: 10.1093/brain/awt205
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Han2016':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: http://www.springer.com/tdm
+    version: tdm
+    source: crossref
+    doi: 10.1007/s00429-014-0926-2
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Hartwigsen2019':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://www.elsevier.com/tdm/userlicense/1.0/
+    version: tdm
+    source: crossref
+    doi: 10.1016/j.neuroimage.2017.11.056
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Harvey2022':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/9855303
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1080/02687038.2021.1966374
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Hazelton2022':
+    category: cc
+    label: CC BY-NC
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/9631864
+    version: published
+    source: unpaywall
+    doi: 10.1002/14651858.cd007039.pub3
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Henseler2014':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1093/brain/awt374
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Hickok2007':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: http://www.springer.com/tdm
+    version: tdm
+    source: crossref
+    doi: 10.1038/nrn2113
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Hillis2001':
+    category: rights_reserved
+    label: publisher terms (onlinelibrary.wiley.com)
+    url: http://onlinelibrary.wiley.com/termsAndConditions#vor
+    version: vor
+    source: crossref
+    doi: 10.1002/ana.1265
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Hillis2002':
+    category: unknown
+    checked: '2026-10-30'
+    consulted:
+    - pdf
+  '@Hillis2004':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1093/brain/awh172
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Hillis2006':
+    category: cc
+    label: CC BY-NC-SA 4.0
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+    version: published
+    source: crossref
+    doi: 10.1523/jneurosci.2088-06.2006
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Hillis2007':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1212/01.wnl.0000265600.69385.6f
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+  '@Hope2013':
+    category: cc
+    label: CC BY 3.0
+    url: http://creativecommons.org/licenses/by/3.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.nicl.2013.03.005
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Hope2017':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1093/brain/awx086
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Hope2018':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.nicl.2018.03.037
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Hosomi2009':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: http://www.springer.com/tdm
+    version: tdm
+    source: crossref
+    doi: 10.1007/s00234-009-0534-7
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Hu2025':
+    category: cc
+    label: CC BY-NC-ND 4.0
+    url: http://creativecommons.org/licenses/by-nc-nd/4.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.neuroimage.2025.121300
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Itabashi2015':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1161/strokeaha.115.010402
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Ivanova2016':
+    category: free_to_read
+    label: other oa
+    url: https://research.rug.nl/en/publications/feded747-0ece-4748-8ec2-4b31677b2382
+    version: published
+    source: unpaywall
+    doi: 10.1016/j.cortex.2016.04.019
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Ivanova2021':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.3389/fnhum.2021.672665
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Jiang2025':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1093/brain/awaf036
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Johnson2019':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/6802862
+    version: published
+    source: unpaywall
+    doi: 10.1044/2018_ajslp-18-0123
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Karnath2018':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/5777219
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1016/j.neuroimage.2017.10.028
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Kasdan2025':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1162/nol.a.9
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Kristinsson2020':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/7132331
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1162/jocn_a_01478
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Kristinsson2021':
+    category: cc
+    label: CC BY-NC-ND 4.0
+    url: http://creativecommons.org/licenses/by-nc-nd/4.0/
+    version: published
+    source: crossref
+    doi: 10.1002/hbm.25321
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Kristinsson2025':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1093/braincomms/fcaf246
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Kummerer2013':
+    category: cc
+    label: CC BY-NC
+    url: https://doi.org/10.1093/brain/aws354
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/aws354
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Lacey2017':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1177/1545968316688797
+    version: published
+    source: unpaywall
+    doi: 10.1177/1545968316688797
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Laska2001':
+    category: rights_reserved
+    label: publisher terms (onlinelibrary.wiley.com)
+    url: http://onlinelibrary.wiley.com/termsAndConditions#vor
+    version: vor
+    source: crossref
+    doi: 10.1046/j.1365-2796.2001.00812.x
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Laver2025':
+    category: cc
+    label: CC BY-NC
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/12178777
+    version: published
+    source: unpaywall
+    doi: 10.1002/14651858.cd008349.pub5
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Lazar2008':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1136/jnnp.2007.122457
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Lazar2010':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1161/strokeaha.109.577338
+    version: published
+    source: unpaywall
+    doi: 10.1161/strokeaha.109.577338
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Lee2018':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1097/wnr.0000000000000929
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Leff2009':
+    category: cc
+    label: CC BY-NC
+    url: https://doi.org/10.1093/brain/awp273
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awp273
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Leonard2008':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1080/02687030701831474
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Li2017':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://www.elsevier.com/tdm/userlicense/1.0/
+    version: tdm
+    source: crossref
+    doi: 10.1016/j.neuropsychologia.2017.05.008
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Lo2019':
+    category: cc
+    label: CC BY-NC-ND
+    url: https://doi.org/10.1212/wnl.0000000000008612
+    version: published
+    source: unpaywall
+    doi: 10.1212/wnl.0000000000008612
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Lukic2017':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1155/2017/5601509
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Lukic2021':
+    category: cc
+    label: CC BY-NC-ND 4.0
+    url: http://creativecommons.org/licenses/by-nc-nd/4.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.neuroimage.2020.117374
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Maher2006':
+    category: rights_reserved
+    label: publisher terms (cambridge.org)
+    url: https://www.cambridge.org/core/terms
+    version: unspecified
+    source: crossref
+    doi: 10.1017/s1355617706061029
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Marchina2011':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1161/strokeaha.110.606103
+    version: published
+    source: unpaywall
+    doi: 10.1161/strokeaha.110.606103
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Marien2004':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://www.elsevier.com/tdm/userlicense/1.0/
+    version: tdm
+    source: crossref
+    doi: 10.1016/s0010-9452(08)70920-1
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@MartinezMolina2022':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1093/braincomms/fcac001
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@MassonTrottier2021':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.3390/brainsci11111458
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Matchin2020':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.1162/nol_a_00010
+    version: published
+    source: unpaywall
+    doi: 10.1162/nol_a_00010
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Meinzer2010':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://www.elsevier.com/tdm/userlicense/1.0/
+    version: tdm
+    source: crossref
+    doi: 10.1016/j.neuroimage.2010.06.004
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Mirman2015':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1038/ncomms7762
+    version: published
+    source: unpaywall
+    doi: 10.1038/ncomms7762
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@MirmanThye2018':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://journals.sagepub.com/page/policies/text-and-data-mining-license
+    version: tdm
+    source: crossref
+    doi: 10.1177/0963721418787486
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Mitchell2017':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1002/14651858.cd002088.pub3
+    version: published
+    source: unpaywall
+    doi: 10.1002/14651858.cd002088.pub3
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Mohr2017':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.3389/fnhum.2017.00332
+    version: published
+    source: unpaywall
+    doi: 10.3389/fnhum.2017.00332
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Munsch2016':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1161/strokeaha.115.011242
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@NadeauCrosson1997':
+    category: unknown
+    checked: '2026-10-30'
+    consulted:
+    - pdf
+  '@Naeser2005':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://www.elsevier.com/tdm/userlicense/1.0/
+    version: tdm
+    source: crossref
+    doi: 10.1016/j.bandl.2004.08.004
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Nouwens2017':
+    category: cc
+    label: CC BY-NC 4.0
+    url: https://creativecommons.org/licenses/by-nc/4.0/
+    version: published
+    source: crossref
+    doi: 10.1177/2396987317698327
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Ochfeld2010':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1161/strokeaha.109.570374
+    version: published
+    source: unpaywall
+    doi: 10.1161/strokeaha.109.570374
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Oeckel2021':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1093/braincomms/fcab040
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@OsaGarcia2020':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.3389/fneur.2020.00120
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Pedersen1995':
+    category: rights_reserved
+    label: publisher terms (onlinelibrary.wiley.com)
+    url: http://onlinelibrary.wiley.com/termsAndConditions#vor
+    version: vor
+    source: crossref
+    doi: 10.1002/ana.410380416
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Pedersen2004':
+    category: rights_reserved
+    label: publisher terms (karger.com)
+    url: https://www.karger.com/Services/SiteLicenses
+    version: vor
+    source: crossref
+    doi: 10.1159/000073896
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Pendlebury2009':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://www.elsevier.com/tdm/userlicense/1.0/
+    version: tdm
+    source: crossref
+    doi: 10.1016/s1474-4422(09)70236-4
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Pflugshaupt2009':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1093/brain/awp141
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awp141
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Pillay2017':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1212/wnl.0000000000003683
+    version: published
+    source: unpaywall
+    doi: 10.1212/wnl.0000000000003683
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Plowman2012':
+    category: rights_reserved
+    label: publisher terms (onlinelibrary.wiley.com)
+    url: http://onlinelibrary.wiley.com/termsAndConditions#vor
+    version: vor
+    source: crossref
+    doi: 10.1111/j.1365-2753.2011.01650.x
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Pulvermuller2001':
+    category: cc_manuscript
+    label: CC BY-NC-ND
+    url: http://nbn-resolving.de/urn:nbn:de:bsz:352-opus-41933
+    version: preprint
+    source: unpaywall
+    doi: 10.1161/01.str.32.7.1621
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Radanovic2017':
+    category: unknown
+    checked: '2026-10-30'
+    consulted:
+    - pdf
+  '@Ramsey2017':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/5508212
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1038/s41562-016-0038
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Rapcsak2009':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/2689874
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1016/j.cortex.2008.04.006
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Raymer':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1044/2022_ajslp-22-00248
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Robson2014':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.1093/brain/awt373
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awt373
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Robson2019':
+    category: free_to_read
+    label: other oa
+    url: https://research.manchester.ac.uk/en/publications/a1c6da4d-9be9-4ec8-848c-b67f7d4833d7
+    version: published
+    source: unpaywall
+    doi: 10.1177/1545968319868709
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Rodrigues2014':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1080/02687038.2014.921884
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Rogalsky2018':
+    category: cc_manuscript
+    label: CC BY-NC-ND
+    url: https://doi.org/10.1101/192245
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1162/jocn_a_01200
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Ross2008':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://www.elsevier.com/tdm/userlicense/1.0/
+    version: tdm
+    source: crossref
+    doi: 10.1016/j.bandl.2007.04.007
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Rosso2015':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://journals.sagepub.com/page/policies/text-and-data-mining-license
+    version: tdm
+    source: crossref
+    doi: 10.1177/1545968314543926
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Rost2022':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1161/circresaha.122.319951
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Saur2006':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1093/brain/awl090
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Saur2008':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/2584675
+    version: published
+    source: unpaywall
+    doi: 10.1073/pnas.0805234105
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Schlaug2008':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/3010734
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1525/mp.2008.25.4.315
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Schlaug2010':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/2982746
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.2217/fnl.10.44
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Schumacher2019':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1093/brain/awz258
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Schwartz2009':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/2792374
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awp284
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Schwartz2012':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1093/brain/aws300
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/aws300
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Sebastian2014':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.3389/fneur.2014.00231
+    version: published
+    source: unpaywall
+    doi: 10.3389/fneur.2014.00231
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Shekari2022':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1080/23279095.2022.2074849
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Sheppard2020':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1212/wnl.0000000000008870
+    version: published
+    source: unpaywall
+    doi: 10.1212/wnl.0000000000008870
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Sheppard2022':
+    category: cc_manuscript
+    label: CC BY-NC-ND
+    url: https://digitalcommons.chapman.edu/comm_science_articles/62
+    version: preprint
+    source: unpaywall
+    doi: 10.1016/j.bandl.2021.105068
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Siegel2016':
+    category: cc_manuscript
+    label: CC BY-NC-ND
+    url: http://hdl.handle.net/11577/3220825
+    version: preprint
+    source: unpaywall
+    doi: 10.1073/pnas.1521083113
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Simic2019':
+    category: free_to_read
+    label: free to read
+    url: http://hdl.handle.net/1807/106230
+    version: preprint
+    source: unpaywall
+    doi: 10.1080/09602011.2017.1307768
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Simic2023':
+    category: unknown
+    checked: '2026-10-30'
+    consulted:
+    - pdf
+  '@SkipperKallal2017':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1155/2017/8740353
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Stahl2011':
+    category: cc
+    label: CC BY-NC
+    url: https://doi.org/10.1093/brain/awr240
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awr240
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Stahl2013':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.3389/fnhum.2013.00035
+    version: published
+    source: unpaywall
+    doi: 10.3389/fnhum.2013.00035
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Stefaniak2022':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1093/brain/awab377
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Stockert2020':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1093/brain/awaa023
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awaa023
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Teghipco2024':
+    category: cc
+    label: CC BY 4.0
+    url: https://creativecommons.org/licenses/by/4.0
+    version: published
+    source: crossref
+    doi: 10.1038/s43856-024-00541-8
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Thiel2013':
+    category: rights_reserved
+    label: no open copy known
+    source: unpaywall
+    doi: 10.1161/strokeaha.111.000574
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Thompson2003':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/1995234
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1044/1092-4388(2003/047)
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Thye2018':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.nicl.2018.10.017
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Turkeltaub2011':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1212/wnl.0b013e31821a44c1
+    version: published
+    source: unpaywall
+    doi: 10.1212/wnl.0b013e31821a44c1
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Walker2011':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/3109088
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1016/j.bandl.2011.02.005
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+  '@Wallentin2018':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1371/journal.pone.0209571
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Watila2015':
+    category: unknown
+    checked: '2026-10-30'
+    consulted:
+    - pdf
+  '@Weaver2021':
+    category: cc_manuscript
+    label: CC BY-SA
+    url: http://eprints.gla.ac.uk/249421/
+    version: preprint
+    source: unpaywall
+    doi: 10.1016/s1474-4422(21)00060-0
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@White2024':
+    category: cc
+    label: CC BY 4.0
+    url: http://creativecommons.org/licenses/by/4.0/
+    version: published
+    source: crossref
+    doi: 10.1016/j.nicl.2024.103638
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Wilmskoetter2021':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/8068606
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1177/1545968321999052
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Wilson2019':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/7203526
+    version: published
+    source: unpaywall
+    doi: 10.1044/2019_jslhr-l-rsnp-19-0031
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Wilson2021':
+    category: cc
+    label: CC BY
+    version: published (as in the PDF)
+    source: pdf
+    checked: '2026-10-30'
+    consulted:
+    - pdf
+  '@Wilson2023':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1093/brain/awac129
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awac129
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@WilsonHula2019':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/7236806
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1007/s11910-019-0971-6
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Woollams2018':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.1007/s00429-018-1716-z
+    version: published
+    source: unpaywall
+    doi: 10.1007/s00429-018-1716-z
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Wright2018':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1212/wnl.0000000000005945
+    version: published
+    source: unpaywall
+    doi: 10.1212/wnl.0000000000005945
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Xing2016':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/4990653
+    version: published
+    source: unpaywall
+    doi: 10.1093/brain/awv323
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Xing2017':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.3389/fneur.2017.00054
+    version: published
+    source: unpaywall
+    doi: 10.3389/fneur.2017.00054
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Yourganov2015Predicting':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/4689665
+    version: accepted manuscript
+    source: unpaywall
+    doi: 10.1016/j.cortex.2015.09.005
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Yourganov2016':
+    category: free_to_read
+    label: free to read
+    url: https://doi.org/10.1523/jneurosci.4396-15.2016
+    version: published
+    source: unpaywall
+    doi: 10.1523/jneurosci.4396-15.2016
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Zhao2018':
+    category: free_to_read
+    label: free to read
+    url: https://www.ncbi.nlm.nih.gov/pmc/articles/6092771
+    version: published
+    source: unpaywall
+    doi: 10.1177/0271678x17728162
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@Zumbansen2014':
+    category: cc
+    label: CC BY
+    url: https://doi.org/10.3389/fneur.2014.00007
+    version: published
+    source: unpaywall
+    doi: 10.3389/fneur.2014.00007
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@vanderMeulen2012':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://www.elsevier.com/tdm/userlicense/1.0/
+    version: tdm
+    source: crossref
+    doi: 10.1016/j.apmr.2011.05.029
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf
+  '@vanderMeulen2014':
+    category: rights_reserved
+    label: publisher TDM licence (text mining only)
+    url: https://journals.sagepub.com/page/policies/text-and-data-mining-license
+    version: tdm
+    source: crossref
+    doi: 10.1177/1545968313517753
+    checked: '2026-10-30'
+    consulted:
+    - crossref
+    - unpaywall
+    - pdf

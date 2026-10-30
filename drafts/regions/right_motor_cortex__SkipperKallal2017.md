@@ -1,5 +1,5 @@
 ---
-schema_version: 2.6
+schema_version: 2.8
 id: right_motor_cortex
 name: Right Motor Cortex
 kind: classical
@@ -28,6 +28,7 @@ findings:
     age_range: mean 59.8 (SD 10.1)
     handedness: mixed
     language: native English speakers
+    cohort: not_reported
   statistics:
     threshold: not_reported
     effect_size: t(21) = 3.67
@@ -113,5 +114,11 @@ findings:
     date: '2026-10-26'
     fields:
     - target
+  filled:
+    by: model:gemma4:31b-it-q8_0
+    date: '2026-10-30'
+    tool: backfill.py
+    fields:
+    - cohort
 ---
 Notes: This finding specifically applies to the subgroup with left motor cortex lesions.

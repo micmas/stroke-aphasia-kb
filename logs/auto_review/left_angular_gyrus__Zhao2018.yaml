@@ -93,6 +93,189 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-23T12:47:13'
+- run_id: 2
+  timestamp: '2026-10-30T14:21:10'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 12/14 quotes (86%) — anchored 2, exact 12
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.method (p.3): Support vector regression-based lesion symptom
+      mapping (SVR-LSM) was performed t…'
+    - '  - [anchored] f1.confounders (p.3): Total MoCA and sub-scores for cognitive
+      domains were norm-corrected for age, gen…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: 'f1 is accurate, but f2 incorrectly labels the relationship as ''causal''.
+        The paper describes associations found via regression (SVR-ROI/LSM), which
+        are correlational. While the claim is ''associated with'', the ''relationship:
+        causal'' tag in the draft is a mismatch with the study design and the paper''s
+        language. I cannot approve a finding that misrepresents the direction of the
+        relationship as causal.'
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: 'The relationship is tagged as ''causal'', but the paper reports
+          associations/correlations using SVR-ROI and SVR-LSM. The claim itself uses
+          ''associated with'', but the metadata ''relationship: causal'' is incorrect.'
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"f1 is accurate,\
+      \ but f2 incorrectly labels the relationship as 'causal'. The paper describes\
+      \ associations found via regression (SVR-ROI/LSM), which are correlational.\
+      \ While the claim is 'associated with', the 'relationship: causal' tag in the\
+      \ draft is a mismatch with the study design and the paper's language. I cannot\
+      \ approve a finding that misrepresents the direction of the relationship as\
+      \ causal.\",\n  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"passage_present\"\
+      : true,\n      \"passage_supports_field\": true,\n      \"relationship_faithful\"\
+      : true,\n      \"strength_fair\": true,\n      \"numbers_match\": true,\n  \
+      \    \"limitations_captured\": true,\n      \"omissions\": \"\",\n      \"concern\"\
+      : \"\",\n      \"verdict\": \"agree\"\n    },\n    {\n      \"id\": \"f2\",\n\
+      \      "
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 3
+  timestamp: '2026-10-30T23:48:19'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 12/14 quotes (86%) — anchored 2, exact 12
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.method (p.3): Support vector regression-based lesion symptom
+      mapping (SVR-LSM) was performed t…'
+    - '  - [anchored] f1.confounders (p.3): Total MoCA and sub-scores for cognitive
+      domains were norm-corrected for age, gen…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: f1 is accurate, but f2 incorrectly labels the relationship as 'causal'.
+        The paper describes associations (correlations) found via SVR-ROI and SVR-LSM,
+        which are observational/cross-sectional. The draft's claim of 'causal' for
+        both findings is an overstatement of the evidence provided in the text.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is tagged as 'causal', but the study is cross-sectional
+          and reports associations/correlations. The paper does not establish causality.
+        verdict: disagree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is tagged as 'causal', but the paper describes associations/correlations
+          in a cross-sectional design. The text does not support a causal claim.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"f1 is accurate,\
+      \ but f2 incorrectly labels the relationship as 'causal'. The paper describes\
+      \ associations (correlations) found via SVR-ROI and SVR-LSM, which are observational/cross-sectional.\
+      \ The draft's claim of 'causal' for both findings is an overstatement of the\
+      \ evidence provided in the text.\",\n  \"per_finding\": [\n    {\n      \"id\"\
+      : \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": false,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captured\": true,\n   \
+      \   \"omissions\": \"\",\n      \"concern\": \"The relationship is tagged as\
+      \ 'causal', but the study is cross-sectional and reports associations/correlations.\
+      \ The paper does not establish causality.\",\n      \"verdic"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-10-30T23:48:19'
 latest_verdict: checks_passed
 latest_mode: with_llm_review

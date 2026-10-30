@@ -1,0 +1,43 @@
+draft_path: drafts/regions/left_supramarginal_gyrus__Casilio2025.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-31T00:42:16'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 1/4 quotes (25%) — absent 1, anchored 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.8): For the voxel-wise analysis, one significant
+      cluster emerged (volume = 22.05 cm3…'
+    - '  - [anchored] f1.method (p.7): Total lesion extent was included as a controlling
+      covariate... only clusters wit…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.limitation (p.16): individuals with unscorable naturalistic language
+      samples were excluded... conse…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+last_run: '2026-10-31T00:42:16'
+latest_verdict: auto_reject
+latest_mode: deterministic_only

@@ -1,18 +1,17 @@
 ---
-schema_version: 2.3
+schema_version: 2.8
 id: language_mapping_methods__Wilson2019
 name: Language Mapping Methods in Aphasia
-kind: review
+kind: classical
 status: draft
 created_by: agent:ollama-extract-cli/gemma4:31b-it-q8_0
-created_on: 2026-10-21
+created_on: 2026-10-30
 findings:
 - id: f1
-  target: language_mapping_paradigms
+  target: semantics
   target_kind: impairment
-  claim: Adaptive language mapping paradigms that dynamically adjust to individual performance are more
-    feasible, reliable, and valid for identifying language regions in individuals with aphasia than fixed
-    paradigms like picture naming or narrative comprehension.
+  claim: Adaptive semantic matching paradigms are feasible, reliable, and valid for mapping core perisylvian
+    language regions in individuals with aphasia, outperforming narrative comprehension and picture naming.
   direction: likely
   relationship: synthesis
   citation: '@Wilson2019'
@@ -21,40 +20,73 @@ findings:
   evidence_quality: narrative-review
   strength: moderate
   primary_papers_cited:
-  - '@Wilson2017'
   - '@Wilson2018'
-  - '@Yen2019'
   author_limitations:
-  - The review focuses on paradigms developed within a single lab; broader validation across different
-    centers is needed.
+  - Validity was assessed in neurologically normal participants because there is no ground truth for language
+    organization in aphasia.
   provenance:
     extracted_by: agent
     extracted_on: 2026-01-01
-    paper_section: Abstract, Introduction
+    paper_section: Results, page 3937; An Adaptive Semantic Matching Paradigm, page 3941
     confidence: high
     flags: []
   source_passages:
   - section: Abstract
     page: 1
-    quote: Adaptive language mapping paradigms offer a promising approach for future research on the neural
-      basis of recovery from aphasia.
+    quote: We found that the adaptive semantic matching paradigm could be performed by most individuals
+      with aphasia and yielded reliable and valid maps of core perisylvian language regions in each individual
+      participant.
     supports: claim
-  - section: Introduction
+  - section: Abstract
+    page: 1
+    quote: The psychometric properties of this paradigm were superior to those of other commonly used
+      paradigms such as narrative comprehension and picture naming.
+    supports: claim
+  - section: An Adaptive Semantic Matching Paradigm
     page: 3
-    quote: We propose that adaptive paradigms that dynamically adjust to individual performance offer
-      the most promising approach at present...
+    quote: It is difficult to evaluate validity directly in individuals with aphasia, because the nature
+      of their language organization is unknown. That is, there is no ground truth against which to assess
+      validity.
+    supports: limitation
+- id: f2
+  target: phonological_production
+  target_kind: impairment
+  claim: Adaptive rhyme judgment paradigms can reliably identify left-lateralized fronto-parietal regions,
+    specifically the supramarginal gyrus and ventral precentral gyrus, involved in phonological encoding.
+  direction: likely
+  relationship: synthesis
+  citation: '@Wilson2019'
+  method: narrative_review
+  design: narrative-review
+  evidence_quality: narrative-review
+  strength: moderate
+  primary_papers_cited:
+  - '@Yen2019'
+  author_limitations:
+  - Syllable counting was found to be less reliable than rhyme judgment.
+  provenance:
+    extracted_by: agent
+    extracted_on: 2026-01-01
+    paper_section: Identification of Phonological Encoding Regions, page 3941
+    confidence: high
+    flags: []
+  source_passages:
+  - section: Abstract
+    page: 1
+    quote: The adaptive rhyme judgment paradigm was capable of identifying fronto-parietal phonological
+      encoding regions in individual participants.
     supports: claim
-  - section: Discussion
-    page: 5
-    quote: The mean Dice coefficient of similarity... significantly exceeded the reliability of the narrative
-      comprehension (Dice coefficient = .47) and picture naming (Dice coefficient = .43) paradigms.
-    supports: statistics
-  - section: Discussion
-    page: 8
-    quote: Whether researchers use our paradigms or other paradigms, we hope to have demonstrated the
-      importance of investigating the feasibility, reliability, and validity of any potential approach
-      for identifying language regions in individuals with aphasia.
+  - section: Identification of Phonological Encoding Regions
+    page: 7
+    quote: 'Both phonological paradigms activated the two key phonological encoding regions that have
+      been motivated by the prior literature: the left supramarginal gyrus and the left ventral precentral
+      gyrus...'
+    supports: claim
+  - section: Identification of Phonological Encoding Regions
+    page: 7
+    quote: We found that the rhyme judgment paradigm was comparable in reliability to the semantic matching
+      paradigm, whereas the syllable counting paradigm was somewhat less reliable.
     supports: limitation
 ---
 
-This review article synthesizes the development and validation of adaptive fMRI paradigms for language mapping in aphasia, arguing that adaptive designs minimize performance confounds and increase test-retest reliability compared to traditional fixed tasks.
+This review summarizes the development and validation of adaptive fMRI paradigms for language mapping in aphasia, emphasizing the superiority of adaptive semantic matching and rhyme judgment tasks over traditional paradigms.
