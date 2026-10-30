@@ -1803,11 +1803,84 @@ def to_extract() -> list[tuple[dict, Path]]:
     return out
 
 
+def included_findings_versions() -> dict[str, dict]:
+    """@Key of each paper included at full text → {"drafts": {schema versions}, "canon": {…}, "row": enriched row}."""
+    from aphasia_kb import parse_markdown
+    rows = {r["key"]: r for r in S.enrich(S.load_candidates(), S.kb_facts()) if r["stage"] == "included" and r.get("key")}
+    out = {k: {"drafts": set(), "canon": set(), "row": r} for k, r in rows.items()}
+    for base, kind in ((ROOT / "drafts", "drafts"), (ROOT, "canon")):
+        for b in S.CANONICAL_BUCKETS + ("ingredients",):
+            for f in sorted((base / b).glob("*.md")) if (base / b).is_dir() else []:
+                try:
+                    fm, _ = parse_markdown(f)
+                except Exception:  # noqa: BLE001
+                    continue
+                if kind == "drafts" and fm.get("status") == "rejected":
+                    continue
+                keys = set()
+                m = re.match(r"^(.*)__(\S+)\.md$", f.name)
+                if m:
+                    keys.add(f"@{m.group(2)}")
+                for x in fm.get("findings") or []:
+                    if isinstance(x, dict) and str(x.get("citation") or "").startswith("@"):
+                        keys.add(str(x["citation"]))
+                for k in keys & out.keys():
+                    out[k][kind].add(str(fm.get("schema_version") or "?"))
+    return out
+
+
+def _vnum(v: str) -> float:
+    try:
+        return float(v)
+    except ValueError:
+        return 0.0
+
+
 def cmd_extract(args) -> int:
     """Extract every paper included at full text that has its PDF and no findings yet —
     the screening-aware batch (extract.py --batch does not check inclusion). One
-    extract.py run per paper, in turn; a failure is reported and the next one runs."""
+    extract.py run per paper, in turn; a failure is reported and the next one runs.
+
+    --backfill: also bring the findings of included papers up to the current schema
+    (backfill.py, one model call per paper, only the missing fields).
+    --reextract-below V: re-extract included papers whose findings are still drafts in
+    files older than schema V (reextract.py: old drafts set aside, fresh extraction;
+    a paper with approved findings is re-extracted into the comparison sandbox)."""
     import subprocess
+    if args.backfill or args.reextract_below:
+        vers = included_findings_versions()
+        if args.backfill:
+            keys = sorted(vers)
+            print(f"backfill: the {len(keys)} included papers with findings, missing fields only")
+            cmd = [sys.executable, str(ROOT / "scripts" / "backfill.py")] + [a for k in keys for a in ("--citation", k)]
+            if args.execute:
+                cmd.append("--execute")
+            if args.limit:
+                cmd += ["--limit", str(args.limit)]
+            rc = subprocess.call(cmd, cwd=ROOT)
+            if rc:
+                return rc
+        if args.reextract_below:
+            lim = _vnum(args.reextract_below)
+            stale = sorted(k for k, v in vers.items() if v["drafts"] and not v["canon"]
+                           and min(_vnum(x) for x in v["drafts"]) < lim)
+            canon_old = sorted(k for k, v in vers.items() if v["canon"] and min(_vnum(x) for x in v["canon"] | v["drafts"]) < lim)
+            print(f"re-extract (drafts only, files below schema {args.reextract_below}): {len(stale)} paper(s), ≈ {25 * len(stale)} min")
+            for k in stale:
+                print(f"    {k:<26} drafts {', '.join(sorted(vers[k]['drafts']))}")
+            if canon_old:
+                print(f"  with approved findings in older files ({len(canon_old)}), not re-extracted here — "
+                      f"backfill them, or reextract.py <Key> --execute to compare in the sandbox: {', '.join(canon_old)}")
+            if args.limit:
+                stale = stale[: args.limit]
+            if stale and args.execute:
+                rc = subprocess.call([sys.executable, str(ROOT / "scripts" / "reextract.py"), *[k.lstrip("@") for k in stale], "--execute"],
+                                     cwd=ROOT)
+                if rc:
+                    return rc
+            elif stale:
+                print("Dry run — nothing re-extracted. Add --execute.")
+        return 0
     todo = to_extract()
     if args.limit:
         todo = todo[: args.limit]
@@ -1911,6 +1984,8 @@ def _cli(argv=None) -> int:
     p.add_argument("--max-tokens", dest="max_tokens", type=int)
     p.add_argument("--timeout", type=int, help="seconds per paper (extract.py default 3600)")
     p.add_argument("--lean", action="store_true")
+    p.add_argument("--backfill", action="store_true", help="fill missing current-schema fields of included papers (backfill.py)")
+    p.add_argument("--reextract-below", metavar="VERSION", help="re-extract included papers whose drafts are in files older than this schema, e.g. 2.7")
     p.add_argument("--execute", action="store_true")
     p.set_defaults(fn=cmd_extract)
     p = sub.add_parser("pdfs", help="link PDFs saved in papers/ (any name) to their screening records")

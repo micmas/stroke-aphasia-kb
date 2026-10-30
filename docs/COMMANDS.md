@@ -70,6 +70,8 @@ python scripts/screen.py register --execute                    # on inclusion: c
 python scripts/intake_papers.py --execute --no-register        # strips cover pages, OCRs scans (and renames any PDF of a cited paper)
 python scripts/screen.py extract                               # dry run: the queue (included, PDF, no findings)
 python scripts/screen.py extract --execute                     # extract them one after another (≈ 25 min each; --limit N)
+python scripts/screen.py extract --backfill --execute          # bring included papers' findings up to the current schema (missing fields only)
+python scripts/screen.py extract --reextract-below 2.7 --execute  # re-extract included papers whose findings are still old drafts (≈ 25 min each)
 python scripts/auto_review.py --all --llm-review               # checks, tiers and model opinion on every pending draft
 python scripts/review_app.py                                   # index of every draft; review paper by paper, mark passages
 python scripts/refocus.py --all --execute                      # findings for every paper with pending marks
