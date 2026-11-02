@@ -26,3 +26,6 @@ site/
 .DS_Store
 _last_backfill_response_*.txt
 .fuse_hidden*
+
+# Run logs (append-only output of batch runs)
+logs/batch.log
