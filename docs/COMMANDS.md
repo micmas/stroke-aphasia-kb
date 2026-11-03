@@ -135,7 +135,7 @@ python scripts/screen.py import --strategy q4_synthesis --db scopus --file ~/Dow
 python scripts/screen.py withdraw S010 --why "export held one page only" --by michele --execute   # take a bad import back
 # after the last import
 python scripts/screen.py dedupe --by michele --execute           # second duplicate pass
-python scripts/screen.py grey --from ~/Downloads --by michele --execute   # theses, books, conference records out by rule
+python scripts/screen.py grey --from screening/exports --by michele --execute   # theses, books, conference records out by rule
 python scripts/screen.py recall                                  # coverage of the benchmark papers
 python scripts/screen.py status                                  # PRISMA identification numbers
 ```
@@ -231,7 +231,7 @@ python scripts/screen.py fulltext                                # what is left:
 | `--strategy all_questions` | One search per database that ORs every question strategy (q1–q5): one export instead of seven (`strategies --show all_questions --db psycinfo`; file `psycinfo_all_questions.ris`). Counts in overall and per-database recall, not per strategy. | with `search`, `import`, `import-all`, `strategies --show` |
 | `withdraw` | Takes back a recorded search (an incomplete export, a wrong file): the record moves to `withdrawn` in `searches.yaml` with the reason, candidates that came only from it leave the register, the id is never reused. Logs `SEARCH-WITHDRAWN`. | `<id>` `--why` `--by` `--execute` |
 | `dedupe` | Second de-duplication pass after all imports: same title, years ±1, no conflicting PMID/DOI → `duplicate_of` (record with identifiers kept, sources merged). Logs `DEDUPED`. | `--by` `--execute` |
-| `grey` | Grey literature by rule (protocol v4): theses, books/chapters, conference records → excluded before screening with the evidence (`rule: …`); preprints kept. `--from ~/Downloads` re-reads the Scopus/PsycINFO exports for each record's own type. | `--from` `--types` `--show` `--by` `--execute` |
+| `grey` | Grey literature by rule (protocol v4): theses, books/chapters, conference records → excluded before screening with the evidence (`rule: …`); preprints kept. `--from screening/exports` re-reads the Scopus/PsycINFO exports for each record's own type. | `--from` `--types` `--show` `--by` `--execute` |
 | `recall` | Relative recall: benchmark papers found by any database search, per strategy (against the benchmark papers in its KB folders) and per database, and the list no search found. | `--json` |
 | `status` | The protocol version and lock, the PRISMA numbers (both arms), recall against the benchmark, kappa if double-screened, where included papers stand in the KB, and found / included / in-KB per evidence gap. | `--json` |
 | `citations` | Keeps `citations.md` to the papers the KB uses: papers with findings (approved or draft) and papers included at full text awaiting extraction. Lists the rest — `remove` (no findings, not included; the register keeps their DOI and decision, the candidate keeps its key as `former_key`, `register` re-adds a paper included later) and `retire` (excluded at screening but still with findings: retire those first). Run it when no extraction is running. Logs `CITATIONS-PRUNED`. | `--show-kept` `--execute` |

@@ -395,6 +395,8 @@ screening/searches.yaml       one record per search run / import            (tra
 screening/candidates.yaml     one record per candidate, with decisions       (tracked)
 screening/abstracts.jsonl     abstract cache for the sheet and the model     (git-ignored; `screen.py fetch-abstracts` refills it)
 screening/_sheet/*.html       the screening sheets                            (git-ignored)
+screening/exports/            Scopus/PsycINFO RIS exports, named in searches.yaml with their sha256
+                              (git-ignored link to OneDrive …/Documents/search-exports; licensed content)
 ```
 
 Changing the eligibility criteria is a change to §2 of this file and
