@@ -43,6 +43,7 @@ disagree, this file wins and the other two get fixed.
 | Deterministic checks (`auto_review.py`) | `auto-reviewer` | reject or defer a draft; emit a reviewer worksheet | approve anything |
 | Independent reviewer model | `model:<model-tag>` | verify passages against the PDF, check interpretation, **approve Tier A drafts** (§3), defer or reject any draft | approve Tier B; edit a draft; review drafts from the same model tag that extracted them |
 | Person | `human:<name>` | everything above; approve Tier B; audit model approvals; edit a draft in the review workbench (`review_app.py`: every change is stamped `edits: {by, date, fields}` and logged `REVIEW-EDITED`); mark passages for a focused re-extraction (`refocus.py`); change this policy | approve a draft without opening the annotated PDF; edit a canonical entry outside `promote.py` |
+| Portal reviewer | the email Cloudflare Access verified, mapped to `human:<name>` by `portal/reviewers.yaml` | send screening decisions, per-finding verdicts, field edits, passage marks and comments as records (`logs/portal/inbox/`); approve or reject a draft **only if listed as an approver** in `portal/reviewers.yaml` (then `promote.py` runs under their name when the maintainer applies the record) | write to the register, a draft or a canonical entry directly; approve without being an approver (their approve is kept as an opinion) |
 
 "Independent" means a different model tag from the extractor. Same
 family at a different size counts (`gemma4:31b` reviewing `gemma4:26b`

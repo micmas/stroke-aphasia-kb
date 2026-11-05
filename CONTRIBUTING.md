@@ -25,6 +25,13 @@ python scripts/promote.py --approve drafts/<bucket>/<file>.md --reviewer human:<
 python scripts/promote.py --reject  drafts/<bucket>/<file>.md --reviewer human:<your name> --reason "..."
 ```
 
+Without a checkout at all: the **review portal**
+([`docs/PORTAL.md`](docs/PORTAL.md)) opens the same drafts beside the
+annotated PDFs in the browser; ask the maintainer to allow-list your
+email, sign in with the one-time code, and send your verdicts, fixes and
+screening decisions from there. They arrive here as records under your
+name and are applied by the maintainer.
+
 Who may approve what is in [`docs/GOVERNANCE.md`](docs/GOVERNANCE.md):
 an independent local model may clear routine (Tier A) findings after
 re-reading the PDF; therapies, strong claims, new entries and reviews

@@ -1,0 +1,13 @@
+# Cloudflare Pages project for the review portal (docs/PORTAL.md).
+#   cd portal && npx wrangler pages deploy dist --project-name stroke-aphasia-kb-review
+# Non-secret settings can live here; GITHUB_TOKEN is a secret:
+#   npx wrangler pages secret put GITHUB_TOKEN --project-name stroke-aphasia-kb-review
+name = "stroke-aphasia-kb-review"
+pages_build_output_dir = "dist"
+compatibility_date = "2025-10-01"
+
+[vars]
+GITHUB_REPO = "micmas/stroke-aphasia-kb"
+GITHUB_BRANCH = "main"
+ACCESS_TEAM_DOMAIN = "CHANGE-ME"
+ACCESS_AUD = "CHANGE-ME"

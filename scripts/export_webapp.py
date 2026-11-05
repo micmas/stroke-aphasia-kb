@@ -146,6 +146,17 @@ def _citation_blocks(root: Path) -> dict[str, tuple[str, str | None]]:
     return out
 
 
+def portal(root: Path) -> dict:
+    """Where the review portal is (portal/portal.config.json), so the explorer can link the
+    public (Creative-Commons) annotated PDFs and send reviewers to the private site."""
+    path = root / "portal" / "portal.config.json"
+    if not path.exists():
+        return {}
+    cfg = json.loads(path.read_text(encoding="utf-8"))
+    url = str(cfg.get("portalUrl") or "").rstrip("/")
+    return {"url": url, "publicPdfBase": f"{url}/cc/" if url else "", "publicCategories": ["cc", "cc_manuscript"]} if url else {}
+
+
 def entries(kb) -> dict:
     out = {}
     for table in (kb.regions, kb.impairments, kb.therapies, kb.predictors, kb.ingredients):
@@ -356,6 +367,7 @@ def export(root: Path, include) -> dict:
         "citations": citations(root),
         "citationLinks": citation_links(root),
         "licences": licences(root),
+        "portal": portal(root),
         "screening": screening(root),
     }
 

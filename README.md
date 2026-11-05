@@ -48,11 +48,12 @@ atlas_mapping/        how atlas labels map onto KB regions (data + its README)
 scripts/              all the Python tooling (see docs/COMMANDS.md)
 tests/                tests for the tooling
 docs/                 how-tos, policy, schema and the model guide (index below)
-logs/                 append-only audit trail: extraction_log.md, auto_review/
+logs/                 append-only audit trail: extraction_log.md, auto_review/, portal/ (reviews sent from the portal)
 
 export/               JSON export of the approved entries, for the webapp and explorer
 js/                   kb-evidence.js, the JavaScript port of the evidence logic
 explorer/             the static explorer site (published by GitHub Pages)
+portal/               the private review portal for collaborators (Cloudflare Pages + Access; docs/PORTAL.md)
 
 models.yaml           which local Ollama model each role uses
 requirements.txt      Python dependencies of scripts/
@@ -71,6 +72,7 @@ papers/               source PDFs — local only, never committed (copyright)
 | find papers systematically (PRISMA) | [`docs/SCREENING.md`](docs/SCREENING.md) |
 | choose or benchmark a local model | [`docs/MODELS.md`](docs/MODELS.md) and `models.yaml` |
 | understand the export, the JS port and the explorer | [`docs/EXPLORER.md`](docs/EXPLORER.md) |
+| let collaborators review drafts and screen papers in the browser | [`docs/PORTAL.md`](docs/PORTAL.md) |
 | see the instructions the extractor model is given | [`docs/EXTRACTION_SKILL.md`](docs/EXTRACTION_SKILL.md) |
 
 ## Quick start

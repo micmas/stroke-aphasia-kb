@@ -537,6 +537,31 @@ its grade, the page it was found on, and a highlighted crop.
 | `--fill-phase` | Write the inferred `sample.phase` into drafts that lack it. |
 | `--out-dir DIR`, `--papers-dir DIR` | Other locations. |
 
+### `publish_portal.py` / `portal_import.py` — the hosted review portal
+
+```bash
+python scripts/publish_portal.py                # assemble portal/dist/: PDFs by licence, exports, screening queue
+python scripts/publish_portal.py --deploy       # … and deploy to Cloudflare Pages (npx wrangler login once)
+python scripts/publish_portal.py --pdfs-only    # refresh only the PDF folders
+python scripts/portal_dev.py --by you@uq.edu.au # try the built portal locally; records go to logs/portal/inbox/
+python scripts/portal_import.py                 # what the records in logs/portal/inbox/ would do
+python scripts/portal_import.py --execute --promote   # apply them; approvers' approve/reject go through promote.py
+```
+
+The portal (docs/PORTAL.md) is the private, hosted version of the
+workbenches: collaborators sign in through Cloudflare Access, review
+drafts beside the annotated PDFs, screen candidates, and every decision
+comes back as a JSON record in `logs/portal/inbox/` that
+`portal_import.py` applies under the reviewer's name. Creative-Commons
+annotated PDFs are served openly (`cc/`) and linked from the explorer;
+the rest only after sign-in.
+
+| Option | Meaning |
+|---|---|
+| `publish_portal.py --ta-limit N` | Title/abstract records offered, in prioritised order (default 300). |
+| `publish_portal.py --project NAME`, `--branch B` | Pages project and branch (`main` = production). |
+| `portal_import.py --kind K` | Only records of one kind (screen, verdict, edit, mark, comment). |
+
 ### `review_app.py` — the review workbench: draft and paper side by side
 
 ```bash

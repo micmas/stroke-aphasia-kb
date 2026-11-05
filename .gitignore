@@ -30,3 +30,6 @@ _last_backfill_response_*.txt
 
 # Run logs (append-only output of batch runs)
 logs/batch.log
+portal/dist/
+portal/node_modules/
+portal/.wrangler/

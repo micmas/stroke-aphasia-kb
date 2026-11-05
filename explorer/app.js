@@ -122,6 +122,8 @@ function findingCard(index, f, { route = true, open = false } = {}) {
   else if (f.therapy_name === 'not recorded') push(h('span', { class: 'badge badge-warn', text: 'therapy not recorded' }));
   if (f.evidence_quality) push(h('span', { text: f.evidence_quality }));
   push(reviewBadge(f));
+  const pdfLink = annotatedPdfLink(index, f.citation, f.source_passages?.[0]?.page);
+  if (pdfLink) push(pdfLink);
   if (f.design_cautions?.length) push(h('span', { class: 'badge badge-warn', title: f.design_cautions.join('; '), text: plural(f.design_cautions.length, 'design caution') }));
 
   const details = [];
@@ -434,7 +436,7 @@ function paper(index, key) {
   return frag(
     h('div', { class: 'page-head' }, h('h1', { text: k })),
     text ? h('p', { text }) : h('p', { class: 'muted', text: 'Not in the bibliography.' }),
-    p?.doi ? h('p', { class: 'small' }, 'DOI ', h('a', { href: `https://doi.org/${p.doi}`, rel: 'noopener', target: '_blank', text: p.doi })) : null,
+    p?.doi ? h('p', { class: 'small' }, 'DOI ', h('a', { href: `https://doi.org/${p.doi}`, rel: 'noopener', target: '_blank', text: p.doi }), (() => { const l = annotatedPdfLink(index, k); return l ? [' · ', l] : null; })()) : null,
     (() => {
       const lic = index.kb.licences?.[k];
       if (!lic) return null;
@@ -541,6 +543,18 @@ const LICENCE_TITLE = {
   rights_reserved: 'Publisher terms: quoted here as short attributed passages only',
   unknown: 'No licence metadata found (screen.py licences)',
 };
+/** Link to the annotated PDF: public for Creative-Commons papers (served by the review portal's
+ *  open path), otherwise a pointer to the portal, which needs a sign-in. */
+function annotatedPdfLink(index, citation, page) {
+  const portal = index.kb.portal; const lic = index.kb.licences?.[citation];
+  if (!portal?.url || !lic) return null;
+  const key = String(citation || '').replace(/^@/, '');
+  if ((portal.publicCategories || []).includes(lic.category)) {
+    return h('a', { class: 'small', href: `${portal.publicPdfBase}${key}_annotated.pdf${page ? `#page=${page}` : ''}`, target: '_blank', rel: 'noopener', title: `Annotated PDF (${lic.label || lic.category}) — the highlights are this entry's passages`, text: 'annotated PDF' });
+  }
+  return h('a', { class: 'small muted', href: `${portal.url}/#/drafts`, target: '_blank', rel: 'noopener', title: 'This paper is not openly licensed; its annotated PDF is in the review portal, for signed-in reviewers', text: 'annotated PDF (reviewers)' });
+}
+
 function licenceBadge(rec) {
   if (!rec) return h('span', { class: 'muted small', text: '—' });
   const c = rec.category || 'unknown';

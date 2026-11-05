@@ -1,0 +1,8 @@
+# Who the review portal's sign-ins are, for scripts/portal_import.py (docs/PORTAL.md).
+# Cloudflare Access verifies the email; this file maps it to the `human:<name>` used in
+# the KB and says who may approve (docs/GOVERNANCE.md §2). An email not listed here is
+# applied as human:<local part of the email> with no approval right.
+reviewers:
+  m.massontrottier@uq.edu.au:
+    name: michele
+    approver: true
