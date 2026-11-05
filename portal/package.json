@@ -6,7 +6,7 @@
     "pdfjs-dist": "4.8.69"
   },
   "devDependencies": {
-    "wrangler": "^3.90.0"
+    "wrangler": "^4.157.0"
   },
   "scripts": {
     "build": "cd .. && python3 scripts/publish_portal.py",

@@ -9,5 +9,5 @@ compatibility_date = "2025-10-01"
 [vars]
 GITHUB_REPO = "micmas/stroke-aphasia-kb"
 GITHUB_BRANCH = "main"
-ACCESS_TEAM_DOMAIN = "CHANGE-ME"
-ACCESS_AUD = "CHANGE-ME"
+ACCESS_TEAM_DOMAIN = "sparkling-bird-a757"
+ACCESS_AUD = "879e6c3e21715bbca5946c01cb2a8e5c5a16ac96d001822866c40be04bbc68b7"
