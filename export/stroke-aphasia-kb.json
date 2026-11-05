@@ -34923,6 +34923,14 @@
    "left_posterior_temporal_bottleneck": "As left_frontal_white_matter_bottleneck."
   }
  },
+ "portal": {
+  "publicCategories": [
+   "cc",
+   "cc_manuscript"
+  ],
+  "publicPdfBase": "https://stroke-aphasia-kb-review.pages.dev/cc/",
+  "url": "https://stroke-aphasia-kb-review.pages.dev"
+ },
  "rules": {
   "aphasiaLabels": {
    "anomic_aphasia": "Anomic",
@@ -35111,7 +35119,7 @@
       "regions/left_middle_temporal_gyrus",
       "regions/left_superior_temporal_gyrus"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -35155,7 +35163,7 @@
       "regions/left_ifg_pars_triangularis",
       "regions/left_posterior_stg"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -35220,7 +35228,7 @@
       "impairments/global_aphasia",
       "impairments/wernickes_aphasia"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -35292,7 +35300,7 @@
       "impairments/form_to_articulation",
       "impairments/form_to_meaning"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -35358,7 +35366,7 @@
       "predictors/bdnf_val66met",
       "therapies/tdcs_aphasia_treatment"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -35404,7 +35412,7 @@
      "entries": [
       "therapies/phonological_component_analysis"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -35447,7 +35455,7 @@
      "entries": [
       "regions/left_angular_gyrus"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -35512,7 +35520,7 @@
      "entries": [
       "regions/bilateral_middle_frontal_gyrus_recovery"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -35585,7 +35593,7 @@
       "therapies/treatment_of_underlying_forms",
       "therapies/typicality_semantic_feature_analysis"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -35665,7 +35673,7 @@
      "entries": [
       "predictors/severity_metric"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -35721,7 +35729,7 @@
      "entries": [
       "predictors/severity_metric"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -35794,7 +35802,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "cited"
     },
@@ -35833,7 +35841,7 @@
      "entries": [
       "therapies/constraint_induced_aphasia_therapy"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -35874,7 +35882,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "cited"
     },
@@ -35922,7 +35930,7 @@
      "entries": [
       "therapies/melodic_intonation_therapy"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -35991,7 +35999,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "cited"
     },
@@ -36048,7 +36056,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "cited"
     },
@@ -36114,7 +36122,7 @@
      "draft_rejected": 0,
      "drafts": 6,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "cited"
     },
@@ -36186,7 +36194,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "cited"
     },
@@ -36249,7 +36257,7 @@
      "entries": [
       "therapies/constraint_induced_aphasia_therapy"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -36297,7 +36305,7 @@
      "entries": [
       "therapies/melodic_intonation_therapy"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -36361,7 +36369,7 @@
      "entries": [
       "reviews/constraint_induced_language_therapy__Raymer"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -36417,7 +36425,7 @@
      "entries": [
       "impairments/syntactic_processing"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -36488,7 +36496,7 @@
      "entries": [
       "regions/left_precentral_gyrus"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -36544,7 +36552,7 @@
      "entries": [
       "therapies/tms_right_ifg__Naeser2005"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -36585,7 +36593,7 @@
      "entries": [
       "predictors/initial_aphasia_severity"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted"
     },
@@ -36635,7 +36643,7 @@
      "entries": [
       "regions/left_precentral_gyrus"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -36690,7 +36698,7 @@
      "entries": [
       "regions/left_temporobasal__Goldenberg1994"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "cited"
     },
@@ -36725,7 +36733,7 @@
      "entries": [
       "reviews/subcortical_aphasia__NadeauCrosson1997"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "re-extracted-as-review"
     },
@@ -36768,7 +36776,7 @@
      "entries": [
       "reviews/basal_ganglia_aphasia__Radanovic2017"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "re-extracted-as-review"
     },
@@ -36816,7 +36824,7 @@
      "entries": [
       "reviews/thalamic_language_mechanisms__Crosson1999"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "re-extracted-as-review"
     },
@@ -36859,7 +36867,7 @@
      "entries": [
       "reviews/lsm_language_systems_review__MirmanThye2018"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -36918,7 +36926,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -36977,7 +36985,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "refused",
      "tag": "refused"
     },
@@ -37019,7 +37027,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -37081,7 +37089,7 @@
      "entries": [
       "reviews/aphasia_therapy_neuroplasticity_fmri__Shekari2022"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -37137,7 +37145,7 @@
      "entries": [
       "reviews/aphasia_prognosis_predictors__Watila2015"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -37235,7 +37243,7 @@
      "entries": [
       "reviews/neuroplasticity_poststroke_aphasia__Wilson2021"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "extracted-as-review"
     },
@@ -37300,7 +37308,7 @@
      "entries": [
       "regions/left_precentral_gyrus"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -37385,7 +37393,7 @@
       "regions/left_superior_temporal_gyrus_wernickes",
       "regions/left_supramarginal_gyrus_premotor"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -37456,7 +37464,7 @@
      "entries": [
       "regions/left_ifg_pars_opercularis"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -37534,7 +37542,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37600,7 +37608,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37671,7 +37679,7 @@
      "entries": [
       "regions/left_frontal_white_matter_bottleneck"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -37737,7 +37745,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37799,7 +37807,7 @@
      "entries": [
       "regions/left_anterior_temporal_lobe"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -37847,7 +37855,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37910,7 +37918,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37947,7 +37955,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -37996,7 +38004,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38040,7 +38048,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38076,7 +38084,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38128,7 +38136,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38176,7 +38184,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38230,7 +38238,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38290,7 +38298,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38344,7 +38352,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38422,7 +38430,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38491,7 +38499,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38571,7 +38579,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38605,7 +38613,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38639,7 +38647,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38674,7 +38682,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38709,7 +38717,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38750,7 +38758,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38803,7 +38811,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -38837,7 +38845,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -38878,7 +38886,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "extracted"
     },
@@ -38919,7 +38927,7 @@
      "entries": [
       "regions/left_ifg_pars_opercularis"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -38961,7 +38969,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39029,7 +39037,7 @@
      "entries": [
       "regions/left_ifg_pars_opercularis"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -39098,7 +39106,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39152,7 +39160,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39193,7 +39201,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39234,7 +39242,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39288,7 +39296,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39348,7 +39356,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39399,7 +39407,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39444,7 +39452,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39515,7 +39523,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39556,7 +39564,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39610,7 +39618,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39658,7 +39666,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39724,7 +39732,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39781,7 +39789,7 @@
       "predictors/lesion_volume",
       "predictors/severity_metric"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -39831,7 +39839,7 @@
      "entries": [
       "predictors/age"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -39882,7 +39890,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39945,7 +39953,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -39987,7 +39995,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40035,7 +40043,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40095,7 +40103,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40143,7 +40151,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40191,7 +40199,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40244,7 +40252,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40285,7 +40293,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40330,7 +40338,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40372,7 +40380,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40432,7 +40440,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40510,7 +40518,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40573,7 +40581,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40626,7 +40634,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40692,7 +40700,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40763,7 +40771,7 @@
      "entries": [
       "predictors/lesion_volume"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -40841,7 +40849,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40906,7 +40914,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40940,7 +40948,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -40976,7 +40984,7 @@
      "draft_rejected": 0,
      "drafts": 0,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "awaiting_extraction",
      "tag": "seed"
     },
@@ -41011,7 +41019,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41052,7 +41060,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41127,7 +41135,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41175,7 +41183,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41276,7 +41284,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41345,7 +41353,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41402,7 +41410,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41486,7 +41494,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41543,7 +41551,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41612,7 +41620,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41674,7 +41682,7 @@
      "entries": [
       "predictors/initial_aphasia_severity"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -41737,7 +41745,7 @@
       "regions/left_angular_gyrus",
       "regions/left_ifg_pars_opercularis"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -41803,7 +41811,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41857,7 +41865,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41914,7 +41922,7 @@
      "draft_rejected": 0,
      "drafts": 3,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -41974,7 +41982,7 @@
       "regions/left_arcuate_fasciculus_slf",
       "regions/left_ifg_pars_opercularis"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -42042,7 +42050,7 @@
      "entries": [
       "regions/left_arcuate_fasciculus"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -42099,7 +42107,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -42215,7 +42223,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -42281,7 +42289,7 @@
      "draft_rejected": 0,
      "drafts": 1,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -42349,7 +42357,7 @@
      "entries": [
       "predictors/lesion_volume"
      ],
-     "pdf": true,
+     "pdf": false,
      "state": "in_kb",
      "tag": "seed"
     },
@@ -42406,7 +42414,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -42463,7 +42471,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -42529,7 +42537,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -42592,7 +42600,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -42675,7 +42683,7 @@
      "draft_rejected": 0,
      "drafts": 4,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -42720,7 +42728,7 @@
      "draft_rejected": 0,
      "drafts": 2,
      "entries": [],
-     "pdf": true,
+     "pdf": false,
      "state": "in_review",
      "tag": "seed"
     },
@@ -43924,6 +43932,7 @@
     "query": "(TITLE-ABS-KEY(aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*) AND TITLE-ABS-KEY(stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") AND TITLE-ABS-KEY(lesion* OR \"symptom mapping\" OR \"voxel-based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR tractograph* OR \"diffusion tensor\" OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR \"neural correlate*\" OR neuroanatom* OR \"brain region*\" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*)) AND PUBYEAR > 1999",
     "retrieved": 8005,
     "run_by": "michele",
+    "sha256": "ea70558b95a9dfa56e65f25a8f735a1449c9b1aac1eecd7a457a149788516d3a",
     "strategy": "q1_lesion_impairment"
    },
    {
@@ -43947,6 +43956,7 @@
     "query": "(TITLE-ABS-KEY(alexi* OR dyslexi* OR agraphi* OR dysgraphi* OR agrammati* OR paraphasi* OR \"language comprehension\" OR \"speech comprehension\" OR \"sentence comprehension\" OR \"auditory comprehension\" OR \"verbal fluency\" OR \"speech fluency\" OR \"speech production\" OR naming OR \"semantic processing\" OR \"semantic cognition\" OR \"phonological processing\" OR \"speech perception\" OR language OR prosod*) AND TITLE-ABS-KEY(stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") AND TITLE-ABS-KEY(\"symptom mapping\" OR VLSM OR \"voxel-based lesion*\" OR \"lesion-symptom\" OR \"lesion symptom\" OR \"lesion-behavio*\" OR \"lesion-deficit\" OR \"lesion mapping\" OR \"lesion analys*\" OR \"lesion location*\" OR \"lesion site*\" OR \"lesion load\" OR \"lesion stud*\" OR \"lesion pattern*\" OR \"lesion-based\" OR disconnect* OR tractograph* OR \"white matter\" OR \"brain damage*\" OR \"brain-damaged\" OR \"voxel-based\" OR \"voxel based\" OR \"lesion loci\" OR \"lesion locus\")) AND PUBYEAR > 1999",
     "retrieved": 4568,
     "run_by": "michele",
+    "sha256": "cced76a22eec845e67c8678c5ac137d34ebf742ee7d5cc57bfefad1da6ab2844",
     "strategy": "q1b_language_lesion_mapping"
    },
    {
@@ -43970,6 +43980,7 @@
     "query": "(((TITLE-ABS-KEY(cogniti* OR executive OR \"working memory\" OR \"short-term memory\" OR \"cognitive control\" OR \"processing speed\" OR \"decision making\" OR \"problem solving\" OR reasoning OR \"attentional control\" OR prosod* OR \"emotion recognition\") AND TITLE-ABS-KEY(\"symptom mapping\" OR VLSM OR \"voxel-based lesion*\" OR \"voxel-wise lesion*\" OR \"lesion-symptom\" OR \"lesion symptom\" OR \"lesion-behavio*\" OR \"lesion-deficit\" OR \"lesion mapping\" OR \"lesion analys*\" OR \"lesion location*\" OR \"lesion loci\" OR \"lesion locus\" OR \"lesion site*\" OR \"lesion load\" OR \"lesion network mapping\" OR \"strategic infarct*\" OR \"infarct location*\" OR disconnectom* OR \"lesion-based\" OR \"lesion pattern*\")) OR (TITLE-ABS-KEY(prosod* OR aprosodi* OR \"emotion recognition\" OR \"tone of voice\") AND TITLE-ABS-KEY(lesion* OR \"symptom mapping\" OR \"voxel-based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR tractograph* OR \"diffusion tensor\" OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR \"neural correlate*\" OR neuroanatom* OR \"brain region*\" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*))) AND TITLE-ABS-KEY(stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\")) AND PUBYEAR > 1999",
     "retrieved": 1563,
     "run_by": "michele",
+    "sha256": "c9dcf88dbdefa1feaf91f028ea871c9d29dd4630ee7611d32f9a864f94cfd7f7",
     "strategy": "q1c_cognition_prosody_lesion"
    },
    {
@@ -43993,6 +44004,7 @@
     "query": "(TITLE-ABS-KEY(aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*) AND TITLE-ABS-KEY(therap* OR treatment* OR rehabilit* OR intervention* OR training OR tDCS OR rTMS OR \"brain stimulation\" OR \"transcranial magnetic stimulation\" OR \"transcranial direct current stimulation\" OR pharmacotherap*) AND TITLE-ABS-KEY(\"symptom mapping\" OR \"voxel-based\" OR \"voxel based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR \"lesion location*\" OR \"lesion site*\" OR \"lesion volume\" OR \"lesion size\" OR \"lesion mapping\" OR tractograph* OR \"diffusion tensor\" OR DTI OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR connectivity OR \"neural correlate*\" OR fMRI OR \"functional MRI\" OR \"functional magnetic\" OR perfusion OR neuroimaging) AND (TITLE-ABS-KEY(stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") OR TITLE-ABS-KEY(\"aphasia therapy\" OR \"aphasia treatment\" OR \"aphasia rehabilitation\" OR \"speech therapy\" OR \"language therapy\" OR \"speech and language therapy\"))) AND PUBYEAR > 1999",
     "retrieved": 3632,
     "run_by": "michele",
+    "sha256": "feb7d6cd11dd2f486959ace77ff896b87d88924b9112b1d1c975c82a64d0591a",
     "strategy": "q2b_therapy_response_neural"
    },
    {
@@ -44016,6 +44028,7 @@
     "query": "(TITLE-ABS-KEY(aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*) AND TITLE-ABS-KEY(stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") AND TITLE-ABS-KEY(predict* OR prognos* OR recover* OR longitudinal OR determinant* OR \"risk factor*\") AND TITLE-ABS-KEY(lesion* OR \"symptom mapping\" OR \"voxel-based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR tractograph* OR \"diffusion tensor\" OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR \"neural correlate*\" OR neuroanatom* OR \"brain region*\" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*)) AND PUBYEAR > 1999",
     "retrieved": 3432,
     "run_by": "michele",
+    "sha256": "de7e0f13e8dc865cd0e47040dff5bcc25bcd71fe2571315afb90eca662514eed",
     "strategy": "q3_predictor_outcome"
    },
    {
@@ -44039,6 +44052,7 @@
     "query": "(TITLE-ABS-KEY(aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*) AND (TITLE-ABS-KEY(\"systematic review\" OR meta-analy* OR \"scoping review\") OR (TITLE-ABS-KEY(stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") AND TITLE-ABS-KEY(lesion* OR \"symptom mapping\" OR \"voxel-based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR tractograph* OR \"diffusion tensor\" OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR \"neural correlate*\" OR neuroanatom* OR \"brain region*\" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*) AND DOCTYPE(re)))) AND PUBYEAR > 1999",
     "retrieved": 3503,
     "run_by": "michele",
+    "sha256": "c21eee1cd176e145d57514768c96eb8304d029934c4ffef105b8b17fec8d4026",
     "strategy": "q4_synthesis"
    },
    {
@@ -44062,6 +44076,7 @@
     "query": "(TITLE-ABS-KEY(language OR naming OR semantic* OR phonolog* OR syntax OR syntactic OR \"speech production\" OR \"sentence comprehension\" OR \"word production\" OR reading) AND TITLE-ABS-KEY(meta-analy* OR \"activation likelihood\" OR \"coordinate-based\" OR MKDA) AND TITLE-ABS-KEY(fMRI OR \"functional magnetic resonance\" OR \"positron emission\" OR neuroimaging)) AND PUBYEAR > 1999",
     "retrieved": 1201,
     "run_by": "michele",
+    "sha256": "12d763c089f77601b59e69c820c4105ae5ffa1f721ea734079d3db42ad139c93",
     "strategy": "q5_recruitment_meta"
    },
    {
@@ -44085,6 +44100,7 @@
     "query": "(DE \"Aphasia\" OR DE \"Dysarthria\" OR TI (aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*) OR AB (aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*)) AND (DE \"Cerebrovascular Accidents\" OR DE \"Cerebrovascular Disorders\" OR TI (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") OR AB (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\")) AND (DE \"Magnetic Resonance Imaging\" OR DE \"Functional Magnetic Resonance Imaging\" OR DE \"Neuroimaging\" OR DE \"Diffusion Tensor Imaging\" OR TI (lesion* OR \"symptom mapping\" OR \"voxel-based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR tractograph* OR \"diffusion tensor\" OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR \"neural correlate*\" OR neuroanatom* OR \"brain region*\" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*) OR AB (lesion* OR \"symptom mapping\" OR \"voxel-based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR tractograph* OR \"diffusion tensor\" OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR \"neural correlate*\" OR neuroanatom* OR \"brain region*\" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*))",
     "retrieved": 2319,
     "run_by": "michele",
+    "sha256": "a8ecd215c02564112aede79fcdf0553a788a3fff49fd65894433da676bc18256",
     "strategy": "q1_lesion_impairment"
    },
    {
@@ -44108,6 +44124,7 @@
     "query": "(TI (alexi* OR dyslexi* OR agraphi* OR dysgraphi* OR agrammati* OR paraphasi* OR \"language comprehension\" OR \"speech comprehension\" OR \"sentence comprehension\" OR \"auditory comprehension\" OR \"verbal fluency\" OR \"speech fluency\" OR \"speech production\" OR naming OR \"semantic processing\" OR \"semantic cognition\" OR \"phonological processing\" OR \"speech perception\" OR language OR prosod*) OR AB (alexi* OR dyslexi* OR agraphi* OR dysgraphi* OR agrammati* OR paraphasi* OR \"language comprehension\" OR \"speech comprehension\" OR \"sentence comprehension\" OR \"auditory comprehension\" OR \"verbal fluency\" OR \"speech fluency\" OR \"speech production\" OR naming OR \"semantic processing\" OR \"semantic cognition\" OR \"phonological processing\" OR \"speech perception\" OR language OR prosod*)) AND (DE \"Cerebrovascular Accidents\" OR DE \"Cerebrovascular Disorders\" OR TI (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") OR AB (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\")) AND (TI (\"symptom mapping\" OR VLSM OR \"voxel-based lesion*\" OR \"lesion-symptom\" OR \"lesion symptom\" OR \"lesion-behavio*\" OR \"lesion-deficit\" OR \"lesion mapping\" OR \"lesion analys*\" OR \"lesion location*\" OR \"lesion site*\" OR \"lesion load\" OR \"lesion stud*\" OR \"lesion pattern*\" OR \"lesion-based\" OR disconnect* OR tractograph* OR \"white matter\" OR \"brain damage*\" OR \"brain-damaged\" OR \"voxel-based\" OR \"voxel based\" OR \"lesion loci\" OR \"lesion locus\") OR AB (\"symptom mapping\" OR VLSM OR \"voxel-based lesion*\" OR \"lesion-symptom\" OR \"lesion symptom\" OR \"lesion-behavio*\" OR \"lesion-deficit\" OR \"lesion mapping\" OR \"lesion analys*\" OR \"lesion location*\" OR \"lesion site*\" OR \"lesion load\" OR \"lesion stud*\" OR \"lesion pattern*\" OR \"lesion-based\" OR disconnect* OR tractograph* OR \"white matter\" OR \"brain damage*\" OR \"brain-damaged\" OR \"voxel-based\" OR \"voxel based\" OR \"lesion loci\" OR \"lesion locus\"))",
     "retrieved": 2389,
     "run_by": "michele",
+    "sha256": "c17a3e5d91939fc62095859ca79a7fdc03ba39973be57369eee8f094ab07af0e",
     "strategy": "q1b_language_lesion_mapping"
    },
    {
@@ -44131,6 +44148,7 @@
     "query": "(((DE \"Executive Function\" OR TI (cogniti* OR executive OR \"working memory\" OR \"short-term memory\" OR \"cognitive control\" OR \"processing speed\" OR \"decision making\" OR \"problem solving\" OR reasoning OR \"attentional control\" OR prosod* OR \"emotion recognition\") OR AB (cogniti* OR executive OR \"working memory\" OR \"short-term memory\" OR \"cognitive control\" OR \"processing speed\" OR \"decision making\" OR \"problem solving\" OR reasoning OR \"attentional control\" OR prosod* OR \"emotion recognition\")) AND (TI (\"symptom mapping\" OR VLSM OR \"voxel-based lesion*\" OR \"voxel-wise lesion*\" OR \"lesion-symptom\" OR \"lesion symptom\" OR \"lesion-behavio*\" OR \"lesion-deficit\" OR \"lesion mapping\" OR \"lesion analys*\" OR \"lesion location*\" OR \"lesion loci\" OR \"lesion locus\" OR \"lesion site*\" OR \"lesion load\" OR \"lesion network mapping\" OR \"strategic infarct*\" OR \"infarct location*\" OR disconnectom* OR \"lesion-based\" OR \"lesion pattern*\") OR AB (\"symptom mapping\" OR VLSM OR \"voxel-based lesion*\" OR \"voxel-wise lesion*\" OR \"lesion-symptom\" OR \"lesion symptom\" OR \"lesion-behavio*\" OR \"lesion-deficit\" OR \"lesion mapping\" OR \"lesion analys*\" OR \"lesion location*\" OR \"lesion loci\" OR \"lesion locus\" OR \"lesion site*\" OR \"lesion load\" OR \"lesion network mapping\" OR \"strategic infarct*\" OR \"infarct location*\" OR disconnectom* OR \"lesion-based\" OR \"lesion pattern*\"))) OR ((DE \"Prosody\" OR TI (prosod* OR aprosodi* OR \"emotion recognition\" OR \"tone of voice\") OR AB (prosod* OR aprosodi* OR \"emotion recognition\" OR \"tone of voice\")) AND (DE \"Magnetic Resonance Imaging\" OR DE \"Functional Magnetic Resonance Imaging\" OR DE \"Neuroimaging\" OR DE \"Diffusion Tensor Imaging\" OR TI (lesion* OR \"symptom mapping\" OR \"voxel-based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR tractograph* OR \"diffusion tensor\" OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR \"neural correlate*\" OR neuroanatom* OR \"brain region*\" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*) OR AB (lesion* OR \"symptom mapping\" OR \"voxel-based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR tractograph* OR \"diffusion tensor\" OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR \"neural correlate*\" OR neuroanatom* OR \"brain region*\" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*)))) AND (DE \"Cerebrovascular Accidents\" OR DE \"Cerebrovascular Disorders\" OR TI (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") OR AB (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\"))",
     "retrieved": 625,
     "run_by": "michele",
+    "sha256": "0aec323b8774fa7f44f3e7372754dc75a1d8dc0dc6a81638a0f99aa4cdfe0eed",
     "strategy": "q1c_cognition_prosody_lesion"
    },
    {
@@ -44154,6 +44172,7 @@
     "query": "(DE \"Aphasia\" OR DE \"Dysarthria\" OR TI (aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*) OR AB (aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*)) AND (DE \"Speech Therapy\" OR DE \"Language Therapy\" OR DE \"Transcranial Magnetic Stimulation\" OR TI (therap* OR treatment* OR rehabilit* OR intervention* OR training OR tDCS OR rTMS OR \"brain stimulation\" OR \"transcranial magnetic stimulation\" OR \"transcranial direct current stimulation\" OR pharmacotherap*) OR AB (therap* OR treatment* OR rehabilit* OR intervention* OR training OR tDCS OR rTMS OR \"brain stimulation\" OR \"transcranial magnetic stimulation\" OR \"transcranial direct current stimulation\" OR pharmacotherap*)) AND (DE \"Magnetic Resonance Imaging\" OR DE \"Functional Magnetic Resonance Imaging\" OR DE \"Neuroimaging\" OR DE \"Diffusion Tensor Imaging\" OR TI (\"symptom mapping\" OR \"voxel-based\" OR \"voxel based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR \"lesion location*\" OR \"lesion site*\" OR \"lesion volume\" OR \"lesion size\" OR \"lesion mapping\" OR tractograph* OR \"diffusion tensor\" OR DTI OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR connectivity OR \"neural correlate*\" OR fMRI OR \"functional MRI\" OR \"functional magnetic\" OR perfusion OR neuroimaging) OR AB (\"symptom mapping\" OR \"voxel-based\" OR \"voxel based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR \"lesion location*\" OR \"lesion site*\" OR \"lesion volume\" OR \"lesion size\" OR \"lesion mapping\" OR tractograph* OR \"diffusion tensor\" OR DTI OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR connectivity OR \"neural correlate*\" OR fMRI OR \"functional MRI\" OR \"functional magnetic\" OR perfusion OR neuroimaging)) AND ((DE \"Cerebrovascular Accidents\" OR DE \"Cerebrovascular Disorders\" OR TI (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") OR AB (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\")) OR (DE \"Speech Therapy\" OR DE \"Language Therapy\" OR TI (\"aphasia therapy\" OR \"aphasia treatment\" OR \"aphasia rehabilitation\" OR \"speech therapy\" OR \"language therapy\" OR \"speech and language therapy\") OR AB (\"aphasia therapy\" OR \"aphasia treatment\" OR \"aphasia rehabilitation\" OR \"speech therapy\" OR \"language therapy\" OR \"speech and language therapy\")))",
     "retrieved": 533,
     "run_by": "michele",
+    "sha256": "b8a6e245a2d3ae1a893fddf91253a1aec1be49e8e9a581869f84d4d9da26aa06",
     "strategy": "q2b_therapy_response_neural"
    },
    {
@@ -44177,6 +44196,7 @@
     "query": "(DE \"Aphasia\" OR DE \"Dysarthria\" OR TI (aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*) OR AB (aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*)) AND (DE \"Cerebrovascular Accidents\" OR DE \"Cerebrovascular Disorders\" OR TI (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") OR AB (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\")) AND (DE \"Prognosis\" OR DE \"Recovery (Disorders)\" OR TI (predict* OR prognos* OR recover* OR longitudinal OR determinant* OR \"risk factor*\") OR AB (predict* OR prognos* OR recover* OR longitudinal OR determinant* OR \"risk factor*\")) AND (DE \"Magnetic Resonance Imaging\" OR DE \"Functional Magnetic Resonance Imaging\" OR DE \"Neuroimaging\" OR DE \"Diffusion Tensor Imaging\" OR TI (lesion* OR \"symptom mapping\" OR \"voxel-based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR tractograph* OR \"diffusion tensor\" OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR \"neural correlate*\" OR neuroanatom* OR \"brain region*\" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*) OR AB (lesion* OR \"symptom mapping\" OR \"voxel-based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR tractograph* OR \"diffusion tensor\" OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR \"neural correlate*\" OR neuroanatom* OR \"brain region*\" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*))",
     "retrieved": 841,
     "run_by": "michele",
+    "sha256": "cce257f8dee0fc4f417c2af3a264ebfc3c7c1f0fbb1a8b2423651354bab48474",
     "strategy": "q3_predictor_outcome"
    },
    {
@@ -44200,6 +44220,7 @@
     "query": "(DE \"Aphasia\" OR DE \"Dysarthria\" OR TI (aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*) OR AB (aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*)) AND ((ZC \"Systematic Review\" OR ZC \"Meta Analysis\" OR TI (\"systematic review\" OR meta-analy* OR \"scoping review\") OR AB (\"systematic review\" OR meta-analy* OR \"scoping review\")) OR ((DE \"Cerebrovascular Accidents\" OR DE \"Cerebrovascular Disorders\" OR TI (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") OR AB (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\")) AND (DE \"Magnetic Resonance Imaging\" OR DE \"Functional Magnetic Resonance Imaging\" OR DE \"Neuroimaging\" OR DE \"Diffusion Tensor Imaging\" OR TI (lesion* OR \"symptom mapping\" OR \"voxel-based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR tractograph* OR \"diffusion tensor\" OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR \"neural correlate*\" OR neuroanatom* OR \"brain region*\" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*) OR AB (lesion* OR \"symptom mapping\" OR \"voxel-based\" OR \"voxel-wise\" OR VLSM OR \"lesion load\" OR tractograph* OR \"diffusion tensor\" OR \"white matter\" OR fascicul* OR disconnect* OR connectom* OR \"neural correlate*\" OR neuroanatom* OR \"brain region*\" OR cortical OR subcortical OR MRI OR fMRI OR perfusion OR hypoperfusion OR plasticity OR reorgani*)) AND (ZC \"Literature Review\" OR ZC \"Systematic Review\")))",
     "retrieved": 918,
     "run_by": "michele",
+    "sha256": "b061760fd0168bb8e3e512868b6d2b38d3b0f4ef9b8c5db75531bfe320d86acf",
     "strategy": "q4_synthesis"
    },
    {
@@ -44223,6 +44244,7 @@
     "query": "(TI (language OR naming OR semantic* OR phonolog* OR syntax OR syntactic OR \"speech production\" OR \"sentence comprehension\" OR \"word production\" OR reading) OR AB (language OR naming OR semantic* OR phonolog* OR syntax OR syntactic OR \"speech production\" OR \"sentence comprehension\" OR \"word production\" OR reading)) AND (ZC \"Meta Analysis\" OR TI (meta-analy* OR \"activation likelihood\" OR \"coordinate-based\" OR MKDA) OR AB (meta-analy* OR \"activation likelihood\" OR \"coordinate-based\" OR MKDA)) AND (TI (fMRI OR \"functional magnetic resonance\" OR \"positron emission\" OR neuroimaging) OR AB (fMRI OR \"functional magnetic resonance\" OR \"positron emission\" OR neuroimaging))",
     "retrieved": 363,
     "run_by": "michele",
+    "sha256": "25245ed9cfc3c82a2666a59119fc375c5003b9ad26a66c7c9295c69d399bf3e6",
     "strategy": "q5_recruitment_meta"
    },
    {
@@ -44268,6 +44290,7 @@
     "query": "(TITLE-ABS-KEY(aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*) AND TITLE-ABS-KEY(therap* OR treatment* OR rehabilit* OR intervention* OR training OR tDCS OR rTMS OR \"brain stimulation\" OR \"transcranial magnetic stimulation\" OR \"transcranial direct current stimulation\" OR pharmacotherap*) AND TITLE-ABS-KEY(respond* OR responder* OR \"treatment response\" OR \"response to treatment\" OR \"response to therapy\" OR \"treatment outcome*\" OR \"treatment-induced\" OR \"treatment gains\" OR \"therapy gains\" OR generali* OR \"treatment effect*\" OR improvement* OR gain* OR benefit* OR \"therapy outcome*\" OR \"treatment success\" OR \"therapy success\") AND TITLE-ABS-KEY(predict* OR prognos* OR moderat* OR determinant* OR \"individual differences\" OR \"individual variability\" OR \"patient characteristics\" OR \"patient factors\" OR \"patient-related\" OR \"baseline characteristics\" OR \"baseline severity\" OR \"factors associated\" OR responsiveness OR \"who benefit*\" OR \"who respond*\") AND (TITLE-ABS-KEY(stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") OR TITLE-ABS-KEY(\"aphasia therapy\" OR \"aphasia treatment\" OR \"aphasia rehabilitation\" OR \"speech therapy\" OR \"language therapy\" OR \"speech and language therapy\"))) AND PUBYEAR > 1999",
     "retrieved": 1695,
     "run_by": "michele",
+    "sha256": "b5eed29fce8c58a3304901d61937f1333b9343cc50e4b3cb9c31f3400b83f17f",
     "strategy": "q2c_therapy_response_patient_factors"
    },
    {
@@ -44291,6 +44314,7 @@
     "query": "(DE \"Aphasia\" OR DE \"Dysarthria\" OR TI (aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*) OR AB (aphasi* OR dysphasi* OR anomi* OR \"word finding\" OR \"word retrieval\" OR \"naming impairment*\" OR \"naming deficit*\" OR \"language impairment*\" OR \"language deficit*\" OR \"language disorder*\" OR \"apraxia of speech\" OR dysarthri*)) AND (DE \"Speech Therapy\" OR DE \"Language Therapy\" OR DE \"Transcranial Magnetic Stimulation\" OR TI (therap* OR treatment* OR rehabilit* OR intervention* OR training OR tDCS OR rTMS OR \"brain stimulation\" OR \"transcranial magnetic stimulation\" OR \"transcranial direct current stimulation\" OR pharmacotherap*) OR AB (therap* OR treatment* OR rehabilit* OR intervention* OR training OR tDCS OR rTMS OR \"brain stimulation\" OR \"transcranial magnetic stimulation\" OR \"transcranial direct current stimulation\" OR pharmacotherap*)) AND (TI (respond* OR responder* OR \"treatment response\" OR \"response to treatment\" OR \"response to therapy\" OR \"treatment outcome*\" OR \"treatment-induced\" OR \"treatment gains\" OR \"therapy gains\" OR generali* OR \"treatment effect*\" OR improvement* OR gain* OR benefit* OR \"therapy outcome*\" OR \"treatment success\" OR \"therapy success\") OR AB (respond* OR responder* OR \"treatment response\" OR \"response to treatment\" OR \"response to therapy\" OR \"treatment outcome*\" OR \"treatment-induced\" OR \"treatment gains\" OR \"therapy gains\" OR generali* OR \"treatment effect*\" OR improvement* OR gain* OR benefit* OR \"therapy outcome*\" OR \"treatment success\" OR \"therapy success\")) AND (DE \"Prognosis\" OR TI (predict* OR prognos* OR moderat* OR determinant* OR \"individual differences\" OR \"individual variability\" OR \"patient characteristics\" OR \"patient factors\" OR \"patient-related\" OR \"baseline characteristics\" OR \"baseline severity\" OR \"factors associated\" OR responsiveness OR \"who benefit*\" OR \"who respond*\") OR AB (predict* OR prognos* OR moderat* OR determinant* OR \"individual differences\" OR \"individual variability\" OR \"patient characteristics\" OR \"patient factors\" OR \"patient-related\" OR \"baseline characteristics\" OR \"baseline severity\" OR \"factors associated\" OR responsiveness OR \"who benefit*\" OR \"who respond*\")) AND ((DE \"Cerebrovascular Accidents\" OR DE \"Cerebrovascular Disorders\" OR TI (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\") OR AB (stroke* OR poststroke OR cerebrovascular OR infarct* OR \"intracerebral hemorrhage\" OR \"intracerebral haemorrhage\" OR \"brain damage*\" OR \"brain-damaged\" OR \"hemisphere damage*\" OR \"left hemisphere lesion*\" OR \"focal damage\" OR \"focal lesion*\")) OR (DE \"Speech Therapy\" OR DE \"Language Therapy\" OR TI (\"aphasia therapy\" OR \"aphasia treatment\" OR \"aphasia rehabilitation\" OR \"speech therapy\" OR \"language therapy\" OR \"speech and language therapy\") OR AB (\"aphasia therapy\" OR \"aphasia treatment\" OR \"aphasia rehabilitation\" OR \"speech therapy\" OR \"language therapy\" OR \"speech and language therapy\")))",
     "retrieved": 479,
     "run_by": "michele",
+    "sha256": "09bc491eec8b38d703387906f6674d198703a7d888394dd8e3f7401e1cbd2b35",
     "strategy": "q2c_therapy_response_patient_factors"
    }
   ],
@@ -44315,16 +44339,16 @@
   }
  },
  "version": {
-  "commit": "9f65510",
-  "contentDigest": "4959b3b0c6e2146b",
-  "date": "2026-10-31",
+  "commit": "dde0e8d",
+  "contentDigest": "f417e0fcedb777bd",
+  "date": "2026-11-03",
   "entries": {
    "impairments": 14,
    "predictors": 10,
    "regions": 22,
    "therapies": 8
   },
-  "exportedOn": "2026-10-31",
+  "exportedOn": "2026-11-05",
   "findings": 247,
   "findingsReviewed": 47,
   "papers": 53,

@@ -236,7 +236,8 @@ function overview(index) {
       h('li', {}, h('a', { href: '#/matrix', text: 'Evidence matrix' }), ' — which region–impairment links are supported, by how many findings.'),
       h('li', {}, h('a', { href: '#/findings', text: 'Findings browser' }), ' — filter by entry type, relationship, strength, method, stage, provenance or paper; full-text search of claims and quotes.'),
       h('li', {}, h('a', { href: '#/papers', text: 'Papers' }), ' — every cited paper and its findings in page order, to spot-check an extraction against the PDF.'),
-      h('li', {}, h('a', { href: '#/coverage', text: 'Coverage' }), ' — how the literature was searched and screened (PRISMA flow), what each evidence gap still needs, and where every candidate paper stands.')));
+      h('li', {}, h('a', { href: '#/coverage', text: 'Coverage' }), ' — how the literature was searched and screened (PRISMA flow), what each evidence gap still needs, and where every candidate paper stands.'),
+      index.kb.portal?.url ? h('li', {}, h('a', { href: index.kb.portal.url, target: '_blank', rel: 'noopener', text: 'Review portal' }), ' — for collaborators: check drafts beside the annotated PDFs, screen candidate papers and send decisions back (sign-in with an invited email).') : null));
 }
 
 function browse(index, route) {
@@ -926,9 +927,19 @@ async function load(url) {
   }
 }
 
+/** The nav's "Review" entry: the private review portal (docs/PORTAL.md), only when the export names one. */
+function portalNav(portal) {
+  const nav = document.querySelector('.nav'); if (!nav) return;
+  let a = nav.querySelector('a.portal');
+  if (!portal?.url) { a?.remove(); return; }
+  if (!a) { a = h('a', { class: 'portal', target: '_blank', rel: 'noopener', title: 'Review portal — drafts beside the annotated PDFs and the screening queue; for invited reviewers' }); nav.append(a); }
+  a.setAttribute('href', portal.url); a.textContent = 'Review ↗';
+}
+
 function use(kb, label, local) {
   if (kb.schemaVersion !== 1) throw new Error(`Unsupported export schema ${kb.schemaVersion}`);
   state.index = buildIndex(kb);
+  portalNav(state.index.kb.portal);
   state.shown = PAGE;
   setSource(label, local);
   render();

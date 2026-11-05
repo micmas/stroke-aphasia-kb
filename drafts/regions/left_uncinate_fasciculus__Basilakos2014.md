@@ -173,5 +173,4 @@ findings:
         page: 7
         quote: "T1-signal intensity is an indirect measure of tissue integrity"
         supports: limitation
-    }
 ---
