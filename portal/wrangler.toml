@@ -12,9 +12,19 @@ GITHUB_BRANCH = "main"
 ACCESS_TEAM_DOMAIN = "sparkling-bird-a757"
 ACCESS_AUD = "879e6c3e21715bbca5946c01cb2a8e5c5a16ac96d001822866c40be04bbc68b7"
 UPLOADS_BUCKET = "stroke-aphasia-kb-uploads"
+PDFS_BUCKET = "stroke-aphasia-kb-pdfs"
+# who may press "Apply now" (functions/api/apply.js); keep in step with `maintainer: true` in reviewers.yaml
+MAINTAINERS = "m.massontrottier@uq.edu.au"
 
 # PDFs reviewers upload wait here until scripts/portal_import.py pulls them into papers/
 # (the OneDrive folder) and deletes them. Create once: npx wrangler r2 bucket create stroke-aphasia-kb-uploads
 [[r2_buckets]]
 binding = "UPLOADS"
 bucket_name = "stroke-aphasia-kb-uploads"
+
+# The annotated PDFs (cc/ public, pdf/ private) and the abstracts cache, mirrored from the
+# maintainer's papers folder by `publish_portal.py --sync` and served by functions/cc, functions/pdf.
+# Create once: npx wrangler r2 bucket create stroke-aphasia-kb-pdfs
+[[r2_buckets]]
+binding = "PDFS"
+bucket_name = "stroke-aphasia-kb-pdfs"

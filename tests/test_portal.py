@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 test_portal.py — the review portal's two Python halves, without Cloudflare or a browser:
-publish_portal.py sorts annotated PDFs by licence and bundles the screening queue;
+publish_portal.py mirrors annotated PDFs into the bucket by licence (index in portal/papers.json);
 portal_import.py applies the records the portal writes (screen, edit, mark, comment,
 verdict) under the reviewer's name and refuses what no longer matches.
 
@@ -48,31 +48,59 @@ Test draft.
 
 
 class Publish(unittest.TestCase):
-    def test_pdfs_sorted_by_licence(self):
+    def test_sync_mirrors_pdfs_by_licence_and_writes_the_index(self):
         import publish_portal as P
         with tempfile.TemporaryDirectory() as d:
-            papers = Path(d) / "papers"; dist = Path(d) / "dist"
+            papers = Path(d) / "papers"; index = Path(d) / "papers.json"
             papers.mkdir()
             for k in ("Open2020", "Closed2021", "Unknown2022"):
-                (papers / f"{k}_annotated.pdf").write_bytes(b"%PDF-1.4 test")
-            (papers / "Closed2021.pdf").write_bytes(b"%PDF-1.4 source")       # not annotated: never copied
+                (papers / f"{k}_annotated.pdf").write_bytes(b"%PDF-1.4 " + k.encode())
+            (papers / "Closed2021.pdf").write_bytes(b"%PDF-1.4 source")       # not annotated: a source, never uploaded
             lic = {"@Open2020": {"category": "cc", "label": "CC BY 4.0"}, "@Closed2021": {"category": "rights_reserved"}}
-            out = P.copy_pdfs(papers, dist, lic)
-            self.assertEqual(out["@Open2020"]["annotated"], "cc/Open2020_annotated.pdf")
-            self.assertTrue(out["@Open2020"]["public"])
-            self.assertEqual(out["@Closed2021"]["annotated"], "pdf/Closed2021_annotated.pdf")
-            self.assertEqual(out["@Unknown2022"]["annotated"], "pdf/Unknown2022_annotated.pdf")   # unknown licence stays private
-            self.assertFalse((dist / "pdf" / "Closed2021.pdf").exists())
-            # licence changes → the file moves
-            lic["@Open2020"] = {"category": "rights_reserved"}
-            out = P.copy_pdfs(papers, dist, lic)
-            self.assertEqual(out["@Open2020"]["annotated"], "pdf/Open2020_annotated.pdf")
-            self.assertFalse((dist / "cc" / "Open2020_annotated.pdf").exists())
-            # source removed → copy removed
-            (papers / "Unknown2022_annotated.pdf").unlink()
-            out = P.copy_pdfs(papers, dist, lic)
-            self.assertNotIn("@Unknown2022", out)
-            self.assertFalse((dist / "pdf" / "Unknown2022_annotated.pdf").exists())
+            bucket: dict[str, str] = {}
+            calls: list[tuple] = []
+            abstracts = Path(d) / "abstracts.jsonl"; abstracts.write_text('{"id": "C1", "abstract": "x"}\n')
+
+            class Done:
+                returncode = 0; stderr = ""
+            def put(obj, path, ctype):
+                calls.append(("put", obj)); bucket[obj] = Path(path).name; return Done()
+            def delete(obj):
+                calls.append(("delete", obj)); bucket.pop(obj, None); return Done()
+            saved = P.licences
+            P.licences = lambda root=None: lic
+            try:
+                out = P.sync_pdfs(papers, "test-bucket", index_path=index, put=put, delete=delete, abstracts_path=abstracts)
+                self.assertEqual(sorted(bucket), ["cc/Open2020_annotated.pdf", "pdf/Closed2021_annotated.pdf", "pdf/Unknown2022_annotated.pdf", "private/abstracts.jsonl"])
+                self.assertEqual(out["abstracts"]["object"], "private/abstracts.jsonl")
+                self.assertTrue(out["papers"]["@Open2020"]["public"])
+                self.assertEqual(out["papers"]["@Unknown2022"]["annotated"], "pdf/Unknown2022_annotated.pdf")   # unknown licence stays private
+                self.assertEqual(len(out["papers"]["@Open2020"]["sha256"]), 64)
+                self.assertEqual(out["sources"]["keys"], ["@Closed2021"])
+                self.assertTrue(index.exists())
+                # nothing changed → nothing uploaded
+                calls.clear()
+                P.sync_pdfs(papers, "test-bucket", index_path=index, put=put, delete=delete, abstracts_path=abstracts)
+                self.assertEqual(calls, [])
+                # licence changes → the object moves; a re-annotated file is re-put; a removed one is deleted
+                lic["@Open2020"] = {"category": "rights_reserved"}
+                (papers / "Closed2021_annotated.pdf").write_bytes(b"%PDF-1.4 Closed2021 v2")
+                (papers / "Unknown2022_annotated.pdf").unlink()
+                out = P.sync_pdfs(papers, "test-bucket", index_path=index, put=put, delete=delete, abstracts_path=abstracts)
+                self.assertEqual(sorted(bucket), ["pdf/Closed2021_annotated.pdf", "pdf/Open2020_annotated.pdf", "private/abstracts.jsonl"])
+                self.assertIn(("delete", "cc/Open2020_annotated.pdf"), calls)
+                self.assertIn(("put", "pdf/Closed2021_annotated.pdf"), calls)
+                self.assertNotIn("@Unknown2022", out["papers"])
+                # a dry run touches nothing
+                calls.clear(); before = index.read_text()
+                (papers / "New2023_annotated.pdf").write_bytes(b"%PDF-1.4 new")
+                P.sync_pdfs(papers, "test-bucket", dry=True, index_path=index, put=put, delete=delete, abstracts_path=abstracts)
+                self.assertEqual(calls, []); self.assertEqual(index.read_text(), before)
+                # the build reads the index, not the papers folder
+                loaded = P.load_index(index)
+                self.assertEqual(set(loaded["papers"]), {"@Open2020", "@Closed2021"})
+            finally:
+                P.licences = saved
 
 
 class Import(unittest.TestCase):

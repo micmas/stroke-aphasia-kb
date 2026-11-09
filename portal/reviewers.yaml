@@ -7,6 +7,9 @@
 #               their name; an `approve` from them is kept as an opinion
 #   approver  — `approver: true`: their approve / reject runs promote.py under
 #               their name — they are the accountable person for that entry
+#   maintainer — `maintainer: true`: sees the portal's "Apply now" button, which
+#               runs the apply workflow (the same email must be in MAINTAINERS in
+#               wrangler.toml, which is what the function enforces)
 # An email not listed here is applied as human:<local part> with no approval
 # right, and scripts/portal_import.py lists it so it can be added.
 # To add someone: their email in the portal's Access policy (so they can sign
@@ -15,3 +18,4 @@ reviewers:
   m.massontrottier@uq.edu.au:
     name: michele
     approver: true
+    maintainer: true

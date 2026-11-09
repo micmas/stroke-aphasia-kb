@@ -1,13 +1,26 @@
-// POST /api/reviews  — write one review record into the KB repository
+// POST /api/reviews  — write review records into the KB repository
 //                      (logs/portal/inbox/<stamp>_<kind>_<reviewer>_<id>.json) through the GitHub API.
+//                      One record as {kind, id, …}, or several as {records: [{kind, id, …}, …]}:
+//                      a batch is one commit, so a "Send" is one push however many decisions it holds.
 // GET  /api/reviews  — list the records in the inbox and in applied/ (names only), so the
 //                      portal can show who already reviewed what.
 //
 // A record is data for scripts/portal_import.py, which applies it on the maintainer's machine:
 // nothing here edits a draft, the register or a canonical entry directly.
-import { listRecords, putRecord } from '../../lib/github.js';
+import { listRecords, putRecords } from '../../lib/github.js';
 
 const KINDS = new Set(['screen', 'verdict', 'edit', 'mark', 'comment']);
+const MAX_BATCH = 200;
+
+/** A record as the client sent it → {kind, id, body}, or a string saying what is wrong with it. */
+function check(body) {
+  const kind = String(body?.kind || '');
+  const id = String(body?.id || '');
+  if (!KINDS.has(kind)) return `kind must be one of ${[...KINDS].join(', ')}`;
+  if (!id) return 'id is required (candidate id, or draft path for a draft review)';
+  if (JSON.stringify(body).length > 200_000) return 'record too large';
+  return { kind, id, body };
+}
 
 export async function onRequestGet({ env }) {
   try {
@@ -20,14 +33,15 @@ export async function onRequestGet({ env }) {
 export async function onRequestPost({ request, env, data }) {
   let body;
   try { body = await request.json(); } catch { return Response.json({ error: 'JSON body expected' }, { status: 400 }); }
-  const kind = String(body.kind || '');
-  const id = String(body.id || '');
-  if (!KINDS.has(kind)) return Response.json({ error: `kind must be one of ${[...KINDS].join(', ')}` }, { status: 400 });
-  if (!id) return Response.json({ error: 'id is required (candidate id, or draft path for a draft review)' }, { status: 400 });
-  if (JSON.stringify(body).length > 200_000) return Response.json({ error: 'record too large' }, { status: 413 });
+  const batch = Array.isArray(body?.records) ? body.records : [body];
+  if (!batch.length) return Response.json({ error: 'no records' }, { status: 400 });
+  if (batch.length > MAX_BATCH) return Response.json({ error: `at most ${MAX_BATCH} records per send` }, { status: 413 });
+  const checked = batch.map(check);
+  const bad = checked.find((c) => typeof c === 'string');
+  if (bad) return Response.json({ error: bad }, { status: bad === 'record too large' ? 413 : 400 });
   try {
-    const { file, commit } = await putRecord(env, data.reviewer, kind, id, body);
-    return Response.json({ ok: true, file, commit });
+    const { files, commit } = await putRecords(env, data.reviewer, checked);
+    return Response.json({ ok: true, file: files[0], files, commit });
   } catch (e) {
     return Response.json({ error: e.message }, { status: e.status || 502 });
   }

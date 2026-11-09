@@ -4,21 +4,32 @@ publish_portal.py — assemble (and deploy) the review portal: a private
 Cloudflare Pages site where collaborators review drafts beside the annotated
 PDFs, screen candidates and send their decisions back to this repository.
 
-    python scripts/publish_portal.py                 # assemble portal/dist/ and say what it holds
+    python scripts/publish_portal.py --sync          # on the maintainer's machine: send changed annotated PDFs
+                                                     # (and the abstracts file) to the portal's R2 bucket and
+                                                     # write portal/papers.json, the index the build reads
+    python scripts/publish_portal.py                 # assemble portal/dist/ (anywhere, incl. CI) and say what it holds
     python scripts/publish_portal.py --deploy        # … then `wrangler pages deploy` (needs `npx wrangler login` once)
-    python scripts/publish_portal.py --pdfs-only     # only refresh the PDF folders (after re-annotating)
+
+The PDFs are not part of the deployment: they live in the R2 bucket (portal.config.json
+`pdfsBucket`) under cc/ (Creative-Commons, public) and pdf/ (everything else, behind
+Access), and two Pages Functions serve them from there. That is what lets CI rebuild and
+deploy the portal on every push (.github/workflows/portal.yml) without the papers folder:
+the build only needs portal/papers.json, which --sync writes and which is committed.
 
 What goes where (docs/PORTAL.md):
-  portal/dist/cc/<Key>_annotated.pdf     annotated PDFs of Creative-Commons papers — public path (Access
-                                         bypass), linked from the explorer
-  portal/dist/pdf/<Key>_annotated.pdf    every other annotated PDF — behind Cloudflare Access (allow-listed
-                                         reviewers only); never in git
-  portal/dist/manifest.json              which PDFs exist, their licence category, the KB commit
+  <bucket>/cc/<Key>_annotated.pdf        annotated PDFs of Creative-Commons papers — served on the public
+                                         path (Access bypass), linked from the explorer
+  <bucket>/pdf/<Key>_annotated.pdf       every other annotated PDF — served behind Cloudflare Access
+                                         (allow-listed reviewers only); never in git
+  <bucket>/private/abstracts.jsonl       the abstracts cache (not in git), fetched by CI for the queue
+  portal/papers.json                     the index of the above: key → licence, size, sha256; source PDFs present
+  portal/dist/manifest.json              which PDFs exist, their licence category, the KB commit, maintainers
   portal/dist/screening.json             candidates awaiting title/abstract or full-text screening, with
-                                         their abstracts (private; abstracts are not in git)
+                                         their abstracts (private)
   portal/dist/export/*.json              the two exports the portal reads (approved; approved + drafts)
   portal/dist/*.html|js|css              the portal itself (portal/web/)
-  portal/functions/                      Pages Functions: who is signed in, write a review to GitHub
+  portal/functions/                      Pages Functions: who is signed in, write a review to GitHub,
+                                         uploads, cc/ and pdf/ from the bucket, the maintainer's Apply
 
 Which PDFs are public follows screening/licences.yaml (screen.py licences): categories
 `cc` and `cc_manuscript` are redistributable under their licence with the citation as
@@ -46,7 +57,14 @@ PORTAL = ROOT / "portal"
 WEB = PORTAL / "web"
 DIST = PORTAL / "dist"
 PAPERS = ROOT / "papers"
+INDEX = PORTAL / "papers.json"
+ABSTRACTS_OBJECT = "private/abstracts.jsonl"
 PUBLIC_CATEGORIES = ("cc", "cc_manuscript")
+
+
+def config() -> dict:
+    path = PORTAL / "portal.config.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
 
 
 def licences(root: Path = ROOT) -> dict[str, dict]:
@@ -65,34 +83,106 @@ def git(*args) -> str:
         return ""
 
 
-def copy_pdfs(papers_dir: Path, dist: Path, lic: dict[str, dict]) -> dict[str, dict]:
-    """Annotated PDFs → dist/cc (public) or dist/pdf (private). Returns the manifest entries."""
+def scan_pdfs(papers_dir: Path, lic: dict[str, dict]) -> dict[str, dict]:
+    """The annotated PDFs in papers/ as index entries: key → where it is served from (cc/ or pdf/ by
+    licence), category, size and sha256. Nothing is copied."""
     out: dict[str, dict] = {}
-    for sub in ("cc", "pdf"):
-        (dist / sub).mkdir(parents=True, exist_ok=True)
     if not papers_dir.is_dir():
-        print(f"  papers/ not found at {papers_dir}; no PDFs copied")
         return out
     for pdf in sorted(papers_dir.glob("*_annotated.pdf")):
         key = "@" + pdf.stem[: -len("_annotated")]
         cat = (lic.get(key) or {}).get("category") or "unknown"
         sub = "cc" if cat in PUBLIC_CATEGORIES else "pdf"
-        dest = dist / sub / pdf.name
-        if not dest.exists() or dest.stat().st_mtime < pdf.stat().st_mtime or dest.stat().st_size != pdf.stat().st_size:
-            shutil.copy2(pdf, dest)
-        other = dist / ("pdf" if sub == "cc" else "cc") / pdf.name
-        if other.exists():
-            other.unlink()                         # licence category changed since the last build
         out[key] = {"annotated": f"{sub}/{pdf.name}", "category": cat, "label": (lic.get(key) or {}).get("label"),
-                    "public": sub == "cc", "bytes": pdf.stat().st_size,
-                    "sha256": hashlib.sha256(pdf.read_bytes()).hexdigest()[:16]}
-    # drop files whose source is gone
-    present = {v["annotated"] for v in out.values()}
-    for sub in ("cc", "pdf"):
-        for f in (dist / sub).glob("*.pdf"):
-            if f"{sub}/{f.name}" not in present:
-                f.unlink()
+                    "public": sub == "cc", "bytes": pdf.stat().st_size, "sha256": hashlib.sha256(pdf.read_bytes()).hexdigest()}
     return out
+
+
+def _rel(p: Path) -> str:
+    try:
+        return str(p.relative_to(ROOT))
+    except ValueError:
+        return str(p)
+
+
+def load_index(path: Path = INDEX) -> dict:
+    if not path.exists():
+        return {"papers": {}, "sources": {"keys": [], "files": []}, "abstracts": None}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    data.setdefault("papers", {}); data.setdefault("sources", {"keys": [], "files": []}); data.setdefault("abstracts", None)
+    return data
+
+
+def wrangler(*args, timeout: int = 600) -> subprocess.CompletedProcess:
+    return subprocess.run(["npx", "wrangler", *args], cwd=str(PORTAL), capture_output=True, text=True, timeout=timeout)
+
+
+def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path = INDEX, put=None, delete=None,
+              abstracts_path: Path | None = None) -> dict:
+    """Mirror the annotated PDFs (and screening/abstracts.jsonl) into the R2 bucket and write the index.
+
+    Only files whose sha256 differs from the index are uploaded; a PDF whose licence category moved
+    it between cc/ and pdf/ is re-put and the old object deleted; a PDF gone from papers/ is deleted
+    from the bucket. `put`/`delete` are swapped in by the tests; the defaults call wrangler."""
+    put = put or (lambda obj, path, ctype: wrangler("r2", "object", "put", f"{bucket}/{obj}", "--file", str(path), "--content-type", ctype, "--remote"))
+    delete = delete or (lambda obj: wrangler("r2", "object", "delete", f"{bucket}/{obj}", "--remote"))
+    lic = licences()
+    old = load_index(index_path)
+    new = scan_pdfs(papers_dir, lic)
+    ups, dels, failed = [], [], []
+
+    def do_put(obj: str, path: Path, ctype: str) -> bool:
+        if dry:
+            print(f"  would upload {obj} ({path.stat().st_size // 1024} KB)")
+            return True
+        done = put(obj, path, ctype)
+        ok = getattr(done, "returncode", 0) == 0
+        print(f"  {'↑' if ok else '✗'} {obj}" + ("" if ok else f": {(getattr(done, 'stderr', '') or '').strip()[-200:]}"))
+        return ok
+
+    def do_delete(obj: str) -> None:
+        if dry:
+            print(f"  would delete {obj}")
+            return
+        done = delete(obj)
+        print(f"  {'−' if getattr(done, 'returncode', 0) == 0 else '✗'} {obj}")
+
+    for key, entry in list(new.items()):
+        prev = old["papers"].get(key)
+        if prev and prev.get("sha256") == entry["sha256"] and prev.get("annotated") == entry["annotated"]:
+            continue
+        if do_put(entry["annotated"], papers_dir / Path(entry["annotated"]).name, "application/pdf"):
+            ups.append(key)
+            if prev and prev.get("annotated") and prev["annotated"] != entry["annotated"]:
+                do_delete(prev["annotated"]); dels.append(prev["annotated"])
+        else:
+            failed.append(key)
+            if prev:
+                new[key] = prev                      # the index stays truthful: the bucket still has the old file
+            else:
+                new.pop(key, None)
+    for key, prev in old["papers"].items():
+        if key not in new and prev.get("annotated"):
+            do_delete(prev["annotated"]); dels.append(prev["annotated"])
+    abstracts = old.get("abstracts")
+    abs_path = abstracts_path or (ROOT / "screening" / "abstracts.jsonl")
+    if abs_path.exists():
+        sha = hashlib.sha256(abs_path.read_bytes()).hexdigest()
+        if not abstracts or abstracts.get("sha256") != sha:
+            if do_put(ABSTRACTS_OBJECT, abs_path, "application/x-ndjson"):
+                abstracts = {"object": ABSTRACTS_OBJECT, "sha256": sha, "bytes": abs_path.stat().st_size,
+                             "synced": dt.datetime.now().isoformat(timespec="minutes")}
+    index = {"synced": old.get("synced") if dry else dt.datetime.now().isoformat(timespec="minutes"), "bucket": bucket,
+             "papers": new, "sources": source_pdfs(papers_dir), "abstracts": abstracts}
+    if not dry:
+        index_path.write_text(json.dumps(index, indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
+    n_public = sum(1 for v in new.values() if v["public"])
+    verb = ("to upload", "to delete") if dry else ("uploaded", "deleted")
+    print(f"  bucket {bucket}: {len(ups)} {verb[0]}, {len(dels)} {verb[1]}, {len(failed)} failed · index: {n_public} public + {len(new) - n_public} private annotated PDFs, "
+          f"{len(index['sources']['keys'])} source PDFs" + (" (dry run, index not written)" if dry else f" → {_rel(index_path)}"))
+    if failed:
+        print(f"  ⚠ not uploaded: {', '.join(failed)} — run --sync again")
+    return index
 
 
 def source_pdfs(papers_dir: Path) -> dict:
@@ -152,19 +242,27 @@ def screening_bundle(root: Path = ROOT, ta_limit: int = 300) -> dict:
                       "full_text": len(ft_ids), "ranked": bool(rank_info)}}
 
 
-def build(papers_dir: Path, pdfs_only: bool = False, ta_limit: int = 300) -> dict:
+def maintainers(root: Path = ROOT) -> list[str]:
+    """Emails marked `maintainer: true` in portal/reviewers.yaml: they see the Apply button."""
+    path = root / "portal" / "reviewers.yaml"
+    if not path.exists():
+        return []
+    data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    return sorted(str(k).lower() for k, v in (data.get("reviewers") or {}).items() if (v or {}).get("maintainer"))
+
+
+def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
     DIST.mkdir(parents=True, exist_ok=True)
-    lic = licences()
-    pdfs = copy_pdfs(papers_dir, DIST, lic)
+    index = load_index(index_path)
+    pdfs = {k: {**v, "sha256": str(v.get("sha256") or "")[:16]} for k, v in index["papers"].items()}
+    sources = index["sources"]
     n_public = sum(1 for v in pdfs.values() if v["public"])
-    print(f"  PDFs: {n_public} public (Creative Commons) in cc/, {len(pdfs) - n_public} private in pdf/")
-    if pdfs_only:
-        manifest_path = DIST / "manifest.json"
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {}
-        manifest["papers"] = pdfs
-        manifest["sources"] = source_pdfs(papers_dir)
-        manifest_path.write_text(json.dumps(manifest, indent=1, sort_keys=True), encoding="utf-8")
-        return manifest
+    if not index_path.exists():
+        print(f"  ⚠ {_rel(index_path)} missing — run `publish_portal.py --sync` on the maintainer's machine; no PDFs listed")
+    print(f"  PDFs (from the index, served from the bucket): {n_public} public (Creative Commons), {len(pdfs) - n_public} private")
+    for sub in ("cc", "pdf"):                       # left by builds that copied the PDFs into dist/
+        if (DIST / sub).is_dir():
+            shutil.rmtree(DIST / sub)
     # the portal itself
     for f in WEB.iterdir():
         if f.is_file():
@@ -192,16 +290,14 @@ def build(papers_dir: Path, pdfs_only: bool = False, ta_limit: int = 300) -> dic
     q = sb["queue"]
     print(f"  screening.json: {q['title_abstract']} of {q['title_abstract_total']} title/abstract records "
           f"({'prioritised order' if q['ranked'] else 'all'}) + {q['full_text']} full-text records")
-    cfg_path = PORTAL / "portal.config.json"
-    cfg = json.loads(cfg_path.read_text(encoding="utf-8")) if cfg_path.exists() else {}
-    sources = source_pdfs(papers_dir)
+    cfg = config()
     manifest = {"built": dt.datetime.now().isoformat(timespec="minutes"), "kbCommit": git("rev-parse", "--short", "HEAD"),
                 "kbDate": git("log", "-1", "--format=%cs"), "papers": pdfs, "sources": sources, "config": cfg,
+                "pdfsSynced": index.get("synced"), "maintainers": maintainers(),
                 "counts": {"public": n_public, "private": len(pdfs) - n_public, "candidates": len(sb["candidates"]),
                            "sources": sum(1 for k in sources["keys"] if k not in pdfs), "sourceFiles": len(sources["files"])}}
     (DIST / "manifest.json").write_text(json.dumps(manifest, indent=1, sort_keys=True), encoding="utf-8")
-    (DIST / "_headers").write_text("/*\n  X-Robots-Tag: noindex\n  Cache-Control: no-cache\n/cc/*\n  Cache-Control: public, max-age=86400\n",
-                                   encoding="utf-8")
+    (DIST / "_headers").write_text("/*\n  X-Robots-Tag: noindex\n  Cache-Control: no-cache\n", encoding="utf-8")
     return manifest
 
 
@@ -213,15 +309,27 @@ def deploy(project: str, branch: str) -> int:
 
 def _cli(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
-    ap.add_argument("--papers-dir", type=Path, default=PAPERS)
-    ap.add_argument("--pdfs-only", action="store_true")
+    ap.add_argument("--sync", action="store_true", help="send changed annotated PDFs and the abstracts file to the R2 bucket and write portal/papers.json (maintainer's machine)")
+    ap.add_argument("--dry-run", action="store_true", help="with --sync: say what would be uploaded or deleted")
+    ap.add_argument("--papers-dir", type=Path, default=PAPERS, help="with --sync: the papers folder (default papers/)")
+    ap.add_argument("--bucket", default=None, help="with --sync: the R2 bucket (default: pdfsBucket in portal/portal.config.json)")
     ap.add_argument("--deploy", action="store_true", help="run wrangler pages deploy after assembling")
     ap.add_argument("--project", default=None, help="Cloudflare Pages project name (default: portal.config.json)")
     ap.add_argument("--branch", default="main", help="Pages branch to deploy to (main = production)")
     ap.add_argument("--ta-limit", type=int, default=300, help="title/abstract records offered, in prioritised order (default 300)")
     args = ap.parse_args(argv)
+    if args.sync:
+        bucket = args.bucket or config().get("pdfsBucket")
+        if not bucket:
+            print("  no bucket: pass --bucket or set pdfsBucket in portal/portal.config.json")
+            return 1
+        print(f"Syncing annotated PDFs from {args.papers_dir} to the R2 bucket {bucket}")
+        sync_pdfs(args.papers_dir, bucket, dry=args.dry_run)
+        if not args.deploy:
+            print("  Commit portal/papers.json and push: the portal rebuilds from the push (or build here: publish_portal.py --deploy).")
+            return 0
     print(f"Assembling the review portal in {DIST.relative_to(ROOT)}/")
-    manifest = build(args.papers_dir, args.pdfs_only, args.ta_limit)
+    manifest = build(args.ta_limit)
     print(f"  KB {manifest.get('kbCommit') or '?'} · {len(manifest.get('papers') or {})} annotated PDFs · built {manifest.get('built')}")
     if args.deploy:
         cfg = manifest.get("config") or {}

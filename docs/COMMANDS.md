@@ -53,7 +53,8 @@ involved* page shows the same split as five levels.
 | Re-extract marked passages | `refocus.py --all --execute` | — (the marks are sent from the portal; the extractor runs here) |
 | Approve or reject | `promote.py --approve/--reject --reviewer human:<name>` | overall verdict from an **approver** → applied by `portal_import.py --execute --promote` |
 | See what was applied | `git log logs/portal/` | **My reviews** |
-| Extract, backfill, audit, publish | `extract.py`, `backfill.py`, `audit_quotes.py`, `snapshot.py`, `publish_portal.py` | — by design: PDFs and the canonical folders never leave this machine |
+| Apply what reviewers sent | `portal_import.py --execute --promote` | **Apply now** on Home (maintainer) → the same, in GitHub Actions; also every six hours |
+| Extract, backfill, audit, publish PDFs | `extract.py`, `backfill.py`, `audit_quotes.py`, `snapshot.py`, `publish_portal.py --sync` | — by design: the PDFs leave this machine only into the portal's private bucket |
 
 A paper reaches extraction only after it was included at full text
 (`screen.py fulltext` lists what each paper needs next). Do not use
@@ -596,21 +597,28 @@ its grade, the page it was found on, and a highlighted crop.
 ### `publish_portal.py` / `portal_import.py` — the hosted review portal
 
 ```bash
-python scripts/publish_portal.py                # assemble portal/dist/: PDFs by licence, exports, screening queue
-python scripts/publish_portal.py --deploy       # … and deploy to Cloudflare Pages (npx wrangler login once)
-python scripts/publish_portal.py --pdfs-only    # refresh only the PDF folders
-python scripts/portal_dev.py --by you@uq.edu.au # try the built portal locally; records go to logs/portal/inbox/
+python scripts/publish_portal.py --sync         # after extracting or re-annotating: changed annotated PDFs (and the
+                                                # abstracts cache) to the R2 bucket, index in portal/papers.json; commit it
+python scripts/publish_portal.py                # assemble portal/dist/ from the index: exports, screening queue, page
+python scripts/publish_portal.py --deploy       # … and deploy by hand (CI does this on every push; npx wrangler login once)
+python scripts/portal_dev.py --by you@uq.edu.au # try the built portal locally; PDFs from papers/, records to logs/portal/inbox/
 python scripts/portal_import.py                 # what the records in logs/portal/inbox/ would do
 python scripts/portal_import.py --execute --promote   # apply them; approvers' approve/reject go through promote.py
+python scripts/portal_import.py --execute --kind pdf  # pull the PDFs reviewers uploaded into papers/ (this machine only)
 ```
 
 The portal (docs/PORTAL.md) is the private, hosted version of the
 workbenches: collaborators sign in through Cloudflare Access, review
 drafts beside the annotated PDFs, screen candidates, and every decision
 comes back as a JSON record in `logs/portal/inbox/` that
-`portal_import.py` applies under the reviewer's name. Creative-Commons
-annotated PDFs are served openly (`cc/`) and linked from the explorer;
-the rest only after sign-in. A paper the portal lacks can be uploaded by
+`portal_import.py` applies under the reviewer's name. Applying normally
+happens in GitHub Actions (the maintainer's **Apply now** button on the
+portal's Home, or every six hours): the workflow runs `portal_import.py
+--execute --promote --skip-pdf`, commits, and the explorer and the portal
+rebuild. Only two things need this machine: `--sync`, which mirrors the
+annotated PDFs into the R2 bucket, and pulling uploaded PDFs into
+`papers/`. Creative-Commons annotated PDFs are served openly (`cc/`) and
+linked from the explorer; the rest only after sign-in. A paper the portal lacks can be uploaded by
 a reviewer (required before a full-text decision): the file waits in a
 private R2 bucket and `portal_import.py` pulls it into `papers/` (the
 OneDrive folder) as `<Key>.pdf`, or `<Cid>_<name>.pdf` linked to the
@@ -618,9 +626,12 @@ candidate, then `intake_papers.py` takes over as for any new PDF.
 
 | Option | Meaning |
 |---|---|
+| `publish_portal.py --sync --dry-run` | Say what `--sync` would upload or delete, without touching the bucket or the index. |
+| `publish_portal.py --sync --papers-dir DIR`, `--bucket B` | Another papers folder; another bucket (default `pdfsBucket` in `portal/portal.config.json`). |
 | `publish_portal.py --ta-limit N` | Title/abstract records offered, in prioritised order (default 300). |
 | `publish_portal.py --project NAME`, `--branch B` | Pages project and branch (`main` = production). |
 | `portal_import.py --kind K` | Only records of one kind (screen, verdict, edit, mark, comment, pdf). |
+| `portal_import.py --skip-pdf` | Leave `pdf` records in the inbox (what the apply workflow does: CI has no papers folder). |
 
 ### `review_app.py` — the review workbench: draft and paper side by side
 

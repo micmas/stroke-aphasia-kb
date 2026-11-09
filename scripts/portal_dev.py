@@ -6,9 +6,10 @@ portal_dev.py — try the review portal on this computer, without Cloudflare or 
     python scripts/portal_dev.py --by you@uq.edu.au      # serve it at http://127.0.0.1:8768/
     python scripts/portal_import.py                      # then: what you sent, as the maintainer would see it
 
-Serves portal/dist/ and stands in for the two Pages Functions: /api/me answers with
-the email given by --by (the hosted portal gets it from Cloudflare Access), and
-POST /api/reviews writes each record into logs/portal/inbox/ with the same file name
+Serves portal/dist/ and stands in for the Pages Functions: /cc/ and /pdf/ serve the
+annotated PDFs straight from papers/ (the hosted portal reads them from the R2 bucket),
+/api/me answers with the email given by --by (the hosted portal gets it from Cloudflare Access), and
+POST /api/reviews writes each record (one, or a {records: [...]} batch) into logs/portal/inbox/ with the same file name
 the hosted function would commit to GitHub. Nothing leaves this computer; the
 Access token check and the GitHub write are the only parts not exercised — they
 have their own test (cd portal && npm test).
@@ -37,6 +38,7 @@ DIST = ROOT / "portal" / "dist"
 INBOX = ROOT / "logs" / "portal" / "inbox"
 APPLIED = ROOT / "logs" / "portal" / "applied"
 UPLOADS = ROOT / "portal" / ".uploads"
+PAPERS = ROOT / "papers"
 KINDS = {"screen", "verdict", "edit", "mark", "comment"}
 MAX_UPLOAD = 60 * 1024 * 1024
 
@@ -73,9 +75,31 @@ def make_handler(email: str, name: str):
             (INBOX / fname).write_text(json.dumps(rec, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
             return f"logs/portal/inbox/{fname}"
 
+        def _pdf(self):
+            # the hosted functions/cc and functions/pdf serve these from the bucket; here, from papers/
+            name_ = self.path.split("?")[0].split("/")[-1]
+            if "/" in name_ or ".." in name_ or not name_.endswith(".pdf"):
+                return self._json({"error": "not found"}, 404)
+            f = PAPERS / name_
+            if not f.is_file():
+                self.send_response(404); self.end_headers(); return None
+            data = f.read_bytes()
+            self.send_response(200)
+            self.send_header("Content-Type", "application/pdf")
+            self.send_header("Content-Length", str(len(data)))
+            self.send_header("Cache-Control", "no-store")
+            self.end_headers()
+            self.wfile.write(data)
+            return None
+
         def do_GET(self):  # noqa: N802
+            if self.path.startswith(("/cc/", "/pdf/")):
+                return self._pdf()
             if self.path == "/api/me":
                 return self._json({"email": email, "name": name, "repo": "(local)", "branch": "(local)"})
+            if self.path.startswith("/api/apply"):
+                n = len(list(INBOX.glob("*.json"))) if INBOX.is_dir() else 0
+                return self._json({"maintainer": True, "inbox": n, "run": None, "local": True})
             if self.path.startswith("/api/reviews"):
                 return self._json({"inbox": sorted(p.name for p in INBOX.glob("*.json")) if INBOX.is_dir() else [],
                                    "applied": sorted(p.name for p in APPLIED.glob("*.json")) if APPLIED.is_dir() else []})
@@ -94,6 +118,8 @@ def make_handler(email: str, name: str):
         def do_POST(self):  # noqa: N802
             if self.path.startswith("/api/upload"):
                 return self._upload()
+            if self.path.startswith("/api/apply"):
+                return self._json({"error": "no workflow here: run `python scripts/portal_import.py --execute` in a terminal"}, 501)
             if not self.path.startswith("/api/reviews"):
                 return self._json({"error": "not found"}, 404)
             n = int(self.headers.get("Content-Length") or 0)
@@ -101,10 +127,14 @@ def make_handler(email: str, name: str):
                 body = json.loads(self.rfile.read(n).decode("utf-8") or "{}")
             except ValueError:
                 return self._json({"error": "JSON body expected"}, 400)
-            kind, cid = str(body.get("kind") or ""), str(body.get("id") or "")
-            if kind not in KINDS or not cid:
-                return self._json({"error": "kind and id are required"}, 400)
-            return self._json({"ok": True, "file": self._record(body, kind, cid), "commit": "local"})
+            batch = body.get("records") if isinstance(body.get("records"), list) else [body]
+            if not batch:
+                return self._json({"error": "no records"}, 400)
+            for rec in batch:
+                if not isinstance(rec, dict) or str(rec.get("kind") or "") not in KINDS or not str(rec.get("id") or ""):
+                    return self._json({"error": "kind and id are required"}, 400)
+            files = [self._record(rec, str(rec["kind"]), str(rec["id"])) for rec in batch]
+            return self._json({"ok": True, "file": files[0], "files": files, "commit": "local"})
 
         def _upload(self):
             # the hosted function's twin (portal/functions/api/upload.js): the file goes to portal/.uploads/

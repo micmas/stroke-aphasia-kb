@@ -218,8 +218,9 @@ git add -A && git commit -m "Foo2024 extraction (3 approved, 1 rejected)" && git
 `--check` over the whole KB confirms the merged entries are still
 valid. `git status` should show the new or changed entry, the removed
 draft, the log and `citations.md`; never anything under `papers/`. The
-annotated PDF reaches reviewers through the portal
-(`publish_portal.py --deploy`), not through git.
+annotated PDF reaches reviewers through the portal's bucket
+(`publish_portal.py --sync`, then commit `portal/papers.json`), not
+through git.
 
 ## If something is odd
 

@@ -1,12 +1,16 @@
-// Every request to the portal arrives through Cloudflare Access. For the API we
-// still verify the Access JWT ourselves (header Cf-Access-Jwt-Assertion) against
-// the team's public keys, so a function never trusts a header alone, and we hand
-// the signed-in email to the route as data.reviewer.
+// Every request to the portal arrives through Cloudflare Access. For the API and
+// the private PDFs (pdf/*) we still verify the Access JWT ourselves (header
+// Cf-Access-Jwt-Assertion) against the team's public keys, so a function never
+// trusts a header alone, and we hand the signed-in email to the route as
+// data.reviewer. cc/* (Creative-Commons PDFs) is public by Access policy and
+// passes through.
 //
 // Environment (Pages project → Settings → Variables and Secrets):
 //   ACCESS_TEAM_DOMAIN  e.g. "uq-calmar"        (https://<team>.cloudflareaccess.com)
 //   ACCESS_AUD          the Access application's Audience tag
-//   GITHUB_TOKEN        fine-grained token: Contents read/write on the KB repo (secret)
+//   GITHUB_TOKEN        fine-grained token: Contents read/write + Actions read/write on the KB repo (secret)
+//   MAINTAINERS         comma-separated emails allowed to press Apply (api/apply.js)
+//   PDFS / PDFS_BUCKET  R2 binding and bucket name holding the annotated PDFs (cc/, pdf/) and the abstracts
 //   GITHUB_REPO         "micmas/stroke-aphasia-kb"
 //   GITHUB_BRANCH       "main"
 //   DEV_REVIEWER        (local only, `wrangler pages dev`) an email to act as when Access is absent
@@ -51,7 +55,12 @@ export async function verifyAccessJwt(token, env) {
 
 export async function onRequest({ request, env, data, next }) {
   const url = new URL(request.url);
-  if (!url.pathname.startsWith('/api/')) return next();
+  const isApi = url.pathname.startsWith('/api/');
+  const isPrivatePdf = url.pathname.startsWith('/pdf/');
+  if (!isApi && !isPrivatePdf) return next();          // the page, cc/* and everything static pass through
+  const refuse = (msg) => (isApi
+    ? new Response(JSON.stringify({ error: msg }), { status: 401, headers: { 'Content-Type': 'application/json' } })
+    : new Response(msg, { status: 401 }));
   const token = request.headers.get('Cf-Access-Jwt-Assertion');
   try {
     if (token) {
@@ -60,10 +69,10 @@ export async function onRequest({ request, env, data, next }) {
     } else if (env.DEV_REVIEWER && url.hostname === 'localhost') {
       data.reviewer = { email: String(env.DEV_REVIEWER).toLowerCase(), name: 'dev' };
     } else {
-      return new Response(JSON.stringify({ error: 'not signed in through Cloudflare Access' }), { status: 401, headers: { 'Content-Type': 'application/json' } });
+      return refuse('not signed in through Cloudflare Access');
     }
   } catch (e) {
-    return new Response(JSON.stringify({ error: `access token rejected: ${e.message}` }), { status: 401, headers: { 'Content-Type': 'application/json' } });
+    return refuse(`access token rejected: ${e.message}`);
   }
   return next();
 }

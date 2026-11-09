@@ -1,5 +1,6 @@
 {
   "pagesProject": "stroke-aphasia-kb-review",
+  "pdfsBucket": "stroke-aphasia-kb-pdfs",
   "portalUrl": "https://review.aphasia-kb.app",
   "explorerUrl": "https://aphasia-kb.app/",
   "maintainer": "Michèle Masson-Trottier"

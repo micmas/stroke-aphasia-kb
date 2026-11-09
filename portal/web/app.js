@@ -9,7 +9,7 @@
 //   #/draft/<path>     one draft beside its annotated PDF: verdicts, edits, marks, comments
 //   #/screen/ta        title/abstract screening queue
 //   #/screen/ft        full-text screening queue (with the PDF when the portal holds it)
-//   #/pdfs             every annotated PDF the portal holds, and the uploads waiting for the maintainer
+//   #/pdfs             the included papers whose PDF nobody has yet, every annotated PDF the portal holds, and the uploads waiting for the maintainer
 //   #/mine             the records you have sent
 // A paper the portal lacks can be uploaded (any candidate; required before a full-text
 // decision): the file goes to a private bucket via /api/upload and a `pdf` record tells the
@@ -54,9 +54,11 @@ async function api(path, init) {
   if (!res.ok || data.error) throw new Error(data.error || `${res.status}`);
   return data;
 }
-async function send(record) {
-  const out = await api('reviews', { method: 'POST', body: JSON.stringify(record) });
-  state.mine.inbox.push(out.file.split('/').pop());
+/** Send records to the repository in one request = one commit, however many there are. */
+async function sendAll(records) {
+  if (!records.length) return { files: [] };
+  const out = await api('reviews', { method: 'POST', body: JSON.stringify({ records }) });
+  for (const f of out.files || [out.file]) state.mine.inbox.push(f.split('/').pop());
   return out;
 }
 
@@ -105,6 +107,14 @@ function uploadControl(id, citation, { required = false, label = null } = {}) {
 /** "PDF uploaded by … on …, waiting for the maintainer" */
 const uploadedNote = (u) => h('span', { class: 'badge badge-warn', title: u.name, text: `PDF uploaded${u.by === state.me?.email ? ' by you' : u.by ? ` by ${u.by}` : ''}${u.uploaded ? ` on ${String(u.uploaded).slice(0, 10)}` : ''}, with the maintainer` });
 const myRecords = () => [...state.mine.inbox, ...state.mine.applied].filter((n) => n.includes(`_${slug(state.me?.email?.split('@')[0])}_`));
+/** Screening decisions sent from this browser and not yet applied (the candidate is still in its old stage): [{id, stage, decision}]. */
+function pendingSent() {
+  const sent = store.get('screen:sent', {});
+  const cands = state.screening?.candidates || [];
+  return Object.entries(sent).filter(([, v]) => v && typeof v === 'object').map(([id, v]) => ({ id, ...v })).filter((x) => cands.some((c) => c.id === x.id));
+}
+/** Candidates included at title/abstract (awaiting the full text) whose paper the maintainer does not have. */
+const missingPdfs = () => (state.screening?.candidates || []).filter((c) => ['awaiting_ft', 'unsure_ft'].includes(c.stage) && !candidateHasPdf(c));
 const slug = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
 const reviewedBy = (id) => { const s = slug(id.replace(/^drafts\//, '').replace(/\.md$/, '')); return [...state.mine.inbox, ...state.mine.applied].filter((n) => n.endsWith(`_${s}.json`)).map((n) => n.split('_')[2]); };
 
@@ -115,18 +125,63 @@ function home() {
   const ta = sc.filter((c) => ['awaiting_ta', 'unsure_ta'].includes(c.stage));
   const ft = sc.filter((c) => ['awaiting_ft', 'unsure_ft'].includes(c.stage));
   const m = state.manifest || {};
+  const missing = missingPdfs();
+  const pendingTa = pendingSent().filter((x) => x.stage === 'ta' && x.decision === 'include').length;
   return frag(
     h('div', { class: 'page-head' }, h('h1', { text: 'Review portal' }), h('span', { class: 'muted small', text: `KB ${m.kbCommit || '?'} (${m.kbDate || '?'}) · built ${m.built || '?'}` })),
     h('p', {}, `You are signed in as ${state.me.email}. Everything you decide here is sent to the knowledge base's repository under that name and applied by the maintainer; the governance policy still decides who may approve what.`),
+    h('p', { class: 'small muted', text: 'This portal is a snapshot of the knowledge base, rebuilt after what reviewers sent has been applied. Your decisions reach the repository the moment you send them; the queues here (and a paper moving from title/abstract to full text) change at the next build, a few minutes after the maintainer applies the inbox, which also happens on its own every six hours.' }),
+    (m.maintainers || []).includes(String(state.me.email || '').toLowerCase()) ? applyPanel() : null,
     h('div', { class: 'tiles' },
       h('a', { class: 'tile tile-link', href: '#/drafts' }, h('div', { class: 'value', text: String(drafts.length) }), h('div', { class: 'label', text: 'drafts to review' }), h('div', { class: 'detail', text: `${drafts.reduce((n, d) => n + d.findings.length, 0)} findings` })),
       h('a', { class: 'tile tile-link', href: '#/screen/ta' }, h('div', { class: 'value', text: String(ta.length) }), h('div', { class: 'label', text: 'titles/abstracts to screen' })),
-      h('a', { class: 'tile tile-link', href: '#/screen/ft' }, h('div', { class: 'value', text: String(ft.length) }), h('div', { class: 'label', text: 'full texts to assess' })),
-      h('a', { class: 'tile tile-link', href: '#/pdfs' }, h('div', { class: 'value', text: String(m.counts?.private ?? 0) }), h('div', { class: 'label', text: 'annotated PDFs here (private)' }), h('div', { class: 'detail', text: `${m.counts?.public ?? 0} more are public (Creative Commons)${state.uploads.length ? ` · ${plural(state.uploads.length, 'upload')} waiting` : ''}` })),
+      h('a', { class: 'tile tile-link', href: '#/screen/ft' }, h('div', { class: 'value', text: String(ft.length) }), h('div', { class: 'label', text: 'full texts to assess' }), h('div', { class: 'detail', text: [missing.length ? `${missing.length} without a PDF yet` : '', pendingTa ? `${pendingTa} included by you at T/A, waiting to be applied` : ''].filter(Boolean).join(' · ') })),
+      h('a', { class: 'tile tile-link', href: '#/pdfs' }, h('div', { class: 'value', text: String(m.counts?.private ?? 0) }), h('div', { class: 'label', text: 'annotated PDFs here (private)' }), h('div', { class: 'detail', text: `${m.counts?.public ?? 0} more are public (Creative Commons)${missing.length ? ` · ${missing.length} still needed` : ''}${state.uploads.length ? ` · ${plural(state.uploads.length, 'upload')} waiting` : ''}` })),
       h('a', { class: 'tile tile-link', href: '#/mine' }, h('div', { class: 'value', text: String(myRecords().length) }), h('div', { class: 'label', text: 'reviews you have sent' }))),
     h('h2', { text: 'How to review' }),
     h('p', { class: 'small' }, 'A draft is what the local model extracted from one paper: findings, each with the verbatim passages that support it. Open it beside the annotated PDF (the highlights are the passages, in the colour of what they support) and say, finding by finding, whether the claim is what the paper shows. Fix a field when the paper says otherwise, select words in the PDF to add a passage or to mark something the extractor missed, then send the review. For screening, read the title and abstract (or the full text) against the eligibility criteria in SCREENING.md and include or exclude with a reason.'),
     h('p', { class: 'small muted', text: 'Keys in the screening queues: i include · e exclude (then a reason) · u unsure · click a card first.' }));
+}
+
+/** The maintainer's panel: what waits in the inbox, the last apply run, and the button that starts one. */
+function applyPanel() {
+  const box = h('div', { class: 'applybox' });
+  const status = h('span', { class: 'small muted', text: 'checking the inbox…' });
+  const btn = h('button', { class: 'btn btn-primary', disabled: '', text: 'Apply now' });
+  const runLine = h('div', { class: 'small muted' });
+  const when = (iso) => (iso ? new Date(iso).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }) : '?');
+  const describe = (r) => {
+    if (!r) return 'No apply run yet.';
+    const link = h('a', { href: r.url, target: '_blank', rel: 'noopener', text: 'open the run' });
+    if (r.status !== 'completed') return frag(`An apply is ${r.status.replace('_', ' ')} (started ${when(r.started)}) — the explorer and this portal rebuild when it finishes. `, link);
+    return frag(`Last apply ${r.conclusion === 'success' ? 'succeeded' : `ended: ${r.conclusion}`} at ${when(r.updated)} (${r.event === 'schedule' ? 'scheduled' : r.event === 'workflow_dispatch' ? 'by hand' : r.event}). `, link);
+  };
+  let timer = null;
+  const refresh = async () => {
+    try {
+      const a = await api('apply');
+      const running = a.run && a.run.status !== 'completed';
+      status.textContent = a.inbox ? `${plural(a.inbox, 'record')} waiting in the inbox` : 'The inbox is empty';
+      runLine.replaceChildren(describe(a.run));
+      btn.disabled = !a.inbox || running || a.local;
+      btn.textContent = running ? 'Applying…' : a.inbox ? `Apply ${plural(a.inbox, 'record')} now` : 'Apply now';
+      btn.classList.toggle('working', Boolean(running));
+      if (running && document.body.contains(box)) timer = setTimeout(refresh, 20000);
+      else if (a.local) status.textContent += ' — local stand-in: run portal_import.py in a terminal';
+    } catch (e) { status.textContent = `Could not read the inbox: ${e.message}`; }
+  };
+  btn.onclick = async () => {
+    btn.disabled = true; btn.classList.add('working'); btn.textContent = 'Starting…';
+    try {
+      const out = await api('apply', { method: 'POST', body: '{}' });
+      toast(out.alreadyRunning ? 'An apply is already running' : 'Apply started: the records are applied and both sites rebuild in a few minutes');
+      setTimeout(refresh, 4000);
+    } catch (e) { toast(`Not started: ${e.message}`, true); btn.disabled = false; btn.classList.remove('working'); btn.textContent = 'Apply now'; }
+  };
+  box.append(h('div', { class: 'row' }, h('strong', { text: 'Maintainer' }), status, btn), runLine,
+    h('div', { class: 'small muted', text: 'Apply runs portal_import.py in GitHub Actions: screening decisions into the register, verdicts, edits, marks and comments into the drafts, promote.py for approvers; then the explorer and this portal rebuild. Uploaded PDFs stay for you to pull on your machine (portal_import.py --kind pdf), and marks still need refocus.py there.' }));
+  refresh();
+  return box;
 }
 
 function draftsList() {
@@ -248,17 +303,18 @@ function verdictPanel(d, r, save) {
     if (!r.verdict && pending === total) { toast('Give an overall verdict for the draft', true); return; }
     btn.disabled = true; btn.classList.add('working'); btn.textContent = 'Sending…';
     try {
-      const sent = [];
-      const tick = () => { btn.textContent = `Sending… ${sent.length} record${sent.length === 1 ? '' : 's'} written`; };
+      const records = [];
       const perFinding = d.findings.filter((f) => r.findings[f.id]?.verdict).map((f) => ({ id: f.id, verdict: r.findings[f.id].verdict, concern: r.findings[f.id].concern || '', supports_approval: r.findings[f.id].verdict === 'agree', passages: r.findings[f.id].passages }));
-      if (perFinding.length || r.verdict) { sent.push(await send({ kind: 'verdict', id: d.path, citation: d.citation, verdict: r.verdict || null, rationale: r.rationale || '', per_finding: perFinding })); tick(); }
+      if (perFinding.length || r.verdict) records.push({ kind: 'verdict', id: d.path, citation: d.citation, verdict: r.verdict || null, rationale: r.rationale || '', per_finding: perFinding });
       for (const f of d.findings) {
         const x = r.findings[f.id]; if (!x) continue;
-        if (Object.keys(x.edits).length || x.added.length) { sent.push(await send({ kind: 'edit', id: d.path, citation: d.citation, finding: f.id, fields: Object.fromEntries(Object.entries(x.edits).map(([k, v]) => [k, { old: f[k], new: v }])), passages_added: x.added })); tick(); }
+        if (Object.keys(x.edits).length || x.added.length) records.push({ kind: 'edit', id: d.path, citation: d.citation, finding: f.id, fields: Object.fromEntries(Object.entries(x.edits).map(([k, v]) => [k, { old: f[k], new: v }])), passages_added: x.added });
       }
-      for (const m of r.marks) { sent.push(await send({ kind: 'mark', id: d.path, citation: d.citation, page: m.page, quote: m.quote, note: m.note || '' })); tick(); }
+      for (const m of r.marks) records.push({ kind: 'mark', id: d.path, citation: d.citation, page: m.page, quote: m.quote, note: m.note || '' });
+      btn.textContent = `Sending ${plural(records.length, 'record')} in one commit…`;
+      await sendAll(records);
       store.del(`review:${d.path}`);
-      toast(`Sent ${plural(sent.length, 'record')} — thank you`);
+      toast(`Sent ${plural(records.length, 'record')} — thank you`);
       location.hash = '#/drafts';
     } catch (e) { toast(`Not sent: ${e.message}`, true); btn.disabled = false; btn.classList.remove('working'); btn.textContent = 'Send this review'; }
   } });
@@ -266,7 +322,7 @@ function verdictPanel(d, r, save) {
   return frag(h('div', { class: 'verdict' }, h('h4', { text: 'Overall' }),
     h('div', { class: 'row' }, h('span', { class: 'muted', text: 'This draft should be' }), ['approve', 'agree_defer', 'reject'].map((v) => h('label', {}, h('input', { type: 'radio', name: 'overall', value: v, checked: r.verdict === v ? '' : null, onchange: () => { r.verdict = v; save(); } }), ` ${v === 'agree_defer' ? 'kept for more review' : v === 'approve' ? 'approved' : 'rejected'}`))),
     h('textarea', { rows: 2, placeholder: 'rationale, 1–3 sentences', onchange: (e) => { r.rationale = e.target.value.trim(); save(); } }, esc(r.rationale)),
-    h('p', { class: 'small muted', text: 'Only a person named in the governance policy approves; if that is not you, your verdict is recorded as an opinion the maintainer reads before promoting.' })), bar);
+    h('p', { class: 'small muted', text: 'Only someone marked approver in the Reviewer team (portal/reviewers.yaml) approves; if that is not you, your verdict is recorded as an opinion the maintainer reads before promoting.' })), bar);
 }
 
 // ---- screening ----
@@ -334,7 +390,7 @@ async function sendScreen(stage, decided, cands, btn = null, status = null) {
   const items = Object.entries(decided).filter(([, d]) => d.decision);
   if (!items.length) { toast('Nothing decided yet', true); return; }
   const label = btn ? btn.textContent : '';
-  const working = (i) => { if (btn) { btn.disabled = true; btn.classList.add('working'); btn.textContent = `Sending ${i} of ${items.length}…`; } if (status) status.textContent = 'each decision is one commit to the repository; this takes a second or two per record'; };
+  const working = () => { if (btn) { btn.disabled = true; btn.classList.add('working'); btn.textContent = `Sending ${plural(items.length, 'decision')}…`; } if (status) status.textContent = 'writing them to the repository as one commit; a few seconds'; };
   const done = () => { if (btn) { btn.disabled = false; btn.classList.remove('working'); btn.textContent = label; } };
   const bad = items.filter(([, d]) => d.decision === 'exclude' && !d.reason);
   if (bad.length) { toast(`An exclusion needs a reason: ${bad.map(([id]) => id).join(', ')}`, true); return; }
@@ -342,20 +398,18 @@ async function sendScreen(stage, decided, cands, btn = null, status = null) {
     const noPdf = items.filter(([id]) => { const c = cands.find((x) => x.id === id); return c && !candidateHasPdf(c) && !uploadFor(c.id, c.key); }).map(([id]) => id);
     if (noPdf.length) { toast(`A full-text decision needs the paper's PDF first: ${noPdf.join(', ')}`, true); return; }
   }
-  let n = 0;
-  working(1);
+  working();
   try {
-    for (const [id, d] of items) {
-      working(n + 1);
-      await send({ kind: 'screen', id, stage: st, decision: d.decision, reason: d.decision === 'exclude' ? d.reason : null, note: d.note || '' });
-      delete decided[id]; store.set(`screen:${stage}`, decided); n += 1;
-      const sentLocal = store.get('screen:sent', {}); sentLocal[id] = new Date().toISOString(); store.set('screen:sent', sentLocal);
-    }
-    toast(`Sent ${plural(n, 'decision')} — thank you. They leave the queue until the maintainer applies them.`);
+    await sendAll(items.map(([id, d]) => ({ kind: 'screen', id, stage: st, decision: d.decision, reason: d.decision === 'exclude' ? d.reason : null, note: d.note || '' })));
+    const sentLocal = store.get('screen:sent', {});
+    const at = new Date().toISOString();
+    for (const [id, d] of items) { delete decided[id]; sentLocal[id] = { at, stage, decision: d.decision }; }
+    store.set(`screen:${stage}`, decided); store.set('screen:sent', sentLocal);
+    toast(`Sent ${plural(items.length, 'decision')} — thank you. They leave the queue until the maintainer applies them${stage === 'ta' ? '; included papers then move to the Full text queue at the next build' : ''}.`);
     render();
     window.scrollTo(0, 0);
     document.querySelector('.screen')?.focus();
-  } catch (e) { done(); toast(`Sent ${n}; then: ${e.message}`, true); }
+  } catch (e) { done(); toast(`Not sent: ${e.message}`, true); }
 }
 
 // ---- the PDFs the portal holds ----
@@ -380,7 +434,24 @@ function pdfsView() {
   };
   const table = h('table', { class: 'queue' }, h('thead', {}, h('tr', {}, h('th', { text: 'Paper' }), h('th', { text: 'Citation' }), h('th', { text: 'Access' }), h('th', { class: 'num', text: 'Approved findings' }), h('th', { text: 'Drafts to review' }), h('th', { text: 'Size' }))), h('tbody', {}, papers.map(row)));
   const ups = [...state.uploads].sort((a, b) => String(b.uploaded).localeCompare(String(a.uploaded)));
-  return frag(h('div', { class: 'page-head' }, h('h1', { text: 'Annotated PDFs' }), h('span', { class: 'muted small', text: `${m.counts?.private ?? 0} private · ${m.counts?.public ?? 0} public · ${m.counts?.sources ?? 0} more source PDFs with the maintainer, not annotated yet` })),
+  // Papers included at title/abstract whose PDF nobody has yet: the list to work from when looking for full texts.
+  const missing = missingPdfs().sort((a, b) => (Number(b.year) || 0) - (Number(a.year) || 0) || String(a.id).localeCompare(String(b.id)));
+  const missingRow = (c) => {
+    const up = uploadFor(c.id, c.key);
+    return h('tr', { class: up ? 'has-upload' : '' },
+      h('td', {}, h('span', { class: 'chip', text: c.id }), c.key ? h('div', { class: 'small muted', text: c.key }) : null),
+      h('td', { class: 'small' }, h('div', { text: c.title || '' }), h('div', { class: 'muted', text: [c.year, c.journal, (c.authors || '').slice(0, 80)].filter(Boolean).join(' · ') })),
+      h('td', { class: 'small' }, c.doi ? h('a', { href: `https://doi.org/${c.doi}`, target: '_blank', rel: 'noopener', text: 'doi' }) : null, c.doi && c.pmid ? ' · ' : '', c.pmid ? h('a', { href: `https://pubmed.ncbi.nlm.nih.gov/${c.pmid}`, target: '_blank', rel: 'noopener', text: 'PubMed' }) : null, !c.doi && !c.pmid ? h('span', { class: 'muted', text: '—' }) : null),
+      h('td', { class: 'small' }, c.history?.length ? c.history.map((x) => `${x.stage === 'title_abstract' ? 'T/A' : 'FT'}: ${x.decision}${x.by ? ` (${x.by})` : ''}`).join('; ') : h('span', { class: 'muted', text: c.stage === 'unsure_ft' ? 'unsure at full text' : 'included at T/A' })),
+      h('td', {}, up ? uploadedNote(up) : uploadControl(c.id, c.key, { label: 'Upload' })));
+  };
+  const missingTable = h('table', { class: 'queue missing' }, h('thead', {}, h('tr', {}, h('th', { text: 'Candidate' }), h('th', { text: 'Paper' }), h('th', { text: 'Find it' }), h('th', { text: 'Screening' }), h('th', { text: 'PDF' }))), h('tbody', {}, missing.map(missingRow)));
+  const nUp = missing.filter((c) => uploadFor(c.id, c.key)).length;
+  return frag(h('div', { class: 'page-head' }, h('h1', { text: 'PDFs' }), h('span', { class: 'muted small', text: `${m.counts?.private ?? 0} private · ${m.counts?.public ?? 0} public · ${m.counts?.sources ?? 0} more source PDFs with the maintainer, not annotated yet · ${missing.length} included papers without a PDF` })),
+    h('h2', { id: 'missing', text: `Papers we still need (${missing.length})` }),
+    h('p', { class: 'small', text: `Included at title/abstract, waiting for a full-text decision, and nobody has the PDF yet${nUp ? ` (${nUp} uploaded, with the maintainer)` : ''}. If you can get one — through your library, the authors, or a repository copy — upload it here; it goes to the maintainer's papers folder, never to the public site. The full-text decision for a paper can only be made once its PDF exists.` }),
+    missing.length ? missingTable : h('p', { class: 'notice', text: 'Every paper awaiting a full-text decision has its PDF.' }),
+    h('h2', { text: `Annotated PDFs (${papers.length})` }),
     h('p', { class: 'small', text: 'Every paper whose annotated PDF this build of the portal holds. The highlights in each PDF are the passages the KB cites from it, coloured by what they support. Public copies are papers under a Creative Commons licence; the private ones are for signed-in reviewers only and must not be passed on.' }),
     h('div', { class: 'matrix-controls' }, filter),
     papers.length ? table : h('p', { class: 'notice', text: 'No annotated PDFs in this build.' }),
@@ -555,7 +626,7 @@ async function init() {
   try {
     const [me, manifest, kb] = await Promise.all([api('me'), fetch('manifest.json').then((r) => r.json()), fetch('export/stroke-aphasia-kb-drafts.json').then((r) => r.json())]);
     state.me = me; state.manifest = manifest; state.kb = kb;
-    try { const sent = store.get('screen:sent', {}); const built = manifest.built || ''; for (const [id, when] of Object.entries(sent)) if (built && String(when) < built) delete sent[id]; store.set('screen:sent', sent); } catch { /* ignore */ }
+    try { const sent = store.get('screen:sent', {}); const built = manifest.built || ''; for (const [id, when] of Object.entries(sent)) if (built && String(when?.at || when) < built) delete sent[id]; store.set('screen:sent', sent); } catch { /* ignore */ }
     state.screening = await fetch('screening.json').then((r) => (r.ok ? r.json() : null)).catch(() => null);
     state.mine = await api('reviews').catch(() => ({ inbox: [], applied: [] }));
     try { const u = await api('upload'); state.uploads = u.uploads || []; state.uploadsOk = true; } catch { state.uploads = []; state.uploadsOk = false; }

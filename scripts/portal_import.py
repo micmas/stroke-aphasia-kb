@@ -336,7 +336,7 @@ def apply_pdf(rec: dict, by: str, execute: bool, state: dict) -> str:
 
 
 # ------------------------------------------------------------------ run
-def run(execute: bool, promote: bool, only_kind: str | None) -> int:
+def run(execute: bool, promote: bool, only_kind: str | None, skip_kinds: tuple[str, ...] = ()) -> int:
     files = sorted(INBOX.glob("*.json")) if INBOX.is_dir() else []
     if not files:
         print("logs/portal/inbox/ is empty — nothing to apply (did you git pull?)")
@@ -353,7 +353,7 @@ def run(execute: bool, promote: bool, only_kind: str | None) -> int:
             print(f"  ✗ {f.name}: not JSON ({e})")
             continue
         kind = str(rec.get("kind"))
-        if only_kind and kind != only_kind:
+        if (only_kind and kind != only_kind) or kind in skip_kinds:
             continue
         by, approver, known = who(rec.get("reviewer"), table)
         if not known:
@@ -390,7 +390,7 @@ def run(execute: bool, promote: bool, only_kind: str | None) -> int:
             _log(f"{dt.date.today().isoformat()} | PORTAL-APPLIED | — | {len(done)} record(s) | "
                  + ", ".join(f"{k} {v}" for k, v in sorted(counts.items())) + f" | by: {', '.join(sorted({who(json.loads((APPLIED / f.name).read_text())['reviewer'], table)[0] for f in done}))}")
         print(f"\n{len(done)} record(s) applied and moved to logs/portal/applied/; {len(files) - len(done)} left in the inbox. "
-              f"Commit screening/, drafts/ and logs/, then `python scripts/export_webapp.py` and `python scripts/publish_portal.py --deploy`.")
+              "Commit screening/, drafts/ and logs/ and push: the explorer and the portal rebuild from the push.")
         if state.get("pdfs_added"):
             print(f"{state['pdfs_added']} PDF(s) landed in papers/ (OneDrive): run `python scripts/intake_papers.py --execute` to register, clean and OCR them.")
     else:
@@ -405,8 +405,10 @@ def _cli(argv=None) -> int:
     ap.add_argument("--execute", action="store_true")
     ap.add_argument("--promote", action="store_true", help="run promote.py for approve/reject verdicts from approvers")
     ap.add_argument("--kind", choices=["screen", "verdict", "edit", "mark", "comment", "pdf"])
+    ap.add_argument("--skip-pdf", action="store_true",
+                    help="leave `pdf` records in the inbox (for CI, which has no papers/ folder to pull the uploads into)")
     args = ap.parse_args(argv)
-    return run(args.execute, args.promote, args.kind)
+    return run(args.execute, args.promote, args.kind, ("pdf",) if args.skip_pdf else ())
 
 
 if __name__ == "__main__":

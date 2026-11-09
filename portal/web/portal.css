@@ -58,6 +58,12 @@ kbd { font: inherit; font-size: .75rem; border: 1px solid var(--line-strong); bo
 .upload { display: inline-flex; gap: .4rem; align-items: center; flex-wrap: wrap; }
 .upload input[type=file] { font: inherit; font-size: .82rem; max-width: 260px; }
 .pdf-missing .upload { display: flex; margin-top: .6rem; }
+.queue.missing td { vertical-align: top; }
+.queue.missing td:first-child { white-space: normal; }
+.queue.missing .upload { flex-direction: column; align-items: flex-start; gap: .25rem; min-width: 180px; }
+.queue.missing .upload input[type=file] { max-width: 180px; }
+.queue.missing .upload > .small { display: none; }
+.queue.missing tr.has-upload td { background: var(--pink-tint); }
 .passage.ok { border-left-style: double; }
 .passage.unsure { outline: 2px dashed var(--line-strong); }
 .passage select.unchecked { color: var(--ink-2); }
@@ -70,3 +76,8 @@ kbd { font: inherit; font-size: .75rem; border: 1px solid var(--line-strong); bo
 .btn.working { position: relative; padding-left: 1.9rem; opacity: .85; cursor: progress; }
 .btn.working::before { content: ''; position: absolute; left: .6rem; top: 50%; width: .9rem; height: .9rem; margin-top: -.45rem; border: 2px solid rgba(255,255,255,.45); border-top-color: #fff; border-radius: 50%; animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* the maintainer's apply panel on Home */
+.applybox { border: 1px solid var(--line); border-left: 3px solid var(--grape); border-radius: var(--radius); padding: .6rem .9rem; margin: .4rem 0 1rem; display: grid; gap: .3rem; background: var(--surface); }
+.applybox .row { display: flex; gap: .8rem; align-items: center; flex-wrap: wrap; }
+.applybox .row .btn { margin-left: auto; }
