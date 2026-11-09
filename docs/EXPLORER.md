@@ -7,7 +7,7 @@ reads a JSON export of the KB in the browser. The same export feeds the
 CALMaR webapp, through a small JavaScript library that re-implements the
 evidence logic. This page covers those three pieces.
 
-**Live site:** https://aphasia-kb.app/
+**Live site:** https://micmas.github.io/stroke-aphasia-kb/explorer/
 
 ## What the explorer shows
 
@@ -43,6 +43,13 @@ links to.
 the candidates they count (hover the database box for the records per
 question), the exclusion reasons, how far each evidence gap has got, the
 searches that were run, and a table of every candidate paper.
+
+**Models**: which local model drafts the findings, which one checks them,
+and the latest comparison behind that choice: fabricated quotes, schema
+issues, how many of the known links each model found, over-claiming and
+speed, model by model and paper by paper. The page reads
+`export/model-benchmark.json`, which `benchmark_models.py --publish`
+writes (numbers and ids only, no paper text).
 
 **Get involved**: the five levels at which a person can take part, from
 reading to building, with what each needs. **Review ↗** opens the
@@ -101,6 +108,7 @@ scripts/export_webapp.py          KB → export/*.json (+ parity fixtures)
 export/stroke-aphasia-kb.json     the approved KB, read by every JavaScript consumer
 export/stroke-aphasia-kb-drafts.json   approved + drafts (explorer switch, review portal)
 export/kb-parity.json             the Python's answers for synthetic lesions
+export/model-benchmark.json       the latest model comparison (benchmark_models.py --publish), for the Models page
 js/kb-evidence.js, js/test/       the port and its parity test
 explorer/                         index.html, app.js, kb-index.js, styles.css
 .github/workflows/pages.yml       publishes explorer/ + export/ + js/ to GitHub Pages

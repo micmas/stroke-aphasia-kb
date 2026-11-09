@@ -51,6 +51,7 @@ jobs:
           cp -r explorer/. site/
           cp export/stroke-aphasia-kb.json site/export/
           if [ -f export/stroke-aphasia-kb-drafts.json ]; then cp export/stroke-aphasia-kb-drafts.json site/export/; fi
+          if [ -f export/model-benchmark.json ]; then cp export/model-benchmark.json site/export/; fi
           cp js/kb-evidence.js site/js/
           cat > site/explorer/index.html <<'HTML'
           <!doctype html><meta charset="utf-8"><title>Stroke aphasia KB</title>

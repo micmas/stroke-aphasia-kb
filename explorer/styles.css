@@ -357,3 +357,19 @@ a.chip:hover { border-color: var(--blue); text-decoration: none; }
 .involve-card li { margin: .25rem 0; }
 .inv-badge { display: inline-flex; width: 1.5em; height: 1.5em; border-radius: 50%; color: #fff; font-size: .8rem; font-weight: 700; align-items: center; justify-content: center; flex: none; }
 @media (max-width: 700px) { .involve-wrap { overflow-x: auto; } .involve-figure { min-width: 760px; } }
+
+/* Models page (#/models) */
+.models td, .models th { vertical-align: top; }
+.models td.num, .models th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.models .good { color: var(--ink); }
+.models .bad, .model-paper .bad { color: var(--pink); font-weight: 600; }
+.meter { display: inline-grid; grid-template-columns: minmax(70px, 150px) auto; gap: .5rem; align-items: center; }
+.meter-track { height: 9px; border-radius: 4px; background: var(--panel); border: 1px solid var(--line); overflow: hidden; }
+.meter-fill { display: block; height: 100%; background: var(--blue); }
+.meter-n { font-variant-numeric: tabular-nums; color: var(--ink-2); font-size: .85rem; white-space: nowrap; }
+.tile .value.model-tag { font-size: 1rem; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+.model-detail { border: 1px solid var(--line); border-radius: var(--radius); padding: .45rem .8rem; margin: .4rem 0; }
+.model-detail summary { cursor: pointer; }
+.model-paper { border-top: 1px solid var(--line); margin-top: .5rem; padding-top: .3rem; }
+.model-paper p { margin: .25rem 0; }
+.table-wrap { overflow-x: auto; }

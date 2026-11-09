@@ -92,7 +92,7 @@ const LEVELS = [
     does: ['Run the extractor on new papers with a local model; add atlas mappings so lesions can reach new regions; improve the schema.', 'Work on this explorer, the review portal, the screening tools or the CALMaR / Neurodesk integration.'],
     gives: 'New papers, new regions, new tools — and the pipeline that keeps the KB honest.', link: 'contributing', linkText: 'CONTRIBUTING.md' },
 ];
-const REPO_DOCS = { reviewers: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/portal/reviewers.yaml', governance: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/GOVERNANCE.md', contributing: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/CONTRIBUTING.md', screening: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/SCREENING.md', portalDoc: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/PORTAL.md' };
+const REPO_DOCS = { reviewers: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/portal/reviewers.yaml', governance: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/GOVERNANCE.md', contributing: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/CONTRIBUTING.md', screening: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/SCREENING.md', portalDoc: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/PORTAL.md', models: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/MODELS.md' };
 function levelHref(index, lv) { if (lv.link === 'portal') return index.kb.portal?.url || REPO_DOCS.portalDoc; return REPO_DOCS[lv.link] || lv.link; }
 
 /** The figure: five rising steps; each names the level, who it is for and what it needs. */
@@ -157,6 +157,96 @@ function involve(index) {
 // ---------------------------------------------------------------------------
 // Shared renderers
 // ---------------------------------------------------------------------------
+// ---------------------------------------------------------------------------
+// Models — which local model reads the papers, and how it was chosen (#/models)
+// The numbers come from export/model-benchmark.json, written by
+// `scripts/benchmark_models.py --publish`: counts and ids only, no paper text.
+// ---------------------------------------------------------------------------
+const BENCH_URL = '../export/model-benchmark.json';
+const ROLE_TEXT = {
+  extract: ['Extractor', 'reads a whole paper and drafts its findings, each with verbatim passages'],
+  review: ['Reviewer', 'a different model that re-reads the paper and checks routine findings; anything else waits for a person'],
+  rag: ['Report writer', 'turns cited findings into the prose of a CALMaR report'],
+  screen: ['Screening helper', 'suggests include / exclude on titles and abstracts; a person decides'],
+};
+const secs = (x) => { if (!x) return '—'; const m = Math.round(x / 60); return m >= 60 ? `${Math.floor(m / 60)} h ${String(m % 60).padStart(2, '0')} min` : `${m} min`; };
+const share = (x) => (x === null || x === undefined ? '—' : `${Math.round(100 * x)}%`);
+function meter(n, d, { alt = false } = {}) {
+  return h('span', { class: 'meter', title: `${n} of ${d}` },
+    h('span', { class: 'meter-track' }, h('span', { class: `meter-fill${alt ? ' alt' : ''}`, style: `width:${d ? Math.max(n ? 3 : 0, (100 * n) / d) : 0}%` })),
+    h('span', { class: 'meter-n', text: `${n} / ${d}` }));
+}
+function linkLabel(index, text) {
+  // "left_angular_gyrus ↔ semantics": show entry names, linked when the KB has the entry
+  const parts = String(text).split(' ↔ ');
+  return frag(parts.map((id, i) => [i ? ' ↔ ' : '', index.kb.entries?.[id] ? h('a', { href: entryHref(id), text: index.name(id) }) : String(id).replace(/_/g, ' ')]));
+}
+function loadBench() {
+  if (state.bench !== undefined) return;
+  state.bench = 'loading';
+  fetch(BENCH_URL, { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : null)).catch(() => null)
+    .then((d) => { state.bench = d && d.schema === 1 ? d : null; if (parseRoute().segments[0] === 'models') render(); });
+}
+function models(index) {
+  loadBench();
+  const b = state.bench;
+  const head = h('div', { class: 'page-head' }, h('h1', { text: 'Models' }), h('span', { class: 'muted small', text: 'which local model reads the papers, and how it was chosen' }));
+  const intro = h('p', {}, 'Findings are drafted by open-weight language models running on the maintainer\'s own computer; no paper text is sent to a cloud service. ',
+    'A model only drafts: every finding is checked against the paper by a person, or for routine findings by a second, different model, before it is approved (',
+    h('a', { href: REPO_DOCS.governance, target: '_blank', rel: 'noopener', text: 'governance' }), '). Which model does the drafting is itself a measured choice, re-tested when new models appear.');
+  if (b === 'loading' || b === undefined) return frag(head, intro, h('p', { class: 'loading', text: 'Loading the latest comparison…' }));
+  if (!b) return frag(head, intro, h('p', { class: 'notice' }, 'No comparison has been published yet. The method and the decision log are in ', h('a', { href: REPO_DOCS.models, target: '_blank', rel: 'noopener', text: 'MODELS.md' }), '.'));
+  const roles = Object.entries(b.roles || {}).filter(([k]) => ROLE_TEXT[k]);
+  const ms = [...(b.models || [])].sort((x, y) => (y.incumbent - x.incumbent) || (y.eligible - x.eligible) || ((y.link_recall || 0) - (x.link_recall || 0)));
+  const soft = (b.papers || []).filter((p) => !p.all_human);
+  const graded = (m) => (m.rows || []).some((r) => !r.ungraded && !r.failed);
+  const verdict = (m) => (m.incumbent ? h('span', { class: 'badge badge-model', text: 'in use' })
+    : m.eligible ? h('span', { class: 'badge badge-human', title: 'Passes the rule on these papers; adopting it is still a person\'s decision', text: 'eligible' })
+      : h('span', { class: 'badge badge-legacy', text: 'not eligible' }));
+  const row = (m) => h('tr', {},
+    h('td', {}, h('code', { text: m.model }), ' ', verdict(m), m.reasons?.length ? h('div', { class: 'small muted', text: m.reasons.join('; ') }) : null),
+    h('td', { class: 'num' }, graded(m) ? h('span', { class: m.absent ? 'bad' : 'good', title: 'Quoted passages that are nowhere in the paper', text: `${m.absent} of ${m.quotes}` }) : h('span', { class: 'muted', text: 'not graded' })),
+    h('td', { class: 'num', text: String(m.schema_issues ?? '—') }),
+    h('td', {}, meter(m.shared_links || 0, m.ref_links || 0)),
+    h('td', { class: 'num', title: `${m.shared_links || 0} of the ${m.links || 0} links it drafted are in the reference`, text: share(m.link_precision) }),
+    h('td', { class: 'num', title: 'Mean strength of its findings minus the reference\'s (weak 1, moderate 2, strong 3). Positive = claims more strongly than the curated findings.', text: m.calibration_delta === null || m.calibration_delta === undefined ? '—' : `${m.calibration_delta > 0 ? '+' : ''}${m.calibration_delta.toFixed(2)}` }),
+    h('td', { class: 'num', text: secs(m.mean_elapsed_s) }));
+  const table = h('table', { class: 'models' }, h('thead', {}, h('tr', {},
+    h('th', { text: 'Model' }), h('th', { class: 'num', text: 'Fabricated quotes' }), h('th', { class: 'num', text: 'Schema issues' }),
+    h('th', { text: 'Known links found' }), h('th', { class: 'num', text: 'Precision' }), h('th', { class: 'num', text: 'Over-claiming' }), h('th', { class: 'num', text: 'Time per paper' }))),
+    h('tbody', {}, ms.map(row)));
+  const detail = (m) => h('details', { class: 'model-detail' }, h('summary', {}, h('code', { text: m.model }), h('span', { class: 'muted small', text: ` — paper by paper${m.ram_class ? ` · needs about ${m.ram_class} GB of memory` : ''}` })),
+    m.note ? h('p', { class: 'small muted', text: m.note }) : null,
+    (m.rows || []).map((r) => h('div', { class: 'model-paper' },
+      h('p', {}, h('a', { href: paperHref(r.paper), text: r.paper }), ' · ',
+        r.failed ? h('span', { class: 'bad', text: 'no drafts produced' })
+          : `${plural(r.findings, 'finding')} in ${plural(r.drafts, 'draft')} (the reference has ${r.ref_findings}) · ${r.ungraded ? 'quotes not graded' : `${r.absent} of ${r.quotes} quotes absent, ${r.verified} verified verbatim`} · ${plural(r.schema_issues || 0, 'schema issue')} · ${secs(r.elapsed_s)}${r.processor ? ` (${r.processor})` : ''}`),
+      r.failed ? null : h('p', { class: 'small' }, h('b', { text: `Found ${r.shared_links} of ${r.ref_links} known links` }),
+        r.relationship_agreement !== undefined ? `, same relationship on ${share(r.relationship_agreement)} of them. ` : '. ',
+        r.missed_links?.length ? ['Missed, among others: ', r.missed_links.map((x, i) => [i ? '; ' : '', linkLabel(index, x)]), '. '] : null,
+        r.new_links?.length ? ['Links the reference does not have: ', r.new_links.map((x, i) => [i ? '; ' : '', linkLabel(index, x)]), '.'] : null))));
+  return frag(head, intro,
+    h('div', { class: 'tiles' }, roles.map(([k, r]) => h('div', { class: 'tile' }, h('div', { class: 'label', text: ROLE_TEXT[k][0] }), h('div', { class: 'value model-tag', text: r.model || '—' }), h('div', { class: 'detail', text: ROLE_TEXT[k][1] })))),
+    h('h2', { text: `Latest comparison · ${b.date}` }),
+    h('p', { class: 'small' }, `${plural(ms.length, 'model')} each extracted the same ${plural((b.papers || []).length, 'paper')} the knowledge base already holds (`,
+      (b.papers || []).map((p, i) => [i ? ', ' : '', h('a', { href: paperHref(p.key), text: p.key }), ` — ${plural(p.findings || 0, 'finding')}`]),
+      '), and each result was scored against those curated findings.'),
+    soft.length ? h('p', { class: 'caveat' }, `A caution on the reference: the curated findings of ${soft.map((p) => p.key).join(' and ')} have not all been re-read by a person yet (`,
+      soft.map((p, i) => `${i ? ', ' : ''}${p.human_reviewed || 0} of ${p.findings || 0}`), '). Until they are, "known links found" compares models with an earlier model\'s reading, so it shows agreement rather than correctness. Fabricated quotes and schema issues do not depend on the reference.') : null,
+    h('div', { class: 'table-wrap' }, table),
+    h('h3', { text: 'How to read the columns' }),
+    h('ul', { class: 'small' },
+      h('li', {}, h('b', { text: 'Fabricated quotes. ' }), 'Every passage a model quotes is searched for in the paper\'s text. A quote that is nowhere in the paper disqualifies the model: the KB\'s promise is that every finding can be checked against its source.'),
+      h('li', {}, h('b', { text: 'Schema issues. ' }), 'Drafts that break the KB\'s format (a missing field, a file that cannot be read). Each one costs a reviewer time.'),
+      h('li', {}, h('b', { text: 'Known links found. ' }), 'A finding links two things, such as a region and an impairment. This is the share of the links in the curated findings that the model also drafted, whichever entry it filed them under. '),
+      h('li', {}, h('b', { text: 'Precision. ' }), 'The share of the model\'s own links that the curated findings have too. The rest may be real finds or noise; a person reads them.'),
+      h('li', {}, h('b', { text: 'Over-claiming. ' }), 'How much more strongly the model words its findings than the curated ones. A model that under-claims is the safer extractor.'),
+      h('li', {}, h('b', { text: 'Time per paper. ' }), 'On the maintainer\'s machine. Slower is acceptable; fabricating is not.')),
+    h('p', { class: 'small' }, b.rule, ' Passing makes a model eligible; adopting it is a person\'s decision, recorded with its reasons in the ',
+      h('a', { href: REPO_DOCS.models, target: '_blank', rel: 'noopener', text: 'decision log' }), '.'),
+    h('h3', { text: 'Paper by paper' }), ms.map(detail));
+}
+
 function kindBadge(kind) { return h('span', { class: 'badge badge-kind', text: kind }); }
 
 function reviewBadge(f) {
@@ -324,6 +414,7 @@ function overview(index) {
       h('li', {}, h('a', { href: '#/findings', text: 'Findings browser' }), ' — filter by entry type, relationship, strength, method, stage, provenance or paper; full-text search of claims and quotes.'),
       h('li', {}, h('a', { href: '#/papers', text: 'Papers' }), ' — every cited paper and its findings in page order, to spot-check an extraction against the PDF.'),
       h('li', {}, h('a', { href: '#/coverage', text: 'Coverage' }), ' — how the literature was searched and screened (PRISMA flow), what each evidence gap still needs, and where every candidate paper stands.'),
+      h('li', {}, h('a', { href: '#/models', text: 'Models' }), ' — which local model drafts the findings, and the comparison behind that choice.'),
       h('li', {}, h('a', { href: '#/involve', text: 'Get involved' }), ' — the five levels at which a person can take part, from reading to building; what each needs and what it gives.'),
       index.kb.portal?.url ? h('li', {}, h('a', { href: index.kb.portal.url, target: '_blank', rel: 'noopener', text: 'Review portal' }), ' — for collaborators: check drafts beside the annotated PDFs, screen candidate papers and send decisions back (sign-in with an invited email).') : null));
 }
@@ -980,6 +1071,7 @@ function render() {
     else if (head === 'licences') { view = licencesView(index, route); current = '/papers'; }
     else if (head === 'coverage') { view = coverage(index, route); current = '/coverage'; }
     else if (head === 'involve') { view = involve(index); current = '/involve'; }
+    else if (head === 'models') { view = models(index); current = '/models'; }
     else if (head === 'paper' && rest[0]) { view = paper(index, rest[0]); current = '/papers'; }
     else if (head === 'entry' && rest[0]) { view = entry(index, rest[0]); current = null; }
     else if (head === 'finding' && rest[1]) { view = finding(index, rest[0], rest[1]); current = null; }

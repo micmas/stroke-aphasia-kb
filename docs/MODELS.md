@@ -121,7 +121,17 @@ python scripts/benchmark_models.py --list-references
 python scripts/benchmark_models.py --models qwen3.8:27b ornith-1.5:122b --papers Alyahya2018NounVerb Bonilha2014
 python scripts/benchmark_models.py --models qwen3.8:27b --papers Alyahya2018NounVerb --skip-extract --append-log
 python scripts/benchmark_models.py --models qwen3.8:27b --auto-papers 2 --min-findings 5 --seed 7
+python scripts/benchmark_models.py --untested --sandboxes --resume --papers Alyahya2018NounVerb Bonilha2014 --publish
 ```
+
+The last line is how to carry on after a run was interrupted, and how
+to publish: `--resume` keeps the drafts already in `_compare/` and only
+extracts what is missing, `--sandboxes` scores every model that has a
+sandbox so the table is complete, and `--publish` writes
+`export/model-benchmark.json`, the numbers-only summary behind the
+explorer's **Models** page (commit and push it). A draft a model writes
+so badly that it cannot be parsed is counted against that model as a
+schema issue; it does not stop the run.
 
 `--untested` lets the script choose the models too: every candidate in
 the §4 tables that fits this machine and has neither a row in §5 nor a
@@ -152,7 +162,7 @@ copies the rows into §5 with the Decision column left for you.
 |---|---|---|---|
 | **Fidelity** | Every `source_passage` graded against the PDF text (`quote_check.py`): exact / elided / table are verified; anchored and near are real but not verbatim; **absent** means the passage is nowhere in the paper | The KB's claim is that every finding can be checked against the paper. A fabricated quote is not a quality difference, it is a disqualifier | 0 absent on every test paper |
 | **Schema** | Validation issues across the drafts (`aphasia_kb.py`) | Every issue is reviewer time on every paper | No more than the incumbent |
-| **Coverage** | Findings and entries vs the curated reference; *target recall*: the share of the reference's (target, relationship) pairs the candidate also produced | Fewer findings may be a miss or restraint; recall says whether the known results were found. Extra targets can be real finds — read them | Informative, not pass/fail |
+| **Coverage** | Findings and entries vs the curated reference; *link recall*: the share of the reference's entry ↔ target links (say, left angular gyrus ↔ phonological production) the candidate also produced, whichever entry it filed the finding under and under whichever spelling of the id; *link precision*: the share of the candidate's links the reference has too | Fewer findings may be a miss or restraint; recall says whether the known results were found. Links the reference lacks can be real finds or noise — read them. A finding whose target is its own entry links nothing and counts for nothing | Informative, not pass/fail |
 | **Calibration** | Mean strength and confidence vs the reference | Over-claiming is the classic small-model failure. A model that under-claims is the safer extractor | Not more over-claiming than the incumbent (+0.2 tolerance) |
 | **Support** | Source passages per finding | Thin support means the reviewer has to go and find the evidence | Informative |
 | **Cost** | Wall-clock per paper; `ollama ps` processor split during the run | A CPU spill makes a model unusable in practice; twice as slow is acceptable if it never fabricates | Informative |

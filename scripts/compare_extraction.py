@@ -94,14 +94,20 @@ def _load_findings(paths: list[Path], citation: str | None = None) -> list[dict]
     inflated by unrelated findings sharing the same file."""
     findings = []
     for p in paths:
-        fm, _ = parse_markdown(p)
-        if not fm:
+        try:
+            fm, _ = parse_markdown(p)
+        except Exception:  # noqa: BLE001 — a draft whose YAML does not parse has no findings; _schema_issues reports it
+            continue
+        if not isinstance(fm, dict):
             continue
         for f in fm.get("findings") or []:
+            if not isinstance(f, dict):
+                continue
             if citation and not _citations_match(f.get("citation"), citation):
                 continue
             f = dict(f)
             f["_entry"] = p.stem
+            f["_entry_id"] = fm.get("id") or p.stem.split("__")[0]
             f["_path"] = p
             findings.append(f)
     return findings
@@ -110,9 +116,15 @@ def _load_findings(paths: list[Path], citation: str | None = None) -> list[dict]
 def _schema_issues(paths: list[Path]) -> dict[str, list[str]]:
     out: dict[str, list[str]] = {}
     for p in paths:
-        fm, _ = parse_markdown(p)
         issues: list[str] = []
-        if not fm:
+        try:
+            fm, _ = parse_markdown(p)
+        except Exception as e:  # noqa: BLE001 — unparsable YAML is the worst schema issue, not a crash
+            fm = None
+            issues.append("unparsable YAML: " + " ".join(str(e).split())[:140])
+        if issues:
+            pass
+        elif not isinstance(fm, dict) or not fm:
             issues.append("no frontmatter")
         else:
             fm["_path"] = str(p)

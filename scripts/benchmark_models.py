@@ -23,6 +23,10 @@ measured one (docs/MODELS.md §3, "how we decide").
     python scripts/benchmark_models.py --models ... --papers ... --skip-extract
         # re-score sandboxes that already exist (after editing the grader, say)
 
+    python scripts/benchmark_models.py --untested --sandboxes --resume --papers ... --publish
+        # carry on after an interrupted run: extract only what is missing, score everything that
+        # has a sandbox, and write export/model-benchmark.json for the explorer's Models page
+
     python scripts/benchmark_models.py ... --append-log
         # also append one row per model × paper to the decision log in docs/MODELS.md §5
 
@@ -32,8 +36,10 @@ Scoring, in the order a failure stops the reading (MODELS.md §3):
                  `extract` (a quote that is not in the paper is a fabrication, not a style issue);
                  also the share verified (exact + elided + table) and the near/anchored rest
   2. schema      validation issues across the drafts (errors cost review time on every paper)
-  3. coverage    findings and entries vs the curated reference, and target recall: the share of
-                 the reference's (target, relationship) pairs the candidate also produced
+  3. coverage    findings and entries vs the curated reference, and link recall: the share of
+                 the reference's entry ↔ target links the candidate also produced, whichever
+                 side it filed them under and under whichever id (plus link precision: the
+                 share of the candidate's links that the reference has too)
   4. calibration mean strength and confidence vs the reference (over-claiming is the
                  small-model failure; prefer a model that under-claims)
   5. support     source passages per finding (thin support = more reviewer work)
@@ -308,8 +314,75 @@ def run_extraction(model: str, paper: str, out_dir: Path, host: str, timeout: in
 
 
 # ------------------------------------------------------------------ scoring
-def _pairs(findings: list[dict]) -> set[tuple[str, str]]:
-    return {(str(f.get("target") or "").lower(), str(f.get("relationship") or "").lower()) for f in findings if f.get("target")}
+# A finding links two things: the entry it is filed under and its target. The reference and a
+# candidate may file the same link from either side (the curated KB has "semantics → left
+# angular gyrus" in the impairment entry; an extractor may write "left angular gyrus →
+# semantics" in a region draft), and under an older or longer id. Coverage is therefore
+# measured on unordered links between normalised ids, not on targets alone.
+LEGACY_IDS = {  # ids renamed since the reference entries were written (schema v2.8)
+    "auditory_comprehension": "form_to_meaning", "sentence_comprehension": "form_to_meaning",
+    "reading_comprehension": "form_to_meaning", "comprehension": "form_to_meaning",
+    "naming": "anomia", "confrontation_naming": "anomia", "word_retrieval": "anomia", "lexical_retrieval": "anomia",
+    "speech_fluency": "fluency", "phonological_output": "phonological_production",
+    "apraxia_of_speech": "form_to_articulation",
+}
+_ABBR = {"stg": "superiortemporalgyrus", "mtg": "middletemporalgyrus", "itg": "inferiortemporalgyrus",
+         "ifg": "inferiorfrontalgyrus", "smg": "supramarginalgyrus", "slf": "superiorlongitudinalfasciculus",
+         "atl": "anteriortemporallobe", "wernicke": "wernickes", "broca": "brocas"}
+_alias_cache: dict[str, str] | None = None
+_display: dict[str, str] = {}             # normalised id → an id a person can read (the canonical entry's, else as written)
+
+
+def _squash(x) -> str:
+    """`Left pre-central gyrus`, `left_precentral_gyrus` and `left_pre_central_gyrus` are one id."""
+    tokens = re.split(r"[^a-z0-9]+", re.sub(r"\(.*?\)", " ", str(x or "").lower().replace("'", "")))
+    return "".join(_ABBR.get(t, t) for t in tokens if t)
+
+
+def _aliases(root: Path = ROOT) -> dict[str, str]:
+    """squashed id / name / alias of every canonical entry → its squashed id."""
+    global _alias_cache
+    if _alias_cache is None:
+        out: dict[str, str] = {}
+        for b in BUCKETS:
+            for p in sorted((root / b).glob("*.md")) if (root / b).is_dir() else []:
+                try:
+                    fm, _ = parse_markdown(p)
+                except Exception:  # noqa: BLE001
+                    continue
+                if not isinstance(fm, dict) or not fm.get("id"):
+                    continue
+                eid = _squash(fm["id"])
+                _display.setdefault(eid, str(fm["id"]))
+                for x in [fm["id"], fm.get("name"), *(fm.get("aliases") or [])]:
+                    if x and _squash(x):
+                        out.setdefault(_squash(x), eid)
+        _alias_cache = out
+    return _alias_cache
+
+
+def canon_id(x) -> str:
+    x = str(x or "").strip().lower()
+    x = LEGACY_IDS.get(x, x)
+    q = _squash(x)
+    out = _aliases().get(q, q)
+    if out:
+        _display.setdefault(out, x)
+    return out
+
+
+def _links(findings: list[dict]) -> dict[frozenset, set[str]]:
+    """{frozenset({entry, target}): relationships seen on that link}; self-links are not links."""
+    out: dict[frozenset, set[str]] = {}
+    for f in findings:
+        a, b = canon_id(f.get("_entry_id") or str(f.get("_entry") or "").split("__")[0]), canon_id(f.get("target"))
+        if a and b and a != b:
+            out.setdefault(frozenset((a, b)), set()).add(str(f.get("relationship") or "").lower())
+    return out
+
+
+def _link_name(link: frozenset) -> str:
+    return " ↔ ".join(sorted(_display.get(k, k) for k in link))
 
 
 def _mean(findings: list[dict], key: str, ranks: dict) -> float | None:
@@ -341,6 +414,8 @@ def score(model: str, paper: str, sandbox: Path, papers_dir: Path = PAPERS, root
     cand_paths = CE._find_entries(sandbox, cit)
     ref_f = CE._load_findings(ref_paths, cit) if ref_paths else []
     cand_f = CE._load_findings(cand_paths, cit) if cand_paths else []
+    ref_l, cand_l = _links(ref_f), _links(cand_f)
+    shared = set(ref_l) & set(cand_l)
     out = {"model": model, "paper": paper, "drafts": len(cand_paths), "findings": len(cand_f), "ref_findings": len(ref_f),
            "ref_entries": len(ref_paths)}
     if not cand_paths:
@@ -356,8 +431,12 @@ def score(model: str, paper: str, sandbox: Path, papers_dir: Path = PAPERS, root
         "absent_examples": q["absent_list"][:3], "no_quote_findings": len(q["no_quotes"]),
         "schema_issues": sum(len(v) for v in issues.values()), "schema_examples": [x for v in issues.values() for x in v][:3],
         "passages_per_finding": round(q["total"] / len(cand_f), 1) if cand_f else 0.0,
-        "target_recall": round(len(_pairs(ref_f) & _pairs(cand_f)) / len(_pairs(ref_f)), 2) if _pairs(ref_f) else None,
-        "new_targets": sorted(t for t, _ in (_pairs(cand_f) - _pairs(ref_f)))[:5],
+        "ref_links": len(ref_l), "links": len(cand_l), "shared_links": len(shared),
+        "link_recall": round(len(shared) / len(ref_l), 2) if ref_l else None,
+        "link_precision": round(len(shared) / len(cand_l), 2) if cand_l else None,
+        "relationship_agreement": round(sum(1 for k in shared if ref_l[k] & cand_l[k]) / len(shared), 2) if shared else None,
+        "missed_links": sorted(_link_name(k) for k in set(ref_l) - set(cand_l))[:8],
+        "new_links": sorted(_link_name(k) for k in set(cand_l) - set(ref_l))[:8],
         "strength": _mean(cand_f, "strength", STRENGTH_RANK), "ref_strength": _mean(ref_f, "strength", STRENGTH_RANK),
         "confidence": _mean(cand_f, "confidence", CONF_RANK), "ref_confidence": _mean(ref_f, "confidence", CONF_RANK),
     })
@@ -395,7 +474,9 @@ def summarise(rows: list[dict], incumbent_model: str) -> dict[str, dict]:
         out[m] = {"eligible": not reasons, "reasons": reasons, "absent": absent, "schema_issues": issues,
                   "calibration_delta": round(cal, 2), "papers": len(rs),
                   "mean_elapsed_s": round(sum(r.get("elapsed_s") or 0 for r in rs) / max(1, len(rs)), 0),
-                  "target_recall": round(sum(r.get("target_recall") or 0 for r in rs) / max(1, len([r for r in rs if r.get("target_recall") is not None])), 2)}
+                  "link_recall": round(sum(r.get("shared_links") or 0 for r in rs) / max(1, sum(r.get("ref_links") or 0 for r in rs)), 2),
+                  "link_precision": (round(sum(r.get("shared_links") or 0 for r in rs) / sum(r.get("links") or 0 for r in rs), 2)
+                                     if sum(r.get("links") or 0 for r in rs) else None)}
     return out
 
 
@@ -412,7 +493,7 @@ def _hms(s: float | None) -> str:
 
 
 def table(rows: list[dict], verdicts: dict[str, dict], incumbent_model: str) -> str:
-    L = ["| Model | Paper | Absent / quotes | Verified | Schema issues | Findings vs ref | Target recall | Strength vs ref | Confidence vs ref | Passages / finding | Time · processor |",
+    L = ["| Model | Paper | Absent / quotes | Verified | Schema issues | Findings vs ref | Links found / in ref (recall) | Strength vs ref | Confidence vs ref | Passages / finding | Time · processor |",
          "|---|---|---|---|---|---|---|---|---|---|---|"]
     for r in sorted(rows, key=lambda x: (x["model"] != incumbent_model, x["model"], x["paper"])):
         if r.get("failed"):
@@ -421,17 +502,55 @@ def table(rows: list[dict], verdicts: dict[str, dict], incumbent_model: str) -> 
         absent = f"**{r['absent']}** / {r['quotes']}" if r["absent"] else f"0 / {r['quotes']}"
         L.append(f"| `{r['model']}`{' (incumbent)' if r['model'] == incumbent_model else ''} | {r['paper']} | {absent} | {r['verified']} | {r['schema_issues']} | "
                  f"{r['findings']} / {r['drafts']} entries vs {r['ref_findings']} / {r['ref_entries']} | "
-                 f"{pct(r['target_recall'])} | "
+                 f"{r['shared_links']} / {r['ref_links']} ({pct(r['link_recall'])}) | "
                  f"{r['strength'] if r['strength'] is not None else '—'} vs {r['ref_strength'] if r['ref_strength'] is not None else '—'} | "
                  f"{r['confidence'] if r['confidence'] is not None else '—'} vs {r['ref_confidence'] if r['ref_confidence'] is not None else '—'} | "
                  f"{r['passages_per_finding']} | {_hms(r.get('elapsed_s'))}{(' · ' + r['processor']) if r.get('processor') else ''} |")
     L.append("")
-    L.append("| Model | Eligible for `extract`? | Why / why not | Absent | Schema | Target recall | Strength − ref | Mean time |")
-    L.append("|---|---|---|---|---|---|---|---|")
+    L.append("| Model | Eligible for `extract`? | Why / why not | Absent | Schema | Link recall | Link precision | Strength − ref | Mean time |")
+    L.append("|---|---|---|---|---|---|---|---|---|")
     for m, v in verdicts.items():
         L.append(f"| `{m}`{' (incumbent)' if m == incumbent_model else ''} | {'**yes**' if v['eligible'] else 'no'} | {'; '.join(v['reasons']) or 'zero absent quotes; schema and calibration not worse than the incumbent'} | "
-                 f"{v['absent']} | {v['schema_issues']} | {v['target_recall']:.0%} | {v['calibration_delta']:+.2f} | {_hms(v['mean_elapsed_s'])} |")
+                 f"{v['absent']} | {v['schema_issues']} | {pct(v['link_recall'])} | {pct(v['link_precision'])} | {v['calibration_delta']:+.2f} | {_hms(v['mean_elapsed_s'])} |")
     return "\n".join(L)
+
+
+PUBLIC = ROOT / "export" / "model-benchmark.json"
+_PUBLIC_ROW = ("paper", "failed", "ungraded", "drafts", "findings", "ref_findings", "ref_entries", "quotes", "absent", "verified", "near",
+               "anchored", "schema_issues", "no_quote_findings", "links", "ref_links", "shared_links", "link_recall", "link_precision",
+               "relationship_agreement", "missed_links", "new_links", "strength", "ref_strength", "confidence", "ref_confidence",
+               "passages_per_finding", "elapsed_s", "processor")
+
+
+def publish(rows: list[dict], verdicts: dict[str, dict], incumbent_model: str, papers: list[str], seed, by: str, path: Path = PUBLIC) -> Path:
+    """The public summary for the explorer's Models page: numbers and ids only — no quote text, no
+    file names from the papers folder, nothing a publisher could object to."""
+    try:
+        cfg = yaml.safe_load(MODELS_YAML.read_text(encoding="utf-8")) or {}
+    except Exception:  # noqa: BLE001
+        cfg = {}
+    roles = {name: {"model": (r or {}).get("model") or cfg.get("default")} for name, r in (cfg.get("roles") or {}).items()}
+    cands = {c["tag"]: c for c in candidates_from_models_md()[0]}
+    refs = {r["citation"].lstrip("@"): r for r in reference_papers()}
+    models = []
+    for m, v in verdicts.items():
+        mine = [r for r in rows if r["model"] == m]
+        c = cands.get(m) or {}
+        models.append({"model": m, "incumbent": m == incumbent_model, **v, "ram_class": c.get("ram_class"), "note": c.get("caveat"),
+                       "quotes": sum(r.get("quotes") or 0 for r in mine), "verified": sum(r.get("verified") or 0 for r in mine),
+                       "findings": sum(r.get("findings") or 0 for r in mine), "ref_findings": sum(r.get("ref_findings") or 0 for r in mine),
+                       "shared_links": sum(r.get("shared_links") or 0 for r in mine), "ref_links": sum(r.get("ref_links") or 0 for r in mine),
+                       "links": sum(r.get("links") or 0 for r in mine),
+                       "processor": next((r.get("processor") for r in mine if r.get("processor")), None),
+                       "rows": [{k: r.get(k) for k in _PUBLIC_ROW if r.get(k) is not None} for r in mine]})
+    data = {"schema": 1, "date": dt.date.today().isoformat(), "by": by, "incumbent": incumbent_model, "roles": roles, "seed": seed,
+            "papers": [{"key": p, "findings": (refs.get(p) or {}).get("findings"), "human_reviewed": (refs.get(p) or {}).get("human"),
+                        "all_human": bool((refs.get(p) or {}).get("all_human")), "bucket": (refs.get(p) or {}).get("main_bucket")} for p in papers],
+            "models": models,
+            "rule": "Eligible = zero absent quotes on every paper, and schema issues and over-claiming no worse than the incumbent (docs/MODELS.md §3)."}
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    return path
 
 
 def log_rows(rows: list[dict], by: str) -> list[str]:
@@ -444,7 +563,7 @@ def log_rows(rows: list[dict], by: str) -> list[str]:
             continue
         absent = f"**{r['absent']}/{r['quotes']} absent**" if r["absent"] else f"**0/{r['quotes']} absent** ({r['verified']} verified, {r['anchored']} anchored, {r['near']} near)"
         out.append(f"| {today} | extract | `{r['model']}` | {r['paper']} | {absent} | {r['schema_issues']} issue(s) | "
-                   f"{r['findings']} findings / {r['drafts']} entries vs {r['ref_findings']} / {r['ref_entries']}; target recall {pct(r['target_recall'])} | "
+                   f"{r['findings']} findings / {r['drafts']} entries vs {r['ref_findings']} / {r['ref_entries']}; link recall {pct(r['link_recall'])} ({r['shared_links']}/{r['ref_links']}) | "
                    f"{r['strength'] if r['strength'] is not None else '—'} vs {r['ref_strength'] if r['ref_strength'] is not None else '—'} | "
                    f"{_hms(r.get('elapsed_s'))}{(', ' + r['processor']) if r.get('processor') else ''} | *(decision pending — benchmark_models.py)* | {by} |")
     return out
@@ -484,6 +603,9 @@ def _cli(argv=None) -> int:
     ap.add_argument("--skip-extract", action="store_true", help="only score sandboxes that already exist")
     ap.add_argument("--ollama-host", default=os.environ.get("OLLAMA_HOST", "http://localhost:11434"))
     ap.add_argument("--timeout", type=int, default=7200, help="seconds per paper (default 2 h)")
+    ap.add_argument("--sandboxes", action="store_true", help="also score every known model (incumbent, MODELS.md §4) that already has a sandbox in _compare/")
+    ap.add_argument("--resume", action="store_true", help="do not extract a model × paper again when its drafts are already in _compare/; just score them")
+    ap.add_argument("--publish", action="store_true", help="write export/model-benchmark.json, the numbers-only summary the explorer's Models page shows (commit it)")
     ap.add_argument("--append-log", action="store_true", help="append the rows to docs/MODELS.md §5 (decision left blank)")
     ap.add_argument("--by", default=os.environ.get("USER", "maintainer"), help="name for the log rows")
     args = ap.parse_args(argv)
@@ -505,6 +627,11 @@ def _cli(argv=None) -> int:
             print("  · low priority, skipped (add --all-candidates to include): " + ", ".join(skipped))
         print(f"Untested candidates for a {ram or '?'} GB machine (from docs/MODELS.md §4): " + ", ".join(c["tag"] for c in cands))
         args.models = list(dict.fromkeys(args.models + [c["tag"] for c in cands]))
+    if args.sandboxes:
+        known = [incumbent()] + [c["tag"] for c in candidates_from_models_md()[0]]
+        have = [t for t in dict.fromkeys(known) if t and (COMPARE / slug(t) / "drafts").is_dir()]
+        print(f"  · with a sandbox in _compare/: {', '.join(have) or 'none'}")
+        args.models = list(dict.fromkeys(have + args.models))
     if args.exclude:
         args.models = [m for m in args.models if m not in set(args.exclude)]
     picked_note = []
@@ -547,7 +674,9 @@ def _cli(argv=None) -> int:
         sandbox = COMPARE / slug(m)
         for p in args.papers:
             timing: dict = {}
-            if not args.skip_extract:
+            if args.resume and not args.skip_extract and CE._find_entries(sandbox, f"@{p}"):
+                print(f"\n↷ {m} × {p}: drafts already in {sandbox.relative_to(ROOT)}/ — kept, scoring them", flush=True)
+            elif not args.skip_extract:
                 print(f"\n▶ {m} × {p}  →  {sandbox.relative_to(ROOT)}/   ({dt.datetime.now():%H:%M:%S})", flush=True)
                 timing = run_extraction(m, p, sandbox, args.ollama_host, args.timeout)
                 if not timing["ok"]:
@@ -559,7 +688,7 @@ def _cli(argv=None) -> int:
             rows.append(r)
             if not r.get("failed"):
                 print(f"  {m} × {p}: {r['absent']}/{r['quotes']} absent · {r['schema_issues']} schema issues · "
-                      f"{r['findings']} findings vs {r['ref_findings']} · recall {pct(r['target_recall'])} · "
+                      f"{r['findings']} findings vs {r['ref_findings']} · links {r['shared_links']}/{r['ref_links']} ({pct(r['link_recall'])}) · "
                       f"strength {r['strength']} vs {r['ref_strength']}")
     verdicts = summarise(rows, inc)
     md = table(rows, verdicts, inc)
@@ -570,6 +699,9 @@ def _cli(argv=None) -> int:
                                                                   "rows": rows, "verdicts": verdicts}, indent=1), encoding="utf-8")
     (COMPARE / f"benchmark_{stamp}.md").write_text(f"# Model benchmark {stamp}\n\nIncumbent: `{inc}`\n\n{md}\n", encoding="utf-8")
     print(f"\nWritten: _compare/benchmark_{stamp}.md and .json")
+    if args.publish:
+        out = publish(rows, verdicts, inc, args.papers, args.seed, args.by)
+        print(f"Published the numbers-only summary: {out.relative_to(ROOT)} — commit and push it; the explorer's Models page reads it.")
     if args.append_log:
         ok = append_log(log_rows(rows, args.by))
         print("Appended to docs/MODELS.md §5 — fill in the Decision column." if ok else "Could not find the decision log table in docs/MODELS.md.")

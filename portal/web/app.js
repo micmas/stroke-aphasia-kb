@@ -86,11 +86,13 @@ const uploadFor = (...ids) => state.uploads.find((u) => ids.filter(Boolean).some
 function uploadControl(id, citation, { required = false, label = null } = {}) {
   if (!state.uploadsOk) return h('span', { class: 'small muted', text: required ? 'Uploads are not enabled on this portal: ask the maintainer for the PDF.' : '' });
   const input = h('input', { type: 'file', accept: 'application/pdf,.pdf', 'aria-label': `PDF for ${id}` });
-  const btn = h('button', { class: `btn${required ? ' btn-primary' : ''}`, text: label || 'Upload the PDF', onclick: async () => {
-    const file = input.files?.[0];
+  let busy = false;
+  const upload = async (file) => {
+    if (busy) return;
     if (!file) { toast('Choose the PDF file first', true); return; }
+    if (file.type !== 'application/pdf' && !/\.pdf$/i.test(file.name || '')) { toast(`${file.name || 'That file'} is not a PDF`, true); return; }
     if (file.size > MAX_UPLOAD) { toast(`That file is ${Math.round(file.size / 1048576)} MB; the limit is ${MAX_UPLOAD / 1048576} MB`, true); return; }
-    btn.disabled = true; btn.textContent = `Uploading ${Math.round(file.size / 1024)} KB…`;
+    busy = true; btn.disabled = true; btn.textContent = `Uploading ${Math.round(file.size / 1024)} KB…`;
     try {
       const q = new URLSearchParams({ id, name: file.name, citation: citation || '' });
       const res = await fetch(`/api/upload?${q}`, { method: 'POST', headers: { 'Content-Type': 'application/pdf' }, body: file });
@@ -98,12 +100,37 @@ function uploadControl(id, citation, { required = false, label = null } = {}) {
       if (!res.ok || data.error) throw new Error(data.error || `${res.status}`);
       state.uploads.push({ object: data.object, id, name: file.name, bytes: file.size, by: state.me.email, uploaded: new Date().toISOString() });
       if (data.file) state.mine.inbox.push(data.file.split('/').pop());
-      toast('PDF uploaded — the maintainer will add it to the papers folder');
+      toast(`PDF uploaded for ${id} — the maintainer will add it to the papers folder`);
       render();
-    } catch (e) { toast(`Not uploaded: ${e.message}`, true); btn.disabled = false; btn.textContent = label || 'Upload the PDF'; }
-  } });
-  return h('span', { class: 'upload' }, input, btn, h('span', { class: 'small muted', text: 'PDF only, up to 60 MB; it goes to the maintainer, never to the public site.' }));
+    } catch (e) { toast(`Not uploaded: ${e.message}`, true); busy = false; btn.disabled = false; btn.textContent = label || 'Upload the PDF'; }
+  };
+  const btn = h('button', { class: `btn${required ? ' btn-primary' : ''}`, text: label || 'Upload the PDF', onclick: () => upload(input.files?.[0]) });
+  const el = h('span', { class: 'upload' }, input, btn, h('span', { class: 'small muted', text: 'Choose a PDF or drop one here; up to 60 MB. It goes to the maintainer, never to the public site.' }));
+  el.uploadFile = upload;                 // so a larger area (a table row, a screening card) can be the drop target too
+  dropZone(el, upload);
+  return el;
 }
+
+/** Make `zone` accept a dropped file: highlighted while a file is dragged over it, `onFile(file)` on drop. */
+function dropZone(zone, onFile) {
+  if (!onFile) return zone;
+  let depth = 0;                          // dragenter/leave fire for every child; count them
+  const hasFiles = (e) => [...(e.dataTransfer?.types || [])].includes('Files');
+  zone.addEventListener('dragenter', (e) => { if (!hasFiles(e)) return; e.preventDefault(); depth += 1; zone.classList.add('dropping'); });
+  zone.addEventListener('dragover', (e) => { if (!hasFiles(e)) return; e.preventDefault(); e.stopPropagation(); e.dataTransfer.dropEffect = 'copy'; });
+  zone.addEventListener('dragleave', () => { depth = Math.max(0, depth - 1); if (!depth) zone.classList.remove('dropping'); });
+  zone.addEventListener('drop', (e) => {
+    if (!hasFiles(e)) return;
+    e.preventDefault(); e.stopPropagation(); depth = 0; zone.classList.remove('dropping');
+    const files = [...(e.dataTransfer.files || [])];
+    if (files.length > 1) toast('One PDF per paper: taking the first file', true);
+    onFile(files[0]);
+  });
+  return zone;
+}
+// A file dropped beside a drop zone must not make the browser open it and leave the page (unsent decisions live here).
+window.addEventListener('dragover', (e) => { if ([...(e.dataTransfer?.types || [])].includes('Files')) { e.preventDefault(); e.dataTransfer.dropEffect = 'none'; } });
+window.addEventListener('drop', (e) => { if ([...(e.dataTransfer?.types || [])].includes('Files')) e.preventDefault(); });
 /** "PDF uploaded by … on …, waiting for the maintainer" */
 const uploadedNote = (u) => h('span', { class: 'badge badge-warn', title: u.name, text: `PDF uploaded${u.by === state.me?.email ? ' by you' : u.by ? ` by ${u.by}` : ''}${u.uploaded ? ` on ${String(u.uploaded).slice(0, 10)}` : ''}, with the maintainer` });
 const myRecords = () => [...state.mine.inbox, ...state.mine.applied].filter((n) => n.includes(`_${slug(state.me?.email?.split('@')[0])}_`));
@@ -368,6 +395,8 @@ function screenView(stage) {
       h('div', { class: 'dec' }, ['include', 'exclude', 'unsure'].map((v) => h('label', { title: gated ? 'Upload the PDF first' : null }, h('input', { type: 'radio', name: `s-${c.id}`, value: v, disabled: gated ? '' : null, checked: dec.decision === v ? '' : null, onchange: () => { decided[c.id] = { ...dec, decision: v }; store.set(key, decided); card.classList.add('done'); const k = Object.values(decided).filter((x) => x.decision).length; status.textContent = statusText(k); sendBtn.disabled = k ? false : true; sendBtn.textContent = k ? `Send ${plural(k, 'decision')}` : 'Send decisions'; } }), ` ${v}`)),
         h('select', { onchange: (e) => { decided[c.id] = { ...(decided[c.id] || {}), reason: e.target.value }; store.set(key, decided); } }, h('option', { value: '', text: 'reason…' }), reasons.map(([k, v]) => h('option', { value: k, selected: dec.reason === k ? '' : null, text: v.label }))),
         h('input', { type: 'text', value: dec.note || '', placeholder: 'note', style: 'min-width:220px', onchange: (e) => { decided[c.id] = { ...(decided[c.id] || {}), note: e.target.value }; store.set(key, decided); } })));
+    const ctl = card.querySelector('.upload');
+    if (ctl?.uploadFile) dropZone(card, ctl.uploadFile);       // drop the paper's PDF anywhere on its card
     list.append(card);
   }
   if (!cands.length) list.append(h('p', { class: 'notice', text: 'Nothing awaiting a decision at this stage.' }));
@@ -438,18 +467,19 @@ function pdfsView() {
   const missing = missingPdfs().sort((a, b) => (Number(b.year) || 0) - (Number(a.year) || 0) || String(a.id).localeCompare(String(b.id)));
   const missingRow = (c) => {
     const up = uploadFor(c.id, c.key);
-    return h('tr', { class: up ? 'has-upload' : '' },
+    const ctl = up ? null : uploadControl(c.id, c.key, { label: 'Upload' });
+    return dropZone(h('tr', { class: up ? 'has-upload' : 'droppable' },
       h('td', {}, h('span', { class: 'chip', text: c.id }), c.key ? h('div', { class: 'small muted', text: c.key }) : null),
       h('td', { class: 'small' }, h('div', { text: c.title || '' }), h('div', { class: 'muted', text: [c.year, c.journal, (c.authors || '').slice(0, 80)].filter(Boolean).join(' · ') })),
       h('td', { class: 'small' }, c.doi ? h('a', { href: `https://doi.org/${c.doi}`, target: '_blank', rel: 'noopener', text: 'doi' }) : null, c.doi && c.pmid ? ' · ' : '', c.pmid ? h('a', { href: `https://pubmed.ncbi.nlm.nih.gov/${c.pmid}`, target: '_blank', rel: 'noopener', text: 'PubMed' }) : null, !c.doi && !c.pmid ? h('span', { class: 'muted', text: '—' }) : null),
       h('td', { class: 'small' }, c.history?.length ? c.history.map((x) => `${x.stage === 'title_abstract' ? 'T/A' : 'FT'}: ${x.decision}${x.by ? ` (${x.by})` : ''}`).join('; ') : h('span', { class: 'muted', text: c.stage === 'unsure_ft' ? 'unsure at full text' : 'included at T/A' })),
-      h('td', {}, up ? uploadedNote(up) : uploadControl(c.id, c.key, { label: 'Upload' })));
+      h('td', {}, up ? uploadedNote(up) : ctl)), ctl?.uploadFile);
   };
   const missingTable = h('table', { class: 'queue missing' }, h('thead', {}, h('tr', {}, h('th', { text: 'Candidate' }), h('th', { text: 'Paper' }), h('th', { text: 'Find it' }), h('th', { text: 'Screening' }), h('th', { text: 'PDF' }))), h('tbody', {}, missing.map(missingRow)));
   const nUp = missing.filter((c) => uploadFor(c.id, c.key)).length;
   return frag(h('div', { class: 'page-head' }, h('h1', { text: 'PDFs' }), h('span', { class: 'muted small', text: `${m.counts?.private ?? 0} private · ${m.counts?.public ?? 0} public · ${m.counts?.sources ?? 0} more source PDFs with the maintainer, not annotated yet · ${missing.length} included papers without a PDF` })),
     h('h2', { id: 'missing', text: `Papers we still need (${missing.length})` }),
-    h('p', { class: 'small', text: `Included at title/abstract, waiting for a full-text decision, and nobody has the PDF yet${nUp ? ` (${nUp} uploaded, with the maintainer)` : ''}. If you can get one — through your library, the authors, or a repository copy — upload it here; it goes to the maintainer's papers folder, never to the public site. The full-text decision for a paper can only be made once its PDF exists.` }),
+    h('p', { class: 'small', text: `Included at title/abstract, waiting for a full-text decision, and nobody has the PDF yet${nUp ? ` (${nUp} uploaded, with the maintainer)` : ''}. If you can get one — through your library, the authors, or a repository copy — drag the PDF onto the paper's row (or choose the file and press Upload); it goes to the maintainer's papers folder, never to the public site. The full-text decision for a paper can only be made once its PDF exists.` }),
     missing.length ? missingTable : h('p', { class: 'notice', text: 'Every paper awaiting a full-text decision has its PDF.' }),
     h('h2', { text: `Annotated PDFs (${papers.length})` }),
     h('p', { class: 'small', text: 'Every paper whose annotated PDF this build of the portal holds. The highlights in each PDF are the passages the KB cites from it, coloured by what they support. Public copies are papers under a Creative Commons licence; the private ones are for signed-in reviewers only and must not be passed on.' }),
