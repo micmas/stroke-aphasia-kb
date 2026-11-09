@@ -150,8 +150,13 @@ Record kinds, and what the import does with them:
 10. **Let CI build and deploy.** In Cloudflare, *My profile → API tokens →
     Create*: *Cloudflare Pages: Edit* and *Workers R2 Storage: Edit* on
     this account. In the repository, *Settings → Secrets and variables →
-    Actions*: `CLOUDFLARE_API_TOKEN` (that token) and
-    `CLOUDFLARE_ACCOUNT_ID`. From then on every push to `main` runs
+    Actions*: `CLOUDFLARE_API_TOKEN` (that token),
+    `CLOUDFLARE_ACCOUNT_ID`, and `PORTAL_PUSH_TOKEN`: a second
+    fine-grained GitHub token (this repository, *Contents: read and
+    write*) that the apply workflow pushes with, because `main` is a
+    protected branch that only the maintainer's own token may bypass. A
+    push made with it also starts the builds, so both sites refresh after
+    an apply. From then on every push to `main` runs
     `.github/workflows/portal.yml`, which fetches the abstracts cache from
     the bucket, assembles the portal and deploys it; and
     `portal-apply.yml` applies the inbox when asked (the button) or every
