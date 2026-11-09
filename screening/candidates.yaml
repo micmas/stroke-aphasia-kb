@@ -2771,7 +2771,12 @@ candidates:
   - search: S010
   - search: S012
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 267
   benchmark: true
   legacy:
     decisions:
@@ -10987,7 +10992,12 @@ candidates:
   - search: S009
   - search: S010
   - search: S012
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 270
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C0438
@@ -12362,7 +12372,12 @@ candidates:
   - search: S015
   - search: S016
   - search: S019
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 266
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C0517
@@ -17272,7 +17287,12 @@ candidates:
   - search: S015
   - search: S016
   - search: S019
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 268
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C0798
@@ -17860,7 +17880,12 @@ candidates:
   - search: S012
   - search: S022
   - search: S023
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 271
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C0833
@@ -23117,7 +23142,12 @@ candidates:
   - search: S015
   - search: S016
   - search: S019
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 269
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C1134
@@ -25415,7 +25445,12 @@ candidates:
   - search: S002
   - search: S008
   - search: S009
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 265
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C1256
@@ -38559,7 +38594,12 @@ candidates:
   - search: S022
   - search: S023
   - search: S024
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 272
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C1990

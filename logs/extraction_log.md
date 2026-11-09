@@ -694,3 +694,4 @@ add an `EXTRACTED` line for every run.
 2026-11-09 | REREVIEW | @Barbieri2023 | typicality_semantic_feature_analysis | by: human:michele | 1 draft(s) | previous: auto-reviewer
 2026-11-09 | PORTAL-APPLIED | — | 2 record(s) | pdf 1, screen 1 | by: michele
 2026-11-09 | PORTAL-APPLIED | — | 12 record(s) | screen 12 | by: michele
+2026-11-09 | PORTAL-APPLIED | — | 8 record(s) | screen 8 | by: michele
