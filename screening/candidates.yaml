@@ -4729,7 +4729,12 @@ candidates:
   - search: S016
   - search: S017
   skip_title_abstract: true
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 261
   benchmark: true
   legacy:
     decisions:
@@ -16531,7 +16536,12 @@ candidates:
   - search: S009
   - search: S012
   - search: S016
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 257
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C0753
@@ -20664,7 +20674,12 @@ candidates:
   - search: S001
   - search: S008
   - search: S009
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 259
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C0995
@@ -24071,7 +24086,12 @@ candidates:
   - search: S008
   - search: S009
   - search: S012
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 255
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C1187
@@ -25280,7 +25300,12 @@ candidates:
   - search: S017
   - search: S018
   - search: S019
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 264
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C1250
@@ -34336,7 +34361,12 @@ candidates:
   - search: S011
   - search: S012
   - search: S023
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 258
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C1755
@@ -34765,7 +34795,12 @@ candidates:
   - search: S009
   - search: S011
   - search: S012
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 253
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C1778
@@ -40405,7 +40440,12 @@ candidates:
   - search: S008
   - search: S009
   - search: S012
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 256
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C2099
@@ -40571,7 +40611,12 @@ candidates:
   - search: S015
   - search: S016
   - search: S019
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 254
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C2109
@@ -41150,7 +41195,12 @@ candidates:
   - search: S002
   - search: S008
   - search: S009
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 262
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C2141
@@ -45538,7 +45588,12 @@ candidates:
   - search: S015
   - search: S016
   - search: S019
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 260
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C2386
@@ -126246,7 +126301,12 @@ candidates:
   - search: S013
   - search: S022
   - search: S023
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-09'
+    seq: 263
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C7374
