@@ -71,6 +71,90 @@ function parseRoute() {
 }
 
 // ---------------------------------------------------------------------------
+// Get involved — the five levels at which a person can take part (#/involve)
+// ---------------------------------------------------------------------------
+const sv = (tag, attrs = {}, ...children) => s(tag, attrs, ...children);   // the SVG helper defined with the Coverage view
+/** The levels, from reading to building. `needs` is the only thing that changes between them. */
+const LEVELS = [
+  { n: 1, name: 'Use', verb: 'Read the evidence', who: 'Anyone: clinicians, students, researchers', time: 'minutes', needs: 'nothing — this site is public', colour: 'var(--cyan)',
+    does: ['Browse findings by region, impairment or therapy; follow each claim to the exact passage and page of its paper.', 'Use the evidence matrix and the coverage view to see what is known, how well, and where the gaps are.'],
+    gives: 'Questions, teaching material, a check on your own clinical reasoning.', link: '#/matrix', linkText: 'Evidence matrix' },
+  { n: 2, name: 'Screen', verb: 'Sort the literature', who: 'Clinicians and students, 10 minutes at a time', time: '10 min per 20 abstracts', needs: 'an invited email (one-time code)', colour: 'var(--blue)',
+    does: ['In the review portal, read a title and abstract and say include / exclude (with a reason) / unsure against the eligibility criteria.', 'At the full-text stage, read the paper itself; upload its PDF if the project does not have it.'],
+    gives: 'The PRISMA flow: which of the 20 000+ candidate papers deserve extraction.', link: 'portal', linkText: 'Review portal' },
+  { n: 3, name: 'Review', verb: 'Check the extraction', who: 'Researchers, students, clinicians with 30 minutes', time: '20–40 min per paper', needs: 'an invited email', colour: 'var(--grape)',
+    does: ['Open a draft beside the annotated PDF: for each finding say agree / disagree / unsure, fix a wrong field, flag a passage that does not support the claim.', 'Select words in the paper to add a passage, or mark something the extractor missed so it is re-read.'],
+    gives: 'Verified findings: every claim read by a person against the paper before it enters the KB.', link: 'portal', linkText: 'Review portal → Drafts' },
+  { n: 4, name: 'Approve', verb: 'Take responsibility', who: 'Named approvers (senior researchers, clinician-scientists)', time: 'a review + the verdict', needs: 'to be listed in the Reviewer team', colour: 'var(--pink)',
+    does: ['Give the overall verdict that moves a draft into the knowledge base — or rejects it — under your name.', 'Take part in the 20 % quote audit and the re-review of pre-policy entries.'],
+    gives: 'Accountability: nothing enters the KB without a named person.', link: 'reviewers', linkText: 'The Reviewer team (portal/reviewers.yaml)' },
+  { n: 5, name: 'Build', verb: 'Extend the system', who: 'Developers, students with a laptop and a local model', time: 'hours to weeks', needs: 'a copy of the repository', colour: 'var(--ink-2)',
+    does: ['Run the extractor on new papers with a local model; add atlas mappings so lesions can reach new regions; improve the schema.', 'Work on this explorer, the review portal, the screening tools or the CALMaR / Neurodesk integration.'],
+    gives: 'New papers, new regions, new tools — and the pipeline that keeps the KB honest.', link: 'contributing', linkText: 'CONTRIBUTING.md' },
+];
+const REPO_DOCS = { reviewers: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/portal/reviewers.yaml', governance: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/GOVERNANCE.md', contributing: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/CONTRIBUTING.md', screening: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/SCREENING.md', portalDoc: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/PORTAL.md' };
+function levelHref(index, lv) { if (lv.link === 'portal') return index.kb.portal?.url || REPO_DOCS.portalDoc; return REPO_DOCS[lv.link] || lv.link; }
+
+/** The figure: five rising steps; each names the level, who it is for and what it needs. */
+function involvementFigure(index) {
+  const W = 960; const H = 500; const n = LEVELS.length; const colW = (W - 40) / n; const stepH = 46; const base = H - 130;
+  const svg = sv('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-labelledby': 'invTitle invDesc', class: 'involve-figure' },
+    sv('title', { id: 'invTitle', text: 'Five levels of involvement in the stroke aphasia knowledge base' }),
+    sv('desc', { id: 'invDesc', text: LEVELS.map((l) => `${l.n}. ${l.name}: ${l.verb}; for ${l.who}; needs ${l.needs}.`).join(' ') }));
+  // the rising floor
+  const floor = LEVELS.map((_, i) => `${20 + i * colW},${base - i * stepH} ${20 + (i + 1) * colW},${base - i * stepH}`).join(' ');
+  svg.append(sv('polyline', { points: `20,${H - 60} 20,${base} ${floor} ${W - 20},${H - 60}`, fill: 'var(--panel)', stroke: 'var(--line-strong)', 'stroke-width': 1.5, 'stroke-linejoin': 'round' }));
+  // the accountability line: from level 4 on, a named person answers for the decision
+  const ax = 20 + 3 * colW;
+  svg.append(sv('line', { x1: ax, y1: 24, x2: ax, y2: base - 3 * stepH, stroke: 'var(--pink)', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' }),
+    sv('text', { x: ax - 8, y: 36, 'text-anchor': 'end', class: 'inv-note', fill: 'var(--pink)', text: 'from here, a named person answers for each decision →' }));
+  LEVELS.forEach((lv, i) => {
+    const x = 20 + i * colW; const y = base - i * stepH;
+    const whoLines = wrapWords(lv.who, 24);
+    const cardH = 96 + whoLines.length * 14 + 14;
+    const top = y - cardH - 10;
+    const g = sv('g', { class: 'inv-level' });
+    g.append(sv('rect', { x: x + 10, y: top, width: colW - 20, height: cardH, rx: 8, fill: 'var(--surface)', stroke: lv.colour, 'stroke-width': 2 }));
+    g.append(sv('circle', { cx: x + 32, cy: top + 24, r: 14, fill: lv.colour }), sv('text', { x: x + 32, y: top + 29, 'text-anchor': 'middle', class: 'inv-num', fill: '#fff', text: String(lv.n) }));
+    g.append(sv('text', { x: x + 54, y: top + 30, class: 'inv-name', fill: 'var(--ink)', text: lv.name }));
+    g.append(sv('text', { x: x + 22, y: top + 56, class: 'inv-verb', fill: 'var(--ink)', text: lv.verb }));
+    const who = sv('text', { x: x + 22, y: top + 76, class: 'inv-small', fill: 'var(--ink-2)' });
+    whoLines.forEach((t, k) => who.append(sv('tspan', { x: x + 22, dy: k ? 14 : 0, text: t }))); g.append(who);
+    g.append(sv('text', { x: x + 22, y: top + 76 + whoLines.length * 14 + 6, class: 'inv-small', fill: 'var(--ink-2)', text: `~ ${lv.time}` }));
+    // under the floor: what this level needs
+    const needs = sv('text', { x: x + colW / 2, y: H - 42, 'text-anchor': 'middle', class: 'inv-needs', fill: 'var(--ink)' });
+    needs.append(sv('tspan', { x: x + colW / 2, dy: 0, class: 'inv-needs-head', fill: lv.colour, text: 'needs' }));
+    wrapWords(lv.needs, 24).forEach((t) => needs.append(sv('tspan', { x: x + colW / 2, dy: 13, text: t })));
+    g.append(needs);
+    g.append(sv('line', { x1: x + colW / 2, y1: y, x2: x + colW / 2, y2: H - 60, stroke: 'var(--line-strong)', 'stroke-width': 1, 'stroke-dasharray': '2 3' }));
+    svg.append(g);
+  });
+  svg.append(sv('text', { x: 24, y: H - 68, class: 'inv-note', fill: 'var(--ink-2)', text: 'more time and responsibility →' }));
+  return svg;
+}
+function wrapWords(text, width) { const out = []; let cur = ''; for (const w of String(text).split(' ')) { if ((cur + ' ' + w).trim().length > width && cur) { out.push(cur); cur = w; } else cur = (cur + ' ' + w).trim(); } if (cur) out.push(cur); return out; }
+function wrapText(textEl, text, width, x, lineH) { wrapWords(text, width).forEach((t, i) => textEl.append(sv('tspan', { x, dy: i ? lineH : 0, text: t }))); }
+
+function involve(index) {
+  const portal = index.kb.portal?.url;
+  return frag(
+    h('div', { class: 'page-head' }, h('h1', { text: 'Get involved' }), h('span', { class: 'muted small', text: 'five levels, from reading to building' })),
+    h('p', {}, 'The knowledge base is built in the open and checked by people. Every claim in it points at a passage of a paper, and nothing becomes part of it until a named person has read that passage and agreed. That takes many hands, and there is a place for everyone, from ten minutes of screening abstracts to running the pipeline. The figure shows the five levels; each one stands on its own, and you can stay at any of them.'),
+    h('div', { class: 'involve-wrap' }, involvementFigure(index)),
+    h('div', { class: 'involve-grid' }, LEVELS.map((lv) => h('section', { class: 'involve-card', style: `border-top-color:${lv.colour}` },
+      h('h2', {}, h('span', { class: 'inv-badge', style: `background:${lv.colour}`, text: String(lv.n) }), ` ${lv.name} — ${lv.verb}`),
+      h('p', { class: 'small muted', text: `For ${lv.who.charAt(0).toLowerCase()}${lv.who.slice(1)} · ${lv.time} · needs ${lv.needs}.` }),
+      h('ul', {}, lv.does.map((d) => h('li', { text: d }))),
+      h('p', { class: 'small' }, h('b', { text: 'What it gives the KB: ' }), lv.gives),
+      h('p', { class: 'small' }, h('a', { href: levelHref(index, lv), target: lv.link === '#/matrix' ? null : '_blank', rel: 'noopener', text: lv.linkText }))))),
+    h('h2', { text: 'How to start' }),
+    h('p', {}, 'Level 1 needs nothing: you are already here. For levels 2 and 3, write to the maintainer (see ', h('a', { href: REPO_DOCS.contributing, target: '_blank', rel: 'noopener', text: 'CONTRIBUTING.md' }), ') with the email you want to use; it is added to the portal’s allow-list and you sign in with a one-time code sent to that address — no account, no password. The portal keeps your decisions in your browser until you send them, and each one is recorded under your name. ',
+      portal ? h('a', { href: portal, target: '_blank', rel: 'noopener', text: 'Open the review portal' }) : 'The review portal is not configured for this build.', '.'),
+    h('p', {}, 'Level 4 is by agreement: approvers are listed by name in the ', h('a', { href: REPO_DOCS.reviewers, target: '_blank', rel: 'noopener', text: 'Reviewer team' }), ' (', h('code', { text: 'portal/reviewers.yaml' }), '), under the rules of the ', h('a', { href: REPO_DOCS.governance, target: '_blank', rel: 'noopener', text: 'governance policy' }), ', and the log keeps who approved what. Level 5 starts with a clone of the repository and ', h('a', { href: REPO_DOCS.contributing, target: '_blank', rel: 'noopener', text: 'CONTRIBUTING.md' }), '; the extractor runs on a local model only, so the papers never leave the machine they are on.'),
+    h('p', { class: 'small muted', text: 'Papers are read under the project’s institutional access or their open licences; the private part of the portal is a shared folder with a lock for named collaborators, and only Creative-Commons papers are served openly.' }));
+}
+
+// ---------------------------------------------------------------------------
 // Shared renderers
 // ---------------------------------------------------------------------------
 function kindBadge(kind) { return h('span', { class: 'badge badge-kind', text: kind }); }
@@ -122,6 +206,8 @@ function findingCard(index, f, { route = true, open = false } = {}) {
   else if (f.therapy_name === 'not recorded') push(h('span', { class: 'badge badge-warn', text: 'therapy not recorded' }));
   if (f.evidence_quality) push(h('span', { text: f.evidence_quality }));
   push(reviewBadge(f));
+  const lic = index.kb.licences?.[f.citation];
+  if (lic) push(licenceBadge(lic));
   const pdfLink = annotatedPdfLink(index, f.citation, f.source_passages?.[0]?.page);
   if (pdfLink) push(pdfLink);
   if (f.design_cautions?.length) push(h('span', { class: 'badge badge-warn', title: f.design_cautions.join('; '), text: plural(f.design_cautions.length, 'design caution') }));
@@ -200,7 +286,7 @@ function overview(index) {
     h('div', { class: 'page-head' }, h('h1', { text: 'Stroke aphasia knowledge base' }),
       h('span', { class: 'muted small', text: `export of KB ${v.commit || 'uncommitted'}${v.date ? ` (${v.date})` : ''} · digest ${v.contentDigest || '?'} · exported ${v.exportedOn || '?'} · statuses: ${(v.statuses || []).join(', ')}` })),
     h('p', {}, 'A curated, source-traceable literature base linking stroke lesion locations to aphasia impairments, therapy responses and recovery predictors. Every finding is one claim from one paper with the verbatim passages that support it. This page lets you read the base itself; CALMaR uses the same export to turn a lesion into a cited report.'),
-    h('p', { class: 'caveat', text: 'Findings are group-level literature associations with their citations and review provenance, not clinical predictions. Research use only.' }),
+    h('p', { class: 'caveat', text: 'A research development built to support clinicians\u2019 reasoning, not to replace it: findings are group-level literature associations with their citations and review provenance, not clinical predictions, and no output here is clinical advice.' }),
     (v.statuses || []).some((s) => s !== 'approved')
       ? h('p', { class: 'caveat drafts', text: `This view includes findings nobody has approved yet (statuses: ${(v.statuses || []).join(', ')}). Filter by Status on the Findings page to separate them.` })
       : null,
@@ -224,8 +310,9 @@ function overview(index) {
       h('a', { href: href('/findings', { review_kind: ['legacy'] }), text: 'browse legacy findings' })),
     h('div', { class: 'grid-2' },
       h('section', {}, h('h2', { text: 'Regions by number of findings' }), barList(countBy('region'), { max: 12, link: (x) => entryHref(x.id) }),
-        h('p', { class: 'small muted', text: 'Grey bars: anatomical targets named by findings that have no entry of their own yet.' })),
-      h('section', {}, h('h2', { text: 'Impairments by number of findings' }), barList(countBy('impairment'), { max: 12, link: (x) => entryHref(x.id) }))),
+        h('p', { class: 'small muted', text: 'Grey bars: regions that findings point to but that have no entry of their own yet (click one to see the findings that name it).' })),
+      h('section', {}, h('h2', { text: 'Impairments by number of findings' }), barList(countBy('impairment'), { max: 12, link: (x) => entryHref(x.id) }),
+        h('p', { class: 'small muted', text: 'Grey bars: impairments that findings point to but that have no entry of their own yet.' }))),
     h('div', { class: 'grid-2' },
       h('section', {}, h('h2', { text: 'Therapies' }), barList(therapies, { link: (x) => entryHref(x.id) })),
       h('section', {}, h('h2', { text: 'Region entries a lesion cannot reach' }),
@@ -237,6 +324,7 @@ function overview(index) {
       h('li', {}, h('a', { href: '#/findings', text: 'Findings browser' }), ' — filter by entry type, relationship, strength, method, stage, provenance or paper; full-text search of claims and quotes.'),
       h('li', {}, h('a', { href: '#/papers', text: 'Papers' }), ' — every cited paper and its findings in page order, to spot-check an extraction against the PDF.'),
       h('li', {}, h('a', { href: '#/coverage', text: 'Coverage' }), ' — how the literature was searched and screened (PRISMA flow), what each evidence gap still needs, and where every candidate paper stands.'),
+      h('li', {}, h('a', { href: '#/involve', text: 'Get involved' }), ' — the five levels at which a person can take part, from reading to building; what each needs and what it gives.'),
       index.kb.portal?.url ? h('li', {}, h('a', { href: index.kb.portal.url, target: '_blank', rel: 'noopener', text: 'Review portal' }), ' — for collaborators: check drafts beside the annotated PDFs, screen candidate papers and send decisions back (sign-in with an invited email).') : null));
 }
 
@@ -270,12 +358,12 @@ function browse(index, route) {
       h('summary', { text: `${facet.label}${selected.size ? ` (${selected.size})` : ''}` }),
       shown.map((v) => h('label', { class: m.get(v) ? '' : 'zero' },
         h('input', { type: 'checkbox', checked: selected.has(v) ? '' : null, onchange: () => toggle(facet.key, v) }),
-        h('span', { text: facet.link ? index.name(v) : String(v).replace(/_/g, ' '), title: String(v) }),
+        h('span', { text: facet.link ? index.name(v) : (facet.labels && facet.labels[v]) || String(v).replace(/_/g, ' '), title: String(v) }),
         h('span', { class: 'n', text: String(m.get(v) || 0) }))),
       many && shown.length < values.length ? h('p', { class: 'small muted', text: `${values.length - shown.length} more — narrow with the search box` }) : null);
   });
 
-  const active = Object.entries(filters).flatMap(([k, vs]) => vs.map((v) => h('button', { type: 'button', onclick: () => toggle(k, v), text: `${FACETS.find((f) => f.key === k)?.label || k}: ${FACETS.find((f) => f.key === k)?.link ? index.name(v) : v} ×` })));
+  const active = Object.entries(filters).flatMap(([k, vs]) => vs.map((v) => h('button', { type: 'button', onclick: () => toggle(k, v), text: `${FACETS.find((f) => f.key === k)?.label || k}: ${FACETS.find((f) => f.key === k)?.link ? index.name(v) : (FACETS.find((f) => f.key === k)?.labels?.[v] || v)} ×` })));
   if (query) active.push(h('button', { type: 'button', onclick: () => go(filters, { q: '' }), text: `search: ${query} ×` }));
   if (active.length) active.push(h('button', { type: 'button', onclick: () => { location.hash = '#/findings'; }, text: 'clear all' }));
 
@@ -553,7 +641,8 @@ function annotatedPdfLink(index, citation, page) {
   if ((portal.publicCategories || []).includes(lic.category)) {
     return h('a', { class: 'small', href: `${portal.publicPdfBase}${key}_annotated.pdf${page ? `#page=${page}` : ''}`, target: '_blank', rel: 'noopener', title: `Annotated PDF (${lic.label || lic.category}) — the highlights are this entry's passages`, text: 'annotated PDF' });
   }
-  return h('a', { class: 'small muted', href: `${portal.url}/#/drafts`, target: '_blank', rel: 'noopener', title: 'This paper is not openly licensed; its annotated PDF is in the review portal, for signed-in reviewers', text: 'annotated PDF (reviewers)' });
+  const why = lic.category === 'free_to_read' ? 'free to read but not openly licensed' : lic.category === 'rights_reserved' ? 'rights reserved by the publisher' : 'licence not known';
+  return h('a', { class: 'small muted', href: `${portal.url}/#/drafts`, target: '_blank', rel: 'noopener', title: `No public copy: ${why}. The annotated PDF is in the review portal, for signed-in reviewers.`, text: `annotated PDF (reviewers only: ${why})` });
 }
 
 function licenceBadge(rec) {
@@ -577,7 +666,7 @@ function prismaDiagram(index) {
   const lines = [];
   const text = (x, yy, t, cls = '') => s('text', { x, y: yy, class: `pr-text ${cls}` }, t);
   const fit = (t, w, px) => { const max = Math.max(4, Math.floor(w / px)); return String(t).length > max ? `${String(t).slice(0, max - 1)}…` : String(t); };
-  const box = ({ x, y: yy, w, title, n, sub, link, cls = '', params = null, id = null }) => {
+  const box = ({ x, y: yy, w, title, n, sub, link, cls = '', params = null, id = null, tip = null }) => {
     if (params && id) link = coverageHref({ ...params, box: id });
     const g = s('g', { class: `pr-box ${cls}` });
     g.append(s('rect', { x, y: yy, width: w, height: boxH, rx: 6 }));
@@ -591,7 +680,7 @@ function prismaDiagram(index) {
         a.addEventListener('mouseenter', (e) => showTip(e, index, title, params));
         a.addEventListener('mousemove', moveTip);
         a.addEventListener('mouseleave', hideTip);
-      } else a.append(s('title', { text: `${title}: ${n}${sub ? ` (${sub})` : ''} — open these candidates` }));
+      } else a.append(s('title', { text: `${title}: ${n}${sub ? ` (${sub})` : ''}${tip ? `\n${tip}` : ''}\n— click to open these candidates` }));
       a.append(g);
       return a;
     }
@@ -609,7 +698,11 @@ function prismaDiagram(index) {
   const otSub = Object.entries(idn.other.byKind || {}).map(([k, v]) => `${k.replace(/_/g, ' ')} ${v}`).join(', ');
   const sideX = (col) => col + main + gapX;
   // row 0
-  nodes.push(box({ x: colL, y, w: main, title: 'Records from databases', n: idn.databases.records, sub: dbSub, link: coverageHref({ arm: 'databases' }) }));
+  // hover: how many records each question's searches brought in (search hits, before de-duplication)
+  const byQuestion = {};
+  for (const sx of index.screening.searches.values()) for (const q of sx.for || []) byQuestion[q] = (byQuestion[q] || 0) + Number(sx.hits ?? sx.retrieved ?? 0);
+  const qTip = Object.keys(byQuestion).length ? 'By question (search hits, before de-duplication):\n' + Object.entries(byQuestion).sort((a, b) => b[1] - a[1]).map(([q, v]) => `  ${q.replace(/_/g, ' ')}: ${v.toLocaleString()}`).join('\n') : null;
+  nodes.push(box({ x: colL, y, w: main, title: 'Records from databases', n: idn.databases.records, sub: dbSub, link: coverageHref({ arm: 'databases' }), tip: qTip }));
   const removedSub = [`${idn.duplicatesRemoved} duplicates`, idn.removedByRule ? `${idn.removedByRule} grey literature` : null].filter(Boolean).join(' · ');
   nodes.push(box({ x: sideX(colL), y, w: side, title: 'Removed before screening', n: idn.duplicatesRemoved + (idn.removedByRule || 0), sub: removedSub, params: { stage: 'duplicate' }, id: 'removed', cls: 'pr-side pr-out' }));
   nodes.push(box({ x: colR, y, w: main + gapX + side, title: 'Records from other sources', n: idn.other.records, sub: otSub, link: coverageHref({ arm: 'other' }) }));
@@ -886,6 +979,7 @@ function render() {
     else if (head === 'papers') { view = papers(index); current = '/papers'; }
     else if (head === 'licences') { view = licencesView(index, route); current = '/papers'; }
     else if (head === 'coverage') { view = coverage(index, route); current = '/coverage'; }
+    else if (head === 'involve') { view = involve(index); current = '/involve'; }
     else if (head === 'paper' && rest[0]) { view = paper(index, rest[0]); current = '/papers'; }
     else if (head === 'entry' && rest[0]) { view = entry(index, rest[0]); current = null; }
     else if (head === 'finding' && rest[1]) { view = finding(index, rest[0], rest[1]); current = null; }

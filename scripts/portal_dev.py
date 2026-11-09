@@ -14,12 +14,15 @@ Access token check and the GitHub write are the only parts not exercised — the
 have their own test (cd portal && npm test).
 
 Records written here are real: apply them with portal_import.py or delete them
-from logs/portal/inbox/ when you were only trying things out.
+from logs/portal/inbox/ when you were only trying things out. A PDF uploaded
+here lands in portal/.uploads/ (git-ignored) instead of the R2 bucket; the
+import copies it into papers/ like a hosted upload.
 """
 from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import re
 import sys
@@ -27,12 +30,15 @@ import threading
 import webbrowser
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
+from urllib.parse import parse_qs, urlsplit
 
 ROOT = Path(__file__).resolve().parents[1]  # repository root (this file lives in scripts/)
 DIST = ROOT / "portal" / "dist"
 INBOX = ROOT / "logs" / "portal" / "inbox"
 APPLIED = ROOT / "logs" / "portal" / "applied"
+UPLOADS = ROOT / "portal" / ".uploads"
 KINDS = {"screen", "verdict", "edit", "mark", "comment"}
+MAX_UPLOAD = 60 * 1024 * 1024
 
 
 def _slug(s: str) -> str:
@@ -57,17 +63,37 @@ def make_handler(email: str, name: str):
             self.end_headers()
             self.wfile.write(body)
 
+        def _record(self, body: dict, kind: str, cid: str) -> str:
+            now = dt.datetime.now(dt.timezone.utc)
+            stamp = now.strftime("%Y%m%dT%H%M%SZ") + f"{now.microsecond // 1000:03d}"
+            rec = {**body, "kind": kind, "id": cid, "reviewer": email, "reviewer_name": name,
+                   "submitted": now.isoformat(timespec="seconds"), "portal": "local"}
+            fname = f"{stamp}_{kind}_{_slug(email.split('@')[0])}_{_slug(cid.replace('drafts/', '').replace('.md', ''))}.json"
+            INBOX.mkdir(parents=True, exist_ok=True)
+            (INBOX / fname).write_text(json.dumps(rec, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+            return f"logs/portal/inbox/{fname}"
+
         def do_GET(self):  # noqa: N802
             if self.path == "/api/me":
                 return self._json({"email": email, "name": name, "repo": "(local)", "branch": "(local)"})
             if self.path.startswith("/api/reviews"):
                 return self._json({"inbox": sorted(p.name for p in INBOX.glob("*.json")) if INBOX.is_dir() else [],
                                    "applied": sorted(p.name for p in APPLIED.glob("*.json")) if APPLIED.is_dir() else []})
+            if self.path.startswith("/api/upload"):
+                ups = []
+                for meta in sorted(UPLOADS.glob("*.json")) if UPLOADS.is_dir() else []:
+                    try:
+                        ups.append(json.loads(meta.read_text(encoding="utf-8")))
+                    except ValueError:
+                        continue
+                return self._json({"uploads": ups})
             if self.path.startswith("/api/"):
                 return self._json({"error": "not found"}, 404)
             return super().do_GET()
 
         def do_POST(self):  # noqa: N802
+            if self.path.startswith("/api/upload"):
+                return self._upload()
             if not self.path.startswith("/api/reviews"):
                 return self._json({"error": "not found"}, 404)
             n = int(self.headers.get("Content-Length") or 0)
@@ -78,14 +104,40 @@ def make_handler(email: str, name: str):
             kind, cid = str(body.get("kind") or ""), str(body.get("id") or "")
             if kind not in KINDS or not cid:
                 return self._json({"error": "kind and id are required"}, 400)
-            now = dt.datetime.now(dt.timezone.utc)
-            stamp = now.strftime("%Y%m%dT%H%M%SZ") + f"{now.microsecond // 1000:03d}"
-            rec = {**body, "kind": kind, "id": cid, "reviewer": email, "reviewer_name": name,
-                   "submitted": now.isoformat(timespec="seconds"), "portal": "local"}
-            fname = f"{stamp}_{kind}_{_slug(email.split('@')[0])}_{_slug(cid.replace('drafts/', '').replace('.md', ''))}.json"
-            INBOX.mkdir(parents=True, exist_ok=True)
-            (INBOX / fname).write_text(json.dumps(rec, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-            return self._json({"ok": True, "file": f"logs/portal/inbox/{fname}", "commit": "local"})
+            return self._json({"ok": True, "file": self._record(body, kind, cid), "commit": "local"})
+
+        def _upload(self):
+            # the hosted function's twin (portal/functions/api/upload.js): the file goes to portal/.uploads/
+            q = parse_qs(urlsplit(self.path).query)
+            cid = (q.get("id") or [""])[0].strip()
+            fname = re.sub(r"[^\w.() -]+", "_", (q.get("name") or [""])[0].strip())[:120] or "paper.pdf"
+            citation = (q.get("citation") or [""])[0].strip() or None
+            n = int(self.headers.get("Content-Length") or 0)
+            if not cid:
+                return self._json({"error": "id is required (the candidate id, or the citation key)"}, 400)
+            if n > MAX_UPLOAD:
+                return self._json({"error": f"file too large (the limit is {MAX_UPLOAD // 1048576} MB)"}, 413)
+            data = self.rfile.read(n)
+            if len(data) < 1024 or not data.startswith(b"%PDF-"):
+                return self._json({"error": "that is not a PDF"}, 400)
+            key = f"uploads/{_slug(cid)}.pdf"
+            UPLOADS.mkdir(parents=True, exist_ok=True)
+            local = UPLOADS / f"{_slug(cid)}.pdf"
+            meta_path = UPLOADS / f"{_slug(cid)}.json"
+            if meta_path.exists():
+                try:
+                    prev = json.loads(meta_path.read_text(encoding="utf-8"))
+                    if prev.get("by") != email:
+                        return self._json({"error": f"a PDF for {cid} was already uploaded by {prev.get('by')} and is waiting for the maintainer"}, 409)
+                except ValueError:
+                    pass
+            local.write_bytes(data)
+            sha = hashlib.sha256(data).hexdigest()
+            uploaded = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+            meta_path.write_text(json.dumps({"object": key, "id": cid, "name": fname, "bytes": len(data), "by": email, "uploaded": uploaded, "sha256": sha}, indent=1), encoding="utf-8")
+            rec = self._record({"citation": citation, "name": fname, "bytes": len(data), "sha256": sha, "bucket": "", "object": key,
+                                "local_path": str(local.relative_to(ROOT)), "replaced": False}, "pdf", cid)
+            return self._json({"ok": True, "file": rec, "commit": "local", "object": key, "bytes": len(data)})
 
     return Handler
 

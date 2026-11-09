@@ -253,7 +253,7 @@ def check_no_contradictions(fm: dict) -> Check:
 _REVIEW_WORDS = re.compile(
     r"\b(placeholder|verify|verified|uncertain|ambiguous|"
     r"unclear|approximate|rough|todo|fixme|review|"
-    r"not[\s\-]+extracted|to[\s\-]+confirm)\b",
+    r"not[\s\-]+extracted|to[\s\-]+confirm|abstract[\s\-_]+only)\b",
     re.IGNORECASE,
 )
 _INFO_WORDS = re.compile(

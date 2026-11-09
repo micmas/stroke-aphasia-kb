@@ -77,7 +77,10 @@ def _find_entries(root: Path, citation: str) -> list[Path]:
                 if p.stem.endswith(f"__{key}"):
                     out.add(p)
                     continue
-                fm, _ = parse_markdown(p)
+                try:
+                    fm, _ = parse_markdown(p)
+                except Exception:  # noqa: BLE001 — a broken draft must not stop the comparison
+                    continue
                 if fm and any(_citations_match(f.get("citation"), citation)
                               for f in (fm.get("findings") or [])):
                     out.add(p)

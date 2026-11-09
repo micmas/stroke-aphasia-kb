@@ -1,6 +1,7 @@
 {
   "name": "stroke-aphasia-kb-review-portal",
   "private": true,
+  "type": "module",
   "description": "The review portal (docs/PORTAL.md): pdf.js is vendored into dist/ by scripts/publish_portal.py from this dependency; wrangler deploys.",
   "dependencies": {
     "pdfjs-dist": "4.8.69"

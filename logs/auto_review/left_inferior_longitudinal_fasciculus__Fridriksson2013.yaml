@@ -498,6 +498,87 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-31T00:18:10'
+- run_id: 7
+  timestamp: '2026-11-09T14:32:39'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/4 quotes (75%) — anchored 1, exact 3
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.5): Two models predicted auditory word-picture recognition
+      ability: Model 1 included…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft incorrectly identifies the relationship as 'causal'. The
+        paper uses stepwise regression to show that damage to the inferior longitudinal
+        fasciculus *predicts* auditory word-picture recognition ability (a correlational/predictive
+        relationship), not that the damage *causes* the impairment. Additionally,
+        the draft claims the relationship is 'likely' while the paper presents it
+        as a statistical prediction from a regression model.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper describes
+          a predictive/correlational relationship using stepwise regression (damage
+          *predicts* ability).
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ incorrectly identifies the relationship as 'causal'. The paper uses stepwise\
+      \ regression to show that damage to the inferior longitudinal fasciculus *predicts*\
+      \ auditory word-picture recognition ability (a correlational/predictive relationship),\
+      \ not that the damage *causes* the impairment. Additionally, the draft claims\
+      \ the relationship is 'likely' while the paper presents it as a statistical\
+      \ prediction from a regression model.\",\n  \"per_finding\": [\n    {\n    \
+      \  \"id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": false,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captured\": true,\n   \
+      \   \"omissions\": \"\",\n      \"concern\": \"The relationship is recor"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-11-09T14:32:39'
 latest_verdict: checks_passed
 latest_mode: with_llm_review

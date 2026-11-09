@@ -332,6 +332,13 @@ The complete workflow is in docs/EXTRACTION_SKILL.md (below). Key rules:
    A finding with no prose passage for its claim is not extractable.
    Aim for one passage per aspect the finding uses: claim, sample,
    method, statistics, and the authors' own limitation.
+   Quote the BODY of the paper, not the abstract: the claim and
+   statistics passages come from Results / Methods / Discussion. When
+   the sentence you want is in the abstract, find the body sentence that
+   says the same and quote that one instead (do not keep both). An
+   abstract passage is allowed only for something the body never states;
+   then label it section "Abstract" and add `abstract_only` to
+   `provenance.flags`.
 
 6. NEVER INVENT: statistics, sample sizes, citations, or effect
    directions. If the paper doesn't report it, use `not_reported`.
@@ -757,6 +764,15 @@ _LIMITATIONS_FLAG = ("author_limitations not extracted by the model — "
                      "verify against the paper's limitations paragraph")
 
 
+_ABSTRACT_FLAG = "abstract_only"   # the claim/statistics rest on the abstract alone — the reviewer checks the body
+
+
+def _abstract_only(f: dict) -> bool:
+    """True when every passage supporting the claim or the statistics comes from the abstract."""
+    key = [p for p in (f.get("source_passages") or []) if isinstance(p, dict) and str(p.get("supports") or "claim") in ("claim", "statistics")]
+    return bool(key) and all(str(p.get("section") or "").strip().lower().startswith("abstract") for p in key)
+
+
 _LESIONMAP_FLAG = ("lesion_mapping (v2.7 design) not extracted by the model — "
                    "filled from statistics.threshold / confounders where the text says; "
                    "check the Methods")
@@ -856,6 +872,13 @@ def _normalize_findings(content: str, bucket: str,
                 flags.append(_LIMITATIONS_FLAG)
             changed = True
             notes.append(f"{f.get('id')}: author_limitations missing → [] + flag")
+        if _abstract_only(f):
+            prov = f.setdefault("provenance", {})
+            flags = prov.setdefault("flags", [])
+            if _ABSTRACT_FLAG not in flags:
+                flags.append(_ABSTRACT_FLAG)
+                changed = True
+                notes.append(f"{f.get('id')}: claim rests on the abstract alone → flag abstract_only (Tier B)")
         sample = f.get("sample")
         if isinstance(sample, dict) and sample.get("phase") not in PHASE_VOCAB:
             # v2.6: stated phase missing or off-vocabulary → infer it

@@ -1,0 +1,16 @@
+{
+ "citation": null,
+ "name": "s10548-016-0503-5.pdf",
+ "bytes": 778701,
+ "sha256": "c496e5bcfef9f3c2f1c2d118e283e170fb02c4c4143c562cbb78343319fa139c",
+ "bucket": "",
+ "object": "uploads/c2467.pdf",
+ "local_path": "portal/.uploads/c2467.pdf",
+ "replaced": false,
+ "kind": "pdf",
+ "id": "C2467",
+ "reviewer": "m.massontrottier@uq.edu.au",
+ "reviewer_name": "m.massontrottier",
+ "submitted": "2026-11-09T05:15:07+00:00",
+ "portal": "local"
+}

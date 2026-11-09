@@ -1,7 +1,16 @@
-# Who the review portal's sign-ins are, for scripts/portal_import.py (docs/PORTAL.md).
-# Cloudflare Access verifies the email; this file maps it to the `human:<name>` used in
-# the KB and says who may approve (docs/GOVERNANCE.md §2). An email not listed here is
-# applied as human:<local part of the email> with no approval right.
+# The Reviewer team of the review portal (docs/PORTAL.md, docs/GOVERNANCE.md §2).
+#
+# Cloudflare Access verifies the email at sign-in; this file maps it to the
+# `human:<name>` the KB uses and says which role the person has:
+#   reviewer  — listed here: screening decisions, per-finding verdicts, edits,
+#               passage marks, comments and uploaded PDFs are applied under
+#               their name; an `approve` from them is kept as an opinion
+#   approver  — `approver: true`: their approve / reject runs promote.py under
+#               their name — they are the accountable person for that entry
+# An email not listed here is applied as human:<local part> with no approval
+# right, and scripts/portal_import.py lists it so it can be added.
+# To add someone: their email in the portal's Access policy (so they can sign
+# in) and a block below; `approver: true` only by the maintainer's decision.
 reviewers:
   m.massontrottier@uq.edu.au:
     name: michele

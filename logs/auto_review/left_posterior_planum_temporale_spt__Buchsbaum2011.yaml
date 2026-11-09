@@ -568,6 +568,97 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-10-31T00:27:56'
+- run_id: 7
+  timestamp: '2026-11-09T14:42:02'
+  mode: with_llm_review
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 11/11 quotes (100%) — elided 2, exact 9
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Buchsbaum2011: sample.n disagrees: [14, 105]'
+  review_tier: B
+  tier_reasons:
+  - new entry id (not appending to an existing entry)
+  - 'f2: strength=''strong'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: 'The draft contains a significant error in f2: the sample size is
+        stated as n=105, but the statistics section incorrectly claims ''33% of subjects
+        showed significant activation in Spt''. The paper actually states that 33%
+        was the *threshold* for significance (the percentage of subjects required
+        to show activation at a voxel to be considered significant), not the percentage
+        of subjects showing activation in Spt. This misrepresents the effect size/result.'
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f2
+        passage_present: true
+        passage_supports_field: false
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: false
+        limitations_captured: true
+        omissions: ''
+        concern: The statistics claim that '33% of subjects showed significant activation
+          in Spt' is a misinterpretation of the text. The paper states that 33% was
+          the threshold for the encoding maps (the minimum percentage of subjects
+          needed to declare a voxel significant), not the reported result of how many
+          subjects showed activation in Spt.
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ contains a significant error in f2: the sample size is stated as n=105, but\
+      \ the statistics section incorrectly claims '33% of subjects showed significant\
+      \ activation in Spt'. The paper actually states that 33% was the *threshold*\
+      \ for significance (the percentage of subjects required to show activation at\
+      \ a voxel to be considered significant), not the percentage of subjects showing\
+      \ activation in Spt. This misrepresents the effect size/result.\",\n  \"per_finding\"\
+      : [\n    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"\
+      passage_supports_field\": true,\n      \"relationship_faithful\": true,\n  \
+      \    \"strength_fair\": true,\n      \"numbers_match\": true,\n      \"limitations_captured\"\
+      : true,\n      \"omissions\": \"\",\n      \"concern\": \"\",\n      \"v"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+last_run: '2026-11-09T14:42:02'
 latest_verdict: defer_to_human
 latest_mode: with_llm_review

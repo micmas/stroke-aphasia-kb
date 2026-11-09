@@ -528,10 +528,24 @@ makes a claim about. Typical complete set per finding:
   - `limitation` (1× or more) — the authors' own caveats
   - `confounders` (0–1×) — only if explicitly listed
 
-If you only have the abstract (not the full paper), label
-`section: "Abstract"` and lower `provenance.confidence` to `medium` or
-`low`. The user will know the annotator can only highlight the
-abstract in that case.
+**Body before abstract.** Quote the body of the paper (Results,
+Methods, Discussion), not the abstract. An abstract rounds numbers,
+drops conditions and states the headline the authors want remembered;
+the body states what was actually found, with its qualifications. So:
+
+  - the `claim` and `statistics` passages come from the body;
+  - when the sentence you want is in the abstract, find the body
+    sentence that says the same thing and quote that one instead — it
+    is nearly always there, usually in the first paragraph of the
+    Results or the Discussion; do not keep the abstract version as well;
+  - an abstract passage is acceptable only for something the body does
+    not state anywhere (rare); label it `section: "Abstract"` and add
+    `abstract_only` to `provenance.flags` so the reviewer looks at it.
+
+If you only have the abstract (not the full paper), label every passage
+`section: "Abstract"`, add `abstract_only` to `provenance.flags` and
+lower `provenance.confidence` to `low`. The user will know the annotator
+can only highlight the abstract in that case.
 
 ### `imaging_details` (new in v2.1; required for imaging-based findings)
 

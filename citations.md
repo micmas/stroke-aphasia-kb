@@ -2085,3 +2085,43 @@ Predictors of Poststroke Aphasia Recovery.
 doi:10.1161/strokeaha.120.031162
 
 > Registered automatically from the PDF's DOI via Crossref on 2026-10-30 (file: screening C7442). Included by the screening register (C7442; docs/SCREENING.md). Check the entry.
+
+## @Moore2024  [seed]
+Moore MJ, Mattingley JB, Demeyere N.
+Multivariate and network lesion mapping reveals distinct architectures of domain-specific post-stroke cognitive impairments.
+*Neuropsychologia*. 2024;204:109007.
+doi:10.1016/j.neuropsychologia.2024.109007
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-09 (file: 1-s2.0-S0028393224002227-main.pdf). Check the entry; add a note on why the paper is in the KB.
+
+## @Thurston2026  [seed]
+Thurston MD, Mattingley JB, Wu D, Moore MJ, Oestreich LKL.
+Meta-analytic review of longitudinal depression severity in stroke survivors.
+*Journal of Affective Disorders*. 2026;393:120479.
+doi:10.1016/j.jad.2025.120479
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-09 (file: 1-s2.0-S0165032725019214-main.pdf). Check the entry; add a note on why the paper is in the KB.
+
+## @Yang2017  [seed]
+Yang M, Li Y, Li J, Yao D, Liao W, Chen H.
+Beyond the Arcuate Fasciculus: Damage to Ventral and Dorsal Language Pathways in Aphasia.
+*Brain Topogr*. 2017;30(2):249-256.
+doi:10.1007/s10548-016-0503-5
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-09 (file: C2467_s10548-016-0503-5.pdf). Check the entry; add a note on why the paper is in the KB.
+
+## @Demeyere2024  [seed]
+Demeyere N, Moore MJ.
+Innovations and challenges in predicting cognitive trajectories after stroke.
+*Brain Communications*. 2024;6(5).
+doi:10.1093/braincomms/fcae364
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-09 (file: fcae364.pdf). Check the entry; add a note on why the paper is in the KB.
+
+## @Huygelier2025  [seed]
+Huygelier H, Moore MJ, Odom A, Tuts N, Thielen H, Mancuso M, Gillebert CR, Demeyere N.
+Post-stroke cognitive impairment: More than a lesion-symptom model.
+*Imaging Neuroscience*. 2025;3.
+doi:10.1162/imag.a.1050
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-09 (file: imag.a.1050.pdf). Check the entry; add a note on why the paper is in the KB.

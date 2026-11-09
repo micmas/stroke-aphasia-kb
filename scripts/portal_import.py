@@ -23,6 +23,12 @@ written from the web. This script is the only consumer. Record kinds:
            → the draft's `reviewer_marks` (refocus.py turns them into findings)
   comment  {id: draft, finding?, text}
            → the finding's (or draft's) `portal_comments`
+  pdf      {id: C0123 or @Key, name, bytes, sha256, bucket, object}
+           → the uploaded file is pulled from the portal's R2 bucket (`wrangler r2 object get`,
+             the login used for deploying) into papers/<Key>.pdf — or papers/<id>_<name> for a
+             candidate without a key, linked as its `pdf_file` — then deleted from the bucket.
+             papers/ is the OneDrive folder, so that is where the PDF lands. Run
+             intake_papers.py afterwards as for any new PDF.
 
 Reviewers are identified by the email Cloudflare Access verified. portal/reviewers.yaml
 maps emails to the `human:<name>` used in the KB and says who may approve
@@ -33,9 +39,13 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
+import re
 import shutil
+import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 import yaml
@@ -50,6 +60,8 @@ INBOX = ROOT / "logs" / "portal" / "inbox"
 APPLIED = ROOT / "logs" / "portal" / "applied"
 LOG = ROOT / "logs" / "extraction_log.md"
 REVIEWERS = ROOT / "portal" / "reviewers.yaml"
+PAPERS = ROOT / "papers"
+PORTAL = ROOT / "portal"
 EDITABLE = ("claim", "direction", "relationship", "strength", "target", "target_kind")
 
 
@@ -79,6 +91,16 @@ def _draft(rel: str) -> Path | None:
     if p.suffix == ".md" and (ROOT / "drafts").resolve() in p.parents and p.exists():
         return p
     return None
+
+
+def _rel(p: Path) -> str:
+    """p relative to the repository, tolerant of a symlinked root (/var vs /private/var on macOS)."""
+    for base in (ROOT, ROOT.resolve()):
+        try:
+            return p.relative_to(base).as_posix()
+        except ValueError:
+            continue
+    return p.name
 
 
 def _log(line: str) -> None:
@@ -147,7 +169,7 @@ def apply_mark(rec: dict, by: str, execute: bool, state: dict) -> str:
     if execute:
         _write(p, fm, body)
     state.setdefault("touched", set()).add(p)
-    return f"{p.name}: mark m{n} by {by} (python scripts/refocus.py {p.relative_to(ROOT)})"
+    return f"{p.name}: mark m{n} by {by} (python scripts/refocus.py {_rel(p)})"
 
 
 def apply_comment(rec: dict, by: str, execute: bool, state: dict) -> str:
@@ -201,6 +223,118 @@ def apply_verdict(rec: dict, by: str, approver: bool, execute: bool, promote: bo
     return summary
 
 
+# ------------------------------------------------------------------ uploaded PDFs
+def bucket_name() -> str:
+    """The R2 bucket bound in portal/wrangler.toml (fallback when a record names none)."""
+    toml = PORTAL / "wrangler.toml"
+    if toml.exists():
+        m = re.search(r'bucket_name\s*=\s*"([^"]+)"', toml.read_text(encoding="utf-8"))
+        if m:
+            return m.group(1)
+    return ""
+
+
+def _wrangler(args: list[str]) -> subprocess.CompletedProcess:
+    return subprocess.run(["npx", "wrangler", *args], cwd=str(PORTAL), capture_output=True, text=True, timeout=600)
+
+
+def r2_get(bucket: str, obj: str, dest: Path) -> str | None:
+    """Download one object with the deploy login. Returns an error message or None."""
+    done = _wrangler(["r2", "object", "get", f"{bucket}/{obj}", "--file", str(dest), "--remote"])
+    if done.returncode != 0 or not dest.exists():
+        return (done.stderr or done.stdout).strip().splitlines()[-1:][0] if (done.stderr or done.stdout).strip() else f"wrangler exit {done.returncode}"
+    return None
+
+
+def r2_delete(bucket: str, obj: str) -> str | None:
+    done = _wrangler(["r2", "object", "delete", f"{bucket}/{obj}", "--remote"])
+    return None if done.returncode == 0 else (done.stderr or done.stdout).strip()[-200:]
+
+
+# swapped out by the tests
+FETCH = {"get": r2_get, "delete": r2_delete}
+
+
+def _safe_name(name: str) -> str:
+    base = re.sub(r"[^\w.() -]+", "_", str(name or "")).strip(" .")[:100] or "paper.pdf"
+    return base if base.lower().endswith(".pdf") else base + ".pdf"
+
+
+def pdf_destination(rec: dict, state: dict) -> tuple[Path | None, dict | None, str]:
+    """Where an upload belongs: papers/<Key>.pdf for a citation key or a candidate with a key,
+    papers/<cid>_<name> for a candidate without one (linked as its `pdf_file`)."""
+    rid = str(rec.get("id") or "").strip()
+    if not rid:
+        return None, None, "skip: no id"
+    cands = state.setdefault("candidates", S.load_candidates())
+    c = next((x for x in cands if x.get("id") == rid), None)
+    if c is None and rid.startswith("@"):
+        return PAPERS / f"{rid.lstrip('@')}.pdf", None, ""
+    if c is None:
+        c = next((x for x in cands if x.get("key") and x["key"].lstrip("@") == rid.lstrip("@")), None)
+        if c is None:
+            return None, None, f"skip: no candidate or citation {rid}"
+    if c.get("duplicate_of"):
+        return None, c, f"skip: {rid} is a duplicate of {c['duplicate_of']}"
+    if c.get("key"):
+        return PAPERS / f"{str(c['key']).lstrip('@')}.pdf", c, ""
+    if c.get("pdf_file"):
+        return PAPERS / str(c["pdf_file"]), c, ""
+    return PAPERS / f"{rid}_{_safe_name(rec.get('name'))}", c, ""
+
+
+def apply_pdf(rec: dict, by: str, execute: bool, state: dict) -> str:
+    dest, cand, err = pdf_destination(rec, state)
+    if err:
+        return err
+    bucket = str(rec.get("bucket") or "") or bucket_name()
+    obj = str(rec.get("object") or "")
+    local = rec.get("local_path")
+    src = f"portal/.uploads ({local})" if local else f"{bucket}/{obj}"
+    if dest.exists():
+        if execute and not local and obj and bucket:
+            FETCH["delete"](bucket, obj)
+        return f"{dest.name}: already in papers/ — upload by {by} discarded ({src})"
+    if not local and (not obj or not bucket):
+        return "skip: record names no bucket object"
+    size_kb = int(rec.get("bytes") or 0) // 1024
+    if not execute:
+        return f"would fetch {src} ({size_kb} KB) → papers/{dest.name}" + (f" and link it to {cand['id']}" if cand is not None and not cand.get("key") else "")
+    PAPERS.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory() as td:
+        tmp = Path(td) / "upload.pdf"
+        if local:
+            lp = (ROOT / str(local)).resolve()
+            if not lp.exists() or PORTAL.resolve() not in lp.parents:
+                return f"skip: local upload {local} not found"
+            shutil.copy2(lp, tmp)
+        else:
+            e = FETCH["get"](bucket, obj, tmp)
+            if e:
+                return f"error: could not fetch {src}: {e}"
+        data = tmp.read_bytes()
+        if not data.startswith(b"%PDF-"):
+            return f"error: {src} is not a PDF"
+        want = str(rec.get("sha256") or "")
+        if want and hashlib.sha256(data).hexdigest() != want:
+            return f"error: {src} does not match the sha256 in the record"
+        shutil.move(str(tmp), str(dest))
+    if cand is not None and not cand.get("key") and cand.get("pdf_file") != dest.name:
+        cand["pdf_file"] = dest.name
+        state["candidates_dirty"] = True
+    if local:
+        lp = (ROOT / str(local)).resolve()
+        for p in (lp, lp.with_suffix(".json")):
+            if p.exists():
+                p.unlink()
+    elif obj and bucket:
+        e = FETCH["delete"](bucket, obj)
+        if e:
+            print(f"      (left in the bucket: {e})")
+    state["pdfs_added"] = state.get("pdfs_added", 0) + 1
+    return f"papers/{dest.name} ← {src} ({size_kb} KB) by {by}" + (f"; linked to {cand['id']}" if cand is not None and not cand.get("key") else "")
+
+
 # ------------------------------------------------------------------ run
 def run(execute: bool, promote: bool, only_kind: str | None) -> int:
     files = sorted(INBOX.glob("*.json")) if INBOX.is_dir() else []
@@ -235,6 +369,8 @@ def run(execute: bool, promote: bool, only_kind: str | None) -> int:
                 msg = apply_comment(rec, by, execute, state)
             elif kind == "verdict":
                 msg = apply_verdict(rec, by, approver, execute, promote, state)
+            elif kind == "pdf":
+                msg = apply_pdf(rec, by, execute, state)
             else:
                 msg = f"skip: unknown kind {kind}"
         except Exception as e:  # noqa: BLE001
@@ -255,6 +391,8 @@ def run(execute: bool, promote: bool, only_kind: str | None) -> int:
                  + ", ".join(f"{k} {v}" for k, v in sorted(counts.items())) + f" | by: {', '.join(sorted({who(json.loads((APPLIED / f.name).read_text())['reviewer'], table)[0] for f in done}))}")
         print(f"\n{len(done)} record(s) applied and moved to logs/portal/applied/; {len(files) - len(done)} left in the inbox. "
               f"Commit screening/, drafts/ and logs/, then `python scripts/export_webapp.py` and `python scripts/publish_portal.py --deploy`.")
+        if state.get("pdfs_added"):
+            print(f"{state['pdfs_added']} PDF(s) landed in papers/ (OneDrive): run `python scripts/intake_papers.py --execute` to register, clean and OCR them.")
     else:
         print(f"\nDry run: {len(done)} of {len(files)} record(s) would be applied. Add --execute.")
     if unknown:
@@ -266,7 +404,7 @@ def _cli(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--execute", action="store_true")
     ap.add_argument("--promote", action="store_true", help="run promote.py for approve/reject verdicts from approvers")
-    ap.add_argument("--kind", choices=["screen", "verdict", "edit", "mark", "comment"])
+    ap.add_argument("--kind", choices=["screen", "verdict", "edit", "mark", "comment", "pdf"])
     args = ap.parse_args(argv)
     return run(args.execute, args.promote, args.kind)
 

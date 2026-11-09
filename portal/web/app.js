@@ -9,7 +9,11 @@
 //   #/draft/<path>     one draft beside its annotated PDF: verdicts, edits, marks, comments
 //   #/screen/ta        title/abstract screening queue
 //   #/screen/ft        full-text screening queue (with the PDF when the portal holds it)
+//   #/pdfs             every annotated PDF the portal holds, and the uploads waiting for the maintainer
 //   #/mine             the records you have sent
+// A paper the portal lacks can be uploaded (any candidate; required before a full-text
+// decision): the file goes to a private bucket via /api/upload and a `pdf` record tells the
+// maintainer to pull it into papers/ (their OneDrive folder).
 // Every string from the KB is inserted as text, never as HTML.
 
 const PDFJS = './vendor/pdf.min.mjs';            // vendored by scripts/publish_portal.py from pdfjs-dist
@@ -22,7 +26,8 @@ const VOCAB = {
   target_kind: ['impairment', 'therapy', 'region', 'prognosis', 'predictor'],
   supports: ['claim', 'method', 'sample', 'statistics', 'confounders', 'region_definition', 'limitation', 'imaging_details'],
 };
-const state = { me: null, manifest: null, kb: null, screening: null, mine: { inbox: [], applied: [] }, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
+const state = { me: null, manifest: null, kb: null, screening: null, mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
+const MAX_UPLOAD = 60 * 1024 * 1024;
 
 // ---------------------------------------------------------------- helpers
 function h(tag, attrs = {}, ...kids) {
@@ -68,6 +73,37 @@ function draftsIndex(kb) {
 }
 const entryName = (id) => state.kb?.entries?.[id]?.name || String(id || '').replace(/_/g, ' ');
 const paperPdf = (citation) => state.manifest?.papers?.[citation] || null;
+/** The maintainer has the paper's source PDF (annotated or not). */
+const paperSource = (citation) => Boolean(citation && (paperPdf(citation) || (state.manifest?.sources?.keys || []).includes(citation)));
+/** A candidate's PDF is with the maintainer: named after its key, or linked through `pdf_file`. */
+const candidateHasPdf = (c) => Boolean(c.pdf_file) || paperSource(c.key);
+/** An upload waiting in the bucket for this candidate id or citation key, if any. */
+const uploadFor = (...ids) => state.uploads.find((u) => ids.filter(Boolean).some((id) => u.id === id || u.id === String(id).replace(/^@/, '') || `@${u.id}` === id)) || null;
+
+/** The upload control: a file picker and a button; on success the upload joins state.uploads and the page re-renders. */
+function uploadControl(id, citation, { required = false, label = null } = {}) {
+  if (!state.uploadsOk) return h('span', { class: 'small muted', text: required ? 'Uploads are not enabled on this portal: ask the maintainer for the PDF.' : '' });
+  const input = h('input', { type: 'file', accept: 'application/pdf,.pdf', 'aria-label': `PDF for ${id}` });
+  const btn = h('button', { class: `btn${required ? ' btn-primary' : ''}`, text: label || 'Upload the PDF', onclick: async () => {
+    const file = input.files?.[0];
+    if (!file) { toast('Choose the PDF file first', true); return; }
+    if (file.size > MAX_UPLOAD) { toast(`That file is ${Math.round(file.size / 1048576)} MB; the limit is ${MAX_UPLOAD / 1048576} MB`, true); return; }
+    btn.disabled = true; btn.textContent = `Uploading ${Math.round(file.size / 1024)} KB…`;
+    try {
+      const q = new URLSearchParams({ id, name: file.name, citation: citation || '' });
+      const res = await fetch(`/api/upload?${q}`, { method: 'POST', headers: { 'Content-Type': 'application/pdf' }, body: file });
+      const data = await res.json().catch(() => ({ error: `${res.status}` }));
+      if (!res.ok || data.error) throw new Error(data.error || `${res.status}`);
+      state.uploads.push({ object: data.object, id, name: file.name, bytes: file.size, by: state.me.email, uploaded: new Date().toISOString() });
+      if (data.file) state.mine.inbox.push(data.file.split('/').pop());
+      toast('PDF uploaded — the maintainer will add it to the papers folder');
+      render();
+    } catch (e) { toast(`Not uploaded: ${e.message}`, true); btn.disabled = false; btn.textContent = label || 'Upload the PDF'; }
+  } });
+  return h('span', { class: 'upload' }, input, btn, h('span', { class: 'small muted', text: 'PDF only, up to 60 MB; it goes to the maintainer, never to the public site.' }));
+}
+/** "PDF uploaded by … on …, waiting for the maintainer" */
+const uploadedNote = (u) => h('span', { class: 'badge badge-warn', title: u.name, text: `PDF uploaded${u.by === state.me?.email ? ' by you' : u.by ? ` by ${u.by}` : ''}${u.uploaded ? ` on ${String(u.uploaded).slice(0, 10)}` : ''}, with the maintainer` });
 const myRecords = () => [...state.mine.inbox, ...state.mine.applied].filter((n) => n.includes(`_${slug(state.me?.email?.split('@')[0])}_`));
 const slug = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
 const reviewedBy = (id) => { const s = slug(id.replace(/^drafts\//, '').replace(/\.md$/, '')); return [...state.mine.inbox, ...state.mine.applied].filter((n) => n.endsWith(`_${s}.json`)).map((n) => n.split('_')[2]); };
@@ -86,7 +122,7 @@ function home() {
       h('a', { class: 'tile tile-link', href: '#/drafts' }, h('div', { class: 'value', text: String(drafts.length) }), h('div', { class: 'label', text: 'drafts to review' }), h('div', { class: 'detail', text: `${drafts.reduce((n, d) => n + d.findings.length, 0)} findings` })),
       h('a', { class: 'tile tile-link', href: '#/screen/ta' }, h('div', { class: 'value', text: String(ta.length) }), h('div', { class: 'label', text: 'titles/abstracts to screen' })),
       h('a', { class: 'tile tile-link', href: '#/screen/ft' }, h('div', { class: 'value', text: String(ft.length) }), h('div', { class: 'label', text: 'full texts to assess' })),
-      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(m.counts?.private ?? 0) }), h('div', { class: 'label', text: 'annotated PDFs here (private)' }), h('div', { class: 'detail', text: `${m.counts?.public ?? 0} more are public (Creative Commons)` })),
+      h('a', { class: 'tile tile-link', href: '#/pdfs' }, h('div', { class: 'value', text: String(m.counts?.private ?? 0) }), h('div', { class: 'label', text: 'annotated PDFs here (private)' }), h('div', { class: 'detail', text: `${m.counts?.public ?? 0} more are public (Creative Commons)${state.uploads.length ? ` · ${plural(state.uploads.length, 'upload')} waiting` : ''}` })),
       h('a', { class: 'tile tile-link', href: '#/mine' }, h('div', { class: 'value', text: String(myRecords().length) }), h('div', { class: 'label', text: 'reviews you have sent' }))),
     h('h2', { text: 'How to review' }),
     h('p', { class: 'small' }, 'A draft is what the local model extracted from one paper: findings, each with the verbatim passages that support it. Open it beside the annotated PDF (the highlights are the passages, in the colour of what they support) and say, finding by finding, whether the claim is what the paper shows. Fix a field when the paper says otherwise, select words in the PDF to add a passage or to mark something the extractor missed, then send the review. For screening, read the title and abstract (or the full text) against the eligibility criteria in SCREENING.md and include or exclude with a reason.'),
@@ -101,7 +137,9 @@ function draftsList() {
   for (const [cit, ds] of [...byPaper.entries()].sort((a, b) => String(a[0]).localeCompare(String(b[0])))) {
     const pdf = paperPdf(cit);
     rows.push(h('tr', { class: 'paper-row' }, h('th', { colspan: 5 }, h('span', { class: 'chip', text: cit }), ' ', h('span', { class: 'small muted', text: (state.kb.citations?.[cit] || '').slice(0, 140) }), ' ',
-      pdf ? h('span', { class: `badge ${pdf.public ? 'badge-human' : 'badge-kind'}`, text: pdf.public ? 'annotated PDF, public' : 'annotated PDF, here' }) : h('span', { class: 'badge badge-warn', text: 'no annotated PDF in the portal' }))));
+      pdf ? h('a', { class: `badge ${pdf.public ? 'badge-human' : 'badge-kind'}`, href: pdf.annotated, target: '_blank', rel: 'noopener', title: 'Open the annotated PDF in a new tab (the highlights are the drafts’ passages)', text: pdf.public ? 'annotated PDF ↗ (public)' : 'annotated PDF ↗ (reviewers)' })
+        : paperSource(cit) ? h('span', { class: 'badge badge-warn', title: 'The maintainer has the paper; the annotated copy is not in this build yet', text: 'PDF with the maintainer, not annotated yet' })
+          : h('span', { class: 'badge badge-warn', title: 'Nobody has this paper yet — open a draft to upload it', text: 'no PDF anywhere yet' }))));
     for (const d of ds) {
       const who = reviewedBy(d.path);
       rows.push(h('tr', {}, h('td', {}, h('a', { href: draftHref(d.path), text: d.path.replace(/^drafts\//, '') })), h('td', { text: entryName(d.entry) }), h('td', { text: d.kind }),
@@ -126,7 +164,14 @@ function draftView(path) {
   const right = h('div', { class: 'right' });
   const layout = h('div', { class: 'review-layout', 'data-path': path }, left, right);
   if (pdf) mountPdf(right, pdf.annotated, d, r, save);
-  else right.append(h('div', { class: 'pdf-missing' }, h('h3', { text: 'No annotated PDF here' }), h('p', { text: 'The portal holds annotated PDFs that the maintainer has published: Creative-Commons papers publicly and the others for signed-in reviewers. This paper is not among them yet.' }), state.kb.citationLinks?.[d.citation] ? h('p', {}, h('a', { href: state.kb.citationLinks[d.citation], target: '_blank', rel: 'noopener', text: 'Open the paper at the publisher' })) : null));
+  else {
+    const up = uploadFor(d.citation);
+    right.append(h('div', { class: 'pdf-missing' }, h('h3', { text: 'No annotated PDF here' }),
+      paperSource(d.citation) ? h('p', { text: 'The maintainer has this paper; its annotated copy has not been published to the portal yet. Review from the quotes, or come back after the next build.' })
+        : up ? h('p', {}, uploadedNote(up), ' The maintainer will add it to the papers folder and annotate it; until then, review from the quotes.')
+          : frag(h('p', { text: 'The maintainer does not have this paper at all. If you do, upload it here: it goes into the papers folder, gets annotated, and appears beside the draft at the next build.' }), uploadControl(d.citation, d.citation)),
+      state.kb.citationLinks?.[d.citation] ? h('p', {}, h('a', { href: state.kb.citationLinks[d.citation], target: '_blank', rel: 'noopener', text: 'Open the paper at the publisher' })) : null));
+  }
   return layout;
 }
 
@@ -134,7 +179,7 @@ function draftLeft(d, r, save, pdf, path) {
   const left = h('div', { class: 'left' });
   left.append(h('div', { class: 'page-head' }, h('h1', { text: entryName(d.entry) }), h('span', { class: 'chip', text: d.citation })),
     h('p', { class: 'small muted' }, `${path} · ${plural(d.findings.length, 'finding')} · `, h('a', { href: '#/drafts', text: 'all drafts' }), pdf ? '' : ' · no annotated PDF in the portal for this paper: review from the quotes, or ask the maintainer to add it'),
-    h('p', { class: 'small' }, 'For each finding: does the paper show this? ', h('b', { text: 'agree' }), ' when the claim, direction and strength are what the passages say; ', h('b', { text: 'disagree' }), ' with a concern when not; ', h('b', { text: 'unsure' }), ' when you cannot tell. Fix a field in place when the paper says otherwise (it is sent as an edit). Select words in the PDF to add a passage to a finding, or to mark something no finding covers.'));
+    h('p', { class: 'small' }, 'For each finding: does the paper show this? ', h('b', { text: 'agree' }), ' when the claim, direction and strength are what the passages say; ', h('b', { text: 'disagree' }), ' with a concern when not; ', h('b', { text: 'unsure' }), ' when you cannot tell. For each passage, say whether you checked it in the paper; what you leave as "not checked" stays open for another reviewer. Fix a field in place when the paper says otherwise (it is sent as an edit). Select words in the PDF to add a passage to a finding, or to mark something no finding covers.'));
   for (const f of d.findings) left.append(findingCard(d, f, r, save, pdf));
   left.append(marksPanel(r, save));
   left.append(verdictPanel(d, r, save));
@@ -174,11 +219,12 @@ function passageCard(f, p, i, fr, save, pdf) {
   const pk = String(i);
   const flag = fr.passages[pk] || '';
   const colours = state.kb.rules?.supportsColors || { claim: '#a8c8ff', sample: '#a8e6a3', statistics: '#ffcc99', method: '#fff4a3', region_definition: '#d9b3e6', imaging_details: '#d9b3e6', limitation: '#ffb3b3', confounders: '#cccccc' };
-  return h('div', { class: `passage${flag ? ' flagged' : ''}`, style: `border-left-color:${colours[p.supports] || '#ccc'}` },
+  const problem = flag && !['fine', 'unsure'].includes(flag);
+  return h('div', { class: `passage${problem ? ' flagged' : ''}${flag === 'fine' ? ' ok' : ''}${flag === 'unsure' ? ' unsure' : ''}`, style: `border-left-color:${colours[p.supports] || '#ccc'}` },
     h('div', { class: 'meta' }, h('span', { text: `supports ${esc(p.supports)}` }), p.page ? h('span', { text: `page ${p.page}` }) : null, p.section ? h('span', { text: esc(p.section) }) : null,
       pdf && p.page ? h('button', { class: 'btn', onclick: () => goToPage(Number(p.page), p.quote), text: 'show in paper' }) : null,
-      h('select', { onchange: (e) => { if (e.target.value) fr.passages[pk] = e.target.value; else delete fr.passages[pk]; save(); render(); } },
-        [['', 'passage is fine'], ['not_in_paper', 'not in the paper'], ['wrong_page', 'wrong page'], ['does_not_support', 'does not support the claim'], ['truncated', 'truncated / altered']].map(([v, t]) => h('option', { value: v, selected: flag === v ? '' : null, text: t })))),
+      h('select', { class: flag ? (flag === 'fine' ? 'checked-ok' : flag === 'unsure' ? 'checked-unsure' : 'checked-flag') : 'unchecked', title: 'Leave "not checked" if you did not look at this passage: it stays open for another reviewer', onchange: (e) => { if (e.target.value) fr.passages[pk] = e.target.value; else delete fr.passages[pk]; save(); render(); } },
+        [['', 'not checked'], ['fine', 'checked — it is in the paper and supports the field'], ['unsure', 'not sure — someone else should look'], ['not_in_paper', 'not in the paper'], ['wrong_page', 'wrong page'], ['does_not_support', 'does not support the claim'], ['truncated', 'truncated / altered']].map(([v, t]) => h('option', { value: v, selected: flag === v ? '' : null, text: t })))),
     h('div', { text: `“${esc(p.quote)}”` }));
 }
 
@@ -192,28 +238,31 @@ function marksPanel(r, save) {
 function verdictPanel(d, r, save) {
   const pending = Object.values(r.findings).filter((x) => x.verdict).length;
   const total = d.findings.length;
-  const edits = Object.entries(r.findings).filter(([, x]) => Object.keys(x.edits).length || x.added.length || Object.keys(x.passages).length).length;
+  const edits = Object.entries(r.findings).filter(([, x]) => Object.keys(x.edits).length || x.added.length || Object.keys(x.passages).some((k) => !['fine', 'unsure'].includes(x.passages[k]))).length;
+  const nPassages = d.findings.reduce((n, f) => n + (f.source_passages || []).length, 0);
+  const checked = Object.values(r.findings).reduce((n, x) => n + Object.keys(x.passages).length, 0);
   const bar = h('div', { class: 'submitbar' });
-  const btn = h('button', { class: 'btn btn-primary', disabled: pending === 0 && edits === 0 && r.marks.length === 0 ? '' : null, text: 'Send this review', onclick: async () => {
+  const btn = h('button', { class: 'btn btn-primary', disabled: pending === 0 && edits === 0 && checked === 0 && r.marks.length === 0 ? '' : null, text: 'Send this review', onclick: async () => {
     const missing = d.findings.filter((f) => r.findings[f.id]?.verdict === 'disagree' && !r.findings[f.id]?.concern);
     if (missing.length) { toast(`Say why you disagree on ${missing.map((f) => f.id).join(', ')}`, true); return; }
     if (!r.verdict && pending === total) { toast('Give an overall verdict for the draft', true); return; }
-    btn.disabled = true; btn.textContent = 'Sending…';
+    btn.disabled = true; btn.classList.add('working'); btn.textContent = 'Sending…';
     try {
       const sent = [];
+      const tick = () => { btn.textContent = `Sending… ${sent.length} record${sent.length === 1 ? '' : 's'} written`; };
       const perFinding = d.findings.filter((f) => r.findings[f.id]?.verdict).map((f) => ({ id: f.id, verdict: r.findings[f.id].verdict, concern: r.findings[f.id].concern || '', supports_approval: r.findings[f.id].verdict === 'agree', passages: r.findings[f.id].passages }));
-      if (perFinding.length || r.verdict) sent.push(await send({ kind: 'verdict', id: d.path, citation: d.citation, verdict: r.verdict || null, rationale: r.rationale || '', per_finding: perFinding }));
+      if (perFinding.length || r.verdict) { sent.push(await send({ kind: 'verdict', id: d.path, citation: d.citation, verdict: r.verdict || null, rationale: r.rationale || '', per_finding: perFinding })); tick(); }
       for (const f of d.findings) {
         const x = r.findings[f.id]; if (!x) continue;
-        if (Object.keys(x.edits).length || x.added.length) sent.push(await send({ kind: 'edit', id: d.path, citation: d.citation, finding: f.id, fields: Object.fromEntries(Object.entries(x.edits).map(([k, v]) => [k, { old: f[k], new: v }])), passages_added: x.added }));
+        if (Object.keys(x.edits).length || x.added.length) { sent.push(await send({ kind: 'edit', id: d.path, citation: d.citation, finding: f.id, fields: Object.fromEntries(Object.entries(x.edits).map(([k, v]) => [k, { old: f[k], new: v }])), passages_added: x.added })); tick(); }
       }
-      for (const m of r.marks) sent.push(await send({ kind: 'mark', id: d.path, citation: d.citation, page: m.page, quote: m.quote, note: m.note || '' }));
+      for (const m of r.marks) { sent.push(await send({ kind: 'mark', id: d.path, citation: d.citation, page: m.page, quote: m.quote, note: m.note || '' })); tick(); }
       store.del(`review:${d.path}`);
       toast(`Sent ${plural(sent.length, 'record')} — thank you`);
       location.hash = '#/drafts';
-    } catch (e) { toast(`Not sent: ${e.message}`, true); btn.disabled = false; btn.textContent = 'Send this review'; }
+    } catch (e) { toast(`Not sent: ${e.message}`, true); btn.disabled = false; btn.classList.remove('working'); btn.textContent = 'Send this review'; }
   } });
-  bar.append(btn, h('span', { class: 'pending', text: `${pending} of ${total} findings decided${edits ? ` · ${edits} edited` : ''}${r.marks.length ? ` · ${r.marks.length} marks` : ''}` }), h('span', { class: 'small muted', text: 'Saved in this browser until you send.' }));
+  bar.append(btn, h('span', { class: 'pending', text: `${pending} of ${total} findings decided · ${checked} of ${nPassages} passages checked${edits ? ` · ${edits} edited` : ''}${r.marks.length ? ` · ${r.marks.length} marks` : ''}` }), h('span', { class: 'small muted', text: 'Saved in this browser until you send.' }));
   return frag(h('div', { class: 'verdict' }, h('h4', { text: 'Overall' }),
     h('div', { class: 'row' }, h('span', { class: 'muted', text: 'This draft should be' }), ['approve', 'agree_defer', 'reject'].map((v) => h('label', {}, h('input', { type: 'radio', name: 'overall', value: v, checked: r.verdict === v ? '' : null, onchange: () => { r.verdict = v; save(); } }), ` ${v === 'agree_defer' ? 'kept for more review' : v === 'approve' ? 'approved' : 'rejected'}`))),
     h('textarea', { rows: 2, placeholder: 'rationale, 1–3 sentences', onchange: (e) => { r.rationale = e.target.value.trim(); save(); } }, esc(r.rationale)),
@@ -227,22 +276,40 @@ function screenView(stage) {
   const stages = stage === 'ta' ? ['awaiting_ta', 'unsure_ta'] : ['awaiting_ft', 'unsure_ft'];
   const key = `screen:${stage}`;
   const decided = store.get(key, {});
-  const cands = sc.candidates.filter((c) => stages.includes(c.stage));
+  // Records already sent (from this browser, or listed by the repository under your name)
+  // leave the queue until the maintainer applies them and rebuilds the portal.
+  const sentLocal = store.get('screen:sent', {});
+  const mineSlug = slug(state.me?.email?.split('@')[0]);
+  const sentIds = new Set(Object.keys(sentLocal));
+  for (const n of [...state.mine.inbox, ...state.mine.applied]) { const m = n.match(new RegExp(`_screen_${mineSlug}_([a-z0-9-]+)\\.json$`)); if (m) sentIds.add(m[1]); }
+  const all = sc.candidates.filter((c) => stages.includes(c.stage));
+  const cands = all.filter((c) => !sentIds.has(slug(c.id)) && !sentIds.has(c.id));
+  const hidden = all.length - cands.length;
   const reasons = Object.entries(sc.reasons || {}).filter(([, v]) => stage === 'ft' || !v.fullTextOnly);
-  const head = h('div', { class: 'page-head' }, h('h1', { text: stage === 'ta' ? 'Title/abstract screening' : 'Full-text screening' }), h('span', { class: 'muted small', text: `${cands.length} awaiting · ${Object.keys(decided).length} decided here, not yet sent` }),
-    h('button', { class: 'btn btn-primary', style: 'margin-left:auto', onclick: () => sendScreen(stage, decided, cands), text: 'Send decisions' }));
+  const nDecided = Object.values(decided).filter((d) => d.decision).length;
+  const statusText = (k) => `${cands.length} awaiting · ${k} decided here, not yet sent${hidden ? ` · ${hidden} sent by you, waiting for the maintainer` : ''}`;
+  const status = h('span', { class: 'muted small', text: statusText(nDecided) });
+  const sendBtn = h('button', { class: 'btn btn-primary', style: 'margin-left:auto', disabled: nDecided ? null : '', text: nDecided ? `Send ${plural(nDecided, 'decision')}` : 'Send decisions', onclick: () => sendScreen(stage, decided, cands, sendBtn, status) });
+  const head = h('div', { class: 'page-head sticky-head' }, h('h1', { text: stage === 'ta' ? 'Title/abstract screening' : 'Full-text screening' }), status, sendBtn);
   const list = h('div', {});
   for (const c of cands) {
     const dec = decided[c.id] || {};
     const pdf = c.key ? paperPdf(c.key) : null;
-    const card = h('article', { class: `screen${dec.decision ? ' done' : ''}`, tabindex: '-1', 'data-id': c.id },
+    const have = candidateHasPdf(c);
+    const up = have ? null : uploadFor(c.id, c.key);
+    const gated = stage === 'ft' && !have && !up;        // a full-text decision needs the paper
+    const pdfLine = pdf ? h('span', {}, h('a', { href: pdf.annotated, target: '_blank', rel: 'noopener', text: 'annotated PDF' }))
+      : have ? h('span', { class: 'small muted', text: 'PDF with the maintainer (not annotated yet)' })
+        : up ? uploadedNote(up)
+          : h('span', { class: 'pdfask' }, h('span', { class: `small ${stage === 'ft' ? '' : 'muted'}`, text: stage === 'ft' ? 'No PDF of this paper anywhere yet — upload it to assess the full text: ' : 'No PDF yet; if you have it: ' }), uploadControl(c.id, c.key, { required: stage === 'ft' }));
+    const card = h('article', { class: `screen${dec.decision ? ' done' : ''}${gated ? ' gated' : ''}`, tabindex: '-1', 'data-id': c.id },
       h('p', { class: 't' }, h('span', { class: 'chip', text: c.id }), ' ', esc(c.title)),
       h('p', { class: 'small muted' }, [c.year, c.journal, (c.authors || '').slice(0, 120)].filter(Boolean).join(' · '), c.doi ? [' · ', h('a', { href: `https://doi.org/${c.doi}`, target: '_blank', rel: 'noopener', text: c.doi })] : null, c.pmid ? [' · PMID ', h('a', { href: `https://pubmed.ncbi.nlm.nih.gov/${c.pmid}`, target: '_blank', rel: 'noopener', text: String(c.pmid) })] : null,
-        c.for?.length ? ` · for ${c.for.join(', ')}` : '', c.history?.length ? ` · ${c.history.map((x) => `${x.stage === 'title_abstract' ? 'T/A' : 'FT'}: ${x.decision} (${x.by})`).join('; ')}` : '',
-        pdf ? [' · ', h('a', { href: pdf.annotated, target: '_blank', rel: 'noopener', text: 'annotated PDF' })] : (stage === 'ft' ? ' · no PDF in the portal' : '')),
+        c.for?.length ? ` · for ${c.for.join(', ')}` : '', c.history?.length ? ` · ${c.history.map((x) => `${x.stage === 'title_abstract' ? 'T/A' : 'FT'}: ${x.decision} (${x.by})`).join('; ')}` : ''),
+      h('p', { class: 'small pdfline' }, pdfLine),
       h('p', { class: 'ab', text: c.abstract || '(no abstract available)' }),
       c.suggestion?.decision ? h('p', { class: 'sug', text: `Model suggests ${c.suggestion.decision}${c.suggestion.reason && c.suggestion.reason !== 'none' ? ` (${c.suggestion.reason})` : ''} — a suggestion, not a decision.` }) : null,
-      h('div', { class: 'dec' }, ['include', 'exclude', 'unsure'].map((v) => h('label', {}, h('input', { type: 'radio', name: `s-${c.id}`, value: v, checked: dec.decision === v ? '' : null, onchange: () => { decided[c.id] = { ...dec, decision: v }; store.set(key, decided); card.classList.add('done'); } }), ` ${v}`)),
+      h('div', { class: 'dec' }, ['include', 'exclude', 'unsure'].map((v) => h('label', { title: gated ? 'Upload the PDF first' : null }, h('input', { type: 'radio', name: `s-${c.id}`, value: v, disabled: gated ? '' : null, checked: dec.decision === v ? '' : null, onchange: () => { decided[c.id] = { ...dec, decision: v }; store.set(key, decided); card.classList.add('done'); const k = Object.values(decided).filter((x) => x.decision).length; status.textContent = statusText(k); sendBtn.disabled = k ? false : true; sendBtn.textContent = k ? `Send ${plural(k, 'decision')}` : 'Send decisions'; } }), ` ${v}`)),
         h('select', { onchange: (e) => { decided[c.id] = { ...(decided[c.id] || {}), reason: e.target.value }; store.set(key, decided); } }, h('option', { value: '', text: 'reason…' }), reasons.map(([k, v]) => h('option', { value: k, selected: dec.reason === k ? '' : null, text: v.label }))),
         h('input', { type: 'text', value: dec.note || '', placeholder: 'note', style: 'min-width:220px', onchange: (e) => { decided[c.id] = { ...(decided[c.id] || {}), note: e.target.value }; store.set(key, decided); } })));
     list.append(card);
@@ -252,6 +319,7 @@ function screenView(stage) {
     if (e.target.tagName === 'INPUT' && e.target.type === 'text') return;
     const card = document.activeElement?.closest?.('.screen'); if (!card) return;
     const map = { i: 'include', e: 'exclude', u: 'unsure' }; const v = map[e.key]; if (!v) return;
+    if (card.classList.contains('gated')) { toast('Upload the paper’s PDF before deciding on its full text', true); e.preventDefault(); return; }
     const radio = card.querySelector(`input[type=radio][value="${v}"]`); if (radio) { radio.checked = true; radio.dispatchEvent(new Event('change')); }
     if (v === 'exclude') card.querySelector('select').focus(); else { const next = card.nextElementSibling; if (next) { next.focus(); next.scrollIntoView({ block: 'center' }); } }
     e.preventDefault();
@@ -261,21 +329,65 @@ function screenView(stage) {
   return frag(head, h('p', { class: 'small', text: `Criteria: docs/SCREENING.md §2. ${stage === 'ta' ? 'Include whatever might answer one of the KB questions; exclude only for a listed reason.' : 'Read the paper; include when it answers a question in §1 and no exclusion reason applies.'} Decisions are kept in this browser until you send them.` }), list);
 }
 
-async function sendScreen(stage, decided, cands) {
+async function sendScreen(stage, decided, cands, btn = null, status = null) {
   const st = stage === 'ta' ? 'title_abstract' : 'full_text';
   const items = Object.entries(decided).filter(([, d]) => d.decision);
   if (!items.length) { toast('Nothing decided yet', true); return; }
+  const label = btn ? btn.textContent : '';
+  const working = (i) => { if (btn) { btn.disabled = true; btn.classList.add('working'); btn.textContent = `Sending ${i} of ${items.length}…`; } if (status) status.textContent = 'each decision is one commit to the repository; this takes a second or two per record'; };
+  const done = () => { if (btn) { btn.disabled = false; btn.classList.remove('working'); btn.textContent = label; } };
   const bad = items.filter(([, d]) => d.decision === 'exclude' && !d.reason);
   if (bad.length) { toast(`An exclusion needs a reason: ${bad.map(([id]) => id).join(', ')}`, true); return; }
+  if (stage === 'ft') {
+    const noPdf = items.filter(([id]) => { const c = cands.find((x) => x.id === id); return c && !candidateHasPdf(c) && !uploadFor(c.id, c.key); }).map(([id]) => id);
+    if (noPdf.length) { toast(`A full-text decision needs the paper's PDF first: ${noPdf.join(', ')}`, true); return; }
+  }
   let n = 0;
+  working(1);
   try {
     for (const [id, d] of items) {
+      working(n + 1);
       await send({ kind: 'screen', id, stage: st, decision: d.decision, reason: d.decision === 'exclude' ? d.reason : null, note: d.note || '' });
       delete decided[id]; store.set(`screen:${stage}`, decided); n += 1;
+      const sentLocal = store.get('screen:sent', {}); sentLocal[id] = new Date().toISOString(); store.set('screen:sent', sentLocal);
     }
-    toast(`Sent ${plural(n, 'decision')} — thank you`);
+    toast(`Sent ${plural(n, 'decision')} — thank you. They leave the queue until the maintainer applies them.`);
     render();
-  } catch (e) { toast(`Sent ${n}; then: ${e.message}`, true); }
+    window.scrollTo(0, 0);
+    document.querySelector('.screen')?.focus();
+  } catch (e) { done(); toast(`Sent ${n}; then: ${e.message}`, true); }
+}
+
+// ---- the PDFs the portal holds ----
+function pdfsView() {
+  const m = state.manifest || {};
+  const papers = Object.entries(m.papers || {}).sort((a, b) => a[0].localeCompare(b[0]));
+  const drafts = draftsIndex(state.kb);
+  const draftsBy = new Map();
+  for (const d of drafts) (draftsBy.get(d.citation) || draftsBy.set(d.citation, []).get(d.citation)).push(d);
+  const approvedBy = new Map();
+  for (const f of state.kb.findings || []) if (f.source_status === 'approved') approvedBy.set(f.citation, (approvedBy.get(f.citation) || 0) + 1);
+  const filter = h('input', { type: 'search', placeholder: 'filter by key or title…', 'aria-label': 'Filter PDFs', style: 'min-width:260px', oninput: (e) => { const q = e.target.value.trim().toLowerCase(); for (const tr of table.querySelectorAll('tbody tr')) tr.hidden = Boolean(q) && !tr.dataset.q.includes(q); } });
+  const row = ([cit, p]) => {
+    const ds = draftsBy.get(cit) || [];
+    return h('tr', { 'data-q': `${cit} ${state.kb.citations?.[cit] || ''}`.toLowerCase() },
+      h('td', {}, h('a', { href: p.annotated, target: '_blank', rel: 'noopener', text: cit.replace(/^@/, '') })),
+      h('td', { class: 'small', text: (state.kb.citations?.[cit] || '').slice(0, 160) }),
+      h('td', {}, h('span', { class: `badge ${p.public ? 'badge-human' : 'badge-kind'}`, title: p.label || p.category, text: p.public ? 'public (CC)' : 'private' })),
+      h('td', { class: 'num', text: String(approvedBy.get(cit) || 0) }),
+      h('td', {}, ds.length ? ds.map((d, i) => [i ? ', ' : '', h('a', { href: draftHref(d.path), text: entryName(d.entry) })]) : h('span', { class: 'muted small', text: '—' })),
+      h('td', { class: 'small muted', text: `${Math.round((p.bytes || 0) / 1024)} KB` }));
+  };
+  const table = h('table', { class: 'queue' }, h('thead', {}, h('tr', {}, h('th', { text: 'Paper' }), h('th', { text: 'Citation' }), h('th', { text: 'Access' }), h('th', { class: 'num', text: 'Approved findings' }), h('th', { text: 'Drafts to review' }), h('th', { text: 'Size' }))), h('tbody', {}, papers.map(row)));
+  const ups = [...state.uploads].sort((a, b) => String(b.uploaded).localeCompare(String(a.uploaded)));
+  return frag(h('div', { class: 'page-head' }, h('h1', { text: 'Annotated PDFs' }), h('span', { class: 'muted small', text: `${m.counts?.private ?? 0} private · ${m.counts?.public ?? 0} public · ${m.counts?.sources ?? 0} more source PDFs with the maintainer, not annotated yet` })),
+    h('p', { class: 'small', text: 'Every paper whose annotated PDF this build of the portal holds. The highlights in each PDF are the passages the KB cites from it, coloured by what they support. Public copies are papers under a Creative Commons licence; the private ones are for signed-in reviewers only and must not be passed on.' }),
+    h('div', { class: 'matrix-controls' }, filter),
+    papers.length ? table : h('p', { class: 'notice', text: 'No annotated PDFs in this build.' }),
+    h('h2', { text: `Uploads waiting for the maintainer (${ups.length})` }),
+    state.uploadsOk ? (ups.length ? h('table', { class: 'queue' }, h('thead', {}, h('tr', {}, h('th', { text: 'For' }), h('th', { text: 'File' }), h('th', { text: 'By' }), h('th', { text: 'When' }), h('th', { text: 'Size' }))), h('tbody', {}, ups.map((u) => h('tr', {}, h('td', { text: u.id }), h('td', { class: 'small', text: u.name }), h('td', { class: 'small', text: u.by }), h('td', { class: 'small', text: String(u.uploaded || '').slice(0, 16).replace('T', ' ') }), h('td', { class: 'small muted', text: `${Math.round((u.bytes || 0) / 1024)} KB` })))))
+      : h('p', { class: 'small muted', text: 'None. A paper the portal lacks can be uploaded from its screening card or its draft; it goes to the maintainer, who adds it to the papers folder.' }))
+      : h('p', { class: 'small muted', text: 'Uploads are not enabled on this portal.' }));
 }
 
 function mine() {
@@ -429,6 +541,7 @@ function render() {
     else if (head === 'drafts') { view = draftsList(); current = '/drafts'; }
     else if (head === 'draft') { view = draftView(rest.join('/')); current = '/drafts'; }
     else if (head === 'screen') { view = screenView(rest[0] === 'ft' ? 'ft' : 'ta'); current = `/screen/${rest[0] === 'ft' ? 'ft' : 'ta'}`; }
+    else if (head === 'pdfs') { view = pdfsView(); current = '/pdfs'; }
     else if (head === 'mine') { view = mine(); current = '/mine'; }
     else view = h('p', { class: 'error', text: `Unknown page: ${head}` });
   } catch (err) { console.error(err); view = h('p', { class: 'error', text: `This page could not be rendered: ${err.message}` }); }
@@ -442,8 +555,10 @@ async function init() {
   try {
     const [me, manifest, kb] = await Promise.all([api('me'), fetch('manifest.json').then((r) => r.json()), fetch('export/stroke-aphasia-kb-drafts.json').then((r) => r.json())]);
     state.me = me; state.manifest = manifest; state.kb = kb;
+    try { const sent = store.get('screen:sent', {}); const built = manifest.built || ''; for (const [id, when] of Object.entries(sent)) if (built && String(when) < built) delete sent[id]; store.set('screen:sent', sent); } catch { /* ignore */ }
     state.screening = await fetch('screening.json').then((r) => (r.ok ? r.json() : null)).catch(() => null);
     state.mine = await api('reviews').catch(() => ({ inbox: [], applied: [] }));
+    try { const u = await api('upload'); state.uploads = u.uploads || []; state.uploadsOk = true; } catch { state.uploads = []; state.uploadsOk = false; }
     document.getElementById('who').textContent = me.email;
     document.getElementById('footerVersion').textContent = `KB ${manifest.kbCommit || '?'} · ${kb.findings?.length ?? 0} findings in the drafts export · portal built ${manifest.built || '?'}`;
     if (manifest.config?.explorerUrl) document.getElementById('explorerLink').href = manifest.config.explorerUrl;

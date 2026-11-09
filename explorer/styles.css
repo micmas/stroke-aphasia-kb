@@ -339,3 +339,21 @@ a.chip:hover { border-color: var(--blue); text-decoration: none; }
 .badge-licence-unknown { background: transparent; color: var(--ink-2); border-color: var(--line-strong); border-style: dashed; }
 .tile-link { text-decoration: none; color: inherit; cursor: pointer; }
 .tile-link.active { outline: 2px solid var(--blue); }
+
+/* Get involved (#/involve) */
+.involve-wrap { margin: 1rem 0 1.4rem; }
+.involve-figure { width: 100%; height: auto; display: block; font-family: var(--font); }
+.involve-figure .inv-num { font-size: 15px; font-weight: 700; }
+.involve-figure .inv-name { font-size: 20px; font-weight: 700; letter-spacing: -.01em; }
+.involve-figure .inv-verb { font-size: 13.5px; font-weight: 600; }
+.involve-figure .inv-small { font-size: 11.5px; }
+.involve-figure .inv-needs { font-size: 11.5px; }
+.involve-figure .inv-needs-head { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; }
+.involve-figure .inv-note { font-size: 11.5px; font-style: italic; }
+.involve-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: .8rem; }
+.involve-card { border: 1px solid var(--line); border-top: 4px solid var(--grape); border-radius: var(--radius); padding: .6rem .9rem .3rem; background: var(--surface); }
+.involve-card h2 { font-size: 1.02rem; margin: .2rem 0 .3rem; display: flex; align-items: center; gap: .45rem; }
+.involve-card ul { padding-left: 1.1rem; margin: .3rem 0; font-size: .9rem; }
+.involve-card li { margin: .25rem 0; }
+.inv-badge { display: inline-flex; width: 1.5em; height: 1.5em; border-radius: 50%; color: #fff; font-size: .8rem; font-weight: 700; align-items: center; justify-content: center; flex: none; }
+@media (max-width: 700px) { .involve-wrap { overflow-x: auto; } .involve-figure { min-width: 760px; } }

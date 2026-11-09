@@ -33,3 +33,4 @@ logs/batch.log
 portal/dist/
 portal/node_modules/
 portal/.wrangler/
+portal/.uploads/

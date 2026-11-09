@@ -1,41 +1,72 @@
 # Governance of the aphasia knowledge base
 
-How entries get in, who is accountable for them, and what the
-downstream report is allowed to assume. This file is policy; `HOWTO.md`
-is the procedure and `schema.md` is the data contract. When they
-disagree, this file wins and the other two get fixed.
+Who decides what goes into the knowledge base, and how we know. In
+short: a model reads each paper and drafts findings; a person (or, for
+routine findings, a second, independent model) re-reads the paper and
+agrees or not; a named person is accountable for everything that is
+approved; the papers themselves never leave the project's hands; and
+nothing the KB produces is clinical advice.
 
-**Status:** adopted 2026-10 · replaces the implicit policy under which
-`auto_review.py` could promote drafts on its own.
+This file is the policy. [HOWTO.md](HOWTO.md) is the procedure and
+[schema.md](schema.md) the data contract; when they disagree, this file
+wins and the other two get fixed. Adopted October 2026, replacing the
+earlier practice under which `auto_review.py` could promote drafts on
+its own.
 
 ---
 
 ## 1. Principles
 
 1. **Every finding traces to the page.** A finding exists only if each
-   of its `source_passages` is found verbatim in the paper's text layer.
-   A paraphrase is not a passage. A quote the checker cannot find is a
-   failed draft, not a quality issue.
+   of its quoted passages can be found, word for word, in the paper. A
+   paraphrase is not a passage, and a quote the checker cannot find
+   makes the draft fail; it is not a matter of quality.
 2. **Nothing is approved without a reader who re-opened the PDF.** The
-   reader may be a person or an independent model (§3), but in either
-   case the review is a *second reading of the paper*, not a check of
-   the draft's internal consistency.
+   reader may be a person or an independent model (§3). Either way the
+   review is a second reading of the paper, not a check that the draft
+   is consistent with itself.
 3. **A named person is accountable for everything in the canonical
-   folders.** Model review is delegated review: the maintainer who
-   enabled it owns its approvals and audits them (§4).
-4. **Paper text and patient data stay on the machine.** Extraction,
-   review and lesion decoding run locally. Source PDFs are never
-   committed. The repository ships findings and DOIs.
+   folders.** When a model approves, that is delegated review: the
+   maintainer who enabled it owns those approvals and audits them (§4).
+4. **Paper text and patient data stay under the project's control.**
+   Extraction and lesion decoding run locally, on this machine's model;
+   no paper text or patient data is ever sent to a third-party model or
+   API. Source PDFs are never committed: the repository ships findings,
+   quotations and DOIs. Paper text leaves this machine in exactly three
+   ways, all into infrastructure the maintainer administers: the
+   annotated PDFs are published to the project's Cloudflare Pages site,
+   openly when the paper's licence allows it (Creative Commons) and
+   otherwise only to signed-in members of the Reviewer team (§2); the
+   screening queue's abstracts go to the same private site; and a PDF a
+   reviewer uploads waits in the project's private bucket until the
+   maintainer pulls it into `papers/` and deletes it there. Reviewers
+   read the Cloudflare copies in a browser; nothing they send back
+   contains more of a paper than the short quotations the KB already
+   keeps. Patient data (lesion masks) never goes anywhere.
 5. **The report may only say what the KB says.** Causal stays causal,
-   correlational stays correlational, review-synthesis is weighted
-   separately, and every line cites an entry id and a paper. A region
-   with no approved findings is reported as a gap, not filled in.
-6. **Research use only.** No output of this KB is clinical advice; the
-   caveat is part of every report and is not removable by a flag.
+   correlational stays correlational, a review's synthesis is weighted
+   separately, and every line cites an entry and a paper. A region with
+   no approved findings is reported as a gap, never filled in.
+6. **A research development built to support clinicians, not to replace
+   their judgement.** The knowledge base and the reports drawn from it
+   aim to help clinicians, in their everyday work, reason about a
+   person's aphasia from their lesion: what the literature says, how
+   strongly, and where it is silent. That is the goal the project works
+   towards through the review and audit this policy describes; it is not
+   something it claims today. At this stage, the outputs are not validated
+   for clinical decision-making and none of them is clinical advice;
+   every report carries that caveat, and no flag removes it.
 
 ---
 
 ## 2. Who may do what
+
+The short version: the extractor model writes drafts and nothing else;
+the automatic checks can only reject or defer; an independent model may
+approve routine (Tier A) findings; a person may approve anything, and
+is the only one who may approve therapies, strong claims and new
+entries (Tier B). Through the portal, the Reviewer team does the same
+under the same names.
 
 | Actor | Identifier in `reviewer:` / log | May | May not |
 |---|---|---|---|
@@ -43,7 +74,20 @@ disagree, this file wins and the other two get fixed.
 | Deterministic checks (`auto_review.py`) | `auto-reviewer` | reject or defer a draft; emit a reviewer worksheet | approve anything |
 | Independent reviewer model | `model:<model-tag>` | verify passages against the PDF, check interpretation, **approve Tier A drafts** (§3), defer or reject any draft | approve Tier B; edit a draft; review drafts from the same model tag that extracted them |
 | Person | `human:<name>` | everything above; approve Tier B; audit model approvals; edit a draft in the review workbench (`review_app.py`: every change is stamped `edits: {by, date, fields}` and logged `REVIEW-EDITED`); mark passages for a focused re-extraction (`refocus.py`); change this policy | approve a draft without opening the annotated PDF; edit a canonical entry outside `promote.py` |
-| Portal reviewer | the email Cloudflare Access verified, mapped to `human:<name>` by `portal/reviewers.yaml` | send screening decisions, per-finding verdicts, field edits, passage marks and comments as records (`logs/portal/inbox/`); approve or reject a draft **only if listed as an approver** in `portal/reviewers.yaml` (then `promote.py` runs under their name when the maintainer applies the record) | write to the register, a draft or a canonical entry directly; approve without being an approver (their approve is kept as an opinion) |
+| Portal reviewer (the **Reviewer team**, `portal/reviewers.yaml`) | the email Cloudflare Access verified, mapped to `human:<name>` by `portal/reviewers.yaml` | send screening decisions, per-finding verdicts, field edits, passage marks, comments and PDFs as records (`logs/portal/inbox/`); approve or reject a draft **only if listed with `approver: true`** (then `promote.py` runs under their name when the maintainer applies the record) | write to the register, a draft or a canonical entry directly; approve without being an approver (their approve is kept as an opinion) |
+
+**The Reviewer team.** `portal/reviewers.yaml` is the list of people who
+take part through the portal, in two roles. A *reviewer* is listed with
+the `human:<name>` their records are applied under; they may do every
+step of screening and review, and their verdicts are kept as opinions
+the maintainer reads. An *approver* is a reviewer with `approver: true`:
+their `approve` or `reject` is executed by `promote.py` under their name,
+which makes them the accountable person of principle 3 for that entry.
+The explorer's *Get involved* page calls these levels 3 and 4. Someone
+joins the team by being added to the portal's Access policy (so they can
+sign in) and to this file (so their name is known); approver rights are
+granted by the maintainer in the same file, and the git history of the
+file is the record of who could approve when.
 
 "Independent" means a different model tag from the extractor. Same
 family at a different size counts (`gemma4:31b` reviewing `gemma4:26b`
@@ -152,12 +196,24 @@ until re-reviewed through §3. Order of re-review: `therapies/` first
 (they drive recommendations), then entries with `strength: strong`,
 then the rest.
 
+The re-review runs through the ordinary draft review: `rereview.py`
+moves a legacy entry back into `drafts/`, one draft per paper, with the
+old approval kept as `previous_review`, and logs `REREVIEW`. Reviewers
+then read it beside the PDF (portal or `review_app.py`) and an approver
+promotes it; the first approval re-creates the canonical entry and the
+others merge into it. While it is out for re-review the entry is absent
+from the approved export.
+
 ---
 
 ## 6. Sources and rights
 
-- Papers are obtained through the maintainer's institutional access or
-  open licences and are never redistributed; `papers/` is git-ignored.
+- Papers are obtained through the maintainer's institutional access,
+  open licences, or a Reviewer-team member's upload through the portal;
+  `papers/` is git-ignored. A paper is redistributed only as its licence
+  allows: Creative-Commons papers openly on the portal's `cc/` path, all
+  others solely to named collaborators behind the portal's sign-in — the
+  footing of a shared folder with a lock, for checking claims.
 - `source_passages` are short attributed quotations for verification.
   They are not a substitute for the paper and the KB links the DOI.
 - Each paper's licence is recorded from metadata (`screen.py licences` →

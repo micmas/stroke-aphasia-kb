@@ -1,41 +1,68 @@
 # Aphasia KB — command reference
 
-Every command, **in the order the work flows**: from the protocol and the
-searches, through screening, to extracted findings reviewed into the
-knowledge base. Each section starts with the commands as you run them,
-then lists every option. Run from the **repository root** with the venv
-active (`source .venv/bin/activate`). The method is in
-[`SCREENING.md`](SCREENING.md) (finding and choosing papers),
-[`HOWTO.md`](HOWTO.md) (extracting and reviewing) and
-[`GOVERNANCE.md`](GOVERNANCE.md) (who may decide and approve what).
+Everything you can run, in the order the work flows: finding papers,
+screening them, extracting findings, reviewing them into the knowledge
+base, checking the result. The first part of this page is the routine
+(what you actually type in a week); the second part, from
+[§0](#0-finding-and-screening-papers--the-screening-register) on, is the
+reference, one section per script with every option.
 
-**Dry run is the default.** Every command that writes only prints what it
-would do until you add `--execute`. The exceptions act when run:
-`screen_app.py` and `screen.py decide` (each decision is the act),
-`extract.py`, `promote.py` and `auto_review.py` (each has its own preview
-flag, listed below).
+Run from the repository root with the virtual environment active
+(`source .venv/bin/activate`). Nearly every command that writes is a dry
+run until you add `--execute`; the exceptions, which act when run, are
+`screen_app.py` and `screen.py decide` (each decision is the act), and
+`extract.py`, `promote.py`, `auto_review.py` (each has its own preview
+flag). The method behind the commands is in [SCREENING.md](SCREENING.md)
+(finding and choosing papers), [HOWTO.md](HOWTO.md) (extracting and
+reviewing) and [GOVERNANCE.md](GOVERNANCE.md) (who may approve what).
 
 ---
 
 ## The flow at a glance
 
-| Step | What happens | Command | Section |
-|---|---|---|---|
-| 1 | Protocol: strategies written and locked *(once; again on each amendment)* | `screen.py strategies` · lock · `screen.py rebaseline` | [0.1](#01-protocol) |
-| 2 | Identification: run and import the searches, remove duplicates and grey literature *(once; again when a search is re-run)* | `screen.py search` · `import-all` · `dedupe` · `grey` · `recall` | [0.2](#02-identification) |
-| 3 | Title/abstract screening, prioritised, until the stopping rule is met | `screen_app.py --by <you>` · `screen.py progress` · `stop` | [0.3](#03-titleabstract-screening) |
-| 4 | Second screener on a 20 % blind sample; agreement | `screen_app.py --check` · `screen.py agreement` | [0.4](#04-second-screener) |
-| 5 | Full-text assessment (PDF beside the record); pillar papers by citation chasing | `screen.py fulltext` · `screen_app.py --stage ft` · `screen.py chase` | [0.5](#05-full-text-assessment) |
-| 6 | Hand-over: citation entry and PDF for each paper included at full text | `screen.py register` · PDFs into `papers/` · `intake_papers.py --execute --no-register` | [0.6](#06-hand-over-to-the-knowledge-base) · [1](#1-getting-papers-in) |
-| 7 | Extraction, one paper at a time | `extract.py --pdf papers/<Key>.pdf` | [2](#2-extracting) |
-| 8 | Review: checks, the workbench, focused re-extraction, approval | `auto_review.py` · `review_app.py` · `refocus.py` · `promote.py` | [3](#3-reviewing) |
-| 9 | Report and sync | `screen.py status` · `kb_status.py` · git | [4](#4-checking-the-kb) · [8](#8-git-and-the-papers-folder) |
-| 10 | Snapshot, whenever you choose: commit the KB and refresh the explorer, webapp and notebook copies (approved-only and approved + drafts) | `snapshot.py` | [4](#snapshotpy--commit-a-snapshot-explorer-webapp-and-notebook-copies) |
+| Step | What happens | Command | Who, and where | Section |
+|---|---|---|---|---|
+| 1 | Protocol: strategies written and locked *(once; again on each amendment)* | `screen.py strategies` · lock · `screen.py rebaseline` | maintainer · terminal | [0.1](#01-protocol) |
+| 2 | Identification: run and import the searches, remove duplicates and grey literature *(once; again when a search is re-run)* | `screen.py search` · `import-all` · `dedupe` · `grey` · `recall` | maintainer · terminal | [0.2](#02-identification) |
+| 3 | Title/abstract screening, prioritised, until the stopping rule is met | `screen_app.py --by <you>` · `screen.py progress` · `stop` | any reviewer · **portal** *Title/abstract* — or terminal | [0.3](#03-titleabstract-screening) |
+| 4 | Second screener on a 20 % blind sample; agreement | `screen_app.py --check` · `screen.py agreement` | a second reviewer · terminal (`--check`); agreement: maintainer | [0.4](#04-second-screener) |
+| 5 | Full-text assessment (PDF beside the record); pillar papers by citation chasing | `screen.py fulltext` · `screen_app.py --stage ft` · `screen.py chase` | any reviewer · **portal** *Full text* (PDF upload when missing) — or terminal | [0.5](#05-full-text-assessment) |
+| 6 | Hand-over: citation entry and PDF for each paper included at full text | `screen.py register` · PDFs into `papers/` · `intake_papers.py --execute --no-register` | maintainer · terminal (uploaded PDFs arrive via `portal_import.py`) | [0.6](#06-hand-over-to-the-knowledge-base) · [1](#1-getting-papers-in) |
+| 7 | Extraction, one paper at a time | `extract.py --pdf papers/<Key>.pdf` | maintainer · terminal (local model; never online) | [2](#2-extracting) |
+| 8 | Review: checks, the workbench, focused re-extraction, approval | `auto_review.py` · `review_app.py` · `refocus.py` · `promote.py` | reviewers · **portal** *Drafts* (verdicts, edits, passages, marks); approve: an approver's verdict, run by the maintainer with `portal_import.py --promote` — or all of it in the terminal | [3](#3-reviewing) |
+| 9 | Report and sync | `screen.py status` · `kb_status.py` · git | maintainer · terminal | [4](#4-checking-the-kb) · [8](#8-git-and-the-papers-folder) |
+| 10 | Snapshot, whenever you choose: commit the KB and refresh the explorer, webapp and notebook copies (approved-only and approved + drafts) | `snapshot.py` | maintainer · terminal (then `publish_portal.py --deploy` for the portal) | [4](#snapshotpy--commit-a-snapshot-explorer-webapp-and-notebook-copies) |
+
+### Who does what, and where
+
+The terminal is the maintainer's place: every command here runs on the
+machine that holds the papers, and that is the only machine that writes
+to the register, the drafts or the canonical folders. Collaborators work
+in the **review portal** ([`PORTAL.md`](PORTAL.md)), which sends records
+that the maintainer applies with `portal_import.py`. The explorer's *Get
+involved* page shows the same split as five levels.
+
+| Task | Terminal (maintainer) | Portal (reviewers — the Reviewer team, `portal/reviewers.yaml`) |
+|---|---|---|
+| Read the evidence | `kb_status.py`, the explorer served locally (`npm run explorer`) | the public explorer (no sign-in) |
+| Screen titles/abstracts | `screen_app.py --by <name>`, `screen.py decide` | **Title/abstract** queue (prioritised head), keys `i` `e` `u` |
+| Second screener, agreement | `screen_app.py --check --sample 0.2`, `screen.py agreement` | — (not yet) |
+| Assess full texts | `screen_app.py --stage ft`, `screen.py fulltext` | **Full text** queue; the PDF must exist — upload it if the project has none |
+| Get a paper's PDF in | save into `papers/`, `intake_papers.py --execute` | **Upload the PDF** on a card or draft → `portal_import.py` lands it in `papers/` |
+| Review a draft | `review_app.py --draft …` (edits saved at once, PDF re-annotated) | **Drafts** → agree / disagree / unsure per finding, fix a field, add or flag a passage, mark for re-extraction |
+| Re-extract marked passages | `refocus.py --all --execute` | — (the marks are sent from the portal; the extractor runs here) |
+| Approve or reject | `promote.py --approve/--reject --reviewer human:<name>` | overall verdict from an **approver** → applied by `portal_import.py --execute --promote` |
+| See what was applied | `git log logs/portal/` | **My reviews** |
+| Extract, backfill, audit, publish | `extract.py`, `backfill.py`, `audit_quotes.py`, `snapshot.py`, `publish_portal.py` | — by design: PDFs and the canonical folders never leave this machine |
 
 A paper reaches extraction only after it was included at full text
 (`screen.py fulltext` lists what each paper needs next). Do not use
 `intake_papers.py --extract` or `extract.py --batch` any more: they
 extract every PDF that has no findings, screened or not.
+
+## The routine
+
+Four recipes cover most weeks. Each line is explained in the reference below.
 
 ### A screening session
 
@@ -100,6 +127,10 @@ drafts a model approved unanimously; add `--no-model-approve` to keep
 every approval yours.
 
 ---
+
+---
+
+# Reference, script by script
 
 ## 0. Finding and screening papers — the screening register
 
@@ -437,6 +468,31 @@ sandbox `_compare/rerun/` instead, so nothing approved is duplicated.
 | `--execute` | Move the old drafts and extract. |
 | `--papers-dir DIR` | Other folder. |
 
+### `benchmark_models.py` — is a newer local model better than the one we use?
+
+```bash
+python scripts/benchmark_models.py --list-references                       # papers with human-reviewed findings and a PDF
+python scripts/benchmark_models.py --models qwen3.8:27b --papers Alyahya2018NounVerb Bonilha2014
+python scripts/benchmark_models.py --models qwen3.8:27b --papers Alyahya2018NounVerb --skip-extract --append-log
+```
+
+Runs each candidate (and the incumbent from `models.yaml`) on curated
+papers in a sandbox (`_compare/<model>/`, git-ignored), scores fidelity,
+schema, coverage, calibration, support and cost, and says which
+candidates are eligible under the decision rule in
+[`MODELS.md`](MODELS.md) §3. Writes `_compare/benchmark_<date>.{md,json}`.
+
+| Option | Meaning |
+|---|---|
+| `--models TAG …` | Ollama tags to compare. |
+| `--papers KEY …` | Citation keys without `@`. |
+| `--untested`, `--ram GB`, `--all-candidates`, `--exclude TAG …` | Instead of `--models`: every candidate in `MODELS.md` §4 that fits this machine (memory detected, or `--ram`) and has no row in §5 and no sandbox yet; low-priority rows (superseded generations, smaller quants) only with `--all-candidates`. Missing models are pulled unless `--no-pull`. |
+| `--auto-papers N`, `--min-findings K`, `--seed S` | Instead of `--papers`: pick N random reference papers with at least K canonical findings (default 5), each from a different bucket; `--seed` makes the pick repeatable (it is recorded in the results JSON). |
+| `--no-incumbent` | Do not add the current extract model. |
+| `--skip-extract` | Only re-score sandboxes that already exist. |
+| `--append-log` | Append the rows to the decision log in `MODELS.md` §5 (decision left blank). |
+| `--timeout S`, `--ollama-host URL`, `--by NAME` | Per-paper limit (default 2 h); endpoint; name for the log rows. |
+
 ### `compare_extraction.py` — compare a sandbox extraction with the KB
 
 Quote fidelity, schema, coverage and calibration of a sandbox run
@@ -554,13 +610,17 @@ drafts beside the annotated PDFs, screen candidates, and every decision
 comes back as a JSON record in `logs/portal/inbox/` that
 `portal_import.py` applies under the reviewer's name. Creative-Commons
 annotated PDFs are served openly (`cc/`) and linked from the explorer;
-the rest only after sign-in.
+the rest only after sign-in. A paper the portal lacks can be uploaded by
+a reviewer (required before a full-text decision): the file waits in a
+private R2 bucket and `portal_import.py` pulls it into `papers/` (the
+OneDrive folder) as `<Key>.pdf`, or `<Cid>_<name>.pdf` linked to the
+candidate, then `intake_papers.py` takes over as for any new PDF.
 
 | Option | Meaning |
 |---|---|
 | `publish_portal.py --ta-limit N` | Title/abstract records offered, in prioritised order (default 300). |
 | `publish_portal.py --project NAME`, `--branch B` | Pages project and branch (`main` = production). |
-| `portal_import.py --kind K` | Only records of one kind (screen, verdict, edit, mark, comment). |
+| `portal_import.py --kind K` | Only records of one kind (screen, verdict, edit, mark, comment, pdf). |
 
 ### `review_app.py` — the review workbench: draft and paper side by side
 
@@ -618,6 +678,29 @@ that still has a pending mark.
 | `--model TAG` | Override `models.yaml` role `extract`. |
 | `--timeout S` | Model call timeout (default 3600). |
 | `--execute` | Call the model (default: dry run, prompt written to `_refocus_dry_run.txt`). |
+
+### `rereview.py` — send pre-policy entries back for review
+
+```bash
+python scripts/rereview.py                                   # every legacy entry: what would move
+python scripts/rereview.py --bucket therapies                # one bucket (therapies first, GOVERNANCE.md §5)
+python scripts/rereview.py --bucket therapies --execute --by <you>
+```
+
+A legacy entry (`review_tier: legacy`) goes back into `drafts/` as one
+draft per paper, status `in_review`, with the old approval kept as
+`previous_review` and `rereview_of` pointing at where it came from. The
+canonical file is removed; the first new approval re-creates it. When a
+fresh extraction of the same paper is already waiting in `drafts/`, the
+pre-policy findings for that paper are dropped (the fresh reading
+supersedes them) and the log line says how many. Logged as `REREVIEW`.
+
+| Option | Meaning |
+|---|---|
+| `--bucket B` | Only this bucket (repeatable). |
+| `--entry ID` | Only this entry id (repeatable). |
+| `--execute` | Move the files (default: dry run). |
+| `--by NAME` | Who sends them back; required with `--execute`, logged as `human:<name>`. |
 
 ### `promote.py` — the only way into the canonical KB
 

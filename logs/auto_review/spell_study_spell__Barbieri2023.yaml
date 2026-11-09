@@ -163,6 +163,121 @@ runs:
   - name: cross_finding_consistency
     passed: true
     blocker: false
-last_run: '2026-05-06T12:28:30'
-latest_verdict: auto_approve
-latest_mode: deterministic_only
+- run_id: 6
+  timestamp: '2026-11-09T15:20:47'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 40/40 quotes (100%) — exact 40
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f2: has provenance.flags'
+  - 'f3: has provenance.flags'
+  - 'f3: strength=''strong'''
+  - 'f4: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft contains duplicate findings (f1/f3 and f2/f4). f1/f3 claim
+        significant improvement in spelling accuracy for the spelling group compared
+        to the natural history group, but Table 2 shows the interaction effect for
+        'Spelling vs. NH' has a p-value of 0.0658, which is not statistically significant
+        at the standard alpha=0.05 level. Therefore, the claim of 'significant improvement'
+        is unsupported by the provided statistics.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: false
+        numbers_match: true
+        limitations_captured: true
+        omissions: The interaction effect (Time x Group) for the spelling group is
+          p=0.0658, which is not significant.
+        concern: The claim of significant improvement is false; the interaction p-value
+          in Table 2 is 0.0658.
+        verdict: disagree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f3
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: false
+        numbers_match: true
+        limitations_captured: true
+        omissions: The interaction effect (Time x Group) for the spelling group is
+          p=0.0658, which is not significant.
+        concern: The claim of significant improvement is false; the interaction p-value
+          in Table 2 is 0.0658.
+        verdict: disagree
+      - id: f4
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ contains duplicate findings (f1/f3 and f2/f4). f1/f3 claim significant improvement\
+      \ in spelling accuracy for the spelling group compared to the natural history\
+      \ group, but Table 2 shows the interaction effect for 'Spelling vs. NH' has\
+      \ a p-value of 0.0658, which is not statistically significant at the standard\
+      \ alpha=0.05 level. Therefore, the claim of 'significant improvement' is unsupported\
+      \ by the provided statistics.\",\n  \"per_finding\": [\n    {\n      \"id\"\
+      : \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": false,\n      \"strength_fair\": false,\n\
+      \      \"numbers_match\": true,\n      \"limitations_captured\": true,\n   \
+      \   \"omissions\": \"The interaction effect (Time x Group) for the spelling "
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:claude-opus-4-7
+    independent: true
+    papers_missing: []
+last_run: '2026-11-09T15:20:47'
+latest_verdict: checks_passed
+latest_mode: with_llm_review

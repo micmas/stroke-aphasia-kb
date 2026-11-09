@@ -1,79 +1,56 @@
 # Stroke aphasia knowledge base
 
-A curated literature base linking stroke lesion locations to aphasia
-impairments, therapy responses and recovery predictors. Every finding is
-one claim from one paper, with the verbatim passages that support it, so
-anyone can open the paper and check. Entries are markdown files with
-YAML frontmatter: readable by people, loaded by code.
+What does the research literature say about a person's aphasia, given
+where their stroke is? This knowledge base collects the answers, one
+claim at a time, with the exact passage of the paper each claim comes
+from. Anyone can open the paper and check.
 
-[CALMaR](https://github.com/micmas/calmar) uses it to turn a lesion mask
-into a cited clinical interpretation, and the
-[CALMaR webapp](https://webapps.neurodesk.org/calmar/) ships an export of
-it. The `explorer/` folder is a static site for browsing the findings,
-published with GitHub Pages on every push to `main`
-([`docs/EXPLORER.md`](docs/EXPLORER.md)).
+It feeds [CALMaR](https://github.com/micmas/calmar), which turns a
+lesion mask into a cited interpretation, and the
+[CALMaR webapp](https://webapps.neurodesk.org/calmar/). You can browse it
+yourself in the [explorer](https://micmas.github.io/stroke-aphasia-kb/explorer/).
 
-**Status (October 2026):** 72 entries, 262 findings, 55 papers cited.
-`python scripts/kb_status.py` prints the current numbers.
+**Where we are (November 2026):** 73 entries, 269 findings, 60 papers.
+The [explorer's Overview](https://micmas.github.io/stroke-aphasia-kb/explorer/)
+shows today's numbers.
 
-## What is in an entry
+## Where to go
 
-Each entry describes one region, impairment, therapy, predictor or
-review article, and holds a list of findings. A finding records the
-claim, its direction and relationship (causal, correlational, treatment
-response, …), the method, sample and statistics, the confounders the
-authors did and did not control, how the paper defined the region, the
-extractor's confidence, and the source passages that back it. Who
-approved it, when, and at which review tier is recorded with it. The
-full field list is [`docs/schema.md`](docs/schema.md) and a worked
-example is
-[`docs/examples/`](docs/examples/region_ifg_opercularis_fridriksson2018.md).
-
-Nothing enters the approved folders without a second reading of the
-paper, by a person or (for routine findings) by an independent local
-model, and a named person is accountable for all of it. That policy is
-[`docs/GOVERNANCE.md`](docs/GOVERNANCE.md). Every model step runs on
-your own machine through Ollama; paper text never leaves it.
-
-## Repository layout
-
-```
-regions/ impairments/ therapies/ predictors/ reviews/ ingredients/
-                      approved entries — what CALMaR and the webapp read
-drafts/               entries waiting for review
-citations.md          bibliography: one block per paper (@Key, DOI, status)
-screening/            the systematic-search register (what was searched and decided)
-atlas_mapping/        how atlas labels map onto KB regions (data + its README)
-
-scripts/              all the Python tooling (see docs/COMMANDS.md)
-tests/                tests for the tooling
-docs/                 how-tos, policy, schema and the model guide (index below)
-logs/                 append-only audit trail: extraction_log.md, auto_review/, portal/ (reviews sent from the portal)
-
-export/               JSON export of the approved entries, for the webapp and explorer
-js/                   kb-evidence.js, the JavaScript port of the evidence logic
-explorer/             the static explorer site (published by GitHub Pages)
-portal/               the private review portal for collaborators (Cloudflare Pages + Access; docs/PORTAL.md)
-
-models.yaml           which local Ollama model each role uses
-requirements.txt      Python dependencies of scripts/
-papers/               source PDFs — local only, never committed (copyright)
-```
-
-## Documentation
-
-| If you want to… | Read |
+| You want to… | Go to |
 |---|---|
-| add a paper and get it to an approved entry | [`CONTRIBUTING.md`](CONTRIBUTING.md), then [`docs/HOWTO.md`](docs/HOWTO.md) |
-| review a draft against its paper and fix or extend it | `python scripts/review_app.py` (the workbench), then `scripts/refocus.py` for passages you marked — [`docs/HOWTO.md`](docs/HOWTO.md) §4 |
-| look up a command and its options | [`docs/COMMANDS.md`](docs/COMMANDS.md) |
-| understand the entry format | [`docs/schema.md`](docs/schema.md) |
-| know who may approve what | [`docs/GOVERNANCE.md`](docs/GOVERNANCE.md) |
-| find papers systematically (PRISMA) | [`docs/SCREENING.md`](docs/SCREENING.md) |
-| choose or benchmark a local model | [`docs/MODELS.md`](docs/MODELS.md) and `models.yaml` |
-| understand the export, the JS port and the explorer | [`docs/EXPLORER.md`](docs/EXPLORER.md) |
-| let collaborators review drafts and screen papers in the browser | [`docs/PORTAL.md`](docs/PORTAL.md) |
-| see the instructions the extractor model is given | [`docs/EXTRACTION_SKILL.md`](docs/EXTRACTION_SKILL.md) |
+| read the evidence | the [explorer](https://micmas.github.io/stroke-aphasia-kb/explorer/): findings, evidence matrix, papers, coverage |
+| help, without installing anything | the explorer's **Get involved** page, then the review portal ([docs/PORTAL.md](docs/PORTAL.md)) |
+| contribute from a checkout: review drafts, add papers | [CONTRIBUTING.md](CONTRIBUTING.md), then [docs/HOWTO.md](docs/HOWTO.md) |
+| look up a command | [docs/COMMANDS.md](docs/COMMANDS.md) |
+| understand how entries are written | [docs/schema.md](docs/schema.md), with a [worked example](docs/examples/region_ifg_opercularis_fridriksson2018.md) |
+| know who decides what goes in | [docs/GOVERNANCE.md](docs/GOVERNANCE.md) |
+| see how papers are found and chosen | [docs/SCREENING.md](docs/SCREENING.md) |
+| choose a local model | [docs/MODELS.md](docs/MODELS.md) |
+| build on the export or the JavaScript port | [docs/EXPLORER.md](docs/EXPLORER.md) |
+
+## How it works, in short
+
+An **entry** is one brain region, impairment, therapy, recovery
+predictor or review article. It holds **findings**: each one a single
+claim from a single paper, with the paper's own words to back it, the
+method and sample, and how sure the extractor was.
+
+A language model running on the maintainer's own computer reads each
+PDF and writes draft findings: currently Gemma 4 31B (`gemma4:31b-it-q8_0`)
+through Ollama. A person, or for routine findings a second, independent
+local model, currently Gemma 4 26B (`gemma4:26b`), then re-reads the
+paper and agrees or not. The choice of models and the tests behind it
+are in [docs/MODELS.md](docs/MODELS.md). Only after that does a finding become part of the
+knowledge base, and a named person is accountable for it. That is the
+whole idea; the rules are in [docs/GOVERNANCE.md](docs/GOVERNANCE.md).
+
+Each finding records which model wrote it. Most of the entries approved
+before October 2026 were drafted by Claude models over an API, a route
+the project no longer uses; they are marked as pre-policy and are being
+re-reviewed against the papers.
+
+Papers never leave the machine they are read on. The repository holds
+findings, quotations and DOIs; never the PDFs.
 
 ## Quick start
 
@@ -83,32 +60,60 @@ cd stroke-aphasia-kb
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
-python scripts/kb_status.py                 # what is in the KB
-python scripts/aphasia_kb.py --check drafts/   # validate entries
-python scripts/promote.py --list            # what needs a reviewer
-python scripts/review_app.py                # review a draft beside its paper, in the browser
+python scripts/kb_status.py                     # what is in the KB
+python scripts/promote.py --list                # drafts waiting for a reviewer
+python scripts/review_app.py                    # review a draft beside its paper
 ```
 
-Extracting and reviewing papers needs a local model:
-`ollama serve && ollama pull gemma4:26b`, then `python scripts/model_config.py`
-to confirm the roles in `models.yaml` resolve. The whole route from a
-PDF to an approved entry is in [`docs/HOWTO.md`](docs/HOWTO.md).
+Extracting new papers needs the local models: `ollama serve`, then
+`ollama pull gemma4:31b-it-q8_0` (the extractor; needs about 48 GB of
+RAM, otherwise `gemma4:26b`) and `ollama pull gemma4:26b` (the
+reviewer). `python scripts/model_config.py` confirms both resolve.
+[docs/HOWTO.md](docs/HOWTO.md) walks from a PDF to an approved entry.
 
-## How the other repositories use it
+## What is where
 
-| Consumer | How |
-|---|---|
-| [CALMaR](https://github.com/micmas/calmar) | git submodule `stroke-aphasia-kb/`, pinned to one commit. Its report code imports `scripts/aphasia_kb.py`, `scripts/aphasia_rules.py` and `scripts/atlas_mapping.py`. After a KB push, CALMaR bumps the pointer: `git submodule update --remote stroke-aphasia-kb && git add stroke-aphasia-kb && git commit`. |
-| [CALMaR webapp](https://github.com/neurodesk/webapps) (`apps/calmar`) | a JSON export written by `scripts/export_webapp.py`; `apps/calmar/scripts/sync_kb.py --kb <this checkout>` runs it and records the KB commit. Also vendors `js/kb-evidence.js`. |
+```
+regions/ impairments/ therapies/ predictors/ reviews/ ingredients/
+                      the approved entries (what CALMaR reads)
+drafts/               entries waiting for review
+citations.md          one block per paper: key, DOI, status
+screening/            the systematic-search register
+atlas_mapping/        atlas labels → KB regions
 
-This repository is the knowledge base's only home: entries, scripts and
-policy are edited and committed here, never in a copy. If you find
-yourself editing `calmar/stroke-aphasia-kb/`, commit and push from
-there (it is a clone of this repository), then bump the pointer in
-calmar.
+scripts/              the tooling (docs/COMMANDS.md)
+tests/                its tests
+docs/                 guides, policy, schema, figures
+logs/                 the audit trail: what was extracted, reviewed, applied
+
+export/               JSON exports for the webapp and the explorer
+js/                   the JavaScript port of the evidence logic
+explorer/             the public site (GitHub Pages)
+portal/               the private review portal (Cloudflare Pages)
+
+models.yaml           which local model does which job
+papers/               the PDFs — on your machine only, never committed
+```
+
+## The other repositories
+
+[CALMaR](https://github.com/micmas/calmar) includes this repository as
+a git submodule pinned to one commit. After a change lands on `main`,
+bump the pointer there:
+
+```bash
+git submodule update --remote stroke-aphasia-kb
+git add stroke-aphasia-kb && git commit -m "KB: bump"
+```
+
+The [webapp](https://github.com/neurodesk/webapps) (`apps/calmar`)
+takes a JSON export: `apps/calmar/scripts/sync_kb.py --kb <this checkout>`.
+
+Edit entries, scripts and policy here, not in a copy. If you find
+yourself inside `calmar/stroke-aphasia-kb/`, commit and push from there
+(it is a clone of this repository), then bump the pointer.
 
 ## Licence
 
-MIT, see [`LICENSE`](LICENSE). Source PDFs are not redistributed;
-`citations.md` carries the DOI of every paper so you can fetch it
-through your own access.
+MIT ([LICENSE](LICENSE)). PDFs are not redistributed; `citations.md`
+has the DOI of every paper so you can fetch it through your own access.

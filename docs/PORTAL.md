@@ -1,169 +1,201 @@
 # The review portal
 
-A private website where collaborators review drafts beside the annotated
-PDFs, screen candidate papers and send their decisions back here — without
-a copy of the repository, a terminal or a local model. It is the hosted
-counterpart of the two local workbenches (`review_app.py`, `screen_app.py`).
+The review portal is where collaborators help check the knowledge base.
+You sign in with your email, read a draft next to the paper it came from,
+and say whether you agree. You can also sort new papers in or out, and
+send us a PDF we don't have. Nothing you do there changes the KB
+directly: your decisions come back to the maintainer, who applies them
+under your name.
 
-```
-                  explorer (GitHub Pages, public)         review portal (Cloudflare Pages, private)
-                  ─────────────────────────────           ──────────────────────────────────────
-  export/*.json ─► findings, papers, coverage …   ◄──────  the same exports
-  papers/*_annotated.pdf ─┬─► cc/   (Creative Commons: public path, linked from the explorer)
-                          └─► pdf/  (everything else: Cloudflare Access, allow-listed emails)
-  screening queue (prioritised head + full text, with abstracts) ─► screening.json (private)
+If you have been invited, start with **[For reviewers](#for-reviewers)**
+below. If you maintain the KB, the one-time setup is in §2 and the
+weekly routine in §3.
 
-  reviewer ──sign-in (one-time code to an allow-listed email)──► portal ──POST /api/reviews──► GitHub
-                                                                                  │
-            logs/portal/inbox/<stamp>_<kind>_<reviewer>_<id>.json  ◄──────────────┘
-                                   │
-            python scripts/portal_import.py --execute   (on the maintainer's machine)
-                                   ▼
-            screening/candidates.yaml · drafts/*.md (edits, marks, verdicts, comments) · logs/
-```
+![The review portal: what moves where. The maintainer's machine publishes annotated PDFs (by licence), the exports and the screening queue to a private Cloudflare Pages site; reviewers sign in with a one-time code and review, screen and upload there; every decision comes back as a record in logs/portal/inbox/ on GitHub, and uploaded PDFs wait in a private bucket, until the maintainer applies them with portal_import.py.](figures/portal-flow.svg)
 
-Three principles. **Nothing enters the KB from the web**: the portal can
-only append JSON records to `logs/portal/inbox/`; a person applies them with
-`portal_import.py`, and `promote.py` remains the only way into the canonical
-folders. **Reviewers are identified by Cloudflare Access**, which verifies
-the email before the portal's code runs; the API checks the signed token
-again and stamps every record with that email. **Licences decide what is
-public**: annotated PDFs of Creative-Commons papers (`screening/licences.yaml`,
-categories `cc`, `cc_manuscript`) are served openly and linked from the
-explorer; every other annotated PDF is only readable after sign-in.
-Source PDFs are never published; `papers/` stays local.
+*The maintainer's machine on the left, the portal in the middle, the
+public explorer on the right. Content goes out with `publish_portal.py`;
+decisions come back as records; only `portal_import.py`, on the
+maintainer's machine, writes anything into the KB.*
 
-## 1. What a reviewer can do
+## For reviewers
 
-| In the portal | What is sent | What the maintainer applies |
+**Getting in.** The maintainer adds your email to the portal's allow-list
+(and to the Reviewer team, `portal/reviewers.yaml`). Open
+https://stroke-aphasia-kb-review.pages.dev, type your email, and enter
+the code that arrives. No account, no password; the sign-in lasts a week.
+
+**What you can do**
+
+| Page | What you do there | What happens to it |
 |---|---|---|
-| **Drafts** → open one beside its annotated PDF: agree / disagree / unsure per finding with a concern; flag a passage (not in the paper, wrong page, does not support the claim); fix claim, direction, relationship, strength, target; select words in the PDF to add a passage to a finding; mark passages no finding covers, with a note; an overall verdict (approve / keep for review / reject) with a rationale | `verdict`, `edit`, `mark` records | verdicts → the draft's `portal_reviews` (and `promote.py` when the reviewer may approve); edits → the finding, stamped `edits`; marks → `reviewer_marks` for `refocus.py` |
-| **Title/abstract** → the next 300 records of the prioritised queue (SCREENING.md §4.1): include / exclude with a reason / unsure, note; keys `i` `e` `u` | `screen` records | `screening/candidates.yaml` via the same code as `screen.py decide`, as `by: <name>` |
-| **Full text** → every record awaiting assessment, with the annotated PDF when the portal holds it | `screen` records (`stage: full_text`) | same |
-| **My reviews** → what you sent and whether it has been applied | — | — |
+| **Drafts** | Open a draft beside the annotated PDF (the highlights are its passages). For each finding: agree, disagree (say why) or unsure. For each passage: checked, not sure, or a problem (not in the paper, wrong page, does not support the claim, altered). Fix a field the paper contradicts. Select words in the PDF to add a passage, or to mark something the extractor missed. Give an overall verdict. | Comes back as records; the maintainer applies them to the draft. If you are an approver, your verdict runs `promote.py` under your name. |
+| **Title/abstract** | Read a title and abstract, decide include / exclude (with a reason) / unsure. Keys `i` `e` `u`. The queue is the prioritised head of the register, 300 at a time. | Written into the screening register under your name. |
+| **Full text** | Read the paper itself and decide. The paper's PDF must exist first; if nobody has it, upload it. | Same. |
+| **Upload a PDF** | On any card or draft whose paper the portal lacks. PDF only, up to 60 MB. | Goes to a private bucket, then to the maintainer's papers folder; never to the public site. |
+| **PDFs** | Every annotated PDF this build holds, with its licence, and the uploads waiting for the maintainer. | — |
+| **My reviews** | What you sent, and whether it has been applied yet. | — |
 
-Decisions are kept in the reviewer's browser until "Send"; sending writes
-the records to GitHub at once (one commit each) and the page confirms.
+Your decisions stay in your browser until you press **Send**; sending
+writes them to the repository (one commit each, a second or two per
+record) and the page confirms. What you leave as "not checked" stays
+open for another reviewer.
+
+**Who approves.** Everyone on the Reviewer team can review; those marked
+`approver: true` can approve, and are the accountable person for what
+they approve ([GOVERNANCE.md](GOVERNANCE.md) §2). An approve from anyone
+else is kept as an opinion the maintainer reads.
+
+**The papers.** Creative-Commons papers are served openly and linked from
+the explorer. Every other annotated PDF is behind the sign-in, for the
+Reviewer team only, like a shared folder with a lock. Please don't pass
+them on.
+
+## 1. How it is built
+
+Three rules shape the design.
+
+**Nothing enters the KB from the web.** The portal can only append JSON
+records to `logs/portal/inbox/`. A person applies them with
+`portal_import.py`, and `promote.py` stays the only way into the
+canonical folders.
+
+**Reviewers are identified by Cloudflare Access.** Access checks the
+email before the portal's code runs; the API checks the signed token
+again and stamps every record with that email.
+
+**Licences decide what is public.** Annotated PDFs of Creative-Commons
+papers (`screening/licences.yaml`: `cc`, `cc_manuscript`) are served
+openly on the `cc/` path and linked from the explorer; all other annotated
+PDFs need the sign-in. Source PDFs are never published; `papers/` stays
+local.
+
+Record kinds, and what the import does with them:
+
+| Record | From | Applied as |
+|---|---|---|
+| `screen` | a screening decision | `screening/candidates.yaml`, `by: <name>` |
+| `verdict` | per-finding answers + overall verdict | the draft's `portal_reviews`; `promote.py` when the reviewer is an approver and `--promote` is given |
+| `edit` | a changed field, added passages | the finding, stamped `edits: {by, date, fields, via: portal}`; skipped as stale if the field changed since |
+| `mark` | a passage no finding covers | the draft's `reviewer_marks`, for `refocus.py` |
+| `comment` | free text | `portal_comments` |
+| `pdf` | an uploaded paper | pulled from the bucket into `papers/<Key>.pdf` (or `<Cid>_<name>.pdf`, linked to the candidate), checksum verified, then deleted from the bucket |
 
 ## 2. One-time setup (maintainer)
 
-1. **Cloudflare account** (free) → *Workers & Pages* → *Create* → *Pages* →
-   *Direct upload*; name the project `stroke-aphasia-kb-review` (or change
-   `pagesProject` / `portalUrl` in `portal/portal.config.json`). Upload any
-   placeholder; the real content comes from the script below.
-2. **Cloudflare Access** (*Zero Trust* → *Access* → *Applications* → *Add an
-   application* → *Self-hosted*): application domain
-   `stroke-aphasia-kb-review.pages.dev` (and `*.stroke-aphasia-kb-review.pages.dev`
-   for preview deployments), session duration as you like. Policy *Allow* with
-   rule *Emails* = the reviewers' addresses (or *Emails ending in* `@uq.edu.au`
-   plus named externals). Identity provider: the default *One-time PIN* needs
-   nothing else; Microsoft/Google login can be added. Copy the application's
-   **Audience (AUD) tag** and the **team domain** (`<team>.cloudflareaccess.com`).
-3. **Public path for the CC PDFs**: add a second Access application for the
-   same domain with path `cc/*` and a single *Bypass* policy (*Everyone*), so
-   `…/cc/<Key>_annotated.pdf` opens without sign-in. Everything else stays
-   behind the first application.
-4. **GitHub token**: a fine-grained personal access token for this repository
-   only, permission *Contents: Read and write*, 1-year expiry, named
-   `stroke-aphasia-kb-portal`. It is the only secret.
-5. **Variables** (Pages project → *Settings* → *Variables and Secrets*,
-   Production): `ACCESS_TEAM_DOMAIN` = `<team>` (the part before
-   `.cloudflareaccess.com`), `ACCESS_AUD` = the AUD tag, `GITHUB_REPO` =
-   `micmas/stroke-aphasia-kb`, `GITHUB_BRANCH` = `main`, and the secret
-   `GITHUB_TOKEN`. The same four names are placeholders in
-   `portal/wrangler.toml`; either place works, the dashboard wins.
-6. **Reviewers table**: `portal/reviewers.yaml` maps each email to the
-   `human:<name>` used in the KB and says who may approve
-   (GOVERNANCE.md §2). The Access policy decides who may *enter*; this file
-   decides what their verdicts *do*.
-7. **Tools on the Mac**: `cd portal && npm install` (pdf.js for the viewer,
-   wrangler to deploy) and `npx wrangler login` once.
+1. **Cloudflare account** (free). *Workers & Pages → Create → Pages →
+   Direct upload*, project `stroke-aphasia-kb-review` (or change
+   `pagesProject` / `portalUrl` in `portal/portal.config.json`).
+2. **Zero Trust → Access → Applications → Add → Self-hosted.** Domain
+   `stroke-aphasia-kb-review.pages.dev`, plus
+   `*.stroke-aphasia-kb-review.pages.dev` for preview deployments.
+   Policy *Allow*, rule *Emails* = the reviewers (or *Emails ending in*
+   `@uq.edu.au` plus named externals). Identity: the default one-time PIN
+   needs nothing else. Note the **AUD tag** and the **team name**
+   (`<team>.cloudflareaccess.com`).
+3. **A second Access application** for the same domain with path `cc/*`
+   and one *Bypass* policy (*Everyone*): that is what makes the
+   Creative-Commons PDFs public.
+4. **GitHub token.** Fine-grained, this repository only, *Contents: read
+   and write*. It is the only secret.
+5. **Variables.** `ACCESS_TEAM_DOMAIN` (the team name), `ACCESS_AUD`,
+   `GITHUB_REPO`, `GITHUB_BRANCH` in `portal/wrangler.toml`; the token as
+   a secret: `npx wrangler pages secret put GITHUB_TOKEN --project-name
+   stroke-aphasia-kb-review`.
+6. **Reviewer team.** `portal/reviewers.yaml`: each email → `human:<name>`
+   and `approver: true/false`. The Access policy decides who may *enter*;
+   this file decides what their verdicts *do*.
+7. **Tools.** `cd portal && npm install` (pdf.js, wrangler), then
+   `npx wrangler login` once.
+8. **Uploads bucket** (optional): `npx wrangler r2 bucket create
+   stroke-aphasia-kb-uploads`, then redeploy. The binding is already in
+   `wrangler.toml`. Without it the upload control is hidden. The bucket is
+   private; the only reader is `portal_import.py` on your machine.
 
-## 2b. Trying it on your own computer first
+### Trying it on your own computer first
 
 ```bash
-python scripts/publish_portal.py                 # build portal/dist/ (needs `npm install` in portal/ once, for pdf.js)
-python scripts/portal_dev.py --by you@uq.edu.au  # serve it at http://127.0.0.1:8768/ as that reviewer
-python scripts/portal_import.py                  # what you sent, as the maintainer would see it (then --execute, or delete the records)
+python scripts/publish_portal.py
+python scripts/portal_dev.py --by you@uq.edu.au
+python scripts/portal_import.py
 ```
 
-`portal_dev.py` stands in for Cloudflare Access and the GitHub write: the
-email you pass is the signed-in reviewer, and each record you send is
-written to `logs/portal/inbox/` under the same file name the hosted
-function would commit. The only parts it does not exercise are the Access
-token check and the GitHub API call; `cd portal && npm test` covers the
-former with a generated key pair. `npx wrangler pages dev dist` (in
-`portal/`) runs the real Functions locally instead, with `DEV_REVIEWER=<email>`
-in a `portal/.dev.vars` file standing in for Access — but a `GITHUB_TOKEN`
-there would make real commits.
+`portal_dev.py` serves the built portal at http://127.0.0.1:8768/ as the
+email you pass, standing in for Access, the GitHub write and the bucket:
+records go to `logs/portal/inbox/` under the same names, uploads to
+`portal/.uploads/`. Apply them with `--execute` or delete them after a
+trial. `cd portal && npm test` covers the Access token check and the
+upload function with fakes.
 
-## 3. Publishing and the review cycle
+## 3. The weekly routine
+
+Publish, after extracting or re-annotating, or when the queue should move
+on:
 
 ```bash
 python scripts/export_webapp.py --out export/stroke-aphasia-kb.json --fixtures export --indent 1
 python scripts/export_webapp.py --include approved,in_review,draft --out export/stroke-aphasia-kb-drafts.json
-python scripts/publish_portal.py --deploy      # assemble portal/dist/ (PDFs by licence, exports, queue) and deploy
+python scripts/publish_portal.py --deploy
 ```
 
-`publish_portal.py` reads `papers/` on this machine, so it is run here, not
-in CI: the PDFs never pass through git. Re-run it after re-annotating,
-after extracting new papers, or when the queue should move on. `--pdfs-only`
-refreshes only the PDF folders; `--ta-limit N` changes how much of the
-title/abstract queue is offered (default 300, in the prioritised order).
+`publish_portal.py` reads `papers/` here, so it runs on this machine,
+never in CI. `--pdfs-only` refreshes just the PDF folders; `--ta-limit N`
+changes how much of the title/abstract queue is offered.
 
-When reviews have arrived (each is a commit on `main` under
+Apply, when records have arrived (each is a commit under
 `logs/portal/inbox/`):
 
 ```bash
 git pull
-python scripts/portal_import.py                # what each record would do, and any unknown reviewer email
-python scripts/portal_import.py --execute      # apply; records move to logs/portal/applied/
-python scripts/portal_import.py --execute --promote   # also run promote.py for approvers' approve / reject
-python scripts/refocus.py --all --execute      # marks → findings, if any were sent
+python scripts/portal_import.py
+python scripts/portal_import.py --execute --promote
+python scripts/refocus.py --all --execute
+python scripts/intake_papers.py --execute
 git add screening drafts logs && git commit -m "Portal reviews applied" && git push
-python scripts/publish_portal.py --deploy      # so reviewers see "applied" and the new state
+python scripts/publish_portal.py --deploy
 ```
 
-Everything applied is attributed: screening decisions carry `by: <name>`;
-edits get `edits: {by, date, fields, via: portal}`; verdicts land in the
-draft's `portal_reviews` with the per-finding answers; the log gets one
-`PORTAL-APPLIED` line per run. An `approve` from someone not listed as an
-approver is kept as an opinion, never promoted. An edit whose field changed
-since the reviewer saw it is reported as stale and not applied.
+The first line is a dry run and lists any email not yet in the Reviewer
+team. `--promote` runs `promote.py` for approvers' approve / reject.
+`refocus.py` is for marks, `intake_papers.py` for uploaded PDFs; skip them
+when there were none. Redeploy last, so reviewers see "applied" and the
+new state. The log gets one `PORTAL-APPLIED` line per run.
 
 ## 4. Files
 
 ```
-docs/PORTAL.md                 this page
-portal/web/                    the portal page (index.html, app.js, portal.css); the explorer's stylesheet is reused
-portal/functions/              Cloudflare Pages Functions: _middleware.js (Access token check), api/me.js, api/reviews.js
-portal/functions/test/         node --test: the token check against a generated key pair
-portal/portal.config.json      project name, portal URL (the explorer links public PDFs through it), explorer URL
-portal/reviewers.yaml          email → human:<name>, approver yes/no
-portal/wrangler.toml           Pages project settings; non-secret variables
+portal/web/                    the portal page: index.html, app.js, portal.css (the explorer's stylesheet is reused)
+portal/functions/              Pages Functions: _middleware.js (Access check), api/me.js, api/reviews.js, api/upload.js
+portal/lib/github.js           the one GitHub write, shared by the functions
+portal/functions/test/         node --test: token check (generated key pair), upload (fake bucket)
+portal/portal.config.json      project name, portal URL, explorer URL
+portal/reviewers.yaml          the Reviewer team: email → human:<name>, approver yes/no
+portal/wrangler.toml           Pages project settings, non-secret variables, the R2 binding
 portal/package.json            pdfjs-dist (vendored into dist/ at build) and wrangler
-portal/dist/                   the built site — git-ignored (it contains PDFs)
+portal/dist/, portal/.uploads/ built site and local uploads — git-ignored (they hold PDFs)
 scripts/publish_portal.py      assemble dist/ and deploy
-scripts/portal_dev.py          serve dist/ locally, standing in for Access and the GitHub write
-scripts/portal_import.py       apply the records in logs/portal/inbox/
-logs/portal/inbox/             records sent by reviewers, waiting
-logs/portal/applied/           records applied (kept: they are the audit trail of who decided what)
-tests/test_portal.py           the Python halves
+scripts/portal_dev.py          serve dist/ locally
+scripts/portal_import.py       apply the records
+logs/portal/inbox/, applied/   records waiting; records applied (the audit trail)
+tests/test_portal.py           the Python side
 ```
 
 ## 5. Limits and choices
 
-* **One commit per record.** Simple and fully attributed; a reviewer who
-  sends forty screening decisions makes forty small commits. If that gets
-  noisy, the function can batch per send — the import does not care.
-* **The portal is a snapshot.** It shows the exports and queue it was built
-  with; "My reviews" is live (it lists the repository folders). Redeploy after
-  applying reviews so the state catches up.
-* **Preview deployments** (`--branch` other than `main`) get their own URL
-  under the same Access rules when the wildcard domain is in the application.
-* **Access free tier**: 50 users. The one-time-PIN login needs no account;
-  a reviewer can also be let in through Microsoft or Google if that provider
-  is added to the Zero Trust team.
-* **Copyright**: the private site is a shared folder with a lock, used by
-  named collaborators for checking claims — the same footing as the OneDrive
-  folder. Do not add a Bypass policy to `pdf/`.
+One commit per record: simple and fully attributed; forty screening
+decisions are forty small commits. If that gets noisy the function can
+batch per send; the import does not care.
+
+The portal is a snapshot of the build; "My reviews" is live. Redeploy
+after applying reviews.
+
+Access free tier: 50 users; Microsoft or Google sign-in can be added to
+the Zero Trust team. Preview deployments (`--branch` other than `main`)
+get their own URL under the same Access rules.
+
+Copyright: the private site is a shared folder with a lock for named
+collaborators. Do not add a Bypass policy to `pdf/`. Uploaded PDFs travel
+the other way on the same footing and never reach the public path; their
+licence decides that at the next build like every other paper. One upload
+per paper; the uploader may replace it, nobody else can until the
+maintainer has pulled it.

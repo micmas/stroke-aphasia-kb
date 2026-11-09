@@ -30,6 +30,7 @@ import argparse
 import datetime as dt
 import hashlib
 import json
+import re
 import shutil
 import subprocess
 import sys
@@ -94,6 +95,26 @@ def copy_pdfs(papers_dir: Path, dist: Path, lic: dict[str, dict]) -> dict[str, d
     return out
 
 
+def source_pdfs(papers_dir: Path) -> dict:
+    """What papers/ holds besides the annotated copies: `keys` (@Key of every <Key>.pdf, so the
+    portal knows the maintainer already has the paper even when it is not annotated yet) and
+    `files` (the other PDF names, which screening records point to through `pdf_file`)."""
+    keys, files = [], []
+    try:
+        cited = {k.lstrip("@").lower(): k.lstrip("@") for k in S.citation_blocks()}
+    except Exception:  # noqa: BLE001
+        cited = {}
+    if papers_dir.is_dir():
+        for pdf in sorted(papers_dir.glob("*.pdf")):
+            if pdf.stem.endswith("_annotated"):
+                continue
+            if pdf.stem.lower() in cited or re.fullmatch(r"[A-Za-z][A-Za-z'\-]*\d{4}[A-Za-z0-9]*", pdf.stem):
+                keys.append("@" + cited.get(pdf.stem.lower(), pdf.stem))
+            else:
+                files.append(pdf.name)
+    return {"keys": keys, "files": files}
+
+
 def screening_bundle(root: Path = ROOT, ta_limit: int = 300) -> dict:
     """Candidates a reviewer can still decide on, with abstracts, for the private site.
 
@@ -121,7 +142,7 @@ def screening_bundle(root: Path = ROOT, ta_limit: int = 300) -> dict:
     for cid in ta_ids + ft_ids:
         r = rows[cid]
         cands.append({k: r.get(k) for k in ("id", "key", "doi", "pmid", "title", "year", "first_author", "authors", "journal",
-                                             "stage", "for", "sources") if r.get(k) not in (None, "", [])}
+                                             "stage", "for", "sources", "pdf_file") if r.get(k) not in (None, "", [])}
                      | {"abstract": abstracts.get(r["id"], ""), "history": [{k: d.get(k) for k in ("stage", "decision", "reason", "by", "date") if d.get(k)}
                                                                                for d in (r.get("screening") or [])],
                         "suggestion": r.get("suggestion")})
@@ -141,6 +162,7 @@ def build(papers_dir: Path, pdfs_only: bool = False, ta_limit: int = 300) -> dic
         manifest_path = DIST / "manifest.json"
         manifest = json.loads(manifest_path.read_text(encoding="utf-8")) if manifest_path.exists() else {}
         manifest["papers"] = pdfs
+        manifest["sources"] = source_pdfs(papers_dir)
         manifest_path.write_text(json.dumps(manifest, indent=1, sort_keys=True), encoding="utf-8")
         return manifest
     # the portal itself
@@ -172,9 +194,11 @@ def build(papers_dir: Path, pdfs_only: bool = False, ta_limit: int = 300) -> dic
           f"({'prioritised order' if q['ranked'] else 'all'}) + {q['full_text']} full-text records")
     cfg_path = PORTAL / "portal.config.json"
     cfg = json.loads(cfg_path.read_text(encoding="utf-8")) if cfg_path.exists() else {}
+    sources = source_pdfs(papers_dir)
     manifest = {"built": dt.datetime.now().isoformat(timespec="minutes"), "kbCommit": git("rev-parse", "--short", "HEAD"),
-                "kbDate": git("log", "-1", "--format=%cs"), "papers": pdfs, "config": cfg,
-                "counts": {"public": n_public, "private": len(pdfs) - n_public, "candidates": len(sb["candidates"])}}
+                "kbDate": git("log", "-1", "--format=%cs"), "papers": pdfs, "sources": sources, "config": cfg,
+                "counts": {"public": n_public, "private": len(pdfs) - n_public, "candidates": len(sb["candidates"]),
+                           "sources": sum(1 for k in sources["keys"] if k not in pdfs), "sourceFiles": len(sources["files"])}}
     (DIST / "manifest.json").write_text(json.dumps(manifest, indent=1, sort_keys=True), encoding="utf-8")
     (DIST / "_headers").write_text("/*\n  X-Robots-Tag: noindex\n  Cache-Control: no-cache\n/cc/*\n  Cache-Control: public, max-age=86400\n",
                                    encoding="utf-8")

@@ -684,3 +684,12 @@ add an `EXTRACTED` line for every run.
 2026-10-30 | MODEL-APPROVED | @Lee2018 | left_arcuate_fasciculus_slf | reviewer: model:gemma4:26b | extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0 | tier: A
 2026-10-31 | MODEL-APPROVED | @Kristinsson2020 | left_ifg_pars_opercularis | reviewer: model:gemma4:26b | extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0 | tier: A
 2026-10-31 | MODEL-APPROVED | @Lee2018 | left_ifg_pars_opercularis | reviewer: model:gemma4:26b | extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0 | tier: A
+2026-11-09 | REREVIEW | @Pulvermuller2001, @Maher2006 | constraint_induced_aphasia_therapy | by: human:michele | 2 draft(s) | previous: agent:claude-sonnet-4-6
+2026-11-09 | REREVIEW | @Schlaug2008, @vanderMeulen2012, @Stahl2013 | melodic_intonation_therapy | by: human:michele | 3 draft(s) | previous: agent:claude-sonnet-4-6
+2026-11-09 | REREVIEW | @MassonTrottier2021 | phonological_component_analysis | by: human:michele | 1 draft(s) | previous: claude-cowork
+2026-11-09 | REREVIEW | @Barbieri2023 | spell_study_spell | by: human:michele | 1 draft(s) | previous: auto-reviewer
+2026-11-09 | REREVIEW | @Fridriksson2018BDNF | tdcs_aphasia_treatment | by: human:michele | 1 draft(s) | previous: auto-reviewer
+2026-11-09 | REREVIEW | @Naeser2005 | tms_right_ifg__Naeser2005 | by: human:michele | 1 draft(s) | previous: claude-cowork
+2026-11-09 | REREVIEW | @Barbieri2023 | treatment_of_underlying_forms | by: human:michele | 1 draft(s) | previous: auto-reviewer
+2026-11-09 | REREVIEW | @Barbieri2023 | typicality_semantic_feature_analysis | by: human:michele | 1 draft(s) | previous: auto-reviewer
+2026-11-09 | PORTAL-APPLIED | — | 2 record(s) | pdf 1, screen 1 | by: michele

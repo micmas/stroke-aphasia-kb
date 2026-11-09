@@ -140,6 +140,54 @@ class Import(unittest.TestCase):
         self.assertIn("skip: no draft", PI.apply_edit({"id": "regions/left_angular_gyrus.md", "finding": "f1", "fields": {}}, "alex", True, state))
         self.assertIn("skip: no draft", PI.apply_edit({"id": "drafts/../README.md", "finding": "f1", "fields": {}}, "alex", True, state))
 
+    def test_pdf_upload_lands_in_papers(self):
+        PI = self.PI
+        saved = (PI.PAPERS, PI.PORTAL, dict(PI.FETCH), PI.S.load_candidates)
+        papers = self.tmp / "papers"; papers.mkdir()
+        PI.PAPERS = papers; PI.PORTAL = self.tmp / "portal"; (PI.PORTAL / ".uploads").mkdir(parents=True)
+        cands = [{"id": "C0001", "title": "A paper with a key", "key": "@Smith2020"},
+                 {"id": "C0002", "title": "A paper without a key"},
+                 {"id": "C0003", "title": "A duplicate", "duplicate_of": "C0001"}]
+        PI.S.load_candidates = lambda *a, **k: cands
+        pdf = b"%PDF-1.4\n" + b"x" * 2000
+        import hashlib
+        sha = hashlib.sha256(pdf).hexdigest()
+        got, deleted = [], []
+        def fake_get(bucket, obj, dest):
+            got.append((bucket, obj)); dest.write_bytes(pdf); return None
+        PI.FETCH["get"] = fake_get
+        PI.FETCH["delete"] = lambda bucket, obj: deleted.append((bucket, obj)) or None
+        try:
+            state: dict = {}
+            rec = {"id": "C0001", "name": "smith.pdf", "bytes": len(pdf), "sha256": sha, "bucket": "b", "object": "uploads/c0001.pdf"}
+            self.assertIn("would fetch", PI.apply_pdf(rec, "alex", False, state))
+            msg = PI.apply_pdf(rec, "alex", True, state)
+            self.assertIn("papers/Smith2020.pdf", msg)
+            self.assertEqual((papers / "Smith2020.pdf").read_bytes(), pdf)
+            self.assertEqual(got, [("b", "uploads/c0001.pdf")]); self.assertEqual(deleted, [("b", "uploads/c0001.pdf")])
+            # second upload for the same paper: discarded, bucket copy removed
+            self.assertIn("already in papers/", PI.apply_pdf(rec, "sam", True, state)); self.assertEqual(len(deleted), 2)
+            # no key → named after the candidate, linked as pdf_file
+            rec2 = {"id": "C0002", "name": "Some Journal (2021).pdf", "bytes": len(pdf), "sha256": sha, "bucket": "b", "object": "uploads/c0002.pdf"}
+            msg = PI.apply_pdf(rec2, "alex", True, state)
+            self.assertIn("linked to C0002", msg)
+            self.assertTrue((papers / "C0002_Some Journal (2021).pdf").exists())
+            self.assertEqual(cands[1]["pdf_file"], "C0002_Some Journal (2021).pdf"); self.assertTrue(state["candidates_dirty"])
+            # a citation key straight from a draft view; a wrong checksum; a duplicate; an unknown id
+            self.assertIn("papers/Jones2019.pdf", PI.apply_pdf({"id": "@Jones2019", "name": "j.pdf", "sha256": sha, "bucket": "b", "object": "uploads/jones2019.pdf"}, "alex", True, state))
+            self.assertIn("does not match", PI.apply_pdf({"id": "@Lee2018", "sha256": "0" * 64, "bucket": "b", "object": "uploads/lee2018.pdf"}, "alex", True, state))
+            self.assertFalse((papers / "Lee2018.pdf").exists())
+            self.assertIn("duplicate", PI.apply_pdf({"id": "C0003", "bucket": "b", "object": "x"}, "alex", True, state))
+            self.assertIn("skip: no candidate", PI.apply_pdf({"id": "C0999", "bucket": "b", "object": "x"}, "alex", True, state))
+            # a local (portal_dev.py) upload is copied from portal/.uploads and removed there
+            local = PI.PORTAL / ".uploads" / "c0004.pdf"; local.write_bytes(pdf); local.with_suffix(".json").write_text("{}")
+            cands.append({"id": "C0004", "title": "Local", "key": "@Local2022"})
+            self.assertIn("papers/Local2022.pdf", PI.apply_pdf({"id": "C0004", "sha256": sha, "local_path": "portal/.uploads/c0004.pdf"}, "alex", True, state))
+            self.assertFalse(local.exists()); self.assertFalse(local.with_suffix(".json").exists())
+            self.assertEqual(state["pdfs_added"], 4)
+        finally:
+            PI.PAPERS, PI.PORTAL = saved[0], saved[1]; PI.FETCH.update(saved[2]); PI.S.load_candidates = saved[3]
+
     def test_run_moves_applied_records(self):
         PI = self.PI
         rel = "drafts/regions/left_angular_gyrus__TestPaper2020.md"

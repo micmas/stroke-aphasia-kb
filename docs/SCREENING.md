@@ -1,26 +1,30 @@
 # Screening protocol: how papers are found and chosen
 
-The knowledge base holds findings extracted from papers; this document
-says how papers get to the extractor in the first place. Until October
-2026 they were picked by hand. From here on, identification and
-screening follow the protocol below, every step is recorded in the
-screening register (`screening/`, kept by `screen.py`), and the
-explorer's **Coverage** view draws the result as a PRISMA 2020 flow
-diagram with every box clickable. The aim is coverage you can audit:
-anyone can see which searches were run, what they returned, what was
-excluded and why, and what each evidence gap still needs.
+Before a paper can be read into the knowledge base, it has to be found
+and judged relevant. This is the protocol for that: the questions the
+KB answers (§1), what makes a paper eligible (§2), how the literature is
+searched (§3) and screened (§4), and how it is reported (§6). Every step
+is recorded in the screening register (`screening/`, kept by
+`screen.py`), and the explorer's **Coverage** page draws the result as a
+PRISMA flow whose every box opens the papers it counts. The point is
+coverage you can audit: anyone can see which searches were run, what
+they returned, what was excluded and why, and what each evidence gap
+still needs.
 
-**The October 2026 restart.** The bibliography built during
-development (`citations.md` up to 2026-10) was chosen by hand. It is not
-the KB's justification any more: the protocol's searches are run from
-scratch, every candidate — legacy papers included — is screened against
-§2, and the legacy set is used to measure the searches (§3.3), not to
-decide anything. A legacy paper keeps its findings while it is re-screened;
-it stays in the KB only if it passes.
+If you are screening in the review portal, §2 is the part to read: it
+is the criteria you decide against. The rest is for whoever runs the
+searches and keeps the register.
 
-The register sits upstream of everything in `HOWTO.md`. Nothing here
-writes to `drafts/` or the canonical folders; an included paper is
-handed to `intake_papers.py` exactly as a hand-picked one was.
+**The October 2026 restart.** The bibliography built during development
+was chosen by hand. It is no longer the KB's justification: the
+protocol's searches are run from scratch, every candidate — the earlier
+papers included — is screened against §2, and the earlier set serves
+only to measure the searches (§3.3). A paper from that set keeps its
+findings while it is re-screened and stays in the KB only if it passes.
+
+The register sits upstream of everything in [HOWTO.md](HOWTO.md).
+Nothing here writes to `drafts/` or the canonical folders; an included
+paper is handed to `intake_papers.py` exactly as a hand-picked one was.
 
 ## 1. Questions the knowledge base answers
 

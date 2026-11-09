@@ -1,15 +1,19 @@
 # Choosing the local model
 
-Which Ollama model each pipeline role uses is set in `models.yaml`. This
-file explains **how to decide what goes in it**, and keeps a log of the
-decisions so the next person (or you in six months) can see why the
-current default is what it is.
+Every model the knowledge base uses runs on the maintainer's own
+computer through Ollama; which one does which job is one line each in
+`models.yaml`. Today the extractor is Gemma 4 31B (`gemma4:31b-it-q8_0`)
+and the independent reviewer Gemma 4 26B (`gemma4:26b`). This page is
+about how those choices are made, so that the next person (or you in six
+months) can see why, and can test a newer model the same way.
 
-The short version: there is no "best" local model, only the best one
-*you have measured on your own curated papers*. Benchmarks on the
-Ollama library page are proxies. `compare_extraction.py` is the ground
-truth for this KB, and it takes about an hour to run a candidate
-through it.
+The short version: there is no best local model, only the best one you
+have measured on papers you have already curated. Library pages and
+benchmarks are hints; the measurement that counts here is whether the
+model quotes the paper exactly, fills the schema, finds what a person
+found, and does not over-claim. `benchmark_models.py` does that
+measurement in one command (§3); the decision log (§5) keeps every
+result, failures included.
 
 ---
 
@@ -110,6 +114,64 @@ roughly half the speed for usually no measurable gain.
 Run this for every candidate before changing `models.yaml`. It touches
 nothing in the canonical KB.
 
+### 3.1 In one command
+
+```bash
+python scripts/benchmark_models.py --list-references
+python scripts/benchmark_models.py --models qwen3.8:27b ornith-1.5:122b --papers Alyahya2018NounVerb Bonilha2014
+python scripts/benchmark_models.py --models qwen3.8:27b --papers Alyahya2018NounVerb --skip-extract --append-log
+python scripts/benchmark_models.py --models qwen3.8:27b --auto-papers 2 --min-findings 5 --seed 7
+```
+
+`--untested` lets the script choose the models too: every candidate in
+the §4 tables that fits this machine and has neither a row in §5 nor a
+sandbox in `_compare/` yet, pulled if needed. Rows the tables mark as
+superseded or lower quality are skipped unless `--all-candidates`. So
+the full check-up is one line:
+
+```bash
+python scripts/benchmark_models.py --untested --auto-papers 2 --seed 7 --append-log
+```
+
+`--auto-papers N` lets the script choose the papers: N reference papers at random,
+each with at least `--min-findings` canonical findings and a PDF, from
+N different buckets (so a candidate is tried on, say, a lesion-symptom
+paper and a therapy trial, not two of the same kind). Human-reviewed
+papers are preferred; `--seed` makes the draw repeatable and the pick
+is written into the results.
+
+`benchmark_models.py` runs the steps below for every model × paper, adds
+the incumbent from `models.yaml` for comparison, scores each run and
+prints two tables: one row per model × paper, and one verdict per model.
+Results go to `_compare/benchmark_<date>.{md,json}`; `--append-log`
+copies the rows into §5 with the Decision column left for you.
+
+### 3.2 How we decide — the metrics, and why these
+
+| Metric | What is measured | Why it matters | Passing |
+|---|---|---|---|
+| **Fidelity** | Every `source_passage` graded against the PDF text (`quote_check.py`): exact / elided / table are verified; anchored and near are real but not verbatim; **absent** means the passage is nowhere in the paper | The KB's claim is that every finding can be checked against the paper. A fabricated quote is not a quality difference, it is a disqualifier | 0 absent on every test paper |
+| **Schema** | Validation issues across the drafts (`aphasia_kb.py`) | Every issue is reviewer time on every paper | No more than the incumbent |
+| **Coverage** | Findings and entries vs the curated reference; *target recall*: the share of the reference's (target, relationship) pairs the candidate also produced | Fewer findings may be a miss or restraint; recall says whether the known results were found. Extra targets can be real finds — read them | Informative, not pass/fail |
+| **Calibration** | Mean strength and confidence vs the reference | Over-claiming is the classic small-model failure. A model that under-claims is the safer extractor | Not more over-claiming than the incumbent (+0.2 tolerance) |
+| **Support** | Source passages per finding | Thin support means the reviewer has to go and find the evidence | Informative |
+| **Cost** | Wall-clock per paper; `ollama ps` processor split during the run | A CPU spill makes a model unusable in practice; twice as slow is acceptable if it never fabricates | Informative |
+
+The reference papers are the ones whose canonical findings a person
+approved after reading the PDF (`--list-references` lists them; it also
+says which papers are not usable yet because their findings are legacy
+or model-reviewed). Use two or three papers of different kinds; a model
+that passes on a lesion-symptom mapping study can fail on a therapy
+trial.
+
+**Eligible** means: zero absent quotes on every paper, and schema issues
+and calibration no worse than the incumbent. Eligible is not adopted:
+read the claims (`compare_extraction.py --show-claims`), weigh speed
+and memory, write the row in §5 with your decision and reasons.
+Failures are logged too; they save the next person an afternoon.
+
+### 3.3 By hand
+
 ```bash
 # 0. Pick 2–3 papers you have ALREADY curated and are confident in.
 #    Choose different kinds: a lesion-symptom mapping study, a therapy RCT,
@@ -179,8 +241,10 @@ For `rag`, use the fastest model that writes acceptable prose.
 
 ## 4. Landscape snapshot — *perishable, re-check before trusting*
 
-Checked against the Ollama library on **2026-10-16**. Local models move
-fast; treat anything older than ~3 months here as stale and re-run §3.
+Checked against the Ollama library on **2026-10-16**, re-checked
+**2026-11-09** (no change in the 48 GB class; one new 120B-class
+candidate, Ornith-1.5 122B, added below). Local models move fast; treat
+anything older than ~3 months here as stale and re-run §3.
 
 Candidates for `extract` that satisfy the hard constraints and fit a
 32–48 GB workstation:
@@ -202,6 +266,7 @@ Only for ≥ 96 GB machines (so, the 128 GB M5 Max):
 | `gemma4:31b-it-bf16` | Dense, full precision | 63 GB | 256K | Removes quantisation as a variable entirely. | Slow; only to settle whether q8 is losing anything. |
 | `qwen3.5:122b` | MoE | 81 GB | 256K | Largest Qwen that fits. | 7 months old; Qwen 3.8 is a newer generation at 27B. Measure rather than assume bigger wins. |
 | `nemotron-3.5-super:120b` | MoE, 12B active, hybrid Mamba-2 | 80–90 GB | 1M | NVIDIA pitches it for document understanding; MoE so it is fast for its size; released this week. | Leaves ~40 GB for KV cache — set `num_ctx` explicitly. OpenMDW licence; check it suits the KB's licence. |
+| `ornith-1.5:122b` | Dense-class 122B (vendor: "frontier-level, superior instruction following") | 73–77 GB | 256K | Released 2026-10-20; the only new entrant in this class since the last check. Untested here. | Leaves ~50 GB for the KV cache; licence to check. Run §3 before believing the pitch. |
 
 Considered and set aside:
 
