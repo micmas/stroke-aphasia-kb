@@ -3,7 +3,7 @@
 Thank you for helping. The knowledge base grows one paper at a time,
 and every paper needs a second pair of eyes. There is a way to take part
 for almost any amount of time and skill; the explorer's
-[Get involved](https://micmas.github.io/stroke-aphasia-kb/explorer/#/involve)
+[Get involved](https://aphasia-kb.app/#/involve)
 page shows them as five levels. This file is the practical side.
 
 ## Without installing anything

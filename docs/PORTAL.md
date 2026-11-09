@@ -22,8 +22,8 @@ maintainer's machine, writes anything into the KB.*
 
 **Getting in.** The maintainer adds your email to the portal's allow-list
 (and to the Reviewer team, `portal/reviewers.yaml`). Open
-https://stroke-aphasia-kb-review.pages.dev, type your email, and enter
-the code that arrives. No account, no password; the sign-in lasts a week.
+https://review.aphasia-kb.app, type your email, and enter the code that
+arrives. No account, no password; the sign-in lasts a week.
 
 **What you can do**
 
@@ -86,14 +86,14 @@ Record kinds, and what the import does with them:
 1. **Cloudflare account** (free). *Workers & Pages → Create → Pages →
    Direct upload*, project `stroke-aphasia-kb-review` (or change
    `pagesProject` / `portalUrl` in `portal/portal.config.json`).
-2. **Zero Trust → Access → Applications → Add → Self-hosted.** Domain
-   `stroke-aphasia-kb-review.pages.dev`, plus
+2. **Zero Trust → Access → Applications → Add → Self-hosted.** Domains
+   `review.aphasia-kb.app` and `stroke-aphasia-kb-review.pages.dev`, plus
    `*.stroke-aphasia-kb-review.pages.dev` for preview deployments.
    Policy *Allow*, rule *Emails* = the reviewers (or *Emails ending in*
    `@uq.edu.au` plus named externals). Identity: the default one-time PIN
    needs nothing else. Note the **AUD tag** and the **team name**
    (`<team>.cloudflareaccess.com`).
-3. **A second Access application** for the same domain with path `cc/*`
+3. **A second Access application** for the same domains with path `cc/*`
    and one *Bypass* policy (*Everyone*): that is what makes the
    Creative-Commons PDFs public.
 4. **GitHub token.** Fine-grained, this repository only, *Contents: read
@@ -111,6 +111,18 @@ Record kinds, and what the import does with them:
    stroke-aphasia-kb-uploads`, then redeploy. The binding is already in
    `wrangler.toml`. Without it the upload control is hidden. The bucket is
    private; the only reader is `portal_import.py` on your machine.
+9. **Domain** (optional). The project answers at
+   `<project>.pages.dev` from the start; the public address is a custom
+   domain added under *Workers & Pages → the project → Custom domains*
+   (`review.aphasia-kb.app`; Cloudflare writes the DNS record when the
+   zone is in the same account). The explorer's own domain,
+   `aphasia-kb.app`, is GitHub Pages: a `CNAME` file in the Pages
+   artifact (written by `.github/workflows/pages.yml`), the domain set
+   in the repository's *Settings → Pages* with *Enforce HTTPS*, and in
+   the Cloudflare zone four `A` records at the apex pointing at GitHub
+   Pages (185.199.108–111.153), *DNS only*, so GitHub can issue the
+   certificate. Both addresses live in `portal/portal.config.json`; the
+   export and the portal build read them from there.
 
 ### Trying it on your own computer first
 

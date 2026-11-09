@@ -8,17 +8,17 @@ from. Anyone can open the paper and check.
 It feeds [CALMaR](https://github.com/micmas/calmar), which turns a
 lesion mask into a cited interpretation, and the
 [CALMaR webapp](https://webapps.neurodesk.org/calmar/). You can browse it
-yourself in the [explorer](https://micmas.github.io/stroke-aphasia-kb/explorer/).
+yourself in the [explorer](https://aphasia-kb.app/).
 
 **Where we are (November 2026):** 73 entries, 269 findings, 60 papers.
-The [explorer's Overview](https://micmas.github.io/stroke-aphasia-kb/explorer/)
+The [explorer's Overview](https://aphasia-kb.app/)
 shows today's numbers.
 
 ## Where to go
 
 | You want to… | Go to |
 |---|---|
-| read the evidence | the [explorer](https://micmas.github.io/stroke-aphasia-kb/explorer/): findings, evidence matrix, papers, coverage |
+| read the evidence | the [explorer](https://aphasia-kb.app/): findings, evidence matrix, papers, coverage |
 | help, without installing anything | the explorer's **Get involved** page, then the review portal ([docs/PORTAL.md](docs/PORTAL.md)) |
 | contribute from a checkout: review drafts, add papers | [CONTRIBUTING.md](CONTRIBUTING.md), then [docs/HOWTO.md](docs/HOWTO.md) |
 | look up a command | [docs/COMMANDS.md](docs/COMMANDS.md) |

@@ -7,7 +7,7 @@ reads a JSON export of the KB in the browser. The same export feeds the
 CALMaR webapp, through a small JavaScript library that re-implements the
 evidence logic. This page covers those three pieces.
 
-**Live site:** https://micmas.github.io/stroke-aphasia-kb/explorer/
+**Live site:** https://aphasia-kb.app/
 
 ## What the explorer shows
 
