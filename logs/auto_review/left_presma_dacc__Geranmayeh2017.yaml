@@ -323,6 +323,40 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T14:49:17'
+- run_id: 5
+  timestamp: '2026-11-10T10:40:23'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/6 quotes (67%) — anchored 2, elided 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Twenty-seven participants were scanned at two
+      time points; first in the early ph…'
+    - '  - [anchored] f1.region_definition (p.5): The midline voxel with highest activity
+      during the Decision task was chosen as a…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-10T10:40:23'
 latest_verdict: checks_passed
-latest_mode: with_llm_review
+latest_mode: deterministic_only

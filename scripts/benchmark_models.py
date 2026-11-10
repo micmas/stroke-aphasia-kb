@@ -23,6 +23,11 @@ measured one (docs/MODELS.md §3, "how we decide").
     python scripts/benchmark_models.py --models ... --papers ... --skip-extract
         # re-score sandboxes that already exist (after editing the grader, say)
 
+    python scripts/benchmark_models.py --pulled --papers Alyahya2018NounVerb --publish
+        # a clean run of every model already pulled on this machine on one paper, published;
+        # then add a second paper without redoing the first:
+    python scripts/benchmark_models.py --pulled --resume --papers Alyahya2018NounVerb Yourganov2015Predicting --publish
+
     python scripts/benchmark_models.py --untested --sandboxes --resume --papers ... --publish
         # carry on after an interrupted run: extract only what is missing, score everything that
         # has a sandbox, and write export/model-benchmark.json for the explorer's Models page
@@ -676,6 +681,7 @@ def _cli(argv=None) -> int:
     ap.add_argument("--skip-extract", action="store_true", help="only score sandboxes that already exist")
     ap.add_argument("--ollama-host", default=os.environ.get("OLLAMA_HOST", "http://localhost:11434"))
     ap.add_argument("--timeout", type=int, default=7200, help="seconds per paper (default 2 h)")
+    ap.add_argument("--pulled", action="store_true", help="instead of --models: every model of MODELS.md §4 (and the incumbent) that is already pulled in Ollama; nothing is downloaded")
     ap.add_argument("--sandboxes", action="store_true", help="also score every known model (incumbent, MODELS.md §4) that already has a sandbox in _compare/")
     ap.add_argument("--resume", action="store_true", help="do not extract a model × paper again when its drafts are already in _compare/; just score them")
     ap.add_argument("--publish", action="store_true", help="write export/model-benchmark.json, the numbers-only summary the explorer's Models page shows (commit it)")
@@ -702,6 +708,15 @@ def _cli(argv=None) -> int:
             print("  · low priority, skipped (add --all-candidates to include): " + ", ".join(skipped))
         print(f"Untested candidates for a {ram or '?'} GB machine (from docs/MODELS.md §4): " + ", ".join(c["tag"] for c in cands))
         args.models = list(dict.fromkeys(args.models + [c["tag"] for c in cands]))
+    if args.pulled:
+        have = ollama_list(args.ollama_host)
+        known = [incumbent()] + [c["tag"] for c in candidates_from_models_md()[0]]
+        local = [t for t in dict.fromkeys(known) if t and (t in have or f"{t}:latest" in have)]
+        absent = [t for t in dict.fromkeys(known) if t and t not in local]
+        print(f"  · pulled on this machine: {', '.join(local) or 'none'}")
+        if absent:
+            print(f"  · listed in MODELS.md but not pulled, so not run: {', '.join(absent)}")
+        args.models = list(dict.fromkeys(local + args.models))
     if args.sandboxes:
         known = [incumbent()] + [c["tag"] for c in candidates_from_models_md()[0]]
         have = [t for t in dict.fromkeys(known) if t and (COMPARE / slug(t) / "drafts").is_dir()]
@@ -765,13 +780,19 @@ def _cli(argv=None) -> int:
                 print(f"\n↷ {m} × {p}: drafts already in {sandbox.relative_to(ROOT)}/ — kept, scoring them", flush=True)
             elif not args.skip_extract:
                 print(f"\n▶ {m} × {p}  →  {sandbox.relative_to(ROOT)}/   ({dt.datetime.now():%H:%M:%S})", flush=True)
+                for old in CE._find_entries(sandbox, f"@{p}"):       # a fresh run must not be scored together with an older run's drafts
+                    old.unlink()
                 timing = run_extraction(m, p, sandbox, args.ollama_host, args.timeout)
                 if not timing["ok"]:
                     print("  ✗ extraction failed:\n    " + timing["tail"].replace("\n", "\n    "))
                 else:
                     print(f"  done in {_hms(timing['elapsed_s'])}{(' · ' + timing['processor']) if timing.get('processor') else ''}")
             timing = _remember_timing(sandbox, p, timing)
-            r = score(m, p, sandbox)
+            try:
+                r = score(m, p, sandbox)
+            except Exception as e:  # noqa: BLE001 — one result that cannot be scored must not end a run of many hours
+                print(f"  ✗ {m} × {p} could not be scored: {type(e).__name__}: {str(e)[:200]} (counted as a failure; --skip-extract scores it again)")
+                r = {"model": m, "paper": p, "failed": True, "absent": None, "drafts": 0, "findings": 0, "error": f"{type(e).__name__}: {str(e)[:200]}"}
             r.update({k: timing.get(k) for k in ("elapsed_s", "processor") if timing.get(k) is not None})
             rows.append(r)
             if not r.get("failed"):

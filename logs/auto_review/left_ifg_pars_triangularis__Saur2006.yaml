@@ -550,6 +550,39 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T14:29:34'
+- run_id: 8
+  timestamp: '2026-11-10T10:40:17'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.7): In the acute phase, there was a strong positive
+      linear correlation of LRSEx1 wit…'
+    - '  - [anchored] f1.sample (p.1): We examined 14 patients with aphasia due to
+      an infarction of the left middle cer…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+last_run: '2026-11-10T10:40:17'
 latest_verdict: checks_passed
-latest_mode: with_llm_review
+latest_mode: deterministic_only

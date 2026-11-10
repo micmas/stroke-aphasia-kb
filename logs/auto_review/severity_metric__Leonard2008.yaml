@@ -248,6 +248,37 @@ runs:
   review_tier: B
   tier_reasons:
   - PDF quote match not run or not passed
-last_run: '2026-11-09T13:58:54'
+- run_id: 9
+  timestamp: '2026-11-10T10:40:07'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 3/4 quotes (75%) — absent 1, exact 3
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.claim (p.14): Significant correlations (p < .01, one-tailed) were found
+      between response to tr…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+last_run: '2026-11-10T10:40:07'
 latest_verdict: auto_reject
 latest_mode: deterministic_only

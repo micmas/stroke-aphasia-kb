@@ -581,6 +581,41 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T14:12:45'
+- run_id: 8
+  timestamp: '2026-11-10T10:40:12'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/7 quotes (71%) — absent 1, anchored 1, elided 1, exact 4
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.region_definition (p.2): When tracking the AF, we placed
+      three ROIs so that they covered the unilateral A…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.2): All images were obtained with a 1.5-T whole-body
+      MRI... Images were acquired usi…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+last_run: '2026-11-10T10:40:12'
 latest_verdict: checks_passed
-latest_mode: with_llm_review
+latest_mode: deterministic_only

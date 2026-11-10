@@ -665,6 +665,42 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T15:00:21'
+- run_id: 8
+  timestamp: '2026-11-10T10:40:26'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/6 quotes (83%) — anchored 1, exact 5
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.3454): A separate regression analysis included diadochokinetic
+      rate as a cofactor and r…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Fridriksson2013: sample.n disagrees: [26, 64]'
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f2: has provenance.flags'
+last_run: '2026-11-10T10:40:26'
 latest_verdict: defer_to_human
-latest_mode: with_llm_review
+latest_mode: deterministic_only

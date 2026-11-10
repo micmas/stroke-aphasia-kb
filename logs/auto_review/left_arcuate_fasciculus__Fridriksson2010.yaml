@@ -592,6 +592,40 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T14:12:31'
+- run_id: 8
+  timestamp: '2026-11-10T10:40:12'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 8/10 quotes (80%) — anchored 1, exact 8, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.3): The VLBM analysis of the structural lesion data
+      revealed that damage to white ma…'
+    - '  - [near] f1.sample (p.2): The mean patient age was 63.5 years (range 34-85,
+      SD 12).…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+last_run: '2026-11-10T10:40:12'
 latest_verdict: checks_passed
-latest_mode: with_llm_review
+latest_mode: deterministic_only

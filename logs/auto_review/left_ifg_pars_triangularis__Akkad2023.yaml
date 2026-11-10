@@ -158,6 +158,37 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T14:28:12'
+- run_id: 3
+  timestamp: '2026-11-10T10:40:17'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/7 quotes (86%) — elided 1, exact 5, near 1
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.statistics (p.5): Results are thresholded at p <= 0.001 voxel-level
+      and p < 0.05 FWE corrected at …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+last_run: '2026-11-10T10:40:17'
 latest_verdict: checks_passed
-latest_mode: with_llm_review
+latest_mode: deterministic_only

@@ -100,6 +100,49 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T14:59:36'
+- run_id: 2
+  timestamp: '2026-11-10T10:40:26'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/14 quotes (14%) — absent 1, anchored 10, exact 2, near 1
+    - '11 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): This study included 76 patients (32 female,
+      73 right-handed) with chronic aphasi…'
+    - '  - [anchored] f1.method (p.3): T1-signal intensity in white matter regions
+      was used to relate cortical damage […'
+    - '  - [anchored] f1.statistics (p.3): To control for multiple comparisons in
+      the correlation analyses, the alpha-level…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.claim (p.3): uncinate fasciculus (r = 0.574, p < 0.001) [..] were correlated
+      with speech flue…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Basilakos2014: sample.n disagrees: [57, 76]'
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f2: has provenance.flags'
+last_run: '2026-11-10T10:40:26'
 latest_verdict: defer_to_human
-latest_mode: with_llm_review
+latest_mode: deterministic_only

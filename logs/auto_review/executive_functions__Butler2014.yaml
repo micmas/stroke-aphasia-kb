@@ -658,6 +658,36 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T13:48:05'
+- run_id: 10
+  timestamp: '2026-11-10T10:40:03'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/5 quotes (100%) — elided 1, exact 4
+  - name: no_human_review_flags
+    passed: false
+    blocker: false
+    details:
+    - 'f1: imaging_details.reference_space not extracted by the model — set to not_reported'
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - 'f1: has provenance.flags'
+last_run: '2026-11-10T10:40:03'
 latest_verdict: defer_to_human
-latest_mode: with_llm_review
+latest_mode: deterministic_only

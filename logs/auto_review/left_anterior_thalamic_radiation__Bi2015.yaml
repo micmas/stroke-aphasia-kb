@@ -159,6 +159,34 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T14:09:55'
+- run_id: 3
+  timestamp: '2026-11-10T10:40:11'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 1/1 quotes (100%) — elided 1
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-10T10:40:11'
 latest_verdict: checks_passed
-latest_mode: with_llm_review
+latest_mode: deterministic_only

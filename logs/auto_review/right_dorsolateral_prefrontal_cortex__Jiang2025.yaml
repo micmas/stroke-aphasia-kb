@@ -168,6 +168,43 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T15:02:55'
+- run_id: 3
+  timestamp: '2026-11-10T10:40:27'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/7 quotes (57%) — absent 1, exact 4, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.claim (p.5): In the chronic phase, auditory speech processing
+      facilitated the influence from …'
+    - '  - [near] f1.statistics (p.5): Significant patterns of effective connectivity...
+      were obtained by thresholding …'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.sample (p.3): Two groups of patients with either frontal (n = 17...)…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+last_run: '2026-11-10T10:40:27'
 latest_verdict: checks_passed
-latest_mode: with_llm_review
+latest_mode: deterministic_only

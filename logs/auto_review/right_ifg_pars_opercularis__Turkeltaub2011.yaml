@@ -582,6 +582,42 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T15:03:51'
+- run_id: 8
+  timestamp: '2026-11-10T10:40:27'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — anchored 4, elided 2
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.4): The dorsal right POp and the right POrb were
+      present in the IF- map, but not the…'
+    - '  - [anchored] f1.sample (p.1): Functional neuroimaging articles using language
+      tasks in patients with chronic a…'
+    - '  - [anchored] f1.method (p.2): We used activation likelihood estimation (ALE),
+      a validated, quantitative neuroi…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-10T10:40:27'
 latest_verdict: checks_passed
-latest_mode: with_llm_review
+latest_mode: deterministic_only

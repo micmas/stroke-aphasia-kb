@@ -602,6 +602,39 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T13:51:59'
+- run_id: 9
+  timestamp: '2026-11-10T10:40:05'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/6 quotes (67%) — anchored 2, elided 1, exact 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.531): Initial syndrome scores were positively correlated
+      (Pearson) with 90-day scores …'
+    - '  - [anchored] f1.statistics (p.531): Regression analysis demonstrated that
+      baseline language functioning was predicti…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+last_run: '2026-11-10T10:40:05'
 latest_verdict: checks_passed
-latest_mode: with_llm_review
+latest_mode: deterministic_only

@@ -860,6 +860,39 @@ runs:
     extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
     independent: true
     papers_missing: []
-last_run: '2026-11-09T15:26:09'
+- run_id: 8
+  timestamp: '2026-11-10T10:40:33'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 15/15 quotes (100%) — elided 3, exact 12
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Laver2025: sample.n disagrees: [279, 689, 871, 1495, 2830]'
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - new entry id (not appending to an existing entry)
+  - 'f2: strength=''strong'''
+  - 'f4: strength=''strong'''
+last_run: '2026-11-10T10:40:33'
 latest_verdict: defer_to_human
-latest_mode: with_llm_review
+latest_mode: deterministic_only
