@@ -129,7 +129,13 @@ to publish: `--resume` keeps the drafts already in `_compare/` and only
 extracts what is missing, `--sandboxes` scores every model that has a
 sandbox so the table is complete, and `--publish` writes
 `export/model-benchmark.json`, the numbers-only summary behind the
-explorer's **Models** page (commit and push it). A draft a model writes
+explorer's **Models** page (commit and push it). The page also says
+where each model comes from — developer, release, licence, original
+weights, the Ollama tag pulled — from the hand-curated
+`model_sources.yaml` at the repository root, plus what `ollama show`
+reports on the publishing machine (format, quantisation, digest). Add an
+entry there when you add a candidate to §4; `--refresh-sources` updates
+the published page without re-running anything. A draft a model writes
 so badly that it cannot be parsed is counted against that model as a
 schema issue; it does not stop the run.
 
@@ -282,7 +288,7 @@ Only for ≥ 96 GB machines (so, the 128 GB M5 Max):
 | `gemma4:31b-it-bf16` | Dense, full precision | 63 GB | 256K | Removes quantisation as a variable entirely. | Slow; only to settle whether q8 is losing anything. |
 | `qwen3.5:122b` | MoE | 81 GB | 256K | Largest Qwen that fits. | 7 months old; Qwen 3.8 is a newer generation at 27B. Measure rather than assume bigger wins. |
 | `nemotron-3.5-super:120b` | MoE, 12B active, hybrid Mamba-2 | 80–90 GB | 1M | NVIDIA pitches it for document understanding; MoE so it is fast for its size; released this week. | Leaves ~40 GB for KV cache — set `num_ctx` explicitly. OpenMDW licence; check it suits the KB's licence. |
-| `ornith-1.5:122b` | Dense-class 122B (vendor: "frontier-level, superior instruction following") | 73–77 GB | 256K | Released 2026-10-20; the only new entrant in this class since the last check. Untested here. | Leaves ~50 GB for the KV cache; licence to check. Run §3 before believing the pitch. |
+| `ornith-1.5:122b` | MoE, 122B (built on Qwen 3.5 / Gemma 4 by the Ornith Team; vendor: "frontier-level, superior instruction following") | 73–77 GB | 256K | Released 2026-10-20; the only new entrant in this class since the last check. Untested here. | Leaves ~50 GB for the KV cache; licence unclear (MIT on Hugging Face, "all rights reserved" on its own page). |
 
 Considered and set aside:
 

@@ -215,8 +215,11 @@ function models(index) {
     h('th', { text: 'Model' }), h('th', { class: 'num', text: 'Fabricated quotes' }), h('th', { class: 'num', text: 'Schema issues' }),
     h('th', { text: 'Known links found' }), h('th', { class: 'num', text: 'Precision' }), h('th', { class: 'num', text: 'Over-claiming' }), h('th', { class: 'num', text: 'Time per paper' }))),
     h('tbody', {}, ms.map(row)));
-  const detail = (m) => h('details', { class: 'model-detail' }, h('summary', {}, h('code', { text: m.model }), h('span', { class: 'muted small', text: ` — paper by paper${m.ram_class ? ` · needs about ${m.ram_class} GB of memory` : ''}` })),
-    m.note ? h('p', { class: 'small muted', text: m.note }) : null,
+  const detail = (m) => h('details', { class: 'model-detail' }, h('summary', {}, h('code', { text: m.model }),
+    h('span', { class: 'muted small', text: ` — ${[m.source?.developer?.replace(/\s*\(.*\)$/, ''), m.source?.licence?.split(/[;,:]/)[0], m.ram_class ? `needs about ${m.ram_class} GB of memory` : null].filter(Boolean).concat(['where it comes from, paper by paper']).join(' · ')}` })),
+    provenance(m),
+    m.note ? h('p', { class: 'small muted' }, h('b', { text: 'Caveat noted before testing: ' }), m.note) : null,
+    (m.rows || []).length ? h('h4', { class: 'model-sub', text: 'Paper by paper' }) : null,
     (m.rows || []).map((r) => h('div', { class: 'model-paper' },
       h('p', {}, h('a', { href: paperHref(r.paper), text: r.paper }), ' · ',
         r.failed ? h('span', { class: 'bad', text: 'no drafts produced' })
@@ -248,7 +251,30 @@ function models(index) {
       h('li', {}, h('b', { text: 'Time per paper. ' }), 'On the maintainer\'s machine. Slower is acceptable; fabricating is not.')),
     h('p', { class: 'small' }, b.rule, ' Passing makes a model eligible; adopting it is a person\'s decision, recorded with its reasons in the ',
       h('a', { href: REPO_DOCS.models, target: '_blank', rel: 'noopener', text: 'decision log' }), '.'),
-    h('h3', { text: 'Paper by paper' }), ms.map(detail));
+    h('h3', { text: 'Model by model' }),
+    h('p', { class: 'small' }, b.sourcing || 'Every model is downloaded from the Ollama library and runs offline on the maintainer\'s computer.',
+      ' Open a model for its developer, licence and original weights, then its results paper by paper.'),
+    ms.map(detail));
+}
+function provenance(m) {
+  // where a model comes from: model_sources.yaml (curated) + `ollama show` on the publishing machine
+  const s = m.source, l = m.local;
+  if (!s && !l) return h('p', { class: 'small muted', text: 'Where this model comes from has not been documented yet (model_sources.yaml).' });
+  const ext = (url, text) => h('a', { href: url, target: '_blank', rel: 'noopener', text: text || url.replace(/^https?:\/\/(www\.)?/, '') });
+  const item = (k, ...v) => (v.some((x) => x) ? [h('dt', { text: k }), h('dd', {}, ...v)] : null);
+  const ran = l ? [l.format, l.quantization, l.parameters ? `${l.parameters} parameters` : null, l.context_length ? `context ${Number(l.context_length).toLocaleString('en')} tokens` : null].filter(Boolean).join(' · ') : '';
+  return h('div', { class: 'model-source' },
+    h('dl', {},
+      s ? item('Developer', s.developer, s.family ? ` · ${s.family} family` : '') : null,
+      s ? item('Released', s.released) : null,
+      s ? item('Licence', s.licence ? (s.licence_url ? ext(s.licence_url, s.licence) : s.licence) : null) : null,
+      s ? item('Architecture', s.architecture, s.context ? ` · context ${s.context}` : '') : null,
+      s ? item('Training data', s.data_cutoff ? `up to ${s.data_cutoff}` : null) : null,
+      s ? item('Lineage', s.lineage) : null,
+      s ? item('Original weights', s.upstream ? ext(s.upstream) : null) : null,
+      item('How it was obtained', h('code', { text: `ollama pull ${m.model}` }), ' from the ', s?.library ? ext(s.library, 'Ollama library') : 'Ollama library', s?.weights ? `. ${s.weights}` : '.'),
+      l ? item('As run here', ran, l.digest ? [ran ? ' · ' : '', 'digest ', h('code', { text: l.digest })] : null, l.ollama_version ? ` · Ollama ${l.ollama_version}` : '') : null),
+    s?.checked ? h('p', { class: 'small muted', text: `Checked on ${s.checked} against the developer's model card and the Ollama library page.` }) : null);
 }
 
 function kindBadge(kind) { return h('span', { class: 'badge badge-kind', text: kind }); }

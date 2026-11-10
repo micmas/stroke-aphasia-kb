@@ -47,9 +47,13 @@ searches that were run, and a table of every candidate paper.
 **Models**: which local model drafts the findings, which one checks them,
 and the latest comparison behind that choice: fabricated quotes, schema
 issues, how many of the known links each model found, over-claiming and
-speed, model by model and paper by paper. The page reads
+speed, model by model and paper by paper. Each model's block also says
+where it comes from: developer, release, licence, architecture, the
+original weights and the Ollama tag it was pulled as (`model_sources.yaml`,
+curated), and what was installed on the publishing machine. The page reads
 `export/model-benchmark.json`, which `benchmark_models.py --publish`
-writes (numbers and ids only, no paper text).
+writes (numbers and ids only, no paper text); `--refresh-sources`
+updates only the provenance.
 
 **Get involved**: the five levels at which a person can take part, from
 reading to building, with what each needs. **Review ↗** opens the

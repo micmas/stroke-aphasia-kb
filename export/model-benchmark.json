@@ -98,7 +98,21 @@
      "elapsed_s": 444.8,
      "processor": "100%GPU"
     }
-   ]
+   ],
+   "source": {
+    "family": "Gemma 4",
+    "developer": "Google DeepMind",
+    "released": "2026 (technical report, July 2026)",
+    "licence": "Apache 2.0",
+    "licence_url": "https://huggingface.co/google/gemma-4-31B-it",
+    "architecture": "dense transformer, 30.7 B parameters",
+    "context": "256K tokens",
+    "data_cutoff": "January 2025 (pre-training)",
+    "upstream": "https://huggingface.co/google/gemma-4-31B-it",
+    "library": "https://ollama.com/library/gemma4:31b",
+    "weights": "Ollama's default 31b tag, which holds two 4-bit builds and serves the one that suits the machine: an MLX build (19 GB) and a llama.cpp build at Q4_K_M (20 GB), each with a small draft model for faster decoding.",
+    "checked": "2026-11-10"
+   }
   },
   {
    "model": "gemma4:26b",
@@ -135,7 +149,21 @@
      "elapsed_s": 115.5,
      "processor": "100%GPU"
     }
-   ]
+   ],
+   "source": {
+    "family": "Gemma 4",
+    "developer": "Google DeepMind",
+    "released": "2026 (technical report, July 2026)",
+    "licence": "Apache 2.0",
+    "licence_url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+    "architecture": "mixture of experts, 25.2 B parameters of which 3.8 B are active per token",
+    "context": "256K tokens",
+    "data_cutoff": "January 2025 (pre-training)",
+    "upstream": "https://huggingface.co/collections/google/gemma-4",
+    "library": "https://ollama.com/library/gemma4:26b",
+    "weights": "Ollama's default 26b tag (the same build as 26b-a4b), 4-bit, 16–19 GB.",
+    "checked": "2026-11-10"
+   }
   },
   {
    "model": "qwen3.8:27b",
@@ -197,7 +225,20 @@
      "elapsed_s": 446.2,
      "processor": "100%GPU"
     }
-   ]
+   ],
+   "source": {
+    "family": "Qwen 3.8",
+    "developer": "Qwen Team, Alibaba",
+    "released": "August 2026",
+    "licence": "Apache 2.0",
+    "licence_url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+    "architecture": "dense, 27 B parameters; hybrid Gated DeltaNet / gated attention layers, with a vision encoder",
+    "context": "262K tokens natively",
+    "upstream": "https://huggingface.co/Qwen/Qwen3.8-27B",
+    "library": "https://ollama.com/library/qwen3.8:27b",
+    "weights": "Ollama's 27b tag, 4-bit, 18 GB. Thinking mode is on by default.",
+    "checked": "2026-11-10"
+   }
   },
   {
    "model": "granite4.2:30b",
@@ -270,7 +311,20 @@
      "elapsed_s": 2683.2,
      "processor": "100%GPU"
     }
-   ]
+   ],
+   "source": {
+    "family": "Granite 4.2",
+    "developer": "IBM (Granite Team)",
+    "released": "25 August 2026",
+    "licence": "Apache 2.0",
+    "licence_url": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+    "architecture": "dense decoder-only transformer with reasoning, 30 B parameters",
+    "context": "128K tokens (extendable to 512K)",
+    "upstream": "https://huggingface.co/ibm-granite/granite-4.2-30b",
+    "library": "https://ollama.com/library/granite4.2:30b",
+    "weights": "Ollama's 30b tag, 4-bit, 18 GB.",
+    "checked": "2026-11-10"
+   }
   },
   {
    "model": "gemma4:31b-it-q8_0",
@@ -339,7 +393,21 @@
      "elapsed_s": 1124.3,
      "processor": "100%GPU"
     }
-   ]
+   ],
+   "source": {
+    "family": "Gemma 4",
+    "developer": "Google DeepMind",
+    "released": "2026 (technical report, July 2026)",
+    "licence": "Apache 2.0",
+    "licence_url": "https://huggingface.co/google/gemma-4-31B-it",
+    "architecture": "dense transformer, 30.7 B parameters",
+    "context": "256K tokens",
+    "data_cutoff": "January 2025 (pre-training)",
+    "upstream": "https://huggingface.co/google/gemma-4-31B-it",
+    "library": "https://ollama.com/library/gemma4:31b-it-q8_0",
+    "weights": "The same instruction-tuned weights as gemma4:31b at 8 bits per weight (Q8_0, 34 GB): near-lossless, about twice the memory.",
+    "checked": "2026-11-10"
+   }
   },
   {
    "model": "qwen3.5:122b",
@@ -406,7 +474,20 @@
      "elapsed_s": 728.5,
      "processor": "100%GPU"
     }
-   ]
+   ],
+   "source": {
+    "family": "Qwen 3.5",
+    "developer": "Qwen Team, Alibaba",
+    "released": "February 2026",
+    "licence": "Apache 2.0",
+    "licence_url": "https://huggingface.co/Qwen/Qwen3.5-122B-A10B",
+    "architecture": "mixture of experts, 122 B parameters of which 10 B are active per token; hybrid Gated DeltaNet / gated attention",
+    "context": "262K tokens natively",
+    "upstream": "https://huggingface.co/Qwen/Qwen3.5-122B-A10B",
+    "library": "https://ollama.com/library/qwen3.5:122b",
+    "weights": "Ollama's 122b tag, 81 GB.",
+    "checked": "2026-11-10"
+   }
   },
   {
    "model": "nemotron-3.5-super:120b",
@@ -478,7 +559,21 @@
      "elapsed_s": 476.0,
      "processor": "100%GPU"
     }
-   ]
+   ],
+   "source": {
+    "family": "Nemotron 3.5 Super",
+    "developer": "NVIDIA",
+    "released": "15 October 2026",
+    "licence": "OpenMDW 1.1",
+    "licence_url": "https://openmdw.ai/license/1-1/",
+    "architecture": "hybrid Mamba-2 / transformer mixture of experts, 120 B parameters of which 12 B are active per token, with a vision encoder",
+    "context": "up to 1M tokens (memory permitting)",
+    "data_cutoff": "December 2025 (pre-training data)",
+    "upstream": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-BF16",
+    "library": "https://ollama.com/library/nemotron-3.5-super:120b",
+    "weights": "Ollama's 120b tag, 80–90 GB.",
+    "checked": "2026-11-10"
+   }
   },
   {
    "model": "ornith-1.5:122b",
@@ -493,7 +588,7 @@
    "link_recall": 0.0,
    "link_precision": 0.0,
    "ram_class": 96,
-   "note": "Leaves ~50 GB for the KV cache; licence to check. Run §3 before believing the pitch.",
+   "note": "Leaves ~50 GB for the KV cache; licence unclear (MIT on Hugging Face, \"all rights reserved\" on its own page).",
    "quotes": 13,
    "verified": 12,
    "findings": 8,
@@ -543,8 +638,23 @@
      "elapsed_s": 770.2,
      "processor": "100%GPU"
     }
-   ]
+   ],
+   "source": {
+    "family": "Ornith 1.5",
+    "developer": "Ornith Team (ornith.ai; no organisation, people or country named)",
+    "released": "20 October 2026 (Ollama listing)",
+    "licence": "Unclear: MIT on its Hugging Face card, but \"all rights reserved\" on Ornith's own announcement",
+    "licence_url": "https://huggingface.co/ornith-ai/Ornith-1.5-122B",
+    "architecture": "mixture of experts, 122 B parameters (active count not stated)",
+    "lineage": "A further-trained model, not trained from scratch: Ornith-1.0 was built on Qwen 3.5 and Gemma 4 (continued pre-training, mid-training, post-training), and 1.5 extends 1.0. The base of the 122B is not named.",
+    "context": "256K tokens",
+    "upstream": "https://huggingface.co/ornith-ai/Ornith-1.5-122B",
+    "library": "https://ollama.com/library/ornith-1.5:122b",
+    "weights": "Ollama's 122b tag, 73–77 GB (an MLX build and a Q4_K_M build).",
+    "checked": "2026-11-10"
+   }
   }
  ],
- "rule": "Eligible = zero absent quotes on every paper, and schema issues and over-claiming no worse than the incumbent (docs/MODELS.md §3)."
+ "rule": "Eligible = zero absent quotes on every paper, and schema issues and over-claiming no worse than the incumbent (docs/MODELS.md §3).",
+ "sourcing": "Every model is downloaded with `ollama pull <tag>` from the Ollama library (registry.ollama.ai), which repackages the weights its developer published, usually quantised to about 4 bits per weight. It then runs offline through Ollama on the maintainer's computer: no paper text leaves the machine, and no account with the developer is involved."
 }

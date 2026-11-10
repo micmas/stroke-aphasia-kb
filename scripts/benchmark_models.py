@@ -32,6 +32,10 @@ measured one (docs/MODELS.md §3, "how we decide").
         # carry on after an interrupted run: extract only what is missing, score everything that
         # has a sandbox, and write export/model-benchmark.json for the explorer's Models page
 
+    python scripts/benchmark_models.py --refresh-sources
+        # only refresh "where each model comes from" on the Models page: model_sources.yaml (curated:
+        # developer, licence, release, upstream weights) and, when Ollama runs, what is installed here
+
     python scripts/benchmark_models.py ... --append-log
         # also append one row per model × paper to the decision log in docs/MODELS.md §5
 
@@ -594,7 +598,86 @@ _PUBLIC_ROW = ("paper", "failed", "ungraded", "drafts", "findings", "ref_finding
                "passages_per_finding", "elapsed_s", "processor")
 
 
-def publish(rows: list[dict], verdicts: dict[str, dict], incumbent_model: str, papers: list[str], seed, by: str, path: Path = PUBLIC) -> Path:
+MODEL_SOURCES = ROOT / "model_sources.yaml"
+_SOURCE_KEYS = ("family", "developer", "released", "licence", "licence_url", "architecture", "context", "data_cutoff",
+                "lineage", "upstream", "library", "weights", "checked")
+_SHOW_KEYS = {"architecture": "architecture", "parameters": "parameters", "context length": "context_length",
+              "quantization": "quantization", "format": "format"}
+
+
+def model_sources(path: Path = MODEL_SOURCES) -> tuple[str, dict[str, dict]]:
+    """model_sources.yaml → (the page-level note on how models are obtained, {tag: provenance}).
+    Curated by hand; only the known fields are kept, as strings."""
+    try:
+        d = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    except Exception:  # noqa: BLE001
+        return "", {}
+    out = {}
+    for tag, e in (d.get("models") or {}).items():
+        out[str(tag)] = {k: " ".join(str(v).split()) for k, v in (e or {}).items() if k in _SOURCE_KEYS and v not in (None, "")}
+    return " ".join(str(d.get("sourcing") or "").split()), out
+
+
+def parse_ollama_show(text: str) -> dict:
+    """The 'Model' block of `ollama show <tag>` → {architecture, parameters, context_length, quantization, format}."""
+    out, section = {}, None
+    for line in text.splitlines():
+        if not line.strip():
+            continue
+        indent = len(line) - len(line.lstrip())
+        if indent <= 2:
+            section = line.strip().lower()
+            continue
+        if section == "model":
+            parts = re.split(r"\s{2,}", line.strip(), maxsplit=1)
+            if len(parts) == 2 and parts[0].lower() in _SHOW_KEYS:
+                out[_SHOW_KEYS[parts[0].lower()]] = parts[1].strip()
+    return out
+
+
+def ollama_facts(tag: str, host: str) -> dict:
+    """What this machine actually runs under `tag`: `ollama show` (format, quantisation, parameters),
+    the digest from `ollama list`, and the Ollama version. Empty when Ollama is not reachable."""
+    env = dict(os.environ, OLLAMA_HOST=host)
+    run = lambda *a: subprocess.run(["ollama", *a], capture_output=True, text=True, timeout=30, env=env)  # noqa: E731
+    try:
+        show = run("show", tag)
+        if show.returncode != 0:
+            return {}
+        out = parse_ollama_show(show.stdout)
+        for line in run("list").stdout.splitlines()[1:]:
+            cells = line.split()
+            if len(cells) > 1 and cells[0] == tag:
+                out["digest"] = cells[1]
+        m = re.search(r"(\d+\.\d+\.\d+\S*)", run("--version").stdout)
+        if m:
+            out["ollama_version"] = m.group(1)
+        return out
+    except Exception:  # noqa: BLE001
+        return {}
+
+
+def attach_sources(data: dict, host: str | None = None) -> dict:
+    """Add each model's provenance (model_sources.yaml) to the public summary and, when Ollama is
+    reachable, what was installed on this machine. Facts recorded earlier are kept when Ollama is not."""
+    sourcing, srcs = model_sources()
+    caveats = {c["tag"]: c.get("caveat") for c in candidates_from_models_md()[0]}
+    if sourcing:
+        data["sourcing"] = sourcing
+    for m in data.get("models") or []:
+        if caveats.get(m.get("model")):
+            m["note"] = caveats[m["model"]]
+        if srcs.get(m.get("model")):
+            m["source"] = srcs[m["model"]]
+        else:
+            m.pop("source", None)
+        facts = ollama_facts(m["model"], host) if host else {}
+        if facts:
+            m["local"] = facts
+    return data
+
+
+def publish(rows: list[dict], verdicts: dict[str, dict], incumbent_model: str, papers: list[str], seed, by: str, path: Path = PUBLIC, host: str | None = None) -> Path:
     """The public summary for the explorer's Models page: numbers and ids only — no quote text, no
     file names from the papers folder, nothing a publisher could object to."""
     try:
@@ -623,6 +706,7 @@ def publish(rows: list[dict], verdicts: dict[str, dict], incumbent_model: str, p
                         "all_human": bool((refs.get(p) or {}).get("all_human")), "bucket": (refs.get(p) or {}).get("main_bucket")} for p in papers],
             "models": models,
             "rule": "Eligible = zero absent quotes on every paper, and schema issues and over-claiming no worse than the incumbent (docs/MODELS.md §3)."}
+    attach_sources(data, host)
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
     return path
@@ -685,6 +769,7 @@ def _cli(argv=None) -> int:
     ap.add_argument("--sandboxes", action="store_true", help="also score every known model (incumbent, MODELS.md §4) that already has a sandbox in _compare/")
     ap.add_argument("--resume", action="store_true", help="do not extract a model × paper again when its drafts are already in _compare/; just score them")
     ap.add_argument("--publish", action="store_true", help="write export/model-benchmark.json, the numbers-only summary the explorer's Models page shows (commit it)")
+    ap.add_argument("--refresh-sources", action="store_true", help="only update where each model comes from (model_sources.yaml, and `ollama show` when Ollama runs) in export/model-benchmark.json; nothing is extracted or scored")
     ap.add_argument("--append-log", action="store_true", help="append the rows to docs/MODELS.md §5 (decision left blank)")
     ap.add_argument("--by", default=os.environ.get("USER", "maintainer"), help="name for the log rows")
     args = ap.parse_args(argv)
@@ -693,6 +778,17 @@ def _cli(argv=None) -> int:
 
     if args.list_references:
         print_references(reference_papers())
+        return 0
+    if args.refresh_sources:
+        if not PUBLIC.is_file():
+            print(f"No {PUBLIC.relative_to(ROOT)} yet: run a benchmark with --publish first.")
+            return 1
+        data = attach_sources(json.loads(PUBLIC.read_text(encoding="utf-8")), args.ollama_host)
+        PUBLIC.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+        missing = [m["model"] for m in data.get("models") or [] if not m.get("source")]
+        local = [m["model"] for m in data.get("models") or [] if m.get("local")]
+        print(f"Updated {PUBLIC.relative_to(ROOT)}: provenance for {len(data.get('models') or []) - len(missing)} model(s), "
+              f"local install facts for {len(local)}." + (f" Not in model_sources.yaml: {', '.join(missing)}." if missing else ""))
         return 0
     if args.untested:
         ram = args.ram or machine_ram_gb()
@@ -809,7 +905,7 @@ def _cli(argv=None) -> int:
     (COMPARE / f"benchmark_{stamp}.md").write_text(f"# Model benchmark {stamp}\n\nIncumbent: `{inc}`\n\n{md}\n", encoding="utf-8")
     print(f"\nWritten: _compare/benchmark_{stamp}.md and .json")
     if args.publish:
-        out = publish(rows, verdicts, inc, args.papers, args.seed, args.by)
+        out = publish(rows, verdicts, inc, args.papers, args.seed, args.by, host=args.ollama_host)
         print(f"Published the numbers-only summary: {out.relative_to(ROOT)} — commit and push it; the explorer's Models page reads it.")
     if args.append_log:
         ok = append_log(log_rows(rows, args.by))

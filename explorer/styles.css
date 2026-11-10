@@ -371,5 +371,11 @@ a.chip:hover { border-color: var(--blue); text-decoration: none; }
 .model-detail { border: 1px solid var(--line); border-radius: var(--radius); padding: .45rem .8rem; margin: .4rem 0; }
 .model-detail summary { cursor: pointer; }
 .model-paper { border-top: 1px solid var(--line); margin-top: .5rem; padding-top: .3rem; }
+.model-source dl { display: grid; grid-template-columns: max-content 1fr; gap: .2rem .9rem; margin: .6rem 0 .3rem; font-size: .9rem; }
+.model-source dt { color: var(--ink-2); }
+.model-source dd { margin: 0; overflow-wrap: anywhere; }
+.model-source + p, .model-source p { margin: .2rem 0; }
+.model-sub { margin: .7rem 0 .1rem; font-size: .95rem; }
+@media (max-width: 560px) { .model-source dl { grid-template-columns: 1fr; } .model-source dd { margin-bottom: .35rem; } }
 .model-paper p { margin: .25rem 0; }
 .table-wrap { overflow-x: auto; }
