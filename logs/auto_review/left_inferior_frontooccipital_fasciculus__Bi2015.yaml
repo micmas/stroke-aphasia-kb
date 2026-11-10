@@ -188,6 +188,63 @@ runs:
   review_tier: B
   tier_reasons:
   - new entry id (not appending to an existing entry)
-last_run: '2026-11-10T10:40:18'
+- run_id: 4
+  timestamp: '2026-11-10T20:58:45'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 1/1 quotes (100%) — elided 1
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - new entry id (not appending to an existing entry)
+- run_id: 5
+  timestamp: '2026-11-10T20:59:02'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 1/1 quotes (100%) — elided 1
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-10T20:59:02'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

@@ -1,125 +1,80 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: left_anterior_thalamic_radiation
-name: Left Anterior Thalamic Radiation
+name: "Left Anterior Thalamic Radiation"
 kind: tract
 status: draft
-created_by: agent:ollama-extract-cli/gemma4:31b-it-q8_0
-created_on: 2026-10-21
+created_by: "agent:ollama-extract-cli/gemma4:31b"
+created_on: 2026-11-10
 hemisphere: left
 findings:
-- id: f1
-  target: semantics
-  target_kind: impairment
-  claim: Damage to the left anterior thalamic radiation is associated with deficits in object semantic
-    processing.
-  direction: likely
-  relationship: causal
-  citation: '@Han2013'
-  method:
-  - LSM
-  - DTI
-  design: cross-sectional
-  strength: strong
-  evidence_quality: cohort
-  sample:
-    n: 76
-    population: right-handed brain-damaged patients
-    time_post_onset: at least 1 month post-onset
-    phase: chronic
-    age_range: mean 47 (SD 13)
-    handedness: all right-handed
-    language: native Chinese speakers
-    cohort: not_reported
-  statistics:
-    threshold: Bonferroni corrected P < 0.05
-    effect_size: lesion correlation r = -0.57 (composite); FA correlation r = 0.57 (composite)
-  confounders_controlled:
-  - overall cognitive state (MMSE)
-  - whole lesion volume
-  - type of brain damage
-  - grey matter lesions in semantic-relevant regions
-  - non-semantic control tasks
-  confounders_not_controlled: []
-  region_definition:
-    kind: atlas
-    atlas: JHU white-matter tractography atlas (25%-threshold sub-template)
-    description: Left anterior thalamic radiation as defined by the JHU atlas.
-  imaging_details:
-    field_strength: 1.5T
-    modalities:
-    - modality: T1
-      sequence: 3D MPRAGE
-    - modality: DTI
-      n_directions: 32
-      b_values:
-      - 0
-      - 1000
-    preprocessing_pipeline: SPM5 co-registration + manual lesion tracing + ANTs registration to Talairach/MNI
-      space; PANDA pipeline for DTI
-    reference_space: MNI152
-    atlases_used:
-    - JHU white-matter tractography atlas
-  author_limitations:
-  - Lesion distribution was constrained to the middle cerebral artery territory.
-  - The individual tracts investigated may not have specific functions; the overall network pattern might
-    be what matters.
-  provenance:
-    extracted_by: agent
-    extracted_on: 2026-01-01
-    paper_section: Results, pages 6, 8-10
-    confidence: high
-    flags: []
-  source_passages:
-  - section: Abstract
-    page: 1
-    quote: We found that the lesion volume and fractional anisotropy value of the left inferior fronto-occipital
-      fasciculus, left anterior thalamic radiation, and left uncinate fasciculus significantly correlated
-      with severity of impairment in all three semantic tasks.
-    supports: claim
-  - section: Results - Lesion-behaviour correlation
-    page: 8
-    quote: 'the lesion percentages of the following three tracts significantly correlated negatively with
-      all three semantic tasks: left IFOF, left ATR, left uncinate fasciculus (corrected P-values = 0.05).'
-    supports: statistics
-  - section: Discussion
-    page: 12
-    quote: our analyses here were constrained by the lesion distribution in the patient groups
-    supports: limitation
-  - section: added by backfill
-    page: 5
-    quote: For each of the remaining 17 tracts, the lesion percentage (number of voxels with lesion divided
-      by total number of voxels in the tract) was correlated with patients’ scores in each of the three
-      semantic tasks, as well as the semantic composite score.
-    supports: method
-  - section: added by backfill
-    page: 5
-    quote: Three tracts (left cingulum gyrus, left cingulum hippocampus and right cingulum hippocampus)
-      had lesions in fewer than five patients (Table 1) and were excluded from our lesion analysis.
-    supports: method
-  - section: added by backfill
-    page: 5
-    quote: The results were adjusted for the 17 tracts with the Bonferroni correction method (P 5 0.00294,
-      corrected P 5 0.05).
-    supports: method
-  - section: added by backfill
-    page: 5
-    quote: To control for the contributions of overall cognitive state and total lesion volume to semantic
-      deficits, we carried out partial correlations between semantic composite scores and the tract lesion
-      volumes and mean fractional anisotropy values, with patients’ MMSE scores and total lesion volume
-      values (total number of lesioned voxels across the whole brain) as covariates.
-    supports: method
-  lesion_mapping:
-    analysis: univariate
-    n_analysed: 76
-    min_lesion_overlap: '>= 5 patients'
-    lesion_volume_correction: covariate
-    multiple_comparisons: bonferroni
-  filled:
-    by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
-    tool: backfill.py
-    fields:
-    - cohort
-    - lesion_mapping
+  - id: f1
+    target: semantics
+    target_kind: impairment
+    claim: "Damage to the left anterior thalamic radiation is associated with semantic processing deficits across multiple input and output modalities."
+    direction: likely
+    relationship: causal
+    citation: "@Han2013"
+    method: [LSM, DTI]
+    design: cross-sectional
+    strength: strong
+    evidence_quality: cohort
+    sample:
+      n: 76
+      population: "right-handed brain-damaged patients"
+      time_post_onset: "at least 1 month post-onset"
+      phase: early_subacute
+      age_range: "mean 47 (SD 13; range 20-76 years)"
+      handedness: "all right-handed"
+      language: "native Chinese speakers"
+    statistics:
+      threshold: "Bonferroni corrected (P = 0.00294 for lesion analysis, P = 0.0025 for FA analysis; corrected P = 0.05)"
+      effect_size: "lesion correlation r = -0.57 (composite); FA correlation r = 0.57 (composite)"
+    lesion_mapping:
+      analysis: univariate
+      n_analysed: 76
+      min_lesion_overlap: ">= 5 patients"
+      lesion_volume_correction: covariate
+      multiple_comparisons: bonferroni
+    confounders_controlled: ["overall cognitive state (MMSE)", "whole lesion volume", "type of brain damage", "grey matter lesions", "non-semantic control tasks"]
+    confounders_not_controlled: []
+    region_definition:
+      kind: atlas
+      atlas: "JHU white-matter tractography atlas (25%-threshold sub-template)"
+      description: "Left anterior thalamic radiation as defined by the JHU-WM-Tracts atlas."
+    imaging_details:
+      field_strength: "1.5T"
+      reference_space: "MNI152"
+      atlases_used: ["JHU white-matter tractography atlas"]
+      preprocessing_pipeline: "SPM5 co-registration, manual lesion tracing, BrainVoyager QX v2.0 registration to Talairach, then transformed to MNI; DTI via PANDA pipeline (BET, Eddycorrect, DTIFIT) and ANTs registration to FMRIB FA template"
+    author_limitations:
+      - "Results are constrained by the lesion distribution in the patient group, with a bias toward the middle cerebral artery territory."
+      - "Individual tracts may not have specific functions; the overall pattern of multiple tracts might be what matters for semantic processing."
+    provenance:
+      extracted_by: "agent"
+      extracted_on: 2026-01-01
+      paper_section: "Results, pages 8-10"
+      confidence: high
+      flags: []
+    source_passages:
+      - section: "Results"
+        page: 8
+        quote: "the lesion percentages of the following three tracts significantly correlated negatively with all three semantic tasks: left IFOF, left ATR, left uncinate fasciculus (corrected P-values = 0.05)."
+        supports: claim
+      - section: "Materials and methods"
+        page: 2
+        quote: "Eighty-three patients with brain damage... at least 1 month post-onset... right-handed... Seven patients were not included in the analyses... remaining 76 patients"
+        supports: sample
+      - section: "Materials and methods"
+        page: 5
+        quote: "we adopted a widely used human brain white-matter template, the 'JHU white-matter tractography atlas' from FSL... We chose to use the 25%-threshold sub-template"
+        supports: region_definition
+      - section: "Materials and methods"
+        page: 5
+        quote: "The results were adjusted for the 17 tracts with the Bonferroni correction method (P = 0.00294, corrected P = 0.05)."
+        supports: statistics
+      - section: "Discussion"
+        page: 12
+        quote: "our analyses here were constrained by the lesion distribution in the patient groups... our patients tended to have lesions in the territory of the middle cerebral artery"
+        supports: limitation
 ---

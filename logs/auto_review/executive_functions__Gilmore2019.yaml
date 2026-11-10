@@ -380,6 +380,44 @@ runs:
   - not every passage matched the PDF exactly
   - new entry id (not appending to an existing entry)
   - 'f1: has provenance.flags'
-last_run: '2026-11-10T10:40:04'
+- run_id: 6
+  timestamp: '2026-11-10T20:58:49'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — absent 1, anchored 2, exact 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.limitation (p.7): The findings may have been affected by
+      sample size (ie, under-powered principal …'
+    - '  - [anchored] f1.limitation (p.7): there are currently no gold standard assessments
+      for assessing nonlinguistic cog…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.claim (p.6): only executive function, visual short-term memory, and
+      auditory comprehension we…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+last_run: '2026-11-10T20:58:49'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

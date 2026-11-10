@@ -505,6 +505,41 @@ runs:
   review_tier: B
   tier_reasons:
   - not every passage matched the PDF exactly
-last_run: '2026-11-10T10:40:15'
+- run_id: 7
+  timestamp: '2026-11-10T20:58:59'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 14/18 quotes (78%) — anchored 2, elided 2, exact 12, near 2
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.1548): The ''verbal quantity'' component showed
+      neural correlates in the pre/post-central…'
+    - '  - [near] f1.statistics (p.1544): The results were thresholded at P = 0.001
+      voxel-level and cluster-level correcte…'
+    - '  - [anchored] f2.claim (p.1548): the ''verbal quality'' component showed neural
+      correlates across left frontal regi…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+last_run: '2026-11-10T20:58:59'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

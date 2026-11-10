@@ -105,6 +105,78 @@ runs:
   tier_reasons:
   - schema not clean
   - not every passage matched the PDF exactly
-last_run: '2026-11-10T10:40:09'
+- run_id: 4
+  timestamp: '2026-11-10T20:58:42'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/_backup/20261110-1702/predictors/time_post_onset__vanderMeulen2014.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 1/2 quotes (50%) — anchored 1, exact 1
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.5): Time poststroke at the start of MIT predicted
+      outcome on untrained items, MIT ta…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - schema not clean
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 5
+  timestamp: '2026-11-10T20:58:54'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__vanderMeulen2014.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 1/2 quotes (50%) — anchored 1, exact 1
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.5): Time poststroke at the start of MIT predicted
+      outcome on untrained items, MIT ta…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+last_run: '2026-11-10T20:58:54'
 latest_verdict: auto_reject
 latest_mode: deterministic_only

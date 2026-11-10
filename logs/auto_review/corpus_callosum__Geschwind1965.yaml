@@ -679,6 +679,40 @@ runs:
   - new entry id (not appending to an existing entry)
   - 'f1: has provenance.flags'
   - 'f1: evidence_quality=''narrative-review'''
-last_run: '2026-11-10T10:40:09'
+- run_id: 10
+  timestamp: '2026-11-10T20:58:54'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 1/2 quotes (50%) — anchored 1, exact 1
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.52): We interpreted these disturbances as reflecting
+      a failure of somesthetic stimula…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: evidence_quality=''narrative-review'''
+last_run: '2026-11-10T20:58:54'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

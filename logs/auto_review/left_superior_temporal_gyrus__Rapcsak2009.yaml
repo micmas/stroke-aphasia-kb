@@ -653,6 +653,42 @@ runs:
   tier_reasons:
   - not every passage matched the PDF exactly
   - 'f1: has provenance.flags'
-last_run: '2026-11-10T10:40:24'
+- run_id: 9
+  timestamp: '2026-11-10T20:59:08'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — anchored 2, exact 2, near 2
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): we were able to identify 31 participants for
+      the study (mean age = 60.07 years, …'
+    - '  - [near] f1.method (p.584): To determine if lesions involving specific perisylvian
+      cortical subdivisions had…'
+    - '  - [near] f1.limitation (p.588): we relied on a mix of clinical and research
+      scans which introduced some variabil…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+last_run: '2026-11-10T20:59:08'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

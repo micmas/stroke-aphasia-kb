@@ -604,6 +604,40 @@ runs:
   tier_reasons:
   - not every passage matched the PDF exactly
   - 'f1: strength=''strong'''
-last_run: '2026-11-10T10:40:16'
+- run_id: 9
+  timestamp: '2026-11-10T20:59:00'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/8 quotes (75%) — anchored 2, elided 1, exact 5
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.region_definition (p.8): Patients with damage anywhere in
+      Broca''s area, defined as the posterior two thir…'
+    - '  - [anchored] f1.method (p.not_reported): Using voxel-based lesion–symptom
+      mapping, we find that lower per-formances on ca…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+last_run: '2026-11-10T20:59:00'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

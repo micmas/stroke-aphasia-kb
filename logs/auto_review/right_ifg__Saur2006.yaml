@@ -1,0 +1,33 @@
+draft_path: drafts/regions/right_ifg__Saur2006.md
+runs:
+- run_id: 1
+  timestamp: '2026-11-10T20:59:11'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/4 quotes (100%) — elided 1, exact 3
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-10T20:59:11'
+latest_verdict: checks_passed
+latest_mode: deterministic_only

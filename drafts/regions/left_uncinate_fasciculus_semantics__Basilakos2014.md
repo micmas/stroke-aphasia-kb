@@ -1,0 +1,105 @@
+---
+schema_version: 2.8
+id: left_uncinate_fasciculus
+name: Left Uncinate Fasciculus
+kind: tract
+status: draft
+created_by: agent:ollama-extract-cli/gemma4:31b
+created_on: 2026-11-10
+hemisphere: left
+findings:
+- id: f2
+  target: semantics
+  target_kind: impairment
+  claim: Damage to the left uncinate fasciculus is associated with impaired semantic processing in chronic
+    post-stroke aphasia.
+  direction: likely
+  relationship: causal
+  citation: '@Basilakos2014'
+  method: VBCM
+  design: cross-sectional
+  strength: strong
+  evidence_quality: cohort
+  sample:
+    n: 57
+    population: chronic left-hemisphere ischemic stroke aphasia
+    time_post_onset: mean 35.57 months (SD = 47.56, range = 6-276)
+    phase: chronic
+    age_range: mean 61.35 years (SD = 12.67, range = 36-83)
+    handedness: 73 right-handed
+    language: not_reported
+  statistics:
+    threshold: Bonferroni corrected p = 0.008
+    effect_size: r = 0.41
+    p_value: < 0.001
+  confounders_controlled:
+  - lesion size
+  confounders_not_controlled: []
+  region_definition:
+    kind: atlas
+    atlas: Catani et al. (2012)
+    description: uncinate fasciculus
+  imaging_details:
+    field_strength: 3T
+    reference_space: MNI152
+    atlases_used:
+    - ' '
+    preprocessing_pipeline: SPM8 cost-function approach normalization to 1 mm isotropic ICBM standard
+      brain template
+    modalities:
+    - modality: T1
+      sequence: MP-RAGE (TFE)
+      voxel_size_mm: not_reported
+      TR_ms: 2250
+      TE_ms: 4.2
+    - modality: T2
+      sequence: 3D SPACE
+      TR_ms: 3200
+      TE_ms: 352
+  provenance:
+    extracted_by: agent
+    extracted_on: 2026-01-01
+    paper_section: Results, page 5
+    confidence: high
+    flags:
+    - lesion_mapping (v2.7 design) not extracted by the model — filled from statistics.threshold / confounders
+      where the text says; check the Methods
+  source_passages:
+  - section: Results
+    page: 5
+    quote: Semantic processing was correlated with the uncinate fasciculus (r = 0.41, p < 0.001)
+    supports: claim
+  - section: Materials and Methods - Participants
+    page: 2
+    quote: Pyramids and Palm Trees Test scores were available for 57 of the 76 individuals
+    supports: sample
+  - section: Materials and Methods - Preprocessing of structural images
+    page: 2
+    quote: T1-signal intensity in white matter regions was used to relate cortical damage... to behavior
+      (Tyler et al., 2005).
+    supports: method
+  - section: Materials and Methods - Region of interest analyses
+    page: 3
+    quote: To control for multiple comparisons in the correlation analyses, the alpha-level was Bonferroni
+      corrected... threshold for significance was set to p = 0.008.
+    supports: statistics
+  - section: Materials and Methods - Region of interest analyses
+    page: 3
+    quote: A white matter atlas constructed by Catani et al. (2012) was consulted to define... the uncinate
+      fasciculus.
+    supports: region_definition
+  - section: Discussion
+    page: 7
+    quote: Our results indicate that the uncinate fasciculus was a greater predictor of semantic abilities,
+      which may be explained by this tract's relationship to semantic hub areas of the anterior temporal
+      lobe
+    supports: limitation
+  author_limitations:
+  - T1-signal intensity is an indirect measure of tissue integrity.
+  lesion_mapping:
+    analysis: univariate
+    n_analysed: 57
+    min_lesion_overlap: not_reported
+    lesion_volume_correction: covariate
+    multiple_comparisons: bonferroni
+---

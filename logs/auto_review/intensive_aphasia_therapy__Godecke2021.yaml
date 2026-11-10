@@ -634,6 +634,44 @@ runs:
   - not every passage matched the PDF exactly
   - new entry id (not appending to an existing entry)
   - 'f1: strength=''strong'''
-last_run: '2026-11-10T10:40:31'
+- run_id: 9
+  timestamp: '2026-11-10T20:59:14'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/9 quotes (67%) — elided 2, exact 4, near 3
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.statistics (p.8): The between-group difference of -1.8 (favoring
+      control; (95% CI -8.7-5.0) was no…'
+    - '  - [near] f1.confounders (p.4): ...using a linear mixed model which controlled
+      for baseline WAB-R AQ and baselin…'
+    - '  - [near] f1.limitation (p.12): ...it remains unclear whether a much higher
+      dose, for example, 100 h over 12 wee…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+last_run: '2026-11-10T20:59:14'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

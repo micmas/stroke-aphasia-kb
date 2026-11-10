@@ -1,22 +1,22 @@
 ---
-schema_version: 2.7
+schema_version: 2.8
 id: age
 name: Age at stroke
 kind: predictor
 predictor_type: demographic
 short_definition: Age of the patient at the time of stroke.
 units: years
-typical_range: 18-100
-direction_of_severity: higher_is_worse
+typical_range: not_reported
+direction_of_severity: not_applicable
 status: draft
-created_by: agent:ollama-extract-cli/gemma4:31b-it-q8_0
-created_on: 2026-10-23
+created_by: agent:ollama-extract-cli/gemma4:31b
+created_on: 2026-11-10
 findings:
 - id: f1
   target: prognosis
   target_kind: prognosis
-  claim: Older age is an independent predictor of poorer functional verbal communication outcome at 1
-    year post-stroke.
+  claim: Age is a significant independent predictor of good functional verbal communication outcome at
+    1 year after stroke.
   direction: likely
   relationship: correlational
   citation: '@ElHachioui2013'
@@ -27,16 +27,14 @@ findings:
   sample:
     n: 130
     population: adult Dutch native/near-native speakers with aphasia due to a first-ever stroke
-    time_post_onset: mean of 4 days (T1)
+    time_post_onset: mean of 4 days
     phase: acute
-    age_range: 19-96 years
+    age_range: mean 67 (SD 15)
     handedness: 86% right-handed
     language: Dutch
-    cohort: SPEAK
   statistics:
     threshold: p <= 0.20 (univariable)
     effect_size: OR 0.94 (0.89 to 0.99)
-    p_value: not_reported
   confounders_controlled:
   - phonology score
   - Barthel Index score
@@ -45,45 +43,31 @@ findings:
   confounders_not_controlled: []
   region_definition:
     kind: not_reported
-    description: Demographic predictor (age).
+    description: demographic predictor
   author_limitations:
-  - Outcome variable was dichotomised due to lack of patients in severe categories.
+  - The three core linguistic components were not examined extensively but with a screening tool.
+  - Unable to incorporate the role of structural brain damage because routine CT scanning data were inadequate.
   provenance:
     extracted_by: agent
     extracted_on: 2026-01-01
-    paper_section: Results, page 312; Table 2
+    paper_section: Results, page 312
     confidence: high
     flags: []
   source_passages:
   - section: Results
     page: 312
-    quote: Age, Barthel Index score, educational level and stroke subtype were the other signiﬁcant independent
-      predictors with a p value ≤0.20 in univariable logistic regression analyses (table 2).
+    quote: Age, Barthel Index score, educational level and stroke subtype were the other significant independent
+      predictors with a p value <= 0.20 in univariable logistic regression analyses (table 2).
     supports: claim
-  - section: Methods - Patients
-    page: 310
-    quote: Adult Dutch native/near-native speakers who could complete language tests between 2 and 14
-      days after stroke were eligible for inclusion.
-    supports: sample
-  - section: Table 2
-    page: 313
-    quote: Age at T1 (19-96 years)... OR for good outcome (95% CI) 0.94 (0.89 to 0.99)
-    supports: statistics
+  - section: Results
+    page: 312
+    quote: Our final multivariable regression model consisted of the phonology score, Barthel Index score,
+      age, educational level and stroke subtype.
+    supports: method
   - section: Discussion
-    page: 313
-    quote: First, we had to dichotomise our outcome variable because in the more severe categories of
-      the ASRS we lacked adequate numbers of patients...
+    page: 314
+    quote: Finally, we were unable to incorporate the role of structural brain damage in our prognostic
+      model because as a consequence of the observational design of our study, data from routine CT scanning
+      were inadequate.
     supports: limitation
-  - section: added by backfill
-    page: 1
-    quote: Between June 2007 and June 2009, a consecutive series of patients with aphasia due to a ﬁrst-ever
-      stroke were recruited from the stroke units of 17 hospitals in The Netherlands for the Sequential
-      Prognostic Evaluation of Aphasia after stroKe (SPEAK) study.
-    supports: sample
-  filled:
-    by: model:gemma4:31b-it-q8_0
-    date: '2026-10-26'
-    tool: backfill.py
-    fields:
-    - cohort
 ---

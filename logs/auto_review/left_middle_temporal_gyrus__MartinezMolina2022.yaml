@@ -239,6 +239,46 @@ runs:
   tier_reasons:
   - not every passage matched the PDF exactly
   - 'f2: has provenance.flags'
-last_run: '2026-11-10T10:40:20'
+- run_id: 4
+  timestamp: '2026-11-10T20:59:04'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/8 quotes (38%) — anchored 5, elided 1, exact 2
+    - '5 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.6): Lesions linked to poor spontaneous singing were
+      located exclusively in left temp…'
+    - '  - [anchored] f1.sample (p.3): Forty-five chronic stroke patients (25 females,
+      mean age = 64.4 + 10.2 years) we…'
+    - '  - [anchored] f1.statistics (p.6): In addition, a cluster size threshold [family-wise
+      error (FWE) rate; P < 0.05] w…'
+  - name: no_human_review_flags
+    passed: false
+    blocker: false
+    details:
+    - 'f2: lesion_mapping (v2.7 design) not extracted by the model — filled from statistics'
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@MartinezMolina2022: sample.n disagrees: [20, 43]'
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f2: has provenance.flags'
+last_run: '2026-11-10T20:59:04'
 latest_verdict: defer_to_human
 latest_mode: deterministic_only

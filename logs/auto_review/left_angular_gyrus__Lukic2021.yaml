@@ -203,6 +203,35 @@ runs:
   tier_reasons:
   - 'f1: strength=''strong'''
   - 'f2: strength=''strong'''
-last_run: '2026-11-10T10:40:10'
+- run_id: 4
+  timestamp: '2026-11-10T20:58:55'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/2 quotes (100%) — exact 2
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - 'f1: strength=''strong'''
+  - 'f2: strength=''strong'''
+last_run: '2026-11-10T20:58:55'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

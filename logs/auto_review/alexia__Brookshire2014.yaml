@@ -897,6 +897,44 @@ runs:
   - new entry id (not appending to an existing entry)
   - 'f1: has provenance.flags'
   - 'f2: has provenance.flags'
-last_run: '2026-11-10T10:40:03'
+- run_id: 11
+  timestamp: '2026-11-10T20:58:48'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/7 quotes (71%) — anchored 2, elided 1, exact 4
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): The inclusion criteria for PWA were history
+      of left hemisphere stroke at least 6…'
+    - '  - [anchored] f1.limitation (p.14): We employed a retrospective analysis of
+      a convenience sample of individuals with…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Brookshire2014: sample.n disagrees: [67, 99]'
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f2: has provenance.flags'
+last_run: '2026-11-10T20:58:48'
 latest_verdict: defer_to_human
 latest_mode: deterministic_only

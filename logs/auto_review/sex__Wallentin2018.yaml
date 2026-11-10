@@ -720,6 +720,40 @@ runs:
   tier_reasons:
   - not every passage matched the PDF exactly
   - 'f2: strength=''strong'''
-last_run: '2026-11-10T10:40:08'
+- run_id: 10
+  timestamp: '2026-11-10T20:58:53'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/7 quotes (86%) — anchored 1, elided 1, exact 5
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f2.claim (p.9): When including age and stroke severity in a
+      regression analysis, however, no sig…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Wallentin2018: sample.n disagrees: [48362, 1967038]'
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f2: strength=''strong'''
+last_run: '2026-11-10T20:58:53'
 latest_verdict: defer_to_human
 latest_mode: deterministic_only

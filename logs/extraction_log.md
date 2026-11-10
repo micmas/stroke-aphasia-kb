@@ -706,3 +706,61 @@ add an `EXTRACTED` line for every run.
 2026-11-10 | PORTAL-APPLIED | — | 14 record(s) | pdf 14 | by: michele
 2026-11-10 | PDFS-PROCESSED | — | screening register | 0 linked, 1 renamed, 0 not matching their record
 2026-11-10 | REGISTERED | — | screening → citations.md | 0 entries appended, 0 linked to existing keys
+2026-11-10 | EXTRACTED | @Ali2021 | age, time_post_onset | IPD meta-analysis of recovery predictors
+2026-11-10 | EXTRACTED | @Basilakos2014 | left_arcuate_fasciculus_anterior_segment, left_frontal_aslant_tract, left_uncinate_fasciculus | VBCM analysis of white matter integrity and fluency/semantics
+2026-11-10 | RECHECK | @Basilakos2014 | absent 3→1, schema 0→0, findings 4→4 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Benghanem2019 | severity_metric, lesion_volume, left_temporoparietal_junction | 3 drafts
+2026-11-10 | EXTRACTED | @Benjamin2014 | right_lateral_frontal_cortex, right_posterior_perisylvian_cortex, intention_treatment | 3 drafts
+2026-11-10 | RECHECK | @Benjamin2014 | absent 2→0, schema 0→0, findings 4→3 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Bhogal2003 | massed_practice | meta-analysis of 10 studies (n=864) linking intensity to recovery
+2026-11-10 | RECHECK | @Bhogal2003 | absent 0→0, schema 4→0, findings 4→1 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Bi2015 | left_superior_longitudinal_fasciculus, left_inferior_frontooccipital_fasciculus, left_uncinate_fasciculus, left_anterior_thalamic_radiation | causal links between WM tracts and tool processing
+2026-11-10 | EXTRACTED | @Billot2022 | severity_metric, imaging_metric_rsfc | MLPA prediction of treatment response
+2026-11-10 | RECHECK | @Billot2022 | absent 1→0, schema 0→0, findings 2→2 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Brady2022 | age, severity_metric, time_post_onset, sex | IPD network meta-analysis of SLT response
+2026-11-10 | EXTRACTED | @Breitenstein2017 | intensive_speech_and_language_therapy, stroke_severity_sss | RCT efficacy and responder analysis
+2026-11-10 | RECHECK | @Breitenstein2017 | absent 0→0, schema 2→0, findings 2→3 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Brownsett2014 | left_dacc_sfg | f1: dACC/SFG activation predicts picture description
+2026-11-10 | RECHECK | @Brownsett2014 | absent 1→0, schema 0→0, findings 1→1 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Casilio2025 | left_superior_temporal_gyrus, left_supramarginal_gyrus, left_ventral_precentral_gyrus, left_basal_ganglia | 4 region drafts
+2026-11-10 | EXTRACTED | @Coppens2002 | crossed_aphasia, sex | behavioral review of 167 cases
+2026-11-10 | RECHECK | @Coppens2002 | absent 1→0, schema 2→2, findings 3→2 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Corbetta2015 | left_posterior_superior_temporal_gyrus, lesion_volume | MLPA analysis of acute stroke cohort
+2026-11-10 | EXTRACTED | @DeWitt2012 | left_superior_temporal_gyrus | 2 findings
+2026-11-10 | EXTRACTED | @ElHachioui2013 | severity_metric, age | prognostic factors for functional outcome
+2026-11-10 | RECHECK | @ElHachioui2013 | absent 2→0, schema 0→0, findings 2→2 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @GajardoVidal2021 | left_anterior_arcuate_fasciculus, left_ifg_pars_opercularis | 2 drafts
+2026-11-10 | RECHECK | @GajardoVidal2021 | absent 1→0, schema 0→0, findings 3→2 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Glascher2012 | left_rostral_anterior_cingulate_cortex, left_middle_frontal_gyrus, left_ventromedial_prefrontal_cortex | VLSM analysis of cognitive control and valuation networks
+2026-11-10 | EXTRACTED | @Halai2017 | left_precentral_gyrus, left_superior_temporal_gyrus, left_anterior_temporal_lobe | VBCM analysis of PCA factors
+2026-11-10 | RECHECK | @Halai2017 | absent 2→0, schema 0→0, findings 3→3 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Han2013 | left_inferior_fronto_occipital_fasciculus, left_anterior_thalamic_radiation, left_uncinate_fasciculus | 3 region drafts
+2026-11-10 | RECHECK | @Han2013 | absent 1→0, schema 0→0, findings 3→3 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Han2016 | left_arcuate_fasciculus_slf | 1 draft
+2026-11-10 | RECHECK | @Han2016 | absent 1→0, schema 0→0, findings 1→1 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Hillis2001 | left_superior_temporal_gyrus_wernickes | 1 draft
+2026-11-10 | EXTRACTED | @Hillis2004 | left_ifg_pars_opercularis, left_precentral_gyrus_insula | 2 drafts
+2026-11-10 | RECHECK | @Hillis2004 | absent 1→0, schema 0→4, findings 3→2 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Hope2013 | lesion_volume, time_post_onset | GPR prediction of speech production in PLORAS cohort
+2026-11-10 | EXTRACTED | @Hosomi2009 | imaging_metric_af_asymmetry | predictor of aphasia prognosis via AF tractography
+2026-11-10 | EXTRACTED | @Ivanova2016 | left_arcuate_fasciculus, left_inferior_frontal_occipital_fasciculus, left_inferior_longitudinal_fasciculus | 3 drafts
+2026-11-10 | RECHECK | @Ivanova2016 | absent 3→0, schema 0→0, findings 3→3 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Jiang2025 | right_dorsolateral_prefrontal_cortex, left_inferior_frontal_gyrus_pars_orbitalis, right_inferior_frontal_gyrus | longitudinal fMRI effective connectivity (DCM)
+2026-11-10 | EXTRACTED | @Lo2019 | clinical_risk_factors | 5 findings on cognitive impairment risk factors
+2026-11-10 | EXTRACTED | @Mitchell2017 | dysarthria_interventions | systematic review of 5 RCTs
+2026-11-10 | RECHECK | @Mitchell2017 | absent 1→0, schema 0→0, findings 1→1 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Mohr2017 | neuroplasticity_poststroke_aphasia_mohr | narrative review of therapy-induced plasticity
+2026-11-10 | RECHECK | @Mohr2017 | absent 0→0, schema 1→0, findings 0→4 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Ochfeld2010 | left_ifg_pars_opercularis_triangularis | 2 drafts
+2026-11-10 | EXTRACTED | @OsaGarcia2020 | severity_metric, right_arcuate_fasciculus | longitudinal prediction of early recovery
+2026-11-10 | EXTRACTED | @Saur2006 | left_ifg, right_ifg | longitudinal fMRI of 14 patients
+2026-11-10 | RECHECK | @Saur2006 | absent 1→0, schema 0→0, findings 2→2 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Sebastian2014 | left_thalamus, right_thalamus | 2 region-anchored drafts
+2026-11-10 | EXTRACTED | @Sheppard2022 | left_supramarginal_gyrus, left_arcuate_fasciculus_slf, left_ifg_pars_opercularis, left_posterior_stg | longitudinal LASSO mapping of syntactic comprehension
+2026-11-10 | EXTRACTED | @Simic2019 | executive_functions | systematic review of EC as a predictor of therapy success
+2026-11-10 | EXTRACTED | @Thiel2013 | inhibitory_rtms_right_ifg, right_posterior_inferior_frontal_gyrus | 3 findings
+2026-11-10 | RECHECK | @Thiel2013 | absent 1→0, schema 0→0, findings 3→3 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Wilmskoetter2021 | left_ifg_pars_opercularis, left_middle_temporal_gyrus, left_angular_gyrus | 3 drafts
+2026-11-10 | RECHECK | @Wilmskoetter2021 | absent 3→0, schema 0→0, findings 4→3 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
+2026-11-10 | EXTRACTED | @Xing2016 | right_superior_temporal_gyrus, right_supramarginal_gyrus | VBM analysis of RH grey matter volume in chronic aphasia
+2026-11-10 | EXTRACTED | @vanderMeulen2014 | melodic_intonation_therapy, time_post_onset | RCT and longitudinal analysis of MIT efficacy and timing

@@ -231,6 +231,84 @@ runs:
   review_tier: B
   tier_reasons:
   - not every passage matched the PDF exactly
-last_run: '2026-11-10T10:40:13'
+- run_id: 4
+  timestamp: '2026-11-10T20:58:43'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/8 quotes (50%) — absent 1, anchored 3, exact 4
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.1): three left hemisphere tracts connecting frontoparietal
+      and intrafrontal areas ov…'
+    - '  - [anchored] f1.sample (p.3): Eighty-six brain-damaged patients (65 males)
+      were recruited for this study... wa…'
+    - '  - [anchored] f2.statistics (p.9): For tool concept processing, the integrity
+      of eight tracts was correlated signif…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.statistics (p.8): For tool use, the lesion percentage analysis revealed
+      11 tracts with lesion perc…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 5
+  timestamp: '2026-11-10T20:58:57'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/8 quotes (50%) — absent 1, anchored 3, exact 4
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.1): three left hemisphere tracts connecting frontoparietal
+      and intrafrontal areas ov…'
+    - '  - [anchored] f1.sample (p.3): Eighty-six brain-damaged patients (65 males)
+      were recruited for this study... wa…'
+    - '  - [anchored] f2.statistics (p.9): For tool concept processing, the integrity
+      of eight tracts was correlated signif…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.statistics (p.8): For tool use, the lesion percentage analysis revealed
+      11 tracts with lesion perc…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+last_run: '2026-11-10T20:58:57'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

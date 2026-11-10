@@ -1050,6 +1050,55 @@ runs:
   - 'f3: has contradictions'
   - 'f4: has provenance.flags'
   - 'f4: has contradictions'
-last_run: '2026-11-10T10:40:23'
+- run_id: 11
+  timestamp: '2026-11-10T20:59:08'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: false
+    blocker: true
+    details:
+    - f1 has non-empty contradictions
+    - f2 has non-empty contradictions
+    - f3 has non-empty contradictions
+    - f4 has non-empty contradictions
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 26/28 quotes (93%) — absent 2, exact 26
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.region_definition (p.8): posterior superior temporal gyrus and sulcus
+      lateral and posterior to Heschl''s g…'
+    - '  - f3.region_definition (p.8): posterior superior temporal gyrus and sulcus
+      lateral and posterior to Heschl''s g…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f1: has contradictions'
+  - 'f2: has provenance.flags'
+  - 'f2: has contradictions'
+  - 'f3: has provenance.flags'
+  - 'f3: strength=''strong'''
+  - 'f3: has contradictions'
+  - 'f4: has provenance.flags'
+  - 'f4: has contradictions'
+last_run: '2026-11-10T20:59:08'
 latest_verdict: defer_to_human
 latest_mode: deterministic_only
