@@ -2,7 +2,7 @@
 
 Every model the knowledge base uses runs on the maintainer's own
 computer through Ollama; which one does which job is one line each in
-`models.yaml`. Today the extractor is Gemma 4 31B (`gemma4:31b-it-q8_0`)
+`models.yaml`. Today the extractor is Gemma 4 31B (`gemma4:31b`)
 and the independent reviewer Gemma 4 26B (`gemma4:26b`). This page is
 about how those choices are made, so that the next person (or you in six
 months) can see why, and can test a newer model the same way.
@@ -262,7 +262,7 @@ Candidates for `extract` that satisfy the hard constraints and fit a
 | Tag | Arch | Weights (Q4) | Context | Why it is on the list | Caveat |
 |---|---|---|---|---|---|
 | `gemma4:26b` | MoE, 3.8B active | 16–19 GB | 256K | **Current default.** Fast (few active params), fits 32 GB. | Weakest long-context recall of the Gemma 4 workstation models: 44.1% on MRCR v2 8-needle 128k vs 66.4% for the 31B dense. That benchmark is the closest public proxy to "quote page 14 verbatim". |
-| `gemma4:31b` | Dense | 19–20 GB | 256K | Same family, markedly better long-context recall (66.4% MRCR). Strongest candidate to test first if RAM ≥ 48 GB. | Dense → noticeably slower per token than the 26B MoE. |
+| `gemma4:31b` | Dense | 19–20 GB | 256K | **Current extractor (2026-11-10).** Same family, markedly better long-context recall (66.4% MRCR). | Dense → noticeably slower per token than the 26B MoE. |
 | `gemma4:12b` | Dense | 7.7 GB | 256K | Fits 16 GB machines. | Lower quality; expect more review work. |
 | `qwen3.8:27b` | Dense | 18 GB | 256K | Newest Qwen; strong on "professional work / research" tasks; vision support irrelevant here. | No public long-context number on the Ollama page; measure it. |
 | `granite4.2:30b` | Dense | 18 GB | 128K | IBM explicitly trains for structured JSON output and RAG; Apache 2.0. | 128K ceiling (fine for papers, tight for long reviews). |
@@ -272,7 +272,7 @@ Only for ≥ 96 GB machines (so, the 128 GB M5 Max):
 
 | Tag | Arch | Weights | Context | Why it is on the list | Caveat |
 |---|---|---|---|---|---|
-| `gemma4:31b-it-q8_0` | Dense, 8-bit | 34 GB | 256K | **First experiment on this machine.** Same model as `31b`, near-lossless quant; best shot at verbatim quotes. `31b-mxfp8` (34 GB, MLX) is the Apple-Silicon-native equivalent. | ~Half the speed of the 26B MoE. Fine for batch runs. |
+| `gemma4:31b-it-q8_0` | Dense, 8-bit | 34 GB | 256K | **Extractor from 2026-10-19 to 2026-11-10**; replaced by plain `31b`, which did no worse at half the cost (§5). Same model as `31b`, near-lossless quant. `31b-mxfp8` (34 GB, MLX) is the Apple-Silicon-native equivalent. | ~Half the speed of the 26B MoE. Fine for batch runs. |
 | `gemma4:31b-it-bf16` | Dense, full precision | 63 GB | 256K | Removes quantisation as a variable entirely. | Slow; only to settle whether q8 is losing anything. |
 | `qwen3.5:122b` | MoE | 81 GB | 256K | Largest Qwen that fits. | 7 months old; Qwen 3.8 is a newer generation at 27B. Measure rather than assume bigger wins. |
 | `nemotron-3.5-super:120b` | MoE, 12B active, hybrid Mamba-2 | 80–90 GB | 1M | NVIDIA pitches it for document understanding; MoE so it is fast for its size; released this week. | Leaves ~40 GB for KV cache — set `num_ctx` explicitly. OpenMDW licence; check it suits the KB's licence. |
@@ -323,6 +323,10 @@ Append one row per experiment. Keep failures; they are the useful part.
 | 2026-10-16 | extract | `gemma4:31b-it-q8_0` run 1 | Fridriksson2018Anatomy | 9/18 absent | 10 issues (`method: RLSM` not in vocab) | 10 findings / 5 entries vs 8 / 2 | 2.50 vs 2.75 (under-claims) | 20 m 21 s, 58K in / 8.4K out, 100 % GPU, RAM 69 % | **Not adopted yet.** All 9 "absent" quotes were table rows written as `a \| b \| 0.60` — real cells, wrong form. Fixes: prose-only passage rule in the prompt + skill; `RLSM` added to vocab (v2.5). | michele + Claude |
 | 2026-10-19 | extract | `gemma4:31b-it-q8_0` run 2 | Fridriksson2018Anatomy | **0/16 absent** (6 exact, 4 elided, 3 table, 3 anchored) | 0 | 7 findings / 5 entries vs 8 / 2 (dropped the naming→AG finding) | 2.71 vs 2.75 | 22 m 43 s, 58K in / 9.3K out, 100 % GPU | **Passes fidelity on paper 1.** Still cites table cells for statistics despite the rule; thin on sample/method/limitation passages (16 vs 60). Reference entries for this paper are `legacy`, so coverage/calibration need a human-reviewed paper next: Alyahya2018NounVerb, Bonilha2014, then Goldenberg1994 (OCR). | michele + Claude |
 | 2026-10-19 | extract | `gemma4:31b-it-q8_0` | Alyahya2018NounVerb (human-reviewed reference) | **0/37 absent** (14 exact, 16 elided, 7 anchored) | 8 issues: `author_limitations` omitted on every draft; empty `region_definition` on the predictor draft | 8 findings / 8 entries vs 33 / 6 | 2.12 vs 2.18 | 30 m 37 s, 67K in / 12.2K out, 100 % GPU | **Passes fidelity on paper 2.** Coverage is the gap: one headline finding per region, and 33 full findings would need ~40K output tokens against a 16K `max_tokens` cap — dense papers cannot be extracted in one call. Fixes: limitations rule in the prompt; `extract.py` now fills `author_limitations: []` with a verify flag (→ Tier B), drops empty predictor `region_definition`, and keeps the citation key's case (`NounVerb`, not `Nounverb`). Next: run `gemma4:26b` on both papers for the incumbent comparison the rule asks for. | michele + Claude |
+| 2026-11-10 | extract | `gemma4:31b-it-q8_0` (incumbent) | Alyahya2018NounVerb, Robson2019 (random pick, seed 7; references 17/33 and 2/6 human-reviewed) | 0/21 and **2/6 absent** (one elided limitations passage, used in two drafts, whose fragments are not in the paper) | 0 | 4 + 2 findings vs 33 + 6; **4 of 24 known links** | 2.25 vs 2.18; 2.0 vs 1.0 | 20 m 0 s and 9 m 38 s, 100 % GPU | Fails its own rule on this run. Note the spread between runs of the same model on Alyahya: 8 findings on 2026-10-19, 4 today. | michele |
+| 2026-11-10 | extract | `gemma4:31b` | same | **0/32 and 0/6 absent** | 0 | 7 + 2 findings; **7 of 24 known links** (5 of 22, 2 of 2), precision 78 % | 2.0 vs 2.18; 2.0 vs 1.0 | 11 m 43 s and 3 m 11 s, 100 % GPU | **Adopted for `extract`.** Same weights as the incumbent at the default quantisation: no fabricated quote, no schema issue, at least as many known links, about half the time and memory. Two papers cannot show it is better in quality; they show the 8-bit quantisation buys nothing measurable here, so the cheaper model wins. Re-test when the reference papers are fully human-reviewed. | michele |
+| 2026-11-10 | extract | `qwen3.8:27b` | same | 0/30 and 0/6 absent | 4 issues (Robson2019) | 5 + 2 findings; 2 of 24 known links — on Alyahya every finding targets its own entry, so no region is named | 1.8 vs 2.18 (under-claims) | 7 m 10 s and 1 m 44 s, 100 % GPU | Not adopted: fastest and honest with quotes, but loses the region ↔ impairment link, which is the point of the KB. Worth a second look for `review`. | michele |
+| 2026-11-10 | extract | `granite4.2:30b` | same | **8/30 absent** (table-like "Psycholinguistic variable: …" strings and a sentence about lesion volume that the paper does not contain) | 3 issues: both Robson2019 drafts are unparsable YAML | 10 + 0 findings; 1 of 24 known links, precision 10 % | 2.0 vs 2.18 | 39 m 35 s and 14 m 26 s, 100 % GPU | **Rejected for `extract`:** fabricates, slowest, and wrote files the pipeline cannot read. | michele |
 | | | | | | | | | | | |
 
 ---

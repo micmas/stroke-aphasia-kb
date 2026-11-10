@@ -36,7 +36,7 @@ claim from a single paper, with the paper's own words to back it, the
 method and sample, and how sure the extractor was.
 
 A language model running on the maintainer's own computer reads each
-PDF and writes draft findings: currently Gemma 4 31B (`gemma4:31b-it-q8_0`)
+PDF and writes draft findings: currently Gemma 4 31B (`gemma4:31b`)
 through Ollama. A person, or for routine findings a second, independent
 local model, currently Gemma 4 26B (`gemma4:26b`), then re-reads the
 paper and agrees or not. The choice of models and the tests behind it
@@ -66,7 +66,7 @@ python scripts/review_app.py                    # review a draft beside its pape
 ```
 
 Extracting new papers needs the local models: `ollama serve`, then
-`ollama pull gemma4:31b-it-q8_0` (the extractor; needs about 48 GB of
+`ollama pull gemma4:31b` (the extractor; needs about 48 GB of
 RAM, otherwise `gemma4:26b`) and `ollama pull gemma4:26b` (the
 reviewer). `python scripts/model_config.py` confirms both resolve.
 [docs/HOWTO.md](docs/HOWTO.md) walks from a PDF to an approved entry.

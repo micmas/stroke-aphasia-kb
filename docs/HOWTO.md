@@ -65,7 +65,7 @@ paper on the 31B model.
 
 **Which model.** The choice lives in `models.yaml`, one line per role:
 `extract` (the hard one: a 50 000-token paper in, structured findings
-out; currently Gemma 4 31B, `gemma4:31b-it-q8_0`), `review` (the
+out; currently Gemma 4 31B, `gemma4:31b`), `review` (the
 independent second reading; Gemma 4 26B) and `rag` (writes the report
 prose). [MODELS.md](MODELS.md) explains the choice and how to test a
 new candidate with `benchmark_models.py`. To try a model without

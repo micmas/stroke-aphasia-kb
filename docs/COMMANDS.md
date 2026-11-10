@@ -633,6 +633,32 @@ candidate, then `intake_papers.py` takes over as for any new PDF.
 | `portal_import.py --kind K` | Only records of one kind (screen, verdict, edit, mark, comment, pdf). |
 | `portal_import.py --skip-pdf` | Leave `pdf` records in the inbox (what the apply workflow does: CI has no papers folder). |
 
+### `recheck_drafts.py` — check every draft against its paper, rewrite the ones that fail
+
+```bash
+python scripts/recheck_drafts.py                       # audit only: no model, a few minutes
+python scripts/recheck_drafts.py --execute --limit 10  # re-extract ten failing papers tonight
+python scripts/recheck_drafts.py --execute             # … or all of them
+```
+
+For use after the extractor changes, or whenever you want to know the
+drafts are sound. Every quote of every draft is searched for in the
+paper and every draft is validated. A paper is re-extracted with the
+current extractor only when a draft quotes something that is not in the
+paper or breaks the schema; papers whose drafts a person has touched
+(portal reviews, edits, marks, a re-review in progress) are never
+rewritten, only listed. Old drafts go to `drafts/_backup/<stamp>/`, and
+a rewrite is kept only if it is better — otherwise the old drafts are
+put back and the paper is listed for a person. The report lands in
+`_compare/recheck_<stamp>.md`; each kept rewrite is a `RECHECK` line in
+the log. Then `auto_review.py --all` and `publish_portal.py --sync`.
+
+| Option | Meaning |
+|---|---|
+| `--papers KEY …` | Only these papers. |
+| `--limit N` | At most N re-extractions this run; run again to carry on. |
+| `--model TAG` | Another extractor for this run (default: `roles.extract` in `models.yaml`). |
+
 ### `endnote_match.py` — PDFs you already have in EndNote
 
 ```bash

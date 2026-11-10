@@ -2,10 +2,10 @@
  "schema": 1,
  "date": "2026-11-10",
  "by": "uqmmasso",
- "incumbent": "gemma4:31b-it-q8_0",
+ "incumbent": "gemma4:31b",
  "roles": {
   "extract": {
-   "model": "gemma4:31b-it-q8_0"
+   "model": "gemma4:31b"
   },
   "review": {
    "model": "gemma4:26b"
@@ -36,189 +36,15 @@
  ],
  "models": [
   {
-   "model": "gemma4:31b-it-q8_0",
-   "incumbent": true,
-   "eligible": false,
-   "reasons": [
-    "2 absent quote(s) — disqualified for extract"
-   ],
-   "absent": 2,
-   "schema_issues": 0,
-   "calibration_delta": 0.53,
-   "papers": 2,
-   "mean_elapsed_s": 0.0,
-   "link_recall": 0.17,
-   "link_precision": 0.67,
-   "ram_class": 96,
-   "note": "~Half the speed of the 26B MoE. Fine for batch runs.",
-   "quotes": 27,
-   "verified": 22,
-   "findings": 6,
-   "ref_findings": 39,
-   "shared_links": 4,
-   "ref_links": 24,
-   "links": 6,
-   "processor": null,
-   "rows": [
-    {
-     "paper": "Alyahya2018NounVerb",
-     "ungraded": false,
-     "drafts": 4,
-     "findings": 4,
-     "ref_findings": 33,
-     "ref_entries": 6,
-     "quotes": 21,
-     "absent": 0,
-     "verified": 20,
-     "near": 0,
-     "anchored": 1,
-     "schema_issues": 0,
-     "no_quote_findings": 0,
-     "links": 4,
-     "ref_links": 22,
-     "shared_links": 2,
-     "link_recall": 0.09,
-     "link_precision": 0.5,
-     "relationship_agreement": 1.0,
-     "missed_links": [
-      "executive_functions ↔ left_paracingulate_gyrus",
-      "executive_functions ↔ left_superior_frontal_gyrus",
-      "executive_functions ↔ left_supplementary_motor_area",
-      "fluency ↔ left_anterior_arcuate_fasciculus",
-      "fluency ↔ left_central_opercular_cortex",
-      "fluency ↔ left_precentral_gyrus",
-      "fluency ↔ lesion_volume",
-      "left_anterior_middle_temporal_gyrus ↔ semantics"
-     ],
-     "new_links": [
-      "anomia ↔ lesion_volume",
-      "left_middle_temporal_gyrus ↔ semantics"
-     ],
-     "strength": 2.25,
-     "ref_strength": 2.18,
-     "confidence": 3.0,
-     "ref_confidence": 3.0,
-     "passages_per_finding": 5.2
-    },
-    {
-     "paper": "Robson2019",
-     "ungraded": false,
-     "drafts": 2,
-     "findings": 2,
-     "ref_findings": 6,
-     "ref_entries": 2,
-     "quotes": 6,
-     "absent": 2,
-     "verified": 2,
-     "near": 0,
-     "anchored": 2,
-     "schema_issues": 0,
-     "no_quote_findings": 0,
-     "links": 2,
-     "ref_links": 2,
-     "shared_links": 2,
-     "link_recall": 1.0,
-     "link_precision": 1.0,
-     "relationship_agreement": 1.0,
-     "missed_links": [],
-     "new_links": [],
-     "strength": 2.0,
-     "ref_strength": 1.0,
-     "confidence": 3.0,
-     "ref_confidence": 2.83,
-     "passages_per_finding": 3.0
-    }
-   ]
-  },
-  {
-   "model": "gemma4:26b",
-   "incumbent": false,
-   "eligible": false,
-   "reasons": [
-    "no drafts for Robson2019",
-    "more schema issues than the incumbent (38 vs 0)"
-   ],
-   "absent": 0,
-   "schema_issues": 38,
-   "calibration_delta": 0.15,
-   "papers": 2,
-   "mean_elapsed_s": 0.0,
-   "link_recall": 0.0,
-   "link_precision": 0.0,
-   "ram_class": 48,
-   "note": "Weakest long-context recall of the Gemma 4 workstation models: 44.1% on MRCR v2 8-needle 128k vs 66.4% for the 31B dense",
-   "quotes": 14,
-   "verified": 13,
-   "findings": 6,
-   "ref_findings": 39,
-   "shared_links": 0,
-   "ref_links": 22,
-   "links": 6,
-   "processor": null,
-   "rows": [
-    {
-     "paper": "Alyahya2018NounVerb",
-     "ungraded": false,
-     "drafts": 5,
-     "findings": 6,
-     "ref_findings": 33,
-     "ref_entries": 6,
-     "quotes": 14,
-     "absent": 0,
-     "verified": 13,
-     "near": 1,
-     "anchored": 0,
-     "schema_issues": 38,
-     "no_quote_findings": 0,
-     "links": 6,
-     "ref_links": 22,
-     "shared_links": 0,
-     "link_recall": 0.0,
-     "link_precision": 0.0,
-     "missed_links": [
-      "executive_functions ↔ left_paracingulate_gyrus",
-      "executive_functions ↔ left_superior_frontal_gyrus",
-      "executive_functions ↔ left_supplementary_motor_area",
-      "fluency ↔ left_anterior_arcuate_fasciculus",
-      "fluency ↔ left_central_opercular_cortex",
-      "fluency ↔ left_precentral_gyrus",
-      "fluency ↔ lesion_volume",
-      "left_angular_gyrus ↔ phonological_production"
-     ],
-     "new_links": [
-      "anomia ↔ left_angular_gyrus",
-      "form_to_meaning ↔ left_angular_gyrus",
-      "form_to_meaning ↔ left_supramarginal_gyrus_premotor",
-      "imageability ↔ severity_metric",
-      "left_parietal_operculum ↔ phonological_production",
-      "left_superior_temporal_gyrus ↔ phonological_recognition"
-     ],
-     "strength": 2.33,
-     "ref_strength": 2.18,
-     "confidence": 3.0,
-     "ref_confidence": 3.0,
-     "passages_per_finding": 2.3
-    },
-    {
-     "paper": "Robson2019",
-     "failed": true,
-     "drafts": 0,
-     "findings": 0,
-     "ref_findings": 6,
-     "ref_entries": 2
-    }
-   ]
-  },
-  {
    "model": "gemma4:31b",
-   "incumbent": false,
+   "incumbent": true,
    "eligible": true,
    "reasons": [],
    "absent": 0,
    "schema_issues": 0,
    "calibration_delta": 0.41,
    "papers": 2,
-   "mean_elapsed_s": 0.0,
+   "mean_elapsed_s": 447.0,
    "link_recall": 0.29,
    "link_precision": 0.78,
    "ram_class": 48,
@@ -230,7 +56,7 @@
    "shared_links": 7,
    "ref_links": 24,
    "links": 9,
-   "processor": null,
+   "processor": "100%GPU",
    "rows": [
     {
      "paper": "Alyahya2018NounVerb",
@@ -270,7 +96,9 @@
      "ref_strength": 2.18,
      "confidence": 3.0,
      "ref_confidence": 3.0,
-     "passages_per_finding": 4.6
+     "passages_per_finding": 4.6,
+     "elapsed_s": 703,
+     "processor": "100%GPU"
     },
     {
      "paper": "Robson2019",
@@ -298,7 +126,9 @@
      "ref_strength": 1.0,
      "confidence": 3.0,
      "ref_confidence": 2.83,
-     "passages_per_finding": 3.0
+     "passages_per_finding": 3.0,
+     "elapsed_s": 191,
+     "processor": "100%GPU"
     }
    ]
   },
@@ -313,7 +143,7 @@
    "schema_issues": 4,
    "calibration_delta": -0.38,
    "papers": 2,
-   "mean_elapsed_s": 0.0,
+   "mean_elapsed_s": 267.0,
    "link_recall": 0.08,
    "link_precision": 1.0,
    "ram_class": 48,
@@ -325,7 +155,7 @@
    "shared_links": 2,
    "ref_links": 24,
    "links": 2,
-   "processor": null,
+   "processor": "100%GPU",
    "rows": [
     {
      "paper": "Alyahya2018NounVerb",
@@ -360,7 +190,9 @@
      "ref_strength": 2.18,
      "confidence": 3.0,
      "ref_confidence": 3.0,
-     "passages_per_finding": 6.0
+     "passages_per_finding": 6.0,
+     "elapsed_s": 430,
+     "processor": "100%GPU"
     },
     {
      "paper": "Robson2019",
@@ -387,7 +219,9 @@
      "ref_strength": 1.0,
      "confidence": 3.0,
      "ref_confidence": 2.83,
-     "passages_per_finding": 3.0
+     "passages_per_finding": 3.0,
+     "elapsed_s": 104,
+     "processor": "100%GPU"
     }
    ]
   },
@@ -403,7 +237,7 @@
    "schema_issues": 3,
    "calibration_delta": -0.18,
    "papers": 2,
-   "mean_elapsed_s": 0.0,
+   "mean_elapsed_s": 1620.0,
    "link_recall": 0.04,
    "link_precision": 0.1,
    "ram_class": 48,
@@ -415,7 +249,7 @@
    "shared_links": 1,
    "ref_links": 24,
    "links": 10,
-   "processor": null,
+   "processor": "100%GPU",
    "rows": [
     {
      "paper": "Alyahya2018NounVerb",
@@ -461,7 +295,9 @@
      "ref_strength": 2.18,
      "confidence": 3.0,
      "ref_confidence": 3.0,
-     "passages_per_finding": 3.0
+     "passages_per_finding": 3.0,
+     "elapsed_s": 2375,
+     "processor": "100%GPU"
     },
     {
      "paper": "Robson2019",
@@ -488,7 +324,108 @@
      "new_links": [],
      "ref_strength": 1.0,
      "ref_confidence": 2.83,
-     "passages_per_finding": 0.0
+     "passages_per_finding": 0.0,
+     "elapsed_s": 866,
+     "processor": "100%GPU"
+    }
+   ]
+  },
+  {
+   "model": "gemma4:31b-it-q8_0",
+   "incumbent": false,
+   "eligible": false,
+   "reasons": [
+    "2 absent quote(s) — disqualified for extract"
+   ],
+   "absent": 2,
+   "schema_issues": 0,
+   "calibration_delta": 0.53,
+   "papers": 2,
+   "mean_elapsed_s": 888.0,
+   "link_recall": 0.17,
+   "link_precision": 0.67,
+   "ram_class": 96,
+   "note": "~Half the speed of the 26B MoE. Fine for batch runs.",
+   "quotes": 27,
+   "verified": 22,
+   "findings": 6,
+   "ref_findings": 39,
+   "shared_links": 4,
+   "ref_links": 24,
+   "links": 6,
+   "processor": "100%GPU",
+   "rows": [
+    {
+     "paper": "Alyahya2018NounVerb",
+     "ungraded": false,
+     "drafts": 4,
+     "findings": 4,
+     "ref_findings": 33,
+     "ref_entries": 6,
+     "quotes": 21,
+     "absent": 0,
+     "verified": 20,
+     "near": 0,
+     "anchored": 1,
+     "schema_issues": 0,
+     "no_quote_findings": 0,
+     "links": 4,
+     "ref_links": 22,
+     "shared_links": 2,
+     "link_recall": 0.09,
+     "link_precision": 0.5,
+     "relationship_agreement": 1.0,
+     "missed_links": [
+      "executive_functions ↔ left_paracingulate_gyrus",
+      "executive_functions ↔ left_superior_frontal_gyrus",
+      "executive_functions ↔ left_supplementary_motor_area",
+      "fluency ↔ left_anterior_arcuate_fasciculus",
+      "fluency ↔ left_central_opercular_cortex",
+      "fluency ↔ left_precentral_gyrus",
+      "fluency ↔ lesion_volume",
+      "left_anterior_middle_temporal_gyrus ↔ semantics"
+     ],
+     "new_links": [
+      "anomia ↔ lesion_volume",
+      "left_middle_temporal_gyrus ↔ semantics"
+     ],
+     "strength": 2.25,
+     "ref_strength": 2.18,
+     "confidence": 3.0,
+     "ref_confidence": 3.0,
+     "passages_per_finding": 5.2,
+     "elapsed_s": 1199,
+     "processor": "100%GPU"
+    },
+    {
+     "paper": "Robson2019",
+     "ungraded": false,
+     "drafts": 2,
+     "findings": 2,
+     "ref_findings": 6,
+     "ref_entries": 2,
+     "quotes": 6,
+     "absent": 2,
+     "verified": 2,
+     "near": 0,
+     "anchored": 2,
+     "schema_issues": 0,
+     "no_quote_findings": 0,
+     "links": 2,
+     "ref_links": 2,
+     "shared_links": 2,
+     "link_recall": 1.0,
+     "link_precision": 1.0,
+     "relationship_agreement": 1.0,
+     "missed_links": [],
+     "new_links": [],
+     "strength": 2.0,
+     "ref_strength": 1.0,
+     "confidence": 3.0,
+     "ref_confidence": 2.83,
+     "passages_per_finding": 3.0,
+     "elapsed_s": 578,
+     "processor": "100%GPU"
     }
    ]
   }

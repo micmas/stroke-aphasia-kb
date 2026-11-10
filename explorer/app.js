@@ -395,7 +395,9 @@ function overview(index) {
         h('div', { class: 'detail', text: `of ${index.screening.candidates.length} candidates · ${index.screening.candidates.filter((c) => ['awaiting_ta', 'awaiting_ft', 'unsure_ta', 'unsure_ft'].includes(c.stage)).length} awaiting a decision` })) : null),
     h('h2', { text: 'Review provenance of findings' }),
     stackBar(prov),
-    h('p', { class: 'small muted' }, 'Who may approve what is set by the governance policy. Legacy findings were approved before it and are tagged for re-review. ',
+    h('p', { class: 'small muted' }, 'Every finding is first drafted from the paper by a language model running on the maintainer\u2019s own computer (',
+      h('a', { href: '#/models', text: 'which model, and how it was chosen' }), '), then checked against the paper before it is approved. ',
+      'Who may approve what is set by the governance policy. Legacy findings were approved before it and are tagged for re-review. ',
       h('a', { href: href('/findings', { review_kind: ['human'] }), text: 'Browse person-approved findings' }), ' · ',
       h('a', { href: href('/findings', { review_kind: ['legacy'] }), text: 'browse legacy findings' })),
     h('div', { class: 'grid-2' },
@@ -414,7 +416,7 @@ function overview(index) {
       h('li', {}, h('a', { href: '#/findings', text: 'Findings browser' }), ' — filter by entry type, relationship, strength, method, stage, provenance or paper; full-text search of claims and quotes.'),
       h('li', {}, h('a', { href: '#/papers', text: 'Papers' }), ' — every cited paper and its findings in page order, to spot-check an extraction against the PDF.'),
       h('li', {}, h('a', { href: '#/coverage', text: 'Coverage' }), ' — how the literature was searched and screened (PRISMA flow), what each evidence gap still needs, and where every candidate paper stands.'),
-      h('li', {}, h('a', { href: '#/models', text: 'Models' }), ' — which local model drafts the findings, and the comparison behind that choice.'),
+      h('li', {}, h('a', { href: '#/models', text: 'The extraction models' }), ' — which local model drafts the findings, and the comparison behind that choice.'),
       h('li', {}, h('a', { href: '#/involve', text: 'Get involved' }), ' — the five levels at which a person can take part, from reading to building; what each needs and what it gives.'),
       index.kb.portal?.url ? h('li', {}, h('a', { href: index.kb.portal.url, target: '_blank', rel: 'noopener', text: 'Review portal' }), ' — for collaborators: check drafts beside the annotated PDFs, screen candidate papers and send decisions back (sign-in with an invited email).') : null));
 }
@@ -1071,7 +1073,7 @@ function render() {
     else if (head === 'licences') { view = licencesView(index, route); current = '/papers'; }
     else if (head === 'coverage') { view = coverage(index, route); current = '/coverage'; }
     else if (head === 'involve') { view = involve(index); current = '/involve'; }
-    else if (head === 'models') { view = models(index); current = '/models'; }
+    else if (head === 'models') { view = models(index); current = null; }   // reached from the Overview, not from the menu
     else if (head === 'paper' && rest[0]) { view = paper(index, rest[0]); current = '/papers'; }
     else if (head === 'entry' && rest[0]) { view = entry(index, rest[0]); current = null; }
     else if (head === 'finding' && rest[1]) { view = finding(index, rest[0], rest[1]); current = null; }
