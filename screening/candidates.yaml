@@ -25401,7 +25401,6 @@ candidates:
     seq: 283
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: C1249_Johnson2022.pdf
   key: '@Johnson2022'
 - id: C1250
   doi: 10.1155/2022/3902570
@@ -38690,7 +38689,6 @@ candidates:
     seq: 287
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: C1989_Meier2019.pdf
   key: '@Meier2019'
 - id: C1990
   doi: 10.1007/s11682-019-00106-7
@@ -40760,7 +40758,6 @@ candidates:
     seq: 289
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: C2108_Zavanone2018.pdf
   key: '@Zavanone2018'
 - id: C2109
   doi: 10.1016/j.cortex.2018.07.007
@@ -41352,6 +41349,7 @@ candidates:
     seq: 290
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C2140_Xing2018.pdf
 - id: C2141
   doi: 10.3233/rnn-180812
   pmid: '29889086'
@@ -126469,7 +126467,6 @@ candidates:
     seq: 292
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: C7373_Rehabilitation2022.pdf
   key: '@Brady2022Dosage'
 - id: C7374
   doi: 10.1007/s10072-021-05743-9

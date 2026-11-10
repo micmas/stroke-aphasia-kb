@@ -703,3 +703,6 @@ add an `EXTRACTED` line for every run.
 2026-11-10 | PDFS-PROCESSED | — | screening register | 0 linked, 9 renamed, 0 not matching their record
 2026-11-10 | PORTAL-APPLIED | — | 20 record(s) | screen 20 | by: michele
 2026-11-10 | REGISTERED | — | screening → citations.md | 14 entries appended, 3 linked to existing keys
+2026-11-10 | PORTAL-APPLIED | — | 14 record(s) | pdf 14 | by: michele
+2026-11-10 | PDFS-PROCESSED | — | screening register | 0 linked, 1 renamed, 0 not matching their record
+2026-11-10 | REGISTERED | — | screening → citations.md | 0 entries appended, 0 linked to existing keys
