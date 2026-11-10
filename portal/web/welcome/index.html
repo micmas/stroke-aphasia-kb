@@ -46,13 +46,14 @@
     <div class="choices">
       <section class="choice" aria-labelledby="have">
         <h2 id="have">I'm already an approved reviewer</h2>
-        <p>Sign in with the email address you were approved with. You get a one-time code by email: no account, no password.</p>
+        <p>Sign in with the email address you were approved with. You get a one-time code by email: no account to create, no password.</p>
+        <p class="small muted">The sign-in page is run by Cloudflare Access. You do not need a Cloudflare account.</p>
         <a class="btn-big" href="/api/signin">Sign in</a>
       </section>
 
       <section class="choice" aria-labelledby="want">
         <h2 id="want">I'd like to become a reviewer</h2>
-        <p id="askIntro">Tell us who you are. The maintainer reads every request and answers by email. <a href="https://aphasia-kb.app/#/involve">What reviewing involves</a>.</p>
+        <p id="askIntro">Tell us who you are. The maintainer reads every request and answers by email. All you need to review is an email address: you sign in with a code sent to it, with no account to create. <a href="https://aphasia-kb.app/#/involve">What reviewing involves</a>.</p>
         <button class="btn-big quiet" id="askOpen" type="button" aria-expanded="false" aria-controls="askForm">Ask to join</button>
         <form class="ask" id="askForm" hidden novalidate>
           <label>Name <input name="name" autocomplete="name" required maxlength="120"></label>

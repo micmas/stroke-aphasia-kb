@@ -217,12 +217,18 @@ function requestsPanel() {
   const head = h('span', { class: 'small muted', text: 'checking for reviewer requests…' });
   const list = h('div', { class: 'request-list' });
   const when = (iso) => (iso ? new Date(iso).toLocaleDateString(undefined, { dateStyle: 'medium' }) : '');
-  const welcome = (r) => {
-    const body = `Hello ${r.name},\n\nThank you for offering to review for the stroke aphasia knowledge base. You have been added as a reviewer.\n\n`
-      + `To start: open ${location.origin}/ , choose "I'm already an approved reviewer" and sign in with this email address (${r.email}). You will receive a one-time code by email; there is no password.\n\n`
-      + 'The Home page of the portal explains how to review, and I am glad to answer any question.\n\nBest wishes,\n';
-    return `mailto:${encodeURIComponent(r.email)}?subject=${encodeURIComponent('You can now review for the stroke aphasia knowledge base')}&body=${encodeURIComponent(body)}`;
-  };
+  // The welcome a new reviewer gets: shown beside each request to copy, and behind "Write to them".
+  const WELCOME_SUBJECT = 'You can now review for the stroke aphasia knowledge base';
+  const welcomeText = (r) => `Hello ${r.name},\n\n`
+    + 'Thank you for offering to review for the stroke aphasia knowledge base. You have been added as a reviewer.\n\n'
+    + 'To start:\n'
+    + `1. Open ${location.origin}/ and choose "I'm already an approved reviewer".\n`
+    + `2. Type this email address (${r.email}) and press "Send login code".\n`
+    + '3. Enter the code that arrives by email. The sign-in then lasts a week.\n\n'
+    + 'You do not need to create an account or a password. The sign-in page is run by Cloudflare Access, but no Cloudflare account is needed; if the code does not arrive, look in your junk folder.\n\n'
+    + 'The Home page of the portal explains how to review: screening titles and abstracts takes about ten minutes for twenty papers, and checking a draft against its paper about half an hour. Everything you decide is recorded under your name, and nothing enters the knowledge base without a named person.\n\n'
+    + 'I am glad to answer any question.\n\nBest wishes,\n' + (state.manifest?.config?.maintainer || '') + '\n';
+  const welcome = (r) => `mailto:${encodeURIComponent(r.email)}?subject=${encodeURIComponent(WELCOME_SUBJECT)}&body=${encodeURIComponent(welcomeText(r))}`;
   // the page where an email is added: the edit page of the Access policy the portal uses (portal.config.json)
   const policyUrl = state.manifest?.config?.accessPolicyUrl || '';
   const row = (r) => {
@@ -237,7 +243,13 @@ function requestsPanel() {
       h('div', { class: 'row' }, copy, h('a', { class: 'btn', href: policyUrl || 'https://one.dash.cloudflare.com/', target: '_blank', rel: 'noopener', text: 'Add in Cloudflare ↗',
         title: policyUrl ? 'Copies the email and opens the Reviewers policy in Cloudflare: paste it into the Emails box, then Save' : 'Zero Trust → Access controls → Policies → Reviewers: add the email',
         onclick: () => { navigator.clipboard?.writeText(r.email).then(() => toast('Email copied: paste it into the Emails box in Cloudflare, then Save'), () => {}); } }),
-        h('a', { class: 'btn', href: welcome(r), text: 'Write to them', title: 'Opens a ready-written welcome in your mail program' }), remove));
+        h('a', { class: 'btn', href: welcome(r), text: 'Write to them', title: 'Opens the welcome email below in your mail program, addressed to them' }), remove),
+      h('details', { class: 'request-mail' }, h('summary', { text: 'Welcome email to send them' }),
+        h('div', { class: 'small muted', text: `To: ${r.email} · Subject: ${WELCOME_SUBJECT}` }),
+        h('pre', { class: 'request-mail-text', text: welcomeText(r) }),
+        h('div', { class: 'row' },
+          h('button', { class: 'btn', type: 'button', text: 'Copy the text', onclick: async () => { try { await navigator.clipboard.writeText(welcomeText(r)); toast('Welcome email copied'); } catch { toast('Select the text and copy it', true); } } }),
+          h('button', { class: 'btn', type: 'button', text: 'Copy the subject', onclick: async () => { try { await navigator.clipboard.writeText(WELCOME_SUBJECT); toast('Subject copied'); } catch { toast(WELCOME_SUBJECT); } } }))));
   };
   const refresh = async () => {
     try {
@@ -248,7 +260,7 @@ function requestsPanel() {
       steps.hidden = !n;
     } catch (e) { head.textContent = `Reviewer requests could not be read: ${e.message}`; }
   };
-  const steps = h('div', { class: 'small muted', hidden: '', text: 'To accept someone: "Add in Cloudflare" copies their email and opens the Reviewers policy; paste it into the Emails box and save (now they can sign in). Add them to portal/reviewers.yaml (so their reviews carry their name), write to them, then remove the request here.' });
+  const steps = h('div', { class: 'small muted', hidden: '', text: 'To accept someone: "Add in Cloudflare" copies their email and opens the Reviewers policy; paste it into the Emails box and save (now they can sign in). Add them to portal/reviewers.yaml (so their reviews carry their name), send them the welcome email ("Write to them", or copy it from "Welcome email to send them"), then remove the request here.' });
   box.append(h('div', { class: 'row' }, h('strong', { text: 'Reviewer requests' }), head), list, steps);
   refresh();
   return box;

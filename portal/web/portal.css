@@ -85,6 +85,8 @@ kbd { font: inherit; font-size: .75rem; border: 1px solid var(--line-strong); bo
 .request-list { display: grid; gap: .6rem; }
 .request { border-top: 1px solid var(--line); padding-top: .5rem; display: grid; gap: .3rem; }
 .request-note { white-space: pre-wrap; max-width: 80ch; }
+.request-mail summary { cursor: pointer; font-size: .85rem; color: var(--grape); }
+.request-mail-text { white-space: pre-wrap; font: inherit; font-size: .88rem; background: var(--panel, var(--surface)); border: 1px solid var(--line); border-radius: var(--radius); padding: .6rem .8rem; margin: .4rem 0; max-width: 80ch; }
 
 /* drag a PDF onto an upload control, a row of "Papers we still need", or a screening card */
 .dropping { outline: 2px dashed var(--grape); outline-offset: 2px; background: color-mix(in oklab, var(--grape) 9%, transparent); }

@@ -16,9 +16,12 @@ wrong: a quote that is not in the paper, a claim that says more than
 the paper does, a confounder left out. Every finding shows its passages
 and page numbers, so point at those.
 
-**Have an hour?** Ask the maintainer to add your email to the review
-portal ([docs/PORTAL.md](docs/PORTAL.md)). You sign in with a one-time
-code, no account. There you can:
+**Have an hour?** Open the review portal, https://review.aphasia-kb.app,
+and choose "I'd like to become a reviewer" ([docs/PORTAL.md](docs/PORTAL.md)).
+Once the maintainer has added your email you sign in with a one-time
+code sent to it. An email address is all you need: no account to create
+(not with Cloudflare, which runs the sign-in page, nor anywhere else) and
+no password. There you can:
 
 - screen new papers in or out from their title and abstract;
 - read a draft next to the annotated PDF and say, finding by finding,

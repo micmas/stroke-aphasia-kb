@@ -111,8 +111,15 @@ Record kinds, and what the import does with them:
    `review.aphasia-kb.app` and `stroke-aphasia-kb-review.pages.dev`, plus
    `*.stroke-aphasia-kb-review.pages.dev` for preview deployments.
    Policy *Allow*, rule *Emails* = the reviewers (or *Emails ending in*
-   `@uq.edu.au` plus named externals). Identity: the default one-time PIN
-   needs nothing else. Note the **AUD tag** and the **team name**
+   `@uq.edu.au` plus named externals). Identity: reviewers sign in with a
+   **one-time PIN** sent to their email, so they need no account. A new
+   Zero Trust organisation may start with *Sign in with Cloudflare* only,
+   which would make every reviewer create a Cloudflare account: add
+   *One-time PIN* under *Integrations → Identity providers*, then in this
+   application's *Login methods* switch off *Accept all available identity
+   providers*, choose *One-time PIN* and leave *Apply instant
+   authentication* on (the sign-in then asks for the email straight
+   away). Note the **AUD tag** and the **team name**
    (`<team>.cloudflareaccess.com`).
 3. **A second Access application** for the same domains with path `cc/*`
    and one *Bypass* policy (*Everyone*): that is what makes the
