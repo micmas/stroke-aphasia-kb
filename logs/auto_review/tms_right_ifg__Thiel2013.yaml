@@ -798,6 +798,50 @@ runs:
   - 'f1: has provenance.flags'
   - 'f1: strength=''strong'''
   - 'f2: has provenance.flags'
-last_run: '2026-11-10T20:58:48'
+- run_id: 10
+  timestamp: '2026-11-10T21:33:45'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 7/10 quotes (70%) — absent 1, anchored 1, exact 7, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): A total of 30 patients with first ischemic
+      infarct within the left middle cerebr…'
+    - '  - [near] f2.claim (p.4): Consistent with previous studies, the strongest
+      increase was observed on naming …'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.method (p.2): patients either received 20 minutes of inhibitory 1 Hz
+      rTMS... over the triangul…'
+  - name: no_human_review_flags
+    passed: false
+    blocker: false
+    details:
+    - 'f1: imaging_details.reference_space not extracted by the model — set to not_reported'
+    - 'f2: imaging_details.reference_space not extracted by the model — set to not_reported'
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f2: has provenance.flags'
+last_run: '2026-11-10T21:33:45'
 latest_verdict: defer_to_human
 latest_mode: deterministic_only

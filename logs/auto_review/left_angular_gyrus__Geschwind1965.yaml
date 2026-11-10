@@ -820,6 +820,41 @@ runs:
   - 'f1: evidence_quality=''narrative-review'''
   - 'f2: has provenance.flags'
   - 'f2: evidence_quality=''narrative-review'''
-last_run: '2026-11-10T20:58:54'
+- run_id: 11
+  timestamp: '2026-11-10T21:33:52'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/4 quotes (75%) — exact 3, near 1
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.claim (p.43): It is a region specifically designed for carrying
+      on visual-auditory cross-modal…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+  - 'f1: evidence_quality=''narrative-review'''
+  - 'f2: has provenance.flags'
+  - 'f2: evidence_quality=''narrative-review'''
+last_run: '2026-11-10T21:33:52'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

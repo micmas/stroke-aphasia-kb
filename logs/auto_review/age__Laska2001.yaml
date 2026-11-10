@@ -742,6 +742,39 @@ runs:
   review_tier: B
   tier_reasons:
   - not every passage matched the PDF exactly
-last_run: '2026-11-10T20:58:49'
+- run_id: 12
+  timestamp: '2026-11-10T21:33:47'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, exact 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): In this way, 106 consecutive, unselected patients
+      with acute stroke were include…'
+    - '  - [anchored] f1.claim (p.8): Our results show that younger patients had a
+      higher recovery rate, which is in a…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+last_run: '2026-11-10T21:33:47'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

@@ -764,3 +764,6 @@ add an `EXTRACTED` line for every run.
 2026-11-10 | RECHECK | @Wilmskoetter2021 | absent 3→0, schema 0→0, findings 4→3 | rewritten by gemma4:31b | old drafts: drafts/_backup/20261110-1702/ | by: human:michele
 2026-11-10 | EXTRACTED | @Xing2016 | right_superior_temporal_gyrus, right_supramarginal_gyrus | VBM analysis of RH grey matter volume in chronic aphasia
 2026-11-10 | EXTRACTED | @vanderMeulen2014 | melodic_intonation_therapy, time_post_onset | RCT and longitudinal analysis of MIT efficacy and timing
+2026-11-10 | EXTRACTED | @Basilakos2014 | left_arcuate_fasciculus_anterior_segment, left_frontal_aslant_tract, left_uncinate_fasciculus | VBCM analysis of white matter integrity vs WAB-R fluency and Pyramids and Palm Trees test
+2026-11-10 | EXTRACTED | @Coppens2002 | crossed_aphasia, sex | 2 drafts
+2026-11-10 | EXTRACTED | @Hillis2004 | left_ifg_pars_opercularis, left_precentral_gyrus_insula | 2 drafts

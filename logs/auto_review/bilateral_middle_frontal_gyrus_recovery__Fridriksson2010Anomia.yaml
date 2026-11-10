@@ -711,6 +711,38 @@ runs:
   tier_reasons:
   - not every passage matched the PDF exactly
   - 'f1: has provenance.flags'
-last_run: '2026-11-10T20:58:54'
+- run_id: 11
+  timestamp: '2026-11-10T21:33:51'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/6 quotes (83%) — anchored 1, exact 5
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.3): Z (Gaussianised T/F) statistic images were
+      thresholded using clusters determined…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+last_run: '2026-11-10T21:33:51'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

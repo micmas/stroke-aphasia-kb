@@ -354,6 +354,42 @@ runs:
   tier_reasons:
   - not every passage matched the PDF exactly
   - new entry id (not appending to an existing entry)
-last_run: '2026-11-10T20:59:11'
+- run_id: 6
+  timestamp: '2026-11-10T21:34:09'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 16/20 quotes (80%) — anchored 2, elided 2, exact 14, near 2
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Forty participants with aphasia (14 female)
+      resulting from a single-left hemisph…'
+    - '  - [near] f1.confounders (p.5): the ''proportion of critical area of damage''
+      (PCAD) was entered as a covariate to…'
+    - '  - [anchored] f2.sample (p.3): Forty participants with aphasia (14 female)
+      resulting from a single-left hemisph…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-10T21:34:09'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

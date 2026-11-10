@@ -527,6 +527,80 @@ runs:
   tier_reasons:
   - not every passage matched the PDF exactly
   - 'f1: strength=''strong'''
-last_run: '2026-11-10T20:58:50'
+- run_id: 9
+  timestamp: '2026-11-10T21:33:38'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 0/4 quotes (0%) — anchored 4
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.1306): It retained ART D7 with an OR of 0.744 (95%
+      CI 0.636-0.871, p < 0.0002) [as an i…'
+    - '  - [anchored] f1.sample (p.1304): We enrolled 73 patients admitted to the
+      stroke unit of the Pitié-Salpêtrière Hos…'
+    - '  - [anchored] f1.method (p.1304): The initial severity of aphasia was assessed
+      at day 7 post-stroke using the ART.…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+- run_id: 10
+  timestamp: '2026-11-10T21:33:48'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 0/4 quotes (0%) — anchored 4
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.1306): It retained ART D7 with an OR of 0.744 (95%
+      CI 0.636-0.871, p < 0.0002) [as an i…'
+    - '  - [anchored] f1.sample (p.1304): We enrolled 73 patients admitted to the
+      stroke unit of the Pitié-Salpêtrière Hos…'
+    - '  - [anchored] f1.method (p.1304): The initial severity of aphasia was assessed
+      at day 7 post-stroke using the ART.…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+last_run: '2026-11-10T21:33:48'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

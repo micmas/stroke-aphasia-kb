@@ -643,6 +643,37 @@ runs:
   review_tier: B
   tier_reasons:
   - not every passage matched the PDF exactly
-last_run: '2026-11-10T20:58:52'
+- run_id: 11
+  timestamp: '2026-11-10T21:33:50'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/5 quotes (80%) — exact 4, near 1
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.limitation (p.646): the factor ''therapy hours'' only reflected
+      the number of treatment hours a partic…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+last_run: '2026-11-10T21:33:50'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

@@ -644,6 +644,39 @@ runs:
   review_tier: B
   tier_reasons:
   - not every passage matched the PDF exactly
-last_run: '2026-11-10T20:59:07'
+- run_id: 10
+  timestamp: '2026-11-10T21:34:05'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/8 quotes (75%) — anchored 2, exact 6
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.4): a statistical threshold cut-off (t-value)
+      was determined based on permutation te…'
+    - '  - [anchored] f1.imaging_details (p.3): T1-weighted images were acquired with
+      a Spoiled Gradient Recall (SPGR) sequence …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+last_run: '2026-11-10T21:34:05'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

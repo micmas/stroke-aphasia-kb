@@ -82,11 +82,11 @@
   },
   "@Basilakos2014": {
    "annotated": "cc/Basilakos2014_annotated.pdf",
-   "bytes": 1274753,
+   "bytes": 1271391,
    "category": "cc",
    "label": "CC BY",
    "public": true,
-   "sha256": "fa09fea61e2c5ee185f6d560f2aebce0aee396315cf0716a8b8b5d37d001061b"
+   "sha256": "f665604cd3a1854e3fb647e3033338a99faff60a2d17b94107348b8da11874e6"
   },
   "@Basilakos2015": {
    "annotated": "pdf/Basilakos2015_annotated.pdf",
@@ -274,11 +274,11 @@
   },
   "@Coppens2002": {
    "annotated": "pdf/Coppens2002_annotated.pdf",
-   "bytes": 303555,
+   "bytes": 302787,
    "category": "rights_reserved",
    "label": "publisher TDM licence (text mining only)",
    "public": false,
-   "sha256": "a91fef1f2fd349959cd1f4b8f7ba323e45c3f7440ce5d138bc2ae5623186e9b3"
+   "sha256": "da1261f38373e43ba8ab6911e6afa91eda40ef92c2d96b7becccb9415dbde230"
   },
   "@Corbetta2015": {
    "annotated": "pdf/Corbetta2015_annotated.pdf",
@@ -598,7 +598,7 @@
    "category": "rights_reserved",
    "label": "no open copy known",
    "public": false,
-   "sha256": "094950eb712256d8f44cfead1d794cf66b377338f71194d89a1da68abb01a112"
+   "sha256": "0ef44b7c63a76a27de86a800e0885e9c3261f4cb32c12e8871992f1e9886d855"
   },
   "@Hillis2006": {
    "annotated": "cc/Hillis2006_annotated.pdf",
@@ -1651,5 +1651,5 @@
    "@vanderMeulen2014"
   ]
  },
- "synced": "2026-11-10T21:01"
+ "synced": "2026-11-10T21:34"
 }

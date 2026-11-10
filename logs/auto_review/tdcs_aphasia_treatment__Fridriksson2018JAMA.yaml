@@ -633,6 +633,40 @@ runs:
   - not every passage matched the PDF exactly
   - new entry id (not appending to an existing entry)
   - 'f1: has provenance.flags'
-last_run: '2026-11-10T20:59:16'
+- run_id: 10
+  timestamp: '2026-11-10T21:34:13'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/7 quotes (86%) — exact 6, near 1
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.imaging_details (p.2): As our goal was to stimulate surviving
+      eloquent tissue, the anode electrode was …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+last_run: '2026-11-10T21:34:13'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

@@ -971,6 +971,49 @@ runs:
   - 'f2: evidence_quality=''case-study'''
   - 'f3: evidence_quality=''case-study'''
   - 'f4: evidence_quality=''case-study'''
-last_run: '2026-11-10T20:59:15'
+- run_id: 10
+  timestamp: '2026-11-10T21:34:13'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 12/22 quotes (55%) — anchored 10, exact 12
+    - '10 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.1): Results indicated that confrontation naming
+      of treated nouns improved and genera…'
+    - '  - [anchored] f1.method (p.4): A multiple-baseline design across behaviors,
+      replicated across conditions for 1 …'
+    - '  - [anchored] f1.limitation (p.2): The present experiment is a Phase II outcomes
+      research study aiming to refine th…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Boyle2004: sample.n disagrees: [1, 2]'
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: evidence_quality=''case-study'''
+  - 'f2: evidence_quality=''case-study'''
+  - 'f3: evidence_quality=''case-study'''
+  - 'f4: evidence_quality=''case-study'''
+last_run: '2026-11-10T21:34:13'
 latest_verdict: defer_to_human
 latest_mode: deterministic_only

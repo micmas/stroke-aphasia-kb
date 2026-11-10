@@ -565,6 +565,85 @@ runs:
   tier_reasons:
   - not every passage matched the PDF exactly
   - 'f1: has provenance.flags'
-last_run: '2026-11-10T20:58:51'
+- run_id: 9
+  timestamp: '2026-11-10T21:33:38'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — absent 1, anchored 3, exact 2
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.5): Notably, among SVM models trained on an individual
+      feature set, aphasia severity…'
+    - '  - [anchored] f1.method (p.4): SVM and RF models were trained, tuned, and
+      tested using a leave-one-out cross-va…'
+    - '  - [anchored] f1.limitation (p.7): Although the sample size of this study
+      was limited due to the availability of th…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.statistics (p.5): The optimal SVM model... performed significantly better
+      than any of the models t…'
+  - name: no_human_review_flags
+    passed: false
+    blocker: false
+    details:
+    - 'f1: imaging_details.reference_space not extracted by the model — set to not_reported'
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+- run_id: 10
+  timestamp: '2026-11-10T21:33:49'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, exact 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.1610): Notably, among SVM models trained on an individual
+      feature set, aphasia severity…'
+    - '  - [anchored] f1.method (p.1609): SVM and RF models were trained, tuned, and
+      tested using a leave-one-out cross-va…'
+  - name: no_human_review_flags
+    passed: false
+    blocker: false
+    details:
+    - 'f1: lesion_mapping (v2.7 design) not extracted by the model — filled from statistics'
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+last_run: '2026-11-10T21:33:49'
 latest_verdict: defer_to_human
 latest_mode: deterministic_only

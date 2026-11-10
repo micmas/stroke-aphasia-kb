@@ -741,6 +741,84 @@ runs:
   - PDF quote match not run or not passed
   - new entry id (not appending to an existing entry)
   - 'f2: has provenance.flags'
-last_run: '2026-11-10T20:59:15'
+- run_id: 11
+  timestamp: '2026-11-10T21:34:11'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/8 quotes (62%) — absent 1, exact 5, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f2.limitation (p.2): These criteria are still recommended and are
+      frequently applied in clinical prac…'
+    - '  - [near] f3.claim (p.4): In contrast, Schlaug et al supported the original
+      claim when reporting both func…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f3.claim (p.4): A larger study by Belin et al (N=7) showed similar findings:
+      less rather than mo…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'reviews' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: evidence_quality=''narrative-review'''
+  - 'f2: evidence_quality=''narrative-review'''
+  - 'f3: has provenance.flags'
+  - 'f3: evidence_quality=''narrative-review'''
+- run_id: 12
+  timestamp: '2026-11-10T21:34:13'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 1/2 quotes (50%) — absent 1, exact 1
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f2.claim (p.0): (citation from clinical knowledge — not formally extracted)…'
+  - name: no_human_review_flags
+    passed: false
+    blocker: false
+    details:
+    - 'f2: @vanderMeulen2012 not in papers/ — citation is from clinical knowledge,
+      not form'
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+  - 'f2: has provenance.flags'
+last_run: '2026-11-10T21:34:13'
 latest_verdict: auto_reject
 latest_mode: deterministic_only
