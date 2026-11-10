@@ -389,6 +389,14 @@ python scripts/extract.py --pdf papers/<Key>.pdf --dry-run    # the prompt only
 python scripts/extract.py --pdf papers/<Key>.pdf              # 20–30 min; drafts in drafts/<bucket>/
 ```
 
+Or all of them at once, as the emailed notice says (docs/PORTAL.md §3):
+
+```bash
+python scripts/extract_ready.py              # what is waiting
+python scripts/extract_ready.py --execute    # uploads → register → extract each → sync → commit → push
+python scripts/extract_ready.py --execute --papers C0057 --no-push   # just one, keep it local
+```
+
 ### `extract.py` — the local model reads a paper and writes drafts
 
 Writes `drafts/<bucket>/<id>__<Key>.md`, the annotated PDF and an

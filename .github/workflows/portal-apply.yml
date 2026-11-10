@@ -8,7 +8,9 @@ name: portal-apply
 # (secret PORTAL_PUSH_TOKEN: this repository, Contents read and write), not with the
 # workflow's own GITHUB_TOKEN, which the protection refuses. A push made with that token
 # starts explorer-pages, review-portal and test like any other push, so both sites rebuild.
-# Uploaded PDFs (`pdf` records) are left for the maintainer, who has the papers folder.
+# Papers included at full text get their citation keys here (screen.py register). Uploaded
+# PDFs (`pdf` records) and extraction are left for the maintainer, who has the papers folder:
+# extract-notice.yml emails her the command (scripts/extract_ready.py --execute).
 #
 # Started by the portal's "Apply now" button (functions/api/apply.js, maintainers only),
 # by hand from the Actions tab, or every six hours when the inbox is not empty.
@@ -62,6 +64,11 @@ jobs:
       - name: Apply the inbox
         if: steps.inbox.outputs.count != '0'
         run: python3 scripts/portal_import.py --execute --promote --skip-pdf
+      - name: Citation keys for papers included at full text
+        # Crossref lookups (screen.py register); renaming PDFs is left to the maintainer's
+        # extract_ready.py, which has the papers folder. extract-notice.yml then emails her.
+        if: steps.inbox.outputs.count != '0'
+        run: python3 scripts/screen.py register --execute || echo "::warning::screen.py register failed; extract_ready.py runs it again on the Mac"
       - name: Commit and push
         if: steps.inbox.outputs.count != '0'
         id: push

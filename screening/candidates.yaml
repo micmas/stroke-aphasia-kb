@@ -47071,7 +47071,7 @@ candidates:
     seq: 252
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: C2467_s10548-016-0503-5.pdf
+  key: '@Yang2017'
 - id: C2468
   pmid: '27323679'
   title: A 49-year-old woman presenting with aphasia

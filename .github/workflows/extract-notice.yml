@@ -1,0 +1,64 @@
+name: extract-notice
+
+# Tells the maintainer, by email, when included papers are waiting to be extracted, with the
+# one command to run on her Mac (extraction runs the local model on the PDFs in OneDrive, the
+# only step the portal cannot do). The email is GitHub's: the workflow opens the issue
+# "Papers ready to extract", assigned to the repository owner, and comments on it when the
+# list changes; GitHub sends both by email. When nothing is left the issue is closed.
+#
+# Runs after every push that can change the list: portal-apply (full-text includes, citation
+# keys, uploads) and the maintainer's own push after extracting.
+on:
+  push:
+    branches: [main]
+    paths:
+      - screening/candidates.yaml
+      - citations.md
+      - "drafts/**"
+      - "logs/portal/**"
+      - portal/papers.json
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: extract-notice
+  cancel-in-progress: false
+
+jobs:
+  notice:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-ci.txt
+      - run: pip install -r requirements-ci.txt
+      - name: What is waiting
+        run: python3 scripts/extract_ready.py --notice notice
+      - name: Open, update or close the issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          OWNER: ${{ github.repository_owner }}
+          TITLE: "Papers ready to extract"
+        run: |
+          number=$(gh issue list --state open --search "\"$TITLE\" in:title" --json number,title \
+                   --jq "map(select(.title == \"$TITLE\")) | .[0].number // empty")
+          if [ ! -s notice/body.md ]; then
+            if [ -n "$number" ]; then gh issue close "$number" --comment "Nothing left to extract."; fi
+            exit 0
+          fi
+          sig=$(cat notice/signature)
+          if [ -z "$number" ]; then
+            gh issue create --title "$TITLE" --body-file notice/body.md --assignee "$OWNER"
+          elif ! gh issue view "$number" --json body --jq .body | grep -qF "$sig"; then
+            gh issue edit "$number" --body-file notice/body.md
+            gh issue comment "$number" --body-file notice/comment.md
+          else
+            echo "issue #$number already lists these papers"
+          fi

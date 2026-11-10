@@ -240,7 +240,28 @@ and portal builds, so a few minutes later both sites show the new state
 and reviewers see "applied" under **My reviews**. Nothing on your machine
 is involved.
 
-Two things still happen here, because they need the papers folder:
+**Extraction** is the one step the portal cannot do: it runs the local
+model on the PDFs in OneDrive. Everything up to it is online: full-text
+screening and PDF uploads in the portal, citation keys in the apply
+workflow (`screen.py register`). When included papers wait for
+extraction, the `extract-notice` workflow opens the issue *Papers ready
+to extract*, assigned to you, so GitHub emails it, with the list and one
+command to paste into Terminal:
+
+```bash
+cd ~/GITHUB/stroke-aphasia-kb && git pull && python scripts/extract_ready.py --execute
+```
+
+It takes the PDFs uploaded in the portal into papers/, registers keys and
+renames PDFs, extracts each paper that has its PDF (20–30 min each), syncs
+the annotated PDFs, commits only what it wrote and pushes. The drafts then
+show in the portal's Drafts queue and the issue closes itself once nothing
+is left (it is commented on, so emailed again, whenever the list changes).
+`python scripts/extract_ready.py` alone lists what is waiting. Make sure
+GitHub sends you email for issues assigned to you (Settings →
+Notifications).
+
+Otherwise, two things still happen here, because they need the papers folder:
 
 ```bash
 python scripts/publish_portal.py --sync
