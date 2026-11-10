@@ -15,6 +15,8 @@ repository). This script is that one step.
 
 --execute, in order:
   1. portal_import.py --execute --kind pdf   PDFs uploaded in the portal → papers/
+     intake_papers.py --execute               every new PDF: cover sheets, OCR, checked against its
+                                             record, named, registered (see intake_papers.py)
   2. screen.py register --execute            citation keys; PDFs under a download name → papers/<Key>.pdf
   3. extract.py --pdf papers/<Key>.pdf        one per paper that has its PDF (20–30 min each; annotates)
   4. publish_portal.py --sync                annotated PDFs, and the PDFs of papers awaiting full-text
@@ -181,8 +183,10 @@ def execute(only: list[str] | None, limit: int | None, commit: bool, push: bool)
         print("papers/ is not reachable here: run this on the computer that has the PDFs (the OneDrive folder).")
         return 2
     py = sys.executable
-    if _run(py, "scripts/portal_import.py", "--execute", "--kind", "pdf"):
+    if _run(py, "scripts/portal_import.py", "--execute", "--kind", "pdf", "--no-intake"):
         print("  ⚠ fetching the uploaded PDFs failed (wrangler login?); carrying on with the PDFs already in papers/")
+    # every PDF in papers/: cover sheets, OCR, link/check/name screening PDFs, register, rename
+    _run(py, "scripts/intake_papers.py", "--execute", "--no-sync")
     _run(py, "scripts/screen.py", "register", "--execute")
     papers = ready()
     if only:

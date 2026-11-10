@@ -182,7 +182,7 @@ def destination(c: dict, source: Path, papers: Path = PAPERS) -> Path:
 
 # ------------------------------------------------------------------ run
 def run(library: Path, execute: bool, titles: bool, ids: list[str] | None, by: str,
-        root: Path = ROOT, papers: Path = PAPERS, log: Path = LOG) -> int:
+        root: Path = ROOT, papers: Path = PAPERS, log: Path = LOG, intake: bool = False) -> int:
     enl, pdf_dir = locate(library)
     refs = read_library(enl)
     cands = wanted(root, papers, ids)
@@ -229,8 +229,12 @@ def run(library: Path, execute: bool, titles: bool, ids: list[str] | None, by: s
     if execute:
         if linked:
             S.save_candidates(register, root)
-        print(f"\n{copied} PDF(s) copied into papers/" + (f", {linked} linked to their candidate" if linked else "") +
-              ". Next: python scripts/intake_papers.py --execute, then python scripts/publish_portal.py --sync")
+        print(f"\n{copied} PDF(s) copied into papers/" + (f", {linked} linked to their candidate" if linked else "") + ".")
+        if copied and intake:           # cover sheets, OCR, link/check/name, portal sync
+            import intake_papers
+            intake_papers.process(execute=True, papers_dir=papers)
+        elif copied:
+            print("Next: python scripts/intake_papers.py --execute (cleans, OCRs, checks, names and syncs them).")
     else:
         n_title = sum(1 for m in found if m["how"] == "title + year")
         print(f"\nDry run: {len(found)} of {len(cands)} would be copied" + (f" ({n_title} matched by title + year: check those)" if n_title else "") +
@@ -245,9 +249,10 @@ def _cli(argv=None) -> int:
     ap.add_argument("--titles", action="store_true", help="also match on normalised title + year when there is no DOI or PMID match")
     ap.add_argument("--ids", nargs="*", metavar="CID", help="only these candidates (any stage)")
     ap.add_argument("--by", default="michele", help="name for the log lines (default michele)")
+    ap.add_argument("--no-intake", action="store_true", help="do not run intake_papers.py on the copied PDFs afterwards")
     args = ap.parse_args(argv)
     try:
-        return run(args.library, args.execute, args.titles, args.ids, args.by)
+        return run(args.library, args.execute, args.titles, args.ids, args.by, intake=not args.no_intake)
     except (FileNotFoundError, sqlite3.Error) as e:
         print(f"endnote_match: {e}", file=sys.stderr)
         return 2

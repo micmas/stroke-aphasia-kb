@@ -16,19 +16,36 @@ Steps, in order, each one of the standalone scripts:
   0. (--from DIR) copy PDFs out of DIR whose DOI / filename matches a
                             cited key that has no PDF yet; other files in
                             DIR are left untouched, nothing is moved
-  1. register_papers.py     a PDF with no citation entry gets one, built
-                            from its DOI via Crossref (needs network;
-                            skipped with a note when offline)
-  2. match_papers.py        rename publisher-named PDFs to <Key>.pdf
-  3. strip_cover_pages.py   drop JSTOR / T&F / HighWire / ProQuest … sheets
-  4. batch_ocr.py           OCR scanned PDFs (needs ocrmypdf — the step
+  1. strip_cover_pages.py   drop JSTOR / T&F / HighWire / ProQuest … sheets
+  2. batch_ocr.py           OCR scanned PDFs (needs ocrmypdf — the step
                             says what is missing and is skipped, the rest
                             still runs)
-  5. kb_status.py           the papers line: cited / present / missing,
+  3. screening PDFs         a PDF of a screening record (EndNote, a portal
+                            upload, a download): linked to its record by
+                            the DOI on its first pages (screen.py pdfs),
+                            checked against the record (its DOI or title
+                            must be on the first pages; a mismatch is
+                            reported and the file left alone) and named
+                            <id>_<Author><Year>.pdf. It becomes <Key>.pdf
+                            when the paper is included (screen.py register)
+  4. register_papers.py     a PDF with no citation entry gets one, built
+                            from its DOI via Crossref (needs network;
+                            skipped with a note when offline). Never a
+                            screening record's PDF (step 3)
+  5. match_papers.py        rename publisher-named PDFs to <Key>.pdf
+  6. kb_status.py           the papers line: cited / present / missing,
                             plus files that match no citation key
-  6. (--extract) extract.py --batch
+  7. publish_portal.py --sync   (with --execute; --no-sync to skip) send
+                            what changed to the review portal: annotated
+                            PDFs, and the PDFs of papers awaiting full-text
+                            screening. Commit portal/papers.json afterwards
+  8. (--extract) extract.py --batch
                             run the local model on every PDF that has no
                             findings in drafts/ or the canonical folders
+
+Every route that puts a PDF in papers/ (endnote_match.py, portal_import.py
+for portal uploads, --from) runs this afterwards, so a paper is never left
+unscanned, misnamed or missing from the portal.
 
 Every step is idempotent, so re-running is the way to "skip what is
 done": a file already named after its key is not renamed, a PDF whose
@@ -45,6 +62,7 @@ papers/_originals/.
 from __future__ import annotations
 
 import argparse
+import re
 import shutil
 import subprocess
 import sys
@@ -91,6 +109,102 @@ def pull_from(src_dir: Path, papers_dir: Path, execute: bool) -> int:
     return 0
 
 
+def _label(c: dict) -> str:
+    """<Author><Year> for a file name: ASCII letters of the first author's surname, then the year."""
+    import unicodedata
+    first = str(c.get("first_author") or (str(c.get("authors") or "").split(",")[0]) or "").strip()
+    first = unicodedata.normalize("NFKD", first).encode("ascii", "ignore").decode()
+    surname = re.sub(r"[^A-Za-z]", "", first.split()[0] if first else "") or "paper"
+    return f"{surname[:1].upper()}{surname[1:]}{str(c.get('year') or '')[:4]}"
+
+
+def identity(pdf: Path, c: dict) -> tuple[bool | None, str]:
+    """Is this PDF the record's paper? True (its DOI, or most of its title, is on the first
+    pages), False (the text is there but neither is), None (no text to tell: OCR first)."""
+    import screening as S
+    try:
+        text = match_papers.first_pages_text(pdf) or ""
+    except Exception as e:  # noqa: BLE001
+        return None, f"unreadable ({str(e)[:60]})"
+    if len(re.sub(r"\s+", "", text)) < 200:
+        return None, "no text layer"
+    doi = S.norm_doi(c.get("doi")) if c.get("doi") else None
+    if doi and doi in {S.norm_doi(m.group(0)) for m in re.finditer(r"10\.\d{4,9}/[^\s\"<>]+", text)}:
+        return True, "DOI"
+    words = set(re.findall(r"[a-z]{4,}", text.lower()))
+    title = [w for w in re.findall(r"[a-z]{4,}", str(c.get("title") or "").lower())][:12]
+    if len(title) >= 3:
+        share = sum(1 for w in title if w in words) / len(title)
+        if share >= 0.7:
+            return True, f"title ({share:.0%})"
+        return False, f"neither its DOI nor its title is on the first pages (title words {share:.0%})"
+    return False, "its DOI is not on the first pages"
+
+
+def screening_pdfs(papers_dir: Path, execute: bool) -> int:
+    """Step 3: link, check and name the PDFs of screening records (see the module docstring)."""
+    import screening as S
+    import screen as SC
+    if not papers_dir.is_dir():
+        print("papers/ not reachable")
+        return 0
+    cands = S.load_candidates()
+    res = SC.link_pdfs(cands)
+    for cid, name, how in res["linked"]:
+        print(f"{'linked' if execute else 'would link':12} {cid}  ←  {name}   [{how}]")
+    changed = bool(res["linked"])
+    renamed, bad, unsure = 0, [], []
+    for c in cands:
+        name = c.get("pdf_file")
+        if not name or c.get("duplicate_of"):
+            continue
+        src = papers_dir / str(name)
+        if not src.is_file():
+            continue
+        ok, why = identity(src, c)
+        if ok is False:
+            bad.append((c["id"], name, why))
+            continue
+        if ok is None:
+            unsure.append((c["id"], name, why))
+        if c.get("key"):
+            continue                          # included: screen.py register names it <Key>.pdf
+        want = f"{c['id']}_{_label(c)}.pdf"
+        if name == want:
+            continue
+        if (papers_dir / want).exists():
+            print(f"{'skip':12} {name}: papers/{want} already exists (a second copy?)")
+            continue
+        print(f"{'renamed' if execute else 'would rename':12} {name}  →  {want}")
+        renamed += 1
+        if execute:
+            src.rename(papers_dir / want)
+            c["pdf_file"] = want
+            changed = True
+    for cid, name, why in bad:
+        print(f"{'CHECK':12} {cid}: papers/{name} does not look like this paper — {why}. "
+              f"Open it; if it is the wrong file, move it out of papers/.")
+    for cid, name, why in unsure:
+        print(f"{'unchecked':12} {cid}: papers/{name} — {why}" + (" (step 2 OCRs it once ocrmypdf is installed)" if why == "no text layer" else ""))
+    if execute and changed:
+        S.save_candidates(cands)
+        SC._log("PDFS-PROCESSED", "screening register",
+                f"{len(res['linked'])} linked, {renamed} renamed, {len(bad)} not matching their record")
+    if not (res["linked"] or renamed or bad or unsure):
+        print("every screening PDF is linked, checked and named")
+    return 0
+
+
+def process(execute: bool = True, sync: bool = True, papers_dir: Path | None = None) -> int:
+    """The whole intake, as other scripts call it after putting PDFs in papers/."""
+    argv = ["--execute"] if execute else []
+    if not sync:
+        argv.append("--no-sync")
+    if papers_dir is not None:
+        argv += ["--papers-dir", str(papers_dir)]
+    return _cli(argv)
+
+
 def _cli(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--papers-dir", type=Path, default=ROOT / "papers")
@@ -102,6 +216,8 @@ def _cli(argv=None) -> int:
                     help="do not add citation entries for unknown PDFs (register_papers.py)")
     ap.add_argument("--from", dest="from_dir", type=Path, metavar="DIR",
                     help="first copy matching PDFs out of DIR (e.g. ~/Downloads)")
+    ap.add_argument("--no-sync", action="store_true",
+                    help="do not send the changes to the review portal (publish_portal.py --sync)")
     ap.add_argument("--extract", action="store_true",
                     help="afterwards run extract.py --batch on the papers with no findings "
                          "(with --execute; dry run lists them)")
@@ -119,29 +235,32 @@ def _cli(argv=None) -> int:
             return 2
         rc |= pull_from(src, args.papers_dir, args.execute)
 
-    if not args.no_register:
-        _banner(1, "Register new PDFs in citations.md  (register_papers.py)")
-        r = register_papers.register(args.papers_dir, ROOT / "citations.md", args.execute)
-        if r:
-            print("  ↑ these files will not be renamed or extracted until they have an entry")
-
-    _banner(2, "Rename downloads to their citation key  (match_papers.py)")
-    rc |= match_papers._cli(papers + ex + (["--allow-probable"] if args.allow_probable else []))
-
-    _banner(3, "Strip publisher cover sheets  (strip_cover_pages.py)")
+    _banner(1, "Strip publisher cover sheets  (strip_cover_pages.py)")
     rc |= strip_cover_pages._cli(papers + ex)
 
     if not args.no_ocr:
-        _banner(4, "OCR scanned PDFs  (batch_ocr.py)")
+        _banner(2, "OCR scanned PDFs  (batch_ocr.py)")
         missing = batch_ocr.missing_tools() if args.execute else []
         if missing:
-            print("skipped — OCR tools missing:\n  " + "\n  ".join(missing))
+            print("skipped — OCR tools missing (macOS: brew install ocrmypdf):\n  " + "\n  ".join(missing))
             rc |= 2
         else:
             r = batch_ocr.main(papers + ex)
             rc |= (r if r != 1 else 0)   # 1 = some file failed; reported above
 
-    _banner(5, "Papers status  (kb_status.py)")
+    _banner(3, "Screening PDFs: link, check against the record, name  (screen.py pdfs)")
+    rc |= screening_pdfs(args.papers_dir, args.execute)
+
+    if not args.no_register:
+        _banner(4, "Register new PDFs in citations.md  (register_papers.py)")
+        r = register_papers.register(args.papers_dir, ROOT / "citations.md", args.execute)
+        if r:
+            print("  ↑ these files will not be renamed or extracted until they have an entry")
+
+    _banner(5, "Rename downloads to their citation key  (match_papers.py)")
+    rc |= match_papers._cli(papers + ex + (["--allow-probable"] if args.allow_probable else []))
+
+    _banner(6, "Papers status  (kb_status.py)")
     st = kb_status.collect(ROOT)
     missing_keys = [k for k, v in st["papers"].items() if not v["pdf_present"]]
     print(f"  {len(st['papers'])} cited · {len(st['papers']) - len(missing_keys)} with a PDF · "
@@ -162,8 +281,16 @@ def _cli(argv=None) -> int:
                   + ", ".join(loose[:8]) + (" …" if len(loose) > 8 else ""))
             print("  (python scripts/screen.py pdfs to link them; otherwise chase the paper or move the file out)")
 
+    if args.execute and not args.no_sync:
+        _banner(7, "Send to the review portal  (publish_portal.py --sync)")
+        done = subprocess.call([sys.executable, str(ROOT / "scripts" / "publish_portal.py"), "--sync"], cwd=str(ROOT))
+        if done:
+            print("  ⚠ the sync failed (npx wrangler login?) — run python scripts/publish_portal.py --sync again")
+        else:
+            print("  Commit portal/papers.json and push so the portal lists them.")
+
     if args.extract:
-        _banner(6, "Extract papers that have no findings yet  (extract.py --batch)")
+        _banner(8, "Extract papers that have no findings yet  (extract.py --batch)")
         cmd = [sys.executable, str(ROOT / "scripts" / "extract.py"), "--batch"]
         if not args.execute:
             cmd.append("--dry-run")

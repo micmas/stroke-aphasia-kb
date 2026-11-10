@@ -336,7 +336,7 @@ def apply_pdf(rec: dict, by: str, execute: bool, state: dict) -> str:
 
 
 # ------------------------------------------------------------------ run
-def run(execute: bool, promote: bool, only_kind: str | None, skip_kinds: tuple[str, ...] = ()) -> int:
+def run(execute: bool, promote: bool, only_kind: str | None, skip_kinds: tuple[str, ...] = (), intake: bool = False) -> int:
     files = sorted(INBOX.glob("*.json")) if INBOX.is_dir() else []
     if not files:
         print("logs/portal/inbox/ is empty — nothing to apply (did you git pull?)")
@@ -392,7 +392,12 @@ def run(execute: bool, promote: bool, only_kind: str | None, skip_kinds: tuple[s
         print(f"\n{len(done)} record(s) applied and moved to logs/portal/applied/; {len(files) - len(done)} left in the inbox. "
               "Commit screening/, drafts/ and logs/ and push: the explorer and the portal rebuild from the push.")
         if state.get("pdfs_added"):
-            print(f"{state['pdfs_added']} PDF(s) landed in papers/ (OneDrive): run `python scripts/intake_papers.py --execute` to register, clean and OCR them.")
+            print(f"{state['pdfs_added']} PDF(s) landed in papers/ (OneDrive).")
+            if intake:                  # cover sheets, OCR, link/check/name, register, rename, portal sync
+                import intake_papers
+                intake_papers.process(execute=True)
+            else:
+                print("Run `python scripts/intake_papers.py --execute` to clean, OCR, check, name and sync them.")
     else:
         print(f"\nDry run: {len(done)} of {len(files)} record(s) would be applied. Add --execute.")
     if unknown:
@@ -407,8 +412,10 @@ def _cli(argv=None) -> int:
     ap.add_argument("--kind", choices=["screen", "verdict", "edit", "mark", "comment", "pdf"])
     ap.add_argument("--skip-pdf", action="store_true",
                     help="leave `pdf` records in the inbox (for CI, which has no papers/ folder to pull the uploads into)")
+    ap.add_argument("--no-intake", action="store_true",
+                    help="do not run intake_papers.py on the PDFs taken in (a caller that runs it itself)")
     args = ap.parse_args(argv)
-    return run(args.execute, args.promote, args.kind, ("pdf",) if args.skip_pdf else ())
+    return run(args.execute, args.promote, args.kind, ("pdf",) if args.skip_pdf else (), intake=not args.no_intake)
 
 
 if __name__ == "__main__":

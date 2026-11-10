@@ -298,9 +298,21 @@ pulls matching PDFs out of another folder, e.g. `~/Downloads`.)
 
 ### `intake_papers.py` — everything between the download and the extractor
 
-Runs, in order: register → rename → strip cover sheets → OCR → status →
-(optionally) extract. Each step skips what is already done, so
-re-running is safe and resumes an interrupted batch.
+Runs, in order: strip cover sheets → OCR → screening PDFs (link each to
+its record by DOI, check the file really is that paper — its DOI or
+title on the first pages, a mismatch is reported and the file left
+alone — and name it `<id>_<Author><Year>.pdf`) → register (never a
+screening record's PDF: those get a citation entry on inclusion, through
+`screen.py register`) → rename to `<Key>.pdf` → status → send to the
+review portal (`publish_portal.py --sync`) → (optionally) extract. Each
+step skips what is already done, so re-running is safe and resumes an
+interrupted batch.
+
+Every route that puts a PDF in `papers/` runs it afterwards on its own:
+`endnote_match.py --execute`, `portal_import.py --execute` (portal
+uploads), and `extract_ready.py --execute`. OCR needs `ocrmypdf`
+(macOS: `brew install ocrmypdf`); without it that step says so and the
+rest still runs.
 
 | Option | Meaning |
 |---|---|
@@ -311,6 +323,7 @@ re-running is safe and resumes an interrupted batch.
 | `--from DIR` | First copy PDFs out of `DIR` (e.g. `~/Downloads`) whose DOI matches a cited paper that has no PDF yet. Nothing is moved; other files are ignored. |
 | `--no-register` | Skip step 1: do not create `citations.md` entries for unknown PDFs. |
 | `--no-ocr` | Skip the OCR step. |
+| `--no-sync` | Do not send the changes to the review portal. |
 | `--papers-dir DIR` | Use another papers folder (default `papers`). |
 
 The steps also run on their own:

@@ -172,7 +172,22 @@ def _page1_hint(text: str) -> str:
     return " ".join(text.split())[:160]
 
 
-def register(papers_dir: Path, citations: Path, execute: bool) -> int:
+SCREENING_FILE = re.compile(r"^C\d{4,}_")       # <candidate id>_<…>.pdf: a screening record's PDF
+
+
+def screening_files(root: Path = ROOT) -> set[str]:
+    """PDF names linked to screening records (`pdf_file`). Those papers get a citation entry only
+    when they are included (screen.py register), never from here."""
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        import screening as S
+        return {str(c["pdf_file"]) for c in S.load_candidates(root) if c.get("pdf_file")}
+    except Exception:  # noqa: BLE001
+        return set()
+
+
+def register(papers_dir: Path, citations: Path, execute: bool, skip: set[str] | None = None) -> int:
+    skip = screening_files() if skip is None else skip
     cites = read_citations(citations)
     known = {k: v["doi"] for k, v in cites.items() if v.get("doi")}
     keys_lower = {k.lstrip("@").lower() for k in cites}
@@ -183,6 +198,8 @@ def register(papers_dir: Path, citations: Path, execute: bool) -> int:
     for f in sorted(papers_dir.glob("*.pdf")):
         if f.stem.endswith("_annotated") or f.stem.lower() in keys_lower:
             continue
+        if f.name in skip or SCREENING_FILE.match(f.name):
+            continue                           # a screening record's PDF: registered on inclusion
         try:
             text = first_pages_text(f)
         except Exception as e:  # noqa: BLE001
