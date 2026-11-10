@@ -4,6 +4,12 @@ on:
   merge_group:
   push:
     branches: [main]
+    # A reviewer's decision or upload is one small file in logs/portal/inbox/. It changes
+    # nothing on the sites until it is applied (portal-apply.yml, by the Apply button or every
+    # six hours), and that apply is itself a push that starts this workflow. So a push that
+    # only adds inbox records does not start it: one build per apply, not one per decision.
+    paths-ignore:
+      - "logs/portal/inbox/**"
 
 permissions:
   contents: read

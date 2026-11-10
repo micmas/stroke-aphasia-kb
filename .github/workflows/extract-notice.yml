@@ -15,8 +15,13 @@ on:
       - screening/candidates.yaml
       - citations.md
       - "drafts/**"
-      - "logs/portal/**"
+      - "logs/portal/applied/**"
       - portal/papers.json
+  # PDFs uploaded in the portal arrive one commit each in logs/portal/inbox/. Reacting to every
+  # one meant an email per upload, so those are picked up here instead, four times a day
+  # (half an hour after the scheduled apply), and only when the list has changed.
+  schedule:
+    - cron: "47 */6 * * *"
   workflow_dispatch:
 
 permissions:

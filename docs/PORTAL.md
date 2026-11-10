@@ -247,6 +247,17 @@ and portal builds, so a few minutes later both sites show the new state
 and reviewers see "applied" under **My reviews**. Nothing on your machine
 is involved.
 
+The sites are built once per apply, not once per decision. What a
+reviewer sends, and each PDF they upload, is a small file committed to
+`logs/portal/inbox/`; a push that only adds such files starts no build
+and no test (`paths-ignore` in `pages.yml`, `portal.yml` and `test.yml`),
+because nothing on either site changes until the records are applied.
+The portal itself shows what has been sent and uploaded straight away;
+it asks GitHub and the bucket, not the build. The "Papers ready to
+extract" notice follows the same idea: it reacts to an apply or to your
+own push, and looks for newly uploaded PDFs four times a day instead of
+after each upload.
+
 **Extraction** is the one step the portal cannot do: it runs the local
 model on the PDFs in OneDrive. Everything up to it is online: full-text
 screening and PDF uploads in the portal, citation keys in the apply
