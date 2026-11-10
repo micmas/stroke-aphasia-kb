@@ -795,6 +795,20 @@ def _canonical_entry(kb_root: Path | None, bucket: str, entry_id: str | None) ->
         return {}
 
 
+def _same_paper_key(written: str, key: str) -> bool:
+    """True when a model wrote the paper's citation key differently from the
+    key it was given, but recognisably the same paper: only the case differs,
+    or it kept the Author+Year stem and dropped the rest (`Alyahya2018` for
+    `Alyahya2018NounVerb` — gemma4:26b does this). Anything else (another
+    author or year) is left alone for a person to see."""
+    a, b = written.lstrip("@"), key.lstrip("@")
+    if not a or a == b:
+        return False
+    if a.lower() == b.lower():
+        return True
+    return b.lower().startswith(a.lower()) and re.fullmatch(r"[A-Za-z][A-Za-z'-]*\d{4}[a-z]?", a) is not None
+
+
 def _normalize_findings(content: str, bucket: str,
                         citation: str | None,
                         kb_root: Path | None = None) -> tuple[str, list[str]]:
@@ -810,8 +824,9 @@ def _normalize_findings(content: str, bucket: str,
         a predictor or therapy finding simply has no region to define).
       * imaging method with no `imaging_details.reference_space` →
         `not_reported` plus a flag; `atlases_used` missing → [].
-      * `citation` differing from the resolved key only in case → set
-        to the resolved key, so promoted findings join citations.md.
+      * `citation` differing from the resolved key only in case, or cut
+        down to its Author+Year stem → set to the resolved key, so
+        promoted findings join citations.md (and benchmark runs find them).
       * entry-level predictor fields (`short_definition`,
         `predictor_type`, `units`, `direction_of_severity`) missing on a
         draft whose id already exists canonically → copied from the
@@ -934,10 +949,10 @@ def _normalize_findings(content: str, bucket: str,
                 notes.append(f"{f.get('id')}: atlases_used → []")
         if citation and isinstance(f.get("citation"), str) and \
                 f["citation"] != citation and \
-                f["citation"].lstrip("@").lower() == citation.lstrip("@").lower():
+                _same_paper_key(f["citation"], citation):
+            notes.append(f"{f.get('id')}: citation {f['citation']} → {citation}")
             f["citation"] = citation
             changed = True
-            notes.append(f"{f.get('id')}: citation case → {citation}")
     if not changed:
         return content, notes
     fm_text = yaml.safe_dump(fm, sort_keys=False, allow_unicode=True,
@@ -957,7 +972,12 @@ def save_drafts(drafts: list, kb_root: Path,
         if bucket not in ("regions", "impairments", "therapies", "predictors", "reviews"):
             print(f"  ⚠ skipping draft with invalid bucket={bucket!r}")
             continue
-        out = kb_root / "drafts" / bucket / d["filename"]
+        fname = d["filename"]
+        stem, sep, suffix = fname[:-3].rpartition("__") if fname.endswith(".md") else ("", "", "")
+        if citation and sep and _same_paper_key(suffix, citation):
+            fname = f"{stem}__{citation.lstrip('@')}.md"     # the file must carry the key it was given
+            print(f"  ⊙ {d['filename']} → {fname} (citation key as given)")
+        out = kb_root / "drafts" / bucket / fname
         out.parent.mkdir(parents=True, exist_ok=True)
         content, notes = _repair_frontmatter(d["content"], created_by)
         content, more = _normalize_findings(content, bucket, citation, kb_root)
