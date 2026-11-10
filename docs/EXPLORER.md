@@ -114,5 +114,11 @@ explorer/                         index.html, app.js, kb-index.js, styles.css
 .github/workflows/pages.yml       publishes explorer/ + export/ + js/ to GitHub Pages
 ```
 
+The CALMaR notebook has a page of its own at https://calmar.aphasia-kb.app
+(`scripts/build_notebook_page.py`, `explorer/notebook.css`; published by the
+`calmar` repository whenever a notebook is pushed there — see
+[COMMANDS.md](COMMANDS.md)). The explorer links to it from the Overview and
+the footer once the page exists.
+
 Colours follow the CALMaR palette: grape for headings and the person,
 blue for data and the model, cyan for approved, pink for attention.

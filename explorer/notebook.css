@@ -1,0 +1,65 @@
+/* The published notebook page (scripts/build_notebook_page.py → /notebook/). Appended to
+   styles.css at build time, so the palette, type and badges are the explorer's. */
+.nbpage main { max-width: none; margin: 0; padding: 0; }
+.nb-layout { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 2rem; max-width: 1240px; margin: 0 auto; padding: 1rem 16px 3rem; }
+.nb-main { min-width: 0; max-width: 900px; }
+.nb-toc { position: sticky; top: 3.6rem; align-self: start; max-height: calc(100vh - 4.5rem); overflow-y: auto; font-size: .84rem; padding-right: .4rem; border-right: 1px solid var(--line); }
+.nb-toc .toc-title { font-weight: 600; color: var(--ink-2); text-transform: uppercase; letter-spacing: .04em; font-size: .72rem; margin-bottom: .4rem; }
+.nb-toc a { display: block; padding: .16rem .5rem .16rem 0; color: var(--ink); line-height: 1.3; }
+.nb-toc a.toc-3 { padding-left: .9rem; color: var(--ink-2); font-size: .8rem; }
+.nb-toc a:hover { color: var(--grape); text-decoration: none; }
+@media (max-width: 860px) {
+  .nb-layout { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+  .nb-toc { position: static; max-height: 12rem; border-right: 0; border-bottom: 1px solid var(--line); padding-bottom: .5rem; }
+}
+
+/* launch block */
+.launch { border: 1px solid var(--line-strong); border-left: 3px solid var(--grape); border-radius: var(--radius); background: var(--panel); padding: .7rem 1rem .8rem; margin: 1rem 0 1.4rem; scroll-margin-top: 4rem; }
+.launch h2 { margin: 0 0 .3rem; font-size: 1.05rem; }
+.launch p { margin: .2rem 0 .6rem; }
+.launch-row { display: flex; align-items: center; justify-content: space-between; gap: .8rem; flex-wrap: wrap; padding: .45rem 0; border-top: 1px solid var(--line); }
+.launch-links { display: flex; gap: .4rem; flex-wrap: wrap; }
+.launch .btn { display: inline-block; background: var(--grape); color: #fff; border-radius: var(--radius); padding: .32rem .8rem; font-weight: 500; font-size: .88rem; }
+.launch .btn:hover { filter: brightness(1.1); text-decoration: none; }
+.launch .btn::before { content: "▶ "; font-size: .7em; vertical-align: .08em; }
+
+/* the notebook itself */
+.nb section { margin: 0 0 .6rem; }
+.nb .md h1 { font-size: 1.35rem; margin-top: 1.6rem; }
+.nb .md h2 { font-size: 1.2rem; margin-top: 2rem; padding-top: .9rem; border-top: 1px solid var(--line); }
+.nb .md h3 { font-size: 1.05rem; margin-top: 1.4rem; }
+.nb .md h4 { font-size: .98rem; margin-top: 1.1rem; }
+.nb h1, .nb h2, .nb h3, .nb h4 { scroll-margin-top: 4rem; }
+.nb .md img, .nb .out-image img { max-width: 100%; height: auto; }
+.nb .md table { width: auto; }
+.nb pre { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: .55rem .75rem; font-family: var(--mono); font-size: .8rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin: .35rem 0; }
+.nb pre.source { white-space: pre; word-break: normal; }
+.nb pre.stream.stderr { border-color: var(--pink); }
+.nb details.code > summary, .nb details.log > summary { font-size: .8rem; font-weight: 400; color: var(--ink-2); }
+.nb details.code > summary:hover, .nb details.log > summary:hover { color: var(--grape); }
+.nb details.error > summary { color: var(--pink); }
+.nb .pause, .nb .panel-note { border: 1px dashed var(--line-strong); border-radius: var(--radius); padding: .45rem .75rem; font-size: .88rem; color: var(--ink-2); margin: .4rem 0; }
+.nb .pause { border-style: solid; border-left: 3px solid var(--cyan); }
+.nb .widget { margin: .5rem 0; overflow-x: auto; }
+
+/* Tables and panels the notebook wrote for JupyterLab: give them the variables they expect
+   and keep them readable in both themes. */
+.nb .out-html, .nb .widget {
+  --jp-ui-font-color0: var(--ink); --jp-ui-font-color1: var(--ink); --jp-ui-font-color2: var(--ink-2); --jp-ui-font-color3: var(--ink-2);
+  --jp-content-font-color0: var(--ink); --jp-content-font-color1: var(--ink); --jp-content-font-color2: var(--ink-2);
+  --jp-layout-color0: var(--surface); --jp-layout-color1: var(--surface); --jp-layout-color2: var(--panel); --jp-layout-color3: var(--panel);
+  --jp-border-color0: var(--line-strong); --jp-border-color1: var(--line-strong); --jp-border-color2: var(--line); --jp-border-color3: var(--line);
+  --jp-brand-color1: var(--grape); --jp-widgets-color: var(--ink); --jp-widgets-label-color: var(--ink);
+  --jp-code-font-family: var(--mono); --jp-ui-font-family: var(--font);
+  overflow-x: auto; font-size: .88rem; margin: .4rem 0;
+}
+.nb .out-html table { border-collapse: collapse; width: auto; max-width: 100%; font-size: .84rem; border-color: var(--line-strong); }
+.nb .out-html th, .nb .out-html td { border: 1px solid var(--line-strong); padding: .3rem .5rem; vertical-align: top; text-align: left; }
+.nb .out-html th { background: var(--panel); text-transform: none; letter-spacing: 0; font-size: .82rem; color: var(--ink); }
+.nb .out-html h4 { color: var(--ink); font-size: .95rem; }
+
+/* long file paths and wide tables inside the text must wrap or scroll, never widen the page */
+.nb .md { overflow-wrap: anywhere; }
+.nb .md code { overflow-wrap: anywhere; word-break: break-word; }
+.nb .md table { display: block; max-width: 100%; overflow-x: auto; }
+.nb-toc a.toc-4 { padding-left: 1.8rem; color: var(--ink-2); font-size: .78rem; }

@@ -29,3 +29,6 @@ nilearn>=0.10,<0.14     # 0.14 breaks the Neurodesk environment CALMaR runs in
 # Optional
 # nimare>=0.5.0          # neurosynth_bootstrap.py (coordinate-based meta-analysis scaffolds)
 # ocrmypdf               # batch_ocr.py; needs tesseract and ghostscript (brew/apt install ocrmypdf)
+
+# The readable notebook page (build_notebook_page.py)
+markdown-it-py>=3.0

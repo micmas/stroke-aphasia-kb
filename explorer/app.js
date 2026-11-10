@@ -420,6 +420,7 @@ function overview(index) {
       h('li', {}, h('a', { href: '#/findings', text: 'Findings browser' }), ' — filter by entry type, relationship, strength, method, stage, provenance or paper; full-text search of claims and quotes.'),
       h('li', {}, h('a', { href: '#/papers', text: 'Papers' }), ' — every cited paper and its findings in page order, to spot-check an extraction against the PDF.'),
       h('li', {}, h('a', { href: '#/coverage', text: 'Coverage' }), ' — how the literature was searched and screened (PRISMA flow), what each evidence gap still needs, and where every candidate paper stands.'),
+      state.notebook ? h('li', {}, h('a', { href: NOTEBOOK_PAGE, text: 'The CALMaR notebook' }), ' — a saved run of the pipeline that turns an MRI into a lesion map and a cited report, readable as a page, with buttons to run it in Neurodesk Play.') : null,
       h('li', {}, h('a', { href: '#/models', text: 'The extraction models' }), ' — which local model drafts the findings, and the comparison behind that choice.'),
       h('li', {}, h('a', { href: '#/involve', text: 'Get involved' }), ' — the five levels at which a person can take part, from reading to building; what each needs and what it gives.'),
       index.kb.portal?.url ? h('li', {}, h('a', { href: index.kb.portal.url, target: '_blank', rel: 'noopener', text: 'Review portal' }), ' — for collaborators: check drafts beside the annotated PDFs, screen candidate papers and send decisions back (sign-in with an invited email).') : null));
@@ -1128,6 +1129,17 @@ function portalNav(portal) {
   a.setAttribute('href', portal.url); a.textContent = 'Review ↗';
 }
 
+/** The CALMaR notebook page lives on its own address and is published by the calmar repository: link to it only when it is there. */
+const NOTEBOOK_PAGE = 'https://calmar.aphasia-kb.app/';
+function findNotebookPage() {
+  fetch(`${NOTEBOOK_PAGE}build.json`, { cache: 'no-cache' }).then((r) => (r.ok ? r.json() : null)).catch(() => null).then((info) => {
+    if (!info) return;
+    state.notebook = info;
+    document.getElementById('notebookLink')?.removeAttribute('hidden');
+    if (state.index && !parseRoute().segments[0]) render();      // the Overview lists it
+  });
+}
+
 function use(kb, label, local) {
   if (kb.schemaVersion !== 1) throw new Error(`Unsupported export schema ${kb.schemaVersion}`);
   state.index = buildIndex(kb);
@@ -1156,6 +1168,7 @@ function init() {
     location.search = q ? `?${q}` : '';   // reloads with the other export, keeps the #route
   });
   load(KB_VERSIONS[kb] || kb || DEFAULT_KB);
+  findNotebookPage();
 }
 
 init();

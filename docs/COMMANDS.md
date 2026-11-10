@@ -866,6 +866,7 @@ python tests/test_screening.py              # the screening register: parsers, d
 python tests/test_review_app.py             # the review workbench and refocus merge, against a generated PDF (needs PyMuPDF)
 python tests/test_schema_v28.py             # v2.8: therapy block, symptom vs syndrome, retargeting, therapy backfill checks
 python -m pytest tests/test_kb_atlas_mapping.py  # the atlas mapping
+python tests/test_notebook_page.py          # the notebook page: rendering, folded code and logs, widgets, launch links, open-data check
 ```
 
 ---
@@ -907,6 +908,48 @@ Renames the PDF, annotated PDF, drafts and sidecars; rewrites `id:` and
 | `LESION` | The mask. |
 | `--terms T …` | Neurosynth terms to decode (default list in the script). |
 | `--cache DIR` | Neurosynth cache (default `_neurosynth_cache/`). |
+
+### `build_notebook_page.py` — the CALMaR notebook as a page people can read
+
+The saved run of `lesion-interpretation-pipeline.ipynb` in the
+[calmar](https://github.com/micmas/calmar) repository is published as a
+page at **https://calmar.aphasia-kb.app**: text and tables as the notebook
+showed them, code folded behind "Show code", long logs folded, and buttons
+that open the guided or the full notebook in Neurodesk Play.
+
+You do not run anything for this. Pushing a notebook to `calmar` rebuilds
+the page (the workflow `notebook-page` in that repository; about a minute).
+The script lives here because the page shares the explorer's styles; the
+workflow checks this repository out to use it.
+
+```
+python scripts/build_notebook_page.py --open
+```
+
+builds the page from `../calmar` into `site/calmar/` and opens it, to look
+before pushing.
+
+| Option | Meaning |
+|---|---|
+| `--calmar DIR` | The calmar checkout (default `../calmar`). |
+| `--notebook NAME` | The executed notebook inside it (default `lesion-interpretation-pipeline.ipynb`). |
+| `--out DIR` | Where `index.html` and `build.json` are written (default `site/calmar`). |
+| `--strict` | Fail when the run names a dataset not known to be open. The workflow uses this: nothing is published, the live page stays. |
+| `--allow-dataset NAME` | Another open dataset the run may name (known: ds004884, ISLES 2022). |
+| `--source-commit SHA` | Recorded in `build.json` and the footer. |
+| `--open` | Open the page in the browser afterwards. |
+
+Two things decide how much of the notebook's interactivity the page keeps:
+
+- Save the run with **Settings → Save Widget State Automatically** ticked in
+  JupyterLab. Then tabs, accordions and sliders are drawn with their values
+  and still work. Without it each panel is a one-line note.
+- Buttons and menus that call Python, and the image viewers, need a running
+  session. On the page they are still; the launch buttons are the way to
+  use them.
+
+Only open data may be on the page. It prints the dataset names and
+participant ids it found in the run under the title, so a look is enough.
 
 ---
 
