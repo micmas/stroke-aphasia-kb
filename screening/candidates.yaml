@@ -25338,6 +25338,7 @@ candidates:
     seq: 264
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C1249_Johnson-2022-Predictors beyond the lesion_ Hea.pdf
 - id: C1250
   doi: 10.1155/2022/3902570
   pmid: '35923686'
@@ -38602,6 +38603,7 @@ candidates:
     seq: 272
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C1989_Meier-The utility of lesion classification in.pdf
 - id: C1990
   doi: 10.1007/s11682-019-00106-7
   pmid: '31089955'
@@ -40659,6 +40661,7 @@ candidates:
     seq: 254
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C2108_Zavanone-2018-Critical brain regions related t.pdf
 - id: C2109
   doi: 10.1016/j.cortex.2018.07.007
   pmid: '30172096'
@@ -126349,6 +126352,7 @@ candidates:
     seq: 263
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C7373_Rehabilitation-2022-Dosage_ Intensity_ and Fre.pdf
 - id: C7374
   doi: 10.1007/s10072-021-05743-9
   pmid: '34816318'

@@ -633,6 +633,24 @@ candidate, then `intake_papers.py` takes over as for any new PDF.
 | `portal_import.py --kind K` | Only records of one kind (screen, verdict, edit, mark, comment, pdf). |
 | `portal_import.py --skip-pdf` | Leave `pdf` records in the inbox (what the apply workflow does: CI has no papers folder). |
 
+### `endnote_match.py` — PDFs you already have in EndNote
+
+```bash
+python scripts/endnote_match.py --library ~/path/to/Library.enlp            # dry run: what is in the library
+python scripts/endnote_match.py --library ~/path/to/Library.enlp --execute  # copy those PDFs into papers/
+```
+
+Looks in an EndNote library on this machine for the papers that are past
+title/abstract screening and have no PDF in `papers/` yet, matching by
+DOI, then PubMed id (`--titles` also accepts the same title and year,
+listed separately so you can look first). The matches are copied into
+`papers/` as `<Key>.pdf`, or `<Cid>_<name>.pdf` linked to the candidate,
+exactly where an uploaded PDF would land; then `intake_papers.py
+--execute` and `publish_portal.py --sync` as usual. The library is only
+read: its database is copied to a temporary file before it is opened,
+and PDFs are copied, never moved. `--ids C0123 …` limits it to named
+candidates.
+
 ### `review_app.py` — the review workbench: draft and paper side by side
 
 ```bash

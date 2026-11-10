@@ -391,6 +391,14 @@
    "public": true,
    "sha256": "ea033c3ea2332f925ba3856164207afff5abda50d273ece54312bb3fe8cbe667"
   },
+  "@Fridriksson2010Anomia": {
+   "annotated": "cc/Fridriksson2010Anomia_annotated.pdf",
+   "bytes": 818334,
+   "category": "cc",
+   "label": "CC BY-NC-SA 4.0",
+   "public": true,
+   "sha256": "4d25fb9dd39036a32655a4002e340741d84fed0618fb92b5204577c6da8caefa"
+  },
   "@Fridriksson2013": {
    "annotated": "pdf/Fridriksson2013_annotated.pdf",
    "bytes": 908442,
@@ -1413,7 +1421,11 @@
    "1-s2.0-S0028393224002227-main.pdf",
    "1-s2.0-S0165032725019214-main.pdf",
    "1745-6215-14-24.pdf",
+   "C1249_Johnson-2022-Predictors beyond the lesion_ Hea.pdf",
+   "C1989_Meier-The utility of lesion classification in.pdf",
+   "C2108_Zavanone-2018-Critical brain regions related t.pdf",
    "C2467_s10548-016-0503-5.pdf",
+   "C7373_Rehabilitation-2022-Dosage_ Intensity_ and Fre.pdf",
    "fcae364.pdf",
    "imag.a.1050.pdf"
   ],
@@ -1608,5 +1620,5 @@
    "@vanderMeulen2014"
   ]
  },
- "synced": "2026-11-10T08:44"
+ "synced": "2026-11-10T10:11"
 }

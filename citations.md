@@ -2125,3 +2125,27 @@ Post-stroke cognitive impairment: More than a lesion-symptom model.
 doi:10.1162/imag.a.1050
 
 > Registered automatically from the PDF's DOI via Crossref on 2026-11-09 (file: imag.a.1050.pdf). Check the entry; add a note on why the paper is in the KB.
+
+## @Johnson2022  [seed]
+Johnson L, Nemati S, Bonilha L, Rorden C, Busby N, Basilakos A, Newman-Norlund R, Hillis AE, Hickok G, Fridriksson J.
+Predictors beyond the lesion: Health and demographic factors associated with aphasia severity.
+*Cortex*. 2022;154:375-389.
+doi:10.1016/j.cortex.2022.06.013
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: C1249_Johnson-2022-Predictors beyond the lesion_ Hea.pdf). Check the entry; add a note on why the paper is in the KB.
+
+## @Meier2019  [seed]
+Meier EL, Johnson JP, Pan Y, Kiran S.
+The utility of lesion classification in predicting language and treatment outcomes in chronic stroke-induced aphasia.
+*Brain Imaging and Behavior*. 2019;13(6):1510-1525.
+doi:10.1007/s11682-019-00118-3
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: C1989_Meier-The utility of lesion classification in.pdf). Check the entry; add a note on why the paper is in the KB.
+
+## @Zavanone2018  [seed]
+Zavanone C, Samson Y, Arbizu C, Dupont S, Dormont D, Rosso C.
+Critical brain regions related to post-stroke aphasia severity identified by early diffusion imaging are not the same when predicting short- and long-term outcome.
+*Brain and Language*. 2018;186:1-7.
+doi:10.1016/j.bandl.2018.08.005
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: C2108_Zavanone-2018-Critical brain regions related t.pdf). Check the entry; add a note on why the paper is in the KB.

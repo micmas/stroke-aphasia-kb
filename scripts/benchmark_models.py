@@ -515,6 +515,22 @@ def table(rows: list[dict], verdicts: dict[str, dict], incumbent_model: str) -> 
     return "\n".join(L)
 
 
+def _remember_timing(sandbox: Path, paper: str, timing: dict) -> dict:
+    """How long an extraction took is only known while it runs: keep it beside the drafts
+    (_timings.json) so a later --resume or --skip-extract can still report it."""
+    path = sandbox / "_timings.json"
+    try:
+        known = json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    except ValueError:
+        known = {}
+    if timing.get("elapsed_s") is not None and timing.get("ok", True):
+        known[paper] = {k: timing[k] for k in ("elapsed_s", "processor") if timing.get(k) is not None}
+        if sandbox.is_dir():
+            path.write_text(json.dumps(known, indent=1), encoding="utf-8")
+        return timing
+    return known.get(paper) or timing
+
+
 PUBLIC = ROOT / "export" / "model-benchmark.json"
 _PUBLIC_ROW = ("paper", "failed", "ungraded", "drafts", "findings", "ref_findings", "ref_entries", "quotes", "absent", "verified", "near",
                "anchored", "schema_issues", "no_quote_findings", "links", "ref_links", "shared_links", "link_recall", "link_precision",
@@ -631,9 +647,12 @@ def _cli(argv=None) -> int:
         known = [incumbent()] + [c["tag"] for c in candidates_from_models_md()[0]]
         have = [t for t in dict.fromkeys(known) if t and (COMPARE / slug(t) / "drafts").is_dir()]
         print(f"  · with a sandbox in _compare/: {', '.join(have) or 'none'}")
+        sandbox_only = [t for t in have if t not in args.models]
         args.models = list(dict.fromkeys(have + args.models))
     if args.exclude:
         args.models = [m for m in args.models if m not in set(args.exclude)]
+    if not args.sandboxes:
+        sandbox_only = []
     picked_note = []
     if args.auto_papers and not args.papers:
         picked, picked_note = pick_papers(reference_papers(), args.auto_papers, args.min_findings, args.seed)
@@ -646,6 +665,11 @@ def _cli(argv=None) -> int:
     if not args.models or not args.papers:
         ap.error("--models and --papers (or --auto-papers N) are required, or --list-references")
     inc = incumbent()
+    # A sandbox left by an older run that never saw these papers would show as a failure it is not.
+    stale = [t for t in sandbox_only if t != inc and not all(CE._find_entries(COMPARE / slug(t), f"@{p}") for p in args.papers)]
+    if stale:
+        print(f"  · left out, their sandbox does not hold all of these papers (name them with --models to run them): {', '.join(stale)}")
+        args.models = [m for m in args.models if m not in stale]
     models = list(dict.fromkeys(([inc] if inc and not args.no_incumbent else []) + args.models))
     if not args.skip_extract:
         models = ensure_pulled(models, args.ollama_host, pull=not args.no_pull)
@@ -683,6 +707,7 @@ def _cli(argv=None) -> int:
                     print("  ✗ extraction failed:\n    " + timing["tail"].replace("\n", "\n    "))
                 else:
                     print(f"  done in {_hms(timing['elapsed_s'])}{(' · ' + timing['processor']) if timing.get('processor') else ''}")
+            timing = _remember_timing(sandbox, p, timing)
             r = score(m, p, sandbox)
             r.update({k: timing.get(k) for k in ("elapsed_s", "processor") if timing.get(k) is not None})
             rows.append(r)
