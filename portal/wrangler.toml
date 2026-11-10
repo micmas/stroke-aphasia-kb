@@ -29,10 +29,12 @@ bucket_name = "stroke-aphasia-kb-uploads"
 binding = "PDFS"
 bucket_name = "stroke-aphasia-kb-pdfs"
 
-# Reviewer requests by email (docs/PORTAL.md, step 12). Uncomment once Email Routing is on
-# for the zone and the Worker in portal/mailer/ has been deployed (cd portal/mailer &&
-# npx wrangler deploy); a binding to a Worker that does not exist makes the deploy fail.
-# Without it a request is announced through GitHub (.github/workflows/portal-request.yml).
-# [[services]]
-# binding = "MAILER"
-# service = "portal-mailer"
+# Reviewer requests by email (docs/PORTAL.md, step 12): the Worker in portal/mailer/
+# (cd portal/mailer && npx wrangler deploy), which sends through Email Routing to the
+# maintainers' verified addresses. When it cannot send (an address not verified yet), the
+# request is announced through GitHub instead (.github/workflows/portal-request.yml).
+# Remove this block if the Worker is ever deleted: a binding to a Worker that does not
+# exist makes the deploy fail.
+[[services]]
+binding = "MAILER"
+service = "portal-mailer"
