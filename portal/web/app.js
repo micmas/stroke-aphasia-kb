@@ -8,7 +8,7 @@
 //   #/drafts           drafts awaiting review, grouped by paper
 //   #/draft/<path>     one draft beside its annotated PDF: verdicts, edits, marks, comments
 //   #/screen/ta        title/abstract screening queue
-//   #/screen/ft        full-text screening queue (with the PDF when the portal holds it)
+//   #/screen/ft[/<id>] full-text screening: one paper at a time beside its PDF (include needs the PDF; upload or skip)
 //   #/pdfs             the included papers whose PDF nobody has yet, every annotated PDF the portal holds, and the uploads waiting for the maintainer
 //   #/mine             the records you have sent
 // A paper the portal lacks can be uploaded (any candidate; required before a full-text
@@ -392,12 +392,10 @@ function verdictPanel(d, r, save) {
 }
 
 // ---- screening ----
-function screenView(stage) {
+/** The records awaiting a decision at `stage` (ta | ft), less those you already sent at that stage. */
+function screenQueue(stage) {
   const sc = state.screening;
-  if (!sc) return h('p', { class: 'notice', text: 'No screening queue in this build of the portal.' });
   const stages = stage === 'ta' ? ['awaiting_ta', 'unsure_ta'] : ['awaiting_ft', 'unsure_ft'];
-  const key = `screen:${stage}`;
-  const decided = store.get(key, {});
   // Records you already decided at THIS stage leave the queue until the decision is applied
   // and the portal rebuilt. A decision at the other stage never hides a record: a paper you
   // included at title/abstract must show up here for its full-text assessment.
@@ -415,7 +413,15 @@ function screenView(stage) {
   for (const n of state.mine.applied) { const id = screenId(n); if (id && stampAt(n) > builtAt) sentIds.add(id); }
   const all = sc.candidates.filter((c) => stages.includes(c.stage));
   const cands = all.filter((c) => !sentIds.has(slug(c.id)) && !sentIds.has(c.id));
-  const hidden = all.length - cands.length;
+  return { cands, hidden: all.length - cands.length };
+}
+
+function screenView(stage) {
+  const sc = state.screening;
+  if (!sc) return h('p', { class: 'notice', text: 'No screening queue in this build of the portal.' });
+  const key = `screen:${stage}`;
+  const decided = store.get(key, {});
+  const { cands, hidden } = screenQueue(stage);
   const reasons = Object.entries(sc.reasons || {}).filter(([, v]) => stage === 'ft' || !v.fullTextOnly);
   const nDecided = Object.values(decided).filter((d) => d.decision).length;
   const statusText = (k) => `${cands.length} awaiting · ${k} decided here, not yet sent${hidden ? ` · ${hidden} sent by you, waiting for the maintainer` : ''}`;
@@ -462,6 +468,136 @@ function screenView(stage) {
   return frag(head, h('p', { class: 'small', text: `Criteria: docs/SCREENING.md §2. ${stage === 'ta' ? 'Include whatever might answer one of the KB questions; exclude only for a listed reason.' : 'Read the paper; include when it answers a question in §1 and no exclusion reason applies.'} Decisions are kept in this browser until you send them.` }), list);
 }
 
+// ---- full-text screening: one paper at a time, beside its PDF ----
+// The decision needs the paper: "include" stays disabled until the portal can show the PDF
+// (an annotated copy, the maintainer's full text synced for screening, or an upload). A paper
+// without one can be uploaded (drop it on the PDF side) or skipped for now: skipped papers go
+// to the end of the queue and stay there until they are decided.
+const FT_SKIP = 'screen:ft:skipped';
+/** The PDF the portal can show for a full-text candidate: {url, label} or null. */
+function ftPdf(c) {
+  const ann = c.key ? paperPdf(c.key) : null;
+  if (ann) return { url: ann.annotated, label: 'annotated PDF' };
+  const ft = state.manifest?.fulltext?.[c.id];
+  if (ft?.object) return { url: ft.object, label: 'full text' };
+  const up = uploadFor(c.id, c.key);
+  if (up) return { url: `api/upload?file=${encodeURIComponent(up.id)}`, label: 'uploaded PDF', upload: up };
+  return null;
+}
+/** The queue in the order shown (skipped papers last) and the paper on screen. */
+function ftQueue(wanted) {
+  const { cands, hidden } = screenQueue('ft');
+  const skipped = new Set(store.get(FT_SKIP, []));
+  const decided = store.get('screen:ft', {});
+  const order = [...cands.filter((c) => !skipped.has(c.id)), ...cands.filter((c) => skipped.has(c.id))];
+  const current = order.find((c) => c.id === wanted) || order.find((c) => !decided[c.id]?.decision && !skipped.has(c.id)) || order.find((c) => !decided[c.id]?.decision) || order[0] || null;
+  return { order, current, skipped, decided, hidden };
+}
+const ftGo = (c) => { if (c) location.hash = `#/screen/ft/${encodeURIComponent(c.id)}`; };
+function ftView(wanted) {
+  const sc = state.screening;
+  if (!sc) return h('p', { class: 'notice', text: 'No screening queue in this build of the portal.' });
+  const q = ftQueue(wanted);
+  if (!q.current) {
+    return frag(h('div', { class: 'page-head' }, h('h1', { text: 'Full-text screening' })),
+      h('p', { class: 'notice', text: q.hidden ? `Nothing left to assess here: ${plural(q.hidden, 'decision')} you sent wait for the maintainer to apply them.` : 'Nothing awaiting a full-text decision.' }));
+  }
+  const c = q.current;
+  const pdf = ftPdf(c);
+  const right = h('div', { class: 'right' });
+  const layout = h('div', { class: 'review-layout ft', 'data-id': c.id, 'data-pdf': pdf?.url || '' }, ftLeft(q, c, pdf), right);
+  if (pdf) mountPdf(right, pdf.url, null, null, null);
+  else right.append(ftNoPdf(c, q));
+  state.keyHandler = ftKeys;
+  document.addEventListener('keydown', ftKeys);
+  return layout;
+}
+function ftNoPdf(c, q) {
+  const has = candidateHasPdf(c);
+  const ctl = uploadControl(c.id, c.key, { required: true });
+  const box = h('div', { class: 'pdf-missing ft-missing' },
+    h('h3', { text: has ? 'The maintainer has this PDF, but it is not in the portal yet' : 'No PDF of this paper yet' }),
+    h('p', { text: has ? 'It reaches the portal with the maintainer’s next sync. If you have a copy, upload it to assess the paper now.' : 'A full-text decision needs the paper. If you have it, upload it (or drop the file anywhere on this side); otherwise skip it for now.' }),
+    ctl,
+    h('p', { class: 'small' }, c.doi ? h('a', { href: `https://doi.org/${c.doi}`, target: '_blank', rel: 'noopener', text: 'Find it at the publisher (DOI)' }) : null, c.doi && c.pmid ? ' · ' : '', c.pmid ? h('a', { href: `https://pubmed.ncbi.nlm.nih.gov/${c.pmid}`, target: '_blank', rel: 'noopener', text: 'PubMed' }) : null),
+    h('p', {}, h('button', { class: 'btn', onclick: () => ftSkip(c, q), text: 'Skip it for now (s)' })));
+  dropZone(box, ctl.uploadFile);
+  return box;
+}
+function ftSkip(c, q) {
+  const skipped = new Set(store.get(FT_SKIP, [])); skipped.add(c.id); store.set(FT_SKIP, [...skipped]);
+  const i = q.order.findIndex((x) => x.id === c.id);
+  const next = q.order.slice(i + 1).find((x) => !q.decided[x.id]?.decision && !skipped.has(x.id)) || q.order.find((x) => !q.decided[x.id]?.decision && !skipped.has(x.id) && x.id !== c.id);
+  toast(next ? `${c.id} skipped: it waits at the end of the queue` : `${c.id} skipped`);
+  if (next) ftGo(next); else render();
+}
+function ftLeft(q, c, pdf) {
+  const { order, decided, skipped } = q;
+  const i = order.findIndex((x) => x.id === c.id);
+  const dec = decided[c.id] || {};
+  const nDecided = Object.entries(decided).filter(([id, d]) => d.decision && order.some((x) => x.id === id)).length;
+  const save = (patch) => {
+    decided[c.id] = { ...(decided[c.id] || {}), ...patch }; store.set('screen:ft', decided);
+    if (patch.decision) { const s = new Set(store.get(FT_SKIP, [])); if (s.delete(c.id)) store.set(FT_SKIP, [...s]); }
+    render();
+  };
+  const reasons = Object.entries(state.screening.reasons || {});
+  const sendBtn = h('button', { class: 'btn btn-primary', disabled: nDecided ? null : '', text: nDecided ? `Send ${plural(nDecided, 'decision')}` : 'Send decisions' });
+  const status = h('span', { class: 'muted small', text: `${i + 1} of ${order.length} · ${nDecided} decided, not sent${skipped.size ? ` · ${skipped.size} skipped` : ''}${q.hidden ? ` · ${q.hidden} sent, waiting for the maintainer` : ''}` });
+  sendBtn.onclick = () => sendScreen('ft', Object.fromEntries(Object.entries(decided).filter(([id]) => order.some((x) => x.id === id))), order, sendBtn, status);
+  const nav = h('div', { class: 'ft-nav' },
+    h('button', { class: 'btn', disabled: i > 0 ? null : '', onclick: () => ftGo(order[i - 1]), text: '← Previous' }),
+    h('button', { class: 'btn', onclick: () => ftSkip(c, q), text: 'Skip for now' }),
+    h('button', { class: `btn${dec.decision ? ' btn-primary' : ''}`, disabled: i < order.length - 1 ? null : '', onclick: () => ftGo(order[i + 1]), text: 'Next →' }));
+  const radio = (v) => {
+    const blocked = v === 'include' && !pdf;
+    return h('label', { class: blocked ? 'blocked' : null, title: blocked ? 'Include needs the PDF: upload it first' : null },
+      h('input', { type: 'radio', name: `ft-${c.id}`, value: v, disabled: blocked ? '' : null, checked: dec.decision === v ? '' : null, onchange: () => save({ decision: v }) }), ` ${v}`);
+  };
+  const reasonSel = h('select', { 'aria-label': 'Exclusion reason', onchange: (e) => save({ reason: e.target.value }) }, h('option', { value: '', text: 'reason…' }), reasons.map(([k, v]) => h('option', { value: k, selected: dec.reason === k ? '' : null, text: v.label })));
+  const card = h('article', { class: 'screen ft-card' },
+    h('p', { class: 't' }, h('span', { class: 'chip', text: c.id }), ' ', esc(c.title)),
+    h('p', { class: 'small muted' }, [c.year, c.journal, (c.authors || '').slice(0, 160)].filter(Boolean).join(' · '),
+      c.doi ? [' · ', h('a', { href: `https://doi.org/${c.doi}`, target: '_blank', rel: 'noopener', text: c.doi })] : null,
+      c.pmid ? [' · PMID ', h('a', { href: `https://pubmed.ncbi.nlm.nih.gov/${c.pmid}`, target: '_blank', rel: 'noopener', text: String(c.pmid) })] : null,
+      c.for?.length ? ` · for ${c.for.join(', ')}` : '',
+      c.history?.length ? ` · ${c.history.map((x) => `${x.stage === 'title_abstract' ? 'T/A' : 'FT'}: ${x.decision} (${x.by})`).join('; ')}` : ''),
+    h('p', { class: 'small pdfline' }, pdf ? (pdf.upload ? uploadedNote(pdf.upload) : h('span', { class: 'badge badge-human', text: `PDF: ${pdf.label}` })) : h('span', { class: 'badge badge-warn', text: 'No PDF yet — upload it on the right, or skip' })),
+    c.suggestion?.decision ? h('p', { class: 'sug', text: `Model suggests ${c.suggestion.decision}${c.suggestion.reason && c.suggestion.reason !== 'none' ? ` (${c.suggestion.reason})` : ''} — a suggestion, not a decision.` }) : null,
+    h('div', { class: 'dec' }, ['include', 'exclude', 'unsure'].map(radio), reasonSel),
+    h('input', { type: 'text', class: 'ft-note', value: dec.note || '', placeholder: 'note (optional)', onchange: (e) => save({ note: e.target.value }) }),
+    dec.decision === 'exclude' && !dec.reason ? h('p', { class: 'small err-text', text: 'An exclusion needs a reason.' }) : null,
+    h('details', { class: 'ft-abstract', open: pdf ? null : '' }, h('summary', { text: 'Abstract' }), h('p', { class: 'ab', text: c.abstract || '(no abstract available)' })));
+  const list = h('ol', { class: 'ft-list' }, order.map((x, n) => {
+    const d = decided[x.id]?.decision; const p = Boolean(ftPdf(x));
+    return h('li', { class: `${x.id === c.id ? 'current' : ''}${d ? ' done' : ''}` },
+      h('a', { href: `#/screen/ft/${encodeURIComponent(x.id)}` }, h('span', { class: 'chip', text: x.id }), ' ', String(x.title || '').slice(0, 90)),
+      h('span', { class: 'small muted', text: ` ${[d || (skipped.has(x.id) ? 'skipped' : ''), p ? '' : 'no PDF'].filter(Boolean).join(' · ')}` }));
+  }));
+  return h('div', { class: 'left' },
+    h('div', { class: 'page-head sticky-head' }, h('h1', { text: 'Full-text screening' }), status, h('span', { style: 'margin-left:auto' }, sendBtn)),
+    nav, card,
+    h('p', { class: 'small muted', text: 'Criteria: docs/SCREENING.md §2 — include when the paper answers a question in §1 and no exclusion reason applies. Keys: i include · e exclude · u unsure · s skip · ← → previous/next. Decisions stay in this browser until you send them.' }),
+    h('h3', { text: 'The queue' }), list);
+}
+function ftKeys(e) {
+  if (['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName) && e.target.type !== 'radio') return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  const [, , id] = parseRoute();
+  const q = ftQueue(id); const c = q.current; if (!c) return;
+  const i = q.order.findIndex((x) => x.id === c.id);
+  const pick = (v) => { const r = document.querySelector(`.ft-card input[type=radio][value="${v}"]`); if (!r || r.disabled) { toast('Include needs the PDF: upload it first, or skip the paper', true); return; } r.checked = true; r.dispatchEvent(new Event('change')); };
+  const k = e.key;
+  if (k === 'i') pick('include');
+  else if (k === 'u') pick('unsure');
+  else if (k === 'e') { pick('exclude'); setTimeout(() => document.querySelector('.ft-card select')?.focus(), 0); }
+  else if (k === 's') ftSkip(c, q);
+  else if (k === 'ArrowRight' || k === 'n') ftGo(q.order[i + 1]);
+  else if (k === 'ArrowLeft' || k === 'p') ftGo(q.order[i - 1]);
+  else return;
+  e.preventDefault();
+}
+
 async function sendScreen(stage, decided, cands, btn = null, status = null) {
   const st = stage === 'ta' ? 'title_abstract' : 'full_text';
   const items = Object.entries(decided).filter(([, d]) => d.decision);
@@ -472,8 +608,8 @@ async function sendScreen(stage, decided, cands, btn = null, status = null) {
   const bad = items.filter(([, d]) => d.decision === 'exclude' && !d.reason);
   if (bad.length) { toast(`An exclusion needs a reason: ${bad.map(([id]) => id).join(', ')}`, true); return; }
   if (stage === 'ft') {
-    const noPdf = items.filter(([id]) => { const c = cands.find((x) => x.id === id); return c && !candidateHasPdf(c) && !uploadFor(c.id, c.key); }).map(([id]) => id);
-    if (noPdf.length) { toast(`A full-text decision needs the paper's PDF first: ${noPdf.join(', ')}`, true); return; }
+    const noPdf = items.filter(([id, d]) => { const c = cands.find((x) => x.id === id); return d.decision === 'include' && c && !ftPdf(c); }).map(([id]) => id);
+    if (noPdf.length) { toast(`Including a paper needs its PDF first: ${noPdf.join(', ')}`, true); return; }
   }
   working();
   try {
@@ -559,7 +695,7 @@ async function mountPdf(right, url, d, r, save) {
   const bar = h('div', { class: 'pdfbar' }, h('span', { class: 'muted', text: url.split('/').pop() }),
     h('span', { class: 'zoom' }, h('button', { class: 'btn', onclick: () => setZoom(right, -0.15), text: '−' }), h('span', { id: 'zoomLabel', class: 'muted', text: `${Math.round(state.zoom * 100)}%` }), h('button', { class: 'btn', onclick: () => setZoom(right, 0.15), text: '+' })),
     h('a', { href: url, target: '_blank', rel: 'noopener', class: 'small', text: 'open the PDF itself' }),
-    h('span', { class: 'small muted', text: 'Highlights are the draft’s passages. Drag across words to quote them.' }));
+    h('span', { class: 'small muted', text: d ? 'Highlights are the draft’s passages. Drag across words to quote them.' : 'The paper, for the full-text decision.' }));
   const pages = h('div', { id: 'pdfpages' });
   right.append(bar, pages);
   try {
@@ -684,12 +820,25 @@ function render() {
     existing.querySelector('.left').scrollTop = top;
     return;
   }
+  // Full-text screening: a decision re-renders only the left pane while the same paper and PDF stay on screen.
+  const ftLayout = main.querySelector('.review-layout.ft');
+  if (head === 'screen' && rest[0] === 'ft' && ftLayout && state.screening) {
+    const q = ftQueue(rest[1]); const pdf = q.current ? ftPdf(q.current) : null;
+    if (q.current && ftLayout.dataset.id === q.current.id && ftLayout.dataset.pdf === (pdf?.url || '')) {
+      const leftEl = ftLayout.querySelector('.left'); const top = leftEl.scrollTop;
+      leftEl.replaceWith(ftLeft(q, q.current, pdf));
+      ftLayout.querySelector('.left').scrollTop = top;
+      state.keyHandler = ftKeys; document.addEventListener('keydown', ftKeys);
+      return;
+    }
+  }
   let view; let current = '/';
   try {
     if (!head) view = home();
     else if (head === 'drafts') { view = draftsList(); current = '/drafts'; }
     else if (head === 'draft') { view = draftView(rest.join('/')); current = '/drafts'; }
-    else if (head === 'screen') { view = screenView(rest[0] === 'ft' ? 'ft' : 'ta'); current = `/screen/${rest[0] === 'ft' ? 'ft' : 'ta'}`; }
+    else if (head === 'screen' && rest[0] === 'ft') { view = ftView(rest[1]); current = '/screen/ft'; }
+    else if (head === 'screen') { view = screenView('ta'); current = '/screen/ta'; }
     else if (head === 'pdfs') { view = pdfsView(); current = '/pdfs'; }
     else if (head === 'mine') { view = mine(); current = '/mine'; }
     else view = h('p', { class: 'error', text: `Unknown page: ${head}` });

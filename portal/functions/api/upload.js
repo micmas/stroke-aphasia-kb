@@ -4,6 +4,8 @@
 //        the file into papers/ (the maintainer's OneDrive folder) and deletes it here.
 // GET  /api/upload — the uploads waiting in the bucket (id, name, who, when), so the portal
 //        can say "PDF uploaded, with the maintainer" and let the full-text decision through.
+// GET  /api/upload?file=<id> — that upload's bytes, so the full-text screen can show the
+//        paper beside the decision before the maintainer has taken it in.
 //
 // The bucket is bound as UPLOADS in portal/wrangler.toml ([[r2_buckets]]); without the
 // binding the route answers 503 and the portal hides the control. Nothing here is public:
@@ -20,8 +22,14 @@ function describe(obj) {
   return { object: obj.key, id: m.id || obj.key.slice(PREFIX.length, -4), name: m.name || '', bytes: obj.size, by: m.by || '', uploaded: m.uploaded || (obj.uploaded ? new Date(obj.uploaded).toISOString() : ''), sha256: m.sha256 || '' };
 }
 
-export async function onRequestGet({ env }) {
+export async function onRequestGet({ request, env }) {
   if (!env.UPLOADS) return Response.json({ error: 'uploads are not set up on this portal (no R2 bucket bound)', uploads: [] }, { status: 503 });
+  const file = request ? new URL(request.url).searchParams.get('file') : null;
+  if (file) {
+    const obj = await env.UPLOADS.get(objectKey(file));
+    if (!obj) return new Response('not found', { status: 404 });
+    return new Response(obj.body, { headers: { 'Content-Type': 'application/pdf', 'Content-Disposition': `inline; filename="${slug(file)}.pdf"`, 'Cache-Control': 'private, no-store', 'X-Robots-Tag': 'noindex', ...(obj.size ? { 'Content-Length': String(obj.size) } : {}) } });
+  }
   const out = [];
   let cursor;
   do {

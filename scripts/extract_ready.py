@@ -17,7 +17,8 @@ repository). This script is that one step.
   1. portal_import.py --execute --kind pdf   PDFs uploaded in the portal → papers/
   2. screen.py register --execute            citation keys; PDFs under a download name → papers/<Key>.pdf
   3. extract.py --pdf papers/<Key>.pdf        one per paper that has its PDF (20–30 min each; annotates)
-  4. publish_portal.py --sync                annotated PDFs → the portal's R2 bucket, portal/papers.json
+  4. publish_portal.py --sync                annotated PDFs, and the PDFs of papers awaiting full-text
+                                             screening, → the portal's R2 bucket, portal/papers.json
   5. git commit (only the paths this step writes) and git push → the portal rebuilds; the drafts
      show up in its Drafts queue, and the notice closes itself once nothing is left.
 """
@@ -66,6 +67,25 @@ def _uploads_waiting(root: Path) -> set[str]:
     return ids
 
 
+def fulltexts_to_send(root: Path = ROOT) -> list[dict]:
+    """Candidates awaiting full-text screening whose PDF the maintainer has (portal/papers.json
+    sources) but the portal cannot show yet (no annotated copy, no synced full text)."""
+    try:
+        idx = json.loads((root / "portal" / "papers.json").read_text(encoding="utf-8"))
+    except Exception:  # noqa: BLE001
+        return []
+    shown = set(idx.get("fulltext") or {})
+    annotated = {f"@{k.lstrip('@')}" for k in (idx.get("papers") or {})}
+    keys, files = _portal_index(root)
+    out = []
+    for r in S.enrich(S.load_candidates(root), S.kb_facts(root)):
+        if r.get("stage") not in ("awaiting_ft", "unsure_ft") or r["id"] in shown or (r.get("key") in annotated):
+            continue
+        if (r.get("key") and r["key"] in keys) or any(f.startswith(f"{r['id']}_") for f in files) or (r.get("pdf_file") in files):
+            out.append({"id": r["id"], "key": r.get("key"), "title": r.get("title") or "", "year": r.get("year") or ""})
+    return sorted(out, key=lambda x: x["id"])
+
+
 def ready(root: Path = ROOT) -> list[dict]:
     """Included papers with no drafts yet: [{id, key, title, year, doi, pdf}], where pdf is
     'yes' (in papers/), 'no' (papers/ checked, not there), 'synced' (the maintainer has it,
@@ -105,25 +125,33 @@ def _row(p: dict) -> str:
 def notice(out_dir: Path, root: Path = ROOT) -> int:
     out_dir.mkdir(parents=True, exist_ok=True)
     papers = ready(root)
+    send = fulltexts_to_send(root)
     body, comment, sig = out_dir / "body.md", out_dir / "comment.md", out_dir / "signature"
-    if not papers:
+    if not papers and not send:
         for f in (body, comment, sig):
             f.write_text("", encoding="utf-8")
         print("nothing waiting for extraction")
         return 0
     signature = "extract-ready:" + hashlib.sha256(
-        "\n".join(f"{p['id']} {p['key']} {p['pdf']}" for p in papers).encode()).hexdigest()[:16]
+        "\n".join([f"{p['id']} {p['key']} {p['pdf']}" for p in papers] + [f"send {p['id']}" for p in send]).encode()).hexdigest()[:16]
     can = [p for p in papers if p["pdf"] != "missing"]
     need = [p for p in papers if p["pdf"] == "missing"]
-    lines = [f"**{len(papers)} included paper{'s' if len(papers) != 1 else ''} waiting to be extracted.**", ""]
-    if can:
+    lines = []
+    if papers:
+        lines += [f"**{len(papers)} included paper{'s' if len(papers) != 1 else ''} waiting to be extracted.**", ""]
+    if send:
+        lines += [f"**{len(send)} paper{'s' if len(send) != 1 else ''} to assess at full text {'are' if len(send) != 1 else 'is'} on your Mac "
+                  f"but not in the portal yet** ({', '.join(p['id'] for p in send)}): the same command sends "
+                  f"{'them' if len(send) != 1 else 'it'} to the full-text screen.", ""]
+    if can or send:
         lines += ["Run this in Terminal on your Mac (about 20–30 min per paper; leave it running):", "",
                   "```", COMMAND, "```", "",
                   "It fetches the PDFs uploaded in the portal, gives the papers their citation keys, extracts "
                   "each one with the local model, sends the annotated PDFs to the portal and pushes. The drafts "
                   f"then appear in the portal's [Drafts queue]({PORTAL}/#/drafts), and this issue closes itself "
                   "when nothing is left.", ""]
-    lines += ["| Candidate | Key | PDF | Year | Title |", "|---|---|---|---|---|"]
+    if papers:
+        lines += ["| Candidate | Key | PDF | Year | Title |", "|---|---|---|---|---|"]
     label = {"synced": "on your Mac", "uploaded": "uploaded in the portal", "missing": "**none yet**",
              "yes": "on your Mac", "no": "**none yet**"}
     for p in papers:
@@ -136,10 +164,10 @@ def notice(out_dir: Path, root: Path = ROOT) -> int:
                       f"[PDFs page]({PORTAL}/#/pdfs) first (the command skips them)."]
     lines += ["", f"<!-- {signature} -->", ""]
     body.write_text("\n".join(lines), encoding="utf-8")
-    comment.write_text(f"The list changed: {len(papers)} paper{'s' if len(papers) != 1 else ''} now waiting "
-                       f"({len(can)} with a PDF). Command, as above:\n\n```\n{COMMAND}\n```\n", encoding="utf-8")
+    comment.write_text(f"The list changed: {len(papers)} paper{'s' if len(papers) != 1 else ''} to extract "
+                       f"({len(can)} with a PDF), {len(send)} full text{'s' if len(send) != 1 else ''} to send to the portal. Command, as above:\n\n```\n{COMMAND}\n```\n", encoding="utf-8")
     sig.write_text(signature, encoding="utf-8")
-    print(f"{len(papers)} waiting ({len(can)} with a PDF) — {signature}")
+    print(f"{len(papers)} to extract ({len(can)} with a PDF), {len(send)} full texts to send — {signature}")
     return 0
 
 
@@ -171,11 +199,11 @@ def execute(only: list[str] | None, limit: int | None, commit: bool, push: bool)
         print(f"\n[{i}/{len(todo)}] {p['key']} — {p['title'][:80]}", flush=True)
         rc = _run(py, "scripts/extract.py", "--pdf", f"papers/{str(p['key']).lstrip('@')}.pdf")
         (failed if rc else done).append(p)
-    if done:
-        if _run(py, "scripts/publish_portal.py", "--sync"):
-            print("  ⚠ the PDF sync failed: run `python scripts/publish_portal.py --sync` again before pushing")
+    # always: it also sends the PDFs of papers awaiting full-text screening to the portal
+    if _run(py, "scripts/publish_portal.py", "--sync"):
+        print("  ⚠ the PDF sync failed: run `python scripts/publish_portal.py --sync` again before pushing")
     print(f"\nExtracted {len(done)}" + (f"; failed {len(failed)}: {', '.join(str(p['key']) for p in failed)}" if failed else ""))
-    if not (commit and (done or skipped or todo)):
+    if not commit:
         return 1 if failed else 0
     msg = f"Extracted {len(done)} included paper{'s' if len(done) != 1 else ''}" + (
         f": {', '.join(str(p['key']).lstrip('@') for p in done)}" if done else "")

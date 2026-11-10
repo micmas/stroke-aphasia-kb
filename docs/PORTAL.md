@@ -36,7 +36,7 @@ sign-in lasts a week.
 |---|---|---|
 | **Drafts** | Open a draft beside the annotated PDF (the highlights are its passages). For each finding: agree, disagree (say why) or unsure. For each passage: checked, not sure, or a problem (not in the paper, wrong page, does not support the claim, altered). Fix a field the paper contradicts. Select words in the PDF to add a passage, or to mark something the extractor missed. Give an overall verdict. | Comes back as records; the maintainer applies them to the draft. If you are an approver, your verdict runs `promote.py` under your name. |
 | **Title/abstract** | Read a title and abstract, decide include / exclude (with a reason) / unsure. Keys `i` `e` `u`. The queue is the prioritised head of the register, 300 at a time. | Written into the screening register under your name. |
-| **Full text** | Read the paper itself and decide. The paper's PDF must exist first; if nobody has it, upload it. | Same. |
+| **Full text** | One paper at a time, its PDF beside the decision (keys: i include · e exclude · u unsure · s skip · ← →). Including needs the PDF: if the portal has none, upload it (drop it on the PDF side) or skip the paper for now; skipped papers wait at the end of the queue. | Same. |
 | **Upload a PDF** | On any card or draft whose paper the portal lacks. PDF only, up to 60 MB. | Goes to a private bucket, then to the maintainer's papers folder; never to the public site. |
 | **PDFs** | The papers included at title/abstract that nobody has a PDF for yet (with links to find them, and an upload control), every annotated PDF this build holds with its licence, and the uploads waiting for the maintainer. | — |
 | **My reviews** | What you sent, and whether it has been applied yet. | — |
@@ -254,7 +254,9 @@ cd ~/GITHUB/stroke-aphasia-kb && git pull && python scripts/extract_ready.py --e
 
 It takes the PDFs uploaded in the portal into papers/, registers keys and
 renames PDFs, extracts each paper that has its PDF (20–30 min each), syncs
-the annotated PDFs, commits only what it wrote and pushes. The drafts then
+the annotated PDFs and the PDFs of papers awaiting full-text screening
+(served privately as `pdf/<id>_fulltext.pdf`, so the full-text screen can
+show them; `publish_portal.py --sync` alone does just this part), commits only what it wrote and pushes. The drafts then
 show in the portal's Drafts queue and the issue closes itself once nothing
 is left (it is commented on, so emailed again, whenever the list changes).
 `python scripts/extract_ready.py` alone lists what is waiting. Make sure

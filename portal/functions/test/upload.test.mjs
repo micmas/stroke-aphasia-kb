@@ -68,3 +68,14 @@ test('a failed GitHub write removes the stored file again', async () => {
   assert.equal(res.status, 502);
   assert.equal(b.store.size, 0);
 });
+
+test('an upload can be read back for the full-text screen; an unknown one is 404', async () => {
+  const bytes = pdf(2048);
+  const b = { async get(k) { return k === 'uploads/c0456.pdf' ? { body: bytes, size: bytes.length } : null; } };
+  const ok = await onRequestGet({ request: new Request('https://p.test/api/upload?file=C0456'), env: { UPLOADS: b } });
+  assert.equal(ok.status, 200);
+  assert.equal(ok.headers.get('Content-Type'), 'application/pdf');
+  assert.equal(ok.headers.get('Cache-Control'), 'private, no-store');
+  assert.equal(Buffer.from(await ok.arrayBuffer()).subarray(0, 5).toString(), '%PDF-');
+  assert.equal((await onRequestGet({ request: new Request('https://p.test/api/upload?file=C9999'), env: { UPLOADS: b } })).status, 404);
+});

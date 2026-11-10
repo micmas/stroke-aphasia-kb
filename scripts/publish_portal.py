@@ -107,9 +107,10 @@ def _rel(p: Path) -> str:
 
 def load_index(path: Path = INDEX) -> dict:
     if not path.exists():
-        return {"papers": {}, "sources": {"keys": [], "files": []}, "abstracts": None}
+        return {"papers": {}, "sources": {"keys": [], "files": []}, "fulltext": {}, "abstracts": None}
     data = json.loads(path.read_text(encoding="utf-8"))
     data.setdefault("papers", {}); data.setdefault("sources", {"keys": [], "files": []}); data.setdefault("abstracts", None)
+    data.setdefault("fulltext", {})
     return data
 
 
@@ -117,8 +118,34 @@ def wrangler(*args, timeout: int = 600) -> subprocess.CompletedProcess:
     return subprocess.run(["npx", "wrangler", *args], cwd=str(PORTAL), capture_output=True, text=True, timeout=timeout)
 
 
+FT_STAGES = ("awaiting_ft", "unsure_ft")
+
+
+def fulltext_pdfs(papers_dir: Path, annotated: dict, root: Path = ROOT) -> dict[str, Path]:
+    """Candidates awaiting full-text screening whose PDF is in papers/ but has no annotated copy
+    in the portal: {candidate id: the PDF}. The portal shows these beside the decision, from the
+    private bucket (pdf/<id>_fulltext.pdf)."""
+    if not papers_dir.is_dir():
+        return {}
+    out: dict[str, Path] = {}
+    try:
+        rows = S.enrich(S.load_candidates(root), S.kb_facts(root))
+    except Exception as e:  # noqa: BLE001
+        print(f"  ⚠ full-text PDFs skipped: the register could not be read ({str(e)[:80]})")
+        return {}
+    for r in rows:
+        if r.get("stage") not in FT_STAGES or (r.get("key") and r["key"] in annotated):
+            continue
+        for name in ([f"{str(r['key']).lstrip('@')}.pdf"] if r.get("key") else []) + ([str(r["pdf_file"])] if r.get("pdf_file") else []):
+            f = papers_dir / name
+            if f.is_file():
+                out[r["id"]] = f
+                break
+    return out
+
+
 def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path = INDEX, put=None, delete=None,
-              abstracts_path: Path | None = None) -> dict:
+              abstracts_path: Path | None = None, fulltext: dict[str, Path] | None = None) -> dict:
     """Mirror the annotated PDFs (and screening/abstracts.jsonl) into the R2 bucket and write the index.
 
     Only files whose sha256 differs from the index are uploaded; a PDF whose licence category moved
@@ -164,6 +191,24 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
     for key, prev in old["papers"].items():
         if key not in new and prev.get("annotated"):
             do_delete(prev["annotated"]); dels.append(prev["annotated"])
+    # full-text screening: the source PDF of each candidate awaiting assessment (no annotated copy yet)
+    ft_files = fulltext_pdfs(papers_dir, new) if fulltext is None else fulltext
+    ft_new: dict[str, dict] = {}
+    for cid, path in sorted(ft_files.items()):
+        sha = hashlib.sha256(path.read_bytes()).hexdigest()
+        entry = {"object": f"pdf/{cid}_fulltext.pdf", "sha256": sha, "bytes": path.stat().st_size, "file": path.name}
+        prev = old["fulltext"].get(cid)
+        if prev and prev.get("sha256") == sha:
+            ft_new[cid] = prev
+        elif do_put(entry["object"], path, "application/pdf"):
+            ft_new[cid] = entry; ups.append(cid)
+        else:
+            failed.append(cid)
+            if prev:
+                ft_new[cid] = prev
+    for cid, prev in old["fulltext"].items():
+        if cid not in ft_new and prev.get("object"):
+            do_delete(prev["object"]); dels.append(prev["object"])
     abstracts = old.get("abstracts")
     abs_path = abstracts_path or (ROOT / "screening" / "abstracts.jsonl")
     if abs_path.exists():
@@ -173,13 +218,13 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
                 abstracts = {"object": ABSTRACTS_OBJECT, "sha256": sha, "bytes": abs_path.stat().st_size,
                              "synced": dt.datetime.now().isoformat(timespec="minutes")}
     index = {"synced": old.get("synced") if dry else dt.datetime.now().isoformat(timespec="minutes"), "bucket": bucket,
-             "papers": new, "sources": source_pdfs(papers_dir), "abstracts": abstracts}
+             "papers": new, "sources": source_pdfs(papers_dir), "fulltext": ft_new, "abstracts": abstracts}
     if not dry:
         index_path.write_text(json.dumps(index, indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
     n_public = sum(1 for v in new.values() if v["public"])
     verb = ("to upload", "to delete") if dry else ("uploaded", "deleted")
     print(f"  bucket {bucket}: {len(ups)} {verb[0]}, {len(dels)} {verb[1]}, {len(failed)} failed · index: {n_public} public + {len(new) - n_public} private annotated PDFs, "
-          f"{len(index['sources']['keys'])} source PDFs" + (" (dry run, index not written)" if dry else f" → {_rel(index_path)}"))
+          f"{len(index['sources']['keys'])} source PDFs, {len(ft_new)} full texts to assess" + (" (dry run, index not written)" if dry else f" → {_rel(index_path)}"))
     if failed:
         print(f"  ⚠ not uploaded: {', '.join(failed)} — run --sync again")
     return index
@@ -309,6 +354,7 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
     cfg = config()
     manifest = {"built": dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes"), "kbCommit": git("rev-parse", "--short", "HEAD"),
                 "kbDate": git("log", "-1", "--format=%cs"), "papers": pdfs, "sources": sources, "config": cfg,
+                "fulltext": {k: {"object": v.get("object"), "bytes": v.get("bytes")} for k, v in (index.get("fulltext") or {}).items()},
                 "pdfsSynced": index.get("synced"), "maintainers": maintainers(),
                 "counts": {"public": n_public, "private": len(pdfs) - n_public, "candidates": len(sb["candidates"]),
                            "sources": sum(1 for k in sources["keys"] if k not in pdfs), "sourceFiles": len(sources["files"])}}

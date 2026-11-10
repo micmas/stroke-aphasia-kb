@@ -81,6 +81,13 @@ def make_handler(email: str, name: str):
             if "/" in name_ or ".." in name_ or not name_.endswith(".pdf"):
                 return self._json({"error": "not found"}, 404)
             f = PAPERS / name_
+            ft = re.fullmatch(r"(C\d+)_fulltext\.pdf", name_)
+            if ft:                                   # a full text to assess: the source PDF named in portal/papers.json
+                try:
+                    entry = json.loads((ROOT / "portal" / "papers.json").read_text(encoding="utf-8")).get("fulltext", {}).get(ft.group(1)) or {}
+                except (OSError, ValueError):
+                    entry = {}
+                f = PAPERS / str(entry.get("file") or name_)
             if not f.is_file():
                 self.send_response(404); self.end_headers(); return None
             data = f.read_bytes()
@@ -103,6 +110,16 @@ def make_handler(email: str, name: str):
             if self.path.startswith("/api/reviews"):
                 return self._json({"inbox": sorted(p.name for p in INBOX.glob("*.json")) if INBOX.is_dir() else [],
                                    "applied": sorted(p.name for p in APPLIED.glob("*.json")) if APPLIED.is_dir() else []})
+            if self.path.startswith("/api/upload?file="):          # one upload's bytes (functions/api/upload.js)
+                cid = parse_qs(urlsplit(self.path).query).get("file", [""])[0]
+                f = UPLOADS / f"{_slug(cid)}.pdf"
+                if not cid or not f.is_file():
+                    return self._json({"error": "not found"}, 404)
+                data = f.read_bytes()
+                self.send_response(200); self.send_header("Content-Type", "application/pdf")
+                self.send_header("Content-Length", str(len(data))); self.send_header("Cache-Control", "no-store"); self.end_headers()
+                self.wfile.write(data)
+                return None
             if self.path.startswith("/api/upload"):
                 ups = []
                 for meta in sorted(UPLOADS.glob("*.json")) if UPLOADS.is_dir() else []:

@@ -90,3 +90,22 @@ kbd { font: inherit; font-size: .75rem; border: 1px solid var(--line-strong); bo
 .dropping { outline: 2px dashed var(--grape); outline-offset: 2px; background: color-mix(in oklab, var(--grape) 9%, transparent); }
 tr.dropping td { background: color-mix(in oklab, var(--grape) 9%, transparent); }
 .upload { border-radius: var(--radius); }
+/* full-text screening: one paper at a time beside its PDF */
+.review-layout.ft .sticky-head { top: 0; margin: -.6rem -.9rem .5rem; padding: .5rem .9rem; flex-wrap: wrap; gap: .3rem .8rem; }
+.review-layout.ft .sticky-head h1 { margin: 0; font-size: 1.15rem; }
+.ft-nav { display: flex; gap: .4rem; margin: .2rem 0 .4rem; }
+.ft-nav .btn:last-child { margin-left: auto; }
+.ft-card { margin-top: .2rem; }
+.ft-card .dec label.blocked { opacity: .45; cursor: not-allowed; }
+.ft-card .ft-note { width: 100%; margin-top: .45rem; font: inherit; font-size: .84rem; padding: .25rem .4rem; border: 1px solid var(--line-strong); border-radius: 4px; }
+.ft-card .ft-abstract { margin-top: .5rem; }
+.ft-card .ft-abstract summary { cursor: pointer; font-size: .86rem; color: var(--ink-2); }
+.err-text { color: #b42318; margin: .3rem 0 0; }
+.ft-list { font-size: .84rem; padding-left: 1.6rem; margin: .3rem 0 0; }
+.ft-list li { margin: .15rem 0; }
+.ft-list li.current { font-weight: 600; }
+.ft-list li.current::marker { color: var(--grape); }
+.ft-list li.done a { opacity: .6; }
+.ft-missing { border: 2px dashed var(--line-strong); border-radius: 8px; background: var(--surface); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .err-text { color: #f97066; } }
+:root[data-theme="dark"] .err-text { color: #f97066; }

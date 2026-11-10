@@ -102,6 +102,28 @@ class Publish(unittest.TestCase):
             finally:
                 P.licences = saved
 
+    def test_full_texts_to_assess_are_mirrored_and_removed_when_decided(self):
+        import publish_portal as P
+        with tempfile.TemporaryDirectory() as d:
+            papers = Path(d) / "papers"; index = Path(d) / "papers.json"; papers.mkdir()
+            (papers / "Smith2020.pdf").write_bytes(b"%PDF-1.4 smith")
+            (papers / "C0002_download name.pdf").write_bytes(b"%PDF-1.4 c2")
+            bucket: dict[str, str] = {}
+
+            class Done:
+                returncode = 0; stderr = ""
+            put = lambda obj, path, ctype: (bucket.__setitem__(obj, Path(path).name), Done())[1]
+            delete = lambda obj: (bucket.pop(obj, None), Done())[1]
+            ft = {"C0001": papers / "Smith2020.pdf", "C0002": papers / "C0002_download name.pdf"}
+            out = P.sync_pdfs(papers, "b", index_path=index, put=put, delete=delete, abstracts_path=Path(d) / "none", fulltext=ft)
+            self.assertEqual(bucket, {"pdf/C0001_fulltext.pdf": "Smith2020.pdf", "pdf/C0002_fulltext.pdf": "C0002_download name.pdf"})
+            self.assertEqual(out["fulltext"]["C0002"]["object"], "pdf/C0002_fulltext.pdf")
+            # C0001 decided → its copy leaves the bucket; C0002 unchanged → not re-sent
+            bucket["pdf/C0002_fulltext.pdf"] = "kept"
+            out = P.sync_pdfs(papers, "b", index_path=index, put=put, delete=delete, abstracts_path=Path(d) / "none", fulltext={"C0002": ft["C0002"]})
+            self.assertEqual(bucket, {"pdf/C0002_fulltext.pdf": "kept"})
+            self.assertEqual(set(P.load_index(index)["fulltext"]), {"C0002"})
+
 
 class Import(unittest.TestCase):
     def setUp(self):
