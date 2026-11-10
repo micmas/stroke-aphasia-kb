@@ -167,12 +167,18 @@ copies the rows into §5 with the Decision column left for you.
 | **Support** | Source passages per finding | Thin support means the reviewer has to go and find the evidence | Informative |
 | **Cost** | Wall-clock per paper; `ollama ps` processor split during the run | A CPU spill makes a model unusable in practice; twice as slow is acceptable if it never fabricates | Informative |
 
-The reference papers are the ones whose canonical findings a person
-approved after reading the PDF (`--list-references` lists them; it also
-says which papers are not usable yet because their findings are legacy
-or model-reviewed). Use two or three papers of different kinds; a model
-that passes on a lesion-symptom mapping study can fail on a therapy
-trial.
+The reference is, by default, only what was approved under the
+governance policy: findings approved by a person, plus the routine ones
+a second model approved (Tier A). **Legacy findings are never used as
+reference**: they were approved before the policy, largely without
+anyone reading the paper, so a model that disagrees with them may simply
+be right. A paper's legacy findings are counted and left out, and a
+paper with fewer than a handful of current findings tells you little
+(`--list-references` shows, paper by paper, how many findings count).
+`--reference human` narrows the reference to findings a person approved;
+`--reference all` brings the legacy ones back, for comparison only. Use
+two or three papers of different kinds; a model that passes on a
+lesion-symptom mapping study can fail on a therapy trial.
 
 **Eligible** means: zero absent quotes on every paper, and schema issues
 and calibration no worse than the incumbent. Eligible is not adopted:

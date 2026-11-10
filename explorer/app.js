@@ -198,7 +198,7 @@ function models(index) {
   if (!b) return frag(head, intro, h('p', { class: 'notice' }, 'No comparison has been published yet. The method and the decision log are in ', h('a', { href: REPO_DOCS.models, target: '_blank', rel: 'noopener', text: 'MODELS.md' }), '.'));
   const roles = Object.entries(b.roles || {}).filter(([k]) => ROLE_TEXT[k]);
   const ms = [...(b.models || [])].sort((x, y) => (y.incumbent - x.incumbent) || (y.eligible - x.eligible) || ((y.link_recall || 0) - (x.link_recall || 0)));
-  const soft = (b.papers || []).filter((p) => !p.all_human);
+  const thin = (b.papers || []).filter((p) => (p.findings || 0) < 5);
   const graded = (m) => (m.rows || []).some((r) => !r.ungraded && !r.failed);
   const verdict = (m) => (m.incumbent ? h('span', { class: 'badge badge-model', text: 'in use' })
     : m.eligible ? h('span', { class: 'badge badge-human', title: 'Passes the rule on these papers; adopting it is still a person\'s decision', text: 'eligible' })
@@ -231,8 +231,12 @@ function models(index) {
     h('p', { class: 'small' }, `${plural(ms.length, 'model')} each extracted the same ${plural((b.papers || []).length, 'paper')} the knowledge base already holds (`,
       (b.papers || []).map((p, i) => [i ? ', ' : '', h('a', { href: paperHref(p.key), text: p.key }), ` — ${plural(p.findings || 0, 'finding')}`]),
       '), and each result was scored against those curated findings.'),
-    soft.length ? h('p', { class: 'caveat' }, `A caution on the reference: the curated findings of ${soft.map((p) => p.key).join(' and ')} have not all been re-read by a person yet (`,
-      soft.map((p, i) => `${i ? ', ' : ''}${p.human_reviewed || 0} of ${p.findings || 0}`), '). Until they are, "known links found" compares models with an earlier model\'s reading, so it shows agreement rather than correctness. Fabricated quotes and schema issues do not depend on the reference.') : null,
+    b.reference && b.reference !== 'all'
+      ? h('p', { class: 'small' }, `The reference is ${b.reference_text || 'the findings approved under the governance policy'}: `,
+        (b.papers || []).map((p, i) => `${i ? '; ' : ''}${p.key} ${plural(p.findings || 0, 'finding')}${p.left_out ? ` (${p.left_out} older ones not used)` : ''}`), '. ',
+        thin.length ? h('b', { text: `With so few reference findings (${thin.map((p) => p.key).join(', ')}), "known links found" is indicative at best. ` }) : null,
+        'Fabricated quotes and schema issues do not depend on the reference.')
+      : h('p', { class: 'caveat' }, 'A caution on the reference: this comparison was scored against every curated finding, including older ones approved before the governance policy that nobody has re-read. "Known links found" then shows agreement with an earlier model\'s reading rather than correctness. Fabricated quotes and schema issues do not depend on the reference.'),
     h('div', { class: 'table-wrap' }, table),
     h('h3', { text: 'How to read the columns' }),
     h('ul', { class: 'small' },

@@ -657,6 +657,10 @@ the log. Then `auto_review.py --all` and `publish_portal.py --sync`.
 |---|---|
 | `--papers KEY …` | Only these papers. |
 | `--limit N` | At most N re-extractions this run; run again to carry on. |
+| `--retry` | Try again the papers whose rewrite with this model was not kept last time. |
+
+Ctrl-C is safe: the paper being rewritten is put back as it was, the ones
+already done stay, and the same command carries on with the rest.
 | `--model TAG` | Another extractor for this run (default: `roles.extract` in `models.yaml`). |
 
 ### `endnote_match.py` — PDFs you already have in EndNote

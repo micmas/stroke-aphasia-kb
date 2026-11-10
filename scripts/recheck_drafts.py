@@ -27,8 +27,12 @@ papers are listed under "for a person" with what the audit found.
 
 The rewrite is kept only if it is better: fewer absent quotes, or as few and fewer schema
 issues. Otherwise the old drafts are put back and the paper is listed for a person. A paper
-whose rewrite is kept gets one `RECHECK` line in logs/extraction_log.md. Running the script
-again is safe: papers that now pass are simply not flagged.
+whose rewrite is kept gets one `RECHECK` line in logs/extraction_log.md.
+
+Stopping and carrying on: Ctrl-C puts the drafts of the paper being rewritten back as they
+were and stops; papers already rewritten stay. Run the same command again and it re-audits
+(a few minutes), skips what now passes and what was already tried without success with this
+model (--retry tries those again), and continues with the rest.
 
 The report is written to _compare/recheck_<stamp>.md (git-ignored: it quotes the papers).
 Afterwards: `python scripts/auto_review.py --all`, then `python scripts/publish_portal.py
@@ -38,6 +42,7 @@ from __future__ import annotations
 
 import argparse
 import datetime as dt
+import json
 import shutil
 import subprocess
 import sys
@@ -127,14 +132,30 @@ def audit(key: str, paths: list[Path], papers: Path = PAPERS) -> dict:
             "touched": touched, "reasons": reasons}
 
 
-def plan(rows: list[dict]) -> dict[str, list[dict]]:
+ATTEMPTS = BACKUP / "recheck_attempts.json"
+
+
+def load_attempts(path: Path = ATTEMPTS) -> dict:
+    """Papers whose rewrite was tried and not kept: {key: {model, date, why}} — so the next run
+    does not spend another twenty minutes on the same paper with the same model."""
+    try:
+        return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+    except ValueError:
+        return {}
+
+
+def plan(rows: list[dict], attempts: dict | None = None, model: str | None = None, retry: bool = False) -> dict[str, list[dict]]:
     out = {"rewrite": [], "person": [], "no_pdf": [], "fine": []}
     for r in rows:
+        tried = (attempts or {}).get(r["key"])
         if not r["pdf"]:
             out["no_pdf"].append(r)
         elif not r["reasons"]:
             out["fine"].append(r)
         elif r["touched"]:
+            out["person"].append(r)
+        elif tried and not retry and tried.get("model") == model:
+            r["touched"] = [f"a rewrite with {tried['model']} on {tried.get('date', '?')} was not kept: {tried.get('why', '')}"]
             out["person"].append(r)
         else:
             out["rewrite"].append(r)
@@ -159,24 +180,26 @@ def rewrite(r: dict, stamp: str, model: str | None, timeout: int, extract=run_ex
     """Back the paper's drafts up, extract again, keep the result only if it is better. Returns the outcome."""
     key = r["key"]
     saved: list[tuple[Path, Path]] = []
-    for p in r["paths"]:
-        dest = backup / stamp / p.parent.name / p.name
-        dest.parent.mkdir(parents=True, exist_ok=True)
-        shutil.move(str(p), str(dest))
-        saved.append((p, dest))
 
     def restore() -> None:
         for p in drafts_by_paper(drafts).get(key, []):
-            p.unlink()                              # whatever the failed attempt left
+            p.unlink()                              # whatever the interrupted or failed attempt left
         for orig, dest in saved:
             orig.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(dest, orig)
 
     t0 = time.monotonic()
     try:
+        for p in r["paths"]:                        # copy first, delete after: a draft is never in neither place
+            dest = backup / stamp / p.parent.name / p.name
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(p, dest)
+            saved.append((p, dest))
+        for p, _ in saved:
+            p.unlink()
         ok, tail = extract(key, r["pdf"], model, timeout)
     except KeyboardInterrupt:
-        restore()
+        restore()                                   # Ctrl-C: this paper is back as it was; run again to carry on
         raise
     elapsed = round(time.monotonic() - t0)
     new_paths = drafts_by_paper(drafts).get(key, [])
@@ -230,7 +253,7 @@ def report(groups: dict[str, list[dict]], outcomes: list[dict], model: str, exec
 
 
 # ------------------------------------------------------------------ run
-def run(execute: bool, only: list[str] | None, limit: int | None, model: str | None, timeout: int, by: str) -> int:
+def run(execute: bool, only: list[str] | None, limit: int | None, model: str | None, timeout: int, by: str, retry: bool = False) -> int:
     from model_config import model_for
     try:
         tag = model or model_for("extract")
@@ -242,7 +265,8 @@ def run(execute: bool, only: list[str] | None, limit: int | None, model: str | N
         grouped = {k: v for k, v in grouped.items() if k in want}
     print(f"Checking {sum(len(v) for v in grouped.values())} drafts of {len(grouped)} papers against their PDFs…", flush=True)
     rows = [audit(k, v) for k, v in sorted(grouped.items())]
-    groups = plan(rows)
+    attempts = load_attempts()
+    groups = plan(rows, attempts, tag, retry)
     print(f"  {len(groups['fine'])} pass · {len(groups['rewrite'])} to rewrite · {len(groups['person'])} for a person · {len(groups['no_pdf'])} without a PDF here")
     todo = groups["rewrite"][:limit] if limit else groups["rewrite"]
     outcomes: list[dict] = []
@@ -263,8 +287,12 @@ def run(execute: bool, only: list[str] | None, limit: int | None, model: str | N
                                  f"findings {r['findings']}→{n['findings']} | rewritten by {tag} | old drafts: drafts/_backup/{stamp}/ | by: human:{by}\n")
                 else:
                     print(f"  · {o['why']}")
+                    attempts[o["key"]] = {"model": tag, "date": dt.date.today().isoformat(), "why": o["why"]}
+                    ATTEMPTS.parent.mkdir(parents=True, exist_ok=True)
+                    ATTEMPTS.write_text(json.dumps(attempts, indent=1), encoding="utf-8")
         except KeyboardInterrupt:
-            print("\nStopped. Papers already rewritten stay; run again to carry on.")
+            print("\nStopped. The paper that was being rewritten is back as it was; the ones already done stay. "
+                  "Run the same command again to carry on with the rest.")
     elif todo:
         print(f"\nDry run: {len(todo)} paper(s) would be re-extracted with {tag} (roughly {len(todo) * 5}–{len(todo) * 12} min). Add --execute.")
         for r in todo[:40]:
@@ -286,9 +314,10 @@ def _cli(argv=None) -> int:
     ap.add_argument("--limit", type=int, metavar="N", help="with --execute: at most N papers this run")
     ap.add_argument("--model", default=None, help="extractor tag for this run (default: roles.extract in models.yaml)")
     ap.add_argument("--timeout", type=int, default=3600, help="seconds per paper (default 1 h)")
+    ap.add_argument("--retry", action="store_true", help="try again the papers whose rewrite with this model was not kept last time")
     ap.add_argument("--by", default="michele", help="name for the log lines (default michele)")
     args = ap.parse_args(argv)
-    return run(args.execute, args.papers, args.limit, args.model, args.timeout, args.by)
+    return run(args.execute, args.papers, args.limit, args.model, args.timeout, args.by, args.retry)
 
 
 if __name__ == "__main__":

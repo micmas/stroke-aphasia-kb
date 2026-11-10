@@ -85,6 +85,21 @@ class Recheck(unittest.TestCase):
         o = R.rewrite(R.audit("Worse2023", list(d.glob("*Worse2023.md")), self.papers), "stamp2", None, 10, extract=lambda *a: (False, "boom"),
                       drafts=self.drafts, papers=self.papers, backup=backup)
         self.assertFalse(o["kept"]); self.assertTrue((d / "left_angular_gyrus__Worse2023.md").exists())
+        # Ctrl-C in the middle of an extraction: the paper is back exactly as it was
+        def interrupted(key, pdf, model, timeout):
+            draft(d / f"left_half_written__{key}.md", key, "REAL partial")
+            raise KeyboardInterrupt
+        with self.assertRaises(KeyboardInterrupt):
+            R.rewrite(R.audit("Worse2023", list(d.glob("*Worse2023.md")), self.papers), "stamp3", None, 10, extract=interrupted,
+                      drafts=self.drafts, papers=self.papers, backup=backup)
+        self.assertEqual(sorted(p.name for p in d.glob("*Worse2023.md")), ["left_angular_gyrus__Worse2023.md"])
+        self.assertEqual((d / "left_angular_gyrus__Worse2023.md").read_text(), before)
+        # a rewrite that was tried and not kept is not tried again with the same model, unless asked
+        tried = {"Worse2023": {"model": "test-model", "date": "2026-11-10", "why": "not better"}}
+        g = R.plan(self.rows(), tried, "test-model")
+        self.assertEqual([r["key"] for r in g["rewrite"]], []); self.assertIn("Worse2023", [r["key"] for r in g["person"]])
+        self.assertEqual([r["key"] for r in R.plan(self.rows(), tried, "test-model", retry=True)["rewrite"]], ["Worse2023"])
+        self.assertEqual([r["key"] for r in R.plan(self.rows(), tried, "another-model")["rewrite"]], ["Worse2023"])
         text = R.report(R.plan(self.rows()), [o], "test-model", True)
         self.assertIn("For a person", text); self.assertIn("Touched2022", text); self.assertIn("Rewrite not kept", text)
 

@@ -36,7 +36,9 @@ Scoring, in the order a failure stops the reading (MODELS.md §3):
                  `extract` (a quote that is not in the paper is a fabrication, not a style issue);
                  also the share verified (exact + elided + table) and the near/anchored rest
   2. schema      validation issues across the drafts (errors cost review time on every paper)
-  3. coverage    findings and entries vs the curated reference, and link recall: the share of
+  3. coverage    findings and entries vs the curated reference — by default only the findings
+                 approved under the governance policy, never the legacy ones (--reference) —
+                 and link recall: the share of
                  the reference's entry ↔ target links the candidate also produced, whichever
                  side it filed them under and under whichever id (plus link precision: the
                  share of the candidate's links that the reference has too)
@@ -113,9 +115,10 @@ def reference_papers(root: Path = ROOT, papers_dir: Path = PAPERS) -> list[dict]
                 cit = str(f["citation"]).strip()
                 rv = f.get("review") if isinstance(f.get("review"), dict) else None
                 kind = reviewer_kind(rv.get("reviewer"), rv.get("tier")) if rv else file_kind
-                rec = by_cit.setdefault(cit, {"citation": cit, "findings": 0, "human": 0, "entries": set(), "buckets": set(), "per_bucket": {}})
+                rec = by_cit.setdefault(cit, {"citation": cit, "findings": 0, "human": 0, "model": 0, "entries": set(), "buckets": set(), "per_bucket": {}})
                 rec["findings"] += 1
                 rec["human"] += 1 if kind == "human" else 0
+                rec["model"] += 1 if kind == "model" else 0
                 rec["entries"].add(fm.get("id")); rec["buckets"].add(b)
                 rec["per_bucket"][b] = rec["per_bucket"].get(b, 0) + 1
     out = []
@@ -124,25 +127,72 @@ def reference_papers(root: Path = ROOT, papers_dir: Path = PAPERS) -> list[dict]
         pdf = papers_dir / f"{key}.pdf"
         rec["pdf"] = pdf.exists()
         rec["all_human"] = rec["human"] == rec["findings"]
+        rec["current"] = rec["human"] + rec["model"]          # approved under the governance policy; the rest is legacy
+        rec["usable"] = usable_count(rec)
         rec["entries"] = sorted(x for x in rec["entries"] if x); rec["buckets"] = sorted(rec["buckets"])
         rec["main_bucket"] = max(rec["per_bucket"], key=rec["per_bucket"].get)   # where most of its findings live
         out.append(rec)
     return sorted(out, key=lambda r: (-int(r["all_human"] and r["pdf"]), -r["findings"], r["citation"]))
 
 
+# Which canonical findings count as the reference. Legacy findings were approved before the
+# governance policy, largely without anyone reading the paper: a model that disagrees with
+# them may simply be right. So by default only findings approved under the policy are used.
+REFERENCE = "current"
+REFERENCE_KINDS = {"current": ("human", "model"), "human": ("human",), "all": ("human", "model", "legacy", "none")}
+REFERENCE_TEXT = {"current": "findings approved under the governance policy (by a person, or model-approved Tier A); legacy findings left out",
+                  "human": "findings approved by a person only", "all": "every canonical finding, legacy ones included"}
+
+
+def usable_count(rec: dict, which: str | None = None) -> int:
+    which = which or REFERENCE
+    return {"current": rec["human"] + rec["model"], "human": rec["human"], "all": rec["findings"]}[which]
+
+
+def reference_findings(root: Path, citation: str, which: str | None = None) -> tuple[list[dict], list[Path], int]:
+    """(the reference findings for this paper, the canonical entries they sit in, how many findings
+    were left out) — the findings are those whose approval is of a kind `which` accepts."""
+    keep = REFERENCE_KINDS[which or REFERENCE]
+    found: list[dict] = []
+    paths: list[Path] = []
+    left_out = 0
+    for p in canonical_entries(root, citation):
+        try:
+            fm, _ = parse_markdown(p)
+        except Exception:  # noqa: BLE001
+            continue
+        file_kind = reviewer_kind(fm.get("reviewer"), fm.get("review_tier"))
+        mine = []
+        for f in fm.get("findings") or []:
+            if not isinstance(f, dict) or not CE._citations_match(f.get("citation"), citation):
+                continue
+            rv = f.get("review") if isinstance(f.get("review"), dict) else None
+            kind = reviewer_kind(rv.get("reviewer"), rv.get("tier")) if rv else file_kind
+            if kind not in keep:
+                left_out += 1
+                continue
+            f = dict(f)
+            f["_entry"] = p.stem; f["_entry_id"] = fm.get("id") or p.stem; f["_path"] = p; f["_review_kind"] = kind
+            mine.append(f)
+        if mine:
+            found += mine
+            paths.append(p)
+    return found, paths, left_out
+
+
 def pick_papers(refs: list[dict], n: int = 2, min_findings: int = 5, seed: int | None = None) -> tuple[list[dict], list[str]]:
-    """n random reference papers with at least min_findings canonical findings and a PDF, each from a
-    different bucket (the bucket where most of its findings live). Human-reviewed papers are preferred;
-    others fill in with a note. Returns (picked, notes)."""
+    """n random reference papers with a PDF and at least min_findings findings that count as
+    reference (see REFERENCE), each from a different bucket (the bucket where most of its
+    findings live). Papers whose findings all count are preferred. Returns (picked, notes)."""
     import random
     rng = random.Random(seed)
-    pool = [r for r in refs if r["pdf"] and r["findings"] >= min_findings]
+    pool = [r for r in refs if r["pdf"] and usable_count(r) >= min_findings]
     notes = []
     if not pool:
-        return [], [f"no paper has a PDF in papers/ and at least {min_findings} findings"]
+        return [], [f"no paper has a PDF in papers/ and at least {min_findings} reference findings ({REFERENCE_TEXT[REFERENCE]})"]
     picked: list[dict] = []
     for prefer_human in (True, False):
-        cands = [r for r in pool if r not in picked and (r["all_human"] or not prefer_human)]
+        cands = [r for r in pool if r not in picked and (usable_count(r) == r["findings"] or not prefer_human)]
         rng.shuffle(cands)
         for r in cands:
             if len(picked) >= n:
@@ -158,25 +208,27 @@ def pick_papers(refs: list[dict], n: int = 2, min_findings: int = 5, seed: int |
         rng.shuffle(rest)
         for r in rest[: n - len(picked)]:
             picked.append(r)
-        notes.append(f"only {len({q['main_bucket'] for q in picked})} distinct bucket(s) available among papers with ≥{min_findings} findings")
-    if any(not r["all_human"] for r in picked):
-        notes.append("some picked papers have legacy/model-reviewed findings: coverage and calibration against them are soft (fidelity is not)")
+        notes.append(f"only {len({q['main_bucket'] for q in picked})} distinct bucket(s) available among papers with ≥{min_findings} reference findings")
+    left = sum(r["findings"] - usable_count(r) for r in picked)
+    if left:
+        notes.append(f"{left} finding(s) of the picked papers are left out of the reference ({REFERENCE_TEXT[REFERENCE]})")
     return picked, notes
 
 
 def print_references(refs: list[dict]) -> None:
-    good = [r for r in refs if r["all_human"] and r["pdf"]]
-    print(f"Reference candidates: {len(good)} papers with human-reviewed findings and a PDF\n")
-    print(f"  {'paper':32} {'findings':>8}  {'entries':>7}  main bucket (all)")
+    good = sorted((r for r in refs if r["pdf"] and usable_count(r) >= 3), key=lambda r: -usable_count(r))
+    print(f"Reference: {REFERENCE_TEXT[REFERENCE]}.")
+    print(f"Reference candidates: {len(good)} papers with a PDF and at least 3 such findings\n")
+    print(f"  {'paper':32} {'reference':>9} {'(person':>8} {'model)':>7} {'legacy':>7}  main bucket (all)")
     for r in good:
-        print(f"  {r['citation']:32} {r['findings']:>8}  {len(r['entries']):>7}  {r['main_bucket']} ({', '.join(r['buckets'])})")
-    rest = [r for r in refs if not (r["all_human"] and r["pdf"])]
+        print(f"  {r['citation']:32} {usable_count(r):>9} {r['human']:>8} {r['model']:>7} {r['findings'] - r['current']:>7}  {r['main_bucket']} ({', '.join(r['buckets'])})")
+    rest = [r for r in refs if r not in good]
     if rest:
-        print(f"\n  not usable yet: {len(rest)} papers (legacy/model-reviewed findings, or no PDF in papers/)")
+        print(f"\n  not usable yet: {len(rest)} papers (too few findings approved under the policy, or no PDF in papers/)")
         for r in rest[:8]:
             why = [] if r["pdf"] else ["no PDF"]
-            if not r["all_human"]:
-                why.append(f"{r['findings'] - r['human']}/{r['findings']} findings not human-reviewed")
+            if usable_count(r) < 3:
+                why.append(f"{usable_count(r)} reference finding(s) of {r['findings']}")
             print(f"    {r['citation']:32} {'; '.join(why)}")
         if len(rest) > 8:
             print(f"    … {len(rest) - 8} more")
@@ -410,14 +462,13 @@ def canonical_entries(root: Path, citation: str) -> list[Path]:
 
 def score(model: str, paper: str, sandbox: Path, papers_dir: Path = PAPERS, root: Path = ROOT) -> dict:
     cit = f"@{paper}"
-    ref_paths = canonical_entries(root, cit)
+    ref_f, ref_paths, ref_left_out = reference_findings(root, cit)
     cand_paths = CE._find_entries(sandbox, cit)
-    ref_f = CE._load_findings(ref_paths, cit) if ref_paths else []
     cand_f = CE._load_findings(cand_paths, cit) if cand_paths else []
     ref_l, cand_l = _links(ref_f), _links(cand_f)
     shared = set(ref_l) & set(cand_l)
     out = {"model": model, "paper": paper, "drafts": len(cand_paths), "findings": len(cand_f), "ref_findings": len(ref_f),
-           "ref_entries": len(ref_paths)}
+           "ref_entries": len(ref_paths), "ref_left_out": ref_left_out, "reference": REFERENCE}
     if not cand_paths:
         out.update({"failed": True, "absent": None})
         return out
@@ -560,7 +611,10 @@ def publish(rows: list[dict], verdicts: dict[str, dict], incumbent_model: str, p
                        "processor": next((r.get("processor") for r in mine if r.get("processor")), None),
                        "rows": [{k: r.get(k) for k in _PUBLIC_ROW if r.get(k) is not None} for r in mine]})
     data = {"schema": 1, "date": dt.date.today().isoformat(), "by": by, "incumbent": incumbent_model, "roles": roles, "seed": seed,
-            "papers": [{"key": p, "findings": (refs.get(p) or {}).get("findings"), "human_reviewed": (refs.get(p) or {}).get("human"),
+            "reference": REFERENCE, "reference_text": REFERENCE_TEXT[REFERENCE],
+            "papers": [{"key": p, "findings": usable_count(refs[p]) if p in refs else 0,            # the findings the models were scored against
+                        "left_out": (refs[p]["findings"] - usable_count(refs[p])) if p in refs else 0,   # canonical findings not used as reference
+                        "human_reviewed": (refs.get(p) or {}).get("human"), "model_approved": (refs.get(p) or {}).get("model"),
                         "all_human": bool((refs.get(p) or {}).get("all_human")), "bucket": (refs.get(p) or {}).get("main_bucket")} for p in papers],
             "models": models,
             "rule": "Eligible = zero absent quotes on every paper, and schema issues and over-claiming no worse than the incumbent (docs/MODELS.md §3)."}
@@ -616,6 +670,9 @@ def _cli(argv=None) -> int:
     ap.add_argument("--min-findings", type=int, default=5, help="with --auto-papers: a paper needs at least this many canonical findings (default 5)")
     ap.add_argument("--seed", type=int, help="with --auto-papers: make the random pick repeatable")
     ap.add_argument("--no-incumbent", action="store_true")
+    ap.add_argument("--reference", choices=sorted(REFERENCE_KINDS), default="current",
+                    help="which canonical findings the models are scored against: current = approved under the governance policy, "
+                         "legacy left out (default); human = approved by a person only; all = everything, legacy included")
     ap.add_argument("--skip-extract", action="store_true", help="only score sandboxes that already exist")
     ap.add_argument("--ollama-host", default=os.environ.get("OLLAMA_HOST", "http://localhost:11434"))
     ap.add_argument("--timeout", type=int, default=7200, help="seconds per paper (default 2 h)")
@@ -625,6 +682,8 @@ def _cli(argv=None) -> int:
     ap.add_argument("--append-log", action="store_true", help="append the rows to docs/MODELS.md §5 (decision left blank)")
     ap.add_argument("--by", default=os.environ.get("USER", "maintainer"), help="name for the log rows")
     args = ap.parse_args(argv)
+    global REFERENCE
+    REFERENCE = args.reference
 
     if args.list_references:
         print_references(reference_papers())
@@ -685,8 +744,12 @@ def _cli(argv=None) -> int:
         r = refs.get(p)
         if r is None:
             print(f"  ⚠ {p}: no canonical findings cite it — coverage and calibration cannot be measured, fidelity can")
-        elif not r["all_human"]:
-            print(f"  ⚠ {p}: {r['findings'] - r['human']} of {r['findings']} reference findings are not human-reviewed (legacy/model) — calibration against them is soft")
+        else:
+            used, left = usable_count(r), r["findings"] - usable_count(r)
+            print(f"  · {p}: reference = {used} finding(s) ({r['human']} approved by a person, {r['model']} model-approved)"
+                  + (f"; {left} left out ({REFERENCE_TEXT[REFERENCE]})" if left else ""))
+            if used < 3:
+                print(f"  ⚠ {p}: only {used} reference finding(s) — coverage and calibration on this paper say very little")
 
     if not args.skip_extract:
         n_runs = len(models) * len(args.papers)
