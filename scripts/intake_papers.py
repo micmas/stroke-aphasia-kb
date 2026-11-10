@@ -110,12 +110,15 @@ def pull_from(src_dir: Path, papers_dir: Path, execute: bool) -> int:
 
 
 def _label(c: dict) -> str:
-    """<Author><Year> for a file name: ASCII letters of the first author's surname, then the year."""
+    """<Author><Year> for a file name: the first author's surname in ASCII letters (each part
+    capitalised: VanDerMeulen, McCarthy, Oster for Øster), then the year."""
     import unicodedata
     first = str(c.get("first_author") or (str(c.get("authors") or "").split(",")[0]) or "").strip()
+    first = first.translate(str.maketrans({"ø": "o", "Ø": "O", "æ": "ae", "Æ": "Ae", "ß": "ss", "ł": "l", "Ł": "L", "đ": "d", "Đ": "D"}))
     first = unicodedata.normalize("NFKD", first).encode("ascii", "ignore").decode()
-    surname = re.sub(r"[^A-Za-z]", "", first.split()[0] if first else "") or "paper"
-    return f"{surname[:1].upper()}{surname[1:]}{str(c.get('year') or '')[:4]}"
+    parts = re.findall(r"[A-Za-z]+", first)
+    surname = "".join(w if re.fullmatch(r"(?:[A-Z][a-z]+)+", w) else w.capitalize() for w in parts)[:24] or "Paper"
+    return f"{surname}{str(c.get('year') or '')[:4]}"
 
 
 def identity(pdf: Path, c: dict) -> tuple[bool | None, str]:

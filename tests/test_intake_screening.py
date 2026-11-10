@@ -71,6 +71,13 @@ class ScreeningPdfs(unittest.TestCase):
         self.assertTrue((self.papers / "C0003_x.pdf").exists())              # the wrong paper is left alone
         self.assertEqual([c["pdf_file"] for c in self.written[-1]], ["C0001_Johnson2022.pdf", "C0002_Peronne2025.pdf", "C0003_x.pdf"])
 
+    def test_label(self):
+        L = self.IP._label
+        self.assertEqual(L({"first_author": "REhabilitation", "year": 2022}), "Rehabilitation2022")
+        self.assertEqual(L({"first_author": "McCarthy", "year": 2019}), "McCarthy2019")
+        self.assertEqual(L({"first_author": "van der Meulen", "year": 2014}), "VanDerMeulen2014")
+        self.assertEqual(L({"authors": "Øster, K.; Lee, J.", "year": "2020-05"}), "Oster2020")
+
     def test_screening_pdfs_never_become_citations(self):
         import register_papers as RP
         cit = self.tmp / "citations.md"; cit.write_text("# Citations\n", encoding="utf-8")

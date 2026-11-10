@@ -199,7 +199,7 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
         entry = {"object": f"pdf/{cid}_fulltext.pdf", "sha256": sha, "bytes": path.stat().st_size, "file": path.name}
         prev = old["fulltext"].get(cid)
         if prev and prev.get("sha256") == sha:
-            ft_new[cid] = prev
+            ft_new[cid] = {**prev, "file": path.name}          # renamed in papers/: same bytes, no upload
         elif do_put(entry["object"], path, "application/pdf"):
             ft_new[cid] = entry; ups.append(cid)
         else:

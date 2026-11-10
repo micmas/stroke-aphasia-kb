@@ -8622,7 +8622,7 @@ candidates:
   screening: []
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: imag.a.1050.pdf
+  pdf_file: C0306_Huygelier2025.pdf
 - id: C0307
   doi: 10.1186/s13256-026-06194-6
   pmid: '42343368'
@@ -17025,7 +17025,7 @@ candidates:
   screening: []
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: 1-s2.0-S0028393224002227-main.pdf
+  pdf_file: C0780_Moore2024.pdf
 - id: C0781
   doi: 10.1186/s12906-024-04658-0
   pmid: '39358731'
@@ -25338,7 +25338,7 @@ candidates:
     seq: 264
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: C1249_Johnson-2022-Predictors beyond the lesion_ Hea.pdf
+  pdf_file: C1249_Johnson2022.pdf
 - id: C1250
   doi: 10.1155/2022/3902570
   pmid: '35923686'
@@ -38603,7 +38603,7 @@ candidates:
     seq: 272
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: C1989_Meier-The utility of lesion classification in.pdf
+  pdf_file: C1989_Meier2019.pdf
 - id: C1990
   doi: 10.1007/s11682-019-00106-7
   pmid: '31089955'
@@ -40661,7 +40661,7 @@ candidates:
     seq: 254
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: C2108_Zavanone-2018-Critical brain regions related t.pdf
+  pdf_file: C2108_Zavanone2018.pdf
 - id: C2109
   doi: 10.1016/j.cortex.2018.07.007
   pmid: '30172096'
@@ -104813,7 +104813,7 @@ candidates:
   screening: []
   doc_type: journal
   doc_type_raw: JOUR
-  pdf_file: fcae364.pdf
+  pdf_file: C6024_Demeyere2024.pdf
 - id: C6025
   doi: 10.3389/fmed.2024.1433380
   pmid: '39380730'
@@ -126352,7 +126352,7 @@ candidates:
     seq: 263
   doc_type: journal
   doc_type_raw: JOUR/Article
-  pdf_file: C7373_Rehabilitation-2022-Dosage_ Intensity_ and Fre.pdf
+  pdf_file: C7373_Rehabilitation2022.pdf
 - id: C7374
   doi: 10.1007/s10072-021-05743-9
   pmid: '34816318'
@@ -264928,7 +264928,7 @@ candidates:
   screening: []
   doc_type: journal
   doc_type_raw: JOUR/Review
-  pdf_file: 1-s2.0-S0165032725019214-main.pdf
+  pdf_file: C16575_Thurston2026.pdf
 - id: C16576
   doi: 10.3389/fneur.2026.1696228
   title: >-
@@ -332770,7 +332770,7 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 223
-  pdf_file: 1745-6215-14-24.pdf
+  pdf_file: C21300_Nouwens2013.pdf
 - id: C21301
   doi: 10.1111/j.1460-6984.2012.00202.x
   pmid: '23317383'
