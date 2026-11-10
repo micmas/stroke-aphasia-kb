@@ -767,3 +767,22 @@ add an `EXTRACTED` line for every run.
 2026-11-10 | EXTRACTED | @Basilakos2014 | left_arcuate_fasciculus_anterior_segment, left_frontal_aslant_tract, left_uncinate_fasciculus | VBCM analysis of white matter integrity vs WAB-R fluency and Pyramids and Palm Trees test
 2026-11-10 | EXTRACTED | @Coppens2002 | crossed_aphasia, sex | 2 drafts
 2026-11-10 | EXTRACTED | @Hillis2004 | left_ifg_pars_opercularis, left_precentral_gyrus_insula | 2 drafts
+2026-11-10 | EXTRACTED | @Hazelton2022 | perceptual_disorders_interventions | systematic review of perceptual disorder interventions
+2026-11-10 | EXTRACTED | @Haldin2026 | left_ifg_pars_opercularis, left_arcuate_fasciculus, left_middle_longitudinal_fasciculus, left_caudate | SVR-LSM and SVR-DSM on n=72 chronic LH stroke
+2026-11-10 | EXTRACTED | @Fang2025 | left_arcuate_fasciculus, left_superior_longitudinal_fasciculus_iii, left_inferior_fronto_occipital_fasciculus | FBA of dMRI in n=23 subacute patients
+2026-11-10 | EXTRACTED | @Biondo2024 | left_posterior_stg, left_middle_temporal_gyrus, left_arcuate_fasciculus | VLSM and indirect disconnection mapping in n=131 chronic LH stroke patients
+2026-11-10 | EXTRACTED | @Yu2024 | left_cortical_language_areas, left_arcuate_fasciculus_slf, left_inferior_frontal_occipital_fasciculus | 3 drafts
+2026-11-10 | EXTRACTED | @Stockbridge2024 | left_posterior_inferior_temporal_gyrus, left_arcuate_fasciculus, left_posterior_middle_temporal_gyrus, left_superior_longitudinal_fasciculus, left_angular_gyrus | 5 region drafts
+2026-11-10 | EXTRACTED | @Yu2023 | left_arcuate_fasciculus, left_uncinate_fasciculus | 6 findings
+2026-11-10 | EXTRACTED | @Zevgolatakou2022 | left_posterior_stg, left_ifg_pars_triangularis, severity_metric | SCCAN LSM and bifactor PCA on chronic LH stroke
+2026-11-10 | EXTRACTED | @Soliman2023 | left_arcuate_fasciculus, left_inferior_longitudinal_fasciculus, right_arcuate_fasciculus | 3 findings
+2026-11-10 | EXTRACTED | @Johnson2022 | left_posterior_insula, left_arcuate_fasciculus, severity_metric | 3 drafts
+2026-11-10 | EXTRACTED | @Yu2022 | left_arcuate_fasciculus, lesion_volume | DTI and behavioral correlations in n=26 acute/subacute PSA
+2026-11-10 | EXTRACTED | @Keser2020 | left_arcuate_fasciculus, left_inferior_longitudinal_fasciculus | 2 drafts
+2026-11-10 | EXTRACTED | @BlomSmink2020 | right_inferior_longitudinal_fasciculus | 1 draft
+2026-11-10 | EXTRACTED | @Meier2019 | lesion_volume, left_inferior_fronto_occipital_fasciculus, left_inferior_longitudinal_fasciculus | 3 findings
+2026-11-10 | EXTRACTED | @McKinnon2018 | left_inferior_longitudinal_fasciculus, left_superior_longitudinal_fasciculus | 2 region drafts
+2026-11-10 | EXTRACTED | @Zavanone2018 | left_posterior_insula, left_superior_temporal_gyrus | 2 region-anchored drafts
+2026-11-10 | EXTRACTED | @SkipperKallal2017Functional | right_superior_temporal_sulcus, left_ifg_pars_opercularis | 2 drafts
+2026-11-11 | EXTRACTED | @Yang2017 | left_inferior_fronto_occipital_fasciculus, left_superior_longitudinal_fasciculus, left_uncinate_fasciculus | 3 drafts
+2026-11-11 | EXTRACTED | @Brady2022Dosage | speech_and_language_therapy | dosage and intensity effects
