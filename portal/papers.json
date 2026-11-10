@@ -6,6 +6,32 @@
   "synced": "2026-11-10T08:44"
  },
  "bucket": "stroke-aphasia-kb-pdfs",
+ "fulltext": {
+  "C1249": {
+   "bytes": 1579548,
+   "file": "C1249_Johnson-2022-Predictors beyond the lesion_ Hea.pdf",
+   "object": "pdf/C1249_fulltext.pdf",
+   "sha256": "74eaee46da40fe72780c9ad086be4e9d062e3f6acd55eb11e1f6e24bc9f6a525"
+  },
+  "C1989": {
+   "bytes": 4292652,
+   "file": "C1989_Meier-The utility of lesion classification in.pdf",
+   "object": "pdf/C1989_fulltext.pdf",
+   "sha256": "0c61613ead3c1a89a71507d63cffc12d6f42dcfc5e8fba6d3dc30cb88d176f8c"
+  },
+  "C2108": {
+   "bytes": 1349463,
+   "file": "C2108_Zavanone-2018-Critical brain regions related t.pdf",
+   "object": "pdf/C2108_fulltext.pdf",
+   "sha256": "c332dcbc410f4d93f904af2ab354ca3efe61cecf4a05dae78504a88a0820040f"
+  },
+  "C7373": {
+   "bytes": 1831143,
+   "file": "C7373_Rehabilitation-2022-Dosage_ Intensity_ and Fre.pdf",
+   "object": "pdf/C7373_fulltext.pdf",
+   "sha256": "d9a0c73732b73ff7c277d26c75eff44b30a2674ae813f449cf28895cc6d17d70"
+  }
+ },
  "papers": {
   "@Adezati2022": {
    "annotated": "cc/Adezati2022_annotated.pdf",
@@ -1424,7 +1450,6 @@
    "C1249_Johnson-2022-Predictors beyond the lesion_ Hea.pdf",
    "C1989_Meier-The utility of lesion classification in.pdf",
    "C2108_Zavanone-2018-Critical brain regions related t.pdf",
-   "C2467_s10548-016-0503-5.pdf",
    "C7373_Rehabilitation-2022-Dosage_ Intensity_ and Fre.pdf",
    "fcae364.pdf",
    "imag.a.1050.pdf"
@@ -1612,6 +1637,7 @@
    "@Wright2018",
    "@Xing2016",
    "@Xing2017",
+   "@Yang2017",
    "@Yourganov2015Predicting",
    "@Yourganov2016",
    "@Zhao2018",
@@ -1620,5 +1646,5 @@
    "@vanderMeulen2014"
   ]
  },
- "synced": "2026-11-10T10:40"
+ "synced": "2026-11-10T15:05"
 }
