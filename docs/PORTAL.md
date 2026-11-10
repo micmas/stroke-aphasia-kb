@@ -290,11 +290,12 @@ without `--execute`) lists any email not yet in the Reviewer team.
 
 **When someone asks to become a reviewer** you are told (by email or by
 GitHub, see step 12) and the request is on the portal's Home under
-**Reviewer requests**. To accept: **Copy email**, add it to the policy of
-the portal's Access application (**Open Cloudflare**), add a block for the
-person in `portal/reviewers.yaml` and push, **Write to them**, then
-**Remove from list**. Removing only clears the request; it does not write
-to anyone.
+**Reviewer requests**. To accept: **Add in Cloudflare** copies the email
+and opens the edit page of the *Reviewers* policy (the address is
+`accessPolicyUrl` in `portal/portal.config.json`): paste the email into
+the *Emails* box and save. Then add a block for the person in
+`portal/reviewers.yaml` and push, **Write to them**, and **Remove from
+list**. Removing only clears the request; it does not write to anyone.
 
 ## 4. Files
 

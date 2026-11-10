@@ -223,6 +223,8 @@ function requestsPanel() {
       + 'The Home page of the portal explains how to review, and I am glad to answer any question.\n\nBest wishes,\n';
     return `mailto:${encodeURIComponent(r.email)}?subject=${encodeURIComponent('You can now review for the stroke aphasia knowledge base')}&body=${encodeURIComponent(body)}`;
   };
+  // the page where an email is added: the edit page of the Access policy the portal uses (portal.config.json)
+  const policyUrl = state.manifest?.config?.accessPolicyUrl || '';
   const row = (r) => {
     const copy = h('button', { class: 'btn', type: 'button', text: 'Copy email', onclick: async () => { try { await navigator.clipboard.writeText(r.email); toast('Email copied'); } catch { toast(r.email); } } });
     const remove = h('button', { class: 'btn', type: 'button', text: 'Remove from list', title: 'Once the person has been added (or declined). Removing does not write to them.', onclick: async () => {
@@ -232,7 +234,9 @@ function requestsPanel() {
     return h('div', { class: 'request' },
       h('div', {}, h('strong', { text: r.name }), ' · ', h('span', { text: r.email }), r.affiliation ? frag(' · ', h('span', { class: 'muted', text: r.affiliation })) : null, h('span', { class: 'small muted', text: ` · asked ${when(r.requested)}` })),
       r.note ? h('div', { class: 'small request-note', text: r.note }) : null,
-      h('div', { class: 'row' }, copy, h('a', { class: 'btn', href: 'https://one.dash.cloudflare.com/', target: '_blank', rel: 'noopener', text: 'Open Cloudflare ↗', title: 'Zero Trust → Access → Applications → the review portal → its policy: add the email' }),
+      h('div', { class: 'row' }, copy, h('a', { class: 'btn', href: policyUrl || 'https://one.dash.cloudflare.com/', target: '_blank', rel: 'noopener', text: 'Add in Cloudflare ↗',
+        title: policyUrl ? 'Copies the email and opens the Reviewers policy in Cloudflare: paste it into the Emails box, then Save' : 'Zero Trust → Access controls → Policies → Reviewers: add the email',
+        onclick: () => { navigator.clipboard?.writeText(r.email).then(() => toast('Email copied: paste it into the Emails box in Cloudflare, then Save'), () => {}); } }),
         h('a', { class: 'btn', href: welcome(r), text: 'Write to them', title: 'Opens a ready-written welcome in your mail program' }), remove));
   };
   const refresh = async () => {
@@ -244,7 +248,7 @@ function requestsPanel() {
       steps.hidden = !n;
     } catch (e) { head.textContent = `Reviewer requests could not be read: ${e.message}`; }
   };
-  const steps = h('div', { class: 'small muted', hidden: '', text: 'To accept someone: add their email to the Access policy of the review portal in Cloudflare (so they can sign in) and to portal/reviewers.yaml (so their reviews carry their name), write to them, then remove the request here.' });
+  const steps = h('div', { class: 'small muted', hidden: '', text: 'To accept someone: "Add in Cloudflare" copies their email and opens the Reviewers policy; paste it into the Emails box and save (now they can sign in). Add them to portal/reviewers.yaml (so their reviews carry their name), write to them, then remove the request here.' });
   box.append(h('div', { class: 'row' }, h('strong', { text: 'Reviewer requests' }), head), list, steps);
   refresh();
   return box;

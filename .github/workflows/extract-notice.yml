@@ -47,8 +47,10 @@ jobs:
           OWNER: ${{ github.repository_owner }}
           TITLE: "Papers ready to extract"
         run: |
-          number=$(gh issue list --state open --search "\"$TITLE\" in:title" --json number,title \
-                   --jq "map(select(.title == \"$TITLE\")) | .[0].number // empty")
+          # the open issue with this title, if there is one: it is reused, never duplicated. A plain
+          # listing, not a search: the search index can lag behind an issue opened a minute ago.
+          number=$(gh issue list --state open --limit 500 --json number,title \
+                   --jq "map(select(.title == \"$TITLE\")) | sort_by(.number) | .[0].number // empty")
           if [ ! -s notice/body.md ]; then
             if [ -n "$number" ]; then gh issue close "$number" --comment "Nothing left to extract."; fi
             exit 0
