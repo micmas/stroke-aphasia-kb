@@ -21,10 +21,14 @@ anything into the KB.*
 
 ## For reviewers
 
-**Getting in.** The maintainer adds your email to the portal's allow-list
-(and to the Reviewer team, `portal/reviewers.yaml`). Open
-https://review.aphasia-kb.app, type your email, and enter the code that
-arrives. No account, no password; the sign-in lasts a week.
+**Getting in.** Open https://review.aphasia-kb.app. Someone who is not
+signed in sees a welcome page with two choices. **I'd like to become a
+reviewer** is a short form (name, email, affiliation, a line about your
+background); it goes to the maintainer, who adds your email to the
+portal's allow-list (and to the Reviewer team, `portal/reviewers.yaml`)
+and writes back. **I'm already an approved reviewer** signs you in: type
+your email and enter the code that arrives. No account, no password; the
+sign-in lasts a week.
 
 **What you can do**
 
@@ -143,9 +147,17 @@ Record kinds, and what the import does with them:
    artifact (written by `.github/workflows/pages.yml`), the domain set
    in the repository's *Settings → Pages* with *Enforce HTTPS*, and in
    the Cloudflare zone four `A` records at the apex pointing at GitHub
-   Pages (185.199.108–111.153), *DNS only*, so GitHub can issue the
-   certificate. Both addresses live in `portal/portal.config.json`; the
-   export and the portal build read them from there.
+   Pages (185.199.108–111.153). They were *DNS only* at first, so GitHub
+   could issue its certificate, and are *Proxied* since 10 November 2026
+   (with SSL/TLS mode *Full*), because a network filter was cutting
+   direct connections to the new domain. With the proxy came three zone
+   settings that keep updates immediate: *Browser Cache TTL: Respect
+   existing headers*, a cache rule that bypasses Cloudflare's cache for
+   the GitHub-hosted names, and a response-header rule that sets
+   `Cache-Control: no-cache` on them, so a browser asks for a new
+   version at every visit. Both addresses live in
+   `portal/portal.config.json`; the export and the portal build read
+   them from there.
 
 10. **Let CI build and deploy.** In Cloudflare, *My profile → API tokens →
     Create*: *Cloudflare Pages: Edit* and *Workers R2 Storage: Edit* on
@@ -162,6 +174,44 @@ Record kinds, and what the import does with them:
     `portal-apply.yml` applies the inbox when asked (the button) or every
     six hours. `publish_portal.py --deploy` from your machine still works
     and is the fallback.
+
+11. **The welcome page.** Everything on the portal is behind the sign-in
+    except `/welcome/`. Two settings make that so:
+    - *Zero Trust → Access → Applications*: a third application for
+      `review.aphasia-kb.app` with path `welcome` and one *Bypass* policy
+      (*Everyone*). Only that path: never `pdf/`, `api/` or the site root.
+    - *Rules → Redirect Rules* on the zone: when the host is
+      `review.aphasia-kb.app`, the path is `/` and there is no
+      `CF_Authorization` cookie, redirect (302) to
+      `https://review.aphasia-kb.app/welcome/`. Cloudflare applies
+      redirect rules before Access, so a visitor without a session sees
+      the welcome page and a signed-in reviewer goes straight in.
+
+    The page's **Sign in** button points at `/api/signin`, which is behind
+    Access like the rest of `/api/`: Cloudflare asks for the email and the
+    code, then the reviewer lands on the portal. Its form posts to
+    `/welcome/request`, the portal's only public endpoint. A request is
+    kept in the private uploads bucket under `requests/` (never in this
+    repository, which is public) and shown to maintainers on the portal's
+    Home, under **Reviewer requests**.
+
+12. **Reviewer requests by email** (optional). Without it, a new request
+    starts `.github/workflows/portal-request.yml`, which opens an issue
+    saying one is waiting (no name, no email), and GitHub notifies you.
+    To get the request itself in your inbox instead:
+    - *Email → Email Routing* on the zone: **Onboard domain** (Cloudflare
+      adds the mail records), then **Destination addresses**: add each
+      address in `MAINTAINERS` and click the link Cloudflare sends to it.
+    - `cd portal/mailer && npx wrangler deploy` once: a small Worker with
+      no public address that sends through Email Routing, only to those
+      verified addresses, from `review-portal@aphasia-kb.app`.
+    - In `portal/wrangler.toml`, uncomment the `[[services]]` block that
+      binds it as `MAILER`, commit and push.
+
+    Email Routing writes only to your own verified addresses, so the
+    portal cannot write to the person who asked: the **Write to them**
+    button beside a request opens a ready-written welcome in your own
+    mail program.
 ### Trying it on your own computer first
 
 ```bash
@@ -215,20 +265,33 @@ git add -A && git commit -m "Uploaded PDFs taken in" && git push
 local model; skip it when there were none. A dry run (`portal_import.py`
 without `--execute`) lists any email not yet in the Reviewer team.
 
+**When someone asks to become a reviewer** you are told (by email or by
+GitHub, see step 12) and the request is on the portal's Home under
+**Reviewer requests**. To accept: **Copy email**, add it to the policy of
+the portal's Access application (**Open Cloudflare**), add a block for the
+person in `portal/reviewers.yaml` and push, **Write to them**, then
+**Remove from list**. Removing only clears the request; it does not write
+to anyone.
+
 ## 4. Files
 
 ```
 portal/web/                    the portal page: index.html, app.js, portal.css (the explorer's stylesheet is reused)
+portal/web/welcome/            the public welcome page: sign in, or ask to become a reviewer
 portal/functions/              Pages Functions: _middleware.js (Access check on api/ and pdf/), api/me.js, api/reviews.js,
-                               api/upload.js, api/apply.js (the button), cc/ and pdf/ (PDFs from the bucket)
+                               api/upload.js, api/apply.js (the button), cc/ and pdf/ (PDFs from the bucket),
+                               welcome/request.js (the public form), api/signin.js, api/requests.js (the maintainer's list)
+portal/lib/requests.js         reviewer requests: checking, keeping them in the bucket, telling the maintainer
+portal/mailer/                 the optional mail Worker (Email Routing), deployed by hand: npx wrangler deploy
 portal/lib/github.js           the GitHub writes (one record, or a batch as one commit), shared by the functions
 portal/lib/pdfs.js             serving a PDF from the bucket
-portal/functions/test/         node --test: token check (generated key pair), reviews, upload, pdfs, apply (fakes)
+portal/functions/test/         node --test: token check (generated key pair), reviews, upload, pdfs, apply, requests (fakes)
 portal/papers.json             the index of the annotated PDFs in the bucket (written by --sync, committed)
 portal/portal.config.json      project name, bucket name, portal URL, explorer URL
 portal/reviewers.yaml          the Reviewer team: email → human:<name>, approver yes/no, maintainer yes/no
 portal/wrangler.toml           Pages project settings, non-secret variables, the two R2 bindings
-.github/workflows/portal.yml   build + deploy on every push; portal-apply.yml: apply the inbox (button, or every 6 h)
+.github/workflows/portal.yml   build + deploy on every push; portal-apply.yml: apply the inbox (button, or every 6 h);
+                               portal-request.yml: flag a waiting reviewer request as an issue
 portal/package.json            pdfjs-dist (vendored into dist/ at build) and wrangler
 portal/dist/, portal/.uploads/ built site and local uploads — git-ignored
 scripts/publish_portal.py      --sync the PDFs to the bucket; assemble dist/; deploy

@@ -1,0 +1,16 @@
+# The mail Worker of the review portal (docs/PORTAL.md, "Reviewer requests by email").
+# Deploy once, and again only when mailer/index.js changes:
+#   cd portal/mailer && npx wrangler deploy
+# Needs Email Routing switched on for aphasia-kb.app and the maintainers' addresses verified
+# there as destination addresses.
+name = "portal-mailer"
+main = "index.js"
+compatibility_date = "2025-10-01"
+workers_dev = false          # no public address: only the portal's service binding reaches it
+
+[vars]
+FROM = "review-portal@aphasia-kb.app"
+
+# Email Routing: sends only to destination addresses verified on the account.
+[[send_email]]
+name = "MAIL"

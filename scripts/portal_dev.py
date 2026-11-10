@@ -111,6 +111,11 @@ def make_handler(email: str, name: str):
                     except ValueError:
                         continue
                 return self._json({"uploads": ups})
+            if self.path.startswith("/api/requests"):      # the hosted portal lists reviewer requests from its bucket
+                return self._json({"requests": []})
+            if self.path.startswith("/api/signin"):        # hosted: Cloudflare Access signs the reviewer in, then the portal
+                self.send_response(302); self.send_header("Location", "/"); self.end_headers()
+                return None
             if self.path.startswith("/api/"):
                 return self._json({"error": "not found"}, 404)
             return super().do_GET()
@@ -120,6 +125,10 @@ def make_handler(email: str, name: str):
                 return self._upload()
             if self.path.startswith("/api/apply"):
                 return self._json({"error": "no workflow here: run `python scripts/portal_import.py --execute` in a terminal"}, 501)
+            if self.path.startswith("/welcome/request"):   # the welcome page's form: nothing is kept locally
+                self.rfile.read(int(self.headers.get("Content-Length") or 0))
+                print("  welcome page: a reviewer request was sent (local stand-in: not stored)")
+                return self._json({"ok": True})
             if not self.path.startswith("/api/reviews"):
                 return self._json({"error": "not found"}, 404)
             n = int(self.headers.get("Content-Length") or 0)

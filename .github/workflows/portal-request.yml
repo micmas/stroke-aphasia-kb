@@ -1,0 +1,35 @@
+name: portal-request
+
+# Started by the review portal when someone asks, on its welcome page, to become a reviewer
+# and no mail Worker is set up (portal/lib/requests.js). It only raises a flag: an issue
+# saying a request is waiting, so GitHub notifies the maintainer. Nothing about the person
+# comes here (this repository is public); the name, email and note are in the portal, on
+# the maintainer's Home page.
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+concurrency:
+  group: portal-request
+  cancel-in-progress: false
+
+jobs:
+  flag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open the issue, or add a comment to the one that is open
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TITLE: "Reviewer request waiting in the review portal"
+        run: |
+          body="Someone asked to become a reviewer. The request is on the Home page of the review portal (maintainers only): https://review.aphasia-kb.app/"
+          number=$(gh issue list --state open --search "\"$TITLE\" in:title" --json number,title \
+                   --jq "map(select(.title == \"$TITLE\")) | .[0].number // empty")
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --body "Another request is waiting. $body"
+          else
+            gh issue create --title "$TITLE" --body "$body Close this issue when the requests have been dealt with."
+          fi

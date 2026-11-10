@@ -236,7 +236,7 @@ def screening_bundle(root: Path = ROOT, ta_limit: int = 300) -> dict:
                      | {"abstract": abstracts.get(r["id"], ""), "history": [{k: d.get(k) for k in ("stage", "decision", "reason", "by", "date") if d.get(k)}
                                                                                for d in (r.get("screening") or [])],
                         "suggestion": r.get("suggestion")})
-    return {"built": dt.datetime.now().isoformat(timespec="minutes"), "candidates": cands, "searches": searches,
+    return {"built": dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes"), "candidates": cands, "searches": searches,
             "reasons": data["reasons"], "stageLabels": data["stageLabels"],
             "queue": {"title_abstract": len(ta_ids), "title_abstract_total": sum(1 for r in rows.values() if r["stage"] in ("awaiting_ta", "unsure_ta")),
                       "full_text": len(ft_ids), "ranked": bool(rank_info)}}
@@ -268,6 +268,12 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
         if f.is_file():
             shutil.copy2(f, DIST / f.name)
     shutil.copy2(ROOT / "explorer" / "styles.css", DIST / "explorer-styles.css")
+    # The welcome page (web/welcome/): the one part of the portal that is open without a
+    # sign-in. It may only load what sits under /welcome/, so it gets its own copy of the styles.
+    if (DIST / "welcome").is_dir():
+        shutil.rmtree(DIST / "welcome")
+    shutil.copytree(WEB / "welcome", DIST / "welcome")
+    shutil.copy2(ROOT / "explorer" / "styles.css", DIST / "welcome" / "styles.css")
     # A new build must not run against a browser's cached copy of the old page code: the
     # page asks for its script and stylesheets under this build's stamp.
     stamp = dt.datetime.now().strftime("%Y%m%d%H%M%S")
@@ -276,6 +282,8 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
     for name in ("app.js", "portal.css", "explorer-styles.css"):
         html = re.sub(rf'((?:src|href)="{re.escape(name)})(?:\?v=\d+)?"', rf'\1?v={stamp}"', html)
     page.write_text(html, encoding="utf-8")
+    welcome = DIST / "welcome" / "index.html"
+    welcome.write_text(re.sub(r'(href="styles\.css)(?:\?v=\d+)?"', rf'\1?v={stamp}"', welcome.read_text(encoding="utf-8")), encoding="utf-8")
     # pdf.js, vendored from portal/node_modules (npm install in portal/ once)
     build_dir = PORTAL / "node_modules" / "pdfjs-dist" / "build"
     (DIST / "vendor").mkdir(exist_ok=True)
@@ -299,7 +307,7 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
     print(f"  screening.json: {q['title_abstract']} of {q['title_abstract_total']} title/abstract records "
           f"({'prioritised order' if q['ranked'] else 'all'}) + {q['full_text']} full-text records")
     cfg = config()
-    manifest = {"built": dt.datetime.now().isoformat(timespec="minutes"), "kbCommit": git("rev-parse", "--short", "HEAD"),
+    manifest = {"built": dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes"), "kbCommit": git("rev-parse", "--short", "HEAD"),
                 "kbDate": git("log", "-1", "--format=%cs"), "papers": pdfs, "sources": sources, "config": cfg,
                 "pdfsSynced": index.get("synced"), "maintainers": maintainers(),
                 "counts": {"public": n_public, "private": len(pdfs) - n_public, "candidates": len(sb["candidates"]),

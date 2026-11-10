@@ -138,7 +138,7 @@ const myRecords = () => [...state.mine.inbox, ...state.mine.applied].filter((n) 
 function pendingSent() {
   const sent = store.get('screen:sent', {});
   const cands = state.screening?.candidates || [];
-  return Object.entries(sent).filter(([, v]) => v && typeof v === 'object').map(([id, v]) => ({ id, ...v })).filter((x) => cands.some((c) => c.id === x.id));
+  return Object.entries(sent).filter(([, v]) => v && typeof v === 'object').map(([id, v]) => ({ id, ...v })).filter((x) => cands.some((c) => c.id === x.id && (!x.stage || c.stage.endsWith(`_${x.stage}`))));
 }
 /** Candidates included at title/abstract (awaiting the full text) whose paper the maintainer does not have. */
 const missingPdfs = () => (state.screening?.candidates || []).filter((c) => ['awaiting_ft', 'unsure_ft'].includes(c.stage) && !candidateHasPdf(c));
@@ -158,7 +158,7 @@ function home() {
     h('div', { class: 'page-head' }, h('h1', { text: 'Review portal' }), h('span', { class: 'muted small', text: `KB ${m.kbCommit || '?'} (${m.kbDate || '?'}) · built ${m.built || '?'}` })),
     h('p', {}, `You are signed in as ${state.me.email}. Everything you decide here is sent to the knowledge base's repository under that name and applied by the maintainer; the governance policy still decides who may approve what.`),
     h('p', { class: 'small muted', text: 'This portal is a snapshot of the knowledge base, rebuilt after what reviewers sent has been applied. Your decisions reach the repository the moment you send them; the queues here (and a paper moving from title/abstract to full text) change at the next build, a few minutes after the maintainer applies the inbox, which also happens on its own every six hours.' }),
-    (m.maintainers || []).includes(String(state.me.email || '').toLowerCase()) ? applyPanel() : null,
+    (m.maintainers || []).includes(String(state.me.email || '').toLowerCase()) ? frag(applyPanel(), requestsPanel()) : null,
     h('div', { class: 'tiles' },
       h('a', { class: 'tile tile-link', href: '#/drafts' }, h('div', { class: 'value', text: String(drafts.length) }), h('div', { class: 'label', text: 'drafts to review' }), h('div', { class: 'detail', text: `${drafts.reduce((n, d) => n + d.findings.length, 0)} findings` })),
       h('a', { class: 'tile tile-link', href: '#/screen/ta' }, h('div', { class: 'value', text: String(ta.length) }), h('div', { class: 'label', text: 'titles/abstracts to screen' })),
@@ -207,6 +207,45 @@ function applyPanel() {
   };
   box.append(h('div', { class: 'row' }, h('strong', { text: 'Maintainer' }), status, btn), runLine,
     h('div', { class: 'small muted', text: 'Apply runs portal_import.py in GitHub Actions: screening decisions into the register, verdicts, edits, marks and comments into the drafts, promote.py for approvers; then the explorer and this portal rebuild. Uploaded PDFs stay for you to pull on your machine (portal_import.py --kind pdf), and marks still need refocus.py there.' }));
+  refresh();
+  return box;
+}
+
+/** The maintainer's list of people who asked, on the welcome page, to become reviewers. */
+function requestsPanel() {
+  const box = h('div', { class: 'applybox requests' });
+  const head = h('span', { class: 'small muted', text: 'checking for reviewer requests…' });
+  const list = h('div', { class: 'request-list' });
+  const when = (iso) => (iso ? new Date(iso).toLocaleDateString(undefined, { dateStyle: 'medium' }) : '');
+  const welcome = (r) => {
+    const body = `Hello ${r.name},\n\nThank you for offering to review for the stroke aphasia knowledge base. You have been added as a reviewer.\n\n`
+      + `To start: open ${location.origin}/ , choose "I'm already an approved reviewer" and sign in with this email address (${r.email}). You will receive a one-time code by email; there is no password.\n\n`
+      + 'The Home page of the portal explains how to review, and I am glad to answer any question.\n\nBest wishes,\n';
+    return `mailto:${encodeURIComponent(r.email)}?subject=${encodeURIComponent('You can now review for the stroke aphasia knowledge base')}&body=${encodeURIComponent(body)}`;
+  };
+  const row = (r) => {
+    const copy = h('button', { class: 'btn', type: 'button', text: 'Copy email', onclick: async () => { try { await navigator.clipboard.writeText(r.email); toast('Email copied'); } catch { toast(r.email); } } });
+    const remove = h('button', { class: 'btn', type: 'button', text: 'Remove from list', title: 'Once the person has been added (or declined). Removing does not write to them.', onclick: async () => {
+      remove.disabled = true;
+      try { await api(`requests?id=${encodeURIComponent(r.id)}`, { method: 'DELETE' }); toast('Removed'); refresh(); } catch (e) { toast(`Not removed: ${e.message}`, true); remove.disabled = false; }
+    } });
+    return h('div', { class: 'request' },
+      h('div', {}, h('strong', { text: r.name }), ' · ', h('span', { text: r.email }), r.affiliation ? frag(' · ', h('span', { class: 'muted', text: r.affiliation })) : null, h('span', { class: 'small muted', text: ` · asked ${when(r.requested)}` })),
+      r.note ? h('div', { class: 'small request-note', text: r.note }) : null,
+      h('div', { class: 'row' }, copy, h('a', { class: 'btn', href: 'https://one.dash.cloudflare.com/', target: '_blank', rel: 'noopener', text: 'Open Cloudflare ↗', title: 'Zero Trust → Access → Applications → the review portal → its policy: add the email' }),
+        h('a', { class: 'btn', href: welcome(r), text: 'Write to them', title: 'Opens a ready-written welcome in your mail program' }), remove));
+  };
+  const refresh = async () => {
+    try {
+      const out = await api('requests');
+      const n = (out.requests || []).length;
+      head.textContent = n ? `${plural(n, 'person', 'people')} asked to become a reviewer` : 'No reviewer requests waiting';
+      list.replaceChildren(...(out.requests || []).map(row));
+      steps.hidden = !n;
+    } catch (e) { head.textContent = `Reviewer requests could not be read: ${e.message}`; }
+  };
+  const steps = h('div', { class: 'small muted', hidden: '', text: 'To accept someone: add their email to the Access policy of the review portal in Cloudflare (so they can sign in) and to portal/reviewers.yaml (so their reviews carry their name), write to them, then remove the request here.' });
+  box.append(h('div', { class: 'row' }, h('strong', { text: 'Reviewer requests' }), head), list, steps);
   refresh();
   return box;
 }
@@ -359,12 +398,21 @@ function screenView(stage) {
   const stages = stage === 'ta' ? ['awaiting_ta', 'unsure_ta'] : ['awaiting_ft', 'unsure_ft'];
   const key = `screen:${stage}`;
   const decided = store.get(key, {});
-  // Records already sent (from this browser, or listed by the repository under your name)
-  // leave the queue until the maintainer applies them and rebuilds the portal.
+  // Records you already decided at THIS stage leave the queue until the decision is applied
+  // and the portal rebuilt. A decision at the other stage never hides a record: a paper you
+  // included at title/abstract must show up here for its full-text assessment.
+  //   - this browser: decisions sent at this stage (older entries carry no stage: kept);
+  //   - the inbox (not applied yet): the build still shows the record at the stage the
+  //     decision was made at, so it is this stage's decision;
+  //   - applied: already part of this build, unless it was applied after the build.
   const sentLocal = store.get('screen:sent', {});
   const mineSlug = slug(state.me?.email?.split('@')[0]);
-  const sentIds = new Set(Object.keys(sentLocal));
-  for (const n of [...state.mine.inbox, ...state.mine.applied]) { const m = n.match(new RegExp(`_screen_${mineSlug}_([a-z0-9-]+)\\.json$`)); if (m) sentIds.add(m[1]); }
+  const builtAt = Date.parse(sc.built || '') || 0;
+  const stampAt = (n) => { const t = n.match(/^(\d{4})(\d\d)(\d\d)T(\d\d)(\d\d)(\d\d)Z/); return t ? Date.UTC(+t[1], +t[2] - 1, +t[3], +t[4], +t[5], +t[6]) : Infinity; };
+  const sentIds = new Set(Object.entries(sentLocal).filter(([, v]) => !v?.stage || v.stage === stage).map(([id]) => id));
+  const screenId = (n) => n.match(new RegExp(`_screen_${mineSlug}_([a-z0-9-]+)\\.json$`))?.[1];
+  for (const n of state.mine.inbox) { const id = screenId(n); if (id) sentIds.add(id); }
+  for (const n of state.mine.applied) { const id = screenId(n); if (id && stampAt(n) > builtAt) sentIds.add(id); }
   const all = sc.candidates.filter((c) => stages.includes(c.stage));
   const cands = all.filter((c) => !sentIds.has(slug(c.id)) && !sentIds.has(c.id));
   const hidden = all.length - cands.length;
