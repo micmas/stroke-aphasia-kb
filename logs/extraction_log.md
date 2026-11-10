@@ -701,3 +701,5 @@ add an `EXTRACTED` line for every run.
 2026-11-10 | ENDNOTE-PDF | C7373 | papers/C7373_Rehabilitation-2022-Dosage_ Intensity_ and Fre.pdf | matched by DOI | by: human:michele
 2026-11-10 | REGISTERED | — | screening → citations.md | 0 entries appended, 1 linked to existing keys
 2026-11-10 | PDFS-PROCESSED | — | screening register | 0 linked, 9 renamed, 0 not matching their record
+2026-11-10 | PORTAL-APPLIED | — | 20 record(s) | screen 20 | by: michele
+2026-11-10 | REGISTERED | — | screening → citations.md | 14 entries appended, 3 linked to existing keys

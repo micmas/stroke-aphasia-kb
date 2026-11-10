@@ -2149,3 +2149,115 @@ Critical brain regions related to post-stroke aphasia severity identified by ear
 doi:10.1016/j.bandl.2018.08.005
 
 > Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: C2108_Zavanone-2018-Critical brain regions related t.pdf). Check the entry; add a note on why the paper is in the KB.
+
+## @Haldin2026  [seed]
+Haldin C, Lœvenbruck H, Piscicelli C, Marcon V, Dai S, Detante O, Pérennou D, Baciu M.
+Structural correlates of aphasia severity, cognitive impairment, and outcome after stroke.
+*NeuroImage: Clinical*. 2026;49:103954.
+doi:10.1016/j.nicl.2026.103954
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C0437). Included by the screening register (C0437; docs/SCREENING.md). Check the entry.
+
+## @Fang2025  [seed]
+Fang D, Ji X, Li H, Xu S, Yang Y, Zhan J, Kong APH, Hu R.
+Fixel-Based White Matter Correlates of Sentence Comprehension in Post-Stroke Aphasia.
+*Brain Sciences*. 2025;15(10):1039.
+doi:10.3390/brainsci15101039
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C0516). Included by the screening register (C0516; docs/SCREENING.md). Check the entry.
+
+## @Biondo2024  [seed]
+Biondo N, Ivanova MV, Pracar AL, Baldo J, Dronkers NF.
+Mapping sentence comprehension and syntactic complexity: evidence from 131 stroke survivors.
+*Brain Communications*. 2024;6(6).
+doi:10.1093/braincomms/fcae379
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C0752). Included by the screening register (C0752; docs/SCREENING.md). Check the entry.
+
+## @Yu2024  [seed]
+Yu Q, Sun Y, Ju X, Ye T, Liu K.
+Prediction models of the aphasia severity after stroke by lesion load of cortical language areas and white matter tracts: An atlas-based study.
+*Brain Research Bulletin*. 2024;217:111074.
+doi:10.1016/j.brainresbull.2024.111074
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C0797). Included by the screening register (C0797; docs/SCREENING.md). Check the entry.
+
+## @Stockbridge2024  [seed]
+Stockbridge MD, Keser Z, Bonilha L, Hillis AE.
+Microstructural properties in subacute aphasia: concurrent and prospective relationships underpinning recovery.
+*Brain Struct Funct*. 2024;229(9):2207-2217.
+doi:10.1007/s00429-024-02826-z
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C0832). Included by the screening register (C0832; docs/SCREENING.md). Check the entry.
+
+## @Yu2023  [seed]
+Yu Q, Jiang Y, Sun Y, Ju X, Ye T, Liu N, Qian S, Liu K.
+Effects of Damage to the Integrity of the Left Dual-Stream Frontotemporal Network Mediated by the Arcuate Fasciculus and Uncinate Fasciculus on Acute/Subacute Post-Stroke Aphasia.
+*Brain Sciences*. 2023;13(9):1324.
+doi:10.3390/brainsci13091324
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C0994). Included by the screening register (C0994; docs/SCREENING.md). Check the entry.
+
+## @Zevgolatakou2022  [seed]
+Zevgolatakou E, Thye M, Mirman D.
+Behavioural and neural structure of fluent speech production deficits in aphasia.
+*Brain Communications*. 2022;5(1).
+doi:10.1093/braincomms/fcac327
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C1133). Included by the screening register (C1133; docs/SCREENING.md). Check the entry.
+
+## @Soliman2023  [seed]
+Soliman RK, Tax CMW, Abo-Elfetoh N, Zaitoun MMA, Khedr EM.
+Constrained spherical deconvolution -based tractography of major language tracts reveals post-stroke bilateral white matter changes correlated to aphasia.
+*Magnetic Resonance Imaging*. 2023;95:19-26.
+doi:10.1016/j.mri.2022.10.004
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C1186). Included by the screening register (C1186; docs/SCREENING.md). Check the entry.
+
+## @Yu2022  [seed]
+Yu Q, Sun Y, Liao X, Qian W, Ye T.
+Integrity of the Left Arcuate Fasciculus Segments Significantly Affects Language Performance in Individuals with Acute/Subacute Post-Stroke Aphasia: A Cross-Sectional Diffusion Tensor Imaging Study.
+*Brain Sciences*. 2022;12(7):907.
+doi:10.3390/brainsci12070907
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C1255). Included by the screening register (C1255; docs/SCREENING.md). Check the entry.
+
+## @Keser2020  [seed]
+Keser Z, Meier EL, Stockbridge MD, Hillis AE.
+The role of microstructural integrity of major language pathways in narrative speech in the first year after stroke.
+*Journal of Stroke and Cerebrovascular Diseases*. 2020;29(9):105078.
+doi:10.1016/j.jstrokecerebrovasdis.2020.105078
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C1754). Included by the screening register (C1754; docs/SCREENING.md). Check the entry.
+
+## @BlomSmink2020  [seed]
+Blom-Smink M, Verly M, Spielmann K, Smits M, Ribbers GM, van de Sandt-Koenderman MWME.
+Change in Right Inferior Longitudinal Fasciculus Integrity Is Associated With Naming Recovery in Subacute Poststroke Aphasia.
+*Neurorehabil Neural Repair*. 2020;34(9):784-794.
+doi:10.1177/1545968320940982
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C1777). Included by the screening register (C1777; docs/SCREENING.md). Check the entry.
+
+## @McKinnon2018  [seed]
+McKinnon ET, Fridriksson J, Basilakos A, Hickok G, Hillis AE, Spampinato MV, Gleichgerrcht E, Rorden C, Jensen JH, Helpern JA, Bonilha L.
+Types of naming errors in chronic post-stroke aphasia are dissociated by dual stream axonal loss.
+*Sci Rep*. 2018;8(1).
+doi:10.1038/s41598-018-32457-4
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C2098). Included by the screening register (C2098; docs/SCREENING.md). Check the entry.
+
+## @SkipperKallal2017Functional  [seed]
+Skipper‐Kallal LM, Lacey EH, Xing S, Turkeltaub PE.
+Functional activation independently contributes to naming ability and relates to lesion site in post‐stroke aphasia.
+*Human Brain Mapping*. 2017;38(4):2051-2066.
+doi:10.1002/hbm.23504
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C2385). Included by the screening register (C2385; docs/SCREENING.md). Check the entry.
+
+## @Brady2022Dosage  [seed]
+The REhabilitation and recovery of peopLE with Aphasia after StrokE (RELEASE) Collaborators, Brady MC, Ali M, VandenBerg K, Williams LJ, Williams LR, Abo M, Becker F, Bowen A, Brandenburg C, Breitenstein C, Bruehl S, et al.
+Dosage, Intensity, and Frequency of Language Therapy for Aphasia: A Systematic Review–Based, Individual Participant Data Network Meta-Analysis.
+*Stroke*. 2022;53(3):956-967.
+doi:10.1161/strokeaha.121.035216
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C7373). Included by the screening register (C7373; docs/SCREENING.md). Check the entry.

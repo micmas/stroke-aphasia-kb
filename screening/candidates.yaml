@@ -2777,6 +2777,11 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 267
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 273
   benchmark: true
   legacy:
     decisions:
@@ -4740,6 +4745,11 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 261
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 274
   benchmark: true
   legacy:
     decisions:
@@ -10998,8 +11008,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 270
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 275
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Haldin2026'
 - id: C0438
   doi: 10.3390/brainsci16010117
   pmid: '41594838'
@@ -12378,8 +12394,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 266
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 276
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Fang2025'
 - id: C0517
   doi: 10.1186/s13019-025-03596-3
   pmid: '41152994'
@@ -16557,8 +16579,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 257
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 277
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Biondo2024'
 - id: C0753
   doi: 10.1177/19418744241296198
   pmid: '39544267'
@@ -17293,8 +17321,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 268
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 278
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Yu2024'
 - id: C0798
   doi: 10.2169/internalmedicine.4001-24
   pmid: '39231672'
@@ -17886,8 +17920,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 271
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 279
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Stockbridge2024'
 - id: C0833
   doi: 10.7759/cureus.61681
   pmid: '38966459'
@@ -20705,8 +20745,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 259
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 280
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Yu2023'
 - id: C0995
   doi: 10.1016/j.isci.2023.107453
   pmid: '37744405'
@@ -23148,8 +23194,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 269
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 281
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Zevgolatakou2022'
 - id: C1134
   doi: 10.1186/s41983-022-00593-4
   pmid: '36597448'
@@ -24122,8 +24174,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 255
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 282
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Soliman2023'
 - id: C1187
   doi: 10.1093/mrcr/rxac080
   pmid: '36250714'
@@ -25336,9 +25394,15 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 264
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 283
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_file: C1249_Johnson2022.pdf
+  key: '@Johnson2022'
 - id: C1250
   doi: 10.1155/2022/3902570
   pmid: '35923686'
@@ -25452,8 +25516,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 265
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 284
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Yu2022'
 - id: C1256
   doi: 10.3390/brainsci12070902
   pmid: '35884709'
@@ -34403,8 +34473,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 258
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 285
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Keser2020'
 - id: C1755
   doi: 10.1016/j.ensci.2020.100259
   pmid: '32802971'
@@ -34837,8 +34913,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 253
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 286
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@BlomSmink2020'
 - id: C1778
   doi: 10.7759/cureus.8584
   pmid: '32670719'
@@ -38601,9 +38683,15 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 272
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 287
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_file: C1989_Meier2019.pdf
+  key: '@Meier2019'
 - id: C1990
   doi: 10.1007/s11682-019-00106-7
   pmid: '31089955'
@@ -40488,8 +40576,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 256
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 288
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@McKinnon2018'
 - id: C2099
   doi: 10.1007/s13760-018-1025-6
   pmid: '30251236'
@@ -40659,9 +40753,15 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 254
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 289
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_file: C2108_Zavanone2018.pdf
+  key: '@Zavanone2018'
 - id: C2109
   doi: 10.1016/j.cortex.2018.07.007
   pmid: '30172096'
@@ -41244,6 +41344,12 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 262
+  - stage: full_text
+    decision: exclude
+    reason: not_stroke
+    by: michele
+    date: '2026-11-10'
+    seq: 290
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C2141
@@ -45637,8 +45743,14 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 260
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 291
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@SkipperKallal2017Functional'
 - id: C2386
   doi: 10.1111/jon.12423
   pmid: '28066971'
@@ -126350,9 +126462,15 @@ candidates:
     by: michele
     date: '2026-11-09'
     seq: 263
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-10'
+    seq: 292
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_file: C7373_Rehabilitation2022.pdf
+  key: '@Brady2022Dosage'
 - id: C7374
   doi: 10.1007/s10072-021-05743-9
   pmid: '34816318'
