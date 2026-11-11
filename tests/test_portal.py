@@ -134,12 +134,13 @@ class Import(unittest.TestCase):
         (self.tmp / "logs" / "portal" / "inbox").mkdir(parents=True)
         self.draft = self.tmp / "drafts" / "regions" / "left_angular_gyrus__TestPaper2020.md"
         self.draft.write_text(DRAFT, encoding="utf-8")
-        self.saved = {k: getattr(PI, k) for k in ("ROOT", "INBOX", "APPLIED", "LOG", "REVIEWERS")}
+        self.saved = {k: getattr(PI, k) for k in ("ROOT", "INBOX", "APPLIED", "LOG", "REVIEWERS", "LEDGER")}
         PI.ROOT = self.tmp
         PI.INBOX = self.tmp / "logs" / "portal" / "inbox"
         PI.APPLIED = self.tmp / "logs" / "portal" / "applied"
         PI.LOG = self.tmp / "logs" / "extraction_log.md"
         PI.REVIEWERS = self.tmp / "reviewers.yaml"
+        PI.LEDGER = self.tmp / "logs" / "portal" / "ledger.jsonl"   # never the repository's ledger
         PI.REVIEWERS.write_text(yaml.safe_dump({"reviewers": {"m@uq.edu.au": {"name": "michele", "approver": True},
                                                                "alex@example.org": {"name": "alex", "approver": False}}}), encoding="utf-8")
 

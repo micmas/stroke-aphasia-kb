@@ -354,7 +354,6 @@ class ReviewBinding(unittest.TestCase):
         import yaml
         PI.REVIEWERS.write_text(yaml.safe_dump({"reviewers": {"m@uq.edu.au": {"name": "michele", "approver": True},
                                                                "alex@example.org": {"name": "alex"}}}), encoding="utf-8")
-        PI.LEDGER = PI.ROOT / "logs" / "portal" / "ledger.jsonl"
         self.fake = _FakeAutoReview()
         self.saved_ar = sys.modules.get("auto_review")
         sys.modules["auto_review"] = self.fake
@@ -365,7 +364,6 @@ class ReviewBinding(unittest.TestCase):
             sys.modules["auto_review"] = self.saved_ar
         else:
             sys.modules.pop("auto_review", None)
-        PI.LEDGER = self.P.saved.get("LEDGER", PI.LEDGER)
         self.P.__exit__(None, None, None)
 
     def fm(self):
@@ -479,7 +477,7 @@ class ReviewBinding(unittest.TestCase):
         PI.run(execute=True, promote=False, only_kind=None)
         self.assertEqual(len(self.fm()["findings"][0]["source_passages"]), 2)
         # … and even without the ledger line, the record id in the draft stops a second application
-        PI.LEDGER.unlink()
+        PI.ledger_path().unlink()
         (PI.INBOX / e).write_text((PI.APPLIED / e).read_text())
         PI.run(execute=True, promote=False, only_kind=None)
         self.assertEqual(len(self.fm()["findings"][0]["source_passages"]), 2)

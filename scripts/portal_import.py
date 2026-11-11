@@ -70,7 +70,7 @@ from aphasia_kb import parse_markdown  # noqa: E402
 
 INBOX = ROOT / "logs" / "portal" / "inbox"
 APPLIED = ROOT / "logs" / "portal" / "applied"
-LEDGER = ROOT / "logs" / "portal" / "ledger.jsonl"   # one line per record fully dealt with (replay-safe)
+LEDGER: Path | None = None   # default ROOT/logs/portal/ledger.jsonl, resolved at call time (see ledger_path)
 LOG = ROOT / "logs" / "extraction_log.md"
 REVIEWERS = ROOT / "portal" / "reviewers.yaml"
 PAPERS = ROOT / "papers"
@@ -162,8 +162,14 @@ def _has_record(items, rid: str) -> bool:
     return bool(rid) and any(isinstance(x, dict) and x.get("record") == rid for x in items or [])
 
 
+def ledger_path() -> Path:
+    """One line per record fully dealt with (replay-safe). Derived from ROOT when called, so a
+    caller (or a test) that points ROOT elsewhere never writes the repository's ledger."""
+    return LEDGER if LEDGER is not None else ROOT / "logs" / "portal" / "ledger.jsonl"
+
+
 def load_ledger(path: Path | None = None) -> dict[str, dict]:
-    path = path or LEDGER
+    path = path or ledger_path()
     out: dict[str, dict] = {}
     if path.exists():
         for line in path.read_text(encoding="utf-8").splitlines():
@@ -179,7 +185,7 @@ def load_ledger(path: Path | None = None) -> dict[str, dict]:
 def append_ledger(rows: list[dict], path: Path | None = None) -> None:
     if not rows:
         return
-    path = path or LEDGER
+    path = path or ledger_path()
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("a", encoding="utf-8") as fh:
         for row in rows:
