@@ -677,19 +677,13 @@ def _validate_llm_payload(parsed: dict | None,
 
 
 def _bare_tag(s: str | None) -> str:
-    s = (s or "").strip()
-    for pre in ("agent:", "model:"):
-        if s.lower().startswith(pre):
-            s = s[len(pre):]
-    return s.lower()
+    from review_identity import model_tag
+    return model_tag(s)
 
 
 def reviewer_is_independent(extractor: str | None, reviewer_model: str) -> bool:
-    """A model never reviews its own drafts: tags must differ. A missing
-    extractor tag cannot be shown independent, so it fails."""
-    if not extractor:
-        return False
-    return _bare_tag(extractor) != _bare_tag(reviewer_model)
+    from review_identity import independent
+    return independent(extractor, reviewer_model)
 
 
 def paper_text_for(fm: dict, papers_dir: Path = PAPERS_DIR) -> tuple[str, list[str]]:

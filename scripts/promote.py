@@ -93,6 +93,8 @@ def normalize_reviewer(raw: str) -> str:
         raise ValueError("'auto-reviewer' cannot approve or reject; "
                          "use human:<name> or model:<tag>")
     if low.startswith(REVIEWER_PREFIXES):
+        if not r.split(":", 1)[1].strip():
+            raise ValueError("reviewer name or tag must not be empty")
         return r
     if ":" in r:
         raise ValueError(f"reviewer {r!r} must start with one of "
@@ -102,11 +104,8 @@ def normalize_reviewer(raw: str) -> str:
 
 def _bare_tag(s: str | None) -> str:
     """Strip agent:/model: prefixes so extractor and reviewer tags compare."""
-    s = (s or "").strip()
-    for pre in ("agent:", "model:"):
-        if s.lower().startswith(pre):
-            s = s[len(pre):]
-    return s.lower()
+    from review_identity import model_tag
+    return model_tag(s)
 
 
 def validate_review_args(reviewer: str, tier: str | None,
@@ -120,10 +119,12 @@ def validate_review_args(reviewer: str, tier: str | None,
             problems.append("a model reviewer may only approve Tier A "
                             "drafts (--tier A); anything else needs a person")
         ext = extractor or fm.get("created_by")
-        if not ext:
+        if not _bare_tag(ext) or not _bare_tag(reviewer):
             problems.append("a model approval must name the extractor "
                             "(--extractor agent:<tag>) so independence "
                             "can be checked")
+        elif extractor and fm.get("created_by") and _bare_tag(extractor) != _bare_tag(fm["created_by"]):
+            problems.append("--extractor disagrees with recorded created_by")
         elif _bare_tag(ext) == _bare_tag(reviewer):
             problems.append(f"reviewer {reviewer!r} is the same model as the "
                             f"extractor {ext!r}; a model never reviews its "
