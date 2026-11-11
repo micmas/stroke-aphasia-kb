@@ -1,6 +1,5 @@
 """Offline reproductions of observed bugs, not assertions of desired behavior.
-Run only against revision d190282: python -m pytest tests/review_reproductions.py -q
-These historical assertions are expected to fail after the fixes. See test_*.py for regression coverage.
+Run explicitly: python -m pytest tests/review_reproductions.py -q
 All writes are temporary and remote services are replaced with fakes.
 """
 import copy
