@@ -97,20 +97,6 @@ def slug(model: str) -> str:
 
 
 def incumbent() -> str:
-    manifest = json.loads((ROOT / "benchmark_manifest.json").read_text())
-    required = set(manifest["papers"])
-    if path.exists():
-        previous = json.loads(path.read_text())
-        required.update(p["key"] for p in previous.get("papers", []))
-    if not required.issubset(papers):
-        raise ValueError("Incomplete benchmark publication; missing papers: " + ", ".join(sorted(required - set(papers))))
-    if not rows or incumbent_model not in {r["model"] for r in rows}:
-        raise ValueError("Publication requires scored rows and the incumbent")
-    for model in {r["model"] for r in rows}:
-        mine = [r for r in rows if r["model"] == model]
-        if len(mine) != len(set(papers)) or {r["paper"] for r in mine} != set(papers):
-            raise ValueError(f"Incomplete or duplicate paper rows for {model}")
-    verdicts = summarise(rows, incumbent_model)
     try:
         cfg = yaml.safe_load(MODELS_YAML.read_text(encoding="utf-8")) or {}
         return str((cfg.get("roles") or {}).get("extract", {}).get("model") or cfg.get("default") or "")
@@ -703,6 +689,20 @@ def attach_sources(data: dict, host: str | None = None) -> dict:
 def publish(rows: list[dict], verdicts: dict[str, dict], incumbent_model: str, papers: list[str], seed, by: str, path: Path = PUBLIC, host: str | None = None) -> Path:
     """The public summary for the explorer's Models page: numbers and ids only — no quote text, no
     file names from the papers folder, nothing a publisher could object to."""
+    manifest = json.loads((ROOT / "benchmark_manifest.json").read_text())
+    required = set(manifest["papers"])
+    if path.exists():
+        previous = json.loads(path.read_text())
+        required.update(p["key"] for p in previous.get("papers", []))
+    if not required.issubset(papers):
+        raise ValueError("Incomplete benchmark publication; missing papers: " + ", ".join(sorted(required - set(papers))))
+    if not rows or incumbent_model not in {r["model"] for r in rows}:
+        raise ValueError("Publication requires scored rows and the incumbent")
+    for model in {r["model"] for r in rows}:
+        mine = [r for r in rows if r["model"] == model]
+        if len(mine) != len(set(papers)) or {r["paper"] for r in mine} != set(papers):
+            raise ValueError(f"Incomplete or duplicate paper rows for {model}")
+    verdicts = summarise(rows, incumbent_model)
     try:
         cfg = yaml.safe_load(MODELS_YAML.read_text(encoding="utf-8")) or {}
     except Exception:  # noqa: BLE001
