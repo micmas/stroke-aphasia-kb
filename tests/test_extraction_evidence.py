@@ -132,3 +132,18 @@ def test_malformed_yaml_is_reported_not_abandoned(tmp_path, monkeypatch):
     report = evaluator.evaluate(drafts, pdf)
     assert report['schema_issues'] > 0
     assert not report['complete_nonempty']
+
+
+def test_narrative_review_cannot_claim_primary_causal_evidence():
+    from aphasia_kb import _validate_v2_entry
+    fm = {'schema_version': 2.8, 'id': 'example', 'kind': 'classical',
+          'findings': [{'id': 'f1', 'method': 'narrative_review',
+                        'relationship': 'causal', 'evidence_quality': 'cohort'}]}
+    issues = []
+    _validate_v2_entry(fm, 'fixture.md', issues)
+    assert any('requires relationship=synthesis' in x for x in issues)
+    assert any('requires evidence_quality=narrative-review' in x for x in issues)
+    fm['findings'][0].update(relationship='synthesis', evidence_quality='narrative-review')
+    issues = []
+    _validate_v2_entry(fm, 'fixture.md', issues)
+    assert not any('narrative_review requires' in x for x in issues)

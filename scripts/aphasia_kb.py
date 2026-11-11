@@ -434,6 +434,14 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
             or (isinstance(method_val, list) and "narrative_review" in method_val)
         )
 
+        # Narrative synthesis must not masquerade as a primary causal result.
+        # Enforce the existing v2.4 method contract, not just enum membership.
+        if is_v24 and is_narrative:
+            if f.get("relationship") != "synthesis":
+                err(f"{prefix}: narrative_review requires relationship=synthesis")
+            if f.get("evidence_quality") != "narrative-review":
+                err(f"{prefix}: narrative_review requires evidence_quality=narrative-review")
+
         # v2.2: relationship is required
         if is_v22:
             rel = f.get("relationship")
