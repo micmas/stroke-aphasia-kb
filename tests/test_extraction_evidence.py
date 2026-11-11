@@ -147,3 +147,11 @@ def test_narrative_review_cannot_claim_primary_causal_evidence():
     issues = []
     _validate_v2_entry(fm, 'fixture.md', issues)
     assert not any('narrative_review requires' in x for x in issues)
+
+
+def test_exact_limitation_alone_does_not_support_claim():
+    f = finding('An association was reported in the abstract.', 1)
+    f['source_passages'][0]['supports'] = 'limitation'
+    assert audit_finding(f, TEXT) == []  # Quote-location metric remains independent.
+    assert 'verify evidence: no passage explicitly supports the claim' in flag_evidence(f, TEXT)
+    assert f['provenance']['confidence'] == 'medium'

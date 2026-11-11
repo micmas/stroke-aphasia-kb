@@ -39,6 +39,12 @@ def audit_finding(finding: dict, page_text: str) -> list[str]:
 
 def flag_evidence(finding: dict, page_text: str) -> list[str]:
     issues = audit_finding(finding, page_text)
+    passages = finding.get('source_passages')
+    if isinstance(passages, list) and not any(
+            isinstance(p, dict) and p.get('supports') == 'claim'
+            and isinstance(p.get('quote'), str) and p['quote'].strip()
+            for p in passages):
+        issues.append('verify evidence: no passage explicitly supports the claim')
     if issues:
         if finding.get('provenance') is None:
             finding['provenance'] = {}
