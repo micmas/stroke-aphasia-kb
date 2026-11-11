@@ -12,6 +12,9 @@ name: portal-apply
 # PDFs (`pdf` records) and extraction are left for the maintainer, who has the papers folder:
 # extract-notice.yml emails her the command (scripts/extract_ready.py --execute).
 #
+# Before the push the job runs the Python tests (pytest) and the portal's Node tests; a failure
+# stops publication (the direct push to main itself is unchanged).
+#
 # Started by the portal's "Apply now" button (functions/api/apply.js, maintainers only),
 # by hand from the Actions tab, or every six hours when the inbox is not empty.
 on:
@@ -69,9 +72,27 @@ jobs:
         # extract_ready.py, which has the papers folder. extract-notice.yml then emails her.
         if: steps.inbox.outputs.count != '0'
         run: python3 scripts/screen.py register --execute || echo "::warning::screen.py register failed; extract_ready.py runs it again on the Mac"
+      # Nothing is pushed unless the repository still passes its checks with the applied records
+      # in it: a failure here stops the job before the commit (the inbox is untouched on main, and
+      # the next run applies it again; records carry ids, so nothing is applied twice).
+      - name: Python checks before publishing
+        if: steps.inbox.outputs.count != '0'
+        run: |
+          pip install pytest
+          python3 -m pytest tests -q
+      - uses: actions/setup-node@v4
+        if: steps.inbox.outputs.count != '0'
+        with:
+          node-version: "22"
+      - name: Portal checks before publishing
+        if: steps.inbox.outputs.count != '0'
+        run: node --test portal/functions/test/*.test.mjs
       - name: Commit and push
         if: steps.inbox.outputs.count != '0'
         id: push
+        env:
+          # passed as data, never pasted into the script (a crafted value cannot run as shell)
+          REQUESTED_BY: ${{ github.event.inputs.requested_by }}
         run: |
           git config user.name "portal-apply"
           git config user.email "portal-apply@users.noreply.github.com"
@@ -79,7 +100,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "nothing changed"; echo "pushed=no" >> "$GITHUB_OUTPUT"; exit 0
           fi
-          who="${{ github.event.inputs.requested_by }}"
+          who="$(printf '%s' "$REQUESTED_BY" | tr -cd '[:alnum:]@._+ -' | cut -c1-120)"
           git commit -m "Portal reviews applied${who:+ (requested by $who)}" -m "Applied by the portal-apply workflow from logs/portal/inbox/."
           for i in 1 2 3; do
             if git push; then echo "pushed=yes" >> "$GITHUB_OUTPUT"; exit 0; fi

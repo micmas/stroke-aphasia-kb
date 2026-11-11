@@ -1,0 +1,11 @@
+# Agent workspace
+
+Keep temporary Markdown decision, review and revision reports outside all GitHub
+checkouts. For this project use `~/Documents/agent-work/stroke-aphasia-kb/`, with
+one dated task directory. Do not create `_coordination/`, report archives or agent
+journals inside the repository. Keep current product documentation and essential
+source/approval audit records in the repository.
+
+Do not change extraction code, prompts, settings or source PDFs used by an active
+run. Preserve unrelated user edits. Use the current README and docs/HOWTO.md for
+the product workflow; local source inventories do not approve KB findings.

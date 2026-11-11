@@ -72,7 +72,7 @@ def draft_files(key: str) -> list[Path]:
 
 
 def sidecars(key: str) -> list[Path]:
-    return sorted((ROOT / "logs/auto_review").glob(f"*__{key}.yaml"))
+    return sorted((ROOT / "logs/auto_review").rglob(f"*__{key}.yaml"))
 
 
 def _move(src: Path, dest_root: Path, execute: bool) -> str:
@@ -120,6 +120,12 @@ def _cli(argv=None) -> int:
             to_sandbox.append(pdf)
             print(f"⊙ {k}: {len(canon)} canonical entr{'y' if len(canon) == 1 else 'ies'} "
                   f"cite it → sandbox _compare/rerun/ (drafts left as they are: {len(drafts)})")
+            continue
+        from recheck_drafts import touched_by_a_person
+        protected = [p for p in drafts if touched_by_a_person(p)]
+        if protected:
+            print(f"Protected human work for {k}; use a sandbox comparison instead")
+            to_sandbox.append(pdf)
             continue
         verb = "moved" if args.execute else "would move"
         print(f"↻ {k}: {len(drafts)} draft(s) {verb} to _compare/superseded/{today}/ → "

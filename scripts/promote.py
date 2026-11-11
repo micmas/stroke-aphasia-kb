@@ -10,7 +10,7 @@ Usage:
     python scripts/promote.py --reject  drafts/regions/ho-cort_44__Fridriksson2018.md \
                       --reviewer "michele" --reason "sample too small"
 
-Approve does the following, atomically:
+Approve uses atomic file replacements and a recoverable journal:
   1. Validates the draft against v2 schema. Refuses if invalid.
   2. Sets status: approved, reviewer:, reviewed_on:.
   3. If a file with the same id already exists in the canonical folder,
@@ -42,6 +42,7 @@ several reviews reports each one honestly, and the log line reads
 from __future__ import annotations
 
 import argparse
+import hashlib
 import datetime as dt
 import difflib
 import re
@@ -76,7 +77,8 @@ def _write(path: Path, fm: dict, body: str):
     """Serialize frontmatter + body back to markdown."""
     yaml_text = yaml.safe_dump(fm, sort_keys=False, allow_unicode=True,
                                default_flow_style=False)
-    path.write_text(f"---\n{yaml_text}---\n{body}", encoding="utf-8")
+    from pipeline_files import atomic_write
+    atomic_write(path, f"---\n{yaml_text}---\n{body}")
 
 
 def normalize_reviewer(raw: str) -> str:
@@ -93,6 +95,8 @@ def normalize_reviewer(raw: str) -> str:
         raise ValueError("'auto-reviewer' cannot approve or reject; "
                          "use human:<name> or model:<tag>")
     if low.startswith(REVIEWER_PREFIXES):
+        if not r.split(":", 1)[1].strip():
+            raise ValueError("reviewer name or tag must not be empty")
         return r
     if ":" in r:
         raise ValueError(f"reviewer {r!r} must start with one of "
@@ -102,11 +106,8 @@ def normalize_reviewer(raw: str) -> str:
 
 def _bare_tag(s: str | None) -> str:
     """Strip agent:/model: prefixes so extractor and reviewer tags compare."""
-    s = (s or "").strip()
-    for pre in ("agent:", "model:"):
-        if s.lower().startswith(pre):
-            s = s[len(pre):]
-    return s.lower()
+    from review_identity import model_tag
+    return model_tag(s)
 
 
 def validate_review_args(reviewer: str, tier: str | None,
@@ -120,10 +121,12 @@ def validate_review_args(reviewer: str, tier: str | None,
             problems.append("a model reviewer may only approve Tier A "
                             "drafts (--tier A); anything else needs a person")
         ext = extractor or fm.get("created_by")
-        if not ext:
+        if not _bare_tag(ext) or not _bare_tag(reviewer):
             problems.append("a model approval must name the extractor "
                             "(--extractor agent:<tag>) so independence "
                             "can be checked")
+        elif extractor and fm.get("created_by") and _bare_tag(extractor) != _bare_tag(fm["created_by"]):
+            problems.append("--extractor disagrees with recorded created_by")
         elif _bare_tag(ext) == _bare_tag(reviewer):
             problems.append(f"reviewer {reviewer!r} is the same model as the "
                             f"extractor {ext!r}; a model never reviews its "
@@ -133,16 +136,17 @@ def validate_review_args(reviewer: str, tier: str | None,
 
 def _bucket_for(draft_path: Path) -> str:
     """Return regions/impairments/therapies/predictors for a draft path."""
-    parts = draft_path.parts
-    if "drafts" not in parts:
-        raise ValueError(f"Not a drafts path: {draft_path}")
-    i = parts.index("drafts")
-    return parts[i + 1]
+    from pipeline_files import BUCKETS
+    relative = draft_path.resolve().relative_to((ROOT / "drafts").resolve())
+    if len(relative.parts) != 2 or relative.parts[0] not in BUCKETS:
+        raise ValueError(f"Not an active draft path: {draft_path}")
+    return relative.parts[0]
 
 
 def _canonical_path_for(fm: dict, bucket: str) -> Path:
     """Where the entry should live once approved."""
-    return ROOT / bucket / f"{fm['id']}.md"
+    from pipeline_files import safe_child
+    return safe_child(ROOT / bucket, f"{fm['id']}.md")
 
 
 def _next_finding_id(existing_ids: set[str], wanted: str) -> str:
@@ -193,7 +197,21 @@ def cmd_diff(args):
 
 
 def cmd_approve(args):
-    draft = Path(args.approve)
+    import fcntl
+    from promotion_transaction import recover_pending
+    draft = Path(args.approve).resolve()
+    _bucket_for(draft)
+    # Lock covers read/merge as well as recovery and writes.
+    with (ROOT / '.promotion.lock').open('a') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        if recover_pending(ROOT, draft):
+            print('Recovered interrupted promotion')
+            return
+        return _approve_locked(args)
+
+
+def _approve_locked(args):
+    draft = Path(args.approve).resolve()
     fm, body, _ = _read(draft)
     bucket = _bucket_for(draft)
 
@@ -210,12 +228,14 @@ def cmd_approve(args):
     # re-extraction must be resolved first — refocus.py turns them into
     # findings, or the reviewer removes them in the workbench.
     pending = [m.get("id") for m in fm.get("reviewer_marks") or []
-               if isinstance(m, dict) and m.get("status", "pending") == "pending"]
+               if isinstance(m, dict) and m.get("status", "pending") not in ("done", "dismissed")]
     if pending:
         print(f"❌ Cannot approve — {len(pending)} reviewer mark(s) still pending "
               f"({', '.join(map(str, pending))}): run scripts/refocus.py on the draft, or remove "
               f"them in scripts/review_app.py")
         sys.exit(1)
+    if not isinstance(fm.get("findings"), list) or not fm["findings"]:
+        raise ValueError("Cannot approve an empty entry")
     fm.pop("reviewer_marks", None)   # the register of marks stays in the draft's history, not in the KB
 
     # 1b. Policy checks (docs/GOVERNANCE.md §2–§3)
@@ -226,6 +246,33 @@ def cmd_approve(args):
         for pr in problems:
             print(f"  {pr}")
         sys.exit(1)
+
+    # Recompute the policy at the one canonical-write boundary. A caller's
+    # --tier and --extractor labels are not evidence of a second reading.
+    import auto_review as AR
+    checks = AR.run_deterministic_checks(fm, draft, papers_dir=ROOT / "papers")
+    pdf = next((c for c in checks if c.name == "pdf_quote_match"), None)
+    if pdf is not None and pdf.passed is False:
+        raise ValueError("Cannot approve: absent source passages")
+    actual_tier, reasons = AR.classify_tier(fm, checks, draft, root=ROOT)
+    if args.reviewer.lower().startswith("model:"):
+        if actual_tier != "A":
+            raise ValueError("Model approval requires actual Tier A: " + "; ".join(reasons))
+        report_path = ROOT / "logs/auto_review" / bucket / f"{draft.stem}.yaml"
+        report = yaml.safe_load(report_path.read_text()) if report_path.exists() else {}
+        run = ((report or {}).get("runs") or [{}])[-1]
+        llm = run.get("llm_review") or {}
+        if (run.get("draft_sha256") != hashlib.sha256(draft.read_bytes()).hexdigest()
+                or run.get("verdict") != AR.Verdict.APPROVE
+                or run.get("review_tier") != "A"
+                or _bare_tag(llm.get("model")) != _bare_tag(args.reviewer)
+                or not llm.get("independent") or not llm.get("unanimous")):
+            raise ValueError("Model approval requires a current, unanimous independent review report")
+        for finding in fm.get("findings") or []:
+            author = (finding.get("provenance") or {}).get("extracted_by")
+            if author and not AR.reviewer_is_independent(author, args.reviewer):
+                raise ValueError("Cannot establish independence from every finding's extractor")
+    args.tier = actual_tier
 
     # 2. Stamp approval
     today = dt.date.today().isoformat()
@@ -261,18 +308,15 @@ def cmd_approve(args):
         fm_c["last_reviewed"] = fm["reviewed_on"]
         # The file-level reviewer stays whoever approved the entry first;
         # per-finding `review` blocks carry the truth for merged findings.
-        _write(canonical, fm_c, body_c)
-        print(f"✓ Merged {len(added)} new finding(s) ({', '.join(added)}) "
-              f"into {canonical.relative_to(ROOT)}")
+        output_fm, output_body = fm_c, body_c
+        message = (f"✓ Merged {len(added)} new finding(s) ({', '.join(added)}) "
+                   f"into {canonical.relative_to(ROOT)}")
     else:
         canonical.parent.mkdir(parents=True, exist_ok=True)
-        _write(canonical, fm, body)
-        print(f"✓ Promoted {draft.name} → {canonical.relative_to(ROOT)}")
+        output_fm, output_body = fm, body
+        message = f"✓ Promoted {draft.name} → {canonical.relative_to(ROOT)}"
 
-    # 4. Remove draft
-    draft.unlink()
-
-    # 5. Append log entry
+    # 4. Prepare the audit entry before any canonical mutation
     cite = "?"
     for f in fm.get("findings") or []:
         if f.get("citation"):
@@ -287,8 +331,14 @@ def cmd_approve(args):
         extra += f" | tier: {args.tier}"
     line = (f"{today} | {action} | {cite} | "
             f"{fm.get('id')} | reviewer: {args.reviewer}{extra}\n")
-    with LOG.open("a") as fh:
-        fh.write(line)
+    from promotion_transaction import commit
+    text = '---\n' + yaml.safe_dump(output_fm, sort_keys=False, allow_unicode=True) + '---\n' + output_body
+    opinions = fm.get('portal_reviews') or []
+    latest = opinions[-1] if opinions and isinstance(opinions[-1], dict) else {}
+    record_ids = ([latest['record']] if latest.get('record') and not latest.get('stale')
+                  and latest.get('by') == args.reviewer and latest.get('verdict') == 'approve' else [])
+    commit(ROOT, draft, canonical, text, LOG, line, record_ids=record_ids)
+    print(message)
     print(f"  logged: {line.strip()}")
 
 

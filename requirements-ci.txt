@@ -3,3 +3,4 @@ pandas>=2.0
 PyYAML>=6.0
 PyMuPDF>=1.23
 markdown-it-py>=3.0
+pytest>=8.0

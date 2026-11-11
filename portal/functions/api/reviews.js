@@ -11,6 +11,7 @@ import { listRecords, putRecords } from '../../lib/github.js';
 
 const KINDS = new Set(['screen', 'verdict', 'edit', 'mark', 'comment']);
 const MAX_BATCH = 200;
+const DIGEST = /^sha256:[0-9a-f]{64}$/;
 
 /** A record as the client sent it → {kind, id, body}, or a string saying what is wrong with it. */
 function check(body) {
@@ -19,6 +20,13 @@ function check(body) {
   if (!KINDS.has(kind)) return `kind must be one of ${[...KINDS].join(', ')}`;
   if (!id) return 'id is required (candidate id, or draft path for a draft review)';
   if (JSON.stringify(body).length > 200_000) return 'record too large';
+  if (kind === 'verdict') {
+    // bound to the draft as the reviewer saw it (portal/dist/drafts.json); portal_import.py
+    // recomputes the digest and records a verdict on a changed draft as an opinion only
+    if (!DIGEST.test(String(body.draft_digest || ''))) return 'a verdict must carry draft_digest (reload the portal: the page is older than the review binding)';
+    const ids = body.finding_ids;
+    if (!Array.isArray(ids) || ids.length > 500 || !ids.every((x) => typeof x === 'string' && x.length <= 40)) return 'a verdict must carry finding_ids, the ids of the findings reviewed';
+  }
   return { kind, id, body };
 }
 

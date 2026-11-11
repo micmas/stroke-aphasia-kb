@@ -220,7 +220,13 @@ class Workbench(unittest.TestCase):
         fm3["reviewer_marks"][0]["status"] = "pending"
         pending = [m["id"] for m in fm3["reviewer_marks"] if m.get("status", "pending") == "pending"]
         self.assertEqual(pending, ["m1"])
-        self.assertIn("reviewer_marks", P.__dict__.get("cmd_approve").__code__.co_consts)
+        from unittest.mock import patch
+        from types import SimpleNamespace
+        with patch.object(P, 'ROOT', self.tmp), patch.object(P, '_validate_v2_entry'), patch('builtins.print') as printed:
+            with self.assertRaises(SystemExit):
+                P.cmd_approve(SimpleNamespace(approve=str(self.draft), reviewer='human:test', tier='B', extractor=None))
+            self.assertTrue(any('still pending' in str(c) for c in printed.call_args_list))
+        self.assertTrue(self.draft.exists())
 
 
 if __name__ == "__main__":

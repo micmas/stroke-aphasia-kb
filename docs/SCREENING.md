@@ -283,7 +283,8 @@ candidates they became.
    for every included candidate that has none (Crossref, from the
    DOI) and sets its `key`. From here the paper is a normal citation:
    fetch the PDF into `papers/`, `intake_papers.py --execute`,
-   `extract.py`, review, `promote.py` (`HOWTO.md`).
+   `kb.py prepare`, `kb.py extract`, source review, mapping and approval
+   ([HOWTO.md](HOWTO.md)).
 
 ### 4.0 The screening workbench
 

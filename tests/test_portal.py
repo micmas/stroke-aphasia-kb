@@ -134,12 +134,13 @@ class Import(unittest.TestCase):
         (self.tmp / "logs" / "portal" / "inbox").mkdir(parents=True)
         self.draft = self.tmp / "drafts" / "regions" / "left_angular_gyrus__TestPaper2020.md"
         self.draft.write_text(DRAFT, encoding="utf-8")
-        self.saved = {k: getattr(PI, k) for k in ("ROOT", "INBOX", "APPLIED", "LOG", "REVIEWERS")}
+        self.saved = {k: getattr(PI, k) for k in ("ROOT", "INBOX", "APPLIED", "LOG", "REVIEWERS", "LEDGER")}
         PI.ROOT = self.tmp
         PI.INBOX = self.tmp / "logs" / "portal" / "inbox"
         PI.APPLIED = self.tmp / "logs" / "portal" / "applied"
         PI.LOG = self.tmp / "logs" / "extraction_log.md"
         PI.REVIEWERS = self.tmp / "reviewers.yaml"
+        PI.LEDGER = self.tmp / "logs" / "portal" / "ledger.jsonl"   # never the repository's ledger
         PI.REVIEWERS.write_text(yaml.safe_dump({"reviewers": {"m@uq.edu.au": {"name": "michele", "approver": True},
                                                                "alex@example.org": {"name": "alex", "approver": False}}}), encoding="utf-8")
 
@@ -178,12 +179,15 @@ class Import(unittest.TestCase):
         self.assertEqual(fm["reviewer_marks"][0]["status"], "pending")
         self.assertEqual(fm["findings"][0]["portal_comments"][0]["by"], "human:alex")
         # a non-approver's approve is an opinion; an approver's approve would promote, but pending marks block it
-        msg = PI.apply_verdict({"id": rel, "verdict": "approve", "rationale": "fine", "submitted": "2026-11-05",
+        import review_binding as RB
+        seen = {"draft_digest": RB.review_digest(fm), "finding_ids": RB.finding_ids(fm)}   # the draft as the portal showed it
+        msg = PI.apply_verdict({"id": rel, "verdict": "approve", "rationale": "fine", "submitted": "2026-11-05", **seen,
                                 "per_finding": [{"id": "f1", "verdict": "agree", "supports_approval": True}]}, "alex", False, True, True, state)
         self.assertIn("opinion", msg)
-        msg = PI.apply_verdict({"id": rel, "verdict": "approve", "rationale": "fine", "submitted": "2026-11-05",
+        msg = PI.apply_verdict({"id": rel, "verdict": "approve", "rationale": "fine", "submitted": "2026-11-05", **seen,
                                 "per_finding": [{"id": "f1", "verdict": "agree", "supports_approval": True}]}, "michele", True, True, True, state)
-        self.assertIn("pending reviewer marks", msg)
+        self.assertIn("reviewer marks m1 are not resolved", msg)
+        self.assertEqual(msg.status, "blocked")
         fm, _ = PI.parse_markdown(self.draft)
         self.assertEqual([r["by"] for r in fm["portal_reviews"]], ["human:alex", "human:michele"])
         self.assertEqual(fm["status"], "draft")
@@ -208,7 +212,7 @@ class Import(unittest.TestCase):
         PI.FETCH["get"] = fake_get
         PI.FETCH["delete"] = lambda bucket, obj: deleted.append((bucket, obj)) or None
         try:
-            state: dict = {}
+            state: dict = {"citation_keys": {"jones2019", "lee2018"}}   # as if in citations.md
             rec = {"id": "C0001", "name": "smith.pdf", "bytes": len(pdf), "sha256": sha, "bucket": "b", "object": "uploads/c0001.pdf"}
             self.assertIn("would fetch", PI.apply_pdf(rec, "alex", False, state))
             msg = PI.apply_pdf(rec, "alex", True, state)

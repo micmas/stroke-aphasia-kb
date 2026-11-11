@@ -104,11 +104,19 @@ def autosize_num_ctx(prompt: str, max_tokens: int,
 
 
 def is_local(host: str) -> bool:
-    """True if `host` points at this machine. Used to warn loudly when
-    OLLAMA_HOST has been pointed somewhere remote — which would quietly
-    defeat the whole reason for running locally."""
-    h = normalize_host(host)
-    return any(x in h for x in ("localhost", "127.0.0.1", "0.0.0.0", "::1"))
+    """Only exact loopback hosts qualify as local; URL substrings do not."""
+    from urllib.parse import urlsplit
+    import ipaddress
+    try:
+        url = urlsplit(normalize_host(host))
+        if url.scheme not in ('http', 'https') or url.username or url.password:
+            return False
+        name = url.hostname
+        if name == 'localhost':
+            return True
+        return ipaddress.ip_address(name).is_loopback
+    except (ValueError, TypeError):
+        return False
 
 
 def check_model_available(model: str, host: str = DEFAULT_HOST,
@@ -192,6 +200,8 @@ def chat(prompt: str,
     Raises OllamaError on transport failure or empty output.
     """
     host = normalize_host(host)
+    if not is_local(host) or 'cloud' in model.lower():
+        raise OllamaError('Paper processing requires a loopback Ollama host and a local model tag')
     full = (system or "") + prompt
     if num_ctx is None:
         num_ctx = autosize_num_ctx(full, max_tokens)
@@ -265,6 +275,8 @@ def chat(prompt: str,
         try:
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 for raw_line in resp:
+                    if time.monotonic() - t0 > timeout:
+                        raise TimeoutError("overall stream deadline exceeded")
                     if not raw_line.strip():
                         continue
                     part = json.loads(raw_line.decode("utf-8"))
@@ -286,7 +298,7 @@ def chat(prompt: str,
                         raise RepetitionLoop(
                             f"repetition loop detected after {n_chunks:,} output tokens "
                             f"({int((now - t0) // 60)}m): the model was repeating a "
-                            f"{LOOP_BLOCK}-char block — stream cut, Ollama stopped",
+                            f"block — stream cut, Ollama stopped",
                             partial, n_chunks)
         except RepetitionLoop:
             raise

@@ -35,7 +35,7 @@ from pathlib import Path
 from typing import Any, Iterable, Sequence
 
 import pandas as pd
-import yaml
+from strict_data import load_yaml
 
 
 # ============================================================
@@ -68,7 +68,9 @@ def parse_markdown(path: Path) -> tuple[dict, str]:
     m = _FRONTMATTER_RE.match(text)
     if not m:
         return {}, text
-    fm = yaml.safe_load(m.group("yaml")) or {}
+    fm = load_yaml(m.group("yaml")) or {}
+    if not isinstance(fm, dict):
+        raise ValueError("frontmatter must be a mapping")
     return fm, m.group("body")
 
 
@@ -319,6 +321,13 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
     def err(msg):
         issues.append(f"{src}: {msg}")
 
+    if not isinstance(entry, dict):
+        err('entry must be a mapping')
+        return
+    findings = entry.get('findings')
+    if findings is not None and (not isinstance(findings, list) or any(not isinstance(f, dict) for f in findings)):
+        err('findings must be a list of mappings')
+        return
     for f in ("id", "name", "kind", "status", "created_by", "created_on"):
         if not entry.get(f):
             err(f"missing required file-level field: {f}")
@@ -331,7 +340,7 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
     # v2.5 adds optional review-provenance fields (review_tier, per-finding
     # review block, audited_by/audited_on); no structural change.
     _ALL_SV = (2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8,
-               "2", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8")
+               "2", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8")
     if sv not in _ALL_SV:
         err(f"schema_version must be 2–2.8, got {sv!r}")
     # Compare numerically: the slice-based test this replaces silently
@@ -424,6 +433,14 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
             method_val == "narrative_review"
             or (isinstance(method_val, list) and "narrative_review" in method_val)
         )
+
+        # Narrative synthesis must not masquerade as a primary causal result.
+        # Enforce the existing v2.4 method contract, not just enum membership.
+        if is_v24 and is_narrative:
+            if f.get("relationship") != "synthesis":
+                err(f"{prefix}: narrative_review requires relationship=synthesis")
+            if f.get("evidence_quality") != "narrative-review":
+                err(f"{prefix}: narrative_review requires evidence_quality=narrative-review")
 
         # v2.2: relationship is required
         if is_v22:
@@ -684,6 +701,10 @@ class KnowledgeBase:
                 if not fm:
                     self.issues.append(f"{path}: no frontmatter")
                     continue
+                fs = fm.get('findings')
+                if fs is not None and (not isinstance(fs, list) or any(not isinstance(f, dict) for f in fs)):
+                    self.issues.append(f"{path.relative_to(self.root)}: findings must be a list of mappings; entry skipped")
+                    continue
                 fm["_path"] = str(path.relative_to(self.root))
                 fm["_kind_bucket"] = sub
                 self.bodies[fm.get("id", path.stem)] = body
@@ -712,13 +733,16 @@ class KnowledgeBase:
                 for e in entries:
                     src = e["_path"]
                     sv = e.get("schema_version")
-                    if sv in (2, 2.1, 2.2, 2.3, "2", "2.1", "2.2", "2.3"):
+                    if str(sv) in {"2", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8"}:
                         _validate_v2_entry(e, src, self.issues)
                     else:
                         _validate_v1_entry(e, src, self.issues)
 
         # Filter by status
         def keep(entry: dict) -> bool:
+            if entry.get("_origin") == "draft" and entry.get("status") == "approved":
+                self.issues.append(f"{entry.get('_path')}: approved status in drafts is not admissible; promote first")
+                return False
             return entry.get("status") in self.include
 
         regions = [e for e in approved["regions"] if keep(e)]

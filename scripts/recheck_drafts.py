@@ -93,7 +93,7 @@ def touched_by_a_person(path: Path) -> str:
     try:
         fm, _ = parse_markdown(path)
     except Exception:  # noqa: BLE001
-        return ""                                   # unparsable: nobody can have reviewed it
+        return "unparsable existing draft: human inspection required"
     if not isinstance(fm, dict):
         return ""
     if str(fm.get("status") or "draft") != "draft":
@@ -188,25 +188,34 @@ def rewrite(r: dict, stamp: str, model: str | None, timeout: int, extract=run_ex
             orig.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(dest, orig)
 
+    if any(touched_by_a_person(p) for p in r["paths"]):
+        raise ValueError("Refusing to rewrite protected drafts")
     t0 = time.monotonic()
+    removed = False
     try:
         for p in r["paths"]:                        # copy first, delete after: a draft is never in neither place
             dest = backup / stamp / p.parent.name / p.name
             dest.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(p, dest)
             saved.append((p, dest))
+        removed = True
         for p, _ in saved:
             p.unlink()
         ok, tail = extract(key, r["pdf"], model, timeout)
-    except KeyboardInterrupt:
-        restore()                                   # Ctrl-C: this paper is back as it was; run again to carry on
+    except BaseException:
+        if removed:
+            restore()                                   # Ctrl-C: this paper is back as it was; run again to carry on
         raise
     elapsed = round(time.monotonic() - t0)
     new_paths = drafts_by_paper(drafts).get(key, [])
     if not ok or not new_paths:
         restore()
         return {"key": key, "kept": False, "why": "the extraction failed or returned no drafts; old drafts put back", "tail": tail, "elapsed_s": elapsed, "old": r}
-    new = audit(key, new_paths, papers)
+    try:
+        new = audit(key, new_paths, papers)
+    except BaseException:
+        restore()
+        raise
     if not better(new, r):
         restore()
         return {"key": key, "kept": False, "elapsed_s": elapsed, "old": r, "new": new,

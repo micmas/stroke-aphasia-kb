@@ -1,104 +1,45 @@
 # Contributing
 
-Thank you for helping. The knowledge base grows one paper at a time,
-and every paper needs a second pair of eyes. There is a way to take part
-for almost any amount of time and skill; the explorer's
-[Get involved](https://aphasia-kb.app/#/involve)
-page shows them as five levels. This file is the practical side.
+You can help by finding errors, screening papers, checking source evidence or
+maintaining the code.
 
-## Without installing anything
+## Review evidence without installing anything
 
-Most contributors never need a checkout.
+Browse the [explorer](https://aphasia-kb.app/) and report a problem with its entry
+ID, finding ID and source page. Explain the incorrect claim, missing qualification
+or omitted result. The [review portal](https://review.aphasia-kb.app/) lets registered
+reviewers screen papers, review existing drafts and supply missing PDFs. See the
+[portal guide](docs/PORTAL.md) for access. Review opinions and approval permissions
+are separate; the [governance policy](docs/GOVERNANCE.md) defines who may approve.
 
-**Spot something wrong?** Open an issue naming the entry (for example
-`regions/left_arcuate_fasciculus.md`) and the finding id, and say what is
-wrong: a quote that is not in the paper, a claim that says more than
-the paper does, a confounder left out. Every finding shows its passages
-and page numbers, so point at those.
+## Work locally
 
-**Have an hour?** Open the review portal, https://review.aphasia-kb.app,
-and choose "I'd like to become a reviewer" ([docs/PORTAL.md](docs/PORTAL.md)).
-Once the maintainer has added your email you sign in with a one-time
-code sent to it. An email address is all you need: no account to create
-(not with Cloudflare, which runs the sign-in page, nor anywhere else) and
-no password. There you can:
+Install using the [README](README.md), then follow the single
+[paper-to-finding workflow](docs/HOWTO.md). Routine commands start with
+`.venv/bin/python kb.py`; the [command reference](docs/COMMANDS.md) explains them.
 
-- screen new papers in or out from their title and abstract;
-- read a draft next to the annotated PDF and say, finding by finding,
-  whether you agree; fix a wrong field; add a passage the extractor
-  missed;
-- upload a PDF we do not have.
+New papers must be screened, registered and matched to the correct main PDF.
+Two independent local extractions and a separate source review produce provisional
+inventories. Visual verification and mapping into KB drafts remain separate tasks.
+Do not treat a successful model run as an approved finding. Supplementary files
+are outside the extraction scope.
 
-Everything you send arrives here as a record under your name, and the
-maintainer applies it. Who may *approve* a draft, rather than give an
-opinion on it, is a short list in
-[portal/reviewers.yaml](portal/reviewers.yaml), the Reviewer team.
-
-## With a checkout
+For existing drafts:
 
 ```bash
-git clone https://github.com/micmas/stroke-aphasia-kb.git
-cd stroke-aphasia-kb
-python -m venv .venv && source .venv/bin/activate
-pip install -r requirements.txt
+.venv/bin/python kb.py drafts
+.venv/bin/python kb.py inspect --draft drafts/<collection>/<file>.md
+.venv/bin/python kb.py validate --check drafts/
 ```
 
-### Review a draft
+Keep original outputs and true provenance. Do not relabel older findings as having
+passed the new method, or overwrite them merely because a new extraction exists.
+The intended endpoint is one consistently reviewed corpus, with pending migration
+tracked by processing stage.
 
-Drafts wait in `drafts/<bucket>/`. Reviewing one means reading the
-paper and checking each finding against it.
+## Maintain the project
 
-```bash
-python scripts/promote.py --list                                  # what is waiting
-python scripts/review_app.py --draft drafts/<bucket>/<file>.md    # draft beside the paper, in the browser
-python scripts/promote.py --approve drafts/<bucket>/<file>.md --reviewer human:<your name>
-python scripts/promote.py --reject  drafts/<bucket>/<file>.md --reviewer human:<your name> --reason "..."
-```
-
-The paper itself you fetch through your own access (`citations.md` has
-the DOI) and drop into `papers/<Key>.pdf`; it stays on your machine.
-Some drafts can be cleared by an independent local model, others need a
-person; [docs/GOVERNANCE.md](docs/GOVERNANCE.md) says which. Your name
-goes on what you approve.
-
-### Add a paper
-
-Papers come in through the screening protocol
-([docs/SCREENING.md](docs/SCREENING.md)), so first make sure the paper
-is registered there. Then:
-
-```bash
-cp ~/Downloads/<paper>.pdf papers/                 # any file name
-python scripts/intake_papers.py --execute          # register, rename, strip covers, OCR
-python scripts/extract.py --pdf papers/<Key>.pdf   # the local model writes drafts + an annotated PDF
-python scripts/auto_review.py --all --llm-review --require-pdf-match
-```
-
-and review as above. The step-by-step guide is
-[docs/HOWTO.md](docs/HOWTO.md); every command and option is in
-[docs/COMMANDS.md](docs/COMMANDS.md).
-
-## House rules
-
-- Work from the repository root with the virtual environment active.
-  Commands that change files are dry runs until you add `--execute`.
-- The approved folders (`regions/`, `impairments/`, …) are written only
-  by `promote.py`. It stamps the reviewer and writes the log line.
-- `papers/` is never committed. PDFs are copyright.
-- Models run locally through Ollama. Do not point `OLLAMA_HOST` at
-  another machine.
-- The schema lives in two places that move together:
-  [docs/schema.md](docs/schema.md) and `scripts/aphasia_kb.py`. Likewise
-  the governance rules and the scripts that enforce them.
-- Before pushing: `python scripts/kb_status.py`, `npm test`, and the
-  tests for whatever you touched (`python tests/<test>.py`).
-
-## After pushing
-
-CALMaR pins this repository as a submodule. Bump the pointer there once
-your change is on `main`:
-
-```bash
-git submodule update --remote stroke-aphasia-kb
-git add stroke-aphasia-kb && git commit -m "KB: bump"
-```
+Use the [developer guide](docs/development/README.md) for implementation,
+validation and publication. PDFs stay outside Git. Approved entries change through
+the approval tooling under the governance policy. Schema or approval changes must
+update both the documentation and the code that enforces them.

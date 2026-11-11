@@ -79,3 +79,16 @@ test('an upload can be read back for the full-text screen; an unknown one is 404
   assert.equal(Buffer.from(await ok.arrayBuffer()).subarray(0, 5).toString(), '%PDF-');
   assert.equal((await onRequestGet({ request: new Request('https://p.test/api/upload?file=C9999'), env: { UPLOADS: b } })).status, 404);
 });
+
+test('the id must be a candidate id or a citation key (REVIEW.md finding 7)', async () => {
+  const b = bucket();
+  for (const bad of ['@../outside', '@/etc/passwd', '..%2Fx', 'C1-2', '@a/b', '@Smith-2020', '%40..%2F..%2Fregions%2Fx']) {
+    const res = await post(b, `id=${bad}`, pdf());
+    assert.equal(res.status, 400, bad);
+    assert.match((await res.json()).error, /candidate id .* or a citation key/);
+  }
+  assert.equal((await post(b, 'id=C1&citation=@../x', pdf())).status, 400);
+  assert.equal((await post(b, 'id=@Smith2020', pdf())).status, 200);
+  assert.equal((await post(b, 'id=C0123&citation=Smith2020', pdf())).status, 200);
+  assert.equal(b.store.size, 2);   // nothing stored for a refused id
+});

@@ -56,7 +56,7 @@ def plan(old: str, new: str) -> list[tuple[str, Path, Path | None]]:
     for b in BUCKETS:
         for src in sorted((ROOT / "drafts" / b).glob(f"*__{o}.md")):
             out.append(("draft", src, src.with_name(src.name[:-len(f"__{o}.md")] + f"__{n}.md")))
-    for src in sorted((ROOT / "logs/auto_review").glob(f"*__{o}.yaml")):
+    for src in sorted((ROOT / "logs/auto_review").rglob(f"*__{o}.yaml")):
         out.append(("sidecar", src, src.with_name(src.name[:-len(f"__{o}.yaml")] + f"__{n}.yaml")))
     log = ROOT / "logs/extraction_log.md"
     if log.exists() and f"@{o}" in log.read_text(encoding="utf-8"):

@@ -786,6 +786,8 @@ add an `EXTRACTED` line for every run.
 2026-11-10 | EXTRACTED | @SkipperKallal2017Functional | right_superior_temporal_sulcus, left_ifg_pars_opercularis | 2 drafts
 2026-11-11 | EXTRACTED | @Yang2017 | left_inferior_fronto_occipital_fasciculus, left_superior_longitudinal_fasciculus, left_uncinate_fasciculus | 3 drafts
 2026-11-11 | EXTRACTED | @Brady2022Dosage | speech_and_language_therapy | dosage and intensity effects
+2026-11-11 | EXTRACTED | @Stockbridge2024 | left_posterior_inferior_temporal_gyrus, left_arcuate_fasciculus, left_posterior_middle_temporal_gyrus, left_superior_longitudinal_fasciculus | 4 region drafts
+2026-11-11 | EXTRACTED | @Yu2023 | left_arcuate_fasciculus, left_uncinate_fasciculus | DTI correlation of LSAF/UF with WAB scores
 2026-11-11 | APPROVED | @Adezati2022 | left_ifg_pars_triangularis | reviewer: human:michele | tier: B
 2026-11-11 | APPROVED | @Adezati2022 | left_posterior_stg | reviewer: human:michele | tier: B
 2026-11-11 | PORTAL-APPLIED | — | 2 record(s) | edit 0, verdict 2 | by: michele

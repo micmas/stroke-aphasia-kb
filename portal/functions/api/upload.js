@@ -17,9 +17,18 @@ const PREFIX = 'uploads/';
 
 export const objectKey = (id) => `${PREFIX}${slug(id)}.pdf`;
 
+// What an upload may be for: a screening candidate (C0123) or a citation key (@Smith2020).
+// Anything else is refused here, and again by scripts/portal_import.py, which only places a
+// file for a candidate in the register or a key in citations.md, inside papers/.
+export const CANDIDATE_ID = /^C\d{1,7}$/;
+export const CITATION_KEY = /^@?[A-Za-z][A-Za-z0-9]{0,79}$/;
+export const validUploadId = (id) => CANDIDATE_ID.test(id) || CITATION_KEY.test(id);
+
 function describe(obj) {
   const m = obj.customMetadata || {};
-  return { object: obj.key, id: m.id || obj.key.slice(PREFIX.length, -4), name: m.name || '', bytes: obj.size, by: m.by || '', uploaded: m.uploaded || (obj.uploaded ? new Date(obj.uploaded).toISOString() : ''), sha256: m.sha256 || '' };
+  let candidate;
+  try { candidate = JSON.parse(m.candidate || 'null'); } catch { candidate = null; }
+  return { candidate, object: obj.key, id: m.id || obj.key.slice(PREFIX.length, -4), name: m.name || '', bytes: obj.size, by: m.by || '', uploaded: m.uploaded || (obj.uploaded ? new Date(obj.uploaded).toISOString() : ''), sha256: m.sha256 || '' };
 }
 
 export async function onRequestGet({ request, env }) {
@@ -47,6 +56,8 @@ export async function onRequestPost({ request, env, data }) {
   const name = String(url.searchParams.get('name') || '').trim().replace(/[^\w.() -]+/g, '_').slice(0, 120) || 'paper.pdf';
   const citation = String(url.searchParams.get('citation') || '').trim();
   if (!id) return Response.json({ error: 'id is required (the candidate id, or the citation key)' }, { status: 400 });
+  if (!validUploadId(id)) return Response.json({ error: 'id must be a candidate id (C0123) or a citation key (@Smith2020)' }, { status: 400 });
+  if (citation && !CITATION_KEY.test(citation)) return Response.json({ error: 'citation must be a citation key (@Smith2020)' }, { status: 400 });
   const declared = Number(request.headers.get('Content-Length') || 0);
   if (declared > MAX_BYTES) return Response.json({ error: `file too large (${Math.round(declared / 1048576)} MB; the limit is ${MAX_BYTES / 1048576} MB)` }, { status: 413 });
   const buf = await request.arrayBuffer();
@@ -56,6 +67,7 @@ export async function onRequestPost({ request, env, data }) {
   if (!head.startsWith('%PDF-')) return Response.json({ error: 'that is not a PDF (no %PDF header)' }, { status: 400 });
   const key = objectKey(id);
   const existing = await env.UPLOADS.head(key);
+  if (existing?.customMetadata?.candidate) return Response.json({ error: 'This PDF is attached to a pending screening intake. Open the existing upload; ask the maintainer to replace it if needed.' }, { status: 409 });
   if (existing && (existing.customMetadata?.by || '') !== data.reviewer.email) {
     return Response.json({ error: `a PDF for ${id} was already uploaded by ${existing.customMetadata?.by || 'someone'} and is waiting for the maintainer` }, { status: 409 });
   }

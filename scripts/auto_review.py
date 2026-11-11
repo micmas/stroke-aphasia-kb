@@ -108,6 +108,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import hashlib
 import os
 import re
 import subprocess
@@ -141,7 +142,7 @@ from model_config import resolve as resolve_model  # noqa: E402
 
 _REVIEW_CFG = resolve_model("review")
 DEFAULT_LLM_MODEL = _REVIEW_CFG["model"]
-PDF_MATCH_THRESHOLD = 0.80   # >= this fraction of quotes must match
+PDF_MATCH_THRESHOLD = 1.0   # >= this fraction of quotes must match
 
 # --- Local-model guardrails -------------------------------------------
 # The LLM second opinion can PROMOTE a draft into the canonical KB. That
@@ -215,7 +216,7 @@ class Check:
 
 def check_schema_validates(fm: dict, draft_path: Path) -> Check:
     issues: list[str] = []
-    _validate_v2_entry(fm, str(draft_path), issues)
+    _validate_v2_entry(fm, f"drafts/{draft_path.parent.name}/{draft_path.name}", issues)
     return Check("schema_valid", not issues, blocker=True, details=issues)
 
 
@@ -339,10 +340,11 @@ def check_pdf_quote_match(fm: dict, papers_dir: Path = PAPERS_DIR,
     citations = [f.get("citation") for f in (fm.get("findings") or [])
                  if f.get("citation")]
     cite_to_pdf = {c: find_paper(c, papers_dir) for c in dict.fromkeys(citations)}
+    missing = [c for c, p in cite_to_pdf.items() if not p]
     cite_to_pdf = {c: p for c, p in cite_to_pdf.items() if p}
     if not cite_to_pdf:
         return Check("pdf_quote_match", passed=None, blocker=True,
-                     details=[f"no PDFs available in {papers_dir} for any "
+                     details=[f"no PDFs available in the source-paper directory for any "
                               f"cited paper"])
 
     cache: dict[str, PaperText | None] = {}
@@ -360,7 +362,7 @@ def check_pdf_quote_match(fm: dict, papers_dir: Path = PAPERS_DIR,
             try:
                 cache[cite] = PaperText.from_pdf(cite_to_pdf[cite])
             except Exception as e:
-                read_errors.append(f"{cite}: {e}")
+                read_errors.append(f"{cite}: PDF read failed ({type(e).__name__})")
                 cache[cite] = None
         paper = cache[cite]
         if paper is None:
@@ -390,6 +392,8 @@ def check_pdf_quote_match(fm: dict, papers_dir: Path = PAPERS_DIR,
     score = (total - len(misses)) / total
     details = [f"matched {matched}/{total} quotes ({matched / total:.0%}) — "
                + ", ".join(f"{k} {v}" for k, v in sorted(grades.items()))]
+    if missing:
+        details.append("missing papers: " + ", ".join(missing))
     if read_errors:
         details.extend(read_errors)
     if soft:
@@ -399,7 +403,7 @@ def check_pdf_quote_match(fm: dict, papers_dir: Path = PAPERS_DIR,
     if misses:
         details.append(f"{len(misses)} quote(s) absent from the PDF — first 3:")
         details.extend(f"  - {m}" for m in misses[:3])
-    return Check("pdf_quote_match", passed=score >= threshold,
+    return Check("pdf_quote_match", passed=False if misses else (None if missing or read_errors else True),
                  blocker=True, details=details)
 
 
@@ -648,6 +652,8 @@ def _validate_llm_payload(parsed: dict | None,
         return problems
 
     got_ids = [str(x.get("id")) for x in pf if isinstance(x, dict)]
+    if len(got_ids) != len(pf) or len(got_ids) != len(set(got_ids)):
+        problems.append('per_finding must contain one object for each distinct finding id')
     missing = [i for i in expected_ids if i not in got_ids]
     invented = [i for i in got_ids if i not in expected_ids]
     if missing:
@@ -677,19 +683,13 @@ def _validate_llm_payload(parsed: dict | None,
 
 
 def _bare_tag(s: str | None) -> str:
-    s = (s or "").strip()
-    for pre in ("agent:", "model:"):
-        if s.lower().startswith(pre):
-            s = s[len(pre):]
-    return s.lower()
+    from review_identity import model_tag
+    return model_tag(s)
 
 
 def reviewer_is_independent(extractor: str | None, reviewer_model: str) -> bool:
-    """A model never reviews its own drafts: tags must differ. A missing
-    extractor tag cannot be shown independent, so it fails."""
-    if not extractor:
-        return False
-    return _bare_tag(extractor) != _bare_tag(reviewer_model)
+    from review_identity import independent
+    return independent(extractor, reviewer_model)
 
 
 def paper_text_for(fm: dict, papers_dir: Path = PAPERS_DIR) -> tuple[str, list[str]]:
@@ -996,8 +996,13 @@ def _parse_llm_yaml(raw: str) -> dict | None:
 # ============================================================
 
 def report_path_for(draft_path: Path) -> Path:
-    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    return REPORTS_DIR / f"{draft_path.stem}.yaml"
+    bucket = draft_path.parent.name
+    from pipeline_files import BUCKETS
+    if bucket not in BUCKETS:
+        raise ValueError('Reports require an active draft bucket')
+    directory = REPORTS_DIR / bucket
+    directory.mkdir(parents=True, exist_ok=True)
+    return directory / f"{draft_path.stem}.yaml"
 
 
 def write_report(draft_path: Path, verdict: str, checks: list[Check],
@@ -1016,8 +1021,9 @@ def write_report(draft_path: Path, verdict: str, checks: list[Check],
 
     run_n = len(report["runs"]) + 1
     run = {
+        "draft_sha256": hashlib.sha256(draft_path.read_bytes()).hexdigest(),
         "run_id":    run_n,
-        "timestamp": dt.datetime.now().isoformat(timespec="seconds"),
+        "timestamp": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "mode":      "with_llm_review" if llm_result else "deterministic_only",
         "verdict":   verdict,
         "checks":    [c.to_yaml_dict() for c in checks],
@@ -1242,6 +1248,8 @@ def apply_manual_verdict(
         final_verdict = Verdict.REJECT
     elif pdf and pdf.passed is False:
         final_verdict = Verdict.REJECT
+    elif verdict_override == "approve" and require_pdf_match and (pdf is None or pdf.passed is not True):
+        final_verdict = Verdict.DEFER
     elif verdict_override == "approve":
         final_verdict = Verdict.APPROVE
         if provisional_without_pdf and pdf is not None and pdf.passed is None:
@@ -1463,7 +1471,8 @@ def select_drafts(*, draft: Path | None = None,
         return [Path(draft)]
     if not (DRAFTS_DIR.exists() and DRAFTS_DIR.is_dir()):
         return []
-    found = sorted(DRAFTS_DIR.rglob("*.md"))
+    from pipeline_files import BUCKETS
+    found = sorted(p for bucket in BUCKETS for p in (DRAFTS_DIR / bucket).glob("*.md"))
     if deferred_only or pending_pdf_only:
         target = (Verdict.PROVISIONAL if pending_pdf_only
                   else Verdict.DEFER)

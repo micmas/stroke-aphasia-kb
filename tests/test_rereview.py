@@ -2,7 +2,7 @@
 """
 test_rereview.py — rereview.py sends a legacy canonical entry back to drafts/, one draft per
 paper, keeping every finding and the old approval as history; a fresh draft for the same
-paper supersedes the legacy findings (dropped, logged); nothing moves without --execute and a name.
+paper blocks the move without dropping legacy findings; nothing moves without --execute and a name.
 
     python tests/test_rereview.py
 """
@@ -65,7 +65,15 @@ class Rereview(unittest.TestCase):
         self.assertEqual(self.RR.run(("therapies",), [], True, None, root=self.tmp), 2)   # --execute without --by is refused
         self.assertTrue((self.tmp / "therapies" / "naming_therapy_x.md").exists())
 
+    def test_existing_draft_blocks_without_losing_findings(self):
+        original = self.tmp / 'therapies/naming_therapy_x.md'
+        before = original.read_bytes()
+        self.assertEqual(self.RR.run(('therapies',), [], True, 'michele', root=self.tmp), 2)
+        self.assertEqual(original.read_bytes(), before)
+        self.assertEqual(len(list((self.tmp / 'drafts/therapies').glob('*.md'))), 1)
+
     def test_execute_splits_by_paper_and_keeps_history(self):
+        (self.tmp / 'drafts/therapies/naming_therapy_x__Jones2019.md').unlink()
         self.RR.run(("therapies",), [], True, "michele", root=self.tmp)
         self.assertFalse((self.tmp / "therapies" / "naming_therapy_x.md").exists())
         self.assertTrue((self.tmp / "therapies" / "fresh_one.md").exists())              # a human-reviewed entry is untouched
@@ -84,9 +92,9 @@ class Rereview(unittest.TestCase):
         fm2, _ = parse_markdown(d / "naming_therapy_x__nocitation.md")
         self.assertIn("no citation", fm2["notes"]); self.assertEqual([f["id"] for f in fm2["findings"]], ["f4"])
         fm3, _ = parse_markdown(d / "naming_therapy_x__Jones2019.md")
-        self.assertEqual(fm3["status"], "draft")                                        # the fresh draft was not overwritten
+        self.assertEqual(fm3["status"], "in_review")                                        # the fresh draft was not overwritten
         log = (self.tmp / "logs" / "extraction_log.md").read_text(encoding="utf-8")
-        self.assertIn("REREVIEW | @Smith2020, (no citation) | naming_therapy_x | by: human:michele | 2 draft(s) | previous: auto-reviewer | dropped: 1 for @Jones2019 superseded by a fresh draft", log)
+        self.assertIn("REREVIEW | @Smith2020, @Jones2019, (no citation) | naming_therapy_x | by: human:michele | 3 draft(s) | previous: auto-reviewer", log)
 
 
 if __name__ == "__main__":

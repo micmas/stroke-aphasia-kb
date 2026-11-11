@@ -13,6 +13,20 @@ wins and the other two get fixed. Adopted October 2026, replacing the
 earlier practice under which `auto_review.py` could promote drafts on
 its own.
 
+## Scope of the source-inventory workflow
+
+The current `kb.py extract` and `kb.py review` workflow produces provisional
+source inventories outside `drafts/`. Its reconciliation model cannot approve
+findings. Visual verification, mapping into KB drafts and the approval procedure
+below are separate gates. The delegated Tier A rules do not turn a successful
+source reconciliation into approval.
+
+The product target is one consistently reviewed corpus. Historical review labels
+below describe genuine provenance during migration, not a permanent alternative
+quality tier. Retire them only when replacements have actually passed the selected
+extraction method and required review; do not remove history or retag unchanged
+findings to imply completion.
+
 ---
 
 ## 1. Principles

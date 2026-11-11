@@ -240,12 +240,28 @@ def load(path: Path) -> dict:
     return data.get("papers") or {}
 
 
+# Fields a person writes (not derived from metadata): kept when a paper is checked again.
+MANUAL_FIELDS = ("public_copy",)
+
+
 def save(path: Path, papers: dict) -> None:
+    """Write licences.yaml. A refreshed record replaces the old one, except for MANUAL_FIELDS
+    (`public_copy`: a person's confirmation that the file in papers/ is the openly licensed copy,
+    see publish_portal.py --confirm-public-copy), which carry over unless the new record sets them."""
     import yaml
+    old = load(path) if path.exists() else {}
+    merged = {}
+    for key, rec in papers.items():
+        rec = dict(rec or {})
+        for f in MANUAL_FIELDS:
+            if f not in rec and (old.get(key) or {}).get(f) is not None:
+                rec[f] = old[key][f]
+        merged[key] = rec
     header = ("# Licence of each paper in the bibliography — written by `screen.py licences` (scripts/licences.py)\n"
               "# from Crossref, Unpaywall and the PDF's own pages. Categories: cc, cc_manuscript, free_to_read,\n"
-              "# rights_reserved, unknown. Do not edit by hand; re-run with --refresh to update.\n")
-    body = yaml.safe_dump({"papers": dict(sorted(papers.items()))}, sort_keys=False, allow_unicode=True, width=120)
+              "# rights_reserved, unknown. Do not edit by hand; re-run with --refresh to update. The one field a\n"
+              "# person writes is public_copy (publish_portal.py --confirm-public-copy), kept across refreshes.\n")
+    body = yaml.safe_dump({"papers": dict(sorted(merged.items()))}, sort_keys=False, allow_unicode=True, width=120)
     path.write_text(header + body, encoding="utf-8")
 
 
