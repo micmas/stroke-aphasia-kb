@@ -42,7 +42,9 @@ class Page(unittest.TestCase):
     def test_page(self):
         page, info = self.build(NB)
         self.assertIn('<h2 id="setup">Setup</h2>', page); self.assertIn('<h2 id="setup-2">Setup</h2>', page)      # anchors are unique
-        self.assertIn('<a class="toc-2" href="#setup-2">Setup</a>', page)
+        self.assertIn('<a class="toc-2" href="#setup-2" data-ch="setup-2">Setup</a>', page)
+        self.assertIn('<p class="eyebrow">Title</p>', page); self.assertNotIn('<h1 id="title">', page)   # the notebook's own title tops the page once
+        self.assertIn('class="nb-toc"', page); self.assertIn("toc.classList.add('js')", page)
         self.assertIn("<table>", page)
         self.assertIn('<details class="code"><summary>Show code: Configuration for the run</summary>', page)
         self.assertNotIn("\x1b[", page); self.assertIn("ok sub-M2051", page)                               # terminal colour codes removed
@@ -54,6 +56,13 @@ class Page(unittest.TestCase):
         self.assertIn("https://play-america.neurodesk.org/hub/user-redirect/git-pull?repo=https%3A//github.com/micmas/calmar"
                       "&amp;urlpath=lab/tree/calmar/calmar-guided.ipynb&amp;branch=main", page)
         self.assertIn('href="https://aphasia-kb.app/"', page); self.assertNotIn('href="../', page)        # own subdomain: no relative links to the explorer
+
+    def test_long_code_labels_are_cut_at_a_word(self):
+        import copy
+        nb = copy.deepcopy(NB)
+        nb["cells"][1]["source"] = "# " + "word " * 30 + "\nx = 1"
+        page, _ = self.build(nb)
+        self.assertRegex(page, r"<summary>Show code: (word ){10,}word…</summary>")
 
     def test_a_notebook_saved_without_output_says_so(self):
         import copy

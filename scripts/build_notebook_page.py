@@ -169,7 +169,9 @@ def render_cell(md, cell: dict, have_state: bool, seen: dict, toc: list, counter
     if not source.strip() and not outs:
         return ""
     first = next((ln.lstrip("# ").strip() for ln in source.splitlines() if ln.strip().startswith("#")), "")
-    label = f"Show code{': ' + html.escape(first[:90]) if first else ''}"
+    if len(first) > 90:                                            # cut at a word, and say so
+        first = first[:90].rsplit(" ", 1)[0].rstrip(" ,;:—-") + "…"
+    label = f"Show code{': ' + html.escape(first) if first else ''}"
     code = f'<details class="code"><summary>{label}</summary>{pre(source, "source")}</details>' if source.strip() else ""
     return f'<section class="cell">{code}{outs}</section>'
 
@@ -203,6 +205,65 @@ def data_check(nb: dict, allowed: tuple[str, ...]) -> dict:
 
 
 # ------------------------------------------------------------------ the page
+def pull_title(cells: list[dict]) -> tuple[list[dict], str]:
+    """The notebook's own '# Title' line (first markdown cell) becomes the page's eyebrow instead of
+    a second, competing title in the body."""
+    cells = [dict(c) for c in cells]
+    for c in cells:
+        src = text_of(c.get("source"))
+        if c.get("cell_type") != "markdown" or not src.strip():
+            continue
+        m = re.match(r"\s*#\s+(.+?)\s*(?:\n|$)", src)
+        if m:
+            c["source"] = src[m.end():]
+            return cells, re.sub(r"\s*\|\s*CALMaR\s*$", "", m.group(1)).strip()
+        break
+    return cells, ""
+
+
+def toc_html(toc: list[tuple[int, str, str]]) -> str:
+    """Sections (h2) always listed; their sub-headings (h3, h4) carry the section they belong to,
+    so the page script can show only those of the section being read."""
+    out, chapter = ['<a class="toc-2" href="#top" data-ch="top">Overview</a>'], "top"
+    for level, anchor, text in toc:
+        if level == 2:
+            chapter = anchor
+            out.append(f'<a class="toc-2" href="#{anchor}" data-ch="{anchor}">{html.escape(text)}</a>')
+        elif level in (3, 4):
+            out.append(f'<a class="toc-{level} toc-sub" href="#{anchor}" data-ch="{chapter}">{html.escape(text)}</a>')
+    return "".join(out)
+
+
+TOC_SCRIPT = """<script>
+(() => {
+  // Contents: highlight the heading being read and show only its section's sub-headings.
+  const toc = document.querySelector('.nb-toc'), box = toc && toc.querySelector('details');
+  if (!toc) return;
+  toc.classList.add('js');
+  if (box && matchMedia('(max-width: 860px)').matches) box.open = false;
+  const links = [...toc.querySelectorAll('a[href^="#"]')];
+  const byId = new Map(links.map((a) => [a.getAttribute('href').slice(1), a]));
+  const heads = [...document.querySelectorAll('.nb h2[id], .nb h3[id], .nb h4[id]')].filter((h) => byId.has(h.id));
+  let current = null;
+  const show = (a) => {
+    if (!a || a === current) return;
+    if (current) current.classList.remove('active');
+    a.classList.add('active'); current = a;
+    toc.dataset.open = a.dataset.ch;
+    links.forEach((l) => l.classList.toggle('open', l.dataset.ch === a.dataset.ch));
+    if (!box || box.open) { const r = a.getBoundingClientRect(), t = toc.getBoundingClientRect(); if (r.top < t.top || r.bottom > t.bottom) a.scrollIntoView({ block: 'nearest' }); }
+  };
+  const update = () => {
+    let a = byId.get('top');
+    for (const h of heads) { if (h.getBoundingClientRect().top < 120) a = byId.get(h.id); else break; }
+    show(a);
+  };
+  addEventListener('scroll', () => requestAnimationFrame(update), { passive: true });
+  update();
+})();
+</script>"""
+
+
 def build(nb: dict, title: str, source_note: str, css: str, allowed: tuple[str, ...] = OPEN_DATASETS, version: str = "") -> tuple[str, dict]:
     md = md_renderer()
     state = (nb.get("metadata") or {}).get("widgets", {}).get(WIDGET_STATE)
@@ -210,7 +271,8 @@ def build(nb: dict, title: str, source_note: str, css: str, allowed: tuple[str, 
     seen: dict[str, int] = {}
     toc: list[tuple[int, str, str]] = []
     counters = {"widgets": 0, "panels": 0, "images": 0, "errors": 0, "pauses": 0}
-    body = "".join(render_cell(md, c, have_state, seen, toc, counters) for c in nb.get("cells") or [])
+    cells, nb_title = pull_title(nb.get("cells") or [])
+    body = "".join(render_cell(md, c, have_state, seen, toc, counters) for c in cells)
     check = data_check(nb, allowed)
     outputs = sum(len(c.get("outputs") or []) for c in nb.get("cells") or [] if c.get("cell_type") == "code")
     if outputs:
@@ -223,7 +285,18 @@ def build(nb: dict, title: str, source_note: str, css: str, allowed: tuple[str, 
                  f'<a href="{KB_SITE}">stroke aphasia knowledge base</a>. The copy published here was saved without its results, so the page shows what each step does and the code behind it; '
                  "tables and figures appear here once a completed run is saved. The buttons below open the notebook in a live session.")
         caveat = "The examples it runs on are open data only; nothing on this page is clinical advice."
-    nav = "".join(f'<a class="toc-{lv}" href="#{a}">{html.escape(t)}</a>' for lv, a, t in toc if lv in (2, 3, 4))
+    nav = toc_html(toc)
+    sections = sum(1 for lv, _, _ in toc if lv == 2)
+    nb_path = source_note.split(" · ")[-1]
+    nb_link = f"{REPO}/blob/{version or 'main'}/{nb_path}"
+    facts = [f'<li><span class="k">Data</span> open only: {html.escape(", ".join(check["datasets"]) or "none named")}</li>',
+             f'<li><span class="k">Notebook</span> <a href="{html.escape(nb_link)}" target="_blank" rel="noopener">{html.escape(nb_path)}</a>'
+             + (f' at <code>{html.escape(version[:7])}</code>' if version else "") + "</li>",
+             f'<li><span class="k">Sections</span> {sections}</li>',
+             (f'<li><span class="k">Results</span> {counters["images"]} figures, {outputs} outputs</li>' if outputs
+              else '<li class="warn"><span class="k">Results</span> not saved in this copy</li>')]
+    facts_html = "".join(facts)
+    eyebrow = f'<p class="eyebrow">{html.escape(nb_title)}</p>' if nb_title else ""
     widget_scripts = ""
     if have_state:
         widget_scripts = (f'<script type="{WIDGET_STATE}">{json.dumps(state)}</script>'
@@ -252,12 +325,16 @@ def build(nb: dict, title: str, source_note: str, css: str, allowed: tuple[str, 
   <nav class="nav" aria-label="Site"><a href="#launch">Run it</a><a href="{KB_SITE}">Knowledge base</a><a href="{REPO}" target="_blank" rel="noopener">Code ↗</a></nav>
 </header>
 <div class="nb-layout">
-<aside class="nb-toc" aria-label="Contents"><div class="toc-title">Contents</div>{nav}</aside>
+<aside class="nb-toc" aria-label="Contents"><details open><summary class="toc-title">Contents</summary><nav>{nav}</nav></details></aside>
 <main id="main" class="nb-main">
-<div class="page-head"><h1>{html.escape(title)}</h1><span class="muted small">{html.escape(source_note)}</span></div>
-<p>{intro}</p>
-<p class="caveat">A research development built to support clinicians' reasoning, not to replace it. {caveat}</p>
+<header class="hero" id="top">
+{eyebrow}
+<h1>{html.escape(title)}</h1>
+<p class="lead">{intro}</p>
+<ul class="facts">{facts_html}</ul>
+</header>
 {launch_block()}
+<p class="caveat">A research development built to support clinicians' reasoning, not to replace it. {caveat}</p>
 {f'<p class="small muted">{panels}</p>' if panels else ''}
 <article class="nb">
 {body}
@@ -269,6 +346,7 @@ def build(nb: dict, title: str, source_note: str, css: str, allowed: tuple[str, 
   <span>Built {dt.date.today().isoformat()} from {html.escape(source_note)}{html.escape(f" at version {version[:7]}" if version else "")}</span>
   · <a href="{KB_SITE}">Stroke aphasia knowledge base</a> · <a href="{REPO}" rel="noopener">CALMaR source</a> · <a href="https://webapps.neurodesk.org/calmar/" rel="noopener">CALMaR webapp</a>
 </footer>
+{TOC_SCRIPT}
 {widget_scripts}
 </body>
 </html>
