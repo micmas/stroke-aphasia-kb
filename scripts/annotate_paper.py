@@ -135,10 +135,10 @@ def _normalize(s: str) -> str:
     s = re.sub(r"\s*\[\s*(?:\.\.\.|\u2026)\s*\]\s*", " ", s)
     # Pass 1: soft hyphen \u2014 line-break artefact (hyphen + whitespace between
     # word chars).  Join without any separator.
-    s = re.sub(r"(\w)-\s+(\w)", r"\1\2", s)
+    s = re.sub(r"([^\W\d_])-\s+([^\W\d_])", r"\1\2", s)
     # Pass 2: remaining intra-word hyphens (compound words, acronyms) \u2014 strip
     # the hyphen so both sides normalise identically.
-    s = re.sub(r"(\w)-(\w)", r"\1\2", s)
+    s = re.sub(r"([^\W\d_])-([^\W\d_])", r"\1\2", s)
     s = re.sub(r"\s+", " ", s)
     return s.strip()
 

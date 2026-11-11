@@ -148,13 +148,30 @@ def _citation_blocks(root: Path) -> dict[str, tuple[str, str | None]]:
 
 def portal(root: Path) -> dict:
     """Where the review portal is (portal/portal.config.json), so the explorer can link the
-    public (Creative-Commons) annotated PDFs and send reviewers to the private site."""
+    public annotated PDFs and send reviewers to the private site. `publicPdfs` lists the papers
+    whose annotated copy portal/papers.json says is served openly (publish_portal.public_basis:
+    a cc paper, or a cc_manuscript paper whose file a person confirmed); the explorer links
+    cc/ only for those, never from the licence category alone."""
     path = root / "portal" / "portal.config.json"
     if not path.exists():
         return {}
     cfg = json.loads(path.read_text(encoding="utf-8"))
     url = str(cfg.get("portalUrl") or "").rstrip("/")
-    return {"url": url, "publicPdfBase": f"{url}/cc/" if url else "", "publicCategories": ["cc", "cc_manuscript"]} if url else {}
+    if not url:
+        return {}
+    public: list[str] = []
+    index = root / "portal" / "papers.json"
+    if index.exists():
+        try:
+            papers = (json.loads(index.read_text(encoding="utf-8")) or {}).get("papers") or {}
+            # an index written before cc_manuscript became private still says public for those:
+            # trust it only for cc, or for a copy confirmed by a person (public_basis)
+            public = sorted(k for k, v in papers.items()
+                            if isinstance(v, dict) and v.get("public") and str(v.get("annotated") or "").startswith("cc/")
+                            and (v.get("category") == "cc" or v.get("public_basis") == "confirmed_copy"))
+        except ValueError:
+            public = []
+    return {"url": url, "publicPdfBase": f"{url}/cc/", "publicCategories": ["cc"], "publicPdfs": public}
 
 
 def entries(kb) -> dict:

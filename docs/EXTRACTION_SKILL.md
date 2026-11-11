@@ -1,7 +1,8 @@
 # Paper-extraction skill — instructions for the agent
 
 > **Purpose.** Take one neuroscience / aphasia paper and produce one or
-> more **draft** knowledge-base entries under schema **v2.3**, plus a
+> more **draft** knowledge-base entries under the current schema
+> (`schema.md`, v2.8), plus a
 > color-annotated version of the source paper that lets the user
 > visually verify what was extracted from where. The user reviews
 > every draft before it enters the canonical knowledge base. **You
@@ -9,8 +10,9 @@
 > or `predictors/`.**
 
 This file is the agent's instruction manual. It must be read **in full**
-before any extraction. The schema is defined in `schema.md` (v2.3 — read
-that too). This file tells you how to *use* the schema responsibly.
+before any extraction. The schema is defined in `schema.md` (read that
+too). This file tells you how to *use* the schema responsibly. Section
+4b is the checklist every finding must pass before you write it.
 
 ## What v2.1 / v2.2 / v2.3 added (since v2.0)
 
@@ -66,7 +68,10 @@ For each paper the user gives you:
 
 2. **Identify the unit-of-extraction.** A single paper typically yields
    1–10 findings. Each finding is a single (region, impairment-or-therapy,
-   direction) triple. If a paper reports 5 regions for naming and 3 for
+   direction) triple. A sentence that joins two observations ("X is
+   predominantly left-sided, particularly in Y"; "lesions cause A and B")
+   is two findings, or one finding whose every clause has its own quoted
+   support. Never let one clause borrow the support of another. If a paper reports 5 regions for naming and 3 for
    fluency, that's 8 findings — but they may live in 5 region files (since
    findings are stored on the *region side*).
 
@@ -141,7 +146,7 @@ patients regardless of lesion location:
 - `lesion_volume` — "After controlling for lesion location, total
   lesion volume independently predicted naming severity (R²=.18, p<.001)."
 - `age` — "Younger patients (<55) showed greater post-therapy gains
-  in fluency than older patients (n=68, p=.012)."
+  in naming than older patients (n=68, p=.012)."
 - `time_post_onset` — "Patients enrolled within 6 months post-stroke
   showed steeper recovery slopes than chronic patients."
 
@@ -245,12 +250,47 @@ e.g. `subcortical_aphasia__NadeauCrosson1997.md`
 - `region_definition` — omit
 - `imaging_details` — omit
 
-**Optional field:**
+**Optional file-level field (verified primary studies only):**
 ```yaml
 primary_papers_cited:
   - "@Smith2010"
   - "@Jones2012"
 ```
+
+**Who the review cites, exactly.** A review supports its claims with
+numbered or author–year references. For each one you list:
+
+- Resolve it in the paper's own reference list (the number in the
+  sentence → the entry at that number), and read authors, year and title
+  there. Do not resolve it from memory or from a similar-looking key.
+- Use an existing `citations.md` key only when its first author, year
+  **and** title match that reference-list entry. Same surname and a
+  nearby year is not a match: two papers by one author are different
+  papers.
+- List **primary studies only** (studies with their own patients or
+  data). When the reference is itself a review, a textbook or a model
+  paper, do not put it in `primary_papers_cited`; add a flag
+  `secondary source for this claim: <first author> <year>, <title as printed>`.
+- A reference that has no `citations.md` key yet: do not invent one. Add
+  a flag `unregistered reference: <first author> <year>, <title as printed>`.
+- Take the references from the sentence you quote for the claim. A
+  reference cited for a neighbouring sentence supports that sentence,
+  not this one.
+
+**Hedges, figures and the review's own doubts.**
+
+- Keep the review's degree of certainty. "Is often reported", "may
+  contribute to", "appears more frequent", "remains to be confirmed" are
+  part of the claim; do not turn them into "is" or "causes".
+- Summary figures and their legends are schematic and often more
+  categorical than the text. Quote the body text that makes the same
+  point; use a legend only when the body never says it, label the
+  passage `section: "Figure N legend"`, and keep its hedges.
+- When the review itself states evidence that cuts against the claim
+  (another study, a general statement that the factor does not predict
+  the outcome, a selection bias), record it in `author_limitations`
+  (and in `contradictions` when it is a citable paper). Do not resolve
+  the tension yourself.
 
 **Minimal example:**
 ```yaml
@@ -280,8 +320,6 @@ findings:
     design: narrative-review
     evidence_quality: narrative-review
     strength: weak
-    primary_papers_cited:
-      - "@Crosson1999"
     author_limitations:
       - "Synthesis based on small case series; no voxel-level evidence available at time of publication."
     provenance:
@@ -355,14 +393,40 @@ that's what `source_passages` is for.
 Bad: `"Cluster centered on left BA44 was significantly associated with the speech-fluency factor (p<.001 corrected)."`
 Good: `"Damage to the left inferior frontal gyrus pars opercularis is associated with reduced speech fluency in chronic stroke."`
 
+The claim carries the context a reader needs to use it, and nothing
+stronger than the paper:
+
+- **Which analysis.** If the result holds only in one model (a
+  univariate test, a variable-selection step, a model without the usual
+  covariates), the claim says so, and says what happened when those
+  covariates were added (see `statistics`). A result that disappears
+  after adjustment is never reported as an unqualified predictor.
+- **What the outcome is.** Name the dependent variable as measured: a
+  score at a follow-up time point, a change between time points, a
+  proportion of potential recovery, a diagnosis or classification. A
+  score *at* follow-up is an outcome level, not "recovery"; use
+  recovery/improvement language only when the dependent variable is a
+  change.
+- **Who and when.** The population and phase the result applies to
+  (e.g. chronic left-hemisphere stroke, at least 6 months post-onset;
+  or the same patients assessed in the first week and again at 3 months) when they limit the claim.
+- **How sure the paper is.** Keep the authors' hedges; do not upgrade
+  "may", "was associated with" or "in this small sample" to a general
+  law.
+
 ### `direction`
 - `likely` / `unlikely`: positive / negative finding (use with any
   `relationship`).
 - `likely_responder` / `unlikely_responder`: legacy v2.0/2.1 shortcut
   for therapy responsiveness. In v2.2 prefer `relationship: responder`
   + `direction: likely | unlikely`.
-- `no_effect`: the paper specifically tested and found no association
-  (a useful and under-recorded class of finding).
+- `no_effect`: the paper specifically tested and found no significant
+  association (a useful and under-recorded class of finding). A
+  non-significant result is **not** evidence that the effect is zero,
+  least of all in a small sample: write the claim as "no significant
+  (independent) association was detected", name the model and its
+  covariates, and keep `strength: weak` unless the paper reports an
+  equivalence test or adequate power for the effect in question.
 - `mixed`: the paper reports both supporting and contradicting evidence
   within the same study.
 
@@ -413,8 +477,43 @@ applies to, not the overall study n.
 If a sample field is genuinely not reported (common for `age_range`,
 `handedness`), use the literal string `not_reported`. Do **not** guess.
 
+- **Use the paper's own wording** where the field is inferred from a
+  criterion: "left-handed participants excluded" rather than "all
+  right-handed"; "tested in Spanish (n = 30) or English (n = 12)" rather
+  than "Spanish or English".
+- **Time points from Methods and tables.** Take `time_post_onset` from the
+  Methods and the participant table (range and mean as reported), not
+  from the abstract's summary. If they disagree, use the Methods/table
+  value and flag the inconsistency (see `statistics`).
+- **Population** names what limits the result: aetiology, lesion side,
+  first or recurrent stroke, setting, phase, severity range.
+- **Which scan, which test.** In a longitudinal study, say which time
+  point supplied each predictor and the outcome. If the paper does not
+  say, flag it instead of assuming.
+
 ### `statistics`
 Read the relevant **Results** sentence and the corresponding figure / table.
+
+**Name the model.** Every estimate comes from a model: a dependent
+variable, a set of predictors and covariates, and sometimes a selection
+procedure (stepwise, backwards, best subset). Record, in the finding,
+which model the number comes from and what else was in it. When a paper
+reports the same predictor in more than one model — a restricted one
+(univariate, selection step, a subset of predictors) and an adjusted one
+(with the baseline score, age, lesion size or similar) — and the results
+differ, report both: write one finding per model (see "Splitting
+findings" in 6b) and make each claim name its model. A predictor that
+survives only the restricted model is weak, exploratory evidence.
+
+**When the paper disagrees with itself.** The abstract, the Results
+text, a table and a figure sometimes give different numbers for the same
+thing (an effect size, an R², a sample size, a follow-up window). Do not
+pick one silently and do not average. Record each value with where it is
+(`"β = 0.42 (Results text, p. 6); β = 0.39 (Table 2, p. 8)"`), prefer the
+Methods / Results / tables over the abstract for what you put in the
+structured field, and add a flag `source inconsistency: <field>: <value>
+(<location>) vs <value> (<location>)`. Copy symbols as printed (β, χ², η²),
+not spelled out.
 - For LSM/VLSM: the threshold is usually permutation-based; report it
   exactly as the paper does (e.g., `"permutation p<.05 corrected; minimum cluster size 100 voxels"`).
 - For RCTs: report the omnibus test threshold and the per-comparison
@@ -428,6 +527,10 @@ lesion volume, age, sex, time post-stroke, education, baseline severity.
 List what's controlled in the analysis that produced *this finding*.
 Things that aren't controlled go in `_not_controlled`. If the paper truly
 controls for nothing relevant, use `[]` for `_controlled` — don't fake it.
+These lists describe *this finding's model*. If the same paper adjusted
+for a variable in another model, say so in that model's finding and in a
+flag on this one — `[]` here must not suggest that the adjusted analysis
+was never done.
 
 ### `region_definition`
 Critical for cross-study comparison. **How did the paper define the brain
@@ -473,13 +576,25 @@ limitations — if the paper claims none, write `[]` and add a flag.
 - `weak`: small sample, marginal correction, or a known limitation
   affects the interpretation.
 
+Be cautious. Sample size, a single site and lack of replication are
+limitations to weigh alongside precision, design and adjustment, not
+automatic strength rules on their own. Use `weak` for a result from a
+variable-selection step or a model without the covariates the paper
+itself uses elsewhere; a result that is not significant after
+adjustment; a borderline overall model; a discrepancy in the paper's own
+numbers; a narrative review (see 1c). `moderate` needs an adequately
+sized, adjusted analysis whose result the paper reports consistently.
+
 `strength` is your call as the extractor. It's not the same as
 `evidence_quality` (which classifies the *paper*). A weak finding can
 appear in a high-quality paper.
 
 ### `provenance.confidence` (the agent's confidence in the *extraction*)
 - `high`: you have the full paper, you understood the relevant section
-  end-to-end, no ambiguities about what the finding is.
+  end-to-end, no ambiguities about what the finding is, no field had to
+  be inferred, and you flagged no inconsistency in the paper. Any
+  `source inconsistency` flag, inferred field or unresolved reference
+  means `medium` at most.
 - `medium`: you have the paper but had to infer at least one field, or
   there's a borderline judgment somewhere.
 - `low`: abstract only, or you noticed multiple ambiguities, or the
@@ -496,6 +611,11 @@ the issue.
 Bad: `"unsure"`
 Good: `"sample n inferred from Figure 1 caption — not stated in text"`
 Good: `"effect direction is positive in Table 2 but negative in Figure 4 — verify"`
+Good: `"source inconsistency: follow-up window 3–6 months (Abstract, p. 1) vs 2–7 months (Table 1, p. 4)"`
+Good: `"time point of the imaging predictor not stated (scans at both visits)"`
+
+`provenance.extracted_on` is the date of this run; the pipeline records
+it. Never write a placeholder or example date.
 
 ### `source_passages` (REQUIRED in v2.1)
 
@@ -503,16 +623,34 @@ A list of `{section, page, quote, supports}` objects. Each one is a
 short verbatim quote (1–3 sentences) and the category of finding-aspect
 it supports. The annotator uses these to produce the colored
 highlighted PDF, so quotes must be **exact** — `Ctrl+F` should find
-each one in the PDF. Use `[…]` to elide irrelevant clauses; never edit
-the substantive claim.
+each one in the PDF.
 
-**Prose only.** A passage is a run of sentences from the body text.
+- **Copy one contiguous run of text exactly**, including citation
+  brackets and symbols as printed (`[24, 81]`, `β`, `R²`, `–`). Do not
+  join sentences from different places with `...` or `…`: two pieces of
+  evidence are two passages. Do not elide clauses inside a sentence
+  either; copy a shorter contiguous span without changing its meaning.
+- **`page` is the one-based page of the PDF file** — the first page of
+  the file is 1 — not the page number printed in the journal header or
+  footer. The whole quote must be on that page; when a sentence runs over
+  a page break, quote the part on one page or make two passages.
+- **`section` is where the text actually is**: `Abstract`, `Results`,
+  `Discussion`, `Figure 2 legend`, `Table 1 note`. Use the heading the
+  text sits under, not the section you expected it in.
+- Each passage must support what its `supports` tag says. A `claim`
+  passage must state the claim as the finding words it, with its
+  qualifications; a passage cited for a neighbouring statement does not
+  count.
+
+**Prose only.** A passage is a run of sentences from the body text (or a
+figure legend, labelled as such).
 Never quote a table row, a figure caption cell, or a set of values
 joined with `|`: a text-layer search cannot find those, so the quote
 fails the fidelity check and the draft is rejected. When a number is
 reported only in a table, quote the results sentence that refers to
-the table and record the number in `statistics.effect_size` /
-`statistics.threshold`. If a claim has no sentence in the prose that
+the table, record the number in `statistics.effect_size` /
+`statistics.threshold` with its locator (`"Table 3, p. 7"`), and keep any
+disagreement with the text as a flag. If a claim has no sentence in the prose that
 states it, the paper does not make that claim extractably — leave it
 out.
 
@@ -620,6 +758,36 @@ highlighted in the annotated PDF.
 
 ---
 
+## 4b. Before you write a finding — checklist
+
+Check every finding against the paper, not against your memory of it:
+
+1. **Claim.** Every clause is stated by a quoted passage (not a
+   neighbouring one); hedges kept; the analysis/model it holds in, the
+   outcome as measured (level vs change), and the population/phase named
+   where they limit it.
+2. **Models.** If the paper also reports this predictor adjusted for
+   other variables, that result is a finding too; a non-significant
+   result is worded as "not detected", not "no effect".
+3. **Numbers.** Statistics, n and time windows taken from Methods,
+   Results and tables; every disagreement between abstract, text and
+   tables recorded with locations and flagged, not resolved.
+4. **Passages.** Each quote is one contiguous run copied exactly
+   (symbols and citation brackets as printed), on the one-based PDF page
+   given, under the section it is actually in; body text preferred over
+   abstract and figure legends.
+5. **References.** Each cited key matches the paper's reference-list
+   entry by first author, year and title; secondary sources are flagged,
+   not listed as primary; unregistered references flagged, not invented.
+6. **Target.** The target's definition (not just its name) matches the
+   paper's measure; otherwise a forward-looking id and a flag.
+7. **Limitations and counter-evidence.** The authors' caveats, and any
+   evidence the paper itself gives against the claim, recorded.
+8. **Strength and confidence.** As low as the evidence warrants (see 4);
+   any inferred field or inconsistency caps confidence at `medium`.
+
+---
+
 ## 5. Output format
 
 For each paper:
@@ -664,9 +832,10 @@ for it from a new paper:
 
 ## 6. Discipline rules (non-negotiable)
 
-- **Never invent a citation.** If you reference a paper, it must already
-  exist in `citations.md` *or* you must add a properly-formatted entry
-  there in the same run.
+- **Never invent a citation.** A paper you reference must match an entry
+  in `citations.md` by first author, year and title (see 1c). Otherwise
+  flag it as unregistered, with the details as printed in the paper's
+  reference list, so a person can add it.
 - **Never invent statistics, effect sizes, or sample numbers.** If the
   paper doesn't report the field, use `not_reported`.
 - **Never silently change `direction`** based on prior knowledge. The
@@ -704,10 +873,10 @@ are not hemispheric and don't take a prefix.
 ### Forward-looking target IDs are accepted
 
 You may target an ID that doesn't yet have a canonical file. Pick a
-descriptive snake_case ID, mention in the file-level `notes` that the
-target ID is forward-looking, and proceed. **Don't** add a per-finding
-`provenance.flag` for every non-existent target ID — that just creates
-noise. `promote.py` will create the stub canonical entry on first use.
+descriptive snake_case ID, explain the measured construct in file-level
+`notes`, and add a per-finding `provenance.flags` entry that its mapping
+requires review. A person maps or creates the target entry before the
+finding is approved; the id must therefore say plainly what it means.
 
 ### Use `VBCM` for VBCM analyses
 
@@ -767,10 +936,40 @@ sentence that names the intervention with `supports: method`.
 `global_aphasia`). A finding targets a syndrome only when the paper
 classified patients by type and the claim is about the type (lesion
 predicts Broca's aphasia; SVM separates anomic from conduction aphasia).
-A naming score, a fluency measure, a comprehension test — whatever the
-sample was called — targets the symptom. Naming deficits target
-`anomia` (not `naming`, `confrontation_naming` or `anomic_aphasia`);
-`object_naming` / `action_naming` only when the paper dissociates them.
+A test score — whatever the sample was called — targets the symptom
+**whose definition matches what the test measures**. Naming deficits
+target `anomia` (not `naming`, `confrontation_naming` or
+`anomic_aphasia`); `object_naming` / `action_naming` only when the paper
+dissociates them.
+
+### Map by definition, not by the word (target meaning)
+
+A target id is a label for a definition. Before you choose a target,
+read its definition (the `short_definition` and `assessment` given for
+each entry) and check that the paper's measure is what the definition
+describes. The same word in the paper is not enough:
+
+- **Fluency** names different constructs. Verbal (word-generation)
+  fluency tasks — letter or category fluency — measure lexical retrieval
+  under time pressure. Connected-speech fluency measures rate, length
+  and amount of spontaneous speech. A clinical fluent / non-fluent
+  classification is a syndrome-level judgement. Map each to the entry
+  whose definition describes it; do not map one to another because they
+  share a word.
+- **Severity** may be an overall battery score, one subtest, or a
+  clinician's rating; record the instrument as the paper describes it.
+- **Recovery** may be a follow-up score or a change score (see `claim`).
+
+If no entry's definition fits the paper's measure, use a forward-looking
+id that names the construct as measured (e.g. `verbal_fluency_task`) and
+add a flag that a person should decide the mapping. When an existing
+entry is close but not equivalent, prefer the forward-looking id with a
+flag over a confident wrong mapping.
+
+`instrument` is optional. When you fill it, describe the measure as the
+paper does (its subtests and range, e.g. a 0–30 composite of three
+subtests); never invent a `score_band` or clinical cut-off the paper
+does not give.
 
 ### Behavioural-only findings inside an fMRI paper
 
@@ -794,14 +993,19 @@ and full `imaging_details`.
 ### Splitting findings when one paper's analyses disagree
 
 When the same paper reports a positive finding under one analytic
-choice (e.g., voxel-level FWE-corrected) and a null under another
-(e.g., ROI-level with covariates), do **not** code as
-`direction: mixed`. Instead, split into two separate findings:
+choice (e.g., voxel-level FWE-corrected, or a regression without the
+baseline covariates) and a null under another (e.g., ROI-level with
+covariates, or the fully adjusted regression), do **not** code as
+`direction: mixed`, and never keep only the positive one. Split into two
+separate findings:
 
-  - One finding with the positive result (`direction: likely`) and
-    its specific method / threshold.
-  - A second finding with the null result (`direction: no_effect`)
-    and its specific method / threshold.
+  - One finding with the positive result (`direction: likely`), its
+    specific method / threshold, and a claim that names the model
+    ("in a model without baseline severity …").
+  - A second finding with the null result (`direction: no_effect`), its
+    model and covariates (`confounders_controlled`), and a claim worded
+    "no significant independent association was detected after
+    adjustment for …" — not "has no effect".
 
 Each finding carries its own statistics, region_definition, and
 source_passages. The `direction: mixed` value is reserved for cases

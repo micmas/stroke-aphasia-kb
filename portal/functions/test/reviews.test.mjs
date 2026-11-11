@@ -70,3 +70,18 @@ test('a branch that moved is retried on its new head; bad records are refused be
   assert.equal((await post({ records: [] })).status, 400);
   assert.equal(calls.length, 0);
 });
+
+test('a verdict must name the version of the draft it reviewed (REVIEW.md finding 10)', async () => {
+  const digest = `sha256:${'a'.repeat(64)}`;
+  const verdict = (extra) => ({ kind: 'verdict', id: 'drafts/regions/x__Y2020.md', verdict: 'approve', per_finding: [], ...extra });
+  calls.length = 0;
+  for (const bad of [{}, { draft_digest: 'abc', finding_ids: ['f1'] }, { draft_digest: digest }, { draft_digest: digest, finding_ids: 'f1' }, { draft_digest: digest, finding_ids: [1] }]) {
+    const res = await post(verdict(bad));
+    assert.equal(res.status, 400, JSON.stringify(bad));
+  }
+  assert.equal(calls.length, 0);                       // nothing written for a refused verdict
+  // one bad verdict in a batch refuses the whole send
+  assert.equal((await post({ records: [screen('C0001', 'include'), verdict({})] })).status, 400);
+  assert.equal(calls.length, 0);
+  assert.equal((await post(verdict({ draft_digest: digest, finding_ids: ['f1', 'f2'] }))).status, 200);
+});

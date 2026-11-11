@@ -1,6 +1,6 @@
 // cc/ and pdf/ serve the annotated PDFs from the bucket (PDFS binding): the file name is
-// checked, a missing object is 404, no binding is 503, If-None-Match gives 304, cc/ is cacheable
-// and pdf/ is not; the middleware refuses pdf/* without an Access token and lets cc/* through.
+// checked, a missing object is 404, no binding is 503, If-None-Match gives 304, cc/ serves only what the
+// build lists as public and nothing is cached; the middleware refuses pdf/* without an Access token and lets cc/* through.
 // Run: node --test portal/functions/test/
 import test from 'node:test';
 import assert from 'node:assert/strict';
@@ -18,15 +18,17 @@ function bucket(files) {
     },
   };
 }
-const files = { 'cc/Open2020_annotated.pdf': 'open', 'pdf/Closed2021_annotated.pdf': 'closed' };
-const env = { PDFS: bucket(files) };
+const files = { 'cc/Open2020_annotated.pdf': 'open', 'pdf/Closed2021_annotated.pdf': 'closed', 'cc/Revoked2019_annotated.pdf': 'still in the bucket' };
+// the build's public-pdfs.json, as the ASSETS binding serves it
+const assets = (list) => ({ async fetch(req) { const u = new URL(req.url); return u.pathname === '/public-pdfs.json' && list ? new Response(JSON.stringify({ files: list })) : new Response('nope', { status: 404 }); } });
+const env = { PDFS: bucket(files), ASSETS: assets(['Open2020_annotated.pdf']) };
 const req = (url, headers = {}) => new Request(url, { headers });
 
 test('cc/ and pdf/ serve the object with the right headers', async () => {
   let res = await cc({ request: req('https://p.test/cc/Open2020_annotated.pdf'), env, params: { path: ['Open2020_annotated.pdf'] } });
   assert.equal(res.status, 200);
   assert.equal(res.headers.get('Content-Type'), 'application/pdf');
-  assert.equal(res.headers.get('Cache-Control'), 'public, max-age=86400');
+  assert.equal(res.headers.get('Cache-Control'), 'no-store');
   assert.equal(await res.text(), 'open');
   res = await pdf({ request: req('https://p.test/pdf/Closed2021_annotated.pdf'), env, params: { path: ['Closed2021_annotated.pdf'] } });
   assert.equal(res.status, 200);
@@ -51,4 +53,16 @@ test('the middleware guards pdf/* like the API and lets cc/* through', async () 
   const refused = await middleware({ request: req('https://p.test/pdf/Closed2021_annotated.pdf'), env: envM, data: {}, next });
   assert.equal(refused.status, 401);
   assert.match(await refused.text(), /not signed in/);
+});
+
+test('cc/ serves only files the build lists as public, and fails closed (REVIEW.md finding 9)', async () => {
+  const get = (e, name) => cc({ request: req(`https://p.test/cc/${name}`), env: e, params: { path: [name] } });
+  // in the bucket (a delete failed) but no longer listed: not served
+  assert.equal((await get(env, 'Revoked2019_annotated.pdf')).status, 404);
+  // no allowlist in the build, or no ASSETS binding: nothing public is served
+  assert.equal((await get({ PDFS: bucket(files), ASSETS: assets(null) }, 'Open2020_annotated.pdf')).status, 404);
+  assert.equal((await get({ PDFS: bucket(files) }, 'Open2020_annotated.pdf')).status, 404);
+  // the private path does not depend on the list
+  const priv = await pdf({ request: req('https://p.test/pdf/Closed2021_annotated.pdf'), env: { PDFS: bucket(files) }, params: { path: ['Closed2021_annotated.pdf'] } });
+  assert.equal(priv.status, 200);
 });

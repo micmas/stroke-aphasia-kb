@@ -77,11 +77,24 @@ canonical folders. The button starts a workflow; it does not write.
 email before the portal's code runs; the API checks the signed token
 again and stamps every record with that email.
 
-**Licences decide what is public.** Annotated PDFs of Creative-Commons
-papers (`screening/licences.yaml`: `cc`, `cc_manuscript`) are served
-openly on the `cc/` path and linked from the explorer; all other annotated
-PDFs need the sign-in. Source PDFs are never published; `papers/` stays
-local.
+**Licences decide what is public.** Annotated PDFs of papers whose
+published version is Creative Commons (`screening/licences.yaml`: `cc`)
+are served openly on the `cc/` path and linked from the explorer. A
+`cc_manuscript` paper (only the accepted manuscript is openly licensed)
+stays behind the sign-in, because the copy in `papers/` may be the
+publisher's version, until a person checks that file and runs
+`python scripts/publish_portal.py --confirm-public-copy @Key --by <name>`
+(open both the source PDF and its annotated copy first): that records
+the checksums of both files, and changing either one later, including
+re-annotating it, makes it private again. All other annotated PDFs need the sign-in. The open path
+serves only the files the current build lists in `public-pdfs.json`, and
+public responses are not cached, so a licence correction takes effect at
+the next deploy even if removing the object from the bucket failed
+(`--sync` keeps retrying such deletions, listed as `pending_deletions` in
+`portal/papers.json`, and exits with an error until they succeed).
+Source PDFs are not public: `papers/` stays local, except that the PDF
+of a paper awaiting full-text screening is uploaded to the private
+`pdf/` path so signed-in reviewers can read it.
 
 **The PDFs live in a bucket, not in git and not in the deployment.**
 `publish_portal.py --sync`, on the maintainer's machine, mirrors the

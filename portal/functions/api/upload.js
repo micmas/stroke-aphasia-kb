@@ -17,6 +17,13 @@ const PREFIX = 'uploads/';
 
 export const objectKey = (id) => `${PREFIX}${slug(id)}.pdf`;
 
+// What an upload may be for: a screening candidate (C0123) or a citation key (@Smith2020).
+// Anything else is refused here, and again by scripts/portal_import.py, which only places a
+// file for a candidate in the register or a key in citations.md, inside papers/.
+export const CANDIDATE_ID = /^C\d{1,7}$/;
+export const CITATION_KEY = /^@?[A-Za-z][A-Za-z0-9]{0,79}$/;
+export const validUploadId = (id) => CANDIDATE_ID.test(id) || CITATION_KEY.test(id);
+
 function describe(obj) {
   const m = obj.customMetadata || {};
   return { object: obj.key, id: m.id || obj.key.slice(PREFIX.length, -4), name: m.name || '', bytes: obj.size, by: m.by || '', uploaded: m.uploaded || (obj.uploaded ? new Date(obj.uploaded).toISOString() : ''), sha256: m.sha256 || '' };
@@ -47,6 +54,8 @@ export async function onRequestPost({ request, env, data }) {
   const name = String(url.searchParams.get('name') || '').trim().replace(/[^\w.() -]+/g, '_').slice(0, 120) || 'paper.pdf';
   const citation = String(url.searchParams.get('citation') || '').trim();
   if (!id) return Response.json({ error: 'id is required (the candidate id, or the citation key)' }, { status: 400 });
+  if (!validUploadId(id)) return Response.json({ error: 'id must be a candidate id (C0123) or a citation key (@Smith2020)' }, { status: 400 });
+  if (citation && !CITATION_KEY.test(citation)) return Response.json({ error: 'citation must be a citation key (@Smith2020)' }, { status: 400 });
   const declared = Number(request.headers.get('Content-Length') || 0);
   if (declared > MAX_BYTES) return Response.json({ error: `file too large (${Math.round(declared / 1048576)} MB; the limit is ${MAX_BYTES / 1048576} MB)` }, { status: 413 });
   const buf = await request.arrayBuffer();

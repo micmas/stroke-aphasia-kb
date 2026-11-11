@@ -31,9 +31,14 @@ What goes where (docs/PORTAL.md):
   portal/functions/                      Pages Functions: who is signed in, write a review to GitHub,
                                          uploads, cc/ and pdf/ from the bucket, the maintainer's Apply
 
-Which PDFs are public follows screening/licences.yaml (screen.py licences): categories
-`cc` and `cc_manuscript` are redistributable under their licence with the citation as
-attribution; `free_to_read`, `rights_reserved` and `unknown` are not and stay private.
+Which PDFs are public follows screening/licences.yaml (screen.py licences): `cc` (the published
+version is Creative Commons) is redistributable with the citation as attribution. `cc_manuscript`
+means only the accepted manuscript is: the file in papers/ may well be the publisher's version, so
+it stays private unless a person has confirmed that this exact file is the openly licensed copy
+(`publish_portal.py --confirm-public-copy @Key --by <name>`, which records the sha256 of the
+source PDF and of the annotated copy as `public_copy` in licences.yaml; changing either file later
+means private again).
+`free_to_read`, `rights_reserved` and `unknown` always stay private.
 """
 from __future__ import annotations
 
@@ -59,7 +64,8 @@ DIST = PORTAL / "dist"
 PAPERS = ROOT / "papers"
 INDEX = PORTAL / "papers.json"
 ABSTRACTS_OBJECT = "private/abstracts.jsonl"
-PUBLIC_CATEGORIES = ("cc", "cc_manuscript")
+PUBLIC_CATEGORIES = ("cc",)                  # public whatever copy of the paper we hold
+CONFIRMABLE_CATEGORIES = ("cc_manuscript",)  # public only for a confirmed file (public_copy.sha256)
 
 
 def config() -> dict:
@@ -83,19 +89,100 @@ def git(*args) -> str:
         return ""
 
 
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def public_basis(key: str, rec: dict | None, papers_dir: Path) -> str | None:
+    """Why the annotated PDF of `key` may be served openly, or None (private).
+
+    `cc`: the published version is Creative Commons, so any copy may be shared. A
+    `cc_manuscript` paper only when licences.yaml carries a person's confirmation for the very
+    file we hold: public_copy.sha256 equal to the sha256 of papers/<Key>.pdf (the source the
+    annotated copy is made from). Everything else, and any doubt, is private."""
+    rec = rec or {}
+    cat = rec.get("category") or "unknown"
+    if cat in PUBLIC_CATEGORIES:
+        return "cc"
+    if cat in CONFIRMABLE_CATEGORIES and _confirmation_holds(key, rec.get("public_copy"), papers_dir):
+        return "confirmed_copy"
+    return None
+
+
+def _person(who) -> bool:
+    """human:<name> with a real name (not empty, not a model or agent tag)."""
+    who = str(who or "")
+    if not who.startswith("human:"):
+        return False
+    name = who[len("human:"):].strip()
+    return bool(name) and ":" not in name and name.lower() not in ("model", "agent", "legacy", "unnamed")
+
+
+def _confirmation_holds(key: str, copy, papers_dir: Path) -> bool:
+    """A person's public_copy confirmation is complete and still describes both files we hold: the
+    source papers/<Key>.pdf (sha256) and the annotated copy that would be published
+    (annotated_sha256). Re-annotating or replacing either file voids it until confirmed again."""
+    if not isinstance(copy, dict):
+        return False
+    if not (_person(copy.get("confirmed_by")) and str(copy.get("confirmed_on") or "").strip() and str(copy.get("version") or "").strip()):
+        return False
+    src = papers_dir / f"{key.lstrip('@')}.pdf"
+    ann = papers_dir / f"{key.lstrip('@')}_annotated.pdf"
+    want_src = str(copy.get("sha256") or "").lower()
+    want_ann = str(copy.get("annotated_sha256") or "").lower()
+    return bool(want_src and want_ann and src.is_file() and ann.is_file()
+                and _sha256(src) == want_src and _sha256(ann) == want_ann)
+
+
 def scan_pdfs(papers_dir: Path, lic: dict[str, dict]) -> dict[str, dict]:
-    """The annotated PDFs in papers/ as index entries: key → where it is served from (cc/ or pdf/ by
-    licence), category, size and sha256. Nothing is copied."""
+    """The annotated PDFs in papers/ as index entries: key → where it is served from (cc/ or pdf/,
+    see public_basis), category, size and sha256. Nothing is copied."""
     out: dict[str, dict] = {}
     if not papers_dir.is_dir():
         return out
     for pdf in sorted(papers_dir.glob("*_annotated.pdf")):
         key = "@" + pdf.stem[: -len("_annotated")]
-        cat = (lic.get(key) or {}).get("category") or "unknown"
-        sub = "cc" if cat in PUBLIC_CATEGORIES else "pdf"
-        out[key] = {"annotated": f"{sub}/{pdf.name}", "category": cat, "label": (lic.get(key) or {}).get("label"),
-                    "public": sub == "cc", "bytes": pdf.stat().st_size, "sha256": hashlib.sha256(pdf.read_bytes()).hexdigest()}
+        rec = lic.get(key) or {}
+        cat = rec.get("category") or "unknown"
+        basis = public_basis(key, rec, papers_dir)
+        sub = "cc" if basis else "pdf"
+        out[key] = {"annotated": f"{sub}/{pdf.name}", "category": cat, "label": rec.get("label"),
+                    "public": sub == "cc", "bytes": pdf.stat().st_size, "sha256": _sha256(pdf)}
+        if basis:
+            out[key]["public_basis"] = basis
     return out
+
+
+def confirm_public_copy(key: str, by: str, version: str = "accepted manuscript", papers_dir: Path = PAPERS,
+                        root: Path = ROOT, today: str | None = None) -> str:
+    """Record that papers/<Key>.pdf is the openly licensed copy of a cc_manuscript paper, and that
+    papers/<Key>_annotated.pdf (the file that would be published) is made from it: the person
+    has opened both. Writes public_copy {sha256, annotated_sha256, version, confirmed_by,
+    confirmed_on} into screening/licences.yaml; the next --sync serves it from cc/. Changing either
+    file afterwards makes it private again. Returns what was done."""
+    import licences as L  # noqa: WPS433
+    key = key if key.startswith("@") else f"@{key}"
+    by = str(by or "").strip()
+    if not _person(by if by.startswith("human:") else f"human:{by}"):
+        raise ValueError("--by must name a person")
+    path = root / "screening" / "licences.yaml"
+    papers = L.load(path)
+    rec = dict(papers.get(key) or {})
+    if rec.get("category") not in CONFIRMABLE_CATEGORIES:
+        raise ValueError(f"{key} is {rec.get('category') or 'not in licences.yaml'}; only {', '.join(CONFIRMABLE_CATEGORIES)} papers need a confirmed copy")
+    src = papers_dir / f"{key.lstrip('@')}.pdf"
+    ann = papers_dir / f"{key.lstrip('@')}_annotated.pdf"
+    for f in (src, ann):
+        if not f.is_file():
+            raise ValueError(f"no {f.name} in {papers_dir}: both the source and the annotated copy must be checked")
+    if not str(version or "").strip():
+        raise ValueError("--version must say which version the file is (e.g. accepted manuscript)")
+    rec["public_copy"] = {"sha256": _sha256(src), "annotated_sha256": _sha256(ann), "version": str(version).strip(),
+                          "confirmed_by": by if by.startswith("human:") else f"human:{by}",
+                          "confirmed_on": today or dt.date.today().isoformat()}
+    papers[key] = rec
+    L.save(path, papers)
+    return f"{key}: {src.name} ({rec['public_copy']['sha256'][:12]}…) confirmed as the {version} by {rec['public_copy']['confirmed_by']}"
 
 
 def _rel(p: Path) -> str:
@@ -111,7 +198,25 @@ def load_index(path: Path = INDEX) -> dict:
     data = json.loads(path.read_text(encoding="utf-8"))
     data.setdefault("papers", {}); data.setdefault("sources", {"keys": [], "files": []}); data.setdefault("abstracts", None)
     data.setdefault("fulltext", {})
+    data.setdefault("pending_deletions", [])
     return data
+
+
+def serves_publicly(entry: dict) -> bool:
+    """An index entry the cc/ route may serve: public, under cc/, and public for a reason this
+    version accepts (cc, or a person-confirmed copy). An index synced before cc_manuscript became
+    private still says public for those; they are not served."""
+    return bool(isinstance(entry, dict) and entry.get("public") and str(entry.get("annotated") or "").startswith("cc/")
+                and (entry.get("category") == "cc" or entry.get("public_basis") == "confirmed_copy"))
+
+
+def public_allowlist(index: dict) -> list[str]:
+    """File names under cc/ the deployed portal may serve (portal/dist/public-pdfs.json). Built on
+    every deploy, so revoking a paper takes effect at the next push even when deleting the R2
+    object failed; an object still waiting to be deleted is never listed."""
+    pending = set(index.get("pending_deletions") or [])
+    return sorted(Path(v["annotated"]).name for v in (index.get("papers") or {}).values()
+                  if serves_publicly(v) and v["annotated"] not in pending)
 
 
 def wrangler(*args, timeout: int = 600) -> subprocess.CompletedProcess:
@@ -157,40 +262,74 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
     old = load_index(index_path)
     new = scan_pdfs(papers_dir, lic)
     ups, dels, failed = [], [], []
+    # objects a previous sync could not delete: retried first, and kept until they are gone
+    # (an unpublished PDF must not stay reachable because one delete call failed)
+    pending: set[str] = set(old.get("pending_deletions") or [])
+    attempted: set[str] = set()          # deletes tried in this run (each object at most once)
 
     def do_put(obj: str, path: Path, ctype: str) -> bool:
         if dry:
             print(f"  would upload {obj} ({path.stat().st_size // 1024} KB)")
             return True
-        done = put(obj, path, ctype)
-        ok = getattr(done, "returncode", 0) == 0
+        try:
+            done = put(obj, path, ctype)
+            ok = getattr(done, "returncode", 0) == 0
+        except Exception as e:  # noqa: BLE001
+            done, ok = type("Failed", (), {"stderr": str(e)})(), False
+        if ok:
+            pending.discard(obj)             # wanted again and now uploaded: no longer to be deleted
         print(f"  {'↑' if ok else '✗'} {obj}" + ("" if ok else f": {(getattr(done, 'stderr', '') or '').strip()[-200:]}"))
         return ok
 
-    def do_delete(obj: str) -> None:
+    def do_delete(obj: str) -> bool:
         if dry:
             print(f"  would delete {obj}")
-            return
-        done = delete(obj)
-        print(f"  {'−' if getattr(done, 'returncode', 0) == 0 else '✗'} {obj}")
+            dels.append(obj)
+            return True
+        attempted.add(obj)
+        try:
+            done = delete(obj)
+            ok = getattr(done, "returncode", 0) == 0
+        except Exception as e:  # noqa: BLE001
+            done, ok = None, False
+            print(f"  ✗ {obj}: {e}")
+        if ok:
+            pending.discard(obj); dels.append(obj)
+        else:
+            pending.add(obj)
+        print(f"  {'−' if ok else '✗'} {obj}" + ("" if ok else f" (delete failed: kept in pending_deletions, retried at the next --sync)"
+                                                   + (f": {(getattr(done, 'stderr', '') or '').strip()[-200:]}" if done is not None else "")))
+        return ok
+
+    def unsure(obj: str) -> bool:
+        """The bucket may not hold what the index says: a delete of it failed earlier (pending)
+        or happened in this run. Such an object is uploaded again, never skipped as unchanged."""
+        return obj in pending or obj in dels
 
     for key, entry in list(new.items()):
         prev = old["papers"].get(key)
-        if prev and prev.get("sha256") == entry["sha256"] and prev.get("annotated") == entry["annotated"]:
+        if (prev and prev.get("sha256") == entry["sha256"] and prev.get("annotated") == entry["annotated"]
+                and not unsure(entry["annotated"])):
             continue
+        moved = bool(prev and prev.get("annotated") and prev["annotated"] != entry["annotated"])
+        revoked = moved and str(prev["annotated"]).startswith("cc/") and not entry["public"]
         if do_put(entry["annotated"], papers_dir / Path(entry["annotated"]).name, "application/pdf"):
             ups.append(key)
-            if prev and prev.get("annotated") and prev["annotated"] != entry["annotated"]:
-                do_delete(prev["annotated"]); dels.append(prev["annotated"])
+            if moved:
+                do_delete(prev["annotated"])
         else:
             failed.append(key)
-            if prev:
+            if revoked:
+                # no longer public: take the open copy down even though the private one failed to upload
+                do_delete(prev["annotated"])
+                new.pop(key, None)
+            elif prev:
                 new[key] = prev                      # the index stays truthful: the bucket still has the old file
             else:
                 new.pop(key, None)
     for key, prev in old["papers"].items():
-        if key not in new and prev.get("annotated"):
-            do_delete(prev["annotated"]); dels.append(prev["annotated"])
+        if key not in new and prev.get("annotated") and prev["annotated"] not in pending and prev["annotated"] not in dels:
+            do_delete(prev["annotated"])
     # full-text screening: the source PDF of each candidate awaiting assessment (no annotated copy yet)
     ft_files = fulltext_pdfs(papers_dir, new) if fulltext is None else fulltext
     ft_new: dict[str, dict] = {}
@@ -198,7 +337,7 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
         sha = hashlib.sha256(path.read_bytes()).hexdigest()
         entry = {"object": f"pdf/{cid}_fulltext.pdf", "sha256": sha, "bytes": path.stat().st_size, "file": path.name}
         prev = old["fulltext"].get(cid)
-        if prev and prev.get("sha256") == sha:
+        if prev and prev.get("sha256") == sha and not unsure(entry["object"]):
             ft_new[cid] = {**prev, "file": path.name}          # renamed in papers/: same bytes, no upload
         elif do_put(entry["object"], path, "application/pdf"):
             ft_new[cid] = entry; ups.append(cid)
@@ -207,8 +346,13 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
             if prev:
                 ft_new[cid] = prev
     for cid, prev in old["fulltext"].items():
-        if cid not in ft_new and prev.get("object"):
-            do_delete(prev["object"]); dels.append(prev["object"])
+        if cid not in ft_new and prev.get("object") and prev["object"] not in pending and prev["object"] not in dels:
+            do_delete(prev["object"])
+    # deletes left over from earlier syncs, last: an object that is wanted again (and was just
+    # uploaded, or failed to upload and stays pending, never served) is not deleted
+    wanted = {v["annotated"] for v in new.values() if v.get("annotated")} | {v["object"] for v in ft_new.values() if v.get("object")}
+    for obj in sorted(pending - wanted - attempted):
+        do_delete(obj)
     abstracts = old.get("abstracts")
     abs_path = abstracts_path or (ROOT / "screening" / "abstracts.jsonl")
     if abs_path.exists():
@@ -218,16 +362,22 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
                 abstracts = {"object": ABSTRACTS_OBJECT, "sha256": sha, "bytes": abs_path.stat().st_size,
                              "synced": dt.datetime.now().isoformat(timespec="minutes")}
     index = {"synced": old.get("synced") if dry else dt.datetime.now().isoformat(timespec="minutes"), "bucket": bucket,
-             "papers": new, "sources": source_pdfs(papers_dir), "fulltext": ft_new, "abstracts": abstracts}
+             "papers": new, "sources": source_pdfs(papers_dir), "fulltext": ft_new, "abstracts": abstracts,
+             "pending_deletions": sorted(old.get("pending_deletions") or []) if dry else sorted(pending)}
     if not dry:
-        index_path.write_text(json.dumps(index, indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
+        tmp = index_path.with_suffix(index_path.suffix + ".tmp")
+        tmp.write_text(json.dumps(index, indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
+        tmp.replace(index_path)                      # never a half-written index
     n_public = sum(1 for v in new.values() if v["public"])
     verb = ("to upload", "to delete") if dry else ("uploaded", "deleted")
     print(f"  bucket {bucket}: {len(ups)} {verb[0]}, {len(dels)} {verb[1]}, {len(failed)} failed · index: {n_public} public + {len(new) - n_public} private annotated PDFs, "
           f"{len(index['sources']['keys'])} source PDFs, {len(ft_new)} full texts to assess" + (" (dry run, index not written)" if dry else f" → {_rel(index_path)}"))
     if failed:
         print(f"  ⚠ not uploaded: {', '.join(failed)} — run --sync again")
-    return index
+    if index["pending_deletions"] and not dry:
+        print(f"  ⚠ {len(index['pending_deletions'])} object(s) could not be deleted and stay in pending_deletions "
+              f"(never listed as public; retried at the next --sync): {', '.join(index['pending_deletions'])}")
+    return {**index, "sync_failed": failed}
 
 
 def source_pdfs(papers_dir: Path) -> dict:
@@ -285,6 +435,30 @@ def screening_bundle(root: Path = ROOT, ta_limit: int = 300) -> dict:
             "reasons": data["reasons"], "stageLabels": data["stageLabels"],
             "queue": {"title_abstract": len(ta_ids), "title_abstract_total": sum(1 for r in rows.values() if r["stage"] in ("awaiting_ta", "unsure_ta")),
                       "full_text": len(ft_ids), "ranked": bool(rank_info)}}
+
+
+def _export_version(path: Path) -> dict:
+    try:
+        return (json.loads(path.read_text(encoding="utf-8")) or {}).get("version") or {}
+    except (OSError, ValueError):
+        return {}
+
+
+def export_is_current(ver: dict, root: Path = ROOT) -> bool:
+    """The drafts export was made from the files as they are now: its contentDigest equals the
+    digest export_webapp.version computes for the same statuses from the current tree."""
+    want = ver.get("contentDigest")
+    statuses = tuple(ver.get("statuses") or ())
+    if not want or not statuses:
+        return False
+    try:
+        import types
+        import export_webapp as EW  # noqa: WPS433
+        # version() reads only the files for the digest; the counts come from a stub
+        stub = types.SimpleNamespace(include=statuses, findings={}, regions=[], impairments=[], therapies=[], predictors=[])
+        return EW.version(root, stub).get("contentDigest") == want
+    except Exception:  # noqa: BLE001
+        return False
 
 
 def maintainers(root: Path = ROOT) -> list[str]:
@@ -352,13 +526,38 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
     print(f"  screening.json: {q['title_abstract']} of {q['title_abstract_total']} title/abstract records "
           f"({'prioritised order' if q['ranked'] else 'all'}) + {q['full_text']} full-text records")
     cfg = config()
+    drafts_export = _export_version(DIST / "export" / "stroke-aphasia-kb-drafts.json")
+    export_file = DIST / "export" / "stroke-aphasia-kb-drafts.json"
+    export_sha = _sha256(export_file) if export_file.exists() else None
     manifest = {"built": dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes"), "kbCommit": git("rev-parse", "--short", "HEAD"),
+                "buildId": f"{stamp}-{git('rev-parse', '--short', 'HEAD') or 'nogit'}", "exportDigest": drafts_export.get("contentDigest"),
+                "exportSha256": export_sha,
                 "kbDate": git("log", "-1", "--format=%cs"), "papers": pdfs, "sources": sources, "config": cfg,
                 "fulltext": {k: {"object": v.get("object"), "bytes": v.get("bytes")} for k, v in (index.get("fulltext") or {}).items()},
                 "pdfsSynced": index.get("synced"), "maintainers": maintainers(),
                 "counts": {"public": n_public, "private": len(pdfs) - n_public, "candidates": len(sb["candidates"]),
                            "sources": sum(1 for k in sources["keys"] if k not in pdfs), "sourceFiles": len(sources["files"])}}
     (DIST / "manifest.json").write_text(json.dumps(manifest, indent=1, sort_keys=True), encoding="utf-8")
+    # what each draft is, as built: a verdict carries its digest so the import can tell whether
+    # the draft changed after the reviewer opened it (review_binding.py, REVIEW.md #10)
+    # Only against an export made from these very files: a stale export would show reviewers one
+    # version and bind their verdicts to another. If they differ, no bindings: verdicts are refused.
+    import review_binding as RB  # noqa: WPS433
+    fresh = export_is_current(drafts_export)
+    bindings = RB.drafts_bindings(ROOT) if fresh else {}
+    (DIST / "drafts.json").write_text(json.dumps({"built": manifest["built"], "kbCommit": manifest["kbCommit"], "buildId": manifest["buildId"],
+                                                  "exportDigest": manifest["exportDigest"] if fresh else None,
+                                                  "exportSha256": export_sha if fresh else None, "drafts": bindings},
+                                                 ensure_ascii=False, sort_keys=True), encoding="utf-8")
+    if fresh:
+        print(f"  drafts.json: review bindings for {len(bindings)} draft(s)")
+    else:
+        print("  ⚠ drafts.json: the drafts export is not from the current files (run scripts/export_webapp.py --include "
+              "approved,in_review,draft first): no review bindings, the portal will refuse draft verdicts")
+    # what cc/ may serve (portal/lib/pdfs.js checks every public request against it)
+    allow = public_allowlist(index)
+    (DIST / "public-pdfs.json").write_text(json.dumps({"built": manifest["built"], "files": allow}, indent=1), encoding="utf-8")
+    print(f"  public-pdfs.json: {len(allow)} annotated PDF(s) the open cc/ path may serve")
     (DIST / "_headers").write_text("/*\n  X-Robots-Tag: noindex\n  Cache-Control: no-cache\n", encoding="utf-8")
     return manifest
 
@@ -379,17 +578,31 @@ def _cli(argv=None) -> int:
     ap.add_argument("--project", default=None, help="Cloudflare Pages project name (default: portal.config.json)")
     ap.add_argument("--branch", default="main", help="Pages branch to deploy to (main = production)")
     ap.add_argument("--ta-limit", type=int, default=300, help="title/abstract records offered, in prioritised order (default 300)")
+    ap.add_argument("--confirm-public-copy", metavar="@KEY", help="a cc_manuscript paper: record that papers/<Key>.pdf is the openly licensed copy and <Key>_annotated.pdf is made from it — open both first (needs --by)")
+    ap.add_argument("--by", help="with --confirm-public-copy: the person who checked the file")
+    ap.add_argument("--version", default="accepted manuscript", help="with --confirm-public-copy: which version the file is")
     args = ap.parse_args(argv)
+    if args.confirm_public_copy:
+        try:
+            print("  " + confirm_public_copy(args.confirm_public_copy, args.by or "", args.version, papers_dir=args.papers_dir))
+        except ValueError as e:
+            print(f"  ✗ {e}")
+            return 1
+        print("  Run --sync to serve it from cc/, then commit screening/licences.yaml and portal/papers.json.")
+        return 0
     if args.sync:
         bucket = args.bucket or config().get("pdfsBucket")
         if not bucket:
             print("  no bucket: pass --bucket or set pdfsBucket in portal/portal.config.json")
             return 1
         print(f"Syncing annotated PDFs from {args.papers_dir} to the R2 bucket {bucket}")
-        sync_pdfs(args.papers_dir, bucket, dry=args.dry_run)
+        result = sync_pdfs(args.papers_dir, bucket, dry=args.dry_run)
+        incomplete = bool(result.get("sync_failed")) or (bool(result.get("pending_deletions")) and not args.dry_run)
         if not args.deploy:
             print("  Commit portal/papers.json and push: the portal rebuilds from the push (or build here: publish_portal.py --deploy).")
-            return 0
+            return 1 if incomplete else 0
+    else:
+        incomplete = False
     print(f"Assembling the review portal in {DIST.relative_to(ROOT)}/")
     manifest = build(args.ta_limit)
     print(f"  KB {manifest.get('kbCommit') or '?'} · {len(manifest.get('papers') or {})} annotated PDFs · built {manifest.get('built')}")
@@ -399,9 +612,12 @@ def _cli(argv=None) -> int:
         if not project:
             print("  no project name: pass --project or set pagesProject in portal/portal.config.json")
             return 1
-        return deploy(project, args.branch)
+        rc = deploy(project, args.branch)
+        if incomplete:
+            print("  ⚠ deployed, but the sync was incomplete (see above): exit 1")
+        return rc or (1 if incomplete else 0)
     print("  Deploy with: python scripts/publish_portal.py --deploy   (or: cd portal && npx wrangler pages deploy dist)")
-    return 0
+    return 1 if incomplete else 0
 
 
 if __name__ == "__main__":

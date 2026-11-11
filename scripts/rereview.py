@@ -143,13 +143,16 @@ def run(buckets, entry_ids, execute: bool, by: str | None, root: Path = ROOT) ->
         return 2
     today = dt.date.today().isoformat()
     items = plan(entries, root / "drafts")
+    if execute and any(it['superseded'] for it in items):
+        print('Rereview blocked: a destination draft already exists. Reconcile it by hand; no findings were removed.', file=sys.stderr)
+        return 2
     moved = 0
     for it in items:
         fm, p, b = it["fm"], it["path"], it["bucket"]
         n_f = len(fm.get("findings") or [])
         print(f"{b}/{p.name}  ({n_f} findings, approved by {fm.get('reviewer')!r} on {fm.get('reviewed_on')})")
         for dp, key, n in it["superseded"]:
-            print(f"  ✗ {n} finding{'s' if n != 1 else ''} for @{key} dropped: a fresh extraction is already waiting in {dp.relative_to(root).as_posix()}")
+            print(f"  ✗ {n} finding{'s' if n != 1 else ''} for @{key} blocked: a fresh extraction is already waiting in {dp.relative_to(root).as_posix()}")
         for dp, key, n in it["drafts"]:
             print(f"  → {dp.relative_to(root).as_posix()}  ({n} finding{'s' if n != 1 else ''}{'' if key else ', no citation'})")
         if not it["drafts"] and not it["superseded"]:
@@ -173,7 +176,7 @@ def run(buckets, entry_ids, execute: bool, by: str | None, root: Path = ROOT) ->
     else:
         n_drop = sum(n for it in items for _, _, n in it["superseded"])
         print(f"\nDry run: {len(items)} entr{'y' if len(items) == 1 else 'ies'} would move ({sum(len(it['drafts']) for it in items)} drafts"
-              + (f"; {n_drop} finding(s) dropped as superseded by fresh drafts" if n_drop else "") + "). Add --execute --by <name>.")
+              + (f"; {n_drop} finding(s) blocked by existing drafts" if n_drop else "") + "). Add --execute --by <name>.")
     return 0
 
 

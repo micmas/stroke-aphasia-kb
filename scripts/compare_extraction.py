@@ -45,7 +45,7 @@ ROOT = HERE.parent  # repository root (this file lives in scripts/)
 
 from aphasia_kb import _validate_v2_entry, parse_markdown  # noqa: E402
 
-BUCKETS = ("regions", "impairments", "therapies", "predictors")
+from pipeline_files import BUCKETS
 STRENGTH_RANK = {"weak": 1, "moderate": 2, "strong": 3, "definitive": 4}
 CONF_RANK = {"low": 1, "medium": 2, "high": 3}
 
@@ -156,6 +156,7 @@ def _quote_check(findings: list[dict], papers_dir: Path) -> dict:
     total = 0
     lists: dict[str, list[str]] = {g: [] for g in counts}
     no_quotes: list[str] = []
+    missing_papers: set[str] = set()
 
     for f in findings:
         cite = (f.get("citation") or "")
@@ -171,6 +172,7 @@ def _quote_check(findings: list[dict], papers_dir: Path) -> dict:
                 cache[cite] = None
         paper = cache.get(cite)
         if paper is None:
+            missing_papers.add(cite)
             continue
         for sp in sps:
             raw = (sp.get("quote") or "").strip()
@@ -184,7 +186,7 @@ def _quote_check(findings: list[dict], papers_dir: Path) -> dict:
     return {"total": total, **counts,
             "absent_list": lists["absent"], "anchored_list": lists["anchored"],
             "near_list": lists["near"], "table_list": lists["table"],
-            "no_quotes": no_quotes}
+            "no_quotes": no_quotes, "missing_papers": sorted(missing_papers)}
 
 
 def _summarise(label: str, paths: list[Path], findings: list[dict],
@@ -350,7 +352,11 @@ def main(argv=None) -> int:
     print("\n" + "=" * 76)
     if not q["total"]:
         print("? No candidate quotes to verify — check the drafts by hand.")
-        return 0
+        return 2
+
+    if q.get("missing_papers"):
+        print("? Source PDFs are missing; quote fidelity is ungraded.")
+        return 2
 
     print(f"Baseline for comparison: the curated entries for this paper "
           f"score {rq['absent']}/{rq['total']} absent "
@@ -361,21 +367,9 @@ def main(argv=None) -> int:
               "fidelity is sound.")
         print("  Now read the claims above — coverage and wording are "
               "what's left to judge, and only you can.")
-    elif cand["_abspct"] <= max(ref["_abspct"] + 5, 5):
-        print(f"~ {q['absent']} candidate quote(s) absent "
-              f"({cand['_abspct']:.0f}%), in line with the curated "
-              f"baseline.")
-        print("  Probably PDF-extraction noise rather than fabrication, "
-              "but spot-check the listed quotes.")
     else:
-        print(f"✗ {q['absent']} of {q['total']} candidate quotes "
-              f"({cand['_abspct']:.0f}%) had no match in the PDF — "
-              f"materially worse than the curated baseline.")
-        print("  Suspect truncation FIRST: did the extraction run print a "
-              "num_ctx warning? A model shown half a paper will "
-              "confabulate the rest.")
-        print("  If context was fine, this model is not safe for "
-              "extraction.")
+        print(f"✗ {q['absent']} candidate quote(s) were not located. Human source checking is required; the baseline does not excuse absent passages.")
+        return 1
     return 0
 
 

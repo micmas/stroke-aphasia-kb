@@ -6,7 +6,7 @@ Every entry is a single markdown file with **YAML frontmatter** followed by
 Changing field names or controlled vocabularies should be a deliberate,
 documented change to *this file* and the loader together.
 
-> **Status note.** Schema v1 → v2.0 → v2.1 → v2.2 → v2.3 → **v2.4** (current).
+> **Status note.** Schema v1 → v2.0 → v2.1 → v2.2 → v2.3 → **v2.4** → v2.5 → v2.6 → v2.7 → **v2.8** (current).
 >
 > - **v2.0** introduced the rich finding object (method/sample/stats/etc.).
 > - **v2.1** made `source_passages` required and added `imaging_details`
@@ -87,7 +87,7 @@ documented change to *this file* and the loader together.
 
 | Field            | Type    | Required | Notes |
 |------------------|---------|----------|-------|
-| `schema_version` | int     | yes      | Must be `2`. |
+| `schema_version` | number or string | yes | New entries use `2.8`; older v2 versions remain readable. |
 | `id`             | string  | yes      | Stable join key, lowercase, dash-or-underscore-separated. |
 | `name`           | string  | yes      | Human-readable name. |
 | `aliases`        | list    | no       | Other names that should resolve to this entry. |
@@ -416,7 +416,7 @@ findings.
 > bucket types, changed required-ness) DO require a version bump.
 
 ```
-schema_version    = 2 | 2.1 | 2.2 | 2.3 | 2.4 | 2.5 | 2.6 | 2.7 (current)
+schema_version    = 2 | 2.1 | 2.2 | 2.3 | 2.4 | 2.5 | 2.6 | 2.7 | 2.8 (current)
 phase             = hyperacute | acute | early_subacute | late_subacute
                   | chronic | mixed | longitudinal | not_reported   # v2.6
 lesion_mapping.analysis = univariate | multivariate | region_based | network
@@ -506,12 +506,10 @@ but new entries should use the prefixed form.
 ### Forward-looking target IDs (decided 2026-05-01)
 
 **Draft findings may target IDs that don't yet exist as canonical
-entries.** When `promote.py` first encounters a target ID that has
-no corresponding file in `regions/`, `impairments/`, `therapies/`, or
-`predictors/`, it creates a stub entry on first use rather than
-rejecting the draft. Agents should pick descriptive snake_case IDs
-(e.g., `left_heschls_gyrus`, `agrammatism`) and let the reviewer flesh
-out the canonical file at promotion time.
+entries.** Promotion writes or merges the reviewed entry itself; it does
+not create target stubs. Agents should pick descriptive snake_case IDs
+(e.g., `left_heschls_gyrus`, `agrammatism`). A reviewer must resolve missing
+target entries through the normal draft/review process.
 
 ### Cross-paper cohort overlap (decided 2026-05-01)
 

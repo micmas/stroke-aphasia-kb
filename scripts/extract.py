@@ -68,6 +68,7 @@ import time
 from pathlib import Path
 
 import yaml
+from strict_data import load_yaml, load_json
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
@@ -233,23 +234,22 @@ def _extracted_citation_keys(kb_root: Path) -> set[str]:
 
 
 def _existing_kb_summary(kb_root: Path) -> str:
-    """Build a compact list of region/impairment/therapy/predictor IDs
-    already in the canonical folders, for the prompt."""
+    """Supply target meanings, not just names (never include prior findings)."""
     parts = []
     for bucket in ("regions", "impairments", "therapies", "predictors", "reviews"):
-        ids = []
-        d = kb_root / bucket
-        if d.is_dir():
-            for f in sorted(d.glob("*.md")):
-                # Read just the YAML frontmatter to get the id
-                try:
-                    text = f.read_text()
-                    m = re.search(r"^id:\s*(\S+)", text, flags=re.MULTILINE)
-                    if m:
-                        ids.append(m.group(1))
-                except Exception:
-                    continue
-        parts.append(f"{bucket}: " + ", ".join(ids) if ids else f"{bucket}: (none)")
+        parts.append(f"{bucket}:")
+        for path in sorted((kb_root / bucket).glob("*.md")):
+            entry = _canonical_entry(kb_root, bucket, path.stem)
+            if not entry.get("id"):
+                continue
+            definition = entry.get("short_definition") or entry.get("short_description") or ""
+            definition = " ".join(str(definition).split())
+            assessment = entry.get("assessment") or []
+            if isinstance(assessment, list):
+                assessment = "; ".join(str(x) for x in assessment)
+            parts.append(f"- {entry['id']} ({entry.get('kind', bucket)}): "
+                         f"{entry.get('name', '')}. {definition}"
+                         + (f" Assessment: {assessment}" if assessment else ""))
     return "\n".join(parts)
 
 
@@ -259,7 +259,7 @@ def _existing_kb_summary(kb_root: Path) -> str:
 PROMPT_HEADER = """You are an extraction agent for an aphasia knowledge base.
 
 You read the paper below and produce one or more **draft KB entries**
-under schema v2.3. Your output will be saved as markdown files in
+under schema v2.8. Your output will be saved as markdown files in
 `drafts/<bucket>/` for human review.
 
 # Output format (REQUIRED)
@@ -388,9 +388,13 @@ The complete workflow is in docs/EXTRACTION_SKILL.md (below). Key rules:
    (anomic_aphasia, brocas_aphasia, …) only when the paper classified
    patients by syndrome and the claim is about the type. A measured
    deficit targets the symptom entry whatever the sample was called:
-   naming → anomia; fluency → fluency; comprehension → form_to_meaning;
+   naming → anomia; comprehension → form_to_meaning;
    sentence processing → syntactic_processing. Never use `naming` or
    `confrontation_naming` as a target id.
+   Match the measured construct to the target DEFINITION, not its name.
+   Word-generation fluency, connected-speech fluency, and the clinical
+   fluent/nonfluent classification are not interchangeable. If no target
+   definition fits, use a clearly flagged proposed ID, not a nearby concept.
 
 # Existing KB entries you can target
 
@@ -417,6 +421,43 @@ PDF filename: {pdf_filename}
 Page count: {page_count}
 
 {paper_text}
+
+# Final evidence checklist — apply to every finding before returning JSON
+
+- Read the full Results and relevant tables before writing the claim.
+  Identify each model's outcome, predictors, covariates and time point.
+  If a restricted model is significant but an adjusted model is not,
+  the claim MUST state both and name the adjustment. Do not bury the
+  adjusted result only in limitations. Nonsignificance does not prove
+  zero effect. Never call a multi-predictor model univariate/unadjusted.
+- Outcome level, change score, frequency and severity are different
+  constructs. Do not combine them into one unsupported claim.
+- Compare Abstract, Methods, Results and tables. Preserve conflicting
+  numbers with their locations in notes/provenance.flags; do not silently
+  pick one. Use actual sample/assessment windows when reported. Do not
+  infer missing reference space, imaging time point, or clinical cutoffs.
+- Copy short contiguous quotations with no ellipsis, stitched fragments
+  or translated symbols. Use the exact one-based === PAGE n === marker
+  containing the quote, not a journal page or a paragraph's starting page.
+  Label Abstract and figure captions honestly. Check each quotation
+  against that page, even when the same idea appears elsewhere.
+- Match target definitions and assessment constructs. A new unresolved
+  concept must be flagged, never silently mapped to the nearest label.
+- Every finding cites the supplied paper key. For review references,
+  verify author, year AND title against the paper's reference list and
+  citation register. Similar names are not interchangeable. Only genuine
+  primary studies belong in primary_papers_cited (file level); record
+  secondary references or unregistered identities in notes without
+  inventing registered keys. Narrative review strength defaults to weak.
+- Set confidence conservatively: unresolved source contradictions,
+  ambiguous measurements or target mappings require flags and medium
+  or low confidence. Confidence in extraction is not evidence strength.
+- Cover supported findings, including qualifications and null results;
+  do not improve apparent precision by returning no findings. Source
+  limitations are required. For predictor outcomes, describe the exact
+  instrument and score meaning without inventing a threshold.
+
+Return only the JSON object specified above.
 """
 
 
@@ -471,7 +512,9 @@ File level:  schema_version, id, name, kind, status, created_by,
              created_on, findings
 Each finding: id, target, target_kind, claim, direction, relationship,
              citation, method, design, strength, evidence_quality,
-             sample.n, source_passages, provenance
+             source_passages, provenance
+Primary empirical findings with patient samples also need sample.n.
+Narrative-review findings omit sample and statistics; do not invent a cohort.
 Each provenance block: extracted_by, extracted_on, paper_section,
              confidence, flags   (flags may be an empty list [])
 
@@ -656,11 +699,11 @@ def parse_response(raw: str) -> dict:
         for end_offset in range(len(candidate),
                                 max(0, len(candidate) - 100), -1):
             try:
-                return json.loads(candidate[:end_offset])
+                return load_json(candidate[:end_offset])
             except json.JSONDecodeError:
                 continue
     # Both attempts failed — raise on the repaired candidate for context.
-    return json.loads(_dejson_strays(raw[start:]))
+    return load_json(_dejson_strays(raw[start:]))
 
 
 # ============================================================
@@ -790,7 +833,8 @@ def _canonical_entry(kb_root: Path | None, bucket: str, entry_id: str | None) ->
         return {}
     m = re.match(r"^---\n(.*?)\n---", p.read_text(encoding="utf-8"), re.DOTALL)
     try:
-        return yaml.safe_load(m.group(1)) or {} if m else {}
+        data = load_yaml(m.group(1)) if m else {}
+        return data if isinstance(data, dict) else {}
     except Exception:  # noqa: BLE001
         return {}
 
@@ -840,11 +884,14 @@ def _normalize_findings(content: str, bucket: str,
     if not m:
         return content, notes
     try:
-        fm = yaml.safe_load(m.group(1)) or {}
+        fm = load_yaml(m.group(1)) or {}
     except Exception as e:  # noqa: BLE001
         return content, [f"frontmatter not parseable ({e}); left as written"]
     body = m.group(2)
-    changed = False
+    if not isinstance(fm, dict):
+        raise ValueError("frontmatter must be a mapping")
+    changed = "status" not in fm
+    fm.setdefault("status", "draft")
     # reviews/: one entry per review paper, id `<topic>__<Key>` like the
     # canonical ones — otherwise two reviews of the same topic (e.g. two
     # MIT reviews, both `melodic_intonation_therapy_review`) would be
@@ -879,6 +926,17 @@ def _normalize_findings(content: str, bucket: str,
     for f in fm.get("findings") or []:
         if not isinstance(f, dict):
             continue
+        if f.get("provenance") is None:
+            f["provenance"] = {}
+            changed = True
+        prov = f["provenance"]
+        if not isinstance(prov, dict):
+            raise ValueError("provenance must be a mapping")
+        if prov.get("flags") is None:
+            prov["flags"] = []
+            changed = True
+        if not isinstance(prov["flags"], list):
+            raise ValueError("provenance.flags must be a list")
         if f.get("author_limitations") is None:
             f["author_limitations"] = []
             prov = f.setdefault("provenance", {})
@@ -965,28 +1023,57 @@ def _normalize_findings(content: str, bucket: str,
 
 def save_drafts(drafts: list, kb_root: Path,
                 created_by: str = "agent:local-extract-cli",
-                citation: str | None = None) -> list[Path]:
-    saved = []
+                citation: str | None = None,
+                paper_text: str | None = None) -> list[Path]:
+    from pipeline_files import BUCKETS, safe_child, atomic_write
+    pending = {}
     for d in drafts:
         bucket = d["bucket"]
-        if bucket not in ("regions", "impairments", "therapies", "predictors", "reviews"):
-            print(f"  ⚠ skipping draft with invalid bucket={bucket!r}")
-            continue
+        if bucket not in BUCKETS:
+            raise ValueError(f"Invalid bucket: {bucket!r}")
         fname = d["filename"]
         stem, sep, suffix = fname[:-3].rpartition("__") if fname.endswith(".md") else ("", "", "")
         if citation and sep and _same_paper_key(suffix, citation):
-            fname = f"{stem}__{citation.lstrip('@')}.md"     # the file must carry the key it was given
-            print(f"  ⊙ {d['filename']} → {fname} (citation key as given)")
-        out = kb_root / "drafts" / bucket / fname
-        out.parent.mkdir(parents=True, exist_ok=True)
+            fname = f"{stem}__{citation.lstrip('@')}.md"
+        out = safe_child(kb_root / "drafts" / bucket, fname)
+        if out.exists() or out in pending:
+            raise ValueError(f"Refusing to overwrite existing/duplicate draft: {out}")
         content, notes = _repair_frontmatter(d["content"], created_by)
         content, more = _normalize_findings(content, bucket, citation, kb_root)
-        notes.extend(more)
-        out.write_text(content, encoding="utf-8")
-        saved.append(out)
-        suffix = f"   [{'; '.join(notes)}]" if notes else ""
-        print(f"  ✓ wrote {out.relative_to(kb_root)}{suffix}")
-    return saved
+        m = re.fullmatch(r"---\n(.*?)\n---\n?(.*)", content, re.DOTALL)
+        if not m:
+            raise ValueError(f"Missing frontmatter: {fname}")
+        fm = load_yaml(m.group(1))
+        if not isinstance(fm, dict) or not isinstance(fm.get("findings"), list) or not fm["findings"]:
+            raise ValueError(f"No findings in {fname}; keep empty placeholders outside the review queue")
+        fm["status"] = "draft"
+        for k in ("reviewer", "reviewed_on", "review_tier", "audited_by", "audited_on", "last_reviewed", "portal_reviews", "previous_review", "rereview_of"):
+            fm.pop(k, None)
+        for finding in fm["findings"]:
+            if not isinstance(finding, dict):
+                raise ValueError(f"Finding is not a mapping: {fname}")
+            finding.pop("review", None)
+            prov = finding.setdefault("provenance", {})
+            if not isinstance(prov, dict):
+                raise ValueError(f"provenance is not a mapping: {fname}")
+            # These are run facts, not facts to ask the language model to infer.
+            prov["extracted_by"] = created_by
+            prov["extracted_on"] = dt.date.today().isoformat()
+            if paper_text is not None:
+                from extraction_evidence import flag_evidence
+                flag_evidence(finding, paper_text)
+        pending[out] = "---\n" + yaml.safe_dump(fm, sort_keys=False, allow_unicode=True) + "---\n" + m.group(2)
+    # All names and YAML checked before creating any active draft.
+    written = []
+    try:
+        for out, content in pending.items():
+            atomic_write(out, content)
+            written.append(out)
+    except BaseException:
+        for out in written:
+            out.unlink(missing_ok=True)
+        raise
+    return written
 
 
 def validate_drafts(saved: list[Path]) -> int:
@@ -1113,7 +1200,9 @@ def process_one(pdf_path: Path, citation: str | None, model: str,
                       timeout=timeout)
     print(f"  Model call finished {dt.datetime.now():%H:%M:%S} "
           f"(took {_fmt_elapsed(time.monotonic() - t_model)})", flush=True)
-    raw_path = kb_root / f"_last_extraction_response_{pdf_path.stem}.txt"
+    raw_root = out_dir or kb_root
+    raw_root.mkdir(parents=True, exist_ok=True)
+    raw_path = raw_root / f"_last_extraction_response_{pdf_path.stem}.txt"
     raw_path.write_text(raw, encoding="utf-8")
 
     try:
@@ -1149,7 +1238,7 @@ def process_one(pdf_path: Path, citation: str | None, model: str,
 
     saved = save_drafts(drafts, out_dir or kb_root,
                         created_by=f"agent:ollama-extract-cli/{model}",
-                        citation=citation)
+                        citation=citation, paper_text=paper_text)
     n_issues = validate_drafts(saved)
     if n_issues:
         print(f"  ⚠ {n_issues} validation issue(s) — drafts saved anyway "

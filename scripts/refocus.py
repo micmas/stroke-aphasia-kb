@@ -110,7 +110,20 @@ def pending_marks(paths: list[Path]) -> list[tuple[Path, dict]]:
         for m in fm.get("reviewer_marks") or []:
             if isinstance(m, dict) and m.get("status", "pending") == "pending" and str(m.get("quote") or "").strip():
                 out.append((p, m))
-    return out
+    # Source marks are local to each draft; prompt tokens must be unique
+    # across the complete paper. Retain the local id for stamping later.
+    from collections import Counter
+    import hashlib
+    counts = Counter(str(m.get("id")) for _, m in out)
+    scoped = []
+    for path, mark in out:
+        m = dict(mark)
+        if counts[str(m.get("id"))] > 1:
+            m["_local_id"] = m["id"]
+            identity = f"{path.parent.name}/{path.name}:{m['id']}"
+            m["id"] = "m" + str(int(hashlib.sha256(identity.encode()).hexdigest()[:16], 16))
+        scoped.append((path, m))
+    return scoped
 
 
 def existing_summary(paths: list[Path]) -> str:
@@ -193,11 +206,17 @@ def merge(result: dict, citation: str, drafts: list[Path], marks: list[tuple[Pat
             touched.append(target)
             print(f"  ✓ {len(findings)} finding(s) appended to {_rel(target)}{'   [' + '; '.join(notes + more) + ']' if notes + more else ''}")
         else:
-            out = DRAFTS / bucket / (d.get("filename") or f"{fm_new.get('id')}__{key}.md")
+            from pipeline_files import safe_child
+            out = safe_child(DRAFTS / bucket, d.get("filename") or f"{fm_new.get('id')}__{key}.md")
             if out.exists():
                 out = out.with_name(f"{out.stem}_refocus.md")
             out.parent.mkdir(parents=True, exist_ok=True)
-            out.write_text(content, encoding="utf-8")
+            fm_new["status"] = "draft"
+            for k in ("reviewer", "reviewed_on", "review_tier", "audited_by"):
+                fm_new.pop(k, None)
+            for finding in findings:
+                finding.pop("review", None)
+            _write_draft(out, fm_new, body_new)
             touched.append(out)
             for f in findings:
                 for mid in re.findall(r"refocus:\s*(m\d+)", " ".join(str(x) for x in (f.get("provenance") or {}).get("flags") or [])):
@@ -209,7 +228,7 @@ def merge(result: dict, citation: str, drafts: list[Path], marks: list[tuple[Pat
     for p, m in marks:
         fm, body = parse_markdown(p)
         for mm in fm.get("reviewer_marks") or []:
-            if isinstance(mm, dict) and mm.get("id") == m.get("id"):
+            if isinstance(mm, dict) and mm.get("id") == m.get("_local_id", m.get("id")):
                 refs = produced.get(str(m.get("id")))
                 if refs:
                     mm["status"] = "done"

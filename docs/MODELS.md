@@ -25,7 +25,7 @@ is where quality is won or lost.
 | Role | What it does | What matters, in order | What matters less |
 |---|---|---|---|
 | `extract` | Reads a full paper (30–80K tokens) and emits draft entries with **verbatim** `source_passages`. | 1. Long-context recall — can it find and quote text from page 14 accurately? 2. Reliable structured JSON. 3. Calibration — not inflating `strength`/`confidence`. | Reasoning depth, coding, vision, speed. |
-| `review` | Short prompt, skeptical second opinion on a flagged draft. Can promote into the KB (with guardrails). | Judgement on a short context; honouring the JSON schema (decoding is schema-constrained, so this is mostly handled). | Context length. |
+| `review` | Independent second reading of the full paper and draft. May approve actual Tier A only. | Full-context fidelity, judgement and complete structured checks; a different tag from the extractor. | Extraction scores alone do not establish review performance. |
 | `rag` | Summarises KB entries it is handed into a narrative report. Nothing is written back. | Speed. Fluency. | Almost everything else — a small model is fine. |
 
 A model that is a better coder or reasoner is not automatically a better
@@ -254,9 +254,11 @@ as the incumbent on schema validity and calibration. Log the result in
 §5 either way, including the failures — a logged "tried X, fabricated
 quotes on paper Y" saves someone else an afternoon.
 
-For `review`, the bar is lower (schema-constrained output, short
-context, guardrails downgrade `override_approve` unless
-`--allow-local-override`). Reuse the extract model unless it is too slow.
+For `review`, the model receives the full paper and must use a different
+tag from the extractor. Only actual Tier A can be model-approved; the
+content-bound report must record unanimous independent agreement.
+`--allow-local-override` is deprecated and ignored. Extraction benchmarks
+do not validate a model as a reviewer.
 For `rag`, use the fastest model that writes acceptable prose.
 
 ---
@@ -273,7 +275,7 @@ Candidates for `extract` that satisfy the hard constraints and fit a
 
 | Tag | Arch | Weights (Q4) | Context | Why it is on the list | Caveat |
 |---|---|---|---|---|---|
-| `gemma4:26b` | MoE, 3.8B active | 16–19 GB | 256K | **Current default.** Fast (few active params), fits 32 GB. | Weakest long-context recall of the Gemma 4 workstation models: 44.1% on MRCR v2 8-needle 128k vs 66.4% for the 31B dense. That benchmark is the closest public proxy to "quote page 14 verbatim". |
+| `gemma4:26b` | MoE, 3.8B active | 16–19 GB | 256K | **Former extraction default; current review role.** Fast (few active params), fits 32 GB. | Weakest long-context recall of the Gemma 4 workstation models: 44.1% on MRCR v2 8-needle 128k vs 66.4% for the 31B dense. That benchmark is the closest public proxy to "quote page 14 verbatim". |
 | `gemma4:31b` | Dense | 19–20 GB | 256K | **Current extractor (2026-11-10).** Same family, markedly better long-context recall (66.4% MRCR). | Dense → noticeably slower per token than the 26B MoE. |
 | `gemma4:12b` | Dense | 7.7 GB | 256K | Fits 16 GB machines. | Lower quality; expect more review work. |
 | `qwen3.8:27b` | Dense | 18 GB | 256K | Newest Qwen; strong on "professional work / research" tasks; vision support irrelevant here. | No public long-context number on the Ollama page; measure it. |
@@ -355,3 +357,17 @@ Append one row per experiment. Keep failures; they are the useful part.
 - When you change `models.yaml`, add a §5 row in the same commit.
 - `ollama list` shows what is pulled and how much disk it takes;
   `ollama rm <tag>` removes a losing candidate.
+
+### Review-fix compatibility notes (11 November 2026)
+
+Published benchmarks now require the complete versioned `benchmark_manifest.json`
+paper set, all previously published papers, and one row per model and paper,
+including the incumbent. Empty outputs, ungraded quotes, empty references and
+incomplete paired baselines are ineligible. A subset run remains useful locally
+but cannot replace the public summary. Existing benchmark numbers have not been
+recomputed with the stricter quote matcher; two papers still do not establish
+performance across therapies, reviews and other study types.
+
+Run the offline regression suite with `python -m pytest tests -q` after installing
+`requirements-ci.txt`. Historical bug reproductions in `tests/review_reproductions.py`
+are for revision d190282 only and deliberately assert the former defects.

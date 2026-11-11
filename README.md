@@ -49,7 +49,9 @@ before October 2026 were drafted by Claude models over an API, a route
 the project no longer uses; they are marked as pre-policy and are being
 re-reviewed against the papers.
 
-Papers never leave the machine they are read on. The repository holds
+Extraction and model review run locally. Source and annotated PDFs may be
+shared through the project-controlled review portal under the access and
+licence rules in [GOVERNANCE](docs/GOVERNANCE.md). The repository holds
 findings, quotations and DOIs; never the PDFs.
 
 ## Quick start
@@ -92,7 +94,7 @@ explorer/             the public site (GitHub Pages)
 portal/               the private review portal (Cloudflare Pages)
 
 models.yaml           which local model does which job
-papers/               the PDFs — on your machine only, never committed
+papers/               the local PDFs — never committed; portal copies follow access/licence rules
 ```
 
 ## The other repositories
