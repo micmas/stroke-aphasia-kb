@@ -260,27 +260,68 @@ def _safe_name(name: str) -> str:
     return base if base.lower().endswith(".pdf") else base + ".pdf"
 
 
+CANDIDATE_ID = re.compile(r"^C\d{1,7}$")
+CITATION_KEY = re.compile(r"^@?[A-Za-z][A-Za-z0-9]{0,79}$")
+PAPER_FILE = re.compile(r"^[A-Za-z0-9][\w.() -]{0,200}\.pdf$")
+
+
+def _known_keys(state: dict) -> set[str]:
+    """Citation keys in citations.md, lower-cased without @ (loaded once per run)."""
+    if "citation_keys" not in state:
+        try:
+            state["citation_keys"] = {k.lstrip("@").lower() for k in S.citation_blocks()}
+        except Exception:  # noqa: BLE001
+            state["citation_keys"] = set()
+    return state["citation_keys"]
+
+
+def _inside_papers(name: str) -> tuple[Path | None, str]:
+    """papers/<name> when `name` is a plain PDF file name that stays inside papers/, else a reason.
+    Containment is checked on the resolved path, so a symlinked papers/ (OneDrive) still works."""
+    name = str(name or "")
+    if not PAPER_FILE.match(name) or name in (".", "..") or "/" in name or "\\" in name:
+        return None, f"not a plain PDF file name: {name!r}"
+    root = PAPERS.resolve()
+    dest = (PAPERS / name)
+    if dest.resolve().parent != root:
+        return None, f"{name!r} would land outside papers/"
+    return dest, ""
+
+
 def pdf_destination(rec: dict, state: dict) -> tuple[Path | None, dict | None, str]:
     """Where an upload belongs: papers/<Key>.pdf for a citation key or a candidate with a key,
-    papers/<cid>_<name> for a candidate without one (linked as its `pdf_file`)."""
+    papers/<cid>_<name> for a candidate without one (linked as its `pdf_file`).
+
+    The record is untrusted input (anyone admitted by Access can write one): the id must be a
+    candidate in the register or a key in citations.md, and every destination is a plain file
+    name inside papers/."""
     rid = str(rec.get("id") or "").strip()
     if not rid:
         return None, None, "skip: no id"
+    if not (CANDIDATE_ID.match(rid) or CITATION_KEY.match(rid)):
+        return None, None, f"skip: {rid!r} is neither a candidate id nor a citation key"
     cands = state.setdefault("candidates", S.load_candidates())
     c = next((x for x in cands if x.get("id") == rid), None)
-    if c is None and rid.startswith("@"):
-        return PAPERS / f"{rid.lstrip('@')}.pdf", None, ""
     if c is None:
-        c = next((x for x in cands if x.get("key") and x["key"].lstrip("@") == rid.lstrip("@")), None)
-        if c is None:
-            return None, None, f"skip: no candidate or citation {rid}"
+        c = next((x for x in cands if x.get("key") and str(x["key"]).lstrip("@").lower() == rid.lstrip("@").lower()), None)
+    if c is None:
+        if rid.startswith("@") and rid.lstrip("@").lower() in _known_keys(state):
+            dest, why = _inside_papers(f"{rid.lstrip('@')}.pdf")
+            return (dest, None, "") if dest else (None, None, f"skip: {why}")
+        return None, None, f"skip: no candidate or citation {rid}"
     if c.get("duplicate_of"):
         return None, c, f"skip: {rid} is a duplicate of {c['duplicate_of']}"
     if c.get("key"):
-        return PAPERS / f"{str(c['key']).lstrip('@')}.pdf", c, ""
-    if c.get("pdf_file"):
-        return PAPERS / str(c["pdf_file"]), c, ""
-    return PAPERS / f"{rid}_{_safe_name(rec.get('name'))}", c, ""
+        key = str(c["key"]).lstrip("@")
+        if not CITATION_KEY.match(key):
+            return None, c, f"skip: candidate {c.get('id')} has a malformed key {c['key']!r}"
+        name = f"{key}.pdf"
+    elif c.get("pdf_file"):
+        name = str(c["pdf_file"])
+    else:
+        name = f"{c['id']}_{_safe_name(rec.get('name'))}"
+    dest, why = _inside_papers(name)
+    return (dest, c, "") if dest else (None, c, f"skip: {why}")
 
 
 def apply_pdf(rec: dict, by: str, execute: bool, state: dict) -> str:

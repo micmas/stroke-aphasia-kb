@@ -208,7 +208,7 @@ class Import(unittest.TestCase):
         PI.FETCH["get"] = fake_get
         PI.FETCH["delete"] = lambda bucket, obj: deleted.append((bucket, obj)) or None
         try:
-            state: dict = {}
+            state: dict = {"citation_keys": {"jones2019", "lee2018"}}   # as if in citations.md
             rec = {"id": "C0001", "name": "smith.pdf", "bytes": len(pdf), "sha256": sha, "bucket": "b", "object": "uploads/c0001.pdf"}
             self.assertIn("would fetch", PI.apply_pdf(rec, "alex", False, state))
             msg = PI.apply_pdf(rec, "alex", True, state)
