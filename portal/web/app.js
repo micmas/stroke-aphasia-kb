@@ -26,7 +26,9 @@ const VOCAB = {
   target_kind: ['impairment', 'therapy', 'region', 'prognosis', 'predictor'],
   supports: ['claim', 'method', 'sample', 'statistics', 'confounders', 'region_definition', 'limitation', 'imaging_details'],
 };
-const state = { me: null, manifest: null, kb: null, bindings: {}, screening: null, mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
+import { carryOver, sameBuild } from './review-state.js';
+
+const state = { me: null, manifest: null, kb: null, bindings: {}, bindingProblem: '', screening: null, mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
 const MAX_UPLOAD = 60 * 1024 * 1024;
 
 // ---------------------------------------------------------------- helpers
@@ -47,6 +49,12 @@ const plural = (n, w, ws = `${w}s`) => `${n} ${n === 1 ? w : ws}`;
 const draftHref = (p) => `#/draft/${encodeURIComponent(p)}`;
 const store = { get: (k, d) => { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } }, set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* private window */ } }, del: (k) => { try { localStorage.removeItem(k); } catch { /* ignore */ } } };
 function toast(msg, err = false) { const t = h('div', { class: `toast${err ? ' err' : ''}`, text: msg }); document.body.append(t); setTimeout(() => t.remove(), err ? 6000 : 2500); }
+
+/** SHA-256 of the exact bytes fetched (the drafts export on screen must be the one the bindings were made for). */
+async function sha256Hex(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, '0')).join('');
+}
 
 async function api(path, init) {
   const res = await fetch(`/api/${path}`, { headers: { 'Content-Type': 'application/json' }, ...init });
@@ -293,8 +301,12 @@ function draftView(path) {
   const d = draftsIndex(state.kb).find((x) => x.path === path);
   if (!d) return h('p', { class: 'error', text: `No draft ${path} in this export (it may have been promoted or rejected since the portal was built).` });
   const key = `review:${path}`;
-  const r = store.get(key, { verdict: '', rationale: '', findings: {}, marks: [], comments: {} });
+  const bound = state.bindings?.[path];
+  // Decisions saved in this browser belong to the version of the draft they were made on: a
+  // changed draft starts afresh, the earlier state kept as `previous` for reference (review-state.js).
+  const { review: r, setAside } = carryOver(store.get(key, null), bound?.digest);
   const save = () => store.set(key, r);
+  if (setAside) save();
   const pdf = paperPdf(d.citation);
   state.draft = { path, d, r, save, pdf };
   const left = draftLeft(d, r, save, pdf, path);
@@ -314,6 +326,14 @@ function draftView(path) {
 
 function draftLeft(d, r, save, pdf, path) {
   const left = h('div', { class: 'left' });
+  if (r.previous) {
+    const p = r.previous;
+    const agreed = Object.entries(p.findings || {}).filter(([, x]) => x.verdict).map(([id, x]) => `${id} ${x.verdict}`).join(', ');
+    left.append(h('div', { class: 'notice' }, h('b', { text: 'This draft changed since you started reviewing it in this browser. ' }),
+      'Your earlier decisions were not carried over: review the current version. For reference, you had: ',
+      `${p.verdict ? `overall ${p.verdict}` : 'no overall verdict'}${agreed ? `; ${agreed}` : ''}${p.rationale ? `; note: “${p.rationale}”` : ''}. `,
+      h('button', { class: 'btn', text: 'Dismiss', onclick: () => { delete r.previous; save(); render(); } })));
+  }
   left.append(h('div', { class: 'page-head' }, h('h1', { text: entryName(d.entry) }), h('span', { class: 'chip', text: d.citation })),
     h('p', { class: 'small muted' }, `${path} · ${plural(d.findings.length, 'finding')} · `, h('a', { href: '#/drafts', text: 'all drafts' }), pdf ? '' : ' · no annotated PDF in the portal for this paper: review from the quotes, or ask the maintainer to add it'),
     h('p', { class: 'small' }, 'For each finding: does the paper show this? ', h('b', { text: 'agree' }), ' when the claim, direction and strength are what the passages say; ', h('b', { text: 'disagree' }), ' with a concern when not; ', h('b', { text: 'unsure' }), ' when you cannot tell. For each passage, say whether you checked it in the paper; what you leave as "not checked" stays open for another reviewer. Fix a field in place when the paper says otherwise (it is sent as an edit). Select words in the PDF to add a passage to a finding, or to mark something no finding covers.'));
@@ -384,7 +404,8 @@ function verdictPanel(d, r, save) {
     if (missing.length) { toast(`Say why you disagree on ${missing.map((f) => f.id).join(', ')}`, true); return; }
     if (!r.verdict && pending === total) { toast('Give an overall verdict for the draft', true); return; }
     const bound = state.bindings?.[d.path];
-    if ((r.verdict || pending) && !bound) { toast('This draft is not in the portal build any more (or the build is older than this page): reload, then review the current version', true); return; }
+    if (bound && r.digest && r.digest !== bound.digest) { toast('This draft changed while you were reviewing it: reload the page and review the current version', true); return; }
+    if ((r.verdict || pending) && !bound) { toast(state.bindingProblem || 'This draft is not in the portal build any more (or the build is older than this page): reload, then review the current version', true); return; }
     if (r.verdict === 'approve') {
       const notAgreed = d.findings.filter((f) => r.findings[f.id]?.verdict !== 'agree').map((f) => f.id);
       if (notAgreed.length) { toast(`To approve, agree with every finding (${notAgreed.join(', ')} not agreed), or choose "kept for more review"`, true); return; }
@@ -876,10 +897,20 @@ function render() {
 async function init() {
   const main = document.getElementById('main');
   try {
-    const [me, manifest, kb] = await Promise.all([api('me'), fetch('manifest.json').then((r) => r.json()), fetch('export/stroke-aphasia-kb-drafts.json').then((r) => r.json())]);
+    const fresh = { cache: 'no-store' };
+    const [me, manifest, kbText, bindings] = await Promise.all([api('me'), fetch('manifest.json', fresh).then((r) => r.json()),
+      fetch('export/stroke-aphasia-kb-drafts.json', fresh).then((r) => r.text()),
+      fetch('drafts.json', fresh).then((r) => (r.ok ? r.json() : null)).catch(() => null)]);
+    const kb = JSON.parse(kbText);
+    const kbSha = await sha256Hex(kbText).catch(() => '');
     state.me = me; state.manifest = manifest; state.kb = kb;
-    // what each draft was when this page was built: a verdict is sent with it (review binding)
-    state.bindings = await fetch('drafts.json').then((r) => (r.ok ? r.json() : null)).then((x) => x?.drafts || {}).catch(() => ({}));
+    // What each draft was when this page was built: a verdict is sent with it (review binding).
+    // The three files must come from the same build, and the export must be the one the bindings
+    // were computed against; anything mixed (a cached copy, a half-finished deploy) and no verdict
+    // can be sent: fail closed, ask for a reload.
+    const consistent = sameBuild(manifest, bindings, kb, kbSha);
+    state.bindings = consistent ? (bindings.drafts || {}) : {};
+    state.bindingProblem = consistent ? '' : 'The portal files loaded are not all from the same build: reload the page before sending a draft review.';
     try { const sent = store.get('screen:sent', {}); const built = manifest.built || ''; for (const [id, when] of Object.entries(sent)) if (built && String(when?.at || when) < built) delete sent[id]; store.set('screen:sent', sent); } catch { /* ignore */ }
     state.screening = await fetch('screening.json').then((r) => (r.ok ? r.json() : null)).catch(() => null);
     state.mine = await api('reviews').catch(() => ({ inbox: [], applied: [] }));

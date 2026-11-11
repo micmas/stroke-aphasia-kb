@@ -437,6 +437,30 @@ def screening_bundle(root: Path = ROOT, ta_limit: int = 300) -> dict:
                       "full_text": len(ft_ids), "ranked": bool(rank_info)}}
 
 
+def _export_version(path: Path) -> dict:
+    try:
+        return (json.loads(path.read_text(encoding="utf-8")) or {}).get("version") or {}
+    except (OSError, ValueError):
+        return {}
+
+
+def export_is_current(ver: dict, root: Path = ROOT) -> bool:
+    """The drafts export was made from the files as they are now: its contentDigest equals the
+    digest export_webapp.version computes for the same statuses from the current tree."""
+    want = ver.get("contentDigest")
+    statuses = tuple(ver.get("statuses") or ())
+    if not want or not statuses:
+        return False
+    try:
+        import types
+        import export_webapp as EW  # noqa: WPS433
+        # version() reads only the files for the digest; the counts come from a stub
+        stub = types.SimpleNamespace(include=statuses, findings={}, regions=[], impairments=[], therapies=[], predictors=[])
+        return EW.version(root, stub).get("contentDigest") == want
+    except Exception:  # noqa: BLE001
+        return False
+
+
 def maintainers(root: Path = ROOT) -> list[str]:
     """Emails marked `maintainer: true` in portal/reviewers.yaml: they see the Apply button."""
     path = root / "portal" / "reviewers.yaml"
@@ -502,7 +526,12 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
     print(f"  screening.json: {q['title_abstract']} of {q['title_abstract_total']} title/abstract records "
           f"({'prioritised order' if q['ranked'] else 'all'}) + {q['full_text']} full-text records")
     cfg = config()
+    drafts_export = _export_version(DIST / "export" / "stroke-aphasia-kb-drafts.json")
+    export_file = DIST / "export" / "stroke-aphasia-kb-drafts.json"
+    export_sha = _sha256(export_file) if export_file.exists() else None
     manifest = {"built": dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes"), "kbCommit": git("rev-parse", "--short", "HEAD"),
+                "buildId": f"{stamp}-{git('rev-parse', '--short', 'HEAD') or 'nogit'}", "exportDigest": drafts_export.get("contentDigest"),
+                "exportSha256": export_sha,
                 "kbDate": git("log", "-1", "--format=%cs"), "papers": pdfs, "sources": sources, "config": cfg,
                 "fulltext": {k: {"object": v.get("object"), "bytes": v.get("bytes")} for k, v in (index.get("fulltext") or {}).items()},
                 "pdfsSynced": index.get("synced"), "maintainers": maintainers(),
@@ -511,11 +540,20 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
     (DIST / "manifest.json").write_text(json.dumps(manifest, indent=1, sort_keys=True), encoding="utf-8")
     # what each draft is, as built: a verdict carries its digest so the import can tell whether
     # the draft changed after the reviewer opened it (review_binding.py, REVIEW.md #10)
+    # Only against an export made from these very files: a stale export would show reviewers one
+    # version and bind their verdicts to another. If they differ, no bindings: verdicts are refused.
     import review_binding as RB  # noqa: WPS433
-    bindings = RB.drafts_bindings(ROOT)
-    (DIST / "drafts.json").write_text(json.dumps({"built": manifest["built"], "kbCommit": manifest["kbCommit"], "drafts": bindings},
+    fresh = export_is_current(drafts_export)
+    bindings = RB.drafts_bindings(ROOT) if fresh else {}
+    (DIST / "drafts.json").write_text(json.dumps({"built": manifest["built"], "kbCommit": manifest["kbCommit"], "buildId": manifest["buildId"],
+                                                  "exportDigest": manifest["exportDigest"] if fresh else None,
+                                                  "exportSha256": export_sha if fresh else None, "drafts": bindings},
                                                  ensure_ascii=False, sort_keys=True), encoding="utf-8")
-    print(f"  drafts.json: review bindings for {len(bindings)} draft(s)")
+    if fresh:
+        print(f"  drafts.json: review bindings for {len(bindings)} draft(s)")
+    else:
+        print("  ⚠ drafts.json: the drafts export is not from the current files (run scripts/export_webapp.py --include "
+              "approved,in_review,draft first): no review bindings, the portal will refuse draft verdicts")
     # what cc/ may serve (portal/lib/pdfs.js checks every public request against it)
     allow = public_allowlist(index)
     (DIST / "public-pdfs.json").write_text(json.dumps({"built": manifest["built"], "files": allow}, indent=1), encoding="utf-8")

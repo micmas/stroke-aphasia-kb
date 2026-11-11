@@ -612,5 +612,27 @@ class ReviewBinding(unittest.TestCase):
         self.assertNotEqual(self.RB.review_digest(fm3), d)
 
 
+class BuildBinding(unittest.TestCase):
+    """The bindings in drafts.json are only made against a drafts export of the current files."""
+
+    def test_export_must_match_the_current_files(self):
+        import types
+        import export_webapp as EW
+        import publish_portal as PP
+        with tempfile.TemporaryDirectory() as d:
+            root = Path(d)
+            (root / "regions").mkdir(); (root / "regions" / "x.md").write_text("---\nid: x\n---\n")
+            (root / "drafts" / "regions").mkdir(parents=True)
+            draft = root / "drafts" / "regions" / "x__A2020.md"; draft.write_text(DRAFT)
+            (root / "citations.md").write_text("## @A2020\n")
+            stub = types.SimpleNamespace(include=("approved", "in_review", "draft"), findings={}, regions=[], impairments=[], therapies=[], predictors=[])
+            ver = EW.version(root, stub)
+            self.assertTrue(PP.export_is_current(ver, root))
+            draft.write_text(DRAFT.replace("strength: weak", "strength: strong"))        # edited after the export
+            self.assertFalse(PP.export_is_current(ver, root))
+            self.assertFalse(PP.export_is_current({**ver, "statuses": ["approved"]}, root))
+            self.assertFalse(PP.export_is_current({}, root))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)
