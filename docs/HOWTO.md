@@ -1,243 +1,160 @@
-# From a PDF to an approved entry
+# Prepare, extract and review papers
 
-This is the walk through one paper: it arrives as a PDF, a local model
-drafts its findings, the drafts are checked, a person (or, for routine
-findings, a second model) reads them against the paper, and what holds
-up is approved into the knowledge base. Six steps; the first three are
-mostly automatic and take minutes, the last three are where you spend
-judgement.
+Run commands from the repository root using `.venv/bin/python kb.py`.
+Install the environment using the [README](../README.md), and install the local
+models you intend to use in Ollama. See [Models](MODELS.md).
 
-Which papers get this treatment is decided before this page starts:
-papers are found and chosen under the screening protocol
-([SCREENING.md](SCREENING.md)), and `screen.py register` writes the
-bibliography entry for each one included. Every command here is listed
-with all its options in [COMMANDS.md](COMMANDS.md); the rules on who may
-approve what are in [GOVERNANCE.md](GOVERNANCE.md).
+Extraction inventories, reconciled text and approved KB findings are different
+outputs. The pipeline below preserves that distinction.
 
-Everything runs on your own machine. The paper's text goes to a local
-model through Ollama and nowhere else; there is no API key and no
-per-paper cost.
+## 1. Prepare verified sources
 
-## In short
+Select papers under the [screening protocol](SCREENING.md), register their
+citation keys and DOIs in `citations.md`, and place each main PDF in
+`papers/<Key>.pdf`. Check that title, authors, DOI and version match. A file being
+available locally does not establish permission to redistribute it.
+
+Create a new run manifest for your selected keys:
 
 ```bash
-cp ~/Downloads/Foo2024.pdf papers/
-python scripts/intake_papers.py --execute
-python scripts/extract.py --pdf papers/Foo2024.pdf
-python scripts/aphasia_kb.py --check drafts/
-python scripts/auto_review.py --all --llm-review --require-pdf-match
-python scripts/review_app.py --citation Foo2024
-python scripts/promote.py --approve drafts/<bucket>/<entry>__Foo2024.md --reviewer michele
-git add -A && git commit -m "Foo2024 extraction" && git push
+.venv/bin/python kb.py prepare \
+  --papers Paper2024 Another2025 \
+  --output _compare/my-batch/manifest.json
 ```
 
-The rest of this page says what each step does and what to look at.
+Replace the example keys with registered paper keys. Preparation writes the
+manifest but does not call a model. It records source hashes and licence metadata,
+resolves known filename aliases by DOI, and lists missing sources separately.
+Without `--papers`, preparation selects the entire registered bibliography; use
+that for a deliberate full-corpus run, not as a substitute for screening new papers.
 
-## 1. The PDF
+Use `--segment-chars 50000` when preparing a batch that needs bounded source
+sections. Every original text unit remains covered; no summaries replace omitted
+pages. Main-PDF appendices remain included, while separate supplementary files do
+not enter the workflow. Image-only content still needs visual checking.
 
-Drop it into `papers/` under any name. `papers/` is the OneDrive folder
-`calmar-papers` on the maintainer's machine and is never committed; the
-PDFs are copyright. Then:
+## 2. Extract independently
+
+Preview first:
 
 ```bash
-python scripts/intake_papers.py --execute
+.venv/bin/python kb.py extract \
+  --manifest _compare/my-batch/manifest.json \
+  --output-dir _compare/my-batch/extraction
 ```
 
-This gives the paper a bibliography entry if it has none (from its DOI,
-via Crossref), renames the file to `<Key>.pdf`, strips publisher cover
-sheets and OCRs scanned pages, so the extractor reads text and not
-pixels. Every step is a dry run without `--execute`, and every step is
-safe to repeat.
+Add `--run --continue-on-error` to start. By default the models are `gemma4:31b`
+and `qwen3.8:27b`, each with a 20,000-token output allowance. Override explicitly
+with `--models MODEL_A MODEL_B` and `--max-output-tokens 32000` when needed.
+The models run serially, each receiving source text without the other's answer.
 
-## 2. Extract
+The output retains both raw inventories, prompts, source IDs, hashes, settings,
+audit warnings and errors. Each completed pair retains the files needed for independent review. No KB draft
+is created or approved at this stage.
+
+Segmented extraction saves every section separately, then concatenates each
+model's records with unique IDs. It does not resolve cross-section dependencies
+or deduplicate overlapping findings. A failed section prevents that model's
+whole-paper output from being marked complete.
+
+## 3. Reconcile with a separate local model
+
+Finish or stop extraction with Ctrl-C before using the same local resources for
+review. Choose an installed reviewer distinct from both extraction models.
 
 ```bash
-python scripts/extract.py --pdf papers/Foo2024.pdf
+.venv/bin/python kb.py review \
+  --run-dir _compare/my-batch/extraction \
+  --output-dir _compare/my-batch/review \
+  --model YOUR_REVIEW_MODEL --limit 3
 ```
 
-The script reads the PDF, sends the extraction instructions
-([EXTRACTION_SKILL.md](EXTRACTION_SKILL.md)), the schema and the paper's
-text to the local model, and writes one draft per entry the paper speaks
-to into `drafts/<bucket>/<entry>__Foo2024.md`. It then highlights every
-quoted passage in a copy of the PDF, `papers/Foo2024_annotated.pdf`, and
-appends a line to `logs/extraction_log.md`. Expect 20–40 minutes per
-paper on the 31B model.
+This previews completed paper pairs only. Add `--run` to execute. Inspect the
+first three reviews before removing `--limit 3`. The script checks the extraction
+batch lock and refuses to run while that batch is active.
 
-**Which model.** The choice lives in `models.yaml`, one line per role:
-`extract` (the hard one: a 50 000-token paper in, structured findings
-out; currently Gemma 4 31B, `gemma4:31b`), `review` (the
-independent second reading; Gemma 4 26B) and `rag` (writes the report
-prose). [MODELS.md](MODELS.md) explains the choice and how to test a
-new candidate with `benchmark_models.py`. To try a model without
-editing anything: `APHASIA_LOCAL_MODEL=<tag> python scripts/extract.py …`,
-or `--pick-model` to choose from the models you have pulled. Every
-script prints which model it resolved and why.
+The reviewer first inventories the source without seeing either extraction. It
+then reconciles both outputs against the original text, records a decision for
+each original analysis, and accounts for every source-text unit. Both calls use
+a 20,000-token output allowance unless overridden. Model digest, prompts, settings,
+source hashes and raw responses are retained. Agreement is not evidence of truth.
 
-**Watching it run.** A background monitor prints one line when the
-model returns, e.g. `GPU offload min 100% / avg 100% · RAM peak 63% ✓
-stayed fully on GPU`. The number that matters is the GPU offload: below
-100 % the model has spilled to CPU and everything is ten times slower.
-If that happens, lower `num_ctx` for the role in `models.yaml` or use a
-smaller model. (`ollama ps` shows the same thing live; its CONTEXT
-column reflects whatever last used the model and does not limit these
-scripts, which set the context size on every request.)
+Review outputs include `inventory.json`, `decisions.json`, `coverage.json`,
+`audit.json`, `provisional-extraction.txt`, `visual-review-required.json` and
+`status.json`. All have provisional meaning and `approved: false`; no status means approved.
 
-**When something goes wrong**
+| Status | Meaning |
+|---|---|
+| `failed` | Input integrity, parsing, transport or generation failed. |
+| `requires_revision` | The reconciliation failed evidence, schema, coverage or decision checks. |
+| `requires_visual_review` | Deterministic checks passed; semantic accuracy and completeness are not certified. |
 
-| You see | It means | Do |
-|---|---|---|
-| `Couldn't reach Ollama` | the server is not running | `ollama serve` |
-| 404 on the model | not pulled | `ollama pull <tag>` |
-| "prompt filled num_ctx" | the paper was cut off | raise `--num-ctx` |
-| "0 drafts returned" | the model ignored the JSON contract, or the paper was cut off | read `_last_extraction_response_*.txt`; raise `--num-ctx` |
-| process killed, empty reply | out of memory | lower `--num-ctx` or use a smaller model |
-| "output hit num_predict" | the answer was cut off | raise `--max-tokens` |
-| very slow, `ollama ps` not `100% GPU` | the context no longer fits in memory | lower `num_ctx` in `models.yaml` |
+The reviewer is text-only. Figures, table geometry, image-only values and OCR
+fidelity still need checking against the PDF. The current reviewer also submits a
+whole-paper prompt: very long segmented papers may require a separate segmented
+reconciliation process, which is not yet implemented. Oversized inputs fail rather than being silently
+truncated; these papers remain extracted but not reconciled.
 
-Do one paper before a batch, to see the real timing on your machine.
+## 4. Verify, map and approve
 
-## 3. Check the drafts
+Read the main PDF, checking important tables and figures visually. Confirm sample
+sizes, model definitions, adjustment variables, timing, uncertainty, anatomical
+meaning, null results and source inconsistencies. Resolve evidence warnings and
+check for omissions shared by every model.
+
+Map reconciled findings into the [KB schema](schema.md), retaining unmatched
+findings rather than forcing an incorrect anatomical or outcome label. This
+mapping stage is currently a separate task; there is no automatic conversion from
+`inventory.json` to approvable KB drafts.
+
+Record the visual check in a separate `human-check.md` beside the paper's review
+outputs, with reviewer, date, source PDF hash, checked pages, unresolved issues and
+links to the resulting drafts. This is a manual audit record, not an automatically
+enforced approval stamp. Check:
+
+- Exact supporting quote and page for each claim and value.
+- Rendered tables and figures, including signs, coordinates and footnotes.
+- Sample size and denominator for each analysis.
+- Threshold, correction, covariates and model belonging to that analysis.
+- Direction, timing and the distinction between selection and significance.
+- Null results, qualifying findings and unmapped results retained explicitly.
+
+For existing KB drafts:
 
 ```bash
-python scripts/aphasia_kb.py --check drafts/
+.venv/bin/python kb.py drafts
+.venv/bin/python kb.py inspect --draft drafts/<collection>/<file>.md
+.venv/bin/python kb.py validate --check drafts/
 ```
 
-The validator names every file, finding and field that breaks the
-schema; the expected output is `issues: 0`. Fix what it names in your
-editor and run it again. Re-extracting a paper overwrites its drafts,
-so commit any hand edits first.
-
-## 4. Review
-
-Two automatic passes, then a person.
+Use the [approval policy](GOVERNANCE.md) and [portal](PORTAL.md) for approval and
+publication. Model reconciliation is not the delegated KB approval procedure.
+Nothing is promoted simply because a local review returned valid JSON. After
+source verification and mapping, an authorized human approver uses:
 
 ```bash
-python scripts/auto_review.py --all
-python scripts/auto_review.py --all --llm-review --require-pdf-match
+.venv/bin/python scripts/promote.py --approve drafts/<collection>/<file>.md --reviewer human:<name>
 ```
 
-The first pass runs deterministic checks on every draft (schema, every
-quote found in the PDF, no low-confidence findings, no "verify me"
-flags) and sorts it into a tier. Nothing is approved by these checks;
-they can only pass a draft on, defer it or reject it. The second pass
-is the second reading: an independent local model (a different model
-from the extractor, `review` in `models.yaml`) re-reads the paper's text
-and answers, finding by finding, whether each passage is there, supports
-the field it is tagged for, whether the relationship and strength are
-faithful, whether the numbers match and the authors' limitations are
-captured. Each draft gets a worksheet in `logs/auto_review/<draft>.yaml`.
+`kb.py status` reports the existing KB, not per-paper migration progress. Its
+historical missing-stamp hint is a compatibility diagnostic; the product wrapper
+intentionally refuses `--tag-legacy`. Do not stamp unchanged findings merely to
+clear that hint.
 
-**Tiers.** Tier A can be approved by the model: the draft adds findings
-to an existing region, impairment or predictor entry, every passage
-matched exactly, confidence is high or medium, there are no flags,
-strength is weak or moderate, and the evidence is primary quantitative
-data. Everything else is Tier B and waits for a person; that is always
-the case for therapies, ingredients, reviews, new entries, strong claims
-and anything flagged (including `abstract_only`).
+## Stop, resume and recover
 
-**How the model's approval is kept safe.** It counts only if the draft
-is Tier A, the reviewer model differs from the extractor, the paper's
-text was available, and three independent runs agree; a `reject` is
-always honoured; anything else is recorded and left for you. Everything
-that fires is written under `llm_review.guardrails` in the worksheet.
-A wrong approval is the most expensive mistake in the pipeline, so every
-net fails towards "a person looks".
+- Ctrl-C preserves completed papers and partial outputs. Repeat the identical
+  extraction command to reuse completed pairs. Incomplete/failed papers remain
+  skipped with `--continue-on-error` until explicitly retried.
+- After examining failures, `--retry-failed` archives and reruns failed paper pairs.
+  It does not reuse completed sections inside a failed segmented paper.
+- Changed source files, code or settings require a new manifest/output directory.
+  Never edit a completed run to make it appear to have used the new settings.
+- Output truncation may need a larger output budget or smaller source sections.
+  An oversized input needs segmentation; a larger output budget cannot fix it.
+- Review resumes only when saved inputs, code, settings and output hashes match.
+  Failed or interrupted reviews require a new output directory for retry.
 
-**Auditing.** After every twenty model approvals, or monthly, a person
-re-reads a random fifth (at least three) against the PDFs and logs
-`AUDIT | pass|fail`. One real failure pauses model approval
-(`--no-model-approve`) and sends the entries since the last clean audit
-back to a person. The report marks model-approved findings and can be
-told to use only human-approved ones.
-
-**The reading itself**, draft and paper side by side:
-
-```bash
-python scripts/review_app.py --draft drafts/<bucket>/<entry>__Foo2024.md
-```
-
-Findings on the left, every page of the paper on the right with the
-passages highlighted in the colour of what they support. Fix a quote,
-page or tag in place; remove a passage that does not say what the
-finding claims; change claim, direction, relationship, strength or
-confidence when the paper says otherwise. Drag across words in the paper
-to quote them into a finding. When you read something no finding covers,
-select it and mark it for re-extraction with a note; then
-
-```bash
-python scripts/refocus.py drafts/<bucket>/<entry>__Foo2024.md --execute
-```
-
-has the model write findings for exactly those passages, which land in
-the same draft for you to review. Saving stamps your name on each
-finding you changed, logs `REVIEW-EDITED` and regenerates the annotated
-PDF. A draft with a pending mark cannot be approved.
-
-Two things to check on every finding: the **target** (a naming score
-targets `anomia`; a syndrome such as `anomic_aphasia` only when the
-paper classified patients that way) and, for treatment findings, the
-**therapy** box, which names the intervention as the paper does.
-
-Collaborators do the same step in the browser through the review
-portal ([PORTAL.md](PORTAL.md)); their decisions arrive as records you
-apply with `portal_import.py`.
-
-## 5. Decide
-
-For a draft you have read:
-
-```bash
-python scripts/promote.py --approve drafts/<bucket>/<entry>__Foo2024.md --reviewer michele
-python scripts/promote.py --reject  drafts/<bucket>/<entry>__Foo2024.md --reviewer michele --reason "…"
-```
-
-For many deferred drafts at once, a worksheet: `auto_review.py --all
---emit-worksheet worksheet.yaml` lists each draft with its findings and
-their claim passages; you fill in `verdict: approve | agree_defer |
-reject` and a rationale (and, if you like, a note per finding), then
-`auto_review.py --apply-verdicts worksheet.yaml --reviewer michele` runs
-`promote.py` for each `approve`. The verdict must be spelled exactly
-`approve`.
-
-`promote.py` is the only way into the approved folders. It validates
-once more, stamps `status: approved`, your name, the date, the tier and
-a `review` block on every finding, moves the draft into its bucket (or
-merges its findings into the entry that already exists, renumbering
-them), removes the draft and writes an `APPROVED` line to the log. It
-refuses the automatic checker, a model on Tier B, and a model reviewing
-its own extraction.
-
-## 6. Check and commit
-
-```bash
-python scripts/aphasia_kb.py --check
-git status
-git add -A && git commit -m "Foo2024 extraction (3 approved, 1 rejected)" && git push
-```
-
-`--check` over the whole KB confirms the merged entries are still
-valid. `git status` should show the new or changed entry, the removed
-draft, the log and `citations.md`; never anything under `papers/`. The
-annotated PDF reaches reviewers through the portal's bucket
-(`publish_portal.py --sync`, then commit `portal/papers.json`), not
-through git.
-
-## If something is odd
-
-- **The model never approves anything.** Look at the worksheet's
-  `tier_reasons`: most often a new entry id or `strength: strong` makes
-  the draft Tier B, or the reviewer tag equals the extractor's, or the
-  PDF was missing, or the three votes disagreed. All of these are by
-  design.
-- **Everything defers after a run.** Usually the extraction, not the
-  review: a `num_ctx` truncation warning means the paper was cut off,
-  and a cut-off paper yields plausible drafts whose quotes don't match.
-- **`pdf_quote_match` is `null`.** The source PDF is not on this
-  machine; the annotated copy alone is not enough for that check.
-- **Re-extracting lost my edits.** Drafts are rewritten by
-  `extract.py`; commit hand edits before re-extracting.
-- **`OLLAMA_HOST` points somewhere else.** The scripts warn, but the
-  warning is easy to miss in a batch. `echo $OLLAMA_HOST`; it should be
-  unset or local.
-- **`promote.py --approve` refuses.** Run the validator on that one file;
-  it names the broken field.
+A full-corpus migration is complete only when replacements have passed the same
+review and approval requirements. Track pending work by processing stage; do not
+create a permanent lower-quality category or relabel old findings as newly reviewed.
