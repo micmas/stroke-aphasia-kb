@@ -333,7 +333,11 @@ def _approve_locked(args):
             f"{fm.get('id')} | reviewer: {args.reviewer}{extra}\n")
     from promotion_transaction import commit
     text = '---\n' + yaml.safe_dump(output_fm, sort_keys=False, allow_unicode=True) + '---\n' + output_body
-    commit(ROOT, draft, canonical, text, LOG, line)
+    opinions = fm.get('portal_reviews') or []
+    latest = opinions[-1] if opinions and isinstance(opinions[-1], dict) else {}
+    record_ids = ([latest['record']] if latest.get('record') and not latest.get('stale')
+                  and latest.get('by') == args.reviewer and latest.get('verdict') == 'approve' else [])
+    commit(ROOT, draft, canonical, text, LOG, line, record_ids=record_ids)
     print(message)
     print(f"  logged: {line.strip()}")
 

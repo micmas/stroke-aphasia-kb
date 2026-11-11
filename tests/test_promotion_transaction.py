@@ -18,12 +18,15 @@ def test_retry_after_canonical_write_does_not_duplicate(tmp_path):
             raise OSError('disk failure')
         write(path, text)
     with patch.object(T, 'atomic_write', fail_log), pytest.raises(OSError):
-        T.commit(tmp_path, draft, canonical, 'one finding', log, 'approved\n')
+        T.commit(tmp_path, draft, canonical, 'one finding', log, 'approved\n', record_ids=['portal-test.json'])
     assert draft.exists() and canonical.read_text() == 'one finding'
     assert T.recover_pending(tmp_path, draft)
     assert not draft.exists() and canonical.read_text() == 'one finding'
     assert log.read_text().count('approved') == 1
     assert not T.recover_pending(tmp_path, draft)
+    import json
+    journal = next((tmp_path / 'logs/promotion_transactions').glob('*.json'))
+    assert json.loads(journal.read_text())['record_ids'] == ['portal-test.json']
     draft.write_text('draft')
     with pytest.raises(ValueError, match='already promoted'):
         T.commit(tmp_path, draft, canonical, 'duplicate', log, 'approved\n')

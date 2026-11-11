@@ -37,13 +37,14 @@ def recover(root, journal):
     atomic_write(journal, json.dumps(record, indent=2) + '\n')
 
 
-def commit(root, draft, canonical, text, log, line):
+def commit(root, draft, canonical, text, log, line, record_ids=()):
     original = digest(draft)
     operation = hashlib.sha256((str(draft.relative_to(root)) + ':' + original).encode()).hexdigest()
     journal = root / 'logs/promotion_transactions' / (operation + '.json')
     record = dict(draft=str(draft.relative_to(root)), canonical=str(canonical.relative_to(root)),
                   log=str(log.relative_to(root)), draft_sha=original, before=digest(canonical),
-                  after=hashlib.sha256(text.encode()).hexdigest(), text=text, line=line, done=False)
+                  after=hashlib.sha256(text.encode()).hexdigest(), text=text, line=line,
+                  record_ids=list(record_ids), done=False)
     if journal.exists():
         saved = json.loads(journal.read_text())
         if saved['done']:
