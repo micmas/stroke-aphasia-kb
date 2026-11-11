@@ -344,7 +344,10 @@ def _promoted_earlier(rec: dict, execute: bool) -> Outcome | None:
         return Outcome(f"{Path(rel).name}: promotion for this record is pending in {TRANSACTIONS}; --execute finishes it", "applied")
     try:
         import promotion_transaction as PT  # noqa: WPS433 — promote.py's journal module
-        PT.recover_pending(ROOT, ROOT / rel)
+        import fcntl
+        with (ROOT / '.promotion.lock').open('a') as lock:
+            fcntl.flock(lock, fcntl.LOCK_EX)
+            PT.recover_pending(ROOT, ROOT / rel)
     except Exception as e:  # noqa: BLE001
         return Outcome(f"error: {Path(rel).name}: the pending promotion for this record could not be finished: {e}", "error")
     if any(row.get("done") for _, row in _journals_for(rel, rid)):
