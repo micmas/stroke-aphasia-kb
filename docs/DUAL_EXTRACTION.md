@@ -61,3 +61,54 @@ A scan-facing interpretation should retain the population, phase, imaging method
 Freeze prompts and sources before each comparison. Build an independently adjudicated reference set on new papers, spanning methods, scan modalities and stroke phases. Evaluate claim precision and recall separately; also report numerical fidelity, model/adjustment fidelity, outcome/timing fidelity, quote/page accuracy, anatomical mapping and unresolved cases. Count omitted nulls and shared omissions, not just model disagreements.
 
 Compare one pass, same-model second pass, different-model independent extraction, and independent extraction plus source review. Repeat runs, retain failures and measure reviewer effort. Predeclare acceptance criteria and critical errors. The two development papers cannot establish a general accuracy percentage or an optimal model combination. Do not use reviewer-corrected finals as evidence that the unreviewed local outputs were correct.
+
+## Full-corpus rollout (source-inventory-v2)
+
+Use the same method for every registered paper, including previously extracted or
+approved papers and the five development/pilot papers. Do not create a permanent
+"legacy" method tier. Track progress separately: source preparation required,
+extraction failed, awaiting source review, reconciled, and mapped/approved.
+Until replacement findings pass source review and the existing approval boundary,
+retain the current KB; an extraction run alone is not a completed migration.
+
+The unified prompt distinguishes original empirical analyses, pooled review
+analyses, narrative synthesis, opinion and hypotheses. Review claims must retain
+secondary attribution; the extractor must not invent new samples or statistics.
+Image-only content still requires visual source review. Long papers may exceed
+model context/output limits; preserve these failures for source preparation or
+an explicitly planned segmented extraction, rather than silently dropping pages.
+
+Create a frozen inventory from a checkout holding the PDFs:
+
+```sh
+python scripts/prepare_dual_batch.py --repo /path/to/stroke-aphasia-kb \
+  --output /path/to/full-corpus.json
+python scripts/batch_dual_extract.py --manifest /path/to/full-corpus.json \
+  --output-dir /path/to/full-corpus-run
+```
+
+The second command is a preview. Add `--run --continue-on-error` to execute.
+Both models run serially, with a 20,000-token output budget per model. Every
+registered bibliography paper is included regardless of its earlier extraction
+status. Missing/not-extractable sources remain pending. Uploaded filenames can
+be resolved through an exact screening-record/bibliography DOI match. Annotated
+copies and supplementary files are not input sources. Unregistered PDFs are
+listed separately for identification rather than guessed into the cohort.
+
+Licence metadata is retained, including explicit unknown status. This local
+processing inventory does not authorize external sharing or publication; source
+review and sharing must respect the particular file's permissions. PDF contents,
+raw outputs and local absolute-path manifests should stay out of GitHub.
+
+Repeat the identical run command to reuse completed paper pairs. Incomplete or
+failed papers are preserved and skipped with `--continue-on-error`. After
+inspecting failures, add `--retry-failed` to archive each failed paper attempt and
+rerun its pair; completed papers remain reused. Ctrl-C leaves the interrupted
+paper for that explicit retry. Concurrent execution of the same output directory
+is blocked. Changed source checksums, model settings or extraction code require
+a new batch directory. The final batch status lists failed and missing sources;
+no successful output is automatically approved or written into KB drafts.
+
+This command prepares independent review packets; it does **not** automatically
+run Claude or another third reviewer. Review every successful paper against its
+main PDF, including tables/figures and shared omissions, before mapping findings.
