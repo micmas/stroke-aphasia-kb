@@ -45,7 +45,7 @@ ROOT = HERE.parent  # repository root (this file lives in scripts/)
 
 from aphasia_kb import _validate_v2_entry, parse_markdown  # noqa: E402
 
-BUCKETS = ("regions", "impairments", "therapies", "predictors")
+from pipeline_files import BUCKETS
 STRENGTH_RANK = {"weak": 1, "moderate": 2, "strong": 3, "definitive": 4}
 CONF_RANK = {"low": 1, "medium": 2, "high": 3}
 
@@ -156,6 +156,7 @@ def _quote_check(findings: list[dict], papers_dir: Path) -> dict:
     total = 0
     lists: dict[str, list[str]] = {g: [] for g in counts}
     no_quotes: list[str] = []
+    missing_papers: set[str] = set()
 
     for f in findings:
         cite = (f.get("citation") or "")
@@ -171,6 +172,7 @@ def _quote_check(findings: list[dict], papers_dir: Path) -> dict:
                 cache[cite] = None
         paper = cache.get(cite)
         if paper is None:
+            missing_papers.add(cite)
             continue
         for sp in sps:
             raw = (sp.get("quote") or "").strip()
@@ -184,7 +186,7 @@ def _quote_check(findings: list[dict], papers_dir: Path) -> dict:
     return {"total": total, **counts,
             "absent_list": lists["absent"], "anchored_list": lists["anchored"],
             "near_list": lists["near"], "table_list": lists["table"],
-            "no_quotes": no_quotes}
+            "no_quotes": no_quotes, "missing_papers": sorted(missing_papers)}
 
 
 def _summarise(label: str, paths: list[Path], findings: list[dict],

@@ -97,6 +97,20 @@ def slug(model: str) -> str:
 
 
 def incumbent() -> str:
+    manifest = json.loads((ROOT / "benchmark_manifest.json").read_text())
+    required = set(manifest["papers"])
+    if path.exists():
+        previous = json.loads(path.read_text())
+        required.update(p["key"] for p in previous.get("papers", []))
+    if not required.issubset(papers):
+        raise ValueError("Incomplete benchmark publication; missing papers: " + ", ".join(sorted(required - set(papers))))
+    if not rows or incumbent_model not in {r["model"] for r in rows}:
+        raise ValueError("Publication requires scored rows and the incumbent")
+    for model in {r["model"] for r in rows}:
+        mine = [r for r in rows if r["model"] == model]
+        if len(mine) != len(set(papers)) or {r["paper"] for r in mine} != set(papers):
+            raise ValueError(f"Incomplete or duplicate paper rows for {model}")
+    verdicts = summarise(rows, incumbent_model)
     try:
         cfg = yaml.safe_load(MODELS_YAML.read_text(encoding="utf-8")) or {}
         return str((cfg.get("roles") or {}).get("extract", {}).get("model") or cfg.get("default") or "")
@@ -486,7 +500,7 @@ def score(model: str, paper: str, sandbox: Path, papers_dir: Path = PAPERS, root
     verified = q["exact"] + q["elided"] + q["table"]
     has_passages = any((f.get("source_passages") or []) for f in cand_f)
     out.update({
-        "ungraded": bool(has_passages and q["total"] == 0),   # passages exist but no PDF text to grade them against
+        "ungraded": bool(not cand_f or not q["total"] or q.get("missing_papers")),   # passages exist but no PDF text to grade them against
         "quotes": q["total"], "absent": q["absent"], "verified": verified, "near": q["near"], "anchored": q["anchored"],
         "absent_examples": q["absent_list"][:3], "no_quote_findings": len(q["no_quotes"]),
         "schema_issues": sum(len(v) for v in issues.values()), "schema_examples": [x for v in issues.values() for x in v][:3],
@@ -520,6 +534,15 @@ def summarise(rows: list[dict], incumbent_model: str) -> dict[str, dict]:
         over = [((r.get("strength") or 0) - (r.get("ref_strength") or 0)) for r in rs if r.get("strength") and r.get("ref_strength")]
         cal = sum(over) / len(over) if over else 0.0
         reasons = []
+        expected = {r["paper"] for r in rows}
+        if {r["paper"] for r in rs} != expected or len(rs) != len(expected):
+            reasons.append("incomplete or duplicate paper evaluations")
+        if not base or {r["paper"] for r in base} != expected:
+            reasons.append("no complete paired incumbent baseline")
+        if any(not r.get("findings") or not r.get("quotes") or not r.get("ref_findings") for r in rs):
+            reasons.append("empty extraction, ungraded quotes, or empty reference")
+        if m != incumbent_model and any(r.get("failed") or r.get("ungraded") or not r.get("quotes") for r in base):
+            reasons.append("incumbent fidelity is unknown")
         if failed:
             reasons.append(f"no drafts for {', '.join(failed)}")
         ungraded = [r["paper"] for r in rs if r.get("ungraded")]
@@ -708,7 +731,9 @@ def publish(rows: list[dict], verdicts: dict[str, dict], incumbent_model: str, p
             "rule": "Eligible = zero absent quotes on every paper, and schema issues and over-claiming no worse than the incumbent (docs/MODELS.md §3)."}
     attach_sources(data, host)
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    from pipeline_files import atomic_write
+    data["manifest_version"] = manifest["version"]
+    atomic_write(path, json.dumps(data, indent=1, ensure_ascii=False) + "\n")
     return path
 
 
