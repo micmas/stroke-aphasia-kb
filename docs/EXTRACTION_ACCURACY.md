@@ -20,3 +20,11 @@ python scripts/evaluate_extraction_accuracy.py \
 Use a directory containing drafts from that paper only. An empty run exits unsuccessfully. Schema and quote scores are diagnostics, not scientific accuracy scores. Independently assess claim fidelity and coverage against the original PDF, including tables, figure captions and limitations; a shorter extraction that simply omits difficult results is not automatically better.
 
 Predeclare evaluation criteria, freeze the prompts, include held-out papers, and retain failures. Report source inconsistencies separately from extraction errors. Identify the raw-model contribution separately from deterministic date stamping and review flags. Repeated runs and broader human-curated references are needed before claiming general accuracy gains or changing the default model.
+
+## Experimental second pass
+
+`python scripts/verify_extraction.py --input /path/to/raw.json --pdf /path/to/Paper.pdf --citation @Paper2020 --output-dir /path/to/new-run`
+
+This optional command asks the same local model to check the complete paper against its draft, with focused instructions about statistical models, contradictory results, quotations, definitions and references. It retains the original response and writes the verification prompt, response, hash, change notes and new drafts in a new directory. Validation errors produce an unsuccessful exit; no result is approved or promoted. This is model self-checking, not independent review, and is not enabled in the default extraction path.
+
+Postprocessing accepts missing/null provenance and flags as empty containers, but rejects other incorrect types. Malformed canonical metadata is ignored. The evaluation report records malformed YAML as an error rather than abandoning the entire report. These robustness fixes do not change the frozen model prompts.

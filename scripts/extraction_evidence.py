@@ -40,10 +40,14 @@ def audit_finding(finding: dict, page_text: str) -> list[str]:
 def flag_evidence(finding: dict, page_text: str) -> list[str]:
     issues = audit_finding(finding, page_text)
     if issues:
-        prov = finding.setdefault('provenance', {})
+        if finding.get('provenance') is None:
+            finding['provenance'] = {}
+        prov = finding['provenance']
         if not isinstance(prov, dict):
             raise ValueError('provenance must be a mapping')
-        flags = prov.setdefault('flags', [])
+        if prov.get('flags') is None:
+            prov['flags'] = []
+        flags = prov['flags']
         if not isinstance(flags, list):
             raise ValueError('provenance.flags must be a list')
         flags.extend(issue for issue in issues if issue not in flags)

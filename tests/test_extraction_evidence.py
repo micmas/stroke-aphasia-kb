@@ -95,3 +95,40 @@ def test_empty_evaluation_is_not_success(tmp_path, monkeypatch):
     report = evaluator.evaluate(drafts, pdf)
     assert report['findings'] == 0
     assert not report['complete_nonempty']
+
+
+def test_null_provenance_and_flags_are_recoverable_but_wrong_types_fail():
+    import pytest
+    for provenance in [None, {'flags': None}]:
+        f = finding('Unknown words.', 1)
+        f['provenance'] = provenance
+        assert flag_evidence(f, TEXT)
+        assert isinstance(f['provenance']['flags'], list)
+        content = '---\n' + yaml.safe_dump({'findings': [{'id': 'f1', 'provenance': provenance}]}) + '---\n'
+        normalized, _ = extract._normalize_findings(content, 'regions', None)
+        assert isinstance(yaml.safe_load(normalized.split('---')[1])['findings'][0]['provenance']['flags'], list)
+    for provenance in ['bad', {'flags': 'bad'}]:
+        f = finding('Unknown words.', 1); f['provenance'] = provenance
+        with pytest.raises(ValueError):
+            flag_evidence(f, TEXT)
+        content = '---\n' + yaml.safe_dump({'findings': [f]}) + '---\n'
+        with pytest.raises(ValueError):
+            extract._normalize_findings(content, 'regions', None)
+
+
+def test_non_mapping_canonical_entry_is_ignored(tmp_path):
+    (tmp_path/'regions').mkdir()
+    (tmp_path/'regions/example.md').write_text('---\n- invalid\n---\n')
+    assert extract._canonical_entry(tmp_path, 'regions', 'example') == {}
+    extract._existing_kb_summary(tmp_path)
+
+
+def test_malformed_yaml_is_reported_not_abandoned(tmp_path, monkeypatch):
+    import evaluate_extraction_accuracy as evaluator
+    pdf = tmp_path/'source.pdf'; pdf.write_bytes(b'fixture')
+    drafts = tmp_path/'drafts'; drafts.mkdir()
+    (drafts/'bad.md').write_text('---\nfindings: [\n---\n')
+    monkeypatch.setattr(evaluator, '_extract_pdf_text', lambda _: (TEXT, 2))
+    report = evaluator.evaluate(drafts, pdf)
+    assert report['schema_issues'] > 0
+    assert not report['complete_nonempty']

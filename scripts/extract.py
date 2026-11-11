@@ -832,7 +832,8 @@ def _canonical_entry(kb_root: Path | None, bucket: str, entry_id: str | None) ->
         return {}
     m = re.match(r"^---\n(.*?)\n---", p.read_text(encoding="utf-8"), re.DOTALL)
     try:
-        return yaml.safe_load(m.group(1)) or {} if m else {}
+        data = yaml.safe_load(m.group(1)) if m else {}
+        return data if isinstance(data, dict) else {}
     except Exception:  # noqa: BLE001
         return {}
 
@@ -924,6 +925,17 @@ def _normalize_findings(content: str, bucket: str,
     for f in fm.get("findings") or []:
         if not isinstance(f, dict):
             continue
+        if f.get("provenance") is None:
+            f["provenance"] = {}
+            changed = True
+        prov = f["provenance"]
+        if not isinstance(prov, dict):
+            raise ValueError("provenance must be a mapping")
+        if prov.get("flags") is None:
+            prov["flags"] = []
+            changed = True
+        if not isinstance(prov["flags"], list):
+            raise ValueError("provenance.flags must be a list")
         if f.get("author_limitations") is None:
             f["author_limitations"] = []
             prov = f.setdefault("provenance", {})
