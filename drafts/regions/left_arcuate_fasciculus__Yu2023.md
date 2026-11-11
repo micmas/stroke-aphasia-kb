@@ -30,7 +30,7 @@ findings:
     statistics:
       threshold: "p < 0.05"
       effect_size: "ρ = 0.761"
-    confounders_controlled: [""lesion volume"]
+    confounders_controlled: ["lesion volume"]
     confounders_not_controlled: []
     region_definition:
       kind: tract
@@ -38,7 +38,7 @@ findings:
     imaging_details:
       field_strength: "3.0 Tesla"
       reference_space: "MNI152"
-      atlases_used: [""MNI152 atlas"]
+      atlases_used: ["MNI152 atlas"]
       preprocessing_pipeline: "FSL (dcm2niigui, eddy_correct, BET v2.1, DTIFIT, FLIRT)"
       modalities:
         - modality: T1
@@ -110,7 +110,7 @@ findings:
     statistics:
       threshold: "p < 0.05"
       effect_size: "ρ = 0.639"
-    confounders_controlled: [""lesion volume"]
+    confounders_controlled: ["lesion volume"]
     confounders_not_controlled: []
     region_definition:
       kind: tract
@@ -118,7 +118,7 @@ findings:
     imaging_details:
       field_strength: "3.0 Tesla"
       reference_space: "MNI152"
-      atlases_used: [""MNI152 atlas"]
+      atlases_used: ["MNI152 atlas"]
       preprocessing_pipeline: "FSL"
     provenance:
       extracted_by: "agent"
@@ -159,7 +159,7 @@ findings:
     statistics:
       threshold: "p < 0.05"
       effect_size: "ρ = 0.459"
-    confounders_controlled: [""lesion volume"]
+    confounders_controlled: ["lesion volume"]
     confounders_not_controlled: []
     region_definition:
       kind: tract
@@ -167,7 +167,7 @@ findings:
     imaging_details:
       field_strength: "3.0 Tesla"
       reference_space: "MNI152"
-      atlases_used: [""MNI152 atlas"]
+      atlases_used: ["MNI152 atlas"]
       preprocessing_pipeline: "FSL"
     provenance:
       extracted_by: "agent"
@@ -204,7 +204,7 @@ findings:
     statistics:
       threshold: "p < 0.05"
       effect_size: "ρ = 0.637"
-    confounders_controlled: [""lesion volume"]
+    confounders_controlled: ["lesion volume"]
     confounders_not_controlled: []
     region_definition:
       kind: tract
@@ -212,7 +212,7 @@ findings:
     imaging_details:
       field_strength: "3.0 Tesla"
       reference_space: "MNI152"
-      atlases_used: [""MNI152 atlas"]
+      atlases_used: ["MNI152 atlas"]
       preprocessing_pipeline: "FSL"
     provenance:
       extracted_by: "agent"
@@ -249,7 +249,7 @@ findings:
     statistics:
       threshold: "p < 0.05"
       effect_size: "ρ = 0.768"
-    confounders_controlled: [""lesion volume"]
+    confounders_controlled: ["lesion volume"]
     confounders_not_controlled: []
     region_definition:
       kind: tract
@@ -257,7 +257,7 @@ findings:
     imaging_details:
       field_strength: "3.0 Tesla"
       reference_space: "MNI152"
-      atlases_used: [""MNI152 atlas"]
+      atlases_used: ["MNI152 atlas"]
       preprocessing_pipeline: "FSL"
     provenance:
       extracted_by: "agent"

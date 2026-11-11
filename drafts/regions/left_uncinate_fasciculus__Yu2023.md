@@ -38,7 +38,7 @@ findings:
     imaging_details:
       field_strength: "3.0 Tesla"
       reference_space: "MNI152"
-      atlases_used: [""MNI152 atlas"]
+      atlases_used: ["MNI152 atlas"]
       preprocessing_pipeline: "FSL"
       modalities:
         - modality: T1

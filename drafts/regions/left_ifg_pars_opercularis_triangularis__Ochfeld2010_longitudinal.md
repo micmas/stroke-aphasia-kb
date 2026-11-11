@@ -40,7 +40,7 @@ findings:
     imaging_details:
       field_strength: "3T"
       reference_space: "MNI152"
-      atlases_used: [""probabilistic cytoarchitectural map""]
+      atlases_used: ["probabilistic cytoarchitectural map"]
       modalities:
         - modality: T2
         - modality: DWI
