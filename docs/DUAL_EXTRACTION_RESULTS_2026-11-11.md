@@ -44,3 +44,7 @@ Local experiment directory: `/Users/uqmmasso/GITHUB/_coordination/extraction-acc
 Supplements downloaded before the scope clarification are separate unused archival files. They were not in either model prompt and must not contribute to the final main-paper extraction. Supplement-dependent details remain outside scope, not inferred.
 
 The final versions are reconciled research extractions. Neither paper has been promoted into canonical findings; no clinical validation or general accuracy percentage is claimed. The review stage remains a separate, source-based activity rather than an unattended production model call. See [DUAL_EXTRACTION.md](DUAL_EXTRACTION.md) for the reusable workflow and evaluation requirements.
+
+## Completed final-source audit
+
+The reconciled main-paper versions contain 16 Osa analysis records and 33 Thye records. All 53 Osa and 187 Thye quoted passages (including reuse) pass the declared-source-unit checks. Codex checked the ten adjusted Thye associations against main Results and visually checked the main regional table, regression table and relevant figure values. This is scoped source verification, not a claim of 100% scientific accuracy. The final coverage ledgers explicitly retain unreported details and exclude supplements. Final file checksums and audit results are in `final-audit.json` in the experiment directory; the readable entry point is `RESULTS.md`.
