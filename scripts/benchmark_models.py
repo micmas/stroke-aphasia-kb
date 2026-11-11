@@ -523,12 +523,14 @@ def summarise(rows: list[dict], incumbent_model: str) -> dict[str, dict]:
         expected = {r["paper"] for r in rows}
         if {r["paper"] for r in rs} != expected or len(rs) != len(expected):
             reasons.append("incomplete or duplicate paper evaluations")
-        if not base or {r["paper"] for r in base} != expected:
+        if not base or {r["paper"] for r in base} != expected or len(base) != len(expected):
             reasons.append("no complete paired incumbent baseline")
         if any(not r.get("findings") or not r.get("quotes") or not r.get("ref_findings") for r in rs):
             reasons.append("empty extraction, ungraded quotes, or empty reference")
         if m != incumbent_model and any(r.get("failed") or r.get("ungraded") or not r.get("quotes") for r in base):
             reasons.append("incumbent fidelity is unknown")
+        if any(r.get('schema_issues') is None or r.get('strength') is None or r.get('ref_strength') is None for r in rs + base):
+            reasons.append('schema or calibration measurements missing from paired evaluations')
         if failed:
             reasons.append(f"no drafts for {', '.join(failed)}")
         ungraded = [r["paper"] for r in rs if r.get("ungraded")]

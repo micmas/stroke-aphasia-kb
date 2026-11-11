@@ -12,6 +12,14 @@ class Benchmark(unittest.TestCase):
             p=Path(t)/'summary.json'; old='{"papers":[{"key":"Old"}]}' ; p.write_text(old)
             with self.assertRaises(ValueError): B.publish([],{},'x',['New'],None,'test',path=p)
             self.assertEqual(p.read_text(),old)
+    def test_duplicate_baseline_and_unmeasured_calibration_are_ineligible(self):
+        base = dict(model='base', paper='P', findings=1, quotes=1, ref_findings=1,
+                    schema_issues=0, strength=2, ref_strength=2)
+        candidate = dict(base, model='candidate')
+        self.assertTrue(B.summarise([base, candidate], 'base')['candidate']['eligible'])
+        self.assertFalse(B.summarise([base, base, candidate], 'base')['candidate']['eligible'])
+        candidate['strength'] = None
+        self.assertFalse(B.summarise([base, candidate], 'base')['candidate']['eligible'])
     def test_all_buckets_and_missing_papers(self):
         self.assertIn('reviews',C.BUCKETS); self.assertIn('ingredients',C.BUCKETS)
         with tempfile.TemporaryDirectory() as t:
