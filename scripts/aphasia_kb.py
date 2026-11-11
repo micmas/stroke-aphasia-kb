@@ -69,6 +69,8 @@ def parse_markdown(path: Path) -> tuple[dict, str]:
     if not m:
         return {}, text
     fm = yaml.safe_load(m.group("yaml")) or {}
+    if not isinstance(fm, dict):
+        raise ValueError("frontmatter must be a mapping")
     return fm, m.group("body")
 
 
@@ -319,6 +321,13 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
     def err(msg):
         issues.append(f"{src}: {msg}")
 
+    if not isinstance(entry, dict):
+        err('entry must be a mapping')
+        return
+    findings = entry.get('findings')
+    if findings is not None and (not isinstance(findings, list) or any(not isinstance(f, dict) for f in findings)):
+        err('findings must be a list of mappings')
+        return
     for f in ("id", "name", "kind", "status", "created_by", "created_on"):
         if not entry.get(f):
             err(f"missing required file-level field: {f}")
@@ -331,7 +340,7 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
     # v2.5 adds optional review-provenance fields (review_tier, per-finding
     # review block, audited_by/audited_on); no structural change.
     _ALL_SV = (2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8,
-               "2", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8")
+               "2", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8")
     if sv not in _ALL_SV:
         err(f"schema_version must be 2–2.8, got {sv!r}")
     # Compare numerically: the slice-based test this replaces silently

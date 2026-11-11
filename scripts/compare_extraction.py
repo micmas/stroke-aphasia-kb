@@ -352,7 +352,11 @@ def main(argv=None) -> int:
     print("\n" + "=" * 76)
     if not q["total"]:
         print("? No candidate quotes to verify — check the drafts by hand.")
-        return 0
+        return 2
+
+    if q.get("missing_papers"):
+        print("? Source PDFs are missing; quote fidelity is ungraded.")
+        return 2
 
     print(f"Baseline for comparison: the curated entries for this paper "
           f"score {rq['absent']}/{rq['total']} absent "
@@ -363,21 +367,9 @@ def main(argv=None) -> int:
               "fidelity is sound.")
         print("  Now read the claims above — coverage and wording are "
               "what's left to judge, and only you can.")
-    elif cand["_abspct"] <= max(ref["_abspct"] + 5, 5):
-        print(f"~ {q['absent']} candidate quote(s) absent "
-              f"({cand['_abspct']:.0f}%), in line with the curated "
-              f"baseline.")
-        print("  Probably PDF-extraction noise rather than fabrication, "
-              "but spot-check the listed quotes.")
     else:
-        print(f"✗ {q['absent']} of {q['total']} candidate quotes "
-              f"({cand['_abspct']:.0f}%) had no match in the PDF — "
-              f"materially worse than the curated baseline.")
-        print("  Suspect truncation FIRST: did the extraction run print a "
-              "num_ctx warning? A model shown half a paper will "
-              "confabulate the rest.")
-        print("  If context was fine, this model is not safe for "
-              "extraction.")
+        print(f"✗ {q['absent']} candidate quote(s) were not located. Human source checking is required; the baseline does not excuse absent passages.")
+        return 1
     return 0
 
 
