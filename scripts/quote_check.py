@@ -115,15 +115,28 @@ def grade_quote(quote: str, paper: PaperText) -> str:
         return "absent"
     q = _norm(raw)
     text = paper.norm
-    if q in text:
+    if q and not _ELISION.search(raw) and q in text:
         return "exact"
 
     # Elision: split the RAW quote (the normaliser strips the markers)
     if _ELISION.search(raw):
         parts = [_norm(p).strip() for p in _ELISION.split(raw)]
-        parts = [p for p in parts if len(p) >= MIN_FRAGMENT]
-        if len(parts) >= 2 and all(p in text for p in parts):
-            return "elided"
+        parts = [p for p in parts if p]
+        if len(parts) >= 2:
+            # Every fragment, including short negations/numbers, must appear
+            # in order. Bound the whole span to avoid splicing unrelated pages.
+            start = text.find(parts[0])
+            while start >= 0:
+                cursor = start + len(parts[0])
+                for part in parts[1:]:
+                    pos = text.find(part, cursor, start + len(q) + 2000)
+                    if pos < 0:
+                        break
+                    cursor = pos + len(part)
+                else:
+                    return "elided"
+                start = text.find(parts[0], start + 1)
+        return "absent"
 
     # Table row: cells joined with "|"; the text layer has them on lines
     if "|" in raw:
@@ -135,7 +148,10 @@ def grade_quote(quote: str, paper: PaperText) -> str:
             return "table"
 
     if len(q) > ANCHOR and q[:ANCHOR] in text:
-        return "anchored"
+        idx = text.find(q[:ANCHOR])
+        candidate = text[idx:idx + len(q)]
+        if difflib.SequenceMatcher(None, q, candidate).ratio() >= NEAR_RATIO:
+            return "anchored"
 
     if len(q) >= MIN_FRAGMENT and re.sub(r"\s+", "", q) in paper.nospace:
         return "near"

@@ -141,7 +141,7 @@ from model_config import resolve as resolve_model  # noqa: E402
 
 _REVIEW_CFG = resolve_model("review")
 DEFAULT_LLM_MODEL = _REVIEW_CFG["model"]
-PDF_MATCH_THRESHOLD = 0.80   # >= this fraction of quotes must match
+PDF_MATCH_THRESHOLD = 1.0   # >= this fraction of quotes must match
 
 # --- Local-model guardrails -------------------------------------------
 # The LLM second opinion can PROMOTE a draft into the canonical KB. That
@@ -339,6 +339,7 @@ def check_pdf_quote_match(fm: dict, papers_dir: Path = PAPERS_DIR,
     citations = [f.get("citation") for f in (fm.get("findings") or [])
                  if f.get("citation")]
     cite_to_pdf = {c: find_paper(c, papers_dir) for c in dict.fromkeys(citations)}
+    missing = [c for c, p in cite_to_pdf.items() if not p]
     cite_to_pdf = {c: p for c, p in cite_to_pdf.items() if p}
     if not cite_to_pdf:
         return Check("pdf_quote_match", passed=None, blocker=True,
@@ -390,6 +391,8 @@ def check_pdf_quote_match(fm: dict, papers_dir: Path = PAPERS_DIR,
     score = (total - len(misses)) / total
     details = [f"matched {matched}/{total} quotes ({matched / total:.0%}) — "
                + ", ".join(f"{k} {v}" for k, v in sorted(grades.items()))]
+    if missing:
+        details.append("missing papers: " + ", ".join(missing))
     if read_errors:
         details.extend(read_errors)
     if soft:
@@ -399,7 +402,7 @@ def check_pdf_quote_match(fm: dict, papers_dir: Path = PAPERS_DIR,
     if misses:
         details.append(f"{len(misses)} quote(s) absent from the PDF — first 3:")
         details.extend(f"  - {m}" for m in misses[:3])
-    return Check("pdf_quote_match", passed=score >= threshold,
+    return Check("pdf_quote_match", passed=False if misses else (None if missing or read_errors else True),
                  blocker=True, details=details)
 
 
@@ -1236,6 +1239,8 @@ def apply_manual_verdict(
         final_verdict = Verdict.REJECT
     elif pdf and pdf.passed is False:
         final_verdict = Verdict.REJECT
+    elif verdict_override == "approve" and require_pdf_match and (pdf is None or pdf.passed is not True):
+        final_verdict = Verdict.DEFER
     elif verdict_override == "approve":
         final_verdict = Verdict.APPROVE
         if provisional_without_pdf and pdf is not None and pdf.passed is None:
