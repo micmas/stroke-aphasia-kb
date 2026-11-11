@@ -68,6 +68,7 @@ import time
 from pathlib import Path
 
 import yaml
+from strict_data import load_yaml, load_json
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
@@ -698,11 +699,11 @@ def parse_response(raw: str) -> dict:
         for end_offset in range(len(candidate),
                                 max(0, len(candidate) - 100), -1):
             try:
-                return json.loads(candidate[:end_offset])
+                return load_json(candidate[:end_offset])
             except json.JSONDecodeError:
                 continue
     # Both attempts failed — raise on the repaired candidate for context.
-    return json.loads(_dejson_strays(raw[start:]))
+    return load_json(_dejson_strays(raw[start:]))
 
 
 # ============================================================
@@ -832,7 +833,7 @@ def _canonical_entry(kb_root: Path | None, bucket: str, entry_id: str | None) ->
         return {}
     m = re.match(r"^---\n(.*?)\n---", p.read_text(encoding="utf-8"), re.DOTALL)
     try:
-        data = yaml.safe_load(m.group(1)) if m else {}
+        data = load_yaml(m.group(1)) if m else {}
         return data if isinstance(data, dict) else {}
     except Exception:  # noqa: BLE001
         return {}
@@ -883,7 +884,7 @@ def _normalize_findings(content: str, bucket: str,
     if not m:
         return content, notes
     try:
-        fm = yaml.safe_load(m.group(1)) or {}
+        fm = load_yaml(m.group(1)) or {}
     except Exception as e:  # noqa: BLE001
         return content, [f"frontmatter not parseable ({e}); left as written"]
     body = m.group(2)
@@ -1042,7 +1043,7 @@ def save_drafts(drafts: list, kb_root: Path,
         m = re.fullmatch(r"---\n(.*?)\n---\n?(.*)", content, re.DOTALL)
         if not m:
             raise ValueError(f"Missing frontmatter: {fname}")
-        fm = yaml.safe_load(m.group(1))
+        fm = load_yaml(m.group(1))
         if not isinstance(fm, dict) or not isinstance(fm.get("findings"), list) or not fm["findings"]:
             raise ValueError(f"No findings in {fname}; keep empty placeholders outside the review queue")
         fm["status"] = "draft"

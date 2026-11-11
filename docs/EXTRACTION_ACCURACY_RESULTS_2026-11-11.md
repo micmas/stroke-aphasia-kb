@@ -1,6 +1,6 @@
 # Local extraction accuracy experiment — 11 November 2026
 
-Status: all nine local runs completed (three baseline, three revised, three verification). Claude completed blind reviews of the two calibration papers; Codex reviewed all three papers and all verification outputs.
+Status: all nine local runs completed (three baseline, three revised, three verification). Claude completed blind reviews of all three papers and subsequently reviewed the verification outputs; Codex reviewed all three papers and all verification outputs.
 
 The first-pass intervention improves several evidence quotations and claim qualifications, but does not make these drafts ready for approval. It changes instructions, supplied target definitions and validation; it does not fine-tune or replace the local model.
 
@@ -16,13 +16,13 @@ OsaGarcia2020 and Fritsch2022 are calibration papers. Thye2018 is held out for t
 |---|---:|---:|---|
 | OsaGarcia2020 | 2/8 | 4/8 | Adjusted null moved into main claim, but statistical model still incorrectly labelled univariate. |
 | Fritsch2022 | 2/7 | 9/11 | Better quotation fidelity, cautious strength and contrary evidence; word-generation finding still missing and secondary references incorrectly listed as primary. |
-| Thye2018 | 2/2 (limitations only) | 6/7 (includes claims) | Direct claim evidence added; still only two findings and most required adjusted outcome comparisons omitted. |
+| Thye2018 | 2/2 after parsing; 7/8 in raw text | 6/7 (includes claims) | Direct claim evidence added; still only two findings and most required adjusted outcome comparisons omitted. |
 
 Osa required-unit coverage improved from 1/2 to 2/2; the restricted-model unit still requires revision. Fritsch required-unit coverage remains 2/3, with problematic additional findings. Coverage is not correctness. Neither output is ready for approval. Claude found no fabricated quotations in either arm: failed matches were altered or mislocated real text.
 
 The Osa revised predictor draft has two missing-metadata validation errors in the isolated output sandbox. Canonical entry autofill was unavailable to both arms because drafts were saved outside the canonical KB. The Fritsch revised output originally passed schema validation; Claude identified a narrative-review finding labelled causal. A subsequent validator fix now catches that existing documented constraint. This is improved detection, not improved raw-model accuracy.
 
-The third-paper first-pass comparison also fails to establish a coverage gain. Both outputs focus on combined WAB/naming lesion-size results and a Heschl’s-gyrus association, omitting the systematic five-outcome adjusted template-load comparison. Codex reviewed this against the source. Claude’s third-paper scoring was interrupted by the Mac locking; its completed blind reviews cover the two calibration papers.
+The third-paper first-pass comparison also fails to establish a coverage gain. Both outputs focus on combined WAB/naming lesion-size results and a Heschl’s-gyrus association, omitting the systematic five-outcome adjusted template-load comparison. Codex reviewed this against the source. Claude subsequently completed the third-paper blind scoring: both arms covered only 2/5 required units. It also discovered duplicate `source_passages` YAML keys in the baseline: only two of eight raw passages survive permissive parsing. The 2/2 table value is a parsed-output diagnostic, not raw-output completeness or improved quotation accuracy. Raw baseline quotes were 7/8 exact; candidate quotes were 6/7 exact. The new strict parser rejects this silent data-loss defect.
 
 ## Deterministic protections and optional verification
 
@@ -52,4 +52,6 @@ The local artifact directory is `/Users/uqmmasso/GITHUB/_coordination/extraction
 
 One run per arm on a small selected sample cannot establish general extraction accuracy. Quotation matching, schema validity, semantic correctness and coverage are reported separately. Processing times are affected by prompt-prefix caching and resource conditions, so they are not stable speed comparisons. Original drafts, canonical findings and published outputs remain unchanged. No extraction has been approved.
 
-Current implementation verification: 133 tests passed, with five pre-existing PyMuPDF/SWIG deprecation warnings.
+Implementation verification at the original experiment: 133 tests passed, with five pre-existing PyMuPDF/SWIG deprecation warnings.
+
+The subsequent independent-model experiment is documented in [DUAL_EXTRACTION_RESULTS_2026-11-11.md](DUAL_EXTRACTION_RESULTS_2026-11-11.md). It reuses known papers and makes no new held-out claim.

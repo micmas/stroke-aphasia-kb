@@ -5,7 +5,7 @@ import hashlib
 import json
 import re
 import time
-import yaml
+from strict_data import load_yaml
 from pathlib import Path
 from extract import (_extract_pdf_text, _existing_kb_summary, _vocab_checklist,
                      call_ollama, parse_response, save_drafts, validate_drafts)
@@ -75,7 +75,7 @@ def finding_inventory(result):
     inventory = {}
     for draft in result.get('drafts', []):
         match = re.match(r'^---\n(.*?)\n---', draft.get('content', ''), re.S)
-        fm = yaml.safe_load(match.group(1)) if match else {}
+        fm = load_yaml(match.group(1)) if match else {}
         if not isinstance(fm, dict):
             raise ValueError('Draft frontmatter must be a mapping')
         for i, finding in enumerate(fm.get('findings') or []):

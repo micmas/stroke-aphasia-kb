@@ -28,3 +28,7 @@ Predeclare evaluation criteria, freeze the prompts, include held-out papers, and
 This optional command asks the same local model to check the complete paper against its draft, with focused instructions about statistical models, contradictory results, quotations, definitions and references. It retains the original response and writes the verification prompt, response, hash, change notes and new drafts in a new directory. Validation errors produce an unsuccessful exit; no result is approved or promoted. This is model self-checking, not independent review, and is not enabled in the default extraction path.
 
 Postprocessing accepts missing/null provenance and flags as empty containers, but rejects other incorrect types. Malformed canonical metadata is ignored. The evaluation report records malformed YAML as an error rather than abandoning the entire report. These robustness fixes do not change the frozen model prompts.
+
+## Independent extraction and reconciliation
+
+The newer optional [main-paper dual extraction workflow](DUAL_EXTRACTION.md) separates source analysis from KB mapping, preserves two independent local outputs, and prepares a third-model source-review packet. It replaces neither the default extractor nor human approval. Supplements are excluded. Duplicate JSON/YAML fields are now rejected to prevent silent evidence loss.

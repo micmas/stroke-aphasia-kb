@@ -35,7 +35,7 @@ from pathlib import Path
 from typing import Any, Iterable, Sequence
 
 import pandas as pd
-import yaml
+from strict_data import load_yaml
 
 
 # ============================================================
@@ -68,7 +68,7 @@ def parse_markdown(path: Path) -> tuple[dict, str]:
     m = _FRONTMATTER_RE.match(text)
     if not m:
         return {}, text
-    fm = yaml.safe_load(m.group("yaml")) or {}
+    fm = load_yaml(m.group("yaml")) or {}
     if not isinstance(fm, dict):
         raise ValueError("frontmatter must be a mapping")
     return fm, m.group("body")
