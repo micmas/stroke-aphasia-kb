@@ -258,7 +258,7 @@ def _approve_locked(args):
     if args.reviewer.lower().startswith("model:"):
         if actual_tier != "A":
             raise ValueError("Model approval requires actual Tier A: " + "; ".join(reasons))
-        report_path = ROOT / "logs/auto_review" / f"{draft.stem}.yaml"
+        report_path = ROOT / "logs/auto_review" / bucket / f"{draft.stem}.yaml"
         report = yaml.safe_load(report_path.read_text()) if report_path.exists() else {}
         run = ((report or {}).get("runs") or [{}])[-1]
         llm = run.get("llm_review") or {}

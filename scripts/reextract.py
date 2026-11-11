@@ -72,7 +72,7 @@ def draft_files(key: str) -> list[Path]:
 
 
 def sidecars(key: str) -> list[Path]:
-    return sorted((ROOT / "logs/auto_review").glob(f"*__{key}.yaml"))
+    return sorted((ROOT / "logs/auto_review").rglob(f"*__{key}.yaml"))
 
 
 def _move(src: Path, dest_root: Path, execute: bool) -> str:

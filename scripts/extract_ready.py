@@ -182,6 +182,12 @@ def execute(only: list[str] | None, limit: int | None, commit: bool, push: bool)
     if not (ROOT / "papers").is_dir():
         print("papers/ is not reachable here: run this on the computer that has the PDFs (the OneDrive folder).")
         return 2
+    if commit:
+        state = subprocess.run(['git', 'status', '--porcelain', '--untracked-files=all', '--', *COMMIT_PATHS],
+                               cwd=ROOT, capture_output=True, text=True, check=True)
+        if state.stdout.strip():
+            print('Managed paths contain unfinished work. Commit/stash it or use --no-commit before extraction.')
+            return 2
     py = sys.executable
     if _run(py, "scripts/portal_import.py", "--execute", "--kind", "pdf", "--no-intake"):
         print("  ⚠ fetching the uploaded PDFs failed (wrangler login?); carrying on with the PDFs already in papers/")
@@ -212,7 +218,8 @@ def execute(only: list[str] | None, limit: int | None, commit: bool, push: bool)
     msg = f"Extracted {len(done)} included paper{'s' if len(done) != 1 else ''}" + (
         f": {', '.join(str(p['key']).lstrip('@') for p in done)}" if done else "")
     paths = [x for x in COMMIT_PATHS if (ROOT / x).exists()]
-    subprocess.run(["git", "add", "--", *paths], cwd=ROOT)
+    if subprocess.run(["git", "add", "--", *paths], cwd=ROOT).returncode:
+        return 1
     if subprocess.run(["git", "diff", "--cached", "--quiet", "--", *paths], cwd=ROOT).returncode == 0:
         print("nothing to commit")
         return 1 if failed else 0

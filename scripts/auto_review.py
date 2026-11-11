@@ -216,7 +216,7 @@ class Check:
 
 def check_schema_validates(fm: dict, draft_path: Path) -> Check:
     issues: list[str] = []
-    _validate_v2_entry(fm, str(draft_path), issues)
+    _validate_v2_entry(fm, f"drafts/{draft_path.parent.name}/{draft_path.name}", issues)
     return Check("schema_valid", not issues, blocker=True, details=issues)
 
 
@@ -344,7 +344,7 @@ def check_pdf_quote_match(fm: dict, papers_dir: Path = PAPERS_DIR,
     cite_to_pdf = {c: p for c, p in cite_to_pdf.items() if p}
     if not cite_to_pdf:
         return Check("pdf_quote_match", passed=None, blocker=True,
-                     details=[f"no PDFs available in {papers_dir} for any "
+                     details=[f"no PDFs available in the source-paper directory for any "
                               f"cited paper"])
 
     cache: dict[str, PaperText | None] = {}
@@ -994,8 +994,13 @@ def _parse_llm_yaml(raw: str) -> dict | None:
 # ============================================================
 
 def report_path_for(draft_path: Path) -> Path:
-    REPORTS_DIR.mkdir(parents=True, exist_ok=True)
-    return REPORTS_DIR / f"{draft_path.stem}.yaml"
+    bucket = draft_path.parent.name
+    from pipeline_files import BUCKETS
+    if bucket not in BUCKETS:
+        raise ValueError('Reports require an active draft bucket')
+    directory = REPORTS_DIR / bucket
+    directory.mkdir(parents=True, exist_ok=True)
+    return directory / f"{draft_path.stem}.yaml"
 
 
 def write_report(draft_path: Path, verdict: str, checks: list[Check],
