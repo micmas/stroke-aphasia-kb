@@ -712,13 +712,16 @@ class KnowledgeBase:
                 for e in entries:
                     src = e["_path"]
                     sv = e.get("schema_version")
-                    if sv in (2, 2.1, 2.2, 2.3, "2", "2.1", "2.2", "2.3"):
+                    if str(sv) in {"2", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8"}:
                         _validate_v2_entry(e, src, self.issues)
                     else:
                         _validate_v1_entry(e, src, self.issues)
 
         # Filter by status
         def keep(entry: dict) -> bool:
+            if entry.get("_origin") == "draft" and entry.get("status") == "approved":
+                self.issues.append(f"{entry.get('_path')}: approved status in drafts is not admissible; promote first")
+                return False
             return entry.get("status") in self.include
 
         regions = [e for e in approved["regions"] if keep(e)]
