@@ -53,6 +53,16 @@ def _cli(argv=None) -> int:
     n_changed = 0
     for d in drafts:
         bucket = d.parent.name
+        from aphasia_kb import parse_markdown
+        from pipeline_files import human_work, atomic_write
+        try:
+            fm, _ = parse_markdown(d)
+        except Exception:
+            print(f"protected unparsable draft: {d}")
+            continue
+        if human_work(fm):
+            print(f"protected reviewed draft: {d}")
+            continue
         content = d.read_text(encoding="utf-8")
         new, notes = _normalize_findings(content, bucket, _citation_of(content), ROOT)
         if new == content:
@@ -62,7 +72,7 @@ def _cli(argv=None) -> int:
         for n in notes:
             print(f"             {n}")
         if args.execute:
-            d.write_text(new, encoding="utf-8")
+            atomic_write(d, new)
     print(f"\n{n_changed} of {len(drafts)} draft(s) "
           + ("rewritten." if args.execute else "would change. Add --execute to apply."))
     return 0

@@ -193,7 +193,8 @@ def merge(result: dict, citation: str, drafts: list[Path], marks: list[tuple[Pat
             touched.append(target)
             print(f"  ✓ {len(findings)} finding(s) appended to {_rel(target)}{'   [' + '; '.join(notes + more) + ']' if notes + more else ''}")
         else:
-            out = DRAFTS / bucket / (d.get("filename") or f"{fm_new.get('id')}__{key}.md")
+            from pipeline_files import safe_child
+            out = safe_child(DRAFTS / bucket, d.get("filename") or f"{fm_new.get('id')}__{key}.md")
             if out.exists():
                 out = out.with_name(f"{out.stem}_refocus.md")
             out.parent.mkdir(parents=True, exist_ok=True)

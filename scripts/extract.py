@@ -844,7 +844,10 @@ def _normalize_findings(content: str, bucket: str,
     except Exception as e:  # noqa: BLE001
         return content, [f"frontmatter not parseable ({e}); left as written"]
     body = m.group(2)
-    changed = False
+    if not isinstance(fm, dict):
+        raise ValueError("frontmatter must be a mapping")
+    changed = "status" not in fm
+    fm.setdefault("status", "draft")
     # reviews/: one entry per review paper, id `<topic>__<Key>` like the
     # canonical ones — otherwise two reviews of the same topic (e.g. two
     # MIT reviews, both `melodic_intonation_therapy_review`) would be
@@ -966,27 +969,46 @@ def _normalize_findings(content: str, bucket: str,
 def save_drafts(drafts: list, kb_root: Path,
                 created_by: str = "agent:local-extract-cli",
                 citation: str | None = None) -> list[Path]:
-    saved = []
+    from pipeline_files import BUCKETS, safe_child, atomic_write
+    pending = {}
     for d in drafts:
         bucket = d["bucket"]
-        if bucket not in ("regions", "impairments", "therapies", "predictors", "reviews"):
-            print(f"  ⚠ skipping draft with invalid bucket={bucket!r}")
-            continue
+        if bucket not in BUCKETS:
+            raise ValueError(f"Invalid bucket: {bucket!r}")
         fname = d["filename"]
         stem, sep, suffix = fname[:-3].rpartition("__") if fname.endswith(".md") else ("", "", "")
         if citation and sep and _same_paper_key(suffix, citation):
-            fname = f"{stem}__{citation.lstrip('@')}.md"     # the file must carry the key it was given
-            print(f"  ⊙ {d['filename']} → {fname} (citation key as given)")
-        out = kb_root / "drafts" / bucket / fname
-        out.parent.mkdir(parents=True, exist_ok=True)
+            fname = f"{stem}__{citation.lstrip('@')}.md"
+        out = safe_child(kb_root / "drafts" / bucket, fname)
+        if out.exists() or out in pending:
+            raise ValueError(f"Refusing to overwrite existing/duplicate draft: {out}")
         content, notes = _repair_frontmatter(d["content"], created_by)
         content, more = _normalize_findings(content, bucket, citation, kb_root)
-        notes.extend(more)
-        out.write_text(content, encoding="utf-8")
-        saved.append(out)
-        suffix = f"   [{'; '.join(notes)}]" if notes else ""
-        print(f"  ✓ wrote {out.relative_to(kb_root)}{suffix}")
-    return saved
+        m = re.fullmatch(r"---\n(.*?)\n---\n?(.*)", content, re.DOTALL)
+        if not m:
+            raise ValueError(f"Missing frontmatter: {fname}")
+        fm = yaml.safe_load(m.group(1))
+        if not isinstance(fm, dict) or not isinstance(fm.get("findings"), list) or not fm["findings"]:
+            raise ValueError(f"No findings in {fname}; keep empty placeholders outside the review queue")
+        fm["status"] = "draft"
+        for k in ("reviewer", "reviewed_on", "review_tier", "audited_by", "audited_on", "last_reviewed", "portal_reviews", "previous_review", "rereview_of"):
+            fm.pop(k, None)
+        for finding in fm["findings"]:
+            if not isinstance(finding, dict):
+                raise ValueError(f"Finding is not a mapping: {fname}")
+            finding.pop("review", None)
+        pending[out] = "---\n" + yaml.safe_dump(fm, sort_keys=False, allow_unicode=True) + "---\n" + m.group(2)
+    # All names and YAML checked before creating any active draft.
+    written = []
+    try:
+        for out, content in pending.items():
+            atomic_write(out, content)
+            written.append(out)
+    except BaseException:
+        for out in written:
+            out.unlink(missing_ok=True)
+        raise
+    return written
 
 
 def validate_drafts(saved: list[Path]) -> int:
