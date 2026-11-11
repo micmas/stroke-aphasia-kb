@@ -286,7 +286,7 @@ def chat(prompt: str,
                         raise RepetitionLoop(
                             f"repetition loop detected after {n_chunks:,} output tokens "
                             f"({int((now - t0) // 60)}m): the model was repeating a "
-                            f"{LOOP_BLOCK}-char block — stream cut, Ollama stopped",
+                            f"block — stream cut, Ollama stopped",
                             partial, n_chunks)
         except RepetitionLoop:
             raise
