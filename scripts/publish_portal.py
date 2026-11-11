@@ -170,7 +170,25 @@ def load_index(path: Path = INDEX) -> dict:
     data = json.loads(path.read_text(encoding="utf-8"))
     data.setdefault("papers", {}); data.setdefault("sources", {"keys": [], "files": []}); data.setdefault("abstracts", None)
     data.setdefault("fulltext", {})
+    data.setdefault("pending_deletions", [])
     return data
+
+
+def serves_publicly(entry: dict) -> bool:
+    """An index entry the cc/ route may serve: public, under cc/, and public for a reason this
+    version accepts (cc, or a person-confirmed copy). An index synced before cc_manuscript became
+    private still says public for those; they are not served."""
+    return bool(isinstance(entry, dict) and entry.get("public") and str(entry.get("annotated") or "").startswith("cc/")
+                and (entry.get("category") == "cc" or entry.get("public_basis") == "confirmed_copy"))
+
+
+def public_allowlist(index: dict) -> list[str]:
+    """File names under cc/ the deployed portal may serve (portal/dist/public-pdfs.json). Built on
+    every deploy, so revoking a paper takes effect at the next push even when deleting the R2
+    object failed; an object still waiting to be deleted is never listed."""
+    pending = set(index.get("pending_deletions") or [])
+    return sorted(Path(v["annotated"]).name for v in (index.get("papers") or {}).values()
+                  if serves_publicly(v) and v["annotated"] not in pending)
 
 
 def wrangler(*args, timeout: int = 600) -> subprocess.CompletedProcess:
@@ -216,6 +234,9 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
     old = load_index(index_path)
     new = scan_pdfs(papers_dir, lic)
     ups, dels, failed = [], [], []
+    # objects a previous sync could not delete: retried first, and kept until they are gone
+    # (an unpublished PDF must not stay reachable because one delete call failed)
+    pending: set[str] = set(old.get("pending_deletions") or [])
 
     def do_put(obj: str, path: Path, ctype: str) -> bool:
         if dry:
@@ -226,30 +247,50 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
         print(f"  {'↑' if ok else '✗'} {obj}" + ("" if ok else f": {(getattr(done, 'stderr', '') or '').strip()[-200:]}"))
         return ok
 
-    def do_delete(obj: str) -> None:
+    def do_delete(obj: str) -> bool:
         if dry:
             print(f"  would delete {obj}")
-            return
-        done = delete(obj)
-        print(f"  {'−' if getattr(done, 'returncode', 0) == 0 else '✗'} {obj}")
+            dels.append(obj)
+            return True
+        try:
+            done = delete(obj)
+            ok = getattr(done, "returncode", 0) == 0
+        except Exception as e:  # noqa: BLE001
+            done, ok = None, False
+            print(f"  ✗ {obj}: {e}")
+        if ok:
+            pending.discard(obj); dels.append(obj)
+        else:
+            pending.add(obj)
+        print(f"  {'−' if ok else '✗'} {obj}" + ("" if ok else f" (delete failed: kept in pending_deletions, retried at the next --sync)"
+                                                   + (f": {(getattr(done, 'stderr', '') or '').strip()[-200:]}" if done is not None else "")))
+        return ok
 
+    for obj in sorted(pending):
+        do_delete(obj)
     for key, entry in list(new.items()):
         prev = old["papers"].get(key)
         if prev and prev.get("sha256") == entry["sha256"] and prev.get("annotated") == entry["annotated"]:
             continue
+        moved = bool(prev and prev.get("annotated") and prev["annotated"] != entry["annotated"])
+        revoked = moved and str(prev["annotated"]).startswith("cc/") and not entry["public"]
         if do_put(entry["annotated"], papers_dir / Path(entry["annotated"]).name, "application/pdf"):
             ups.append(key)
-            if prev and prev.get("annotated") and prev["annotated"] != entry["annotated"]:
-                do_delete(prev["annotated"]); dels.append(prev["annotated"])
+            if moved:
+                do_delete(prev["annotated"])
         else:
             failed.append(key)
-            if prev:
+            if revoked:
+                # no longer public: take the open copy down even though the private one failed to upload
+                do_delete(prev["annotated"])
+                new.pop(key, None)
+            elif prev:
                 new[key] = prev                      # the index stays truthful: the bucket still has the old file
             else:
                 new.pop(key, None)
     for key, prev in old["papers"].items():
-        if key not in new and prev.get("annotated"):
-            do_delete(prev["annotated"]); dels.append(prev["annotated"])
+        if key not in new and prev.get("annotated") and prev["annotated"] not in pending and prev["annotated"] not in dels:
+            do_delete(prev["annotated"])
     # full-text screening: the source PDF of each candidate awaiting assessment (no annotated copy yet)
     ft_files = fulltext_pdfs(papers_dir, new) if fulltext is None else fulltext
     ft_new: dict[str, dict] = {}
@@ -266,8 +307,8 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
             if prev:
                 ft_new[cid] = prev
     for cid, prev in old["fulltext"].items():
-        if cid not in ft_new and prev.get("object"):
-            do_delete(prev["object"]); dels.append(prev["object"])
+        if cid not in ft_new and prev.get("object") and prev["object"] not in pending and prev["object"] not in dels:
+            do_delete(prev["object"])
     abstracts = old.get("abstracts")
     abs_path = abstracts_path or (ROOT / "screening" / "abstracts.jsonl")
     if abs_path.exists():
@@ -277,16 +318,22 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
                 abstracts = {"object": ABSTRACTS_OBJECT, "sha256": sha, "bytes": abs_path.stat().st_size,
                              "synced": dt.datetime.now().isoformat(timespec="minutes")}
     index = {"synced": old.get("synced") if dry else dt.datetime.now().isoformat(timespec="minutes"), "bucket": bucket,
-             "papers": new, "sources": source_pdfs(papers_dir), "fulltext": ft_new, "abstracts": abstracts}
+             "papers": new, "sources": source_pdfs(papers_dir), "fulltext": ft_new, "abstracts": abstracts,
+             "pending_deletions": sorted(old.get("pending_deletions") or []) if dry else sorted(pending)}
     if not dry:
-        index_path.write_text(json.dumps(index, indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
+        tmp = index_path.with_suffix(index_path.suffix + ".tmp")
+        tmp.write_text(json.dumps(index, indent=1, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8")
+        tmp.replace(index_path)                      # never a half-written index
     n_public = sum(1 for v in new.values() if v["public"])
     verb = ("to upload", "to delete") if dry else ("uploaded", "deleted")
     print(f"  bucket {bucket}: {len(ups)} {verb[0]}, {len(dels)} {verb[1]}, {len(failed)} failed · index: {n_public} public + {len(new) - n_public} private annotated PDFs, "
           f"{len(index['sources']['keys'])} source PDFs, {len(ft_new)} full texts to assess" + (" (dry run, index not written)" if dry else f" → {_rel(index_path)}"))
     if failed:
         print(f"  ⚠ not uploaded: {', '.join(failed)} — run --sync again")
-    return index
+    if index["pending_deletions"] and not dry:
+        print(f"  ⚠ {len(index['pending_deletions'])} object(s) could not be deleted and stay in pending_deletions "
+              f"(never listed as public; retried at the next --sync): {', '.join(index['pending_deletions'])}")
+    return {**index, "sync_failed": failed}
 
 
 def source_pdfs(papers_dir: Path) -> dict:
@@ -418,6 +465,10 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
                 "counts": {"public": n_public, "private": len(pdfs) - n_public, "candidates": len(sb["candidates"]),
                            "sources": sum(1 for k in sources["keys"] if k not in pdfs), "sourceFiles": len(sources["files"])}}
     (DIST / "manifest.json").write_text(json.dumps(manifest, indent=1, sort_keys=True), encoding="utf-8")
+    # what cc/ may serve (portal/lib/pdfs.js checks every public request against it)
+    allow = public_allowlist(index)
+    (DIST / "public-pdfs.json").write_text(json.dumps({"built": manifest["built"], "files": allow}, indent=1), encoding="utf-8")
+    print(f"  public-pdfs.json: {len(allow)} annotated PDF(s) the open cc/ path may serve")
     (DIST / "_headers").write_text("/*\n  X-Robots-Tag: noindex\n  Cache-Control: no-cache\n", encoding="utf-8")
     return manifest
 
@@ -456,10 +507,11 @@ def _cli(argv=None) -> int:
             print("  no bucket: pass --bucket or set pdfsBucket in portal/portal.config.json")
             return 1
         print(f"Syncing annotated PDFs from {args.papers_dir} to the R2 bucket {bucket}")
-        sync_pdfs(args.papers_dir, bucket, dry=args.dry_run)
+        result = sync_pdfs(args.papers_dir, bucket, dry=args.dry_run)
+        incomplete = bool(result.get("sync_failed")) or (bool(result.get("pending_deletions")) and not args.dry_run)
         if not args.deploy:
             print("  Commit portal/papers.json and push: the portal rebuilds from the push (or build here: publish_portal.py --deploy).")
-            return 0
+            return 1 if incomplete else 0
     print(f"Assembling the review portal in {DIST.relative_to(ROOT)}/")
     manifest = build(args.ta_limit)
     print(f"  KB {manifest.get('kbCommit') or '?'} · {len(manifest.get('papers') or {})} annotated PDFs · built {manifest.get('built')}")

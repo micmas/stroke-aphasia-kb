@@ -184,5 +184,89 @@ class ManuscriptLicence(unittest.TestCase):
         self.assertEqual(EW.portal(self.root)["publicPdfs"], ["@Open2020"])
 
 
+class Revocation(unittest.TestCase):
+    """Finding 9: an object that could not be deleted is retried until it is gone, and is never
+    on the list of what the open cc/ path may serve."""
+
+    def setUp(self):
+        import publish_portal as PP
+        self.PP = PP
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        self.papers = self.root / "papers"; self.papers.mkdir()
+        (self.papers / "X_annotated.pdf").write_bytes(b"%PDF-x annotated")
+        self.index = self.root / "papers.json"
+        self.saved_lic = PP.licences
+        self.lic = {"@X": {"category": "cc"}}
+        PP.licences = lambda *a, **k: self.lic
+        self.puts, self.deletes, self.fail_deletes, self.fail_puts = [], [], 0, 0
+
+    def tearDown(self):
+        self.PP.licences = self.saved_lic
+        self.tmp.cleanup()
+
+    def put(self, obj, path, ctype):
+        self.puts.append(obj)
+        if self.fail_puts:
+            self.fail_puts -= 1
+            return type("R", (), {"returncode": 1, "stderr": "boom"})()
+        return type("R", (), {"returncode": 0})()
+
+    def delete(self, obj):
+        self.deletes.append(obj)
+        if self.fail_deletes:
+            self.fail_deletes -= 1
+            return type("R", (), {"returncode": 1, "stderr": "R2 unavailable"})()
+        return type("R", (), {"returncode": 0})()
+
+    def sync(self):
+        return self.PP.sync_pdfs(self.papers, "b", index_path=self.index, put=self.put, delete=self.delete,
+                                 fulltext={}, abstracts_path=self.root / "absent")
+
+    def test_failed_deletion_is_retried_and_never_listed(self):
+        first = self.sync()
+        self.assertEqual(self.PP.public_allowlist(first), ["X_annotated.pdf"])
+        self.lic = {"@X": {"category": "rights_reserved"}}       # licence corrected: no longer public
+        self.fail_deletes = 1
+        second = self.sync()
+        self.assertEqual(second["papers"]["@X"]["annotated"], "pdf/X_annotated.pdf")
+        self.assertEqual(second["pending_deletions"], ["cc/X_annotated.pdf"])
+        self.assertEqual(json.loads(self.index.read_text())["pending_deletions"], ["cc/X_annotated.pdf"])
+        self.assertEqual(self.PP.public_allowlist(second), [])
+        third = self.sync()                                         # nothing else changed: the delete is retried
+        self.assertEqual(self.deletes, ["cc/X_annotated.pdf", "cc/X_annotated.pdf"])
+        self.assertEqual(third["pending_deletions"], [])
+
+    def test_revoked_copy_comes_down_even_if_the_private_upload_fails(self):
+        self.sync()
+        self.lic = {"@X": {"category": "rights_reserved"}}
+        self.fail_puts = 1
+        out = self.sync()
+        self.assertIn("cc/X_annotated.pdf", self.deletes)
+        self.assertNotIn("@X", out["papers"])                      # not available until the next sync uploads pdf/
+        self.assertEqual(out["sync_failed"], ["@X"])
+        self.assertEqual(self.PP.public_allowlist(out), [])
+        again = self.sync()
+        self.assertEqual(again["papers"]["@X"]["annotated"], "pdf/X_annotated.pdf")
+
+    def test_a_raising_delete_is_a_failure_not_a_crash(self):
+        self.sync()
+        self.lic = {"@X": {"category": "rights_reserved"}}
+        def boom(obj):
+            raise OSError("wrangler missing")
+        out = self.PP.sync_pdfs(self.papers, "b", index_path=self.index, put=self.put, delete=boom, fulltext={},
+                                abstracts_path=self.root / "absent")
+        self.assertEqual(out["pending_deletions"], ["cc/X_annotated.pdf"])
+
+    def test_allowlist_ignores_stale_and_unconfirmed_entries(self):
+        idx = {"papers": {"@A": {"annotated": "cc/A_annotated.pdf", "public": True, "category": "cc"},
+                          "@B": {"annotated": "cc/B_annotated.pdf", "public": True, "category": "cc_manuscript"},
+                          "@C": {"annotated": "cc/C_annotated.pdf", "public": True, "category": "cc_manuscript", "public_basis": "confirmed_copy"},
+                          "@D": {"annotated": "pdf/D_annotated.pdf", "public": False, "category": "rights_reserved"},
+                          "@E": {"annotated": "cc/E_annotated.pdf", "public": True, "category": "cc"}},
+               "pending_deletions": ["cc/E_annotated.pdf"]}
+        self.assertEqual(self.PP.public_allowlist(idx), ["A_annotated.pdf", "C_annotated.pdf"])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)
