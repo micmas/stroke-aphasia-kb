@@ -26,7 +26,9 @@ export const validUploadId = (id) => CANDIDATE_ID.test(id) || CITATION_KEY.test(
 
 function describe(obj) {
   const m = obj.customMetadata || {};
-  return { object: obj.key, id: m.id || obj.key.slice(PREFIX.length, -4), name: m.name || '', bytes: obj.size, by: m.by || '', uploaded: m.uploaded || (obj.uploaded ? new Date(obj.uploaded).toISOString() : ''), sha256: m.sha256 || '' };
+  let candidate;
+  try { candidate = JSON.parse(m.candidate || 'null'); } catch { candidate = null; }
+  return { candidate, object: obj.key, id: m.id || obj.key.slice(PREFIX.length, -4), name: m.name || '', bytes: obj.size, by: m.by || '', uploaded: m.uploaded || (obj.uploaded ? new Date(obj.uploaded).toISOString() : ''), sha256: m.sha256 || '' };
 }
 
 export async function onRequestGet({ request, env }) {
@@ -65,6 +67,7 @@ export async function onRequestPost({ request, env, data }) {
   if (!head.startsWith('%PDF-')) return Response.json({ error: 'that is not a PDF (no %PDF header)' }, { status: 400 });
   const key = objectKey(id);
   const existing = await env.UPLOADS.head(key);
+  if (existing?.customMetadata?.candidate) return Response.json({ error: 'This PDF is attached to a pending screening intake. Open the existing upload; ask the maintainer to replace it if needed.' }, { status: 409 });
   if (existing && (existing.customMetadata?.by || '') !== data.reviewer.email) {
     return Response.json({ error: `a PDF for ${id} was already uploaded by ${existing.customMetadata?.by || 'someone'} and is waiting for the maintainer` }, { status: 409 });
   }

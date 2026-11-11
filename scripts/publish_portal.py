@@ -423,11 +423,15 @@ def screening_bundle(root: Path = ROOT, ta_limit: int = 300) -> dict:
         except Exception as e:  # noqa: BLE001
             print(f"  ⚠ prioritised ranking failed ({str(e)[:80]}); taking the first {ta_limit} by id")
             ta_ids = sorted(ta_ids)[:ta_limit]
+    # Uploaded papers must survive the capped T/A queue, even if not highly ranked.
+    priority = sorted((r for r in rows.values() if r.get("pdf_uploaded_at") and r["stage"] in ("awaiting_ta", "unsure_ta")), key=lambda r: str(r["pdf_uploaded_at"]), reverse=True)
+    ta_ids = list(dict.fromkeys([r["id"] for r in priority] + ta_ids))[:max(ta_limit, len(priority))]
+    ft_ids.sort(key=lambda cid: str(rows[cid].get("pdf_uploaded_at") or ""), reverse=True)
     cands = []
     for cid in ta_ids + ft_ids:
         r = rows[cid]
         cands.append({k: r.get(k) for k in ("id", "key", "doi", "pmid", "title", "year", "first_author", "authors", "journal",
-                                             "stage", "for", "sources", "pdf_file") if r.get(k) not in (None, "", [])}
+                                             "stage", "for", "sources", "pdf_file", "pdf_uploaded_at", "upload_ids") if r.get(k) not in (None, "", [])}
                      | {"abstract": abstracts.get(r["id"], ""), "history": [{k: d.get(k) for k in ("stage", "decision", "reason", "by", "date") if d.get(k)}
                                                                                for d in (r.get("screening") or [])],
                         "suggestion": r.get("suggestion")})
@@ -522,6 +526,9 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
     # screening queue with abstracts (private)
     sb = screening_bundle(ta_limit=ta_limit)
     (DIST / "screening.json").write_text(json.dumps(sb, ensure_ascii=False, default=str), encoding="utf-8")
+    # Full identity index: matching cannot be restricted to the visible ranked queue.
+    identity_index = [{k: c.get(k) for k in ("id", "key", "title", "doi", "stage", "duplicate_of", "upload_ids") if c.get(k)} for c in S.collect(ROOT)["candidates"]]
+    (DIST / "screening-index.json").write_text(json.dumps({"candidates": identity_index}, ensure_ascii=False), encoding="utf-8")
     q = sb["queue"]
     print(f"  screening.json: {q['title_abstract']} of {q['title_abstract_total']} title/abstract records "
           f"({'prioritised order' if q['ranked'] else 'all'}) + {q['full_text']} full-text records")

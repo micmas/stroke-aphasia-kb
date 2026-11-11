@@ -1,5 +1,27 @@
 # The review portal
 
+## Upload a paper for screening
+
+On **PDFs**, use **Upload any paper**. Choose or drop a main PDF, then check its
+title and DOI. Metadata is read in the browser; no external model receives the PDF.
+The portal checks the complete screening register and pending uploads by DOI,
+then normalized title. Ambiguous matches require selection; conflicting DOIs
+require correction. An unrecognized title or missing DOI can still need a later
+manual duplicate check.
+
+A matching paper keeps its screening decisions and receives priority if still
+awaiting screening. An unmatched paper enters title/abstract screening as a record
+from another source, with its uploaded PDF available to reviewers immediately.
+Uploading never includes a paper automatically. PDFs stay in the private upload
+bucket; only bibliographic metadata and intake records enter GitHub.
+
+The normal **Apply** operation registers the paper and preserves its priority.
+PDF retrieval still happens on the maintainer's machine through `portal_import.py`;
+CI deliberately skips PDF retrieval. New upload identifiers start with `U` and
+remain stable; if a concurrent registration already exists, the importer retains
+an alias so earlier PDF links and screening decisions still resolve.
+
+
 The review portal is where collaborators help check the knowledge base.
 You sign in with your email, read a draft next to the paper it came from,
 and say whether you agree. You can also sort new papers in or out, and

@@ -194,10 +194,52 @@ def append_ledger(rows: list[dict], path: Path | None = None) -> None:
 
 
 # ------------------------------------------------------------------ appliers
+def _candidate_for_id(cands: list[dict], rid: str):
+    return next((c for c in cands if c.get("id") == rid or rid in (c.get("upload_ids") or [])), None)
+
+
+def apply_paper(rec: dict, by: str, execute: bool, state: dict) -> str:
+    """Register a reviewer-supplied source or prioritize a match; never make a decision."""
+    rid = str(rec.get("id") or "")
+    title = str(rec.get("title") or "").strip()
+    doi = str(rec.get("doi") or "").strip().lower()
+    if not re.fullmatch(r"(?:C\d{1,7}|U[0-9a-f]{32})", rid) or not 8 <= len(title) <= 500:
+        return "skip: invalid paper identity"
+    if doi and not re.fullmatch(r"10\.\d{4,9}/\S{1,180}", doi):
+        return "skip: invalid DOI"
+    cands = state.setdefault("candidates", S.load_candidates())
+    c = _candidate_for_id(cands, rid)
+    norm = lambda t: " ".join(re.sub(r"[^\w]+", " ", str(t or "").casefold()).split())
+    if c is None:
+        matches = [x for x in cands if not x.get("duplicate_of") and ((doi and str(x.get("doi") or "").lower() == doi) or (norm(x.get("title")) == norm(title) and not (doi and x.get("doi") and str(x["doi"]).lower() != doi)))]
+        if len(matches) > 1:
+            return "skip: ambiguous paper identity; resolve the register first"
+        c = matches[0] if matches else None
+    if c is None:
+        if not rec.get("new_candidate") or not rid.startswith("U"):
+            return "skip: matched candidate no longer exists"
+        c = {"id": rid, "title": title, "doi": doi or None, "sources": [], "screening": []}
+        cands.append(c)
+    elif doi and c.get("doi") and str(c["doi"]).lower() != doi:
+        return "skip: DOI conflicts with candidate"
+    if c.get("duplicate_of"):
+        c = _candidate_for_id(cands, c["duplicate_of"])
+        if c is None:
+            return "skip: missing canonical duplicate"
+    if rid != c["id"] and rid not in c.setdefault("upload_ids", []):
+        c["upload_ids"].append(rid)
+    record = _record_id(rec)
+    if not any(x.get("record") == record for x in c.get("sources", []) if record):
+        c.setdefault("sources", []).append({"kind": "hand_picked", "date": str(rec.get("submitted") or "")[:10], "by": by, "note": "Reviewer PDF upload (other source)", "record": record})
+    c["pdf_uploaded_at"] = max(str(c.get("pdf_uploaded_at") or ""), str(rec.get("submitted") or ""))
+    state["candidates_dirty"] = True
+    return f"{c['id']}: PDF supplied by {by}; prioritized without changing screening decisions"
+
+
 def apply_screen(rec: dict, by: str, execute: bool, state: dict) -> str:
     cands = state.setdefault("candidates", S.load_candidates())
     by_id = {c["id"]: c for c in cands}
-    c = by_id.get(str(rec.get("id")))
+    c = _candidate_for_id(cands, str(rec.get("id")))
     if c is None:
         return f"skip: no candidate {rec.get('id')}"
     if _has_record(c.get("screening"), _record_id(rec)):
@@ -498,7 +540,7 @@ def pdf_destination(rec: dict, state: dict) -> tuple[Path | None, dict | None, s
     if not (CANDIDATE_ID.match(rid) or CITATION_KEY.match(rid)):
         return None, None, f"skip: {rid!r} is neither a candidate id nor a citation key"
     cands = state.setdefault("candidates", S.load_candidates())
-    c = next((x for x in cands if x.get("id") == rid), None)
+    c = _candidate_for_id(cands, rid)
     if c is None:
         c = next((x for x in cands if x.get("key") and str(x["key"]).lstrip("@").lower() == rid.lstrip("@").lower()), None)
     if c is None:
@@ -642,7 +684,9 @@ def run(execute: bool, promote: bool, only_kind: str | None, skip_kinds: tuple[s
         target = _draft(str(rec.get("id"))) if kind in DRAFT_KINDS else None
         before = _draft_digest(target) if target is not None and execute else None
         try:
-            if kind == "screen":
+            if kind == "paper":
+                msg = apply_paper(rec, by, execute, state)
+            elif kind == "screen":
                 msg = apply_screen(rec, by, execute, state)
             elif kind == "edit":
                 msg = apply_edit(rec, by, execute, state)
@@ -674,7 +718,7 @@ def run(execute: bool, promote: bool, only_kind: str | None, skip_kinds: tuple[s
             row = {"record": f.name, "status": st, "kind": kind, "id": str(rec.get("id")), "by": by,
                    "at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"), "message": str(msg)[:300]}
             if execute:
-                if kind == "screen":
+                if kind in ("screen", "paper"):
                     later.append(row)            # only true once candidates.yaml is written
                 else:
                     append_ledger([row])         # the effect is on disk already: replaying it must not redo it
@@ -719,7 +763,7 @@ def _cli(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--execute", action="store_true")
     ap.add_argument("--promote", action="store_true", help="run promote.py for approve/reject verdicts from approvers")
-    ap.add_argument("--kind", choices=["screen", "verdict", "edit", "mark", "comment", "pdf"])
+    ap.add_argument("--kind", choices=["paper", "screen", "verdict", "edit", "mark", "comment", "pdf"])
     ap.add_argument("--skip-pdf", action="store_true",
                     help="leave `pdf` records in the inbox (for CI, which has no papers/ folder to pull the uploads into)")
     ap.add_argument("--no-intake", action="store_true",

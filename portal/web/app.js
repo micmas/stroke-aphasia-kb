@@ -26,9 +26,10 @@ const VOCAB = {
   target_kind: ['impairment', 'therapy', 'region', 'prognosis', 'predictor'],
   supports: ['claim', 'method', 'sample', 'statistics', 'confounders', 'region_definition', 'limitation', 'imaging_details'],
 };
+import { prioritizePapers, mergePendingPapers } from './paper-intake.js';
 import { carryOver, sameBuild } from './review-state.js';
 
-const state = { me: null, manifest: null, kb: null, bindings: {}, bindingProblem: '', screening: null, mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
+const state = { me: null, manifest: null, kb: null, bindings: {}, bindingProblem: '', screening: null, screeningIndex: [], mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
 const MAX_UPLOAD = 60 * 1024 * 1024;
 
 // ---------------------------------------------------------------- helpers
@@ -88,7 +89,10 @@ const paperSource = (citation) => Boolean(citation && (paperPdf(citation) || (st
 /** A candidate's PDF is with the maintainer: named after its key, or linked through `pdf_file`. */
 const candidateHasPdf = (c) => Boolean(c.pdf_file) || paperSource(c.key);
 /** An upload waiting in the bucket for this candidate id or citation key, if any. */
-const uploadFor = (...ids) => state.uploads.find((u) => ids.filter(Boolean).some((id) => u.id === id || u.id === String(id).replace(/^@/, '') || `@${u.id}` === id)) || null;
+const uploadFor = (...ids) => {
+  const aliases = (state.screening?.candidates || []).filter((c) => ids.includes(c.id)).flatMap((c) => c.upload_ids || []);
+  return state.uploads.find((u) => [...ids, ...aliases].filter(Boolean).some((id) => u.id === id || u.id === String(id).replace(/^@/, '') || `@${u.id}` === id)) || null;
+};
 
 /** The upload control: a file picker and a button; on success the upload joins state.uploads and the page re-renders. */
 function uploadControl(id, citation, { required = false, label = null } = {}) {
@@ -458,7 +462,7 @@ function screenQueue(stage) {
   for (const n of state.mine.inbox) { const id = screenId(n); if (id) sentIds.add(id); }
   for (const n of state.mine.applied) { const id = screenId(n); if (id && stampAt(n) > builtAt) sentIds.add(id); }
   const all = sc.candidates.filter((c) => stages.includes(c.stage));
-  const cands = all.filter((c) => !sentIds.has(slug(c.id)) && !sentIds.has(c.id));
+  const cands = prioritizePapers(all.filter((c) => !sentIds.has(slug(c.id)) && !sentIds.has(c.id)), state.uploads);
   return { cands, hidden: all.length - cands.length };
 }
 
@@ -489,7 +493,7 @@ function screenView(stage) {
       h('p', { class: 't' }, h('span', { class: 'chip', text: c.id }), ' ', esc(c.title)),
       h('p', { class: 'small muted' }, [c.year, c.journal, (c.authors || '').slice(0, 120)].filter(Boolean).join(' · '), c.doi ? [' · ', h('a', { href: `https://doi.org/${c.doi}`, target: '_blank', rel: 'noopener', text: c.doi })] : null, c.pmid ? [' · PMID ', h('a', { href: `https://pubmed.ncbi.nlm.nih.gov/${c.pmid}`, target: '_blank', rel: 'noopener', text: String(c.pmid) })] : null,
         c.for?.length ? ` · for ${c.for.join(', ')}` : '', c.history?.length ? ` · ${c.history.map((x) => `${x.stage === 'title_abstract' ? 'T/A' : 'FT'}: ${x.decision} (${x.by})`).join('; ')}` : ''),
-      h('p', { class: 'small pdfline' }, pdfLine),
+      h('p', { class: 'small pdfline' }, pdfLine, up ? [' · ', h('a', { href: `api/upload?file=${encodeURIComponent(up.id)}`, target: '_blank', rel: 'noopener', text: 'Open uploaded PDF' })] : null),
       h('p', { class: 'ab', text: c.abstract || '(no abstract available)' }),
       c.suggestion?.decision ? h('p', { class: 'sug', text: `Model suggests ${c.suggestion.decision}${c.suggestion.reason && c.suggestion.reason !== 'none' ? ` (${c.suggestion.reason})` : ''} — a suggestion, not a decision.` }) : null,
       h('div', { class: 'dec' }, ['include', 'exclude', 'unsure'].map((v) => h('label', { title: gated ? 'Upload the PDF first' : null }, h('input', { type: 'radio', name: `s-${c.id}`, value: v, disabled: gated ? '' : null, checked: dec.decision === v ? '' : null, onchange: () => { decided[c.id] = { ...dec, decision: v }; store.set(key, decided); card.classList.add('done'); const k = Object.values(decided).filter((x) => x.decision).length; status.textContent = statusText(k); sendBtn.disabled = k ? false : true; sendBtn.textContent = k ? `Send ${plural(k, 'decision')}` : 'Send decisions'; } }), ` ${v}`)),
@@ -672,6 +676,59 @@ async function sendScreen(stage, decided, cands, btn = null, status = null) {
 }
 
 // ---- the PDFs the portal holds ----
+function anyPaperUpload() {
+  if (!state.uploadsOk) return null;
+  let selected = null, busy = false, generation = 0;
+  const title = h('input', { type: 'text', maxlength: 500, placeholder: 'Paper title', 'aria-label': 'Paper title', style: 'width:100%' });
+  const doi = h('input', { type: 'text', placeholder: 'DOI (optional)', 'aria-label': 'DOI', style: 'width:100%' });
+  const message = h('p', { class: 'small', role: 'status', text: 'Choose a PDF. Check its title and DOI before uploading; these identify the paper in the full register.' });
+  const choices = h('select', { 'aria-label': 'Matching screening record', hidden: true });
+  const choose = async (file) => {
+    if (busy || !file) return;
+    if (file.size > MAX_UPLOAD) { toast('The PDF limit is 60 MB.', true); return; }
+    selected = file; const version = ++generation;
+    title.value = ''; doi.value = ''; choices.hidden = true; choices.replaceChildren();
+    message.textContent = `Selected ${file.name}. Reading its metadata locally…`;
+    button.disabled = true;
+    let doc;
+    try {
+      const lib = await pdfjs(); doc = await lib.getDocument({ data: new Uint8Array(await file.arrayBuffer()) }).promise;
+      const meta = await doc.getMetadata();
+      const page = await doc.getPage(1); const text = (await page.getTextContent()).items.map((x) => x.str || '').join(' ');
+      if (version !== generation) return;
+      title.value = String(meta.info?.Title || '').slice(0, 500);
+      doi.value = (text.match(/10\.\d{4,9}\/[^\s<>]+/i)?.[0] || '').replace(/[.,;]+$/, '');
+      message.textContent = 'Check the paper title and DOI below. PDF metadata can be incomplete or incorrect.';
+    } catch { if (version === generation) message.textContent = 'Enter the paper title and DOI below; they could not be read reliably from this PDF.'; }
+    finally { if (doc) await doc.destroy(); if (version === generation) button.disabled = false; }
+  };
+  const picker = h('input', { type: 'file', accept: '.pdf,application/pdf', 'aria-label': 'Upload any paper PDF', onchange: (e) => choose(e.target.files?.[0]) });
+  const button = h('button', { class: 'btn btn-primary', text: 'Upload and check register', onclick: async () => {
+    if (busy || !selected) { if (!selected) toast('Choose a PDF first.', true); return; }
+    if (title.value.trim().length < 8) { toast('Enter the full paper title.', true); return; }
+    busy = true; button.disabled = true; picker.disabled = true;
+    try {
+      const form = new FormData(); form.append('pdf', selected); form.append('title', title.value.trim()); form.append('doi', doi.value.trim());
+      if (choices.value) form.append('candidate', choices.value);
+      const response = await fetch('/api/paper-upload', { method: 'POST', body: form });
+      const result = await response.json();
+      if (!response.ok) {
+        if (result.matches) { choices.replaceChildren(...result.matches.map((c) => h('option', { value: c.id, text: `${c.id}: ${c.title}` }))); choices.hidden = false; }
+        throw new Error(result.error || `Upload failed (${response.status})`);
+      }
+      state.uploads.push(result.upload);
+      if (state.screening) state.screening.candidates = mergePendingPapers(state.screening.candidates, state.uploads, state.screeningIndex);
+      toast(result.matched ? 'PDF linked to the existing record. Pending screening gets priority.' : 'Paper added from another source, with its PDF, at the top of title/abstract screening.');
+      for (const file of result.files || []) state.mine.inbox.push(file.split('/').pop());
+      render();
+    } catch (e) { message.textContent = e.message; toast(e.message, true); }
+    finally { busy = false; button.disabled = false; picker.disabled = false; }
+  } });
+  return dropZone(h('section', { class: 'notice' }, h('h2', { text: 'Upload any paper' }),
+    h('p', { text: 'Drop a PDF here or choose a file. We check the full screening register first. Matching papers get their PDF and priority; new papers enter screening as records from other sources. Existing screening decisions are preserved.' }),
+    picker, message, h('label', {}, 'Paper title', title), h('label', {}, 'DOI (optional)', doi), choices, button), choose);
+}
+
 function pdfsView() {
   const m = state.manifest || {};
   const papers = Object.entries(m.papers || {}).sort((a, b) => a[0].localeCompare(b[0]));
@@ -708,6 +765,7 @@ function pdfsView() {
   const missingTable = h('table', { class: 'queue missing' }, h('thead', {}, h('tr', {}, h('th', { text: 'Candidate' }), h('th', { text: 'Paper' }), h('th', { text: 'Find it' }), h('th', { text: 'Screening' }), h('th', { text: 'PDF' }))), h('tbody', {}, missing.map(missingRow)));
   const nUp = missing.filter((c) => uploadFor(c.id, c.key)).length;
   return frag(h('div', { class: 'page-head' }, h('h1', { text: 'PDFs' }), h('span', { class: 'muted small', text: `${m.counts?.private ?? 0} private · ${m.counts?.public ?? 0} public · ${m.counts?.sources ?? 0} more source PDFs with the maintainer, not annotated yet · ${missing.length} included papers without a PDF` })),
+    anyPaperUpload(),
     h('h2', { id: 'missing', text: `Papers we still need (${missing.length})` }),
     h('p', { class: 'small', text: `Included at title/abstract, waiting for a full-text decision, and nobody has the PDF yet${nUp ? ` (${nUp} uploaded, with the maintainer)` : ''}. If you can get one — through your library, the authors, or a repository copy — drag the PDF onto the paper's row (or choose the file and press Upload); it goes to the maintainer's papers folder, never to the public site. The full-text decision for a paper can only be made once its PDF exists.` }),
     missing.length ? missingTable : h('p', { class: 'notice', text: 'Every paper awaiting a full-text decision has its PDF.' }),
@@ -913,8 +971,9 @@ async function init() {
     state.bindingProblem = consistent ? '' : 'The portal files loaded are not all from the same build: reload the page before sending a draft review.';
     try { const sent = store.get('screen:sent', {}); const built = manifest.built || ''; for (const [id, when] of Object.entries(sent)) if (built && String(when?.at || when) < built) delete sent[id]; store.set('screen:sent', sent); } catch { /* ignore */ }
     state.screening = await fetch('screening.json').then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    state.screeningIndex = await fetch('screening-index.json', fresh).then((r) => r.ok ? r.json() : null).then((x) => x?.candidates || []).catch(() => []);
     state.mine = await api('reviews').catch(() => ({ inbox: [], applied: [] }));
-    try { const u = await api('upload'); state.uploads = u.uploads || []; state.uploadsOk = true; } catch { state.uploads = []; state.uploadsOk = false; }
+    try { const u = await api('upload'); state.uploads = u.uploads || []; state.uploadsOk = true; if (state.screening) state.screening.candidates = mergePendingPapers(state.screening.candidates, state.uploads, state.screeningIndex); } catch { state.uploads = []; state.uploadsOk = false; }
     document.getElementById('who').textContent = me.email;
     document.getElementById('footerVersion').textContent = `KB ${manifest.kbCommit || '?'} · ${kb.findings?.length ?? 0} findings in the drafts export · portal built ${manifest.built || '?'}`;
     if (manifest.config?.explorerUrl) document.getElementById('explorerLink').href = manifest.config.explorerUrl;
