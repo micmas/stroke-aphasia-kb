@@ -265,13 +265,19 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
     # objects a previous sync could not delete: retried first, and kept until they are gone
     # (an unpublished PDF must not stay reachable because one delete call failed)
     pending: set[str] = set(old.get("pending_deletions") or [])
+    attempted: set[str] = set()          # deletes tried in this run (each object at most once)
 
     def do_put(obj: str, path: Path, ctype: str) -> bool:
         if dry:
             print(f"  would upload {obj} ({path.stat().st_size // 1024} KB)")
             return True
-        done = put(obj, path, ctype)
-        ok = getattr(done, "returncode", 0) == 0
+        try:
+            done = put(obj, path, ctype)
+            ok = getattr(done, "returncode", 0) == 0
+        except Exception as e:  # noqa: BLE001
+            done, ok = type("Failed", (), {"stderr": str(e)})(), False
+        if ok:
+            pending.discard(obj)             # wanted again and now uploaded: no longer to be deleted
         print(f"  {'↑' if ok else '✗'} {obj}" + ("" if ok else f": {(getattr(done, 'stderr', '') or '').strip()[-200:]}"))
         return ok
 
@@ -280,6 +286,7 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
             print(f"  would delete {obj}")
             dels.append(obj)
             return True
+        attempted.add(obj)
         try:
             done = delete(obj)
             ok = getattr(done, "returncode", 0) == 0
@@ -294,11 +301,15 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
                                                    + (f": {(getattr(done, 'stderr', '') or '').strip()[-200:]}" if done is not None else "")))
         return ok
 
-    for obj in sorted(pending):
-        do_delete(obj)
+    def unsure(obj: str) -> bool:
+        """The bucket may not hold what the index says: a delete of it failed earlier (pending)
+        or happened in this run. Such an object is uploaded again, never skipped as unchanged."""
+        return obj in pending or obj in dels
+
     for key, entry in list(new.items()):
         prev = old["papers"].get(key)
-        if prev and prev.get("sha256") == entry["sha256"] and prev.get("annotated") == entry["annotated"]:
+        if (prev and prev.get("sha256") == entry["sha256"] and prev.get("annotated") == entry["annotated"]
+                and not unsure(entry["annotated"])):
             continue
         moved = bool(prev and prev.get("annotated") and prev["annotated"] != entry["annotated"])
         revoked = moved and str(prev["annotated"]).startswith("cc/") and not entry["public"]
@@ -326,7 +337,7 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
         sha = hashlib.sha256(path.read_bytes()).hexdigest()
         entry = {"object": f"pdf/{cid}_fulltext.pdf", "sha256": sha, "bytes": path.stat().st_size, "file": path.name}
         prev = old["fulltext"].get(cid)
-        if prev and prev.get("sha256") == sha:
+        if prev and prev.get("sha256") == sha and not unsure(entry["object"]):
             ft_new[cid] = {**prev, "file": path.name}          # renamed in papers/: same bytes, no upload
         elif do_put(entry["object"], path, "application/pdf"):
             ft_new[cid] = entry; ups.append(cid)
@@ -337,6 +348,11 @@ def sync_pdfs(papers_dir: Path, bucket: str, dry: bool = False, index_path: Path
     for cid, prev in old["fulltext"].items():
         if cid not in ft_new and prev.get("object") and prev["object"] not in pending and prev["object"] not in dels:
             do_delete(prev["object"])
+    # deletes left over from earlier syncs, last: an object that is wanted again (and was just
+    # uploaded, or failed to upload and stays pending, never served) is not deleted
+    wanted = {v["annotated"] for v in new.values() if v.get("annotated")} | {v["object"] for v in ft_new.values() if v.get("object")}
+    for obj in sorted(pending - wanted - attempted):
+        do_delete(obj)
     abstracts = old.get("abstracts")
     abs_path = abstracts_path or (ROOT / "screening" / "abstracts.jsonl")
     if abs_path.exists():
@@ -547,6 +563,8 @@ def _cli(argv=None) -> int:
         if not args.deploy:
             print("  Commit portal/papers.json and push: the portal rebuilds from the push (or build here: publish_portal.py --deploy).")
             return 1 if incomplete else 0
+    else:
+        incomplete = False
     print(f"Assembling the review portal in {DIST.relative_to(ROOT)}/")
     manifest = build(args.ta_limit)
     print(f"  KB {manifest.get('kbCommit') or '?'} · {len(manifest.get('papers') or {})} annotated PDFs · built {manifest.get('built')}")
@@ -556,9 +574,12 @@ def _cli(argv=None) -> int:
         if not project:
             print("  no project name: pass --project or set pagesProject in portal/portal.config.json")
             return 1
-        return deploy(project, args.branch)
+        rc = deploy(project, args.branch)
+        if incomplete:
+            print("  ⚠ deployed, but the sync was incomplete (see above): exit 1")
+        return rc or (1 if incomplete else 0)
     print("  Deploy with: python scripts/publish_portal.py --deploy   (or: cd portal && npx wrangler pages deploy dist)")
-    return 0
+    return 1 if incomplete else 0
 
 
 if __name__ == "__main__":

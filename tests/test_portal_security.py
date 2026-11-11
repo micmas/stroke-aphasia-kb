@@ -218,6 +218,7 @@ class Revocation(unittest.TestCase):
         self.lic = {"@X": {"category": "cc"}}
         PP.licences = lambda *a, **k: self.lic
         self.puts, self.deletes, self.fail_deletes, self.fail_puts = [], [], 0, 0
+        self.bucket: dict[str, bytes] = {}
 
     def tearDown(self):
         self.PP.licences = self.saved_lic
@@ -228,6 +229,7 @@ class Revocation(unittest.TestCase):
         if self.fail_puts:
             self.fail_puts -= 1
             return type("R", (), {"returncode": 1, "stderr": "boom"})()
+        self.bucket[obj] = Path(path).read_bytes()
         return type("R", (), {"returncode": 0})()
 
     def delete(self, obj):
@@ -235,7 +237,17 @@ class Revocation(unittest.TestCase):
         if self.fail_deletes:
             self.fail_deletes -= 1
             return type("R", (), {"returncode": 1, "stderr": "R2 unavailable"})()
+        self.bucket.pop(obj, None)
         return type("R", (), {"returncode": 0})()
+
+    def assert_consistent(self, out):
+        """Everything the index points to is in the bucket, and cc/ holds nothing the build would not list."""
+        for v in out["papers"].values():
+            self.assertIn(v["annotated"], self.bucket, v)
+        listed = set(self.PP.public_allowlist(out))
+        for obj in self.bucket:
+            if obj.startswith("cc/") and Path(obj).name not in listed:
+                self.assertIn(obj, out["pending_deletions"], obj)
 
     def sync(self):
         return self.PP.sync_pdfs(self.papers, "b", index_path=self.index, put=self.put, delete=self.delete,
@@ -275,6 +287,64 @@ class Revocation(unittest.TestCase):
         out = self.PP.sync_pdfs(self.papers, "b", index_path=self.index, put=self.put, delete=boom, fulltext={},
                                 abstracts_path=self.root / "absent")
         self.assertEqual(out["pending_deletions"], ["cc/X_annotated.pdf"])
+
+    def test_revoke_fail_then_reauthorise(self):
+        self.sync()
+        self.lic = {"@X": {"category": "rights_reserved"}}
+        self.fail_deletes = 1
+        out = self.sync()                                   # cc/X could not be deleted: pending
+        self.assertEqual(out["pending_deletions"], ["cc/X_annotated.pdf"]); self.assert_consistent(out)
+        self.lic = {"@X": {"category": "cc"}}               # authorised again
+        out = self.sync()
+        self.assertEqual(out["papers"]["@X"]["annotated"], "cc/X_annotated.pdf")
+        self.assertEqual(out["pending_deletions"], [])
+        self.assertIn("cc/X_annotated.pdf", self.bucket)    # re-uploaded, not deleted after the fact
+        self.assertNotIn("pdf/X_annotated.pdf", self.bucket)
+        self.assertEqual(self.PP.public_allowlist(out), ["X_annotated.pdf"]); self.assert_consistent(out)
+
+    def test_revoke_fail_reauthorise_with_upload_failure(self):
+        self.sync()
+        self.lic = {"@X": {"category": "rights_reserved"}}
+        self.fail_deletes = 1
+        self.sync()
+        self.lic = {"@X": {"category": "cc"}}
+        self.fail_puts = 1                                  # the upload to cc/ fails this time
+        out = self.sync()
+        self.assertEqual(out["sync_failed"], ["@X"])
+        self.assertEqual(self.PP.public_allowlist(out), []) # nothing public while the state is uncertain
+        self.assert_consistent(out)
+        out = self.sync()                                   # next sync: uploaded, served
+        self.assertEqual(out["papers"]["@X"]["annotated"], "cc/X_annotated.pdf")
+        self.assertEqual(out["pending_deletions"], [])
+        self.assertEqual(self.PP.public_allowlist(out), ["X_annotated.pdf"]); self.assert_consistent(out)
+
+    def test_pending_object_wanted_unchanged_is_uploaded_not_deleted(self):
+        first = self.sync()                                 # cc/X in the bucket, index cc/X with its sha
+        data = json.loads(self.index.read_text()); data["pending_deletions"] = ["cc/X_annotated.pdf"]
+        self.index.write_text(json.dumps(data))             # an earlier delete of the same object had failed
+        self.bucket.pop("cc/X_annotated.pdf")               # … or did happen: the bucket's state is unknown
+        out = self.sync()
+        self.assertIn("cc/X_annotated.pdf", self.bucket)
+        self.assertNotIn("cc/X_annotated.pdf", self.deletes)
+        self.assertEqual(out["pending_deletions"], [])
+        self.assertEqual(first["papers"]["@X"]["sha256"], out["papers"]["@X"]["sha256"]); self.assert_consistent(out)
+
+    def test_sync_with_deploy_reports_an_incomplete_sync(self):
+        saved = {k: getattr(self.PP, k) for k in ("sync_pdfs", "build", "deploy", "config")}
+        try:
+            self.PP.config = lambda: {"pdfsBucket": "b", "pagesProject": "p"}
+            self.PP.build = lambda *a, **k: {"config": {"pagesProject": "p"}, "papers": {}}
+            self.PP.deploy = lambda *a, **k: 0
+            self.PP.sync_pdfs = lambda *a, **k: {"sync_failed": [], "pending_deletions": ["cc/X_annotated.pdf"]}
+            self.assertEqual(self.PP._cli(["--sync", "--deploy"]), 1)
+            self.assertEqual(self.PP._cli(["--sync"]), 1)
+            self.PP.sync_pdfs = lambda *a, **k: {"sync_failed": [], "pending_deletions": []}
+            self.assertEqual(self.PP._cli(["--sync", "--deploy"]), 0)
+            self.PP.deploy = lambda *a, **k: 3
+            self.assertEqual(self.PP._cli(["--sync", "--deploy"]), 3)
+        finally:
+            for k, v in saved.items():
+                setattr(self.PP, k, v)
 
     def test_allowlist_ignores_stale_and_unconfirmed_entries(self):
         idx = {"papers": {"@A": {"annotated": "cc/A_annotated.pdf", "public": True, "category": "cc"},
