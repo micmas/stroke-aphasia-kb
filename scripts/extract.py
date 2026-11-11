@@ -233,23 +233,22 @@ def _extracted_citation_keys(kb_root: Path) -> set[str]:
 
 
 def _existing_kb_summary(kb_root: Path) -> str:
-    """Build a compact list of region/impairment/therapy/predictor IDs
-    already in the canonical folders, for the prompt."""
+    """Supply target meanings, not just names (never include prior findings)."""
     parts = []
     for bucket in ("regions", "impairments", "therapies", "predictors", "reviews"):
-        ids = []
-        d = kb_root / bucket
-        if d.is_dir():
-            for f in sorted(d.glob("*.md")):
-                # Read just the YAML frontmatter to get the id
-                try:
-                    text = f.read_text()
-                    m = re.search(r"^id:\s*(\S+)", text, flags=re.MULTILINE)
-                    if m:
-                        ids.append(m.group(1))
-                except Exception:
-                    continue
-        parts.append(f"{bucket}: " + ", ".join(ids) if ids else f"{bucket}: (none)")
+        parts.append(f"{bucket}:")
+        for path in sorted((kb_root / bucket).glob("*.md")):
+            entry = _canonical_entry(kb_root, bucket, path.stem)
+            if not entry.get("id"):
+                continue
+            definition = entry.get("short_definition") or entry.get("short_description") or ""
+            definition = " ".join(str(definition).split())
+            assessment = entry.get("assessment") or []
+            if isinstance(assessment, list):
+                assessment = "; ".join(str(x) for x in assessment)
+            parts.append(f"- {entry['id']} ({entry.get('kind', bucket)}): "
+                         f"{entry.get('name', '')}. {definition}"
+                         + (f" Assessment: {assessment}" if assessment else ""))
     return "\n".join(parts)
 
 
@@ -259,7 +258,7 @@ def _existing_kb_summary(kb_root: Path) -> str:
 PROMPT_HEADER = """You are an extraction agent for an aphasia knowledge base.
 
 You read the paper below and produce one or more **draft KB entries**
-under schema v2.3. Your output will be saved as markdown files in
+under schema v2.8. Your output will be saved as markdown files in
 `drafts/<bucket>/` for human review.
 
 # Output format (REQUIRED)
@@ -388,9 +387,13 @@ The complete workflow is in docs/EXTRACTION_SKILL.md (below). Key rules:
    (anomic_aphasia, brocas_aphasia, …) only when the paper classified
    patients by syndrome and the claim is about the type. A measured
    deficit targets the symptom entry whatever the sample was called:
-   naming → anomia; fluency → fluency; comprehension → form_to_meaning;
+   naming → anomia; comprehension → form_to_meaning;
    sentence processing → syntactic_processing. Never use `naming` or
    `confrontation_naming` as a target id.
+   Match the measured construct to the target DEFINITION, not its name.
+   Word-generation fluency, connected-speech fluency, and the clinical
+   fluent/nonfluent classification are not interchangeable. If no target
+   definition fits, use a clearly flagged proposed ID, not a nearby concept.
 
 # Existing KB entries you can target
 
@@ -417,6 +420,43 @@ PDF filename: {pdf_filename}
 Page count: {page_count}
 
 {paper_text}
+
+# Final evidence checklist — apply to every finding before returning JSON
+
+- Read the full Results and relevant tables before writing the claim.
+  Identify each model's outcome, predictors, covariates and time point.
+  If a restricted model is significant but an adjusted model is not,
+  the claim MUST state both and name the adjustment. Do not bury the
+  adjusted result only in limitations. Nonsignificance does not prove
+  zero effect. Never call a multi-predictor model univariate/unadjusted.
+- Outcome level, change score, frequency and severity are different
+  constructs. Do not combine them into one unsupported claim.
+- Compare Abstract, Methods, Results and tables. Preserve conflicting
+  numbers with their locations in notes/provenance.flags; do not silently
+  pick one. Use actual sample/assessment windows when reported. Do not
+  infer missing reference space, imaging time point, or clinical cutoffs.
+- Copy short contiguous quotations with no ellipsis, stitched fragments
+  or translated symbols. Use the exact one-based === PAGE n === marker
+  containing the quote, not a journal page or a paragraph's starting page.
+  Label Abstract and figure captions honestly. Check each quotation
+  against that page, even when the same idea appears elsewhere.
+- Match target definitions and assessment constructs. A new unresolved
+  concept must be flagged, never silently mapped to the nearest label.
+- Every finding cites the supplied paper key. For review references,
+  verify author, year AND title against the paper's reference list and
+  citation register. Similar names are not interchangeable. Only genuine
+  primary studies belong in primary_papers_cited (file level); record
+  secondary references or unregistered identities in notes without
+  inventing registered keys. Narrative review strength defaults to weak.
+- Set confidence conservatively: unresolved source contradictions,
+  ambiguous measurements or target mappings require flags and medium
+  or low confidence. Confidence in extraction is not evidence strength.
+- Cover supported findings, including qualifications and null results;
+  do not improve apparent precision by returning no findings. Source
+  limitations are required. For predictor outcomes, describe the exact
+  instrument and score meaning without inventing a threshold.
+
+Return only the JSON object specified above.
 """
 
 
@@ -471,7 +511,9 @@ File level:  schema_version, id, name, kind, status, created_by,
              created_on, findings
 Each finding: id, target, target_kind, claim, direction, relationship,
              citation, method, design, strength, evidence_quality,
-             sample.n, source_passages, provenance
+             source_passages, provenance
+Primary empirical findings with patient samples also need sample.n.
+Narrative-review findings omit sample and statistics; do not invent a cohort.
 Each provenance block: extracted_by, extracted_on, paper_section,
              confidence, flags   (flags may be an empty list [])
 
@@ -968,7 +1010,8 @@ def _normalize_findings(content: str, bucket: str,
 
 def save_drafts(drafts: list, kb_root: Path,
                 created_by: str = "agent:local-extract-cli",
-                citation: str | None = None) -> list[Path]:
+                citation: str | None = None,
+                paper_text: str | None = None) -> list[Path]:
     from pipeline_files import BUCKETS, safe_child, atomic_write
     pending = {}
     for d in drafts:
@@ -997,6 +1040,15 @@ def save_drafts(drafts: list, kb_root: Path,
             if not isinstance(finding, dict):
                 raise ValueError(f"Finding is not a mapping: {fname}")
             finding.pop("review", None)
+            prov = finding.setdefault("provenance", {})
+            if not isinstance(prov, dict):
+                raise ValueError(f"provenance is not a mapping: {fname}")
+            # These are run facts, not facts to ask the language model to infer.
+            prov["extracted_by"] = created_by
+            prov["extracted_on"] = dt.date.today().isoformat()
+            if paper_text is not None:
+                from extraction_evidence import flag_evidence
+                flag_evidence(finding, paper_text)
         pending[out] = "---\n" + yaml.safe_dump(fm, sort_keys=False, allow_unicode=True) + "---\n" + m.group(2)
     # All names and YAML checked before creating any active draft.
     written = []
@@ -1135,7 +1187,9 @@ def process_one(pdf_path: Path, citation: str | None, model: str,
                       timeout=timeout)
     print(f"  Model call finished {dt.datetime.now():%H:%M:%S} "
           f"(took {_fmt_elapsed(time.monotonic() - t_model)})", flush=True)
-    raw_path = kb_root / f"_last_extraction_response_{pdf_path.stem}.txt"
+    raw_root = out_dir or kb_root
+    raw_root.mkdir(parents=True, exist_ok=True)
+    raw_path = raw_root / f"_last_extraction_response_{pdf_path.stem}.txt"
     raw_path.write_text(raw, encoding="utf-8")
 
     try:
@@ -1171,7 +1225,7 @@ def process_one(pdf_path: Path, citation: str | None, model: str,
 
     saved = save_drafts(drafts, out_dir or kb_root,
                         created_by=f"agent:ollama-extract-cli/{model}",
-                        citation=citation)
+                        citation=citation, paper_text=paper_text)
     n_issues = validate_drafts(saved)
     if n_issues:
         print(f"  ⚠ {n_issues} validation issue(s) — drafts saved anyway "
