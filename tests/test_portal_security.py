@@ -109,5 +109,80 @@ class UploadContainment(unittest.TestCase):
             self.assertIn("skip", PI.apply_pdf(_rec("@../outside"), "alex", True, P.state()))
 
 
+class ManuscriptLicence(unittest.TestCase):
+    """Finding 8: cc_manuscript is private unless a person confirmed the very file we hold."""
+
+    def setUp(self):
+        import publish_portal as PP
+        self.PP = PP
+        self.tmp = tempfile.TemporaryDirectory()
+        self.root = Path(self.tmp.name)
+        self.papers = self.root / "papers"; self.papers.mkdir()
+        for k in ("Open2020", "Manu2021", "Closed2022"):
+            (self.papers / f"{k}_annotated.pdf").write_bytes(b"%PDF-annotated " + k.encode())
+            (self.papers / f"{k}.pdf").write_bytes(b"%PDF-source " + k.encode())
+        (self.root / "screening").mkdir()
+
+    def tearDown(self):
+        self.tmp.cleanup()
+
+    def lic(self, manu_extra: dict | None = None) -> dict:
+        return {"@Open2020": {"category": "cc"}, "@Manu2021": {"category": "cc_manuscript", **(manu_extra or {})},
+                "@Closed2022": {"category": "rights_reserved"}}
+
+    def test_manuscript_only_metadata_is_private(self):
+        idx = self.PP.scan_pdfs(self.papers, self.lic())
+        self.assertEqual(idx["@Open2020"]["annotated"], "cc/Open2020_annotated.pdf")
+        self.assertTrue(idx["@Open2020"]["public"])
+        self.assertEqual(idx["@Manu2021"]["annotated"], "pdf/Manu2021_annotated.pdf")
+        self.assertFalse(idx["@Manu2021"]["public"])
+        self.assertFalse(idx["@Closed2022"]["public"])
+
+    def test_confirmation_is_bound_to_the_source_file(self):
+        sha = hashlib.sha256((self.papers / "Manu2021.pdf").read_bytes()).hexdigest()
+        ok = {"public_copy": {"sha256": sha, "version": "accepted manuscript", "confirmed_by": "human:michele", "confirmed_on": "2026-11-11"}}
+        idx = self.PP.scan_pdfs(self.papers, self.lic(ok))
+        self.assertTrue(idx["@Manu2021"]["public"]); self.assertEqual(idx["@Manu2021"]["public_basis"], "confirmed_copy")
+        # someone replaces papers/Manu2021.pdf with the publisher's version: private again
+        (self.papers / "Manu2021.pdf").write_bytes(b"%PDF-publisher version")
+        self.assertFalse(self.PP.scan_pdfs(self.papers, self.lic(ok))["@Manu2021"]["public"])
+        # a hash without a person, or for a rights-reserved paper, does nothing
+        nobody = {"public_copy": {"sha256": sha}}
+        self.assertFalse(self.PP.scan_pdfs(self.papers, self.lic(nobody))["@Manu2021"]["public"])
+        closed = self.lic(); closed["@Closed2022"]["public_copy"] = {"sha256": hashlib.sha256((self.papers / "Closed2022.pdf").read_bytes()).hexdigest(), "confirmed_by": "human:x"}
+        self.assertFalse(self.PP.scan_pdfs(self.papers, closed)["@Closed2022"]["public"])
+
+    def test_confirm_command_and_refresh_keeps_it(self):
+        import licences as L
+        path = self.root / "screening" / "licences.yaml"
+        L.save(path, self.lic())
+        msg = self.PP.confirm_public_copy("Manu2021", "michele", papers_dir=self.papers, root=self.root, today="2026-11-11")
+        self.assertIn("confirmed", msg)
+        rec = L.load(path)["@Manu2021"]
+        self.assertEqual(rec["public_copy"]["confirmed_by"], "human:michele")
+        self.assertTrue(self.PP.scan_pdfs(self.papers, L.load(path))["@Manu2021"]["public"])
+        # screen.py licences --refresh writes a fresh record from metadata: the confirmation stays
+        fresh = L.load(path); fresh["@Manu2021"] = {"category": "cc_manuscript", "label": "CC BY 4.0", "source": "crossref"}
+        L.save(path, fresh)
+        self.assertEqual(L.load(path)["@Manu2021"]["public_copy"]["sha256"], rec["public_copy"]["sha256"])
+        for bad_key, bad_by in (("Open2020", "michele"), ("Closed2022", "michele"), ("Manu2021", ""), ("Manu2021", "model:gemma4:31b"), ("Manu2021", "human:")):
+            with self.assertRaises(ValueError, msg=f"{bad_key} {bad_by}"):
+                self.PP.confirm_public_copy(bad_key, bad_by, papers_dir=self.papers, root=self.root)
+
+    def test_explorer_links_follow_the_index_not_the_category(self):
+        import export_webapp as EW
+        (self.root / "portal").mkdir()
+        (self.root / "portal" / "portal.config.json").write_text(json.dumps({"portalUrl": "https://portal.test/"}))
+        (self.root / "portal" / "papers.json").write_text(json.dumps({"papers": self.PP.scan_pdfs(self.papers, self.lic())}))
+        out = EW.portal(self.root)
+        self.assertEqual(out["publicPdfs"], ["@Open2020"])
+        self.assertEqual(out["publicCategories"], ["cc"])
+        self.assertEqual(out["publicPdfBase"], "https://portal.test/cc/")
+        # an index synced before this change still marks the manuscript-only paper public: ignored
+        stale = self.PP.scan_pdfs(self.papers, self.lic()); stale["@Manu2021"].update(annotated="cc/Manu2021_annotated.pdf", public=True)
+        (self.root / "portal" / "papers.json").write_text(json.dumps({"papers": stale}))
+        self.assertEqual(EW.portal(self.root)["publicPdfs"], ["@Open2020"])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=1)

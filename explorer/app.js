@@ -762,10 +762,14 @@ function annotatedPdfLink(index, citation, page) {
   const portal = index.kb.portal; const lic = index.kb.licences?.[citation];
   if (!portal?.url || !lic) return null;
   const key = String(citation || '').replace(/^@/, '');
-  if ((portal.publicCategories || []).includes(lic.category)) {
+  // Served openly only when the portal's index says this paper's copy is public (publicPdfs):
+  // a cc_manuscript paper is private unless its file was confirmed as the open manuscript.
+  const isPublic = Array.isArray(portal.publicPdfs) ? portal.publicPdfs.includes(citation) : (portal.publicCategories || []).includes(lic.category) && lic.category === 'cc';
+  if (isPublic) {
     return h('a', { class: 'small', href: `${portal.publicPdfBase}${key}_annotated.pdf${page ? `#page=${page}` : ''}`, target: '_blank', rel: 'noopener', title: `Annotated PDF (${lic.label || lic.category}) — the highlights are this entry's passages`, text: 'annotated PDF' });
   }
-  const why = lic.category === 'free_to_read' ? 'free to read but not openly licensed' : lic.category === 'rights_reserved' ? 'rights reserved by the publisher' : 'licence not known';
+  const why = lic.category === 'free_to_read' ? 'free to read but not openly licensed' : lic.category === 'rights_reserved' ? 'rights reserved by the publisher'
+    : lic.category === 'cc_manuscript' ? 'only the accepted manuscript is openly licensed' : lic.category === 'cc' ? 'not yet published openly' : 'licence not known';
   return h('a', { class: 'small muted', href: `${portal.url}/#/drafts`, target: '_blank', rel: 'noopener', title: `No public copy: ${why}. The annotated PDF is in the review portal, for signed-in reviewers.`, text: `annotated PDF (reviewers only: ${why})` });
 }
 
