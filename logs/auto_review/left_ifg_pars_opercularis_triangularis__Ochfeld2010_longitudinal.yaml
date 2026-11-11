@@ -1,0 +1,45 @@
+draft_path: drafts/regions/left_ifg_pars_opercularis_triangularis__Ochfeld2010_longitudinal.md
+runs:
+- run_id: 1
+  timestamp: '2026-11-11T10:51:53'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/sessions/rcw-01mvxcaxbgbjkaokvzmvyrhk/mnt/GITHUB/stroke-aphasia-kb/drafts/regions/left_ifg_pars_opercularis_triangularis__Ochfeld2010_longitudinal.md:
+      finding[0] (id=f1): lesion_mapping required for lesion-mapping methods in v2.7'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 0/3 quotes (0%) — anchored 3
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.326): In the 20 patients studied longitudinally,
+      the association between ischemia invo…'
+    - '  - [anchored] f1.sample (p.326): The subset of 20 patients studied at both
+      time periods was similar to the entire…'
+    - '  - [anchored] f1.limitation (p.5): Recognizing the limitations of WAB-R classification
+      and the relatively small sam…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-11T10:51:53'
+latest_verdict: auto_reject
+latest_mode: deterministic_only

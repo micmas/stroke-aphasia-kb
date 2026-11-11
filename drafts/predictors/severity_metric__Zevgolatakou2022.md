@@ -72,6 +72,7 @@ findings:
     supports: limitation
   region_definition:
     kind: not_reported
+status: draft
 created_by: agent:ollama-extract-cli/gemma4:31b
 created_on: 2026-11-10
 ---
