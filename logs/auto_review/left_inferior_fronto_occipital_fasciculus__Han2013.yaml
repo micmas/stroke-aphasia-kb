@@ -806,6 +806,158 @@ runs:
   - not every passage matched the PDF exactly
   - new entry id (not appending to an existing entry)
   - 'f1: strength=''strong'''
-last_run: '2026-11-10T21:34:00'
+- run_id: 13
+  timestamp: '2026-11-11T08:50:08'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/10 quotes (60%) — absent 1, anchored 3, elided 2, exact 4
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.region_definition (p.5): we adopted a widely used human brain
+      white-matter template, the ''JHU white-matte…'
+    - '  - [anchored] f1.statistics (p.8): the lesion percentages of the following
+      three tracts significantly correlated ne…'
+    - '  - [anchored] f1.method (p.5): To control for the contributions of overall
+      cognitive state and total lesion vol…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.3): Patients were scanned... with a 1.5 T GE SIGNA
+      EXCITE scanner... 3D T1-weighted …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+- run_id: 14
+  timestamp: '2026-11-11T08:50:20'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, elided 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.8): the lesion percentages of the following three
+      tracts significantly correlated ne…'
+    - '  - [anchored] f1.statistics (p.5): The results were adjusted for the 17 tracts
+      with the Bonferroni correction metho…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+- run_id: 15
+  timestamp: '2026-11-11T10:42:30'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/10 quotes (60%) — absent 1, anchored 3, elided 2, exact 4
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.region_definition (p.5): we adopted a widely used human brain
+      white-matter template, the ''JHU white-matte…'
+    - '  - [anchored] f1.statistics (p.8): the lesion percentages of the following
+      three tracts significantly correlated ne…'
+    - '  - [anchored] f1.method (p.5): To control for the contributions of overall
+      cognitive state and total lesion vol…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.3): Patients were scanned... with a 1.5 T GE SIGNA
+      EXCITE scanner... 3D T1-weighted …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+- run_id: 16
+  timestamp: '2026-11-11T10:42:49'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, elided 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.8): the lesion percentages of the following three
+      tracts significantly correlated ne…'
+    - '  - [anchored] f1.statistics (p.5): The results were adjusted for the 17 tracts
+      with the Bonferroni correction metho…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+last_run: '2026-11-11T10:42:49'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

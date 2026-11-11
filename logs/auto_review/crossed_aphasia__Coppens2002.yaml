@@ -368,6 +368,250 @@ runs:
   tier_reasons:
   - schema not clean
   - new entry id (not appending to an existing entry)
-last_run: '2026-11-10T21:33:46'
+- run_id: 9
+  timestamp: '2026-11-11T08:50:09'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/sessions/rcw-01mvxcaxbgbjkaokvzmvyrhk/mnt/GITHUB/stroke-aphasia-kb/drafts/_backup/20261110-1702/reviews/crossed_aphasia__Coppens2002.md:
+      finding[1] (id=f2): target ''crossed_aphasia'' is an aphasia syndrome but the
+      claim is about a symptom; target the symptom entry (anomia, fluency, …) unless
+      the paper classifies by syndrome'
+    - '/sessions/rcw-01mvxcaxbgbjkaokvzmvyrhk/mnt/GITHUB/stroke-aphasia-kb/drafts/_backup/20261110-1702/reviews/crossed_aphasia__Coppens2002.md:
+      finding[2] (id=f3): target ''crossed_aphasia'' is an aphasia syndrome but the
+      claim is about a symptom; target the symptom entry (anomia, fluency, …) unless
+      the paper classifies by syndrome'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/9 quotes (44%) — absent 1, anchored 3, exact 4, near 1
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.3): It became progressively clear that CA could
+      not be distinguished from left-hemis…'
+    - '  - [anchored] f1.method (p.4): The purpose of the present review was to collate
+      all available CA cases to date,…'
+    - '  - [anchored] f2.claim (p.18): However, there was a significant difference
+      between the frequency of familial si…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f3.claim (p.22): These figures now confirm that oral apraxia is almost
+      three times more prevalent…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - schema not clean
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: evidence_quality=''narrative-review'''
+  - 'f2: evidence_quality=''narrative-review'''
+  - 'f3: evidence_quality=''narrative-review'''
+- run_id: 10
+  timestamp: '2026-11-11T08:50:10'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/sessions/rcw-01mvxcaxbgbjkaokvzmvyrhk/mnt/GITHUB/stroke-aphasia-kb/drafts/_backup/20261110-2113/impairments/crossed_aphasia__Coppens2002.md:
+      finding[0] (id=f1): target ''crossed_aphasia'' is an aphasia syndrome but the
+      claim is about a symptom; target the symptom entry (anomia, fluency, …) unless
+      the paper classifies by syndrome'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/4 quotes (100%) — exact 4
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - schema not clean
+  - new entry id (not appending to an existing entry)
+- run_id: 11
+  timestamp: '2026-11-11T08:50:10'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/sessions/rcw-01mvxcaxbgbjkaokvzmvyrhk/mnt/GITHUB/stroke-aphasia-kb/drafts/impairments/crossed_aphasia__Coppens2002.md:
+      finding[0] (id=f1): target ''crossed_aphasia'' is an aphasia syndrome but the
+      claim is about a symptom; target the symptom entry (anomia, fluency, …) unless
+      the paper classifies by syndrome'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/4 quotes (100%) — exact 4
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - new entry id (not appending to an existing entry)
+- run_id: 12
+  timestamp: '2026-11-11T10:42:33'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/_backup/20261110-1702/reviews/crossed_aphasia__Coppens2002.md:
+      finding[1] (id=f2): target ''crossed_aphasia'' is an aphasia syndrome but the
+      claim is about a symptom; target the symptom entry (anomia, fluency, …) unless
+      the paper classifies by syndrome'
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/_backup/20261110-1702/reviews/crossed_aphasia__Coppens2002.md:
+      finding[2] (id=f3): target ''crossed_aphasia'' is an aphasia syndrome but the
+      claim is about a symptom; target the symptom entry (anomia, fluency, …) unless
+      the paper classifies by syndrome'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/9 quotes (44%) — absent 1, anchored 3, exact 4, near 1
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.3): It became progressively clear that CA could
+      not be distinguished from left-hemis…'
+    - '  - [anchored] f1.method (p.4): The purpose of the present review was to collate
+      all available CA cases to date,…'
+    - '  - [anchored] f2.claim (p.18): However, there was a significant difference
+      between the frequency of familial si…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f3.claim (p.22): These figures now confirm that oral apraxia is almost
+      three times more prevalent…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - schema not clean
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: evidence_quality=''narrative-review'''
+  - 'f2: evidence_quality=''narrative-review'''
+  - 'f3: evidence_quality=''narrative-review'''
+- run_id: 13
+  timestamp: '2026-11-11T10:42:33'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/_backup/20261110-2113/impairments/crossed_aphasia__Coppens2002.md:
+      finding[0] (id=f1): target ''crossed_aphasia'' is an aphasia syndrome but the
+      claim is about a symptom; target the symptom entry (anomia, fluency, …) unless
+      the paper classifies by syndrome'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/4 quotes (100%) — exact 4
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - schema not clean
+  - new entry id (not appending to an existing entry)
+- run_id: 14
+  timestamp: '2026-11-11T10:42:34'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/impairments/crossed_aphasia__Coppens2002.md:
+      finding[0] (id=f1): target ''crossed_aphasia'' is an aphasia syndrome but the
+      claim is about a symptom; target the symptom entry (anomia, fluency, …) unless
+      the paper classifies by syndrome'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/4 quotes (100%) — exact 4
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-11T10:42:34'
 latest_verdict: auto_reject
 latest_mode: deterministic_only

@@ -700,6 +700,78 @@ runs:
   - new entry id (not appending to an existing entry)
   - 'f1: has provenance.flags'
   - 'f1: strength=''strong'''
-last_run: '2026-11-10T21:34:06'
+- run_id: 11
+  timestamp: '2026-11-11T08:50:25'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 0/2 quotes (0%) — anchored 1, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.claim (p.6): Significant overlap for the 34 ''verbal'' foci occurred
+      in the left IFG (mainly pa…'
+    - '  - [anchored] f1.limitation (p.11): Though we attempted to remove contrasts
+      in which semantic processing was confoun…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+- run_id: 12
+  timestamp: '2026-11-11T10:42:57'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 0/2 quotes (0%) — anchored 1, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.claim (p.6): Significant overlap for the 34 ''verbal'' foci occurred
+      in the left IFG (mainly pa…'
+    - '  - [anchored] f1.limitation (p.11): Though we attempted to remove contrasts
+      in which semantic processing was confoun…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+last_run: '2026-11-11T10:42:57'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

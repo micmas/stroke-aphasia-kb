@@ -692,6 +692,78 @@ runs:
   tier_reasons:
   - not every passage matched the PDF exactly
   - new entry id (not appending to an existing entry)
-last_run: '2026-11-10T21:34:08'
+- run_id: 11
+  timestamp: '2026-11-11T08:50:26'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — anchored 1, exact 3, near 2
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.claim (p.1): For the right hemisphere, age [beta = -0.678, t(-3.087),
+      P = 0.010] and volume o…'
+    - '  - [near] f1.sample (p.1): Sixteen patients (10 males; mean age 60 +/- 17
+      years, range 28-87 years) underwe…'
+    - '  - [anchored] f1.imaging_details (p.3): Diffusion tensor imaging data were
+      acquired using a spin echo, single shot EPI p…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 12
+  timestamp: '2026-11-11T10:42:59'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — anchored 1, exact 3, near 2
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.claim (p.1): For the right hemisphere, age [beta = -0.678, t(-3.087),
+      P = 0.010] and volume o…'
+    - '  - [near] f1.sample (p.1): Sixteen patients (10 males; mean age 60 +/- 17
+      years, range 28-87 years) underwe…'
+    - '  - [anchored] f1.imaging_details (p.3): Diffusion tensor imaging data were
+      acquired using a spin echo, single shot EPI p…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-11T10:42:59'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

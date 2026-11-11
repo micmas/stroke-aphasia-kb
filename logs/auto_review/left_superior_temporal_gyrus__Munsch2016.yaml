@@ -445,6 +445,76 @@ runs:
   review_tier: B
   tier_reasons:
   - not every passage matched the PDF exactly
-last_run: '2026-11-10T21:34:06'
+- run_id: 8
+  timestamp: '2026-11-11T08:50:25'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — anchored 4, exact 2
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.69): VLSM analysis on MoCA highlighted an even stronger
+      left lateralization with a pr…'
+    - '  - [anchored] f1.region_definition (p.68): The eloquent regions were identified
+      using the Automated Anatomic Labeling, Brod…'
+    - '  - [anchored] f1.imaging_details (p.67): MRI examinations were performed on
+      a 3-T Discovery MR750w scanner... The 3D T1-w…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+- run_id: 9
+  timestamp: '2026-11-11T10:42:56'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — anchored 4, exact 2
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.69): VLSM analysis on MoCA highlighted an even stronger
+      left lateralization with a pr…'
+    - '  - [anchored] f1.region_definition (p.68): The eloquent regions were identified
+      using the Automated Anatomic Labeling, Brod…'
+    - '  - [anchored] f1.imaging_details (p.67): MRI examinations were performed on
+      a 3-T Discovery MR750w scanner... The 3D T1-w…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+last_run: '2026-11-11T10:42:56'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

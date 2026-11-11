@@ -806,6 +806,86 @@ runs:
   - 'f1: strength=''strong'''
   - 'f2: has provenance.flags'
   - 'f2: strength=''strong'''
-last_run: '2026-11-10T21:33:56'
+- run_id: 11
+  timestamp: '2026-11-11T08:50:18'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — anchored 2, elided 1, exact 2, near 1
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.limitation (p.11): Though we attempted to remove contrasts
+      in which semantic processing was confoun…'
+    - '  - [near] f2.claim (p.6): Significant overlap for the 113 ''perceptual'' foci
+      occurred in the AG bilaterally…'
+    - '  - [anchored] f2.limitation (p.11): Though we attempted to remove contrasts
+      in which semantic processing was confoun…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f2: has provenance.flags'
+  - 'f2: strength=''strong'''
+- run_id: 12
+  timestamp: '2026-11-11T10:42:45'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — anchored 2, elided 1, exact 2, near 1
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.limitation (p.11): Though we attempted to remove contrasts
+      in which semantic processing was confoun…'
+    - '  - [near] f2.claim (p.6): Significant overlap for the 113 ''perceptual'' foci
+      occurred in the AG bilaterally…'
+    - '  - [anchored] f2.limitation (p.11): Though we attempted to remove contrasts
+      in which semantic processing was confoun…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f2: has provenance.flags'
+  - 'f2: strength=''strong'''
+last_run: '2026-11-11T10:42:45'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

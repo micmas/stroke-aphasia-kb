@@ -445,6 +445,94 @@ runs:
   - 'f4: strength=''strong'''
   - 'f5: has provenance.flags'
   - 'f6: has provenance.flags'
-last_run: '2026-11-10T21:34:14'
+- run_id: 10
+  timestamp: '2026-11-11T08:50:30'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 46/50 quotes (92%) — absent 2, exact 46, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f3.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '  - [near] f6.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f2.statistics (p.87): Naming treatment (k  87)…'
+    - '  - f5.statistics (p.87): Naming treatment (k  87)…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f2: has provenance.flags'
+  - 'f3: has provenance.flags'
+  - 'f4: has provenance.flags'
+  - 'f4: strength=''strong'''
+  - 'f5: has provenance.flags'
+  - 'f6: has provenance.flags'
+- run_id: 11
+  timestamp: '2026-11-11T10:43:05'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 46/50 quotes (92%) — absent 2, exact 46, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f3.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '  - [near] f6.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f2.statistics (p.87): Naming treatment (k  87)…'
+    - '  - f5.statistics (p.87): Naming treatment (k  87)…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f2: has provenance.flags'
+  - 'f3: has provenance.flags'
+  - 'f4: has provenance.flags'
+  - 'f4: strength=''strong'''
+  - 'f5: has provenance.flags'
+  - 'f6: has provenance.flags'
+last_run: '2026-11-11T10:43:05'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

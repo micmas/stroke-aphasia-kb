@@ -466,6 +466,74 @@ runs:
   - new entry id (not appending to an existing entry)
   - 'f1: has provenance.flags'
   - 'f1: strength=''strong'''
-last_run: '2026-11-10T21:33:41'
+- run_id: 11
+  timestamp: '2026-11-11T08:50:07'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/7 quotes (86%) — absent 1, exact 6
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.statistics (p.8): BA45 ... P = 0.395…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+- run_id: 12
+  timestamp: '2026-11-11T10:42:29'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/7 quotes (86%) — absent 1, exact 6
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.statistics (p.8): BA45 ... P = 0.395…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+last_run: '2026-11-11T10:42:29'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

@@ -357,6 +357,156 @@ runs:
   - not every passage matched the PDF exactly
   - new entry id (not appending to an existing entry)
   - 'f1: has provenance.flags'
-last_run: '2026-11-10T21:33:59'
+- run_id: 8
+  timestamp: '2026-11-11T08:50:07'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/7 quotes (57%) — anchored 1, elided 1, exact 3, near 2
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.5): In the subacute phase (Fig. 2F), comparable
+      to patients with frontal lesions, we…'
+    - '  - [near] f1.statistics (p.5): Significant patterns of effective connectivity...
+      were obtained by thresholding …'
+    - '  - [near] f1.region_definition (p.3): The final set of ROIs representing the
+      LN were in the pars orbitalis in the left…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+- run_id: 9
+  timestamp: '2026-11-11T08:50:20'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/7 quotes (57%) — anchored 1, elided 1, exact 3, near 2
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.5): In the subacute phase (Fig. 2F), comparable
+      to patients with frontal lesions, we…'
+    - '  - [near] f1.statistics (p.5): Significant patterns of effective connectivity...
+      were obtained by thresholding …'
+    - '  - [near] f1.region_definition (p.3): The final set of ROIs representing the
+      LN were in the pars orbitalis in the left…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+- run_id: 10
+  timestamp: '2026-11-11T10:42:29'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/7 quotes (57%) — anchored 1, elided 1, exact 3, near 2
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.5): In the subacute phase (Fig. 2F), comparable
+      to patients with frontal lesions, we…'
+    - '  - [near] f1.statistics (p.5): Significant patterns of effective connectivity...
+      were obtained by thresholding …'
+    - '  - [near] f1.region_definition (p.3): The final set of ROIs representing the
+      LN were in the pars orbitalis in the left…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+- run_id: 11
+  timestamp: '2026-11-11T10:42:48'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/7 quotes (57%) — anchored 1, elided 1, exact 3, near 2
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.5): In the subacute phase (Fig. 2F), comparable
+      to patients with frontal lesions, we…'
+    - '  - [near] f1.statistics (p.5): Significant patterns of effective connectivity...
+      were obtained by thresholding …'
+    - '  - [near] f1.region_definition (p.3): The final set of ROIs representing the
+      LN were in the pars orbitalis in the left…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+last_run: '2026-11-11T10:42:48'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

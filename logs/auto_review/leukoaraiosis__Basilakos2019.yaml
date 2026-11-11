@@ -787,6 +787,80 @@ runs:
   - not every passage matched the PDF exactly
   - new entry id (not appending to an existing entry)
   - 'f1: has provenance.flags'
-last_run: '2026-11-10T21:33:49'
+- run_id: 12
+  timestamp: '2026-11-11T08:50:12'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/9 quotes (56%) — anchored 2, elided 1, exact 4, near 2
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.7): for every 1-point increase in Fazekas score,
+      the odds of decline was 4.3, 95% CI…'
+    - '  - [near] f1.sample (p.2): N = 35 participants (9 females; age at stroke:
+      M = 55.5 +/- 10 years, range = 31…'
+    - '  - [near] f1.method (p.4): A series of regression analyses (''Enter'' method
+      in SPSS) was then used to evalua…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+- run_id: 13
+  timestamp: '2026-11-11T10:42:37'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/9 quotes (56%) — anchored 2, elided 1, exact 4, near 2
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.7): for every 1-point increase in Fazekas score,
+      the odds of decline was 4.3, 95% CI…'
+    - '  - [near] f1.sample (p.2): N = 35 participants (9 females; age at stroke:
+      M = 55.5 +/- 10 years, range = 31…'
+    - '  - [near] f1.method (p.4): A series of regression analyses (''Enter'' method
+      in SPSS) was then used to evalua…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+last_run: '2026-11-11T10:42:37'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

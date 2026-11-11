@@ -220,6 +220,130 @@ runs:
   review_tier: B
   tier_reasons:
   - 'f1: has provenance.flags'
-last_run: '2026-11-10T21:34:02'
+- run_id: 8
+  timestamp: '2026-11-11T08:50:08'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/3 quotes (67%) — absent 1, exact 2
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.sample (p.348): We included 69 of 74 participants from the clinical
+      trial... individuals with ch…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+- run_id: 9
+  timestamp: '2026-11-11T08:50:22'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/3 quotes (100%) — elided 1, exact 2
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - 'f1: has provenance.flags'
+- run_id: 10
+  timestamp: '2026-11-11T10:42:30'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/3 quotes (67%) — absent 1, exact 2
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.sample (p.348): We included 69 of 74 participants from the clinical
+      trial... individuals with ch…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+- run_id: 11
+  timestamp: '2026-11-11T10:42:52'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/3 quotes (100%) — elided 1, exact 2
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - 'f1: has provenance.flags'
+last_run: '2026-11-11T10:42:52'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

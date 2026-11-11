@@ -761,6 +761,70 @@ runs:
   tier_reasons:
   - not every passage matched the PDF exactly
   - 'f1: strength=''strong'''
-last_run: '2026-11-10T21:33:47'
+- run_id: 13
+  timestamp: '2026-11-11T08:50:11'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/4 quotes (75%) — anchored 1, exact 3
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.10): A significant effect of age, t(274.83) = 2.11,
+      p(uncorrected)<0.05... was observ…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+- run_id: 14
+  timestamp: '2026-11-11T10:42:35'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/4 quotes (75%) — anchored 1, exact 3
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.10): A significant effect of age, t(274.83) = 2.11,
+      p(uncorrected)<0.05... was observ…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+last_run: '2026-11-11T10:42:35'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

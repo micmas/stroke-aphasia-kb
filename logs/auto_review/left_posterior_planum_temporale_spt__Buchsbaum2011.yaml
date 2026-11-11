@@ -752,6 +752,68 @@ runs:
   tier_reasons:
   - new entry id (not appending to an existing entry)
   - 'f2: strength=''strong'''
-last_run: '2026-11-10T21:34:02'
+- run_id: 11
+  timestamp: '2026-11-11T08:50:22'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 11/11 quotes (100%) — elided 2, exact 9
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Buchsbaum2011: sample.n disagrees: [14, 105]'
+  review_tier: B
+  tier_reasons:
+  - new entry id (not appending to an existing entry)
+  - 'f2: strength=''strong'''
+- run_id: 12
+  timestamp: '2026-11-11T10:42:52'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 11/11 quotes (100%) — elided 2, exact 9
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Buchsbaum2011: sample.n disagrees: [14, 105]'
+  review_tier: B
+  tier_reasons:
+  - new entry id (not appending to an existing entry)
+  - 'f2: strength=''strong'''
+last_run: '2026-11-11T10:42:52'
 latest_verdict: defer_to_human
 latest_mode: deterministic_only

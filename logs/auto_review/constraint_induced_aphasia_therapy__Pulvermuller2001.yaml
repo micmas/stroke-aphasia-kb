@@ -622,6 +622,86 @@ runs:
   - not every passage matched the PDF exactly
   - new entry id (not appending to an existing entry)
   - 'f1: has provenance.flags'
-last_run: '2026-11-10T21:34:12'
+- run_id: 9
+  timestamp: '2026-11-11T08:50:29'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/10 quotes (60%) — anchored 4, exact 6
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.method (p.2): Patients were randomly assigned to groups that
+      received either conventional trea…'
+    - '  - [anchored] f1.statistics (p.4): The group that received CI aphasia therapy
+      showed a substantial improvement afte…'
+    - '  - [anchored] f2.claim (p.4): These patients reported a significant increase
+      of 30% in the amount of communica…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Pulvermuller2001: sample.n disagrees: [10, 17]'
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+- run_id: 10
+  timestamp: '2026-11-11T10:43:03'
+  mode: deterministic_only
+  verdict: defer_to_human
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 6/10 quotes (60%) — anchored 4, exact 6
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.method (p.2): Patients were randomly assigned to groups that
+      received either conventional trea…'
+    - '  - [anchored] f1.statistics (p.4): The group that received CI aphasia therapy
+      showed a substantial improvement afte…'
+    - '  - [anchored] f2.claim (p.4): These patients reported a significant increase
+      of 30% in the amount of communica…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: false
+    blocker: false
+    details:
+    - '@Pulvermuller2001: sample.n disagrees: [10, 17]'
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+last_run: '2026-11-11T10:43:03'
 latest_verdict: defer_to_human
 latest_mode: deterministic_only

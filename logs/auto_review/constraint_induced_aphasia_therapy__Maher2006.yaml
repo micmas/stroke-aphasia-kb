@@ -590,6 +590,82 @@ runs:
   - not every passage matched the PDF exactly
   - new entry id (not appending to an existing entry)
   - 'f1: has provenance.flags'
-last_run: '2026-11-10T21:34:12'
+- run_id: 9
+  timestamp: '2026-11-11T08:50:29'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/7 quotes (57%) — anchored 2, elided 1, exact 3, near 1
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.statistics (p.847): Using repeated measures ANOVA, both groups
+      demonstrated significant change pre- …'
+    - '  - [anchored] f1.sample (p.845): Inclusion criteria were a single, left hemisphere
+      CVA at least one year prior (c…'
+    - '  - [anchored] f2.limitation (p.848): Because firm conclusions cannot be made
+      on such a limited sample, and it is not …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+- run_id: 10
+  timestamp: '2026-11-11T10:43:03'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/7 quotes (57%) — anchored 2, elided 1, exact 3, near 1
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.statistics (p.847): Using repeated measures ANOVA, both groups
+      demonstrated significant change pre- …'
+    - '  - [anchored] f1.sample (p.845): Inclusion criteria were a single, left hemisphere
+      CVA at least one year prior (c…'
+    - '  - [anchored] f2.limitation (p.848): Because firm conclusions cannot be made
+      on such a limited sample, and it is not …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+last_run: '2026-11-11T10:43:03'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

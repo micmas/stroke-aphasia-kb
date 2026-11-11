@@ -454,6 +454,88 @@ runs:
   - 'f2: has provenance.flags'
   - 'f3: has provenance.flags'
   - 'f4: has provenance.flags'
-last_run: '2026-11-10T21:34:13'
+- run_id: 10
+  timestamp: '2026-11-11T08:50:30'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 16/22 quotes (73%) — anchored 6, exact 16
+    - '6 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.imaging_details (p.5): Images were acquired using a 3 T MRI
+      Siemens Trio scanner updated to Prisma Fit …'
+    - '  - [anchored] f1.limitation (p.10): regarding the outlier detection, although
+      the parameters used are commonly appli…'
+    - '  - [anchored] f2.claim (p.9): going in the same direction as theories regarding
+      maladaptive effects of RH recr…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f2: has provenance.flags'
+  - 'f3: has provenance.flags'
+  - 'f4: has provenance.flags'
+- run_id: 11
+  timestamp: '2026-11-11T10:43:04'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 16/22 quotes (73%) — anchored 6, exact 16
+    - '6 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.imaging_details (p.5): Images were acquired using a 3 T MRI
+      Siemens Trio scanner updated to Prisma Fit …'
+    - '  - [anchored] f1.limitation (p.10): regarding the outlier detection, although
+      the parameters used are commonly appli…'
+    - '  - [anchored] f2.claim (p.9): going in the same direction as theories regarding
+      maladaptive effects of RH recr…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f2: has provenance.flags'
+  - 'f3: has provenance.flags'
+  - 'f4: has provenance.flags'
+last_run: '2026-11-11T10:43:04'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

@@ -454,6 +454,82 @@ runs:
   - bucket '_backup' always needs a person
   - not every passage matched the PDF exactly
   - new entry id (not appending to an existing entry)
-last_run: '2026-11-10T21:33:41'
+- run_id: 8
+  timestamp: '2026-11-11T08:50:07'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/8 quotes (62%) — absent 1, anchored 2, elided 1, exact 4
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.250): The mean performance on the picture description
+      test across the three sessions w…'
+    - '  - [anchored] f1.statistics (p.250): The results of the regression indicated
+      that the model was statistically signifi…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.244): MRI data were obtained on a Philips Intera
+      3.0 T scanner... Functional magnetic …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 9
+  timestamp: '2026-11-11T10:42:29'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/8 quotes (62%) — absent 1, anchored 2, elided 1, exact 4
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.250): The mean performance on the picture description
+      test across the three sessions w…'
+    - '  - [anchored] f1.statistics (p.250): The results of the regression indicated
+      that the model was statistically signifi…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.244): MRI data were obtained on a Philips Intera
+      3.0 T scanner... Functional magnetic …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-11T10:42:29'
 latest_verdict: checks_passed
 latest_mode: deterministic_only

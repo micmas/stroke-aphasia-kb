@@ -249,6 +249,150 @@ runs:
   tier_reasons:
   - PDF quote match not run or not passed
   - 'f1: strength=''strong'''
-last_run: '2026-11-10T21:33:50'
+- run_id: 8
+  timestamp: '2026-11-11T08:50:06'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — absent 1, anchored 1, exact 2
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.9): Diabetes mellitus was strongly associated with
+      poorer performance in global cogn…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.method (p.6): In the second step and main set of analyses, risk factors
+      (hypertension, diabete…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+- run_id: 9
+  timestamp: '2026-11-11T08:50:13'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — absent 1, anchored 1, exact 2
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.9): Diabetes mellitus was strongly associated with
+      poorer performance in global cogn…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.method (p.6): In the second step and main set of analyses, risk factors
+      (hypertension, diabete…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - 'f1: strength=''strong'''
+- run_id: 10
+  timestamp: '2026-11-11T10:42:27'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — absent 1, anchored 1, exact 2
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.9): Diabetes mellitus was strongly associated with
+      poorer performance in global cogn…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.method (p.6): In the second step and main set of analyses, risk factors
+      (hypertension, diabete…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+- run_id: 11
+  timestamp: '2026-11-11T10:42:38'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — absent 1, anchored 1, exact 2
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.9): Diabetes mellitus was strongly associated with
+      poorer performance in global cogn…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.method (p.6): In the second step and main set of analyses, risk factors
+      (hypertension, diabete…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - 'f1: strength=''strong'''
+last_run: '2026-11-11T10:42:38'
 latest_verdict: auto_reject
 latest_mode: deterministic_only

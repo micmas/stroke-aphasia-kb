@@ -600,6 +600,156 @@ runs:
   - new entry id (not appending to an existing entry)
   - 'f1: strength=''strong'''
   - 'f2: strength=''strong'''
-last_run: '2026-11-10T21:34:12'
+- run_id: 11
+  timestamp: '2026-11-11T08:50:10'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/6 quotes (67%) — anchored 2, elided 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.1): Verbal communication was significantly improved
+      from baseline to after intensive…'
+    - '  - [anchored] f1.method (p.2): We did a randomised, open-label, blinded-endpoint,
+      multicentre, stratified-by-ce…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+- run_id: 12
+  timestamp: '2026-11-11T08:50:29'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/7 quotes (57%) — anchored 3, elided 2, exact 2
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.1): Verbal communication was significantly improved
+      from baseline to after intensive…'
+    - '  - [anchored] f1.method (p.2): We did a randomised, open-label, blinded-endpoint,
+      multicentre, stratified-by-ce…'
+    - '  - [anchored] f2.claim (p.1532): Scores on the linguistic screening measure
+      (SAPS; total score, and lexicon, synt…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+  - 'f2: strength=''strong'''
+- run_id: 13
+  timestamp: '2026-11-11T10:42:33'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/6 quotes (67%) — anchored 2, elided 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.1): Verbal communication was significantly improved
+      from baseline to after intensive…'
+    - '  - [anchored] f1.method (p.2): We did a randomised, open-label, blinded-endpoint,
+      multicentre, stratified-by-ce…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+- run_id: 14
+  timestamp: '2026-11-11T10:43:04'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/7 quotes (57%) — anchored 3, elided 2, exact 2
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.1): Verbal communication was significantly improved
+      from baseline to after intensive…'
+    - '  - [anchored] f1.method (p.2): We did a randomised, open-label, blinded-endpoint,
+      multicentre, stratified-by-ce…'
+    - '  - [anchored] f2.claim (p.1532): Scores on the linguistic screening measure
+      (SAPS; total score, and lexicon, synt…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+  - 'f2: strength=''strong'''
+last_run: '2026-11-11T10:43:04'
 latest_verdict: checks_passed
 latest_mode: deterministic_only
