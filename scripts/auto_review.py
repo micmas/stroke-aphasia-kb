@@ -362,7 +362,7 @@ def check_pdf_quote_match(fm: dict, papers_dir: Path = PAPERS_DIR,
             try:
                 cache[cite] = PaperText.from_pdf(cite_to_pdf[cite])
             except Exception as e:
-                read_errors.append(f"{cite}: {e}")
+                read_errors.append(f"{cite}: PDF read failed ({type(e).__name__})")
                 cache[cite] = None
         paper = cache[cite]
         if paper is None:
@@ -652,6 +652,8 @@ def _validate_llm_payload(parsed: dict | None,
         return problems
 
     got_ids = [str(x.get("id")) for x in pf if isinstance(x, dict)]
+    if len(got_ids) != len(pf) or len(got_ids) != len(set(got_ids)):
+        problems.append('per_finding must contain one object for each distinct finding id')
     missing = [i for i in expected_ids if i not in got_ids]
     invented = [i for i in got_ids if i not in expected_ids]
     if missing:

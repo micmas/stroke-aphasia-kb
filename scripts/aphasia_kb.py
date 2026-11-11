@@ -693,6 +693,10 @@ class KnowledgeBase:
                 if not fm:
                     self.issues.append(f"{path}: no frontmatter")
                     continue
+                fs = fm.get('findings')
+                if fs is not None and (not isinstance(fs, list) or any(not isinstance(f, dict) for f in fs)):
+                    self.issues.append(f"{path.relative_to(self.root)}: findings must be a list of mappings; entry skipped")
+                    continue
                 fm["_path"] = str(path.relative_to(self.root))
                 fm["_kind_bucket"] = sub
                 self.bodies[fm.get("id", path.stem)] = body

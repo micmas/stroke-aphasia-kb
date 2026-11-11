@@ -25,3 +25,13 @@ class Boundary(unittest.TestCase):
                 kb=K.KnowledgeBase(Path(t)); self.assertEqual(v2.call_count,1)
                 self.assertTrue(any('therapy' in i for i in kb.issues))
 if __name__=='__main__': unittest.main()
+
+
+def test_malformed_findings_are_reported_without_crashing(tmp_path):
+    from aphasia_kb import KnowledgeBase
+    directory = tmp_path / 'regions'
+    directory.mkdir()
+    (directory / 'bad.md').write_text('---\nschema_version: 2.8\nid: bad\nstatus: approved\nfindings: [not-a-mapping]\n---\n')
+    kb = KnowledgeBase(tmp_path)
+    assert kb.findings.empty
+    assert any('findings must be a list' in x for x in kb.issues)
