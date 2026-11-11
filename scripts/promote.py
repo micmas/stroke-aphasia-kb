@@ -10,7 +10,7 @@ Usage:
     python scripts/promote.py --reject  drafts/regions/ho-cort_44__Fridriksson2018.md \
                       --reviewer "michele" --reason "sample too small"
 
-Approve does the following, atomically:
+Approve uses atomic file replacements and a recoverable journal:
   1. Validates the draft against v2 schema. Refuses if invalid.
   2. Sets status: approved, reviewer:, reviewed_on:.
   3. If a file with the same id already exists in the canonical folder,
@@ -197,7 +197,21 @@ def cmd_diff(args):
 
 
 def cmd_approve(args):
-    draft = Path(args.approve)
+    import fcntl
+    from promotion_transaction import recover_pending
+    draft = Path(args.approve).resolve()
+    _bucket_for(draft)
+    # Lock covers read/merge as well as recovery and writes.
+    with (ROOT / '.promotion.lock').open('a') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        if recover_pending(ROOT, draft):
+            print('Recovered interrupted promotion')
+            return
+        return _approve_locked(args)
+
+
+def _approve_locked(args):
+    draft = Path(args.approve).resolve()
     fm, body, _ = _read(draft)
     bucket = _bucket_for(draft)
 
@@ -220,6 +234,8 @@ def cmd_approve(args):
               f"({', '.join(map(str, pending))}): run scripts/refocus.py on the draft, or remove "
               f"them in scripts/review_app.py")
         sys.exit(1)
+    if not isinstance(fm.get("findings"), list) or not fm["findings"]:
+        raise ValueError("Cannot approve an empty entry")
     fm.pop("reviewer_marks", None)   # the register of marks stays in the draft's history, not in the KB
 
     # 1b. Policy checks (docs/GOVERNANCE.md §2–§3)
@@ -292,18 +308,15 @@ def cmd_approve(args):
         fm_c["last_reviewed"] = fm["reviewed_on"]
         # The file-level reviewer stays whoever approved the entry first;
         # per-finding `review` blocks carry the truth for merged findings.
-        _write(canonical, fm_c, body_c)
-        print(f"✓ Merged {len(added)} new finding(s) ({', '.join(added)}) "
-              f"into {canonical.relative_to(ROOT)}")
+        output_fm, output_body = fm_c, body_c
+        message = (f"✓ Merged {len(added)} new finding(s) ({', '.join(added)}) "
+                   f"into {canonical.relative_to(ROOT)}")
     else:
         canonical.parent.mkdir(parents=True, exist_ok=True)
-        _write(canonical, fm, body)
-        print(f"✓ Promoted {draft.name} → {canonical.relative_to(ROOT)}")
+        output_fm, output_body = fm, body
+        message = f"✓ Promoted {draft.name} → {canonical.relative_to(ROOT)}"
 
-    # 4. Remove draft
-    draft.unlink()
-
-    # 5. Append log entry
+    # 4. Prepare the audit entry before any canonical mutation
     cite = "?"
     for f in fm.get("findings") or []:
         if f.get("citation"):
@@ -318,8 +331,10 @@ def cmd_approve(args):
         extra += f" | tier: {args.tier}"
     line = (f"{today} | {action} | {cite} | "
             f"{fm.get('id')} | reviewer: {args.reviewer}{extra}\n")
-    with LOG.open("a") as fh:
-        fh.write(line)
+    from promotion_transaction import commit
+    text = '---\n' + yaml.safe_dump(output_fm, sort_keys=False, allow_unicode=True) + '---\n' + output_body
+    commit(ROOT, draft, canonical, text, LOG, line)
+    print(message)
     print(f"  logged: {line.strip()}")
 
 
