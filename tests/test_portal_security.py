@@ -139,16 +139,26 @@ class ManuscriptLicence(unittest.TestCase):
         self.assertFalse(idx["@Closed2022"]["public"])
 
     def test_confirmation_is_bound_to_the_source_file(self):
-        sha = hashlib.sha256((self.papers / "Manu2021.pdf").read_bytes()).hexdigest()
-        ok = {"public_copy": {"sha256": sha, "version": "accepted manuscript", "confirmed_by": "human:michele", "confirmed_on": "2026-11-11"}}
-        idx = self.PP.scan_pdfs(self.papers, self.lic(ok))
+        h = lambda name: hashlib.sha256((self.papers / name).read_bytes()).hexdigest()  # noqa: E731
+        full = {"sha256": h("Manu2021.pdf"), "annotated_sha256": h("Manu2021_annotated.pdf"), "version": "accepted manuscript",
+                "confirmed_by": "human:michele", "confirmed_on": "2026-11-11"}
+        public = lambda copy: self.PP.scan_pdfs(self.papers, self.lic({"public_copy": copy}))["@Manu2021"]["public"]  # noqa: E731
+        idx = self.PP.scan_pdfs(self.papers, self.lic({"public_copy": full}))
         self.assertTrue(idx["@Manu2021"]["public"]); self.assertEqual(idx["@Manu2021"]["public_basis"], "confirmed_copy")
+        # every part of the confirmation is required
+        for missing in ("sha256", "annotated_sha256", "version", "confirmed_by", "confirmed_on"):
+            self.assertFalse(public({k: v for k, v in full.items() if k != missing}), missing)
+        for who in ("human:", "human: ", "michele", "model:gemma4:31b", "human:model", "human:a:b"):
+            self.assertFalse(public({**full, "confirmed_by": who}), who)
+        # the annotated copy is re-made (or still holds an older publisher copy): private again
+        (self.papers / "Manu2021_annotated.pdf").write_bytes(b"%PDF-annotated from another file")
+        self.assertFalse(public(full))
+        (self.papers / "Manu2021_annotated.pdf").write_bytes(b"%PDF-annotated Manu2021")
+        self.assertTrue(public(full))
         # someone replaces papers/Manu2021.pdf with the publisher's version: private again
         (self.papers / "Manu2021.pdf").write_bytes(b"%PDF-publisher version")
-        self.assertFalse(self.PP.scan_pdfs(self.papers, self.lic(ok))["@Manu2021"]["public"])
-        # a hash without a person, or for a rights-reserved paper, does nothing
-        nobody = {"public_copy": {"sha256": sha}}
-        self.assertFalse(self.PP.scan_pdfs(self.papers, self.lic(nobody))["@Manu2021"]["public"])
+        self.assertFalse(public(full))
+        sha = full["sha256"]
         closed = self.lic(); closed["@Closed2022"]["public_copy"] = {"sha256": hashlib.sha256((self.papers / "Closed2022.pdf").read_bytes()).hexdigest(), "confirmed_by": "human:x"}
         self.assertFalse(self.PP.scan_pdfs(self.papers, closed)["@Closed2022"]["public"])
 
@@ -160,11 +170,18 @@ class ManuscriptLicence(unittest.TestCase):
         self.assertIn("confirmed", msg)
         rec = L.load(path)["@Manu2021"]
         self.assertEqual(rec["public_copy"]["confirmed_by"], "human:michele")
+        self.assertEqual(rec["public_copy"]["annotated_sha256"], hashlib.sha256((self.papers / "Manu2021_annotated.pdf").read_bytes()).hexdigest())
         self.assertTrue(self.PP.scan_pdfs(self.papers, L.load(path))["@Manu2021"]["public"])
         # screen.py licences --refresh writes a fresh record from metadata: the confirmation stays
         fresh = L.load(path); fresh["@Manu2021"] = {"category": "cc_manuscript", "label": "CC BY 4.0", "source": "crossref"}
         L.save(path, fresh)
         self.assertEqual(L.load(path)["@Manu2021"]["public_copy"]["sha256"], rec["public_copy"]["sha256"])
+        with self.assertRaises(ValueError):
+            self.PP.confirm_public_copy("Manu2021", "michele", version=" ", papers_dir=self.papers, root=self.root)
+        (self.papers / "Manu2021_annotated.pdf").unlink()
+        with self.assertRaises(ValueError):                       # the published file must exist to be checked
+            self.PP.confirm_public_copy("Manu2021", "michele", papers_dir=self.papers, root=self.root)
+        (self.papers / "Manu2021_annotated.pdf").write_bytes(b"%PDF-annotated Manu2021")
         for bad_key, bad_by in (("Open2020", "michele"), ("Closed2022", "michele"), ("Manu2021", ""), ("Manu2021", "model:gemma4:31b"), ("Manu2021", "human:")):
             with self.assertRaises(ValueError, msg=f"{bad_key} {bad_by}"):
                 self.PP.confirm_public_copy(bad_key, bad_by, papers_dir=self.papers, root=self.root)

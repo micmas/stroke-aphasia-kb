@@ -35,8 +35,9 @@ Which PDFs are public follows screening/licences.yaml (screen.py licences): `cc`
 version is Creative Commons) is redistributable with the citation as attribution. `cc_manuscript`
 means only the accepted manuscript is: the file in papers/ may well be the publisher's version, so
 it stays private unless a person has confirmed that this exact file is the openly licensed copy
-(`publish_portal.py --confirm-public-copy @Key --by <name>`, which records the source PDF's
-sha256 as `public_copy` in licences.yaml; a different file later means private again).
+(`publish_portal.py --confirm-public-copy @Key --by <name>`, which records the sha256 of the
+source PDF and of the annotated copy as `public_copy` in licences.yaml; changing either file later
+means private again).
 `free_to_read`, `rights_reserved` and `unknown` always stay private.
 """
 from __future__ import annotations
@@ -103,13 +104,34 @@ def public_basis(key: str, rec: dict | None, papers_dir: Path) -> str | None:
     cat = rec.get("category") or "unknown"
     if cat in PUBLIC_CATEGORIES:
         return "cc"
-    if cat in CONFIRMABLE_CATEGORIES:
-        copy = rec.get("public_copy") or {}
-        want = str(copy.get("sha256") or "").lower() if isinstance(copy, dict) else ""
-        src = papers_dir / f"{key.lstrip('@')}.pdf"
-        if want and copy.get("confirmed_by") and src.is_file() and _sha256(src) == want:
-            return "confirmed_copy"
+    if cat in CONFIRMABLE_CATEGORIES and _confirmation_holds(key, rec.get("public_copy"), papers_dir):
+        return "confirmed_copy"
     return None
+
+
+def _person(who) -> bool:
+    """human:<name> with a real name (not empty, not a model or agent tag)."""
+    who = str(who or "")
+    if not who.startswith("human:"):
+        return False
+    name = who[len("human:"):].strip()
+    return bool(name) and ":" not in name and name.lower() not in ("model", "agent", "legacy", "unnamed")
+
+
+def _confirmation_holds(key: str, copy, papers_dir: Path) -> bool:
+    """A person's public_copy confirmation is complete and still describes both files we hold: the
+    source papers/<Key>.pdf (sha256) and the annotated copy that would be published
+    (annotated_sha256). Re-annotating or replacing either file voids it until confirmed again."""
+    if not isinstance(copy, dict):
+        return False
+    if not (_person(copy.get("confirmed_by")) and str(copy.get("confirmed_on") or "").strip() and str(copy.get("version") or "").strip()):
+        return False
+    src = papers_dir / f"{key.lstrip('@')}.pdf"
+    ann = papers_dir / f"{key.lstrip('@')}_annotated.pdf"
+    want_src = str(copy.get("sha256") or "").lower()
+    want_ann = str(copy.get("annotated_sha256") or "").lower()
+    return bool(want_src and want_ann and src.is_file() and ann.is_file()
+                and _sha256(src) == want_src and _sha256(ann) == want_ann)
 
 
 def scan_pdfs(papers_dir: Path, lic: dict[str, dict]) -> dict[str, dict]:
@@ -133,14 +155,15 @@ def scan_pdfs(papers_dir: Path, lic: dict[str, dict]) -> dict[str, dict]:
 
 def confirm_public_copy(key: str, by: str, version: str = "accepted manuscript", papers_dir: Path = PAPERS,
                         root: Path = ROOT, today: str | None = None) -> str:
-    """Record that papers/<Key>.pdf is the openly licensed copy of a cc_manuscript paper (a person
-    looked at it). Writes public_copy {sha256, version, confirmed_by, confirmed_on} into
-    screening/licences.yaml; the next --sync serves it from cc/. Returns what was done."""
+    """Record that papers/<Key>.pdf is the openly licensed copy of a cc_manuscript paper, and that
+    papers/<Key>_annotated.pdf (the file that would be published) is made from it: the person
+    has opened both. Writes public_copy {sha256, annotated_sha256, version, confirmed_by,
+    confirmed_on} into screening/licences.yaml; the next --sync serves it from cc/. Changing either
+    file afterwards makes it private again. Returns what was done."""
     import licences as L  # noqa: WPS433
     key = key if key.startswith("@") else f"@{key}"
     by = str(by or "").strip()
-    name = by[len("human:"):] if by.startswith("human:") else by
-    if not name.strip() or name.lower() in ("model", "agent", "legacy") or ":" in name:
+    if not _person(by if by.startswith("human:") else f"human:{by}"):
         raise ValueError("--by must name a person")
     path = root / "screening" / "licences.yaml"
     papers = L.load(path)
@@ -148,9 +171,14 @@ def confirm_public_copy(key: str, by: str, version: str = "accepted manuscript",
     if rec.get("category") not in CONFIRMABLE_CATEGORIES:
         raise ValueError(f"{key} is {rec.get('category') or 'not in licences.yaml'}; only {', '.join(CONFIRMABLE_CATEGORIES)} papers need a confirmed copy")
     src = papers_dir / f"{key.lstrip('@')}.pdf"
-    if not src.is_file():
-        raise ValueError(f"no {src.name} in {papers_dir}")
-    rec["public_copy"] = {"sha256": _sha256(src), "version": version, "confirmed_by": by if by.startswith("human:") else f"human:{by}",
+    ann = papers_dir / f"{key.lstrip('@')}_annotated.pdf"
+    for f in (src, ann):
+        if not f.is_file():
+            raise ValueError(f"no {f.name} in {papers_dir}: both the source and the annotated copy must be checked")
+    if not str(version or "").strip():
+        raise ValueError("--version must say which version the file is (e.g. accepted manuscript)")
+    rec["public_copy"] = {"sha256": _sha256(src), "annotated_sha256": _sha256(ann), "version": str(version).strip(),
+                          "confirmed_by": by if by.startswith("human:") else f"human:{by}",
                           "confirmed_on": today or dt.date.today().isoformat()}
     papers[key] = rec
     L.save(path, papers)
@@ -489,7 +517,7 @@ def _cli(argv=None) -> int:
     ap.add_argument("--project", default=None, help="Cloudflare Pages project name (default: portal.config.json)")
     ap.add_argument("--branch", default="main", help="Pages branch to deploy to (main = production)")
     ap.add_argument("--ta-limit", type=int, default=300, help="title/abstract records offered, in prioritised order (default 300)")
-    ap.add_argument("--confirm-public-copy", metavar="@KEY", help="a cc_manuscript paper: record that papers/<Key>.pdf is the openly licensed copy (needs --by)")
+    ap.add_argument("--confirm-public-copy", metavar="@KEY", help="a cc_manuscript paper: record that papers/<Key>.pdf is the openly licensed copy and <Key>_annotated.pdf is made from it — open both first (needs --by)")
     ap.add_argument("--by", help="with --confirm-public-copy: the person who checked the file")
     ap.add_argument("--version", default="accepted manuscript", help="with --confirm-public-copy: which version the file is")
     args = ap.parse_args(argv)
