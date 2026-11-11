@@ -42,6 +42,7 @@ several reviews reports each one honestly, and the log line reads
 from __future__ import annotations
 
 import argparse
+import hashlib
 import datetime as dt
 import difflib
 import re
@@ -76,7 +77,8 @@ def _write(path: Path, fm: dict, body: str):
     """Serialize frontmatter + body back to markdown."""
     yaml_text = yaml.safe_dump(fm, sort_keys=False, allow_unicode=True,
                                default_flow_style=False)
-    path.write_text(f"---\n{yaml_text}---\n{body}", encoding="utf-8")
+    from pipeline_files import atomic_write
+    atomic_write(path, f"---\n{yaml_text}---\n{body}")
 
 
 def normalize_reviewer(raw: str) -> str:
@@ -134,16 +136,17 @@ def validate_review_args(reviewer: str, tier: str | None,
 
 def _bucket_for(draft_path: Path) -> str:
     """Return regions/impairments/therapies/predictors for a draft path."""
-    parts = draft_path.parts
-    if "drafts" not in parts:
-        raise ValueError(f"Not a drafts path: {draft_path}")
-    i = parts.index("drafts")
-    return parts[i + 1]
+    from pipeline_files import BUCKETS
+    relative = draft_path.resolve().relative_to((ROOT / "drafts").resolve())
+    if len(relative.parts) != 2 or relative.parts[0] not in BUCKETS:
+        raise ValueError(f"Not an active draft path: {draft_path}")
+    return relative.parts[0]
 
 
 def _canonical_path_for(fm: dict, bucket: str) -> Path:
     """Where the entry should live once approved."""
-    return ROOT / bucket / f"{fm['id']}.md"
+    from pipeline_files import safe_child
+    return safe_child(ROOT / bucket, f"{fm['id']}.md")
 
 
 def _next_finding_id(existing_ids: set[str], wanted: str) -> str:
@@ -211,7 +214,7 @@ def cmd_approve(args):
     # re-extraction must be resolved first — refocus.py turns them into
     # findings, or the reviewer removes them in the workbench.
     pending = [m.get("id") for m in fm.get("reviewer_marks") or []
-               if isinstance(m, dict) and m.get("status", "pending") == "pending"]
+               if isinstance(m, dict) and m.get("status", "pending") not in ("done", "dismissed")]
     if pending:
         print(f"❌ Cannot approve — {len(pending)} reviewer mark(s) still pending "
               f"({', '.join(map(str, pending))}): run scripts/refocus.py on the draft, or remove "
@@ -227,6 +230,33 @@ def cmd_approve(args):
         for pr in problems:
             print(f"  {pr}")
         sys.exit(1)
+
+    # Recompute the policy at the one canonical-write boundary. A caller's
+    # --tier and --extractor labels are not evidence of a second reading.
+    import auto_review as AR
+    checks = AR.run_deterministic_checks(fm, draft, papers_dir=ROOT / "papers")
+    pdf = next((c for c in checks if c.name == "pdf_quote_match"), None)
+    if pdf is not None and pdf.passed is False:
+        raise ValueError("Cannot approve: absent source passages")
+    actual_tier, reasons = AR.classify_tier(fm, checks, draft, root=ROOT)
+    if args.reviewer.lower().startswith("model:"):
+        if actual_tier != "A":
+            raise ValueError("Model approval requires actual Tier A: " + "; ".join(reasons))
+        report_path = ROOT / "logs/auto_review" / f"{draft.stem}.yaml"
+        report = yaml.safe_load(report_path.read_text()) if report_path.exists() else {}
+        run = ((report or {}).get("runs") or [{}])[-1]
+        llm = run.get("llm_review") or {}
+        if (run.get("draft_sha256") != hashlib.sha256(draft.read_bytes()).hexdigest()
+                or run.get("verdict") != AR.Verdict.APPROVE
+                or run.get("review_tier") != "A"
+                or _bare_tag(llm.get("model")) != _bare_tag(args.reviewer)
+                or not llm.get("independent") or not llm.get("unanimous")):
+            raise ValueError("Model approval requires a current, unanimous independent review report")
+        for finding in fm.get("findings") or []:
+            author = (finding.get("provenance") or {}).get("extracted_by")
+            if author and not AR.reviewer_is_independent(author, args.reviewer):
+                raise ValueError("Cannot establish independence from every finding's extractor")
+    args.tier = actual_tier
 
     # 2. Stamp approval
     today = dt.date.today().isoformat()

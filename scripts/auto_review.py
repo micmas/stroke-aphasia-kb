@@ -108,6 +108,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import hashlib
 import os
 import re
 import subprocess
@@ -1013,8 +1014,9 @@ def write_report(draft_path: Path, verdict: str, checks: list[Check],
 
     run_n = len(report["runs"]) + 1
     run = {
+        "draft_sha256": hashlib.sha256(draft_path.read_bytes()).hexdigest(),
         "run_id":    run_n,
-        "timestamp": dt.datetime.now().isoformat(timespec="seconds"),
+        "timestamp": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
         "mode":      "with_llm_review" if llm_result else "deterministic_only",
         "verdict":   verdict,
         "checks":    [c.to_yaml_dict() for c in checks],
@@ -1462,7 +1464,8 @@ def select_drafts(*, draft: Path | None = None,
         return [Path(draft)]
     if not (DRAFTS_DIR.exists() and DRAFTS_DIR.is_dir()):
         return []
-    found = sorted(DRAFTS_DIR.rglob("*.md"))
+    from pipeline_files import BUCKETS
+    found = sorted(p for bucket in BUCKETS for p in (DRAFTS_DIR / bucket).glob("*.md"))
     if deferred_only or pending_pdf_only:
         target = (Verdict.PROVISIONAL if pending_pdf_only
                   else Verdict.DEFER)
