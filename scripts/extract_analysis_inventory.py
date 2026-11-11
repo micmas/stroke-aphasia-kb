@@ -135,12 +135,14 @@ def audit_inventory(result: dict, units: dict, citation: str) -> list[str]:
     return issues
 
 
-def run(pdf: Path, citation: str, output: Path, model: str):
+def run(pdf: Path, citation: str, output: Path, model: str, max_tokens: int = 10000):
+    if max_tokens <= 0:
+        raise ValueError('max_tokens must be positive')
     output.mkdir(parents=True,exist_ok=False)
     started = time.monotonic()
     meta = {'status':'failed','approved':False,'model':model,'citation':citation,
             'source_scope':'main_paper_only','temperature':0.0,'think':False,
-            'max_output_tokens':10000,'automatic_retries':0}
+            'max_output_tokens':max_tokens,'automatic_retries':0}
     try:
         text,_ = _extract_pdf_text(pdf)
         units = source_units(text)
@@ -152,8 +154,8 @@ def run(pdf: Path, citation: str, output: Path, model: str):
         (output/'source-units.json').write_text(json.dumps(units,ensure_ascii=False,indent=2))
         (output/'prompt.txt').write_text(prompt)
         try:
-            response = chat(prompt,model=model,max_tokens=10000,
-                            num_ctx=_autosize_num_ctx(prompt,10000),temperature=0.0,
+            response = chat(prompt,model=model,max_tokens=max_tokens,
+                            num_ctx=_autosize_num_ctx(prompt,max_tokens),temperature=0.0,
                             think=False,fmt='json',timeout=3600)
         except RepetitionLoop as exc:
             (output/'raw.json').write_text(exc.partial)
@@ -181,5 +183,6 @@ if __name__ == '__main__':
     p.add_argument('--citation',required=True)
     p.add_argument('--output-dir',type=Path,required=True)
     p.add_argument('--model',default='gemma4:31b')
+    p.add_argument('--max-output-tokens',type=int,default=10000)
     a=p.parse_args()
-    raise SystemExit(run(a.pdf,a.citation,a.output_dir,a.model))
+    raise SystemExit(run(a.pdf,a.citation,a.output_dir,a.model,a.max_output_tokens))

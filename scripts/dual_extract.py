@@ -58,13 +58,15 @@ def prepare_review(first: Path, second: Path, output: Path) -> Path:
     return output/'packet.json'
 
 
-def run_pair(pdf, citation, output, models):
+def run_pair(pdf, citation, output, models, max_tokens=10000):
+    if max_tokens <= 0:
+        raise ValueError('max_tokens must be positive')
     output.mkdir(parents=True,exist_ok=False)
     errors = []
     for label,model in zip(['A','B'],models):
         # Only original PDF and citation enter each run. No prior model output.
         try:
-            run(pdf,citation,output/label,model)
+            run(pdf,citation,output/label,model,max_tokens=max_tokens)
         except Exception as exc:
             errors.append({'arm':label,'error':str(exc)})
     if not errors:
@@ -81,5 +83,6 @@ if __name__=='__main__':
     p.add_argument('--citation',required=True)
     p.add_argument('--output-dir',type=Path,required=True)
     p.add_argument('--models',nargs=2,default=['gemma4:31b','qwen3.8:27b'])
+    p.add_argument('--max-output-tokens',type=int,default=10000)
     a=p.parse_args()
-    raise SystemExit(run_pair(a.pdf,a.citation,a.output_dir,a.models))
+    raise SystemExit(run_pair(a.pdf,a.citation,a.output_dir,a.models,a.max_output_tokens))

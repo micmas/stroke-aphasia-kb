@@ -6,7 +6,7 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 import dual_extract as d
 
 
-def fake_run(pdf,citation,out,model):
+def fake_run(pdf,citation,out,model,**kwargs):
     out.mkdir();(out/'meta.json').write_text(json.dumps({'model':model,'citation':citation,
         'pdf_sha256':'frozen','prompt_sha256':'same'}))
     (out/'raw.json').write_text(json.dumps({'analyses':[{'model':model}]}))
@@ -16,7 +16,7 @@ def fake_run(pdf,citation,out,model):
 
 def test_pair_uses_same_source_and_keeps_both_answers(tmp_path,monkeypatch):
     calls=[]
-    def tracked(*args): calls.append(args);return fake_run(*args)
+    def tracked(*args,**kwargs): calls.append(args);return fake_run(*args,**kwargs)
     monkeypatch.setattr(d,'run',tracked)
     pdf=tmp_path/'source.pdf';pdf.write_bytes(b'source')
     out=tmp_path/'pair'

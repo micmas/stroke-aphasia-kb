@@ -68,3 +68,21 @@ def test_empty_source_does_not_call_model(tmp_path,monkeypatch):
     def forbidden(*args,**kwargs):raise AssertionError('Model must not run')
     monkeypatch.setattr(inventory,'chat',forbidden)
     with pytest.raises(ValueError,match='No extractable'):inventory.run(tmp_path/'x.pdf','@X2020',tmp_path/'run','test')
+
+
+def test_larger_output_budget_reaches_transport_context_and_metadata(tmp_path,monkeypatch):
+    monkeypatch.setattr(inventory,'_extract_pdf_text',lambda _: (TEXT,2))
+    calls=[]
+    def complete(prompt,**kwargs):
+        calls.append((prompt,kwargs))
+        return {'text':json.dumps(result()),'truncated_output':False}
+    monkeypatch.setattr(inventory,'chat',complete)
+    pdf=tmp_path/'paper.pdf';pdf.write_bytes(b'fixture');out=tmp_path/'run'
+    assert inventory.run(pdf,'@Example2020',out,'test',max_tokens=20000)==0
+    prompt,options=calls[0]
+    assert options['max_tokens']==20000
+    assert options['num_ctx']==inventory._autosize_num_ctx(prompt,20000)
+    assert json.loads((out/'meta.json').read_text())['max_output_tokens']==20000
+    with pytest.raises(ValueError,match='positive'):
+        inventory.run(pdf,'@Example2020',tmp_path/'invalid','test',max_tokens=0)
+    assert not (tmp_path/'invalid').exists()
