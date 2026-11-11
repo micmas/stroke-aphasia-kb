@@ -26,7 +26,7 @@ const VOCAB = {
   target_kind: ['impairment', 'therapy', 'region', 'prognosis', 'predictor'],
   supports: ['claim', 'method', 'sample', 'statistics', 'confounders', 'region_definition', 'limitation', 'imaging_details'],
 };
-const state = { me: null, manifest: null, kb: null, screening: null, mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
+const state = { me: null, manifest: null, kb: null, bindings: {}, screening: null, mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
 const MAX_UPLOAD = 60 * 1024 * 1024;
 
 // ---------------------------------------------------------------- helpers
@@ -383,16 +383,25 @@ function verdictPanel(d, r, save) {
     const missing = d.findings.filter((f) => r.findings[f.id]?.verdict === 'disagree' && !r.findings[f.id]?.concern);
     if (missing.length) { toast(`Say why you disagree on ${missing.map((f) => f.id).join(', ')}`, true); return; }
     if (!r.verdict && pending === total) { toast('Give an overall verdict for the draft', true); return; }
+    const bound = state.bindings?.[d.path];
+    if ((r.verdict || pending) && !bound) { toast('This draft is not in the portal build any more (or the build is older than this page): reload, then review the current version', true); return; }
+    if (r.verdict === 'approve') {
+      const notAgreed = d.findings.filter((f) => r.findings[f.id]?.verdict !== 'agree').map((f) => f.id);
+      if (notAgreed.length) { toast(`To approve, agree with every finding (${notAgreed.join(', ')} not agreed), or choose "kept for more review"`, true); return; }
+      if (bound?.obligations?.length) { toast(`This draft has reviewer marks still open (${bound.obligations.join(', ')}): it cannot be approved until they are resolved`, true); return; }
+    }
     btn.disabled = true; btn.classList.add('working'); btn.textContent = 'Sending…';
     try {
       const records = [];
       const perFinding = d.findings.filter((f) => r.findings[f.id]?.verdict).map((f) => ({ id: f.id, verdict: r.findings[f.id].verdict, concern: r.findings[f.id].concern || '', supports_approval: r.findings[f.id].verdict === 'agree', passages: r.findings[f.id].passages }));
-      if (perFinding.length || r.verdict) records.push({ kind: 'verdict', id: d.path, citation: d.citation, verdict: r.verdict || null, rationale: r.rationale || '', per_finding: perFinding });
       for (const f of d.findings) {
         const x = r.findings[f.id]; if (!x) continue;
         if (Object.keys(x.edits).length || x.added.length) records.push({ kind: 'edit', id: d.path, citation: d.citation, finding: f.id, fields: Object.fromEntries(Object.entries(x.edits).map(([k, v]) => [k, { old: f[k], new: v }])), passages_added: x.added });
       }
       for (const m of r.marks) records.push({ kind: 'mark', id: d.path, citation: d.citation, page: m.page, quote: m.quote, note: m.note || '' });
+      // the verdict last: it is about the draft with this send's own edits and marks in it, and it
+      // names the version reviewed (the import treats a verdict on a since-changed draft as an opinion)
+      if (perFinding.length || r.verdict) records.push({ kind: 'verdict', id: d.path, citation: d.citation, verdict: r.verdict || null, rationale: r.rationale || '', per_finding: perFinding, draft_digest: bound.digest, finding_ids: bound.findings });
       btn.textContent = `Sending ${plural(records.length, 'record')} in one commit…`;
       await sendAll(records);
       store.del(`review:${d.path}`);
@@ -869,6 +878,8 @@ async function init() {
   try {
     const [me, manifest, kb] = await Promise.all([api('me'), fetch('manifest.json').then((r) => r.json()), fetch('export/stroke-aphasia-kb-drafts.json').then((r) => r.json())]);
     state.me = me; state.manifest = manifest; state.kb = kb;
+    // what each draft was when this page was built: a verdict is sent with it (review binding)
+    state.bindings = await fetch('drafts.json').then((r) => (r.ok ? r.json() : null)).then((x) => x?.drafts || {}).catch(() => ({}));
     try { const sent = store.get('screen:sent', {}); const built = manifest.built || ''; for (const [id, when] of Object.entries(sent)) if (built && String(when?.at || when) < built) delete sent[id]; store.set('screen:sent', sent); } catch { /* ignore */ }
     state.screening = await fetch('screening.json').then((r) => (r.ok ? r.json() : null)).catch(() => null);
     state.mine = await api('reviews').catch(() => ({ inbox: [], applied: [] }));

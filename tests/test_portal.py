@@ -178,12 +178,15 @@ class Import(unittest.TestCase):
         self.assertEqual(fm["reviewer_marks"][0]["status"], "pending")
         self.assertEqual(fm["findings"][0]["portal_comments"][0]["by"], "human:alex")
         # a non-approver's approve is an opinion; an approver's approve would promote, but pending marks block it
-        msg = PI.apply_verdict({"id": rel, "verdict": "approve", "rationale": "fine", "submitted": "2026-11-05",
+        import review_binding as RB
+        seen = {"draft_digest": RB.review_digest(fm), "finding_ids": RB.finding_ids(fm)}   # the draft as the portal showed it
+        msg = PI.apply_verdict({"id": rel, "verdict": "approve", "rationale": "fine", "submitted": "2026-11-05", **seen,
                                 "per_finding": [{"id": "f1", "verdict": "agree", "supports_approval": True}]}, "alex", False, True, True, state)
         self.assertIn("opinion", msg)
-        msg = PI.apply_verdict({"id": rel, "verdict": "approve", "rationale": "fine", "submitted": "2026-11-05",
+        msg = PI.apply_verdict({"id": rel, "verdict": "approve", "rationale": "fine", "submitted": "2026-11-05", **seen,
                                 "per_finding": [{"id": "f1", "verdict": "agree", "supports_approval": True}]}, "michele", True, True, True, state)
-        self.assertIn("pending reviewer marks", msg)
+        self.assertIn("reviewer marks m1 are not resolved", msg)
+        self.assertEqual(msg.status, "blocked")
         fm, _ = PI.parse_markdown(self.draft)
         self.assertEqual([r["by"] for r in fm["portal_reviews"]], ["human:alex", "human:michele"])
         self.assertEqual(fm["status"], "draft")

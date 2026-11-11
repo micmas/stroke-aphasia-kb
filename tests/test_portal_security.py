@@ -35,7 +35,7 @@ class _Patched:
     def __enter__(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.root = Path(self.tmp.name)
-        self.saved = {k: getattr(PI, k) for k in ("ROOT", "PAPERS", "PORTAL", "INBOX", "APPLIED", "LOG", "REVIEWERS")}
+        self.saved = {k: getattr(PI, k) for k in ("ROOT", "PAPERS", "PORTAL", "INBOX", "APPLIED", "LOG", "REVIEWERS", "LEDGER")}
         self.saved_fetch = dict(PI.FETCH)
         self.saved_load = PI.S.load_candidates
         PI.ROOT = self.root
@@ -45,6 +45,7 @@ class _Patched:
         PI.APPLIED = self.root / "logs" / "portal" / "applied"
         PI.LOG = self.root / "logs" / "extraction_log.md"
         PI.REVIEWERS = self.root / "portal" / "reviewers.yaml"
+        PI.LEDGER = self.root / "logs" / "portal" / "ledger.jsonl"
         for d in (PI.PAPERS, PI.PORTAL, PI.INBOX, PI.APPLIED):
             d.mkdir(parents=True, exist_ok=True)
         PI.S.load_candidates = lambda *a, **k: self.cands
@@ -283,6 +284,264 @@ class Revocation(unittest.TestCase):
                           "@E": {"annotated": "cc/E_annotated.pdf", "public": True, "category": "cc"}},
                "pending_deletions": ["cc/E_annotated.pdf"]}
         self.assertEqual(self.PP.public_allowlist(idx), ["A_annotated.pdf", "C_annotated.pdf"])
+
+
+DRAFT = """---
+schema_version: 2.8
+id: left_angular_gyrus
+name: Left angular gyrus
+kind: atlas
+status: draft
+created_by: agent:test
+created_on: 2026-11-05
+findings:
+- id: f1
+  target: anomia
+  target_kind: impairment
+  claim: Damage to the left angular gyrus is associated with poorer naming accuracy.
+  direction: likely
+  relationship: causal
+  citation: '@TestPaper2020'
+  method: VLSM
+  strength: moderate
+  source_passages:
+  - {section: Abstract, page: 1, quote: Damage to the left angular gyrus was associated with poorer naming., supports: claim}
+- id: f2
+  target: semantic_memory
+  target_kind: impairment
+  claim: Angular gyrus damage is associated with poorer semantic judgement.
+  direction: likely
+  relationship: causal
+  citation: '@TestPaper2020'
+  method: VLSM
+  strength: weak
+  source_passages:
+  - {section: Results, page: 4, quote: Semantic judgement was poorer after angular gyrus damage., supports: claim}
+---
+Test draft.
+"""
+REL = "drafts/regions/left_angular_gyrus__TestPaper2020.md"
+
+
+class _FakeAutoReview:
+    """Stands in for auto_review in sys.modules: records the calls, can be told to raise."""
+
+    class Verdict:
+        APPROVE = "auto_approve"
+        REJECT = "auto_reject"
+
+    def __init__(self):
+        self.calls, self.raise_next, self.result = [], 0, "auto_approve"
+
+    def apply_manual_verdict(self, path, **kw):
+        self.calls.append((Path(path).name, kw.get("verdict_override"), kw.get("reviewer")))
+        if self.raise_next:
+            self.raise_next -= 1
+            raise RuntimeError("promote.py refused: transient")
+        return (self.result if kw.get("verdict_override") == "approve" else "auto_reject"), []
+
+
+class ReviewBinding(unittest.TestCase):
+    """Finding 10 (content binding) and finding 20 (outcomes, replay)."""
+
+    def setUp(self):
+        import review_binding as RB
+        self.RB = RB
+        self.P = _Patched(self).__enter__()
+        self.draft = PI.ROOT / REL
+        self.draft.parent.mkdir(parents=True)
+        self.draft.write_text(DRAFT, encoding="utf-8")
+        import yaml
+        PI.REVIEWERS.write_text(yaml.safe_dump({"reviewers": {"m@uq.edu.au": {"name": "michele", "approver": True},
+                                                               "alex@example.org": {"name": "alex"}}}), encoding="utf-8")
+        PI.LEDGER = PI.ROOT / "logs" / "portal" / "ledger.jsonl"
+        self.fake = _FakeAutoReview()
+        self.saved_ar = sys.modules.get("auto_review")
+        sys.modules["auto_review"] = self.fake
+        self.seq = 0
+
+    def tearDown(self):
+        if self.saved_ar is not None:
+            sys.modules["auto_review"] = self.saved_ar
+        else:
+            sys.modules.pop("auto_review", None)
+        PI.LEDGER = self.P.saved.get("LEDGER", PI.LEDGER)
+        self.P.__exit__(None, None, None)
+
+    def fm(self):
+        return PI.parse_markdown(self.draft)[0]
+
+    def seen(self):
+        fm = self.fm()
+        return {"draft_digest": self.RB.review_digest(fm), "finding_ids": self.RB.finding_ids(fm)}
+
+    def put(self, kind, who="m@uq.edu.au", submitted="2026-11-11T01:00:00.000Z", stamp="20261111T010000Z", **body):
+        self.seq += 1
+        name = f"{stamp}-{self.seq:02d}_{kind}_{who.split('@')[0]}_x.json"
+        rec = {"kind": kind, "id": REL, "reviewer": who, "submitted": submitted, "portal": 1, **body}
+        (PI.INBOX / name).write_text(json.dumps(rec), encoding="utf-8")
+        return name
+
+    def approve(self, seen, **kw):
+        return dict(verdict="approve", rationale="checked", per_finding=[{"id": "f1", "verdict": "agree"}, {"id": "f2", "verdict": "agree"}], **seen, **kw)
+
+    def outcome(self, name):
+        return json.loads((PI.APPLIED / name).read_text())["_outcome"]["status"]
+
+    def test_current_approval_is_promoted(self):
+        n = self.put("verdict", **self.approve(self.seen()))
+        PI.run(execute=True, promote=True, only_kind=None)
+        self.assertEqual(self.fake.calls, [(self.draft.name, "approve", "human:michele")])
+        self.assertEqual(self.outcome(n), "applied")
+
+    def test_changed_draft_makes_the_verdict_stale(self):
+        seen = self.seen()
+        self.draft.write_text(DRAFT.replace("strength: moderate", "strength: strong"), encoding="utf-8")   # changed after the build
+        n = self.put("verdict", **self.approve(seen))
+        PI.run(execute=True, promote=True, only_kind=None)
+        self.assertEqual(self.fake.calls, [])
+        self.assertEqual(self.outcome(n), "stale")
+        rev = self.fm()["portal_reviews"][0]
+        self.assertIn("changed after the reviewer opened it", rev["stale"])
+        self.assertEqual(rev["reviewed_digest"], seen["draft_digest"])
+
+    def test_unbound_or_wrong_findings_are_stale(self):
+        seen = self.seen()
+        a = self.put("verdict", **self.approve({}))                                     # an old client: no digest
+        b = self.put("verdict", **self.approve({**seen, "finding_ids": ["f1"]}))        # saw other findings
+        PI.run(execute=True, promote=True, only_kind=None)
+        self.assertEqual(self.fake.calls, [])
+        self.assertEqual((self.outcome(a), self.outcome(b)), ("stale", "stale"))
+
+    def test_own_edit_in_the_same_send_then_approve(self):
+        seen = self.seen()                                    # the reviewer saw the draft before their edit
+        n_v = self.put("verdict", **self.approve(seen))        # the portal numbers the verdict 01 …
+        n_e = self.put("edit", finding="f1", fields={"strength": {"old": "moderate", "new": "strong"}})   # … and the edit 02
+        PI.run(execute=True, promote=True, only_kind=None)
+        self.assertEqual(self.fm()["findings"][0]["strength"], "strong")      # the edit was applied first
+        self.assertEqual(self.fake.calls, [(self.draft.name, "approve", "human:michele")])
+        self.assertEqual((self.outcome(n_e), self.outcome(n_v)), ("applied", "applied"))
+
+    def test_someone_elses_change_is_not_exempt(self):
+        seen = self.seen()
+        self.put("mark", who="alex@example.org", submitted="2026-11-11T00:59:00.000Z", stamp="20261111T005900Z",
+                 page=2, quote="Another passage.", note="")
+        v = self.put("verdict", **self.approve(seen))
+        # a later send by the same approver, carrying the old digest: not the same send either
+        e = self.put("edit", submitted="2026-11-11T02:00:00.000Z", stamp="20261111T020000Z", finding="f2",
+                     fields={"strength": {"old": "weak", "new": "moderate"}})
+        v2 = self.put("verdict", submitted="2026-11-11T03:00:00.000Z", stamp="20261111T030000Z", **self.approve(seen))
+        PI.run(execute=True, promote=True, only_kind=None)
+        self.assertEqual(self.fake.calls, [])
+        self.assertEqual((self.outcome(v), self.outcome(v2), self.outcome(e)), ("stale", "stale", "applied"))
+
+    def test_approval_must_cover_every_finding_and_obligations(self):
+        part = self.put("verdict", **dict(self.approve(self.seen()), per_finding=[{"id": "f1", "verdict": "agree"}]))
+        PI.run(execute=True, promote=True, only_kind=None)
+        self.assertEqual(self.outcome(part), "blocked")
+        text = DRAFT.replace("findings:\n", "reviewer_marks:\n- {id: m1, page: 2, quote: q, status: unresolved}\nfindings:\n", 1)
+        self.draft.write_text(text, encoding="utf-8")
+        marked = self.put("verdict", stamp="20261111T040000Z", submitted="2026-11-11T04:00:00.000Z", **self.approve(self.seen()))
+        PI.run(execute=True, promote=True, only_kind=None)
+        self.assertEqual(self.outcome(marked), "blocked")
+        self.assertEqual(self.fake.calls, [])
+        # the marks are part of what was reviewed: resolving one after the review makes the review stale
+        old = self.seen()
+        self.draft.write_text(text.replace("status: unresolved", "status: done"), encoding="utf-8")
+        late = self.put("verdict", stamp="20261111T050000Z", submitted="2026-11-11T05:00:00.000Z", **self.approve(old))
+        PI.run(execute=True, promote=True, only_kind=None)
+        self.assertEqual(self.outcome(late), "stale")
+
+    def test_failed_promotion_stays_in_the_inbox_and_is_not_duplicated(self):
+        self.fake.raise_next = 1
+        n = self.put("verdict", **self.approve(self.seen()))
+        PI.run(execute=True, promote=True, only_kind=None)
+        self.assertTrue((PI.INBOX / n).exists())
+        self.assertFalse((PI.APPLIED / n).exists())
+        self.assertEqual(len(self.fm()["portal_reviews"]), 1)
+        PI.run(execute=True, promote=True, only_kind=None)                  # retried: now it works
+        self.assertEqual(self.outcome(n), "applied")
+        self.assertEqual(len(self.fm()["portal_reviews"]), 1)               # the opinion is not recorded twice
+        self.assertEqual(len(self.fake.calls), 2)
+
+    def test_checks_refusing_is_blocked_not_applied(self):
+        self.fake.result = "auto_reject"
+        n = self.put("verdict", **self.approve(self.seen()))
+        PI.run(execute=True, promote=True, only_kind=None)
+        self.assertEqual(self.outcome(n), "blocked")
+
+    def test_replay_after_a_crash_does_not_apply_twice(self):
+        e = self.put("edit", finding="f1", fields={}, passages_added=[{"page": 3, "quote": "An added passage.", "supports": "claim"}])
+        PI.run(execute=True, promote=False, only_kind=None)
+        self.assertEqual(len(self.fm()["findings"][0]["source_passages"]), 2)
+        # the record comes back (the archive step was lost): the ledger says it was dealt with
+        (PI.INBOX / e).write_text((PI.APPLIED / e).read_text())
+        PI.run(execute=True, promote=False, only_kind=None)
+        self.assertEqual(len(self.fm()["findings"][0]["source_passages"]), 2)
+        # … and even without the ledger line, the record id in the draft stops a second application
+        PI.LEDGER.unlink()
+        (PI.INBOX / e).write_text((PI.APPLIED / e).read_text())
+        PI.run(execute=True, promote=False, only_kind=None)
+        self.assertEqual(len(self.fm()["findings"][0]["source_passages"]), 2)
+        self.assertFalse((PI.INBOX / e).exists())
+
+    def test_crash_after_promotion_is_recognised_from_the_journal(self):
+        n = self.put("verdict", **self.approve(self.seen()))
+        jdir = PI.ROOT / "logs" / "promotion_transactions"; jdir.mkdir(parents=True)
+        self.draft.unlink()                                   # promoted, then the process died before the ledger line
+        # a canonical file of the same name is not evidence; nor a journal for another record
+        (PI.ROOT / "regions").mkdir(); (PI.ROOT / "regions" / "left_angular_gyrus.md").write_text("---\nid: x\n---\n")
+        (jdir / "a.json").write_text(json.dumps({"draft": REL, "done": True, "record_ids": ["someone_else.json"]}))
+        PI.run(execute=True, promote=True, only_kind=None)
+        self.assertTrue((PI.INBOX / n).exists())               # still a skip: nothing proves this record was promoted
+        (jdir / "b.json").write_text(json.dumps({"draft": REL, "done": True, "record_ids": [n]}))
+        PI.run(execute=True, promote=True, only_kind=None)
+        self.assertEqual(self.outcome(n), "applied")
+
+    def test_pending_journal_is_finished_or_left_for_retry(self):
+        n = self.put("verdict", **self.approve(self.seen()))
+        jdir = PI.ROOT / "logs" / "promotion_transactions"; jdir.mkdir(parents=True)
+        self.draft.unlink()
+        (jdir / "p.json").write_text(json.dumps({"draft": REL, "done": False, "record_ids": [n]}))
+        calls = []
+        def recover_pending(root, draft):
+            calls.append(Path(draft).relative_to(root).as_posix())
+            row = json.loads((jdir / "p.json").read_text()); row["done"] = True
+            (jdir / "p.json").write_text(json.dumps(row))
+        fake = type(sys)("promotion_transaction"); fake.recover_pending = lambda root, draft: (_ for _ in ()).throw(OSError("disk"))
+        saved = sys.modules.get("promotion_transaction"); sys.modules["promotion_transaction"] = fake
+        try:
+            PI.run(execute=True, promote=True, only_kind=None)
+            self.assertTrue((PI.INBOX / n).exists())           # recovery failed: retried next time
+            fake.recover_pending = recover_pending
+            PI.run(execute=True, promote=True, only_kind=None)
+        finally:
+            if saved is not None:
+                sys.modules["promotion_transaction"] = saved
+            else:
+                sys.modules.pop("promotion_transaction", None)
+        self.assertEqual(calls, [REL])
+        self.assertEqual(self.outcome(n), "applied")
+
+    def test_build_bindings_cover_active_drafts_only(self):
+        backup = PI.ROOT / "drafts" / "_backup" / "20261110" / "regions" / self.draft.name
+        backup.parent.mkdir(parents=True); backup.write_text(DRAFT, encoding="utf-8")
+        (PI.ROOT / "drafts" / "regions" / "broken__X.md").write_text("---\nfindings: [\"\"x\"]\n---\n", encoding="utf-8")
+        b = self.RB.drafts_bindings(PI.ROOT)
+        self.assertEqual(list(b), [REL])
+        self.assertEqual(b[REL], self.RB.binding(self.fm()))
+        self.assertEqual(b[REL]["findings"], ["f1", "f2"])
+
+    def test_binding_ignores_opinions_but_not_content(self):
+        fm = self.fm()
+        d = self.RB.review_digest(fm)
+        fm2 = dict(fm, portal_reviews=[{"by": "human:x"}], portal_comments=[{"text": "hi"}])
+        fm2["findings"] = [dict(f, portal_comments=[{"text": "c"}]) for f in fm["findings"]]
+        self.assertEqual(self.RB.review_digest(fm2), d)
+        for change in ({"reviewer_marks": [{"id": "m1", "status": "pending"}]}, {"status": "in_review"}):
+            self.assertNotEqual(self.RB.review_digest(dict(fm, **change)), d)
+        fm3 = dict(fm); fm3["findings"] = [dict(fm["findings"][0], strength="strong"), fm["findings"][1]]
+        self.assertNotEqual(self.RB.review_digest(fm3), d)
 
 
 if __name__ == "__main__":

@@ -493,6 +493,13 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
                 "counts": {"public": n_public, "private": len(pdfs) - n_public, "candidates": len(sb["candidates"]),
                            "sources": sum(1 for k in sources["keys"] if k not in pdfs), "sourceFiles": len(sources["files"])}}
     (DIST / "manifest.json").write_text(json.dumps(manifest, indent=1, sort_keys=True), encoding="utf-8")
+    # what each draft is, as built: a verdict carries its digest so the import can tell whether
+    # the draft changed after the reviewer opened it (review_binding.py, REVIEW.md #10)
+    import review_binding as RB  # noqa: WPS433
+    bindings = RB.drafts_bindings(ROOT)
+    (DIST / "drafts.json").write_text(json.dumps({"built": manifest["built"], "kbCommit": manifest["kbCommit"], "drafts": bindings},
+                                                 ensure_ascii=False, sort_keys=True), encoding="utf-8")
+    print(f"  drafts.json: review bindings for {len(bindings)} draft(s)")
     # what cc/ may serve (portal/lib/pdfs.js checks every public request against it)
     allow = public_allowlist(index)
     (DIST / "public-pdfs.json").write_text(json.dumps({"built": manifest["built"], "files": allow}, indent=1), encoding="utf-8")
