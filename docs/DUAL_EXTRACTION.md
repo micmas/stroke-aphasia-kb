@@ -112,3 +112,44 @@ no successful output is automatically approved or written into KB drafts.
 This command prepares independent review packets; it does **not** automatically
 run Claude or another third reviewer. Review every successful paper against its
 main PDF, including tables/figures and shared omissions, before mapping findings.
+
+## Recovery of failed or newly available papers
+
+Use a **new manifest and output directory**, keeping the original batch immutable.
+The existing preparation command accepts `--papers Key1 Key2 ...` to select a
+recovery cohort. `--segment-chars 50000` requests bounded source segments through
+the same dual-extraction batch command; it is not a separate user-facing runner.
+
+In segmented mode each model independently receives every original source-text
+unit as a core unit exactly once. Original front matter and adjacent units supply
+limited supporting context. Page/source IDs are preserved. No summary substitutes
+for omitted source pages, and no supplementary files are loaded. Main-PDF
+appendices remain part of the PDF. Each segment saves its actual prompt, original
+units, response, settings and audit. An empty segment must give an explicit reason
+for reviewer verification; an entirely empty paper is a failure.
+
+A complete arm concatenates its segment inventories with unique prefixed record
+IDs. It deliberately preserves possible overlap duplicates. **This is not a
+cross-segment synthesis**: references to methods, model definitions, samples or
+results elsewhere in the document may still be unresolved. Those dependencies,
+duplicates and exclusions require source review. A failed/truncated/malformed
+segment prevents the paper arm from being marked complete. Partial segments stay
+on disk, but are not currently reused automatically by a paper-level retry.
+
+The November 12 recovery cohort uses 32,000 output tokens per call rather than
+20,000. Raising output budget alone cannot fix an oversized input; segmentation
+is what addresses the 315-page Brady2016 input failure. It also limits how many
+analyses the model must emit at once in the formerly truncated papers. These are
+explicit recovery settings, not a guarantee of accuracy or successful generation.
+
+The text reviewer currently submits a whole-paper reconciliation prompt. It may
+still exceed context limits for very long segmented papers. Do not claim those
+papers are fully reviewed merely because their segmented extraction completes;
+segmented reconciliation and visual review remain separate work.
+
+Registered-source corrections: Walker2011 is DOI 10.1016/j.bandl.2010.09.008
+(PMID 20961612). Brady2022RELEASE now explicitly identifies the existing NIHR
+monograph, DOI 10.3310/RTLH7522 (PMID 36223438); the related journal subgroup
+analysis remains @Brady2022. Preserve cohort overlap rather than counting these
+RELEASE reports as independent datasets. The uploaded Walker and Hillis PDFs stay
+local; their availability does not imply an open redistribution licence.

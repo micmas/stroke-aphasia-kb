@@ -19,3 +19,14 @@ def test_all_statuses_and_doi_aliases_with_missing_sources(tmp_path):
     assert result['papers'][0]['licence_evidence'] == {'category':'unknown'}
     with pytest.raises(ValueError, match='frozen'):
         prepare(tmp_path, tmp_path/'manifest.json')
+
+
+def test_recovery_subset_retains_other_registered_pdfs(tmp_path):
+    (tmp_path/'papers').mkdir();(tmp_path/'screening').mkdir()
+    (tmp_path/'citations.md').write_text('## @A2020 [extracted]\n## @B2021 [seed]\n')
+    (tmp_path/'screening/licences.yaml').write_text('papers: {}\n')
+    for name in ['A2020.pdf','B2021.pdf']:(tmp_path/'papers'/name).write_bytes(b'pdf')
+    result=prepare(tmp_path,tmp_path/'manifest.json',['A2020'],50000)
+    assert [p['key'] for p in result['papers']]==['A2020']
+    assert result['papers'][0]['segment_chars']==50000
+    assert not result['unregistered_pdf_stems_requiring_identification']

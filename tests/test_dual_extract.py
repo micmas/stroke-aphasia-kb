@@ -33,3 +33,15 @@ def test_mismatched_papers_refuse_review_packet(tmp_path):
     fake_run(None,'@One2020',a,'one');fake_run(None,'@Two2020',b,'two')
     with pytest.raises(ValueError,match='citation'):d.prepare_review(a,b,tmp_path/'review')
     assert not (tmp_path/'review').exists()
+
+
+def test_segmented_pair_keeps_models_independent(tmp_path, monkeypatch):
+    import source_inventory_segments as segments
+    calls=[]
+    def fake_segment(pdf,citation,out,model,**kwargs):
+        calls.append((pdf,model,kwargs));return fake_run(pdf,citation,out,model)
+    monkeypatch.setattr(segments,'run_segmented',fake_segment)
+    pdf=tmp_path/'source.pdf';pdf.write_bytes(b'original')
+    assert d.run_pair(pdf,'@Example2020',tmp_path/'segmented',['one','two'],32000,50000)==0
+    assert [c[1] for c in calls]==['one','two']
+    assert all(c[0]==pdf and c[2]=={'max_tokens':32000,'segment_chars':50000} for c in calls)

@@ -512,11 +512,11 @@ doi:10.1016/j.bandl.2010.12.001
 > phonological retrieval finding.
 
 ## @Walker2011  [cited]
-Walker GM, Schwartz MF, Kimberg DY, Hamilton RH, Faseyitan O, Brecher A, Dell GS, Coslett HB.
+Walker GM, Schwartz MF, Kimberg DY, Faseyitan O, Brecher A, Dell GS, Coslett HB.
 Support for anterior temporal involvement in semantic error production in aphasia:
 new evidence from VLSM.
 *Brain Lang*. 2011;117(3):110–122.
-doi:10.1016/j.bandl.2011.02.005
+doi:10.1016/j.bandl.2010.09.008
 
 > Cited from `drafts/regions/left_anterior_temporal_lobe__Mirman2015.md` (f1
 > replication). Penn aphasia registry follow-up VLSM paper providing
@@ -842,19 +842,20 @@ doi:10.1371/journal.pone.0209571
 > evidence the `sex` and `age` predictor entries need, extractable as a
 > review. Key given its year (was `@Wallentin`); PDF renamed to match.
 
-## @Brady2022RELEASE  [refused]
+## @Brady2022RELEASE  [seed]
 Brady MC, Ali M, VandenBerg K, Williams LJ, Williams LR, Abo M, et al.
-(REhabilitation and recovery of peopLE with Aphasia after StrokE — RELEASE Collaborators).
-Precision rehabilitation for aphasia: REhabilitation and recovery of peopLE with
-Aphasia after StrokE; an individual participant data network meta-analysis (PROSPERO CRD42018110947).
-*International Journal of Stroke*. 2022.
+Complex speech-language therapy interventions for stroke-related aphasia: the RELEASE study incorporating a systematic review and individual participant data network meta-analysis.
+*Health and Social Care Delivery Research*. 2022;10(28):1–272.
+doi:10.3310/RTLH7522
 
-> Refused 2026-05-06 under the primary-dataset rule. Still refused on
-> 2026-10-21, for a different reason: `papers/Brady2022RELEASE.pdf` is
-> the 322-page NIHR HTA monograph (doi:10.3310/RTLH7522), far beyond
-> one extraction pass. The citable version is the journal article
-> (Int J Stroke 2022, a separate DOI); fetch that, register it, and
-> extract it as a review. The monograph stays for reference.
+> Source registration corrected 2026-11-12 against the existing 322-page PDF and
+> PubMed PMID 36223438. This key now explicitly identifies the NIHR monograph,
+> including its front matter and in-PDF appendices. The previously described
+> International Journal of Stroke article is registered separately as @Brady2022.
+> Earlier refusals (2026-05-06 and 2026-10-21) concerned the primary-dataset rule
+> and single-pass length limit. The monograph is now queued for full-source
+> segmented dual extraction; no supplementary files are included. It overlaps
+> with other RELEASE publications and must not be counted as independent data.
 
 ## @Mohr2017  [seed]
 Mohr B.

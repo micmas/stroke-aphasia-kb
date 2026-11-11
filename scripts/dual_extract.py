@@ -58,7 +58,7 @@ def prepare_review(first: Path, second: Path, output: Path) -> Path:
     return output/'packet.json'
 
 
-def run_pair(pdf, citation, output, models, max_tokens=10000):
+def run_pair(pdf, citation, output, models, max_tokens=10000, segment_chars=None):
     if max_tokens <= 0:
         raise ValueError('max_tokens must be positive')
     output.mkdir(parents=True,exist_ok=False)
@@ -66,7 +66,11 @@ def run_pair(pdf, citation, output, models, max_tokens=10000):
     for label,model in zip(['A','B'],models):
         # Only original PDF and citation enter each run. No prior model output.
         try:
-            run(pdf,citation,output/label,model,max_tokens=max_tokens)
+            if segment_chars is None:
+                run(pdf,citation,output/label,model,max_tokens=max_tokens)
+            else:
+                from source_inventory_segments import run_segmented
+                run_segmented(pdf,citation,output/label,model,max_tokens=max_tokens,segment_chars=segment_chars)
         except Exception as exc:
             errors.append({'arm':label,'error':str(exc)})
     if not errors:
