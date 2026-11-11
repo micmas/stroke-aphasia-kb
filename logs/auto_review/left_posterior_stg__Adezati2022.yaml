@@ -335,6 +335,56 @@ runs:
   tier_reasons:
   - not every passage matched the PDF exactly
   - 'f1: has provenance.flags'
-last_run: '2026-11-11T10:42:52'
-latest_verdict: checks_passed
-latest_mode: deterministic_only
+- run_id: 8
+  timestamp: '2026-11-11T06:28:57'
+  mode: with_llm_review
+  verdict: auto_approve
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: null
+    blocker: true
+    details:
+    - no PDFs available in /home/runner/work/stroke-aphasia-kb/stroke-aphasia-kb/papers
+      for any cited paper
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - 'f1: has provenance.flags'
+  llm_review:
+    model: human:michele
+    backend: ollama (local)
+    verdict_override: approve
+    parsed:
+      overall_verdict: override_approve
+      rationale: (portal review)
+      per_finding:
+      - id: f1
+        concern: ''
+        supports_approval: true
+    raw_preview: ''
+    error: null
+    votes: null
+    vote_verdicts: null
+    unanimous: null
+    guardrails: []
+    extractor: null
+    independent: null
+    papers_missing: null
+last_run: '2026-11-11T06:28:57'
+latest_verdict: auto_approve
+latest_mode: with_llm_review
