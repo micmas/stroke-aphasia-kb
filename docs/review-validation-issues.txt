@@ -1,0 +1,56 @@
+Loader validation at d190282 with review fixes (11 November 2026).
+No findings were edited. Includes canonical and draft entries.
+
+ingredients/anodal_tdcs.md: status=approved requires reviewer
+ingredients/anodal_tdcs.md: status=approved requires reviewed_on
+ingredients/communicative_shaping.md: status=approved requires reviewer
+ingredients/communicative_shaping.md: status=approved requires reviewed_on
+ingredients/inhibitory_rtms.md: status=approved requires reviewer
+ingredients/inhibitory_rtms.md: status=approved requires reviewed_on
+ingredients/listen_repeat_cycle.md: status=approved requires reviewer
+ingredients/listen_repeat_cycle.md: status=approved requires reviewed_on
+ingredients/massed_practice.md: status=approved requires reviewer
+ingredients/massed_practice.md: status=approved requires reviewed_on
+ingredients/melodic_intoning.md: status=approved requires reviewer
+ingredients/melodic_intoning.md: status=approved requires reviewed_on
+ingredients/phonological_feature_analysis.md: status=approved requires reviewer
+ingredients/phonological_feature_analysis.md: status=approved requires reviewed_on
+ingredients/retrieval_practice.md: status=approved requires reviewer
+ingredients/retrieval_practice.md: status=approved requires reviewed_on
+ingredients/rhythmic_hand_tapping.md: status=approved requires reviewer
+ingredients/rhythmic_hand_tapping.md: status=approved requires reviewed_on
+ingredients/semantic_feature_generation.md: status=approved requires reviewer
+ingredients/semantic_feature_generation.md: status=approved requires reviewed_on
+ingredients/typicality_ordering.md: status=approved requires reviewer
+ingredients/typicality_ordering.md: status=approved requires reviewed_on
+ingredients/verb_argument_structure_training.md: status=approved requires reviewer
+ingredients/verb_argument_structure_training.md: status=approved requires reviewed_on
+ingredients/verbal_constraint.md: status=approved requires reviewer
+ingredients/verbal_constraint.md: status=approved requires reviewed_on
+drafts/regions/left_angular_gyrus__Stockbridge2024.md: finding[0] (id=f1): therapy {id, name} is required for a responder finding in v2.8 (which intervention was given)
+drafts/regions/left_arcuate_fasciculus__Stockbridge2024.md: finding[0] (id=f1): therapy {id, name} is required for a responder finding in v2.8 (which intervention was given)
+drafts/regions/left_ifg_pars_opercularis__Hillis2004.md: finding[0] (id=f1): unknown method['DWI']; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+drafts/regions/left_ifg_pars_opercularis__Hillis2004.md: finding[0] (id=f1): unknown method['PWI']; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+drafts/regions/left_ifg_pars_opercularis_triangularis__Ochfeld2010_longitudinal.md: finding[0] (id=f1): lesion_mapping required for lesion-mapping methods in v2.7
+drafts/regions/left_posterior_middle_temporal_gyrus__Stockbridge2024.md: finding[0] (id=f1): therapy {id, name} is required for a responder finding in v2.8 (which intervention was given)
+drafts/regions/left_precentral_gyrus_insula__Hillis2004.md: finding[0] (id=f1): unknown method['DWI']; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+drafts/regions/left_precentral_gyrus_insula__Hillis2004.md: finding[0] (id=f1): unknown method['PWI']; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+drafts/regions/left_superior_longitudinal_fasciculus__Stockbridge2024.md: finding[0] (id=f1): therapy {id, name} is required for a responder finding in v2.8 (which intervention was given)
+drafts/regions/left_superior_temporal_gyrus_wernickes__Hillis2001.md: finding[0] (id=f1): unknown method['PWI']; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+drafts/regions/right_middle_temporal_gyrus__Hope2017.md: finding[0] (id=f1): unknown method='VBM'; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+drafts/regions/right_precentral_gyrus__Hope2017.md: finding[0] (id=f1): unknown method='VBM'; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+drafts/regions/right_superior_temporal_gyrus__Xing2016.md: finding[0] (id=f1): unknown method='VBM'; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+drafts/regions/right_superior_temporal_gyrus__Xing2016.md: finding[1] (id=f2): unknown method='VBM'; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+drafts/regions/right_supramarginal_gyrus__Xing2016.md: finding[0] (id=f1): unknown method='VBM'; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+drafts/regions/right_supramarginal_gyrus__Xing2016.md: finding[1] (id=f2): unknown method='VBM'; allowed: ['DTI', 'EEG', 'LSM', 'MEG', 'MLPA', 'MVPA', 'NODDI', 'RLSM', 'TMS', 'VBCM', 'VLSM', 'behavioral_only', 'clinical_RCT', 'computational_model', 'disconnectome', 'fMRI_FC', 'fMRI_activation', 'lesion_network_mapping', 'meta-analysis', 'narrative_review', 'rs_fMRI', 'tDCS', 'tractography']
+drafts/impairments/crossed_aphasia__Coppens2002.md: finding[0] (id=f1): target 'crossed_aphasia' is an aphasia syndrome but the claim is about a symptom; target the symptom entry (anomia, fluency, …) unless the paper classifies by syndrome
+drafts/predictors/executive_functions__Simic2019.md: finding[1] (id=f2): therapy {id, name} is required for a responder finding in v2.8 (which intervention was given)
+drafts/predictors/sex__Coppens2002.md: finding[0] (id=f1): target 'crossed_aphasia' is an aphasia syndrome but the claim is about a symptom; target the symptom entry (anomia, fluency, …) unless the paper classifies by syndrome
+drafts/predictors/time_post_onset__Ali2021.md: predictor_type='clinical' requires assessment (non-empty list of test names)
+drafts/predictors/time_post_onset__Brady2022.md: predictor_type='clinical' requires assessment (non-empty list of test names)
+drafts/predictors/time_post_onset__Hope2013.md: predictor_type='clinical' requires assessment (non-empty list of test names)
+drafts/predictors/time_post_onset__Hope2017.md: predictor_type='clinical' requires assessment (non-empty list of test names)
+drafts/predictors/time_post_onset__vanderMeulen2014.md: predictor_type='clinical' requires assessment (non-empty list of test names)
+drafts/regions/left_anterior_temporal_lobe__Robson2014.md: approved status in drafts is not admissible; promote first
+drafts/regions/left_superior_temporal_gyrus__Leff2009.md: approved status in drafts is not admissible; promote first
+drafts/predictors/lesion_volume__Goldenberg1994.md: approved status in drafts is not admissible; promote first

@@ -78,10 +78,11 @@ email before the portal's code runs; the API checks the signed token
 again and stamps every record with that email.
 
 **Licences decide what is public.** Annotated PDFs of Creative-Commons
-papers (`screening/licences.yaml`: `cc`, `cc_manuscript`) are served
-openly on the `cc/` path and linked from the explorer; all other annotated
-PDFs need the sign-in. Source PDFs are never published; `papers/` stays
-local.
+papers (`screening/licences.yaml`: `cc`) are served openly on the `cc/`
+path. `cc_manuscript` stays private until a person confirms the specific
+openly licensed copy with `publish_portal.py --confirm-public-copy`. Other
+annotated PDFs require sign-in. Source full texts needed for screening are
+also uploaded privately; the local `papers/` directory is never committed.
 
 **The PDFs live in a bucket, not in git and not in the deployment.**
 `publish_portal.py --sync`, on the maintainer's machine, mirrors the
