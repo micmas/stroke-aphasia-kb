@@ -203,9 +203,9 @@ function applyPanel() {
       const running = a.run && a.run.status !== 'completed';
       const ready = a.ready ?? a.inbox;
       status.textContent = ready ? `${plural(ready, 'record')} ready to apply` : 'No records ready to apply';
-      waitingLine.replaceChildren(
+      waitingLine.replaceChildren(...[
         a.pdf ? h('p', { text: `${plural(a.pdf, 'uploaded PDF')} waiting for local download. Apply does not download PDFs. On your computer run: .venv/bin/python scripts/portal_import.py --kind pdf --execute --no-intake` }) : null,
-        a.attention?.length ? h('details', {}, h('summary', { text: `${plural(a.attention.length, 'record')} need maintainer attention` }), a.attention.map((x) => h('p', { text: `${x.draft || x.file}: ${x.reason}` }))) : null);
+        a.attention?.length ? h('details', {}, h('summary', { text: `${plural(a.attention.length, 'record')} need maintainer attention` }), a.attention.map((x) => h('p', { text: `${x.draft || x.file}: ${x.reason}` }))) : null].filter(Boolean));
       runLine.replaceChildren(describe(a.run));
       btn.disabled = !ready || running || a.local;
       btn.textContent = running ? 'Applying…' : ready ? `Apply ${plural(ready, 'record')} now` : 'Nothing to apply';
