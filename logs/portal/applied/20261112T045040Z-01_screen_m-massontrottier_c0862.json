@@ -8,5 +8,10 @@
  "reviewer": "m.massontrottier@uq.edu.au",
  "reviewer_name": null,
  "submitted": "2026-11-12T04:50:40.188Z",
- "portal": 1
+ "portal": 1,
+ "_outcome": {
+  "status": "applied",
+  "message": "C0862: title_abstract exclude duplicate_report by michele",
+  "at": "2026-11-12T06:00:54+00:00"
+ }
 }
