@@ -5,6 +5,8 @@ For setup and the complete procedure, follow [HOWTO](HOWTO.md).
 
 | Command | Purpose | Writes or runs models? |
 |---|---|---|
+| `sync` | Download portal PDFs and publish completion receipts | Downloads and Git sync; no models or PDF intake |
+| `status --jobs` | Show active KB model processes | Read-only |
 | `prepare` | Select registered papers and freeze their source manifest | Writes manifest; no inference |
 | `extract` | Two independent local extractions | Preview by default; `--run` starts inference |
 | `review` | Independent source reading and reconciliation | Preview by default; `--run` starts inference |
@@ -16,6 +18,31 @@ For setup and the complete procedure, follow [HOWTO](HOWTO.md).
 Use `COMMAND --help` for its full options. `validate` also exposes the KB query
 options described by its help. Run outputs are separate from `drafts/`: neither
 extraction nor reconciliation approves or publishes findings.
+
+## Portal downloads and busy models
+
+```bash
+.venv/bin/python kb.py sync
+.venv/bin/python kb.py status --jobs
+```
+
+Sync fetches and fast-forwards main, downloads uploaded PDFs, then commits and
+pushes only import records and their register links. It never runs extraction,
+review, intake/OCR, or approval. Other local edits are not committed. Staged edits
+or unpublished import records must be resolved first. A changed existing PDF is
+preserved for manual review. Failed downloads stay pending. If a push fails,
+the local commit remains: resolve the Git error and rerun sync.
+
+Sync can run alongside model processing. If incoming code changes would affect
+an active job, it stops before updating the checkout; retry after the job finishes.
+New downloads still need source verification/preparation before extraction.
+
+`extract --run` and `review --run` refuse to start while another detected KB model
+job is active. Add `--wait` to wait in the terminal and start when idle; keep that
+terminal open. Ctrl-C cancels a waiting command. This is not a persistent scheduler.
+The shared lock protects commands started through `kb.py`; older direct script
+jobs are detected, but external model apps and later direct script launches are
+not controlled. Use `kb.py` for new processing jobs.
 
 ## Typical batch
 

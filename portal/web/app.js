@@ -204,7 +204,7 @@ function applyPanel() {
       const ready = a.ready ?? a.inbox;
       status.textContent = ready ? `${plural(ready, 'record')} ready to apply` : 'No records ready to apply';
       waitingLine.replaceChildren(...[
-        a.pdf ? h('p', { text: `${plural(a.pdf, 'uploaded PDF')} waiting for local download. Apply does not download PDFs. On your computer run: .venv/bin/python scripts/portal_import.py --kind pdf --execute --no-intake` }) : null,
+        a.pdf ? h('p', { text: `${plural(a.pdf, 'uploaded PDF')} waiting for local download. Apply does not download PDFs. On your computer run: .venv/bin/python kb.py sync` }) : null,
         a.attention?.length ? h('details', {}, h('summary', { text: `${plural(a.attention.length, 'record')} need maintainer attention` }), a.attention.map((x) => h('p', { text: `${x.draft || x.file}: ${x.reason}` }))) : null].filter(Boolean));
       runLine.replaceChildren(describe(a.run));
       btn.disabled = !ready || running || a.local;
@@ -223,7 +223,7 @@ function applyPanel() {
     } catch (e) { toast(`Not started: ${e.message}`, true); btn.disabled = false; btn.classList.remove('working'); btn.textContent = 'Apply now'; }
   };
   box.append(h('div', { class: 'row' }, h('strong', { text: 'Maintainer' }), status, btn), runLine, waitingLine,
-    h('div', { class: 'small muted', text: 'Apply runs portal_import.py in GitHub Actions: screening decisions into the register, verdicts, edits, marks and comments into the drafts, promote.py for approvers; then the explorer and this portal rebuild. Uploaded PDFs stay for you to pull on your machine (portal_import.py --kind pdf), and marks still need refocus.py there.' }));
+    h('div', { class: 'small muted', text: 'Apply runs portal_import.py in GitHub Actions: screening decisions into the register, verdicts, edits, marks and comments into the drafts, promote.py for approvers; then the explorer and this portal rebuild. Download uploaded PDFs and update their status with kb.py sync; this never starts models, and marks still need refocus.py there.' }));
   refresh();
   return box;
 }
