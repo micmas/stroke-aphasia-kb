@@ -797,3 +797,7 @@ add an `EXTRACTED` line for every run.
 2026-11-12 | REGISTERED | — | screening → citations.md | 3 entries appended, 0 linked to existing keys
 2026-11-12 | SOURCE-CORRECTED | @Adezati2022 | left_ifg_pars_triangularis f3 | operator: agent:codex | record: 20261111T012009Z-02_edit_m-massontrottier_regions-left-ifg-pars-triangularis-adeza.json | operation: 013f845595fdabc8e838086df5d9f0a2e07cf6d213c3ca8eabfb3461abe4e36d
 2026-11-12 | SOURCE-CORRECTED | @Adezati2022 | left_posterior_stg f8 | operator: agent:codex | record: 20261111T012555Z-02_edit_m-massontrottier_regions-left-posterior-stg-adezati2022.json | operation: 21b50fb4e4dc0afdb33c1513e98fa35fa8a3d6bdd8ffaa67ee5481ecca2a95aa
+2026-11-12 | PORTAL-APPLIED | — | 4 record(s) | pdf 4 | by: michele
+2026-11-12 | PDFS-PROCESSED | — | screening register | 3 linked, 5 renamed, 0 not matching their record
+2026-11-12 | PORTAL-APPLIED | — | 2 record(s) | pdf 2 | by: michele
+2026-11-12 | PDFS-PROCESSED | — | screening register | 0 linked, 2 renamed, 0 not matching their record

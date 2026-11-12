@@ -11402,6 +11402,7 @@ candidates:
   doc_type_raw: JOUR/Article
   pdf_uploaded_at: '2026-11-11T23:57:08.818Z'
   key: '@Schellekens2026'
+  pdf_file: C0459_Schellekens2026.pdf
 - id: C0460
   doi: 10.7759/cureus.98185
   pmid: '41488270'
@@ -12241,6 +12242,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_uploaded_at: '2026-11-12T00:03:50.613Z'
+  pdf_file: C0507_Johnson2025.pdf
 - id: C0508
   doi: 10.3389/fpsyg.2025.1636531
   pmid: '41181681'
@@ -29668,6 +29670,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Zhang2021'
+  pdf_file: C1480_Zhang2021.pdf
 - id: C1481
   doi: 10.1080/13554794.2021.1959935
   pmid: '34365896'
@@ -92333,6 +92336,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Hope2016'
+  pdf_file: C5206_Hope2016.pdf
 - id: C5207
   doi: 10.1080/13803395.2015.1038983
   pmid: '26332179'
@@ -127049,6 +127053,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Review
   pdf_uploaded_at: '2026-11-12T00:04:32.262Z'
+  pdf_file: C7406_Riley2021.pdf
 - id: C7407
   doi: 10.1080/09638288.2021.1955303
   pmid: '34383614'
@@ -203812,6 +203817,7 @@ candidates:
   screening: []
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C12351_Walker2011.pdf
 - id: C12352
   doi: 10.1016/j.neuropsychologia.2009.08.015
   pmid: '19698727'
@@ -346305,3 +346311,4 @@ candidates:
     record: 20261112T000319Z-01_paper_m-massontrottier_u89f5cf2204955dda6d3e5ac6d8d564a1.json
   screening: []
   pdf_uploaded_at: '2026-11-12T00:03:19.131Z'
+  pdf_file: U89f5cf2204955dda6d3e5ac6d8d564a1_Paper.pdf
