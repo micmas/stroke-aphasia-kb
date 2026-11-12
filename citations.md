@@ -2325,3 +2325,51 @@ Pervasiveness of speech-language disorders and fatigue in stroke: A systematic s
 doi:10.1016/j.jcomdis.2021.106145
 
 > Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C7406). Included by the screening register (C7406; docs/SCREENING.md). Check the entry.
+
+## @OsaGarcia2024  [seed]
+Osa García A, Brambati SM, Brisebois A, Houzé B, Bedetti C, Desautels A, Marcotte K.
+Dissociation of White Matter Bundles in Different Recovery Measures in Poststroke Aphasia.
+*Stroke*. 2024;55(11):2643-2651.
+doi:10.1161/strokeaha.124.047229
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C0769). Included by the screening register (C0769; docs/SCREENING.md). Check the entry.
+
+## @Sihvonen2023  [seed]
+Sihvonen AJ, Vadinova V, Garden KL, Meinzer M, Roxbury T, O'Brien K, Copland D, McMahon KL, Brownsett SLE.
+Right hemispheric structural connectivity and poststroke language recovery.
+*Human Brain Mapping*. 2023;44(7):2897-2904.
+doi:10.1002/hbm.26252
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C1104). Included by the screening register (C1104; docs/SCREENING.md). Check the entry.
+
+## @Tang2022  [seed]
+Tang H, Fan S, Niu X, Li Z, Xiao P, Zeng J, Xing S.
+Remote cortical atrophy and language outcomes after chronic left subcortical stroke with aphasia.
+*Front. Neurosci.*. 2022;16.
+doi:10.3389/fnins.2022.853169
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C1231). Included by the screening register (C1231; docs/SCREENING.md). Check the entry.
+
+## @Thye2021  [seed]
+Thye M, Szaflarski JP, Mirman D.
+Shared lesion correlates of semantic and letter fluency in post‐stroke aphasia.
+*Journal of Neuropsychology*. 2021;15(1):143-150.
+doi:10.1111/jnp.12211
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C1802). Included by the screening register (C1802; docs/SCREENING.md). Check the entry.
+
+## @Zhang2018  [seed]
+Zhang J, Wei X, Xie S, Zhou Z, Shang D, Ji R, Yu Y, He F, Du Y, Ye X, Luo B.
+Multifunctional Roles of the Ventral Stream in Language Models: Advanced Segmental Quantification in Post-Stroke Aphasic Patients.
+*Front. Neurol.*. 2018;9.
+doi:10.3389/fneur.2018.00089
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C2183). Included by the screening register (C2183; docs/SCREENING.md). Check the entry.
+
+## @Wilson2011  [seed]
+Wilson SM, Galantucci S, Tartaglia MC, Rising K, Patterson DK, Henry ML, Ogar JM, DeLeon J, Miller BL, Gorno-Tempini ML.
+Syntactic Processing Depends on Dorsal Language Tracts.
+*Neuron*. 2011;72(2):397-403.
+doi:10.1016/j.neuron.2011.09.014
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C12473). Included by the screening register (C12473; docs/SCREENING.md). Check the entry.
