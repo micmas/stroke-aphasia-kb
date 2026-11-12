@@ -24,6 +24,7 @@ Everything *after* inclusion is derived here from what already exists —
 Nothing here calls a model or the network.
 """
 from __future__ import annotations
+from paper_paths import citation_stem
 
 import collections
 import datetime as dt
@@ -496,7 +497,7 @@ def kb_facts(root: Path = ROOT) -> dict[str, dict]:
     if papers.is_dir():
         for p in papers.iterdir():
             if p.suffix.lower() in (".pdf", ".txt") and not p.stem.endswith("_annotated"):
-                f(f"@{p.stem}")["pdf"] = True
+                f(f"@{citation_stem(p)}")["pdf"] = True
     else:
         # papers/ is local only (copyright): where it is absent — CI, another machine — PDF
         # presence is unknown and must not be reported as "no PDF".

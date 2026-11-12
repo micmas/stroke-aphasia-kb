@@ -29,6 +29,7 @@ intake (intake_papers.py) runs this before matching, so the normal
 flow is: drop the PDF in papers/, run the intake, done.
 """
 from __future__ import annotations
+from paper_paths import citation_stem
 
 import argparse
 import json
@@ -196,7 +197,7 @@ def register(papers_dir: Path, citations: Path, execute: bool, skip: set[str] | 
     offline = False
 
     for f in sorted(papers_dir.glob("*.pdf")):
-        if f.stem.endswith("_annotated") or f.stem.lower() in keys_lower:
+        if f.stem.endswith("_annotated") or citation_stem(f).lower() in keys_lower:
             continue
         if f.name in skip or SCREENING_FILE.match(f.name):
             continue                           # a screening record's PDF: registered on inclusion

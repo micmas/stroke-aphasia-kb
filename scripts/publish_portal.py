@@ -41,6 +41,7 @@ means private again).
 `free_to_read`, `rights_reserved` and `unknown` always stay private.
 """
 from __future__ import annotations
+from paper_paths import resolve_paper, citation_stem
 
 import argparse
 import datetime as dt
@@ -126,8 +127,8 @@ def _confirmation_holds(key: str, copy, papers_dir: Path) -> bool:
         return False
     if not (_person(copy.get("confirmed_by")) and str(copy.get("confirmed_on") or "").strip() and str(copy.get("version") or "").strip()):
         return False
-    src = papers_dir / f"{key.lstrip('@')}.pdf"
-    ann = papers_dir / f"{key.lstrip('@')}_annotated.pdf"
+    src = resolve_paper(papers_dir, f"{key.lstrip('@')}.pdf")
+    ann = resolve_paper(papers_dir, f"{key.lstrip('@')}_annotated.pdf")
     want_src = str(copy.get("sha256") or "").lower()
     want_ann = str(copy.get("annotated_sha256") or "").lower()
     return bool(want_src and want_ann and src.is_file() and ann.is_file()
@@ -141,7 +142,7 @@ def scan_pdfs(papers_dir: Path, lic: dict[str, dict]) -> dict[str, dict]:
     if not papers_dir.is_dir():
         return out
     for pdf in sorted(papers_dir.glob("*_annotated.pdf")):
-        key = "@" + pdf.stem[: -len("_annotated")]
+        key = "@" + citation_stem(pdf)
         rec = lic.get(key) or {}
         cat = rec.get("category") or "unknown"
         basis = public_basis(key, rec, papers_dir)
@@ -170,8 +171,8 @@ def confirm_public_copy(key: str, by: str, version: str = "accepted manuscript",
     rec = dict(papers.get(key) or {})
     if rec.get("category") not in CONFIRMABLE_CATEGORIES:
         raise ValueError(f"{key} is {rec.get('category') or 'not in licences.yaml'}; only {', '.join(CONFIRMABLE_CATEGORIES)} papers need a confirmed copy")
-    src = papers_dir / f"{key.lstrip('@')}.pdf"
-    ann = papers_dir / f"{key.lstrip('@')}_annotated.pdf"
+    src = resolve_paper(papers_dir, f"{key.lstrip('@')}.pdf")
+    ann = resolve_paper(papers_dir, f"{key.lstrip('@')}_annotated.pdf")
     for f in (src, ann):
         if not f.is_file():
             raise ValueError(f"no {f.name} in {papers_dir}: both the source and the annotated copy must be checked")
@@ -223,11 +224,11 @@ def wrangler(*args, timeout: int = 600) -> subprocess.CompletedProcess:
     return subprocess.run(["npx", "wrangler", *args], cwd=str(PORTAL), capture_output=True, text=True, timeout=timeout)
 
 
-FT_STAGES = ("awaiting_ta", "unsure_ta", "awaiting_ft", "unsure_ft")
+FT_STAGES = ("awaiting_ta", "unsure_ta", "awaiting_ft", "unsure_ft", "included")
 
 
 def fulltext_pdfs(papers_dir: Path, annotated: dict, root: Path = ROOT) -> dict[str, Path]:
-    """Candidates awaiting screening whose PDF is in papers/ but has no annotated copy
+    """Candidates awaiting screening or annotation whose PDF has no annotated copy
     in the portal: {candidate id: the PDF}. The portal shows these beside the decision, from the
     private bucket (pdf/<id>_fulltext.pdf)."""
     if not papers_dir.is_dir():
@@ -242,7 +243,7 @@ def fulltext_pdfs(papers_dir: Path, annotated: dict, root: Path = ROOT) -> dict[
         if r.get("stage") not in FT_STAGES or (r.get("key") and r["key"] in annotated):
             continue
         for name in ([f"{str(r['key']).lstrip('@')}.pdf"] if r.get("key") else []) + ([str(r["pdf_file"])] if r.get("pdf_file") else []):
-            f = papers_dir / name
+            f = resolve_paper(papers_dir, name)
             if f.is_file():
                 out[r["id"]] = f
                 break
@@ -393,8 +394,8 @@ def source_pdfs(papers_dir: Path) -> dict:
         for pdf in sorted(papers_dir.glob("*.pdf")):
             if pdf.stem.endswith("_annotated"):
                 continue
-            if pdf.stem.lower() in cited or re.fullmatch(r"[A-Za-z][A-Za-z'\-]*\d{4}[A-Za-z0-9]*", pdf.stem):
-                keys.append("@" + cited.get(pdf.stem.lower(), pdf.stem))
+            if citation_stem(pdf).lower() in cited or re.fullmatch(r"[A-Za-z][A-Za-z'\-]*\d{4}[A-Za-z0-9]*", citation_stem(pdf)):
+                keys.append("@" + cited.get(citation_stem(pdf).lower(), citation_stem(pdf)))
             else:
                 files.append(pdf.name)
     return {"keys": keys, "files": files}

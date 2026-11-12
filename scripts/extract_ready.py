@@ -25,6 +25,7 @@ repository). This script is that one step.
      show up in its Drafts queue, and the notice closes itself once nothing is left.
 """
 from __future__ import annotations
+from paper_paths import resolve_paper
 
 import argparse
 import hashlib
@@ -105,7 +106,7 @@ def ready(root: Path = ROOT) -> list[dict]:
             continue
         key = r.get("key")
         if local:
-            have = bool((key and (papers / f"{str(key).lstrip('@')}.pdf").exists())
+            have = bool((key and resolve_paper(papers, f"{str(key).lstrip('@')}.pdf").exists())
                         or (r.get("pdf_file") and (papers / str(r["pdf_file"])).exists()))
             pdf = "yes" if have else ("uploaded" if {r["id"], key} & uploads else "no")
         elif (key and key in keys) or any(f.startswith(f"{r['id']}_") for f in files) or r.get("pdf_file") in files:

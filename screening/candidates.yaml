@@ -38,6 +38,7 @@ candidates:
   journal: 'Journal of the International Neuropsychological Society : JINS'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0001_Baldo2006.pdf
 - id: C0002
   key: '@Saur2008'
   doi: 10.1073/pnas.0805234105
@@ -72,6 +73,7 @@ candidates:
       an included paper citing it is in, then assess
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0002_Saur2008.pdf
 - id: C0003
   key: '@Marchina2011'
   doi: 10.1161/strokeaha.110.606103
@@ -108,6 +110,7 @@ candidates:
   journal: Stroke
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0003_Marchina2011.pdf
 - id: C0004
   key: '@Bonilha2014'
   doi: 10.1161/strokeaha.113.004137
@@ -150,6 +153,7 @@ candidates:
   journal: Stroke
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0004_Bonilha2014.pdf
 - id: C0005
   key: '@Mirman2015'
   doi: 10.1038/ncomms7762
@@ -182,6 +186,7 @@ candidates:
   journal: Nature communications
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0005_Mirman2015.pdf
 - id: C0006
   key: '@Yourganov2015Predicting'
   doi: 10.1016/j.cortex.2015.09.005
@@ -227,6 +232,7 @@ candidates:
   journal: Cortex; a journal devoted to the study of the nervous system and behavior
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0006_Yourganov2015Predicting.pdf
 - id: C0007
   key: '@Alyahya2018NounVerb'
   doi: 10.1016/j.nicl.2018.01.023
@@ -260,6 +266,7 @@ candidates:
   journal: NeuroImage. Clinical
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0007_Alyahya2018NounVerb.pdf
 - id: C0008
   key: '@Fridriksson2018'
   doi: 10.1073/pnas.1614038114
@@ -303,6 +310,7 @@ candidates:
   journal: Proceedings of the National Academy of Sciences of the United States of America
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0008_Fridriksson2018.pdf
 - id: C0009
   key: '@Fridriksson2018Anatomy'
   doi: 10.1093/brain/awx363
@@ -336,6 +344,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0009_Fridriksson2018Anatomy.pdf
 - id: C0010
   key: '@Fridriksson2018BDNF'
   doi: 10.1016/j.brs.2018.08.009
@@ -375,6 +384,7 @@ candidates:
   journal: Brain Stimulation
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0010_Fridriksson2018BDNF.pdf
 - id: C0011
   key: '@Robson2019'
   doi: 10.1177/1545968319868709
@@ -411,6 +421,7 @@ candidates:
   journal: Neurorehabilitation and neural repair
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0011_Robson2019.pdf
 - id: C0012
   key: '@MassonTrottier2021'
   doi: 10.3390/brainsci11111458
@@ -447,6 +458,7 @@ candidates:
       an included paper citing it is in, then assess
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0012_MassonTrottier2021.pdf
 - id: C0013
   key: '@Breining2022'
   doi: 10.1080/02687038.2021.1907291
@@ -492,6 +504,7 @@ candidates:
   journal: Aphasiology
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0013_Breining2022.pdf
 - id: C0014
   key: '@Dresang2022'
   doi: 10.1177/15459683221096391
@@ -524,6 +537,7 @@ candidates:
   journal: Neurorehabilitation and neural repair
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0014_Dresang2022.pdf
 - id: C0015
   key: '@Harvey2022'
   doi: 10.1080/02687038.2021.1966374
@@ -565,6 +579,7 @@ candidates:
   journal: Aphasiology
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0015_Harvey2022.pdf
 - id: C0016
   key: '@Stefaniak2022'
   doi: 10.1093/brain/awab377
@@ -610,6 +625,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0016_Stefaniak2022.pdf
 - id: C0017
   key: '@Barbieri2023'
   doi: 10.1016/j.cortex.2022.11.008
@@ -660,6 +676,7 @@ candidates:
   journal: Cortex; a journal devoted to the study of the nervous system and behavior
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0017_Barbieri2023.pdf
 - id: C0018
   key: '@Teghipco2024'
   doi: 10.1038/s43856-024-00541-8
@@ -702,6 +719,7 @@ candidates:
   journal: Communications medicine
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0018_Teghipco2024.pdf
 - id: C0019
   key: '@White2024'
   doi: 10.1016/j.nicl.2024.103638
@@ -738,6 +756,7 @@ candidates:
   journal: NeuroImage. Clinical
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0019_White2024.pdf
 - id: C0020
   key: '@Hu2025'
   doi: 10.1016/j.neuroimage.2025.121300
@@ -776,6 +795,7 @@ candidates:
   journal: NeuroImage
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0020_Hu2025.pdf
 - id: C0021
   key: '@Kristinsson2025'
   doi: 10.1093/braincomms/fcaf246
@@ -825,6 +845,7 @@ candidates:
   journal: Brain communications
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0021_Kristinsson2025.pdf
 - id: C0022
   key: '@Geschwind1965'
   doi: 10.1093/brain/88.2.237
@@ -861,6 +882,7 @@ candidates:
       an included paper citing it is in, then assess
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0022_Geschwind1965.pdf
 - id: C0023
   key: '@Pulvermuller2001'
   doi: 10.1161/01.str.32.7.1621
@@ -900,6 +922,7 @@ candidates:
   journal: Stroke
   doc_type: journal
   doc_type_raw: PubmedArticle
+  pdf_file: C0023_Pulvermuller2001.pdf
 - id: C0024
   key: '@Boyle2004'
   doi: 10.1044/1058-0360(2004/025
@@ -939,6 +962,7 @@ candidates:
   journal: American journal of speech-language pathology
   doc_type: journal
   doc_type_raw: PubmedArticle
+  pdf_file: C0024_Boyle2004.pdf
 - id: C0025
   key: '@Breier2008'
   doi: 10.3174/ajnr.a0846
@@ -973,6 +997,7 @@ candidates:
   journal: AJNR. American journal of neuroradiology
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0025_Breier2008.pdf
 - id: C0026
   key: '@Schlaug2008'
   doi: 10.1525/mp.2008.25.4.315
@@ -1020,6 +1045,7 @@ candidates:
   journal: Music perception
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0026_Schlaug2008.pdf
 - id: C0027
   key: '@Hosomi2009'
   doi: 10.1007/s00234-009-0534-7
@@ -1052,6 +1078,7 @@ candidates:
   journal: Neuroradiology
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0027_Hosomi2009.pdf
 - id: C0028
   key: '@Schwartz2009'
   doi: 10.1093/brain/awp284
@@ -1096,6 +1123,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0028_Schwartz2009.pdf
 - id: C0029
   key: '@Fridriksson2010'
   doi: 10.1523/jneurosci.1120-10.2010
@@ -1137,6 +1165,7 @@ candidates:
   journal: 'The Journal of neuroscience : the official journal of the Society for Neuroscience'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0029_Fridriksson2010.pdf
 - id: C0030
   key: '@Buchsbaum2011'
   doi: 10.1016/j.bandl.2010.12.001
@@ -1170,6 +1199,7 @@ candidates:
   journal: Brain and language
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0030_Buchsbaum2011.pdf
 - id: C0031
   key: '@Walker2011'
   doi: 10.1016/j.bandl.2011.02.005
@@ -1201,6 +1231,7 @@ candidates:
   journal: Brain and language
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0031_Walker2011.pdf
 - id: C0032
   key: '@DeWitt2012'
   doi: 10.1073/pnas.1113427109
@@ -1226,6 +1257,7 @@ candidates:
     protocol: 8d8dc2e70d35
   pmid: '22308358'
   journal: Proceedings of the National Academy of Sciences of the United States of America
+  pdf_file: C0032_DeWitt2012.pdf
 - id: C0033
   key: '@Schwartz2012'
   doi: 10.1093/brain/aws300
@@ -1270,6 +1302,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0033_Schwartz2012.pdf
 - id: C0034
   key: '@Hope2017'
   doi: 10.1093/brain/awx086
@@ -1317,6 +1350,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0034_Hope2017.pdf
 - id: C0035
   key: '@Basilakos2019'
   doi: 10.1177/1545968319862561
@@ -1361,6 +1395,7 @@ candidates:
   journal: Neurorehabilitation and neural repair
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0035_Basilakos2019.pdf
 - id: C0036
   key: '@Maher2006'
   doi: 10.1017/s1355617706061029
@@ -1400,6 +1435,7 @@ candidates:
   journal: 'Journal of the International Neuropsychological Society : JINS'
   doc_type: journal
   doc_type_raw: PubmedArticle
+  pdf_file: C0036_Maher2006.pdf
 - id: C0037
   key: '@Stahl2013'
   doi: 10.3389/fnhum.2013.00035
@@ -1445,6 +1481,7 @@ candidates:
   journal: Frontiers in human neuroscience
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0037_Stahl2013.pdf
 - id: C0038
   key: '@vanderMeulen2012'
   doi: 10.1016/j.apmr.2011.05.029
@@ -1473,6 +1510,7 @@ candidates:
   journal: Archives of physical medicine and rehabilitation
   doc_type: journal
   doc_type_raw: JOUR/Note
+  pdf_file: C0038_vanderMeulen2012.pdf
 - id: C0039
   key: '@Raymer'
   doi: 10.1044/2022_ajslp-22-00248
@@ -1515,6 +1553,7 @@ candidates:
   journal: American journal of speech-language pathology
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0039_Raymer.pdf
 - id: C0040
   key: '@DenOuden2019'
   doi: 10.1002/hbm.24514
@@ -1561,6 +1600,7 @@ candidates:
   journal: Human brain mapping
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0040_DenOuden2019.pdf
 - id: C0041
   key: '@Pedersen2004'
   doi: 10.1159/000073896
@@ -1590,6 +1630,7 @@ candidates:
   journal: Cerebrovascular Diseases
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0041_Pedersen2004.pdf
 - id: C0042
   key: '@Robson2014'
   doi: 10.1093/brain/awt373
@@ -1620,6 +1661,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0042_Robson2014.pdf
 - id: C0043
   key: '@Itabashi2015'
   doi: 10.1161/strokeaha.115.010402
@@ -1662,6 +1704,7 @@ candidates:
   journal: Stroke
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0043_Itabashi2015.pdf
 - id: C0044
   key: '@Leff2009'
   doi: 10.1093/brain/awp273
@@ -1693,6 +1736,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0044_Leff2009.pdf
 - id: C0045
   key: '@Naeser2005'
   doi: 10.1016/j.bandl.2004.08.004
@@ -1733,6 +1777,7 @@ candidates:
   journal: Brain and language
   doc_type: journal
   doc_type_raw: PubmedArticle
+  pdf_file: C0045_Naeser2005.pdf
 - id: C0046
   key: '@Hillis2007'
   doi: 10.1212/01.wnl.0000265600.69385.6f
@@ -1764,6 +1809,7 @@ candidates:
   journal: Neurology
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0046_Hillis2007.pdf
 - id: C0047
   key: '@Dronkers1996'
   doi: 10.1038/384159a0
@@ -1790,6 +1836,7 @@ candidates:
   journal: Nature
   doc_type: journal
   doc_type_raw: JOUR
+  pdf_file: C0047_Dronkers1996.pdf
 - id: C0048
   key: '@Lazar2010'
   doi: 10.1161/strokeaha.109.577338
@@ -1829,6 +1876,7 @@ candidates:
   journal: Stroke
   doc_type: journal
   doc_type_raw: PubmedArticle
+  pdf_file: C0048_Lazar2010.pdf
 - id: C0049
   key: '@Basilakos2015'
   doi: 10.1161/strokeaha.115.009211
@@ -1873,6 +1921,7 @@ candidates:
   journal: Stroke
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0049_Basilakos2015.pdf
 - id: C0050
   key: '@Goldenberg1994'
   doi: 10.1006/brln.1994.1067
@@ -1908,6 +1957,7 @@ candidates:
     rationale: published before 2000 (chase it if it is a pillar)
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0050_Goldenberg1994.pdf
 - id: C0051
   key: '@NadeauCrosson1997'
   doi: null
@@ -1941,6 +1991,7 @@ candidates:
     rationale: published before 2000 (chase it if it is a pillar)
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0051_NadeauCrosson1997.pdf
 - id: C0052
   key: '@Radanovic2017'
   doi: 10.1016/j.bandl.2017.05.003
@@ -1981,6 +2032,7 @@ candidates:
   journal: Brain and language
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0052_Radanovic2017.pdf
 - id: C0053
   key: '@Crosson1999'
   doi: null
@@ -2015,6 +2067,7 @@ candidates:
       an included paper citing it is in, then assess
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0053_Crosson1999.pdf
 - id: C0054
   key: '@MirmanThye2018'
   doi: 10.1177/0963721418787486
@@ -2056,6 +2109,7 @@ candidates:
   journal: Current Directions in Psychological Science
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0054_MirmanThye2018.pdf
 - id: C0055
   key: '@Wallentin2018'
   doi: 10.1371/journal.pone.0209571
@@ -2096,6 +2150,7 @@ candidates:
   journal: PloS one
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0055_Wallentin2018.pdf
 - id: C0056
   key: '@Brady2022RELEASE'
   doi: null
@@ -2148,6 +2203,7 @@ candidates:
       extractable — your call
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0056_Brady2022RELEASE.pdf
 - id: C0057
   key: '@Mohr2017'
   doi: 10.3389/fnhum.2017.00332
@@ -2191,6 +2247,7 @@ candidates:
   journal: Frontiers in human neuroscience
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0057_Mohr2017.pdf
 - id: C0058
   key: '@Shekari2022'
   doi: 10.1080/23279095.2022.2074849
@@ -2233,6 +2290,7 @@ candidates:
   journal: Applied neuropsychology. Adult
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0058_Shekari2022.pdf
 - id: C0059
   key: '@Simic2023'
   doi: 10.1016/j.bandl.2023.105300
@@ -2270,6 +2328,7 @@ candidates:
   journal: Brain and language
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0059_Simic2023.pdf
 - id: C0060
   key: '@Watila2015'
   doi: 10.1016/j.jns.2015.03.020
@@ -2324,6 +2383,7 @@ candidates:
   journal: Journal of the neurological sciences
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0060_Watila2015.pdf
 - id: C0061
   key: '@Wilson2021'
   doi: 10.1162/nol_a_00025
@@ -2369,6 +2429,7 @@ candidates:
   journal: Neurobiology of language (Cambridge, Mass.)
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0061_Wilson2021.pdf
 - id: C0062
   key: '@Dronkers2004'
   doi: 10.1016/j.cognition.2003.11.002
@@ -2402,6 +2463,7 @@ candidates:
   journal: Cognition
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0062_Dronkers2004.pdf
 - id: C0063
   key: '@Hillis2004'
   doi: 10.1093/brain/awh172
@@ -2432,6 +2494,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0063_Hillis2004.pdf
 - id: C0064
   key: '@Kummerer2013'
   doi: 10.1093/brain/aws354
@@ -2467,6 +2530,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0064_Kummerer2013.pdf
 - id: C0065
   key: '@Fridriksson2013'
   doi: 10.1093/brain/awt267
@@ -2515,6 +2579,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0065_Fridriksson2013.pdf
 - id: C0066
   key: '@Henseler2014'
   doi: 10.1093/brain/awt374
@@ -2562,6 +2627,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0066_Henseler2014.pdf
 - id: C0067
   key: '@Butler2014'
   doi: 10.1093/brain/awu286
@@ -2612,6 +2678,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0067_Butler2014.pdf
 - id: C0068
   key: '@Halai2017'
   doi: 10.1016/j.cortex.2016.04.016
@@ -2659,6 +2726,7 @@ candidates:
   journal: Cortex; a journal devoted to the study of the nervous system and behavior
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0068_Halai2017.pdf
 - id: C0069
   key: '@Alyahya2020'
   doi: 10.1093/brain/awaa074
@@ -2705,6 +2773,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0069_Alyahya2020.pdf
 - id: C0070
   key: '@Griffis2017'
   doi: 10.1016/j.nicl.2017.02.019
@@ -2750,6 +2819,7 @@ candidates:
   journal: NeuroImage. Clinical
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0070_Griffis2017.pdf
 - id: C0071
   key: '@Thye2018'
   doi: 10.1016/j.nicl.2018.10.017
@@ -2796,6 +2866,7 @@ candidates:
   journal: NeuroImage. Clinical
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0071_Thye2018.pdf
 - id: C0072
   key: '@GajardoVidal2021'
   doi: 10.1093/brain/awaa460
@@ -2838,6 +2909,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0072_GajardoVidal2021.pdf
 - id: C0073
   key: '@Rogalsky2018'
   doi: 10.1162/jocn_a_01200
@@ -2876,6 +2948,7 @@ candidates:
   journal: Journal of Cognitive Neuroscience
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0073_Rogalsky2018.pdf
 - id: C0074
   key: '@Ivanova2016'
   doi: 10.1016/j.cortex.2016.04.019
@@ -2922,6 +2995,7 @@ candidates:
   journal: Cortex; a journal devoted to the study of the nervous system and behavior
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0074_Ivanova2016.pdf
 - id: C0075
   key: '@Breitenstein2017'
   doi: 10.1016/s0140-6736(17)30067-3
@@ -2958,6 +3032,7 @@ candidates:
     rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0075_Breitenstein2017.pdf
 - id: C0076
   key: '@Bhogal2003'
   doi: 10.1161/01.str.0000062343.64383.d0
@@ -2992,6 +3067,7 @@ candidates:
   journal: Stroke
   doc_type: journal
   doc_type_raw: PubmedArticle
+  pdf_file: C0076_Bhogal2003.pdf
 - id: C0077
   key: '@Brady2016'
   doi: 10.1002/14651858.cd000425.pub4
@@ -3012,6 +3088,7 @@ candidates:
   journal: The Cochrane database of systematic reviews
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0077_Brady2016.pdf
 - id: C0078
   key: '@Efstratiadou2018'
   doi: 10.1044/2018_jslhr-l-16-0330
@@ -3051,6 +3128,7 @@ candidates:
   journal: 'Journal of speech, language, and hearing research : JSLHR'
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0078_Efstratiadou2018.pdf
 - id: C0079
   key: '@Leonard2008'
   doi: 10.1080/02687030701831474
@@ -3084,6 +3162,7 @@ candidates:
     rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0079_Leonard2008.pdf
 - id: C0080
   key: '@Zumbansen2014'
   doi: 10.3389/fneur.2014.00007
@@ -3110,6 +3189,7 @@ candidates:
   journal: Frontiers in Neurology
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0080_Zumbansen2014.pdf
 - id: C0081
   key: '@Thompson2003'
   doi: 10.1044/1092-4388(2003/047
@@ -3153,6 +3233,7 @@ candidates:
   journal: 'Journal of speech, language, and hearing research : JSLHR'
   doc_type: journal
   doc_type_raw: PubmedArticle
+  pdf_file: C0081_Thompson2003.pdf
 - id: C0082
   key: '@Fridriksson2018JAMA'
   doi: 10.1001/jamaneurol.2018.2287
@@ -3193,6 +3274,7 @@ candidates:
   journal: JAMA Neurology
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0082_Fridriksson2018JAMA.pdf
 - id: C0083
   key: '@Elsner2019'
   doi: 10.1002/14651858.cd009760.pub4
@@ -3219,6 +3301,7 @@ candidates:
   journal: The Cochrane database of systematic reviews
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0083_Elsner2019.pdf
 - id: C0084
   key: '@Thiel2013'
   doi: 10.1161/strokeaha.111.000574
@@ -3249,6 +3332,7 @@ candidates:
   journal: Stroke
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0084_Thiel2013.pdf
 - id: C0085
   key: '@Meinzer2010'
   doi: 10.1016/j.neuroimage.2010.06.004
@@ -3290,6 +3374,7 @@ candidates:
   journal: NeuroImage
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0085_Meinzer2010.pdf
 - id: C0086
   key: '@Bonilha2016'
   doi: 10.1177/1545968315593808
@@ -3331,6 +3416,7 @@ candidates:
   journal: Neurorehabilitation and neural repair
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0086_Bonilha2016.pdf
 - id: C0087
   key: '@Forkel2014'
   doi: 10.1093/brain/awu113
@@ -3368,6 +3454,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0087_Forkel2014.pdf
 - id: C0088
   key: '@Hope2013'
   doi: 10.1016/j.nicl.2013.03.005
@@ -3408,6 +3495,7 @@ candidates:
   journal: NeuroImage. Clinical
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0088_Hope2013.pdf
 - id: C0089
   key: '@Hope2018'
   doi: 10.1016/j.nicl.2018.03.037
@@ -3450,6 +3538,7 @@ candidates:
   journal: NeuroImage. Clinical
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0089_Hope2018.pdf
 - id: C0090
   key: '@Benghanem2019'
   doi: 10.1007/s00415-019-09259-3
@@ -3490,6 +3579,7 @@ candidates:
   journal: Journal of neurology
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0090_Benghanem2019.pdf
 - id: C0091
   key: '@Plowman2012'
   doi: 10.1111/j.1365-2753.2011.01650.x
@@ -3538,6 +3628,7 @@ candidates:
   journal: Journal of evaluation in clinical practice
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0091_Plowman2012.pdf
 - id: C0092
   key: '@Kristinsson2021'
   doi: 10.1002/hbm.25321
@@ -3583,6 +3674,7 @@ candidates:
   journal: Human brain mapping
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0092_Kristinsson2021.pdf
 - id: C0093
   key: '@Billot2022'
   doi: 10.1161/strokeaha.121.036749
@@ -3615,6 +3707,7 @@ candidates:
   journal: Stroke
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0093_Billot2022.pdf
 - id: C0094
   key: '@Saur2006'
   doi: 10.1093/brain/awl090
@@ -3647,6 +3740,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0094_Saur2006.pdf
 - id: C0095
   key: '@Turkeltaub2011'
   doi: 10.1212/wnl.0b013e31821a44c1
@@ -3688,6 +3782,7 @@ candidates:
   journal: Neurology
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0095_Turkeltaub2011.pdf
 - id: C0096
   key: '@Stockert2020'
   doi: 10.1093/brain/awaa023
@@ -3739,6 +3834,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0096_Stockert2020.pdf
 - id: C0097
   key: '@Hartwigsen2019'
   doi: 10.1016/j.neuroimage.2017.11.056
@@ -3780,6 +3876,7 @@ candidates:
   journal: NeuroImage
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0097_Hartwigsen2019.pdf
 - id: C0098
   key: '@Hickok2007'
   doi: 10.1038/nrn2113
@@ -3814,6 +3911,7 @@ candidates:
       a pillar)
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0098_Hickok2007.pdf
 - id: C0099
   key: '@Catani2008'
   doi: 10.1016/j.cortex.2008.04.002
@@ -3849,6 +3947,7 @@ candidates:
       a pillar)
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0099_Catani2008.pdf
 - id: C0100
   key: '@Dick2012'
   doi: 10.1093/brain/aws222
@@ -3883,6 +3982,7 @@ candidates:
       a pillar)
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0100_Dick2012.pdf
 - id: C0101
   key: '@Binder2009'
   doi: 10.1093/cercor/bhp055
@@ -3913,6 +4013,7 @@ candidates:
   journal: 'Cerebral cortex (New York, N.Y. : 1991)'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0101_Binder2009.pdf
 - id: C0102
   key: '@Benjamin2014'
   doi: 10.1177/1545968313517754
@@ -3943,6 +4044,7 @@ candidates:
   journal: Neurorehabilitation and neural repair
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0102_Benjamin2014.pdf
 - id: C0103
   key: '@Brookshire2014'
   doi: 10.1080/02687038.2014.945389
@@ -3978,6 +4080,7 @@ candidates:
     rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0103_Brookshire2014.pdf
 - id: C0104
   key: '@Wilson2019'
   doi: 10.1044/2019_jslhr-l-rsnp-19-0031
@@ -4012,6 +4115,7 @@ candidates:
       an included paper citing it is in, then assess
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0104_Wilson2019.pdf
 - id: C0105
   key: '@WilsonHula2019'
   doi: 10.1007/s11910-019-0971-6
@@ -4054,6 +4158,7 @@ candidates:
   journal: Current neurology and neuroscience reports
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0105_WilsonHula2019.pdf
 - id: C0106
   key: '@Mitchell2017'
   doi: 10.1002/14651858.cd002088.pub3
@@ -4082,6 +4187,7 @@ candidates:
   journal: The Cochrane database of systematic reviews
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0106_Mitchell2017.pdf
 - id: C0107
   key: '@Hazelton2022'
   doi: 10.1002/14651858.cd007039.pub3
@@ -4105,6 +4211,7 @@ candidates:
     rationale: rehabilitation review without an aphasia/language outcome focus
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0107_Hazelton2022.pdf
 - id: C0108
   key: '@Laver2025'
   doi: 10.1002/14651858.cd008349.pub5
@@ -4138,6 +4245,7 @@ candidates:
     rationale: rehabilitation review without an aphasia/language outcome focus
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0108_Laver2025.pdf
 - id: C0109
   key: '@Pflugshaupt2009'
   doi: 10.1093/brain/awp141
@@ -4175,6 +4283,7 @@ candidates:
   journal: Brain
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0109_Pflugshaupt2009.pdf
 - id: C0110
   key: '@Bates2003'
   doi: 10.1038/nn1050
@@ -4210,6 +4319,7 @@ candidates:
       an included paper citing it is in, then assess
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0110_Bates2003.pdf
 - id: C0111
   key: '@Baldo2011'
   doi: 10.1016/j.cortex.2010.07.001
@@ -4254,6 +4364,7 @@ candidates:
   journal: Cortex; a journal devoted to the study of the nervous system and behavior
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0111_Baldo2011.pdf
 - id: C0112
   key: '@Yourganov2016'
   doi: 10.1523/jneurosci.4396-15.2016
@@ -4301,6 +4412,7 @@ candidates:
   journal: 'The Journal of neuroscience : the official journal of the Society for Neuroscience'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0112_Yourganov2016.pdf
 - id: C0113
   key: '@Matchin2020'
   doi: 10.1162/nol_a_00010
@@ -4341,6 +4453,7 @@ candidates:
   journal: Neurobiology of language (Cambridge, Mass.)
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0113_Matchin2020.pdf
 - id: C0114
   key: '@Rapcsak2009'
   doi: 10.1016/j.cortex.2008.04.006
@@ -4379,6 +4492,7 @@ candidates:
   journal: Cortex; a journal devoted to the study of the nervous system and behavior
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0114_Rapcsak2009.pdf
 - id: C0115
   key: '@Fridriksson2010Anomia'
   doi: 10.1523/jneurosci.2227-10.2010
@@ -4421,6 +4535,7 @@ candidates:
   journal: 'The Journal of neuroscience : the official journal of the Society for Neuroscience'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0115_Fridriksson2010Anomia.pdf
 - id: C0116
   key: '@Karnath2018'
   doi: 10.1016/j.neuroimage.2017.10.028
@@ -4459,6 +4574,7 @@ candidates:
   journal: NeuroImage
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0116_Karnath2018.pdf
 - id: C0117
   key: '@vanderMeulen2014'
   doi: 10.1177/1545968313517753
@@ -4492,6 +4608,7 @@ candidates:
     rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0117_vanderMeulen2014.pdf
 - id: C0118
   key: '@Kasdan2025'
   doi: 10.1162/nol.a.9
@@ -4532,6 +4649,7 @@ candidates:
   journal: Neurobiology of language (Cambridge, Mass.)
   doc_type: journal
   doc_type_raw: PubmedArticle
+  pdf_file: C0118_Kasdan2025.pdf
 - id: C0119
   key: '@Hillis2002'
   doi: 10.1093/brain/awf113
@@ -4554,6 +4672,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0119_Hillis2002.pdf
 - id: C0120
   key: '@Baldo2013'
   doi: 10.1016/j.cortex.2012.03.001
@@ -4598,6 +4717,7 @@ candidates:
   journal: Cortex; a journal devoted to the study of the nervous system and behavior
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0120_Baldo2013.pdf
 - id: C0121
   key: '@Han2013'
   doi: 10.1093/brain/awt205
@@ -4638,6 +4758,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0121_Han2013.pdf
 - id: C0122
   key: '@Sebastian2014'
   doi: 10.3389/fneur.2014.00231
@@ -4674,6 +4795,7 @@ candidates:
     protocol: 8d8dc2e70d35
   pmid: '25477859'
   journal: Frontiers in neurology
+  pdf_file: C0122_Sebastian2014.pdf
 - id: C0123
   key: '@Xing2016'
   doi: 10.1093/brain/awv323
@@ -4722,6 +4844,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0123_Xing2016.pdf
 - id: C0124
   key: '@Li2017'
   doi: 10.1016/j.neuropsychologia.2017.05.008
@@ -4764,6 +4887,7 @@ candidates:
   journal: Neuropsychologia
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0124_Li2017.pdf
 - id: C0125
   key: '@Oeckel2021'
   doi: 10.1093/braincomms/fcab040
@@ -4801,6 +4925,7 @@ candidates:
   journal: Brain communications
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0125_Oeckel2021.pdf
 - id: C0126
   key: '@Fritsch2022'
   doi: 10.1007/s11910-022-01242-2
@@ -4835,6 +4960,7 @@ candidates:
       an included paper citing it is in, then assess
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0126_Fritsch2022.pdf
 - id: C0127
   key: '@Brady2022'
   doi: 10.1177/17474930221097477
@@ -4877,6 +5003,7 @@ candidates:
   journal: 'International journal of stroke : official journal of the International Stroke Society'
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0127_Brady2022.pdf
 - id: C0128
   key: '@Ochfeld2010'
   doi: 10.1161/strokeaha.109.570374
@@ -4909,6 +5036,7 @@ candidates:
   journal: Stroke
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0128_Ochfeld2010.pdf
 - id: C0129
   key: '@Corbetta2015'
   doi: 10.1016/j.neuron.2015.02.027
@@ -4947,6 +5075,7 @@ candidates:
   journal: Neuron
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0129_Corbetta2015.pdf
 - id: C0130
   key: '@Lazar2008'
   doi: 10.1136/jnnp.2007.122457
@@ -4979,6 +5108,7 @@ candidates:
   journal: Journal of neurology, neurosurgery, and psychiatry
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0130_Lazar2008.pdf
 - id: C0131
   key: '@Hillis2006'
   doi: 10.1523/jneurosci.2088-06.2006
@@ -5023,6 +5153,7 @@ candidates:
   journal: 'The Journal of neuroscience : the official journal of the Society for Neuroscience'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0131_Hillis2006.pdf
 - id: C0132
   key: '@Hillis2001'
   doi: 10.1002/ana.1265
@@ -5063,6 +5194,7 @@ candidates:
   journal: Annals of neurology
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0132_Hillis2001.pdf
 - id: C0133
   key: '@Pedersen1995'
   doi: 10.1002/ana.410380416
@@ -5090,6 +5222,7 @@ candidates:
   journal: Annals of Neurology
   doc_type: journal
   doc_type_raw: JOUR
+  pdf_file: C0133_Pedersen1995.pdf
 - id: C0134
   key: '@Laska2001'
   doi: 10.1046/j.1365-2796.2001.00812.x
@@ -5126,6 +5259,7 @@ candidates:
     protocol: 8d8dc2e70d35
   pmid: '11350565'
   journal: Journal of internal medicine
+  pdf_file: C0134_Laska2001.pdf
 - id: C0135
   key: '@Johnson2019'
   doi: 10.1044/2018_ajslp-18-0123
@@ -5171,6 +5305,7 @@ candidates:
   journal: American journal of speech-language pathology
   doc_type: journal
   doc_type_raw: PubmedArticle
+  pdf_file: C0135_Johnson2019.pdf
 - id: C0136
   key: '@Wilson2023'
   doi: 10.1093/brain/awac129
@@ -5216,6 +5351,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0136_Wilson2023.pdf
 - id: C0137
   key: '@Godecke2021'
   doi: 10.1177/1747493020961926
@@ -5251,6 +5387,7 @@ candidates:
   journal: 'International journal of stroke : official journal of the International Stroke Society'
   doc_type: journal
   doc_type_raw: PubmedArticle
+  pdf_file: C0137_Godecke2021.pdf
 - id: C0138
   key: '@Nouwens2017'
   doi: 10.1177/2396987317698327
@@ -5287,6 +5424,7 @@ candidates:
     rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0138_Nouwens2017.pdf
 - id: C0139
   key: '@Ramsey2017'
   doi: 10.1038/s41562-016-0038
@@ -5325,6 +5463,7 @@ candidates:
   journal: Nature human behaviour
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0139_Ramsey2017.pdf
 - id: C0140
   key: '@Siegel2016'
   doi: 10.1073/pnas.1521083113
@@ -5367,6 +5506,7 @@ candidates:
   journal: Proceedings of the National Academy of Sciences of the United States of America
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0140_Siegel2016.pdf
 - id: C0141
   key: '@Munsch2016'
   doi: 10.1161/strokeaha.115.011242
@@ -5405,6 +5545,7 @@ candidates:
   journal: Stroke
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0141_Munsch2016.pdf
 - id: C0142
   key: '@Gilmore2019'
   doi: 10.1016/j.apmr.2018.12.024
@@ -5449,6 +5590,7 @@ candidates:
   journal: Archives of physical medicine and rehabilitation
   doc_type: journal
   doc_type_raw: PubmedArticle
+  pdf_file: C0142_Gilmore2019.pdf
 - id: C0143
   key: '@Ross2008'
   doi: 10.1016/j.bandl.2007.04.007
@@ -5480,6 +5622,7 @@ candidates:
   journal: Brain and language
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0143_Ross2008.pdf
 - id: C0144
   key: '@Durfee2021'
   doi: 10.1016/j.bandc.2021.105759
@@ -5522,6 +5665,7 @@ candidates:
   journal: Brain and cognition
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0144_Durfee2021.pdf
 - id: C0145
   key: '@ElHachioui2013'
   doi: 10.1136/jnnp-2012-302596
@@ -5555,6 +5699,7 @@ candidates:
     rationale: primary study without brain imaging or lesion data (from the title and the KB entry)
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0145_ElHachioui2013.pdf
 - id: C0146
   key: '@Glascher2012'
   doi: 10.1073/pnas.1206608109
@@ -5594,6 +5739,7 @@ candidates:
   journal: Proceedings of the National Academy of Sciences of the United States of America
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0146_Glascher2012.pdf
 - id: C0147
   key: '@Rodrigues2014'
   doi: 10.1080/02687038.2014.921884
@@ -5629,6 +5775,7 @@ candidates:
       a pillar)
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0147_Rodrigues2014.pdf
 - id: C0148
   key: '@Simic2019'
   doi: 10.1080/09602011.2017.1307768
@@ -5673,6 +5820,7 @@ candidates:
   journal: Neuropsychological rehabilitation
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0148_Simic2019.pdf
 - id: C0149
   key: '@Lukic2017'
   doi: 10.1155/2017/5601509
@@ -5721,6 +5869,7 @@ candidates:
   journal: Neural plasticity
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0149_Lukic2017.pdf
 - id: C0150
   key: '@SkipperKallal2017'
   doi: 10.1155/2017/8740353
@@ -5765,6 +5914,7 @@ candidates:
   journal: Neural plasticity
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0150_SkipperKallal2017.pdf
 - id: C0151
   key: '@Cote2007'
   doi: 10.1080/02687030701192331
@@ -5805,6 +5955,7 @@ candidates:
   journal: Aphasiology
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0151_Cote2007.pdf
 - id: C0152
   key: '@Brownsett2014'
   doi: 10.1093/brain/awt289
@@ -5849,6 +6000,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0152_Brownsett2014.pdf
 - id: C0153
   key: '@Geranmayeh2017'
   doi: 10.1093/brain/awx134
@@ -5896,6 +6048,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0153_Geranmayeh2017.pdf
 - id: C0154
   key: '@Schumacher2019'
   doi: 10.1093/brain/awz258
@@ -5944,6 +6097,7 @@ candidates:
   journal: 'Brain : a journal of neurology'
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0154_Schumacher2019.pdf
 - id: C0155
   key: '@Biesbroek2017'
   doi: 10.1042/cs20160452
@@ -5972,6 +6126,7 @@ candidates:
   journal: 'Clinical science (London, England : 1979)'
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_file: C0155_Biesbroek2017.pdf
 - id: C0156
   key: '@Lacey2017'
   doi: 10.1177/1545968316688797
@@ -6018,6 +6173,7 @@ candidates:
   journal: Neurorehabilitation and neural repair
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0156_Lacey2017.pdf
 - id: C0157
   key: '@Sheppard2020'
   doi: 10.1212/wnl.0000000000008870
@@ -6047,6 +6203,7 @@ candidates:
   journal: Neurology
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0157_Sheppard2020.pdf
 - id: C0158
   key: '@Zhao2018'
   doi: 10.1177/0271678x17728162
@@ -6081,6 +6238,7 @@ candidates:
     Blood Flow and Metabolism
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0158_Zhao2018.pdf
 - id: C0159
   key: '@Rost2022'
   doi: 10.1161/circresaha.122.319951
@@ -6100,6 +6258,7 @@ candidates:
   journal: Circulation research
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0159_Rost2022.pdf
 - id: C0160
   key: '@Marien2004'
   doi: 10.1016/s0010-9452(08)70920-1
@@ -6124,6 +6283,7 @@ candidates:
       an included paper citing it is in, then assess
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0160_Marien2004.pdf
 - id: C0161
   key: '@Coppens2002'
   doi: 10.1016/s0093-934x(02)00510-2
@@ -6150,6 +6310,7 @@ candidates:
       an included paper citing it is in, then assess
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0161_Coppens2002.pdf
 - id: C0162
   key: '@Pendlebury2009'
   doi: 10.1016/s1474-4422(09)70236-4
@@ -6177,6 +6338,7 @@ candidates:
     rationale: 'dementia prevalence meta-analysis: no lesion or imaging relation to an outcome'
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0162_Pendlebury2009.pdf
 - id: C0163
   key: '@Lo2019'
   doi: 10.1212/wnl.0000000000008612
@@ -6200,6 +6362,7 @@ candidates:
     rationale: probably no imaging — check the methods for lesion or imaging data before accepting
     by: claude (pre-fill from title)
     date: '2026-10-28'
+  pdf_file: C0163_Lo2019.pdf
 - id: C0164
   key: '@Weaver2021'
   doi: 10.1016/s1474-4422(21)00060-0
@@ -6222,6 +6385,7 @@ candidates:
   journal: The Lancet. Neurology
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_file: C0164_Weaver2021.pdf
 - id: C0165
   doi: 10.3390/neurolint18100183
   pmid: '42931137'
@@ -11030,6 +11194,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Haldin2026'
+  pdf_file: C0437_Haldin2026.pdf
 - id: C0438
   doi: 10.3390/brainsci16010117
   pmid: '41594838'
@@ -12450,6 +12615,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Fang2025'
+  pdf_file: C0516_Fang2025.pdf
 - id: C0517
   doi: 10.1186/s13019-025-03596-3
   pmid: '41152994'
@@ -15813,6 +15979,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Jiang2025'
+  pdf_file: C0707_Jiang2025.pdf
 - id: C0708
   doi: 10.1093/braincomms/fcae370
   pmid: '39845737'
@@ -16649,6 +16816,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Biondo2024'
+  pdf_file: C0752_Biondo2024.pdf
 - id: C0753
   doi: 10.1177/19418744241296198
   pmid: '39544267'
@@ -17391,6 +17559,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Yu2024'
+  pdf_file: C0797_Yu2024.pdf
 - id: C0798
   doi: 10.2169/internalmedicine.4001-24
   pmid: '39231672'
@@ -17990,6 +18159,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Stockbridge2024'
+  pdf_file: C0832_Stockbridge2024.pdf
 - id: C0833
   doi: 10.7759/cureus.61681
   pmid: '38966459'
@@ -18186,6 +18356,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Casilio2025'
+  pdf_file: C0843_Casilio2025.pdf
 - id: C0844
   doi: 10.1016/j.radcr.2024.05.011
   pmid: '38872752'
@@ -20119,6 +20290,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Ding2023'
+  pdf_file: C0953_Ding2023.pdf
 - id: C0954
   doi: 10.2490/prm.20230041
   pmid: '38024960'
@@ -20815,6 +20987,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Yu2023'
+  pdf_file: C0994_Yu2023.pdf
 - id: C0995
   doi: 10.1016/j.isci.2023.107453
   pmid: '37744405'
@@ -21809,6 +21982,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Akkad2023'
+  pdf_file: C1050_Akkad2023.pdf
 - id: C1051
   doi: 10.1186/s12883-023-03249-9
   pmid: '37316776'
@@ -23268,6 +23442,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Zevgolatakou2022'
+  pdf_file: C1133_Zevgolatakou2022.pdf
 - id: C1134
   doi: 10.1186/s41983-022-00593-4
   pmid: '36597448'
@@ -24248,6 +24423,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Soliman2023'
+  pdf_file: C1186_Soliman2023.pdf
 - id: C1187
   doi: 10.1093/mrcr/rxac080
   pmid: '36250714'
@@ -25468,6 +25644,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Johnson2022'
+  pdf_file: C1249_Johnson2022.pdf
 - id: C1250
   doi: 10.1155/2022/3902570
   pmid: '35923686'
@@ -25589,6 +25766,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Yu2022'
+  pdf_file: C1255_Yu2022.pdf
 - id: C1256
   doi: 10.3390/brainsci12070902
   pmid: '35884709'
@@ -27066,6 +27244,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Adezati2022'
+  pdf_file: C1336_Adezati2022.pdf
 - id: C1337
   doi: 10.1097/wnn.0000000000000294
   pmid: '35239599'
@@ -27226,6 +27405,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@MartinezMolina2022'
+  pdf_file: C1344_MartinezMolina2022.pdf
 - id: C1345
   doi: 10.1016/j.neuroimage.2022.119001
   pmid: '35172200'
@@ -29981,6 +30161,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Ivanova2021'
+  pdf_file: C1495_Ivanova2021.pdf
 - id: C1496
   doi: 10.1007/s00234-021-02762-3
   pmid: '34244817'
@@ -31769,6 +31950,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Wilmskoetter2021'
+  pdf_file: C1596_Wilmskoetter2021.pdf
 - id: C1597
   doi: 10.1080/02687038.2019.1693026
   pmid: '33716377'
@@ -34064,6 +34246,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Lukic2021'
+  pdf_file: C1728_Lukic2021.pdf
 - id: C1729
   doi: 10.1007/s13760-020-01493-1
   pmid: '32948996'
@@ -34574,6 +34757,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Keser2020'
+  pdf_file: C1754_Keser2020.pdf
 - id: C1755
   doi: 10.1016/j.ensci.2020.100259
   pmid: '32802971'
@@ -35014,6 +35198,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@BlomSmink2020'
+  pdf_file: C1777_BlomSmink2020.pdf
 - id: C1778
   doi: 10.7759/cureus.8584
   pmid: '32670719'
@@ -35926,6 +36111,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@OsaGarcia2020'
+  pdf_file: C1829_OsaGarcia2020.pdf
 - id: C1830
   doi: 10.11477/mf.1416201509
   pmid: '32152254'
@@ -37495,6 +37681,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Kristinsson2020'
+  pdf_file: C1916_Kristinsson2020.pdf
 - id: C1917
   doi: 10.1016/j.wneu.2019.09.141
   pmid: '31589986'
@@ -38784,6 +38971,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Meier2019'
+  pdf_file: C1989_Meier2019.pdf
 - id: C1990
   doi: 10.1007/s11682-019-00106-7
   pmid: '31089955'
@@ -40676,6 +40864,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@McKinnon2018'
+  pdf_file: C2098_McKinnon2018.pdf
 - id: C2099
   doi: 10.1007/s13760-018-1025-6
   pmid: '30251236'
@@ -40853,6 +41042,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Zavanone2018'
+  pdf_file: C2108_Zavanone2018.pdf
 - id: C2109
   doi: 10.1016/j.cortex.2018.07.007
   pmid: '30172096'
@@ -41014,6 +41204,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Woollams2018'
+  pdf_file: C2117_Woollams2018.pdf
 - id: C2118
   doi: 10.5692/clinicalneurol.cn-001170
   pmid: '30068812'
@@ -41205,6 +41396,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Wright2018'
+  pdf_file: C2127_Wright2018.pdf
 - id: C2128
   doi: 10.1002/hbm.24289
   pmid: '29972618'
@@ -43089,6 +43281,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Halai2018'
+  pdf_file: C2234_Halai2018.pdf
 - id: C2235
   doi: 10.1016/j.cortex.2017.10.006
   pmid: '29157937'
@@ -43247,6 +43440,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Lee2018'
+  pdf_file: C2242_Lee2018.pdf
 - id: C2243
   doi: 10.1007/s11883-017-0686-6
   pmid: '29116473'
@@ -45293,6 +45487,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Xing2017'
+  pdf_file: C2356_Xing2017.pdf
 - id: C2357
   doi: 10.1155/2017/2761913
   pmid: '28270937'
@@ -45518,6 +45713,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Pillay2017'
+  pdf_file: C2368_Pillay2017.pdf
 - id: C2369
   doi: 10.1097/md.0000000000005995
   pmid: '28178140'
@@ -45843,6 +46039,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@SkipperKallal2017Functional'
+  pdf_file: C2385_SkipperKallal2017Functional.pdf
 - id: C2386
   doi: 10.1111/jon.12423
   pmid: '28066971'
@@ -47276,6 +47473,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Yang2017'
+  pdf_file: C2467_Yang2017.pdf
 - id: C2468
   pmid: '27323679'
   title: A 49-year-old woman presenting with aphasia
@@ -51987,6 +52185,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Basilakos2014'
+  pdf_file: C2738_Basilakos2014.pdf
 - id: C2739
   doi: 10.1007/s00429-014-0926-2
   pmid: '25359657'
@@ -52021,6 +52220,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Han2016'
+  pdf_file: C2739_Han2016.pdf
 - id: C2740
   doi: 10.1007/s00429-014-0925-3
   pmid: '25352157'
@@ -52548,6 +52748,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Rosso2015'
+  pdf_file: C2769_Rosso2015.pdf
 - id: C2770
   pmid: '25087758'
   title: '[Intracranial hemorrhage caused by neurosyphilis: a case report]'
@@ -52763,6 +52964,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Fridriksson2015'
+  pdf_file: C2780_Fridriksson2015.pdf
 - id: C2781
   doi: 10.1371/journal.pone.0101805
   pmid: '24992634'
@@ -60189,6 +60391,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Stahl2011'
+  pdf_file: C3212_Stahl2011.pdf
 - id: C3213
   doi: 10.2217/fnl.10.44
   pmid: '21088709'
@@ -60220,6 +60423,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Review
   key: '@Schlaug2010'
+  pdf_file: C3213_Schlaug2010.pdf
 - id: C3214
   doi: 10.1093/brain/awr198
   pmid: '21908872'
@@ -86711,6 +86915,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Sheppard2022'
+  pdf_file: C4853_Sheppard2022.pdf
 - id: C4854
   doi: 10.1016/j.ecoenv.2021.113118
   pmid: '34979314'
@@ -110653,6 +110858,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Bi2015'
+  pdf_file: C6375_Bi2015.pdf
 - id: C6376
   doi: 10.2147/ndt.s78037
   pmid: '25914535'
@@ -126576,6 +126782,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Article
   key: '@Brady2022Dosage'
+  pdf_file: C7373_Brady2022Dosage.pdf
 - id: C7374
   doi: 10.1007/s10072-021-05743-9
   pmid: '34816318'
@@ -127732,6 +127939,7 @@ candidates:
   doc_type: journal
   doc_type_raw: JOUR/Review
   key: '@Ali2021'
+  pdf_file: C7442_Ali2021.pdf
 - id: C7443
   doi: 10.1177/0269215521999554
   pmid: '33706572'
@@ -346366,7 +346574,7 @@ candidates:
   sources:
   - search: S024
   screening: []
-- id: U89f5cf2204955dda6d3e5ac6d8d564a1
+- id: C22223
   title: Trajectory of depressive symptoms in a longitudinal stroke cohort
   doi: 10.1016/j.jstrokecerebrovasdis.2024.108197
   sources:
@@ -346389,8 +346597,12 @@ candidates:
     seq: 306
     record: 20261112T015249Z-02_screen_m-massontrottier_u89f5cf2204955dda6d3e5ac6d8d564a1.json
   pdf_uploaded_at: '2026-11-12T00:03:19.131Z'
-  pdf_file: U89f5cf2204955dda6d3e5ac6d8d564a1_Paper.pdf
+  pdf_file: C22223_Sewell2025.pdf
   key: '@Sewell2025'
+  upload_ids:
+  - U89f5cf2204955dda6d3e5ac6d8d564a1
+  first_author: Sewell
+  year: 2025
 - id: C22220
   doi: 10.1016/j.neuropsychologia.2025.109251
   title: Cognitive and neural correlates of prospective memory in acute to early sub-acute stroke
@@ -346436,3 +346648,18 @@ candidates:
     note: User supplied PDF from calmar-papers/_set_aside; linked without changing screening decisions.
   screening: []
   pdf_file: C22222_Hobden2024.pdf
+- id: C22224
+  doi: 10.1002/hbm.70619
+  title: Methodological Choices Strongly Modulate the Sensitivity and Specificity of Lesion-Symptom Mapping
+    Analyses
+  first_author: Moore
+  year: 2026
+  authors: Moore, Margaret Jane; Rorden, Chris; Robinson, Gail A.; Mattingley, Jason B.; Demeyere, Nele
+  journal: Human Brain Mapping
+  sources:
+  - kind: hand_picked
+    date: '2026-11-12'
+    by: micmas
+    note: Existing local reference PDF in calmar-papers/_reference; screening ID assigned for consistent
+      filenames. No inclusion decision.
+  screening: []

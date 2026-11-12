@@ -65,6 +65,7 @@ _compare/ is git-ignored (it holds verbatim paper text). Nothing in the canonica
 drafts/, logs/ or papers/ is written.
 """
 from __future__ import annotations
+from paper_paths import resolve_paper
 
 import argparse
 import datetime as dt
@@ -133,7 +134,7 @@ def reference_papers(root: Path = ROOT, papers_dir: Path = PAPERS) -> list[dict]
     out = []
     for cit, rec in by_cit.items():
         key = cit.lstrip("@")
-        pdf = papers_dir / f"{key}.pdf"
+        pdf = resolve_paper(papers_dir, f"{key}.pdf")
         rec["pdf"] = pdf.exists()
         rec["all_human"] = rec["human"] == rec["findings"]
         rec["current"] = rec["human"] + rec["model"]          # approved under the governance policy; the rest is legacy
@@ -353,7 +354,7 @@ def ollama_processor(host: str) -> str:
 
 def run_extraction(model: str, paper: str, out_dir: Path, host: str, timeout: int) -> dict:
     """extract.py in sandbox mode for one model × paper; returns timing and the exit status."""
-    pdf = PAPERS / f"{paper}.pdf"
+    pdf = resolve_paper(PAPERS, f"{paper}.pdf")
     cmd = [sys.executable, str(ROOT / "scripts" / "extract.py"), "--pdf", str(pdf), "--citation", f"@{paper}",
            "--model", model, "--out-dir", str(out_dir), "--no-monitor", "--timeout", str(timeout)]
     t0 = time.monotonic()
@@ -873,7 +874,7 @@ def _cli(argv=None) -> int:
         if not models:
             print("No model available to run.", file=sys.stderr)
             return 2
-    missing = [p for p in args.papers if not (PAPERS / f"{p}.pdf").exists()]
+    missing = [p for p in args.papers if not resolve_paper(PAPERS, f"{p}.pdf").exists()]
     if missing:
         print(f"no PDF in papers/ for: {', '.join(missing)}", file=sys.stderr)
         return 2

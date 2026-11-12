@@ -31,8 +31,23 @@ See [Commands](COMMANDS.md) for sync prerequisites and recovery.
 
 Select papers under the [screening protocol](SCREENING.md), register their
 citation keys and DOIs in `citations.md`, and place each main PDF in
-`papers/<Key>.pdf`. Check that title, authors, DOI and version match. A file being
+`papers/CXXXX_<Key>.pdf`, where `CXXXX` is its screening record ID (the numeric
+part can have more than four digits). Annotated copies retain the same prefix.
+The portal mirrors annotated PDFs and private source PDFs awaiting screening or
+annotation; it does not publish `_originals` or excluded duplicates.
+Citation keys remain unchanged: for example, `C0046_Hillis2007.pdf` is still
+`@Hillis2007`. Check that title, authors, DOI and version match. A file being
 available locally does not establish permission to redistribute it.
+
+Keep `papers/_originals/`: those files preserve downloaded versions before OCR or
+cover-page removal. `_set_aside` is storage, not a screening decision; register
+those papers and screen them before extraction. New portal uploads receive a
+provisional upload identity until Apply assigns their permanent screening ID.
+
+Renaming alone does not require re-extraction. The tools resolve older citation
+filenames and still verify the frozen PDF checksum. Local `.filename-aliases.json`
+retains exceptional download-name mappings. Do not edit old run manifests; prepare
+a new manifest/output directory for a new extraction with updated code.
 
 Create a new run manifest for your selected keys:
 

@@ -56,6 +56,7 @@ more validation issues at the promote.py review step.
 """
 
 from __future__ import annotations
+from paper_paths import citation_stem
 
 import argparse
 import datetime as dt
@@ -128,7 +129,7 @@ def _infer_citation_key(pdf_path: Path,
     The first collision becomes <key>b (the "a" slot is implicit on the
     pre-existing entry so users can read both as "Foo2024a / Foo2024b").
     """
-    stem = pdf_path.stem
+    stem = citation_stem(pdf_path)
     # The documented naming is papers/<Key>.pdf. If the stem IS an
     # existing key (case-insensitively), use that key exactly — never
     # re-infer it (which lower-cased "NounVerb" to "Nounverb") and never

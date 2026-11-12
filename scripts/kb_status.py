@@ -28,6 +28,7 @@ Sections of the summary
 Nothing here calls a model or the network.
 """
 from __future__ import annotations
+from paper_paths import resolve_paper
 
 import argparse
 import collections
@@ -153,7 +154,7 @@ def collect(root: Path) -> dict:
     papers = {}
     for key, users in sorted(cited.items()):
         k = key.lstrip("@")
-        pdf = any((papers_dir / f"{k}{ext}").exists() for ext in (".pdf", ".txt"))
+        pdf = any(resolve_paper(papers_dir, f"{k}{ext}").exists() for ext in (".pdf", ".txt"))
         papers[key] = {"doi": (dois.get(key) or {}).get("doi"),
                        "pdf_present": pdf,
                        "used_by": sorted(users)}

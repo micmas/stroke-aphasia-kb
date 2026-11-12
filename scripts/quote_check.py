@@ -39,6 +39,7 @@ Usage
     grade_quote(quote, paper)          # -> "exact" | ... | "absent"
 """
 from __future__ import annotations
+from paper_paths import resolve_paper
 
 import difflib
 import re
@@ -102,7 +103,7 @@ def find_paper(citation: str, papers_dir: Path) -> Path | None:
     if not key:
         return None
     for ext in (".pdf", ".txt"):
-        p = papers_dir / f"{key}{ext}"
+        p = resolve_paper(papers_dir, f"{key}{ext}")
         if p.exists():
             return p
     return None

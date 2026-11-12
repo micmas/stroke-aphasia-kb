@@ -15,7 +15,7 @@ import { putRecord, slug } from '../../lib/github.js';
 export const MAX_BYTES = 60 * 1024 * 1024;   // Pages Functions accept 100 MB bodies on the free plan
 const PREFIX = 'uploads/';
 
-export const objectKey = (id) => `${PREFIX}${slug(id)}.pdf`;
+export const objectKey = (id) => `${PREFIX}${/^C\d+$/.test(id) ? id + "_upload" : slug(id)}.pdf`;
 
 // What an upload may be for: a screening candidate (C0123) or a citation key (@Smith2020).
 // Anything else is refused here, and again by scripts/portal_import.py, which only places a
@@ -35,9 +35,17 @@ export async function onRequestGet({ request, env }) {
   if (!env.UPLOADS) return Response.json({ error: 'uploads are not set up on this portal (no R2 bucket bound)', uploads: [] }, { status: 503 });
   const file = request ? new URL(request.url).searchParams.get('file') : null;
   if (file) {
-    const obj = await env.UPLOADS.get(objectKey(file));
+    let canonical = file;
+    if (env.ASSETS && !CANDIDATE_ID.test(file)) {
+      const res = await env.ASSETS.fetch(new Request(new URL('/screening-index.json', request.url)));
+      if (res.ok) {
+        const rows = (await res.json()).candidates || [];
+        canonical = rows.find((c) => c.key === file || (c.upload_ids || []).includes(file))?.id || file;
+      }
+    }
+    const obj = await env.UPLOADS.get(objectKey(canonical)) || await env.UPLOADS.get(`${PREFIX}${slug(file)}.pdf`);
     if (!obj) return new Response('not found', { status: 404 });
-    return new Response(obj.body, { headers: { 'Content-Type': 'application/pdf', 'Content-Disposition': `inline; filename="${slug(file)}.pdf"`, 'Cache-Control': 'private, no-store', 'X-Robots-Tag': 'noindex', ...(obj.size ? { 'Content-Length': String(obj.size) } : {}) } });
+    return new Response(obj.body, { headers: { 'Content-Type': 'application/pdf', 'Content-Disposition': `inline; filename="${objectKey(canonical).slice(PREFIX.length)}"`, 'Cache-Control': 'private, no-store', 'X-Robots-Tag': 'noindex', ...(obj.size ? { 'Content-Length': String(obj.size) } : {}) } });
   }
   const out = [];
   let cursor;

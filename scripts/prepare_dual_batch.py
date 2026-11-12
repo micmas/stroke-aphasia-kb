@@ -1,4 +1,5 @@
 """Freeze the full registered KB paper inventory; never reads or changes findings."""
+from paper_paths import resolve_paper, citation_stem
 import argparse
 import hashlib
 import json
@@ -42,7 +43,7 @@ def prepare(repo, output, papers=None, segment_chars=None):
                 aliases[key] = repo/'papers'/name
     papers, pending = [], []
     for key in sorted(set(entries)):
-        pdf = repo/'papers'/f'{key}.pdf'
+        pdf = resolve_paper(repo/'papers', f'{key}.pdf')
         if not pdf.is_file() and key in aliases:
             pdf = aliases[key]
         if key in refused or not pdf.is_file():
@@ -57,7 +58,7 @@ def prepare(repo, output, papers=None, segment_chars=None):
         for row in papers: row['segment_chars'] = segment_chars
     used = {Path(p['pdf']).stem for p in papers}
     unregistered = sorted(p.stem for p in (repo/'papers').glob('*.pdf')
-                          if p.stem not in registered and p.stem not in used and not p.stem.endswith('_annotated'))
+                          if citation_stem(p) not in registered and p.stem not in used and not p.stem.endswith('_annotated'))
     data = {'source_scope': 'main_paper_only',
             'method': 'source-inventory-v2: two independent extractions plus separate source review',
             'selection': ('Explicit recovery subset: '+', '.join(selected_keys)+'. ' if selected_keys is not None else 'Every registered bibliography paper, regardless of prior extraction or approval. ')+

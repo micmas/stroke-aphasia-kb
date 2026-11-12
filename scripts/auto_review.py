@@ -104,6 +104,7 @@ Usage (module)
 """
 
 from __future__ import annotations
+from paper_paths import resolve_paper
 
 import argparse
 import datetime as dt
@@ -706,7 +707,7 @@ def paper_text_for(fm: dict, papers_dir: Path = PAPERS_DIR) -> tuple[str, list[s
         key = cite.lstrip("@")
         found = None
         for ext in (".pdf", ".txt"):
-            cand = papers_dir / f"{key}{ext}"
+            cand = resolve_paper(papers_dir, f"{key}{ext}")
             if cand.exists():
                 found = cand
                 break

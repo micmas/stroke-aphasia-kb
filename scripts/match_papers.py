@@ -27,6 +27,7 @@ listed and left alone. Nothing is ever deleted or overwritten.
 A `.txt` sidecar is accepted in place of a PDF for OCR'd scans.
 """
 from __future__ import annotations
+from paper_paths import citation_stem, canonical_paper
 
 import argparse
 import re
@@ -223,9 +224,14 @@ def _cli(argv=None) -> int:
     for f in sorted(args.papers_dir.iterdir()):
         if f.suffix.lower() not in (".pdf", ".txt") or f.name.startswith("."):
             continue
-        stem = f.stem
-        if stem.endswith("_annotated") or stem.lower() in keys_lower:
-            continue   # already named, or an annotated copy
+        stem = citation_stem(f)
+        if f.stem.endswith("_annotated"):
+            continue
+        if stem.lower() in keys_lower:
+            target = canonical_paper(args.papers_dir, keys_lower[stem.lower()], f.suffix.lower())
+            if target != f and not target.exists():
+                planned.append((f, target, "registered-key"))
+            continue
         if f.name in by_file:
             linked.append((f.name, by_file[f.name]))
             continue
@@ -239,7 +245,7 @@ def _cli(argv=None) -> int:
             dois = sorted({_norm_doi(d) for d in _DOI.findall(text)})[:3]
             unmatched.append((f.name, f"no match; DOIs seen: {', '.join(dois) or 'none'}"))
             continue
-        target = args.papers_dir / f"{key.lstrip('@')}{f.suffix.lower()}"
+        target = canonical_paper(args.papers_dir, key, f.suffix.lower())
         if target.exists():
             if how == "probable":   # an author/year/title guess, not a duplicate: say so
                 dois = sorted({_norm_doi(d) for d in _DOI.findall(text)})[:3]

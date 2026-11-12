@@ -31,6 +31,7 @@ new PDFs as for any paper; then `python scripts/publish_portal.py --sync` and a 
 portal/papers.json tell the portal the papers are here, which opens their full-text cards.
 """
 from __future__ import annotations
+from paper_paths import resolve_paper, paper_filename
 
 import argparse
 import datetime as dt
@@ -132,7 +133,7 @@ def read_library(enl: Path) -> list[dict]:
 # ------------------------------------------------------------------ what the KB still needs
 def has_pdf(c: dict, papers: Path = PAPERS) -> bool:
     key = str(c.get("key") or "").lstrip("@")
-    if key and (papers / f"{key}.pdf").exists():
+    if key and resolve_paper(papers, f"{key}.pdf").exists():
         return True
     return bool(c.get("pdf_file")) and (papers / str(c["pdf_file"])).exists()
 
@@ -173,7 +174,7 @@ def match(cands: list[dict], refs: list[dict], titles: bool = False) -> list[dic
 def destination(c: dict, source: Path, papers: Path = PAPERS) -> Path:
     key = str(c.get("key") or "").lstrip("@")
     if key:
-        return papers / f"{key}.pdf"
+        return resolve_paper(papers, paper_filename(c))
     if c.get("pdf_file"):
         return papers / str(c["pdf_file"])
     safe = re.sub(r"[^\w.() -]+", "_", source.name).strip(" .")[:100] or "paper.pdf"

@@ -27,6 +27,8 @@ draft before it is promoted. Dry run unless --execute.
 """
 from __future__ import annotations
 
+from paper_paths import resolve_paper, canonical_paper
+
 import argparse
 import re
 import sys
@@ -50,9 +52,9 @@ def plan(old: str, new: str) -> list[tuple[str, Path, Path | None]]:
     out: list[tuple[str, Path, Path | None]] = []
     papers = ROOT / "papers"
     for suffix in (".pdf", "_annotated.pdf", ".txt"):
-        src = papers / f"{o}{suffix}"
+        src = resolve_paper(papers, f"{o}{suffix}")
         if src.exists():
-            out.append(("file", src, papers / f"{n}{suffix}"))
+            out.append(("file", src, canonical_paper(papers, n, suffix)))
     for b in BUCKETS:
         for src in sorted((ROOT / "drafts" / b).glob(f"*__{o}.md")):
             out.append(("draft", src, src.with_name(src.name[:-len(f"__{o}.md")] + f"__{n}.md")))
@@ -116,9 +118,9 @@ def auto_pairs() -> list[tuple[str, str]]:
     for k in sorted(draft_keys):
         if f"@{k}" in cites:
             continue
-        pdf = ROOT / "papers" / f"{k}.pdf"
+        pdf = resolve_paper(ROOT / "papers", f"{k}.pdf")
         if not pdf.exists():                      # match_papers may have renamed it already
-            pdf = ROOT / "papers" / f"{k}_annotated.pdf"
+            pdf = resolve_paper(ROOT / "papers", f"{k}_annotated.pdf")
         if not pdf.exists():
             print(f"  ? @{k}: no papers/{k}.pdf or _annotated.pdf to read a DOI from")
             continue

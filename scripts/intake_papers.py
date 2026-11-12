@@ -60,6 +60,7 @@ Nothing is deleted; originals of stripped or OCR'd files go to
 papers/_originals/.
 """
 from __future__ import annotations
+from paper_paths import citation_stem, canonical_paper
 
 import argparse
 import re
@@ -85,7 +86,7 @@ def _banner(n: int, title: str) -> None:
 def pull_from(src_dir: Path, papers_dir: Path, execute: bool) -> int:
     """Copy PDFs in src_dir that match a cited key with no PDF yet."""
     cites = match_papers.read_citations(ROOT / "citations.md")
-    have = {p.stem.lower() for p in papers_dir.glob("*.pdf")}
+    have = {citation_stem(p).lower() for p in papers_dir.glob("*.pdf")}
     n = 0
     for f in sorted(src_dir.glob("*.pdf")):
         try:
@@ -98,7 +99,7 @@ def pull_from(src_dir: Path, papers_dir: Path, execute: bool) -> int:
         bare = key.lstrip("@")
         if bare.lower() in have:
             continue
-        target = papers_dir / f"{bare}.pdf"
+        target = canonical_paper(papers_dir, bare)
         print(f"{'copied' if execute else 'would copy':12} {f.name}  →  papers/{target.name}")
         if execute:
             shutil.copy2(f, target)

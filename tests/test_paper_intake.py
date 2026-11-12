@@ -15,6 +15,7 @@ def test_new_paper_is_other_source_not_approved_and_replays_once(monkeypatch):
     c=state['candidates'][0]
     assert S.arm_of(c)=='other' and S.stage_of(c)[0]=='awaiting_ta'
     assert len(c['sources'])==1 and not c['screening']
+    assert c['id']=='C0001' and r['id'] in c['upload_ids']
 
 def test_concurrent_registration_reconciles_to_existing_id_and_retains_decisions(monkeypatch,tmp_path):
     monkeypatch.setattr(S,'load_candidates',lambda:[]);monkeypatch.setattr(P,'PAPERS',tmp_path)

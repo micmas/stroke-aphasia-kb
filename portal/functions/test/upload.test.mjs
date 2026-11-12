@@ -31,7 +31,7 @@ test('a PDF is stored under the id and recorded for the maintainer', async () =>
   const out = await res.json();
   assert.equal(res.status, 200);
   assert.equal(out.object, objectKey('C0123'));
-  const obj = b.store.get('uploads/c0123.pdf');
+  const obj = b.store.get('uploads/C0123_upload.pdf');
   assert.equal(obj.customMetadata.by, 'alex@example.org');
   assert.equal(obj.customMetadata.name, 'smith 2020.pdf');
   assert.match(obj.customMetadata.sha256, /^[0-9a-f]{64}$/);
@@ -39,7 +39,7 @@ test('a PDF is stored under the id and recorded for the maintainer', async () =>
   assert.match(commits.at(-1).url, /logs\/portal\/inbox\/\d{8}T\d{6}Z_pdf_alex_c0123\.json$/);
   const record = JSON.parse(Buffer.from(rec.content, 'base64').toString('utf8'));
   assert.equal(record.kind, 'pdf'); assert.equal(record.id, 'C0123'); assert.equal(record.citation, '@Smith2020');
-  assert.equal(record.bucket, 'test-bucket'); assert.equal(record.object, 'uploads/c0123.pdf'); assert.equal(record.bytes, 4096);
+  assert.equal(record.bucket, 'test-bucket'); assert.equal(record.object, 'uploads/C0123_upload.pdf'); assert.equal(record.bytes, 4096);
   const list = await (await onRequestGet({ env: env(b) })).json();
   assert.deepEqual(list.uploads.map((u) => [u.id, u.by, u.name]), [['C0123', 'alex@example.org', 'smith 2020.pdf']]);
 });

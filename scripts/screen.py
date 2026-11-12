@@ -45,6 +45,7 @@ only ever writes `suggestion`. Abstracts are cached in
 screening/abstracts.jsonl (git-ignored) and are re-fetchable.
 """
 from __future__ import annotations
+from paper_paths import resolve_paper, citation_stem, paper_filename
 
 import argparse
 import collections
@@ -1416,7 +1417,7 @@ def cmd_register(args) -> int:
     for c in candidates:
         f = c.get("pdf_file")
         if f and c.get("key") and rows.get(c["id"], {}).get("stage") == "included":
-            src, dst = ROOT / "papers" / f, ROOT / "papers" / f"{str(c['key']).lstrip('@')}.pdf"
+            src, dst = ROOT / "papers" / f, ROOT / 'papers' / paper_filename(c)
             if src.exists() and not dst.exists():
                 renames.append((c, src, dst))
     for c, src, dst in renames:
@@ -1671,7 +1672,7 @@ def _unrenamed_pdfs(wanted: dict[str, str]) -> dict[str, str]:
         return {}
     out = {}
     for f in sorted(papers.glob("*.pdf")):
-        if f.stem.lower() in keys or f.stem.endswith("_annotated"):
+        if citation_stem(f).lower() in keys or f.stem.endswith("_annotated"):
             continue
         try:
             text = match_papers.first_pages_text(f)
@@ -1716,7 +1717,7 @@ def link_pdfs(candidates: list[dict], verbose: bool = True) -> dict:
     open_ = [c for c in live if rows[c["id"]]["stage"] in ("awaiting_ft", "unsure_ft", "included", "awaiting_ta", "unsure_ta")]
     linked_files = {c.get("pdf_file") for c in live if c.get("pdf_file")}
     for f in sorted(papers.glob("*.pdf")):
-        if f.stem.lower() in keys or f.stem.endswith("_annotated"):
+        if citation_stem(f).lower() in keys or f.stem.endswith("_annotated"):
             continue
         try:
             text = match_papers.first_pages_text(f) or ""
@@ -1759,7 +1760,7 @@ def link_pdfs(candidates: list[dict], verbose: bool = True) -> dict:
         if st in ("excluded_ta", "excluded_ft", "duplicate"):
             out["unknown"].append((f.name, [f"belongs to {hit['id']}, {S.STAGE_LABELS.get(st, st)} — not needed"]))
             continue
-        key_pdf = papers / f"{str(hit.get('key') or '').lstrip('@')}.pdf" if hit.get("key") else None
+        key_pdf = resolve_paper(papers, f"{str(hit.get('key') or '').lstrip('@')}.pdf") if hit.get("key") else None
         if key_pdf is not None and key_pdf.exists():
             out["unknown"].append((f.name, [f"a second copy of {hit['id']} {hit['key']} (papers/{key_pdf.name} exists)"]))
             continue
@@ -1801,7 +1802,7 @@ def to_extract() -> list[tuple[dict, Path]]:
             continue
         if ((r.get("kb") or {}).get("state")) not in ("awaiting_extraction",):
             continue
-        pdf = ROOT / "papers" / f"{str(r['key']).lstrip('@')}.pdf"
+        pdf = resolve_paper(ROOT / 'papers', f"{str(r['key']).lstrip('@')}.pdf")
         if pdf.exists():
             out.append((r, pdf))
     return out
@@ -2064,7 +2065,7 @@ def cmd_licences(args) -> int:
     found = dict(done)
     for i, key in enumerate(todo, 1):
         doi = (cites.get(key) or {}).get("doi")
-        pdf = ROOT / "papers" / f"{key.lstrip('@')}.pdf"
+        pdf = resolve_paper(ROOT / 'papers', f"{key.lstrip('@')}.pdf")
         rec = L.check(key, S.norm_doi(doi) if doi else None, pdf, email)
         found[key] = rec
         err = f"  ⚠ {'; '.join(rec['errors'])}" if rec.get("errors") else ""

@@ -66,3 +66,16 @@ test('cc/ serves only files the build lists as public, and fails closed (REVIEW.
   const priv = await pdf({ request: req('https://p.test/pdf/Closed2021_annotated.pdf'), env: { PDFS: bucket(files) }, params: { path: ['Closed2021_annotated.pdf'] } });
   assert.equal(priv.status, 200);
 });
+
+test('old public filenames resolve only to a currently allowed prefixed file', async () => {
+  const renamed = 'C0042_Open2020_annotated.pdf';
+  const e = { PDFS: bucket({ ['cc/'+renamed]: 'same bytes' }), ASSETS: assets([renamed]) };
+  const request = req('https://p.test/cc/Open2020_annotated.pdf');
+  const params = {path:['Open2020_annotated.pdf']};
+  const res = await cc({request, env:e, params});
+  assert.equal(res.status, 200);
+  assert.match(res.headers.get('Content-Disposition'), /C0042_Open2020/);
+  assert.equal(await res.text(), 'same bytes');
+  e.ASSETS = assets([]);
+  assert.equal((await cc({request, env:e, params})).status, 404);
+});

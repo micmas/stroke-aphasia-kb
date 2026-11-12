@@ -17,6 +17,7 @@ the app stops saving and says so (your decisions stay in the journal and are
 replayed the next time it starts).
 """
 from __future__ import annotations
+from paper_paths import resolve_paper
 
 import argparse
 import datetime as dt
@@ -180,7 +181,7 @@ class Store:
         if self.stage == "full_text":
             from urllib.parse import quote
             stem = str(c.get("key") or "").lstrip("@")
-            if stem and (ROOT / "papers" / f"{stem}.pdf").exists():
+            if stem and resolve_paper(ROOT / "papers", f"{stem}.pdf").exists():
                 pdf = f"/pdf/{quote(stem)}.pdf"
             elif c.get("pdf_file") and (ROOT / "papers" / c["pdf_file"]).exists():
                 pdf = f"/pdf/{quote(c['pdf_file'])}"         # saved under its download name (screen.py pdfs)
@@ -318,7 +319,7 @@ class Handler(BaseHTTPRequestHandler):
             return self._json({"cards": STORE.next(n, skip)})
         if u.path.startswith("/pdf/"):
             name = Path(unquote(u.path[5:])).name
-            p = ROOT / "papers" / name
+            p = resolve_paper(ROOT / 'papers', name)
             if p.suffix.lower() == ".pdf" and p.exists():
                 return self._send(200, p.read_bytes(), "application/pdf")
         return self._send(404, b"not found", "text/plain")

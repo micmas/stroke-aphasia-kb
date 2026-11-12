@@ -107,15 +107,15 @@ class Publish(unittest.TestCase):
         from unittest.mock import patch
         with tempfile.TemporaryDirectory() as d:
             papers = Path(d)
-            for cid in ("C0001", "C0002", "C0003"):
+            for cid in ("C0001", "C0002", "C0003", "C0004"):
                 (papers / f"{cid}_Paper.pdf").write_bytes(b"%PDF-1.4")
             rows = [{"id": cid, "stage": stage, "pdf_file": f"{cid}_Paper.pdf"}
                     for cid, stage in (("C0001", "awaiting_ta"), ("C0002", "unsure_ta"),
-                                       ("C0003", "excluded_ft"))]
+                                       ("C0003", "excluded_ft"), ("C0004", "included"))]
             with patch.object(P.S, "load_candidates", return_value=[]), \
                  patch.object(P.S, "kb_facts", return_value={}), \
                  patch.object(P.S, "enrich", return_value=rows):
-                self.assertEqual(set(P.fulltext_pdfs(papers, {})), {"C0001", "C0002"})
+                self.assertEqual(set(P.fulltext_pdfs(papers, {})), {"C0001", "C0002", "C0004"})
 
     def test_full_texts_to_assess_are_mirrored_and_removed_when_decided(self):
         import publish_portal as P
@@ -231,8 +231,8 @@ class Import(unittest.TestCase):
             rec = {"id": "C0001", "name": "smith.pdf", "bytes": len(pdf), "sha256": sha, "bucket": "b", "object": "uploads/c0001.pdf"}
             self.assertIn("would fetch", PI.apply_pdf(rec, "alex", False, state))
             msg = PI.apply_pdf(rec, "alex", True, state)
-            self.assertIn("papers/Smith2020.pdf", msg)
-            self.assertEqual((papers / "Smith2020.pdf").read_bytes(), pdf)
+            self.assertIn("papers/C0001_Smith2020.pdf", msg)
+            self.assertEqual((papers / "C0001_Smith2020.pdf").read_bytes(), pdf)
             self.assertEqual(got, [("b", "uploads/c0001.pdf")]); self.assertEqual(deleted, [("b", "uploads/c0001.pdf")])
             # second upload for the same paper: discarded, bucket copy removed
             self.assertIn("already in papers/", PI.apply_pdf(rec, "sam", True, state)); self.assertEqual(len(deleted), 2)
@@ -251,7 +251,7 @@ class Import(unittest.TestCase):
             # a local (portal_dev.py) upload is copied from portal/.uploads and removed there
             local = PI.PORTAL / ".uploads" / "c0004.pdf"; local.write_bytes(pdf); local.with_suffix(".json").write_text("{}")
             cands.append({"id": "C0004", "title": "Local", "key": "@Local2022"})
-            self.assertIn("papers/Local2022.pdf", PI.apply_pdf({"id": "C0004", "sha256": sha, "local_path": "portal/.uploads/c0004.pdf"}, "alex", True, state))
+            self.assertIn("papers/C0004_Local2022.pdf", PI.apply_pdf({"id": "C0004", "sha256": sha, "local_path": "portal/.uploads/c0004.pdf"}, "alex", True, state))
             self.assertFalse(local.exists()); self.assertFalse(local.with_suffix(".json").exists())
             self.assertEqual(state["pdfs_added"], 4)
         finally:

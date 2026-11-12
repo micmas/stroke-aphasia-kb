@@ -4,6 +4,7 @@ Preview is the default. Text-only review always leaves visual verification pendi
 The extraction batch must be stopped before --run (shared batch lock).
 """
 from __future__ import annotations
+from paper_paths import resolve_paper
 import argparse
 import fcntl
 import hashlib
@@ -64,6 +65,7 @@ def load_paper(run_dir, row):
     if read(folder/'status.json').get('status') != 'awaiting_independent_review':
         raise ValueError('Only completed paper pairs may be reviewed')
     pdf = Path(row['pdf'])
+    pdf = resolve_paper(pdf.parent, pdf.name)
     if digest(pdf) != row['pdf_sha256']:
         raise ValueError('PDF differs from frozen extraction source')
     arms, hashes = {}, {'pdf': digest(pdf)}

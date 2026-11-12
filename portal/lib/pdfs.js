@@ -29,11 +29,24 @@ export async function publicFiles(env, request) {
 
 export async function servePdf(env, prefix, name, request) {
   if (!env.PDFS) return new Response('PDF storage is not configured on this portal', { status: 503 });
-  const file = decodeURIComponent(name || '');
+  let file = decodeURIComponent(name || '');
   if (!SAFE.test(file)) return new Response('not found', { status: 404 });
   if (prefix === 'cc') {
     const allowed = await publicFiles(env, request);
+    if (allowed && !allowed.has(file) && !/^C\d+_/.test(file)) {
+      const matches = [...allowed].filter((f) => f.replace(/^C\d+_/, '') === file);
+      if (matches.length === 1) file = matches[0];
+    }
     if (!allowed || !allowed.has(file)) return new Response('not found', { status: 404, headers: { 'Cache-Control': 'no-store' } });
+  }
+  if (prefix === 'pdf' && !/^C\d+_/.test(file) && env.PDFS.list) {
+    let cursor, matches = [];
+    do {
+      const page = await env.PDFS.list({ prefix: 'pdf/C', cursor });
+      matches.push(...page.objects.map((o) => o.key.slice(4)).filter((f) => f.replace(/^C\d+_/, '') === file));
+      cursor = page.truncated ? page.cursor : undefined;
+    } while (cursor);
+    if (matches.length === 1) file = matches[0];
   }
   const key = `${prefix}/${file}`;
   const ifNoneMatch = request.headers.get('If-None-Match');

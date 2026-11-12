@@ -34,6 +34,7 @@ Presets name the groups identified on 2026-10-22:
                    (thinking on) and was retried with "at most 8 findings"
 """
 from __future__ import annotations
+from paper_paths import resolve_paper
 
 import argparse
 import datetime as dt
@@ -109,7 +110,7 @@ def _cli(argv=None) -> int:
     to_drafts, to_sandbox, missing = [], [], []
 
     for k in keys:
-        pdf = args.papers_dir / f"{k}.pdf"
+        pdf = resolve_paper(args.papers_dir, f"{k}.pdf")
         if not pdf.exists():
             missing.append(k)
             print(f"✗ {k}: no {pdf.name} in papers/ — skipped")
@@ -133,7 +134,7 @@ def _cli(argv=None) -> int:
                                  f"also cite it — remove the old findings at review)" if canon else ""))
         for f in drafts + sidecars(k):
             _move(f, superseded, args.execute)
-        ann = args.papers_dir / f"{k}_annotated.pdf"
+        ann = resolve_paper(args.papers_dir, f"{k}_annotated.pdf")
         if ann.exists() and args.execute:
             dst = superseded / "papers" / ann.name
             dst.parent.mkdir(parents=True, exist_ok=True)

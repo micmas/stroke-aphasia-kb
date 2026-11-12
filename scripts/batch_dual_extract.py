@@ -1,4 +1,5 @@
 """Run a frozen, explicitly selected main-paper cohort without changing KB drafts."""
+from paper_paths import resolve_paper
 import argparse
 import fcntl
 import hashlib
@@ -26,6 +27,7 @@ def load_manifest(path):
         pdf = Path(row['pdf'])
         if not pdf.is_absolute():
             pdf = path.parent / pdf
+        pdf = resolve_paper(pdf.parent, pdf.name)
         if hashlib.sha256(pdf.read_bytes()).hexdigest() != row.get('pdf_sha256'):
             raise ValueError(f'{key}: PDF checksum mismatch')
         row['pdf'] = str(pdf.resolve())

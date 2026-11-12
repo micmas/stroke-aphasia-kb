@@ -47,6 +47,7 @@ maps emails to the `human:<name>` used in the KB and says who may approve
 no approval right, and listed so you can add it.
 """
 from __future__ import annotations
+from paper_paths import paper_filename
 
 import argparse
 import datetime as dt
@@ -220,7 +221,7 @@ def apply_paper(rec: dict, by: str, execute: bool, state: dict) -> str:
     if c is None:
         if not rec.get("new_candidate") or not rid.startswith("U"):
             return "skip: matched candidate no longer exists"
-        c = {"id": rid, "title": title, "doi": doi or None, "sources": [], "screening": []}
+        c = {"id": S.next_id(cands), "title": title, "doi": doi or None, "sources": [], "screening": []}
         cands.append(c)
     elif doi and c.get("doi") and str(c["doi"]).lower() != doi:
         return "skip: DOI conflicts with candidate"
@@ -556,7 +557,7 @@ def pdf_destination(rec: dict, state: dict) -> tuple[Path | None, dict | None, s
         key = str(c["key"]).lstrip("@")
         if not CITATION_KEY.match(key):
             return None, c, f"skip: candidate {c.get('id')} has a malformed key {c['key']!r}"
-        name = f"{key}.pdf"
+        name = paper_filename(c)
     elif c.get("pdf_file"):
         name = str(c["pdf_file"])
     else:

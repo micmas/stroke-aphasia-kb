@@ -73,8 +73,8 @@ class EndNote(unittest.TestCase):
                 E.run(pkg, True, True, None, "tester", root=d, papers=papers, log=log)
             finally:
                 E.wanted, E.S.load_candidates, E.S.save_candidates = saved
-            self.assertEqual(sorted(p.name for p in papers.iterdir()), ["C0002_lee.pdf", "C0003_roy.pdf", "Smith2020.pdf"])
-            self.assertEqual((papers / "Smith2020.pdf").read_bytes(), b"%PDF-1.4 111/smith.pdf")   # the first attachment
+            self.assertEqual(sorted(p.name for p in papers.iterdir()), ["C0001_Smith2020.pdf", "C0002_lee.pdf", "C0003_roy.pdf"])
+            self.assertEqual((papers / "C0001_Smith2020.pdf").read_bytes(), b"%PDF-1.4 111/smith.pdf")   # the first attachment
             self.assertEqual(register[1]["pdf_file"], "C0002_lee.pdf"); self.assertNotIn("pdf_file", register[0])
             self.assertEqual(len(written), 1)
             self.assertEqual(log.read_text().count("ENDNOTE-PDF"), 3)
