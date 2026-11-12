@@ -17,6 +17,18 @@ bucket; only bibliographic metadata and intake records enter GitHub.
 
 The normal **Apply** operation registers the paper without promoting it to the top
 of title/abstract screening. Full-text screening can still prioritise available PDFs.
+During Apply, the panel shows a live **Applying N of M** counter, followed by
+**Checking changes**, **Publishing changes** and **Rebuilding sites**. The counter
+reports records being processed, not approved findings. It comes from the workflow;
+fast records may finish between the three-second refreshes. The two site builds
+are matched to the exact commit that Apply published. A failed check or rebuild
+is shown separately, never as a completed publication.
+
+After successful publication, refresh the portal and continue screening. Screening
+decisions need no terminal command. Uploaded PDFs are separate: use `kb.py sync`,
+or `kb.py sync --intake --wait` to also prepare them once processing is idle.
+Neither starts model extraction or local source review.
+
 The maintainer panel counts only hosted actions in its Apply button. Uploaded PDFs
 are listed separately as awaiting local download. Edits whose draft no longer
 exists remain preserved in the inbox and are listed as needing attention; repeated
@@ -166,7 +178,10 @@ Record kinds, and what the import does with them:
    Creative-Commons PDFs public.
 4. **GitHub token.** Fine-grained, this repository only, *Contents: read
    and write* and *Actions: read and write* (the second is what lets the
-   Apply button start the workflow). It is the portal's only secret.
+   Apply button start the workflow). Live progress reads GitHub Checks, which are
+   readable for this public repository; a private deployment also needs *Checks:
+   read*. The workflow itself uses its short-lived token with *Checks: write* to
+   publish progress, without making extra Git commits. It is the portal's only secret.
 5. **Variables.** `ACCESS_TEAM_DOMAIN` (the team name), `ACCESS_AUD`,
    `GITHUB_REPO`, `GITHUB_BRANCH`, `MAINTAINERS` (who may press Apply) in
    `portal/wrangler.toml`; the token as a secret: `npx wrangler pages

@@ -52,6 +52,8 @@ import argparse
 import datetime as dt
 import hashlib
 import json
+import os
+import urllib.request
 import re
 import shutil
 import subprocess
@@ -639,6 +641,83 @@ def _draft_digest(path: Path) -> str | None:
         return None
 
 
+
+def _progress_request(method, endpoint, body=None):
+    token = os.environ.get("GITHUB_TOKEN", "")
+    repo = os.environ.get("GITHUB_REPOSITORY", "")
+    request = urllib.request.Request(
+        f"https://api.github.com/repos/{repo}/{endpoint}",
+        data=json.dumps(body).encode() if body is not None else None,
+        method=method, headers={"Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json", "Content-Type": "application/json",
+        "X-GitHub-Api-Version": "2022-11-28"})
+    with urllib.request.urlopen(request, timeout=10) as response:
+        return json.load(response)
+
+
+class ApplyProgress:
+    """Optional hosted telemetry, never a source of approval or a Git commit."""
+    def __init__(self, total, execute):
+        self.total = total
+        self.check_id = None
+        if not execute or os.environ.get("PORTAL_APPLY_PROGRESS") != "1":
+            return
+        if not all(os.environ.get(k) for k in ("GITHUB_TOKEN", "GITHUB_REPOSITORY", "GITHUB_RUN_ID", "GITHUB_SHA")):
+            return
+        try:
+            result = _progress_request("POST", "check-runs", {
+                "name": "Portal apply progress", "head_sha": os.environ["GITHUB_SHA"],
+                "external_id": f"portal-apply:{os.environ['GITHUB_RUN_ID']}:{os.environ.get('GITHUB_RUN_ATTEMPT', '1')}",
+                "status": "in_progress", "output": self.output(0, 0, "applying")})
+            self.check_id = result["id"]
+            if os.environ.get("GITHUB_ENV"):
+                with open(os.environ["GITHUB_ENV"], "a") as f:
+                    f.write(f"PORTAL_PROGRESS_ID={self.check_id}\n")
+        except Exception:
+            print("Live progress unavailable; processing continues. See the workflow log.")
+
+    def output(self, current, processed, phase):
+        return {"title": f"Processing {processed} of {self.total} records",
+                "summary": json.dumps({"version": 1, "total": self.total,
+                "current": current, "processed": processed, "phase": phase})}
+
+    def update(self, current, processed, phase="applying"):
+        if self.check_id is None:
+            return
+        try:
+            _progress_request("PATCH", f"check-runs/{self.check_id}",
+                              {"output": self.output(current, processed, phase)})
+        except Exception:
+            print("Live progress update unavailable; processing continues.")
+
+
+def publish_apply_progress():
+    """Bind the downstream rebuild to the exact commit the apply job pushed."""
+    check_id = os.environ.get("PORTAL_PROGRESS_ID")
+    sha = os.environ.get("PORTAL_PUBLISHED_SHA")
+    if not check_id or not sha:
+        return
+    try:
+        check = _progress_request("GET", f"check-runs/{check_id}")
+        summary = json.loads(check["output"]["summary"])
+        summary.update(phase="published", published_sha=sha)
+        _progress_request("PATCH", f"check-runs/{check_id}", {"output": {
+            "title": "Changes published; sites rebuilding", "summary": json.dumps(summary)}})
+    except Exception:
+        print("Publication progress unavailable; use the workflow links.")
+
+
+def finish_apply_progress():
+    check_id = os.environ.get("PORTAL_PROGRESS_ID")
+    if check_id:
+        try:
+            # This neutral check reports progress only. The actual workflow decides success.
+            _progress_request("PATCH", f"check-runs/{check_id}",
+                              {"status": "completed", "conclusion": "neutral"})
+        except Exception:
+            print("Could not close live progress; the workflow result remains authoritative.")
+
+
 def run(execute: bool, promote: bool, only_kind: str | None, skip_kinds: tuple[str, ...] = (), intake: bool = False) -> int:
     files = sorted(INBOX.glob("*.json")) if INBOX.is_dir() else []
     if not files:
@@ -664,6 +743,10 @@ def run(execute: bool, promote: bool, only_kind: str | None, skip_kinds: tuple[s
             d = _draft(str(rec.get("id")))
             if d is not None and str(d.resolve()) not in state["batch_start"]:
                 state["batch_start"][str(d.resolve())] = _draft_digest(d)
+    total = sum(isinstance(r, dict) and (not only_kind or r.get("kind") == only_kind)
+                and r.get("kind") not in skip_kinds for r in records.values())
+    progress = ApplyProgress(total, execute)
+    position = 0
     for f in _order(list(records), records):
         rec = records[f]
         if not isinstance(rec, dict):
@@ -672,6 +755,8 @@ def run(execute: bool, promote: bool, only_kind: str | None, skip_kinds: tuple[s
         kind = str(rec.get("kind"))
         if (only_kind and kind != only_kind) or kind in skip_kinds:
             continue
+        position += 1
+        progress.update(position, position - 1)
         rec["_record"] = f.name
         by, approver, known = who(rec.get("reviewer"), table)
         if not known:
@@ -751,6 +836,7 @@ def run(execute: bool, promote: bool, only_kind: str | None, skip_kinds: tuple[s
                 print("Run `python scripts/intake_papers.py --execute` to clean, OCR, check, name and sync them.")
     else:
         print(f"\nDry run: {len(done)} of {len(files)} record(s) would be dealt with. Add --execute.")
+    progress.update(total, total, "checking")
     if unknown:
         print(f"Unknown reviewer email(s) — add them to portal/reviewers.yaml: {', '.join(sorted(unknown))}")
     if statuses.get("error"):

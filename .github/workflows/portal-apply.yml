@@ -29,6 +29,7 @@ on:
 
 permissions:
   contents: read
+  checks: write
 
 concurrency:
   group: portal-apply
@@ -66,6 +67,9 @@ jobs:
         if: steps.inbox.outputs.count != '0'
       - name: Apply the inbox
         if: steps.inbox.outputs.count != '0'
+        env:
+          PORTAL_APPLY_PROGRESS: "1"
+          GITHUB_TOKEN: ${{ github.token }}
         run: python3 scripts/portal_import.py --execute --promote --skip-pdf
       - name: Citation keys for papers included at full text
         # Crossref lookups (screen.py register); renaming PDFs is left to the maintainer's
@@ -93,6 +97,7 @@ jobs:
         env:
           # passed as data, never pasted into the script (a crafted value cannot run as shell)
           REQUESTED_BY: ${{ github.event.inputs.requested_by }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           git config user.name "micmas"
           git config user.email "michelemt8@gmail.com"
@@ -103,7 +108,16 @@ jobs:
           who="$(printf '%s' "$REQUESTED_BY" | tr -cd '[:alnum:]@._+ -' | cut -c1-120)"
           git commit -m "Portal reviews applied${who:+ (requested by $who)}" -m "Applied by the portal-apply workflow from logs/portal/inbox/."
           for i in 1 2 3; do
-            if git push; then echo "pushed=yes" >> "$GITHUB_OUTPUT"; exit 0; fi
+            if git push; then
+              echo "pushed=yes" >> "$GITHUB_OUTPUT"
+              PORTAL_PUBLISHED_SHA="$(git rev-parse HEAD)" python3 -c "import sys; sys.path.insert(0, 'scripts'); from portal_import import publish_apply_progress; publish_apply_progress()"
+              exit 0
+            fi
             git pull --rebase
           done
           exit 1
+      - name: Close progress report
+        if: always() && env.PORTAL_PROGRESS_ID != ''
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 -c "import sys; sys.path.insert(0, 'scripts'); from portal_import import finish_apply_progress; finish_apply_progress()"

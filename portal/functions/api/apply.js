@@ -12,12 +12,60 @@ export const WORKFLOW = 'portal-apply.yml';
 const maintainers = (env) => String(env.MAINTAINERS || '').toLowerCase().split(/[\s,;]+/).filter(Boolean);
 export const isMaintainer = (env, email) => maintainers(env).includes(String(email || '').toLowerCase());
 
+export async function runProgress(env, run) {
+  const result = { progress: null, phase: null, publication: null };
+  if (!run.id || !run.head_sha) return result;
+  try {
+    const checks = await gh(env, `commits/${run.head_sha}/check-runs?check_name=Portal%20apply%20progress&per_page=100`);
+    if (checks.ok) {
+      const expected = `portal-apply:${run.id}:${run.run_attempt || 1}`;
+      const check = (await checks.json()).check_runs?.find(c => c.external_id === expected);
+      if (check) {
+        const p = JSON.parse(check.output.summary);
+        if (p.version === 1 && ['total','current','processed'].every(k => Number.isSafeInteger(p[k]) && p[k] >= 0)
+            && p.current <= p.total && p.processed <= p.total) result.progress = p;
+      }
+    }
+  } catch { /* Progress is optional; never make the Apply controls unavailable. */ }
+  if (run.status !== 'completed') {
+    try {
+      const jobs = await gh(env, `actions/runs/${run.id}/attempts/${run.run_attempt || 1}/jobs?per_page=100`);
+      if (jobs.ok) {
+        const step = (await jobs.json()).jobs?.flatMap(j => j.steps || []).find(s => s.status === 'in_progress');
+        const name = step?.name || '';
+        result.phase = name === 'Apply the inbox' ? 'applying'
+          : name.includes('Citation keys') ? 'registering'
+          : name.includes('checks before publishing') ? 'checking'
+          : name === 'Commit and push' ? 'publishing' : 'preparing';
+      }
+    } catch { /* The record counter remains useful if job status is unavailable. */ }
+  }
+  const sha = result.progress?.published_sha;
+  if (run.status === 'completed' && run.conclusion === 'success' && /^[a-f0-9]{40}$/.test(sha || '')) {
+    try {
+      const builds = await gh(env, `actions/runs?head_sha=${sha}&per_page=100`);
+      if (builds.ok) {
+        const runs = (await builds.json()).workflow_runs || [];
+        const sites = ['portal.yml','pages.yml'].map(file => {
+          const r = runs.find(x => String(x.path || '').split('@')[0].endsWith('/' + file));
+          return { site: file === 'portal.yml' ? 'portal' : 'explorer',
+            status: r?.status || 'queued', conclusion: r?.conclusion || null, url: r?.html_url || null };
+        });
+        const failed = sites.some(s => s.status === 'completed' && s.conclusion !== 'success');
+        result.publication = { sha, sites, status: failed ? 'failure'
+          : sites.every(s => s.status === 'completed' && s.conclusion === 'success') ? 'success' : 'in_progress' };
+      }
+    } catch { /* Do not invent a successful rebuild when its status is unavailable. */ }
+  }
+  return result;
+}
+
 async function latestRun(env) {
   const res = await gh(env, `actions/workflows/${WORKFLOW}/runs?per_page=1`);
   if (res.status === 404) return null;                       // the workflow file is not on the branch yet
   if (!res.ok) throw Object.assign(new Error(`GitHub ${res.status} reading the workflow runs`), { status: 502 });
   const run = (await res.json()).workflow_runs?.[0];
-  return run ? { status: run.status, conclusion: run.conclusion, started: run.run_started_at || run.created_at, updated: run.updated_at, url: run.html_url, event: run.event } : null;
+  return run ? { status: run.status, conclusion: run.conclusion, started: run.run_started_at || run.created_at, updated: run.updated_at, url: run.html_url, event: run.event, ...(await runProgress(env, run)) } : null;
 }
 
 /** Separate records the hosted workflow can act on from local PDF intake and orphan edits.
