@@ -26,7 +26,7 @@ const VOCAB = {
   target_kind: ['impairment', 'therapy', 'region', 'prognosis', 'predictor'],
   supports: ['claim', 'method', 'sample', 'statistics', 'confounders', 'region_definition', 'limitation', 'imaging_details'],
 };
-import { prioritizePapers, mergePendingPapers } from './paper-intake.js';
+import { orderScreeningPapers, mergePendingPapers } from './paper-intake.js';
 import { carryOver, sameBuild } from './review-state.js';
 
 const state = { me: null, manifest: null, kb: null, bindings: {}, bindingProblem: '', screening: null, screeningIndex: [], mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
@@ -467,7 +467,7 @@ function screenQueue(stage) {
   for (const n of state.mine.inbox) { const id = screenId(n); if (id) sentIds.add(id); }
   for (const n of state.mine.applied) { const id = screenId(n); if (id && stampAt(n) > builtAt) sentIds.add(id); }
   const all = sc.candidates.filter((c) => stages.includes(c.stage));
-  const cands = prioritizePapers(all.filter((c) => !sentIds.has(slug(c.id)) && !sentIds.has(c.id)), state.uploads);
+  const cands = orderScreeningPapers(all.filter((c) => !sentIds.has(slug(c.id)) && !sentIds.has(c.id)), state.uploads, stage);
   return { cands, hidden: all.length - cands.length };
 }
 
@@ -723,14 +723,14 @@ function anyPaperUpload() {
       }
       state.uploads.push(result.upload);
       if (state.screening) state.screening.candidates = mergePendingPapers(state.screening.candidates, state.uploads, state.screeningIndex);
-      toast(result.matched ? 'PDF linked to the existing record. Pending screening gets priority.' : 'Paper added from another source, with its PDF, at the top of title/abstract screening.');
+      toast(result.matched ? 'PDF linked. Title/abstract screening stays in its current order.' : 'Paper added from another source, with its PDF, at the end of title/abstract screening.');
       for (const file of result.files || []) state.mine.inbox.push(file.split('/').pop());
       render();
     } catch (e) { message.textContent = e.message; toast(e.message, true); }
     finally { busy = false; button.disabled = false; picker.disabled = false; }
   } });
   return dropZone(h('section', { class: 'notice' }, h('h2', { text: 'Upload any paper' }),
-    h('p', { text: 'Drop a PDF here or choose a file. We check the full screening register first. Matching papers get their PDF and priority; new papers enter screening as records from other sources. Existing screening decisions are preserved.' }),
+    h('p', { text: 'Drop a PDF here or choose a file. We check the full screening register first. Matching papers get their PDF without moving the title/abstract queue; new papers are appended as records from other sources. Existing screening decisions are preserved.' }),
     picker, message, h('label', {}, 'Paper title', title), h('label', {}, 'DOI (optional)', doi), choices, button), choose);
 }
 

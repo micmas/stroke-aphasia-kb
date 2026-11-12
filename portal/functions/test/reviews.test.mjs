@@ -34,6 +34,8 @@ test('one record is one contents-API commit', async () => {
   const out = await res.json();
   assert.equal(res.status, 200);
   assert.equal(calls.length, 1);
+  assert.deepEqual(calls[0].body.author, {name:'micmas',email:'michelemt8@gmail.com'});
+  assert.deepEqual(calls[0].body.committer, calls[0].body.author);
   assert.match(calls[0].url, /contents\/logs\/portal\/inbox\/\d{8}T\d{6}Z_screen_alex_c0001\.json$/);
   assert.equal(out.files.length, 1); assert.equal(out.file, out.files[0]); assert.equal(out.commit, 'abc1234');
 });
@@ -52,6 +54,8 @@ test('several records are one commit with one file each', async () => {
   const rec = JSON.parse(tree.tree[1].content);
   assert.equal(rec.kind, 'screen'); assert.equal(rec.decision, 'exclude'); assert.equal(rec.reviewer, 'alex@example.org'); assert.equal(rec.portal, 1);
   assert.equal(calls[2].body.parents[0], headSha);
+  assert.deepEqual(calls[2].body.author, {name:'micmas',email:'michelemt8@gmail.com'});
+  assert.deepEqual(calls[2].body.committer, calls[2].body.author);
   assert.match(calls[2].body.message, /^Portal: 3 screen, comment records by alex@example.org$/);
   assert.equal(calls[3].body.force, false);
   assert.equal(out.files.length, 3); assert.equal(out.commit, 'c0ffee1');

@@ -81,3 +81,11 @@ outside the repository. Use `~/Documents/agent-work/stroke-aphasia-kb/` locally,
 with a dated subfolder for each task. Current user documentation belongs here;
 source provenance, approval records and tests remain versioned with the product.
 Superseded committed documents remain recoverable through Git history.
+
+## Dependencies and Git ownership
+
+`requirements.txt` installs local research tools. `.github/requirements.txt` is
+the smaller environment for automated checks and builds, avoiding local-only
+neuroimaging dependencies in CI. Install `pytest` as well to run tests locally.
+Repository and portal commits use `micmas <michelemt8@gmail.com>`. Authenticated
+reviewer identities and model provenance remain in audit records independently.

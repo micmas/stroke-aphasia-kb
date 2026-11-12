@@ -2,6 +2,9 @@
 // logs/portal/inbox/ through the GitHub contents API (one commit per record).
 // Shared by functions/api/reviews.js and functions/api/upload.js.
 
+// Git ownership is separate from the authenticated reviewer in each audit record.
+export const COMMIT_IDENTITY = { name: 'micmas', email: 'michelemt8@gmail.com' };
+
 export const INBOX = 'logs/portal/inbox';
 export const APPLIED = 'logs/portal/applied';
 
@@ -43,7 +46,7 @@ export async function putRecord(env, reviewer, kind, id, body) {
   const content = btoa(unescape(encodeURIComponent(text)));
   const res = await gh(env, `contents/${INBOX}/${name}`, {
     method: 'PUT',
-    body: JSON.stringify({ message: `Portal ${kind}: ${id} by ${reviewer.email}`, content, branch: env.GITHUB_BRANCH || 'main' }),
+    body: JSON.stringify({ message: `Portal ${kind}: ${id} by ${reviewer.email}`, content, branch: env.GITHUB_BRANCH || 'main', author: COMMIT_IDENTITY, committer: COMMIT_IDENTITY }),
   });
   if (!res.ok) {
     const text = await res.text();
@@ -81,7 +84,7 @@ export async function putRecords(env, reviewer, records) {
     });
     if (!treeRes.ok) await fail(treeRes, 'writing the tree');
     const tree = (await treeRes.json()).sha;
-    const commitRes = await gh(env, 'git/commits', { method: 'POST', body: JSON.stringify({ message, tree, parents: [head] }) });
+    const commitRes = await gh(env, 'git/commits', { method: 'POST', body: JSON.stringify({ message, tree, parents: [head], author: COMMIT_IDENTITY, committer: COMMIT_IDENTITY }) });
     if (!commitRes.ok) await fail(commitRes, 'writing the commit');
     const sha = (await commitRes.json()).sha;
     const moveRes = await gh(env, `git/refs/heads/${encodeURIComponent(branch)}`, { method: 'PATCH', body: JSON.stringify({ sha, force: false }) });

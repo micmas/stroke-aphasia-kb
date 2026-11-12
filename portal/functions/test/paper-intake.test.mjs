@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { matchPapers, prioritizePapers, mergePendingPapers } from '../../web/paper-intake.js';
+import { matchPapers, prioritizePapers, orderScreeningPapers, mergePendingPapers } from '../../web/paper-intake.js';
 import { onRequestPost } from '../api/paper-upload.js';
 
 test('DOI canonicalization, title fallback and conflicting DOI protection', () => {
@@ -59,4 +59,16 @@ test('applied exclusions do not reappear through stale upload metadata',()=>{
  const ups=[{id:'Uold',candidate:{id:'Uold',stage:'awaiting_ta'}}];
  assert.deepEqual(mergePendingPapers([],ups,[{id:'Uold',stage:'excluded_ta'}]),[]);
  assert.deepEqual(mergePendingPapers([],ups,[{id:'C1',upload_ids:['Uold'],stage:'included'}]),[]);
+});
+
+
+test('PDF uploads keep title/abstract order and append new papers', () => {
+  const original = [{id:'C1'}, {id:'C2',pdf_uploaded_at:'2026-11-12'}];
+  const uploads = [{id:'C2',uploaded:'2026-11-13'},
+    {id:'U1',uploaded:'2026-11-14',candidate:{id:'U1',stage:'awaiting_ta'}}];
+  const combined = mergePendingPapers(original, uploads);
+  assert.deepEqual(orderScreeningPapers(combined, uploads, 'ta').map(c=>c.id), ['C1','C2','U1']);
+  assert.deepEqual(orderScreeningPapers(combined, [], 'ta').map(c=>c.id), ['C1','C2','U1']);
+  assert.deepEqual(original.map(c=>c.id), ['C1','C2']);
+  assert.equal(orderScreeningPapers(original, uploads, 'ft')[0].id, 'C2');
 });

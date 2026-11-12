@@ -255,3 +255,18 @@ class Import(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=1)
+
+
+def test_upload_does_not_reorder_built_title_abstract_queue(monkeypatch, tmp_path):
+    import publish_portal as P
+    import screen as SC
+    rows = [dict(id='C1', stage='awaiting_ta', pdf_uploaded_at='2026-11-12'),
+            dict(id='C2', stage='awaiting_ta'),
+            dict(id='C3', stage='awaiting_ta', pdf_uploaded_at='2026-11-13')]
+    monkeypatch.setattr(SC, 'load_abstracts', lambda: {})
+    monkeypatch.setattr(P.S, 'collect', lambda root: dict(candidates=rows, searches=[], reasons={}, stageLabels={}))
+    monkeypatch.setattr(P.S, 'load_candidates', lambda root: rows)
+    monkeypatch.setattr(P.S, 'load_strategies', lambda: {})
+    monkeypatch.setattr(SC, 'rank_order', lambda *a: (['C2','C1','C3'], {}))
+    bundle = P.screening_bundle(tmp_path, ta_limit=2)
+    assert [r['id'] for r in bundle['candidates']] == ['C2','C1','C3']

@@ -12,6 +12,10 @@ export function prioritizePapers(candidates, uploads) {
   const stamp = (c) => uploads.filter((u) => [c.id, c.key, ...(c.upload_ids || [])].filter(Boolean).map(String).some((id) => id.replace(/^@/, '') === String(u.id).replace(/^@/, ''))).reduce((s, u) => String(u.uploaded || '') > s ? String(u.uploaded) : s, String(c.pdf_uploaded_at || ''));
   return [...candidates].sort((a, b) => stamp(b).localeCompare(stamp(a)));
 }
+// Uploads must not move the title/abstract card a reviewer is working through.
+export function orderScreeningPapers(candidates, uploads, stage) {
+  return stage === 'ta' ? [...candidates] : prioritizePapers(candidates, uploads);
+}
 export function mergePendingPapers(candidates, uploads, register = candidates) {
   const out = [...candidates];
   for (const u of uploads) {

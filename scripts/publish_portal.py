@@ -423,9 +423,10 @@ def screening_bundle(root: Path = ROOT, ta_limit: int = 300) -> dict:
         except Exception as e:  # noqa: BLE001
             print(f"  ⚠ prioritised ranking failed ({str(e)[:80]}); taking the first {ta_limit} by id")
             ta_ids = sorted(ta_ids)[:ta_limit]
-    # Uploaded papers must survive the capped T/A queue, even if not highly ranked.
-    priority = sorted((r for r in rows.values() if r.get("pdf_uploaded_at") and r["stage"] in ("awaiting_ta", "unsure_ta")), key=lambda r: str(r["pdf_uploaded_at"]), reverse=True)
-    ta_ids = list(dict.fromkeys([r["id"] for r in priority] + ta_ids))[:max(ta_limit, len(priority))]
+    # Keep the ranked T/A order stable; uploads outside the capped page are appended.
+    uploaded_ta = [r["id"] for r in rows.values() if r.get("pdf_uploaded_at")
+                   and r["stage"] in ("awaiting_ta", "unsure_ta")]
+    ta_ids = list(dict.fromkeys(ta_ids + uploaded_ta))
     ft_ids.sort(key=lambda cid: str(rows[cid].get("pdf_uploaded_at") or ""), reverse=True)
     cands = []
     for cid in ta_ids + ft_ids:

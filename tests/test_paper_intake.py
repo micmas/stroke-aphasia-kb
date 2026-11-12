@@ -33,7 +33,7 @@ def test_invalid_or_conflicting_identity_is_not_written(monkeypatch):
     assert P.apply_paper(record(id='C1'),'Test',True,state).startswith('skip:')
     assert 'pdf_uploaded_at' not in state['candidates'][0]
 
-def test_uploaded_candidate_is_included_above_ranked_queue_limit(monkeypatch,tmp_path):
+def test_uploaded_candidate_is_appended_beyond_ranked_queue_limit(monkeypatch,tmp_path):
     import publish_portal as B
     import screen as SC
     rows=[{'id':'C1','title':'Ranked paper','stage':'awaiting_ta'}, {'id':'C2','title':'Uploaded paper','stage':'awaiting_ta','pdf_uploaded_at':'2026-11-12T00:00:00Z'}]
@@ -43,5 +43,5 @@ def test_uploaded_candidate_is_included_above_ranked_queue_limit(monkeypatch,tmp
     monkeypatch.setattr(SC,'load_abstracts',lambda:{})
     monkeypatch.setattr(SC,'rank_order',lambda *a:(['C1','C2'],{'ranked':True}))
     bundle=B.screening_bundle(tmp_path,ta_limit=1)
-    assert [c['id'] for c in bundle['candidates']]==['C2']
-    assert bundle['candidates'][0]['pdf_uploaded_at']=='2026-11-12T00:00:00Z'
+    assert [c['id'] for c in bundle['candidates']]==['C1','C2']
+    assert bundle['candidates'][1]['pdf_uploaded_at']=='2026-11-12T00:00:00Z'

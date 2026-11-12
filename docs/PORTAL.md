@@ -9,13 +9,14 @@ then normalized title. Ambiguous matches require selection; conflicting DOIs
 require correction. An unrecognized title or missing DOI can still need a later
 manual duplicate check.
 
-A matching paper keeps its screening decisions and receives priority if still
-awaiting screening. An unmatched paper enters title/abstract screening as a record
+A matching paper keeps its screening decisions and its title/abstract queue position.
+An unmatched paper is appended to title/abstract screening as a record
 from another source, with its uploaded PDF available to reviewers immediately.
 Uploading never includes a paper automatically. PDFs stay in the private upload
 bucket; only bibliographic metadata and intake records enter GitHub.
 
-The normal **Apply** operation registers the paper and preserves its priority.
+The normal **Apply** operation registers the paper without promoting it to the top
+of title/abstract screening. Full-text screening can still prioritise available PDFs.
 The maintainer panel counts only hosted actions in its Apply button. Uploaded PDFs
 are listed separately as awaiting local download. Edits whose draft no longer
 exists remain preserved in the inbox and are listed as needing attention; repeated
