@@ -46,27 +46,37 @@ def paper(tmp_path,monkeypatch):
     return run,row,tmp_path/'reviews'
 
 
+def stage_result(prompt, schema):
+    if prompt.startswith('TASK: DECISIONS'):
+        return {key: {'action':'retain','final_ids':['R001'],'reason':'Source confirms the null.',
+                      'evidence':inventory()['analyses'][0]['evidence']} for key in schema['properties']}
+    if prompt.startswith('TASK: COVERAGE'):
+        return {key: {'status':'covered','final_ids':['R001'],'reason':'Null association.'}
+                for key in schema['properties']}
+    return inventory()
+
+
 def responses(monkeypatch, invalid=False):
     prompts=[]
     def chat(prompt,**kwargs):
         prompts.append(prompt)
-        result=inventory() if len(prompts)%2 else final()
-        if invalid and len(prompts)%2==0:result['decisions']=[]
+        result=stage_result(prompt,kwargs['fmt'])
+        if invalid and prompt.startswith('TASK: DECISIONS'):result={}
         return {'text':json.dumps(result),'truncated_input':False,'truncated_output':False}
     monkeypatch.setattr(r,'chat',chat)
     return prompts
 
 
-def test_two_stages_resume_and_never_approve(paper,monkeypatch):
+def test_staged_review_resume_and_never_approve(paper,monkeypatch):
     run,row,out=paper;prompts=responses(monkeypatch)
     before={str(p):r.digest(p) for p in run.rglob('*') if p.is_file()}
     assert r.batch(run,out,'reviewer',True)==0
-    assert len(prompts)==2 and 'EXTRACTIONS:' not in prompts[0] and 'EXTRACTIONS:' in prompts[1]
+    assert len(prompts)==4 and 'EXTRACTIONS:' not in prompts[0] and 'EXTRACTIONS:' in prompts[1]
     state=r.read(out/row['key']/'status.json')
     assert state['status']=='requires_visual_review' and state['approved'] is False
     assert r.read(out/row['key']/'visual-review-required.json')['pages']==[1]
     assert r.batch(run,out,'reviewer',True)==0
-    assert len(prompts)==2
+    assert len(prompts)==4
     assert before=={str(p):r.digest(p) for p in run.rglob('*') if p.is_file()}
 
 
@@ -126,7 +136,7 @@ def test_truncation_preserves_raw_and_never_exports_inventory(paper,monkeypatch)
 def test_saved_review_tamper_not_reused(paper,monkeypatch):
     run,row,out=paper;prompts=responses(monkeypatch);r.batch(run,out,'reviewer',True)
     (out/row['key']/'inventory.json').write_text('{}')
-    assert r.batch(run,out,'reviewer',True)==1 and len(prompts)==2
+    assert r.batch(run,out,'reviewer',True)==1 and len(prompts)==4
 
 
 def test_output_must_not_touch_extraction(paper):
@@ -143,16 +153,17 @@ def test_review_uses_constrained_schema_and_records_it(paper, monkeypatch):
     calls=[]
     def chat(prompt, **kwargs):
         calls.append((prompt, kwargs))
-        return {'text':json.dumps(inventory() if len(calls)==1 else final())}
+        return {'text':json.dumps(stage_result(prompt,kwargs['fmt']))}
     monkeypatch.setattr(r,'chat',chat)
     assert r.batch(run,out,'reviewer',True)==0
-    for stage, (_, kwargs) in zip(['source-first','reconciliation'], calls):
+    for stage, (_, kwargs) in zip(['source-first','inventory-review','decisions-001','coverage-001'], calls):
         schema=kwargs['fmt']
         assert schema['type']=='object' and schema['additionalProperties'] is False
         assert schema['required']==list(schema['properties'])
         assert r.read(out/row['key']/stage/'response-schema.json')==schema
     assert 'BLIND_AUDIT' in calls[1][0]
-    assert calls[1][1]['fmt']['properties']['decisions']['items']['properties']['arm']['enum']==['A','B']
+    assert list(calls[2][1]['fmt']['properties'])==['A:a1','B:a1']
+    assert calls[2][1]['fmt']['properties']['A:a1']['properties']['final_ids']['items']['enum']==['R001']
 
 
 def test_duplicate_decisions_still_fail_closed(paper,monkeypatch):
@@ -188,3 +199,64 @@ def test_interrupt_is_preserved_as_interrupted(paper,monkeypatch):
     with pytest.raises(KeyboardInterrupt):r.batch(run,out,'reviewer',True)
     assert r.read(out/row['key']/'status.json')['status']=='interrupted'
     assert not (out/row['key']/'inventory.json').exists()
+
+
+def test_borrowed_cluster_intervals_stop_before_decisions(paper,monkeypatch):
+    run,row,out=paper;calls=[]
+    def chat(prompt,**kwargs):
+        calls.append(prompt); result=inventory()
+        if prompt.startswith('TASK: INVENTORY'):
+            result['analyses'][0]['estimates']=[{'term':'temporal cluster','value':'-0.158',
+                'statistic':'95% CI -0.158 to -0.064','p':'not_reported'}]
+        return {'text':json.dumps(result)}
+    monkeypatch.setattr(r,'chat',chat)
+    assert r.batch(run,out,'reviewer',True)==1
+    assert len(calls)==2
+    assert r.read(out/row['key']/'status.json')['status']=='requires_revision'
+    assert any('numeric tokens' in issue for issue in r.read(out/row['key']/'inventory-review/audit.json'))
+    assert not (out/row['key']/'inventory.json').exists()
+    assert not (out/row['key']/'decisions-001').exists()
+
+
+def test_invalid_final_id_stops_before_coverage(paper,monkeypatch):
+    run,row,out=paper;calls=[]
+    def chat(prompt,**kwargs):
+        calls.append(prompt);result=stage_result(prompt,kwargs['fmt'])
+        if prompt.startswith('TASK: DECISIONS'):result['A:a1']['final_ids']=['a4']
+        return {'text':json.dumps(result)}
+    monkeypatch.setattr(r,'chat',chat)
+    assert r.batch(run,out,'reviewer',True)==1
+    assert len(calls)==3
+    assert not (out/row['key']/'coverage-001').exists()
+    assert not (out/row['key']/'provisional-extraction.txt').exists()
+
+
+def test_missing_unit_stops_at_coverage_gate(paper,monkeypatch):
+    run,row,out=paper
+    def chat(prompt,**kwargs):
+        result=stage_result(prompt,kwargs['fmt'])
+        if prompt.startswith('TASK: COVERAGE'):result={}
+        return {'text':json.dumps(result)}
+    monkeypatch.setattr(r,'chat',chat)
+    assert r.batch(run,out,'reviewer',True)==1
+    assert r.read(out/row['key']/'status.json')['status']=='requires_revision'
+    assert not (out/row['key']/'inventory.json').exists()
+
+
+def test_summary_ids_follow_frozen_inventory(paper,monkeypatch):
+    run,row,out=paper;responses(monkeypatch)
+    assert r.batch(run,out,'reviewer',True)==0
+    inv=r.read(out/row['key']/'inventory.json')
+    assert inv['analyses'][0]['id']=='R001'
+    assert all(d['final_ids']==['R001'] for d in r.read(out/row['key']/'decisions.json'))
+    assert 'R001 | naming | correlation' in (out/row['key']/'provisional-extraction.txt').read_text()
+
+
+def test_numeric_anchor_preserves_negative_sign():
+    from review_stages import inventory_issues
+    inv=inventory();inv['analyses'][0]['estimates']=[{'term':'volume','value':'-0.158','statistic':'coefficient','p':'not_reported'}]
+    inv['analyses'][0]['evidence']=[{'source_id':'P1-S1','quote':'Coefficient was −0.158.'}]
+    units={'P1-S1':{'page':1,'text':'Coefficient was −0.158.'}}
+    assert inventory_issues(inv,units,'@Test2026')==[]
+    inv['analyses'][0]['estimates'][0]['value']='0.158'
+    assert any('numeric tokens' in issue for issue in inventory_issues(inv,units,'@Test2026'))

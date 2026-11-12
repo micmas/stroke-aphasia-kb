@@ -120,13 +120,22 @@ This previews completed paper pairs only. Add `--run` to execute. Inspect the
 first three reviews before removing `--limit 3`. The script checks the extraction
 batch lock and refuses to run while that batch is active.
 
-The reviewer first inventories the source without seeing either extraction. It
-then reconciles both outputs against the original text, records a decision for
-each original analysis, and accounts for every source-text unit. Both calls use
-a 20,000-token output allowance unless overridden. Model digest, prompts, settings,
-source hashes and raw responses are retained. Agreement is not evidence of truth.
+The reviewer first inventories the source without seeing either extraction, then
+corrects the inventory against the source and both extractions. Validation must
+pass before that inventory is frozen with program-assigned `R001`-style IDs.
+Subsequent calls handle at most three original-analysis decisions or five source
+units at a time. Their required keys and allowed final IDs are fixed in each
+schema; they cannot rewrite the inventory. Each batch is validated before the
+next call. A failing gate stops that paper, preserving diagnostics without
+exporting a completed review. No automatic retries are performed.
 
-Both review calls use a constrained JSON schema (saved as `response-schema.json`)
+Source/inventory calls have a 20,000-token output allowance by default; decision
+calls are capped at 6,000 and coverage calls at 3,000 (or a lower user-supplied
+budget). More calls do not necessarily mean less total runtime. Model digest,
+prompts, schemas, settings, source hashes and raw responses are retained.
+Agreement is not evidence of truth.
+
+All review calls use a constrained JSON schema (saved as `response-schema.json`)
 and still reject duplicate fields. Quote diagnostics distinguish exact text cited
 under the wrong source unit from text that is not exact anywhere in the supplied
 units. They never silently repair quotations or approve paraphrases. First-pass
@@ -135,6 +144,12 @@ against the source. Each stage saves `quote-diagnostics.json` when it parses.
 Use a fresh output directory after a failed/interrupted pilot or a reviewer change;
 old attempts are preserved, not overwritten. Formatting constraints do not establish
 scientific accuracy: inspect the small pilot before scaling up.
+
+Numeric tokens in each estimate must occur in that analysis's supporting evidence.
+This catches unsupported numbers and sign changes, but does not prove correct
+statistical attribution. The readable summary is rendered from the frozen
+inventory, not rewritten by another model call. Study-level context synthesis
+remains explicitly pending; inspect the original source and per-analysis methods.
 
 Review outputs include `inventory.json`, `decisions.json`, `coverage.json`,
 `audit.json`, `provisional-extraction.txt`, `visual-review-required.json` and
