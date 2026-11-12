@@ -97,11 +97,29 @@
    "object": "pdf/C0994_fulltext.pdf",
    "sha256": "6dbf400a356a1ad0078d9d36156ad9dbd70fbf223606aaa812f81fd7e2174cd8"
   },
+  "C1104": {
+   "bytes": 1999103,
+   "file": "C1104_Sihvonen2023.pdf",
+   "object": "pdf/C1104_fulltext.pdf",
+   "sha256": "aaab897ab9d07b2387431d61d6c66a900eb8ca34b6ae3b988c48bf1c3611063f"
+  },
+  "C1231": {
+   "bytes": 4309270,
+   "file": "C1231_Tang2022.pdf",
+   "object": "pdf/C1231_fulltext.pdf",
+   "sha256": "570fbc62b7fa0a1625963c4cd4bc8916ca2db0115cd1aae08677e2b0e5facb7b"
+  },
   "C12351": {
    "bytes": 1116378,
    "file": "C12351_Walker2011.pdf",
    "object": "pdf/C12351_fulltext.pdf",
    "sha256": "d95039d49e60c7e416291ea53fddd868225c2b1786b91dcd74f40737a9f8cecc"
+  },
+  "C12473": {
+   "bytes": 865398,
+   "file": "C12473_Wilson2011.pdf",
+   "object": "pdf/C12473_fulltext.pdf",
+   "sha256": "fde000e1fc86d9993dac4c418d93e4566c4c0521ed6bb3c80efba23a81a521ca"
   },
   "C1480": {
    "bytes": 8659087,
@@ -120,6 +138,12 @@
    "file": "C16575_Thurston2026.pdf",
    "object": "pdf/C16575_fulltext.pdf",
    "sha256": "86eb7eedc3f32fc039330154e0a35491360523286fbf799a14293f92964fe93a"
+  },
+  "C1802": {
+   "bytes": 2891686,
+   "file": "C1802_Thye2021.pdf",
+   "object": "pdf/C1802_fulltext.pdf",
+   "sha256": "ad68c8b2ad667f4743d4ee38abf3d4398ed15769af423e150ab1d1a9d6761109"
   },
   "C22220": {
    "bytes": 4395348,
@@ -1981,9 +2005,12 @@
    "@Yu2023",
    "@Teghipco2023",
    "@Akkad2023",
+   "@Sihvonen2023",
    "@Zevgolatakou2022",
    "@Soliman2023",
+   "@Tang2022",
    "@Walker2011",
+   "@Wilson2011",
    "@Johnson2022",
    "@Yu2022",
    "@Adezati2022",
@@ -1996,6 +2023,7 @@
    "@Lukic2021",
    "@Keser2020",
    "@BlomSmink2020",
+   "@Thye2021",
    "@OsaGarcia2020",
    "@Kristinsson2020",
    "@Meier2019",
@@ -2030,5 +2058,5 @@
    "@Ali2021"
   ]
  },
- "synced": "2026-11-12T13:47"
+ "synced": "2026-11-12T15:08"
 }
