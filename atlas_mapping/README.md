@@ -119,3 +119,9 @@ python scripts/atlas_mapping.py --coverage        # files consistent? how much e
 python scripts/kb_status.py                       # "Atlas reachability" section
 pytest tests/test_kb_atlas_mapping.py
 ```
+
+## Experimental spatial crosswalks
+
+For measured, many-to-many parcel overlaps and coordinate lookups, see
+[Spatial harmonisation](HARMONISATION.md). This independent prototype preserves
+original findings and does not change the curated mappings used by current reports.

@@ -4,3 +4,6 @@ PyYAML>=6.0
 PyMuPDF>=1.23
 markdown-it-py>=3.0
 pytest>=8.0
+
+# Spatial crosswalk NIfTI validation tests
+nibabel>=5.0
