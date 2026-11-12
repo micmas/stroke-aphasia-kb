@@ -6,7 +6,98 @@
   "synced": "2026-11-10T08:44"
  },
  "bucket": "stroke-aphasia-kb-pdfs",
- "fulltext": {},
+ "fulltext": {
+  "C0031": {
+   "bytes": 1116378,
+   "file": "Walker2011.pdf",
+   "object": "pdf/C0031_fulltext.pdf",
+   "sha256": "d95039d49e60c7e416291ea53fddd868225c2b1786b91dcd74f40737a9f8cecc"
+  },
+  "C0046": {
+   "bytes": 1108978,
+   "file": "Hillis2007.pdf",
+   "object": "pdf/C0046_fulltext.pdf",
+   "sha256": "c801ff6927ade291fadd0f394a819dd9a4b8c2fa2a78e8076224ad6cad6c5efc"
+  },
+  "C0077": {
+   "bytes": 3401341,
+   "file": "Brady2016.pdf",
+   "object": "pdf/C0077_fulltext.pdf",
+   "sha256": "7cb484627f191c7189e87d5c5f1459b0f821a1af839962db740e442602f052d3"
+  },
+  "C0083": {
+   "bytes": 892082,
+   "file": "Elsner2019.pdf",
+   "object": "pdf/C0083_fulltext.pdf",
+   "sha256": "3f7fc3904994f40a4ff635ea044a1245dd2b86638d835e5389862c1d5251cd20"
+  },
+  "C0119": {
+   "bytes": 304323,
+   "file": "Hillis2002.pdf",
+   "object": "pdf/C0119_fulltext.pdf",
+   "sha256": "4113b06a0caa9c8be9da035d0a308bb233084f7c662f71e6e32f3a42c5549963"
+  },
+  "C0159": {
+   "bytes": 3835773,
+   "file": "Rost2022.pdf",
+   "object": "pdf/C0159_fulltext.pdf",
+   "sha256": "3f10b8323077805b1b142ba70865bc674ad2c3377da82ca8ab9439a559cb1672"
+  },
+  "C0164": {
+   "bytes": 459259,
+   "file": "Weaver2021.pdf",
+   "object": "pdf/C0164_fulltext.pdf",
+   "sha256": "6f87e4b48eb6114330f6e209da5c17f72fd7dc5ad859f256944904caf77028c3"
+  },
+  "C0306": {
+   "bytes": 16514433,
+   "file": "C0306_Huygelier2025.pdf",
+   "object": "pdf/C0306_fulltext.pdf",
+   "sha256": "65d9fffaddc13d90da92d8eae3a0153a2eb9df30fb21f6519abce2afa7eab7dc"
+  },
+  "C0780": {
+   "bytes": 9354932,
+   "file": "C0780_Moore2024.pdf",
+   "object": "pdf/C0780_fulltext.pdf",
+   "sha256": "542ac5068971063205e71ce3fe31837632b69db85aab01392152622eaee5e8c6"
+  },
+  "C12351": {
+   "bytes": 1116378,
+   "file": "C12351_Walker2011.pdf",
+   "object": "pdf/C12351_fulltext.pdf",
+   "sha256": "d95039d49e60c7e416291ea53fddd868225c2b1786b91dcd74f40737a9f8cecc"
+  },
+  "C16575": {
+   "bytes": 3126023,
+   "file": "C16575_Thurston2026.pdf",
+   "object": "pdf/C16575_fulltext.pdf",
+   "sha256": "86eb7eedc3f32fc039330154e0a35491360523286fbf799a14293f92964fe93a"
+  },
+  "C22220": {
+   "bytes": 4395348,
+   "file": "C22220_Gilbert2025.pdf",
+   "object": "pdf/C22220_fulltext.pdf",
+   "sha256": "d59d4244e03d6511de1087e4b8e6f9623244898d6e93fc4aa64d77da86d510d9"
+  },
+  "C22221": {
+   "bytes": 2985481,
+   "file": "C22221_Willis2025.pdf",
+   "object": "pdf/C22221_fulltext.pdf",
+   "sha256": "db3cb557db05560d6d0e1d137a713d95cfd0d640ed0694702e891099389d6835"
+  },
+  "C22222": {
+   "bytes": 363621,
+   "file": "C22222_Hobden2024.pdf",
+   "object": "pdf/C22222_fulltext.pdf",
+   "sha256": "19305676cf466d176c1bbb40b44d7249e2557d24d1d75cd0b2c7f3de83b1d3ed"
+  },
+  "C6024": {
+   "bytes": 372014,
+   "file": "C6024_Demeyere2024.pdf",
+   "object": "pdf/C6024_fulltext.pdf",
+   "sha256": "e5b65cdc1d841e00bdfef8e1f1ace7d3fa0d223c2cbb4e3dc361e16d5ae01442"
+  }
+ },
  "papers": {
   "@Adezati2022": {
    "annotated": "cc/Adezati2022_annotated.pdf",
@@ -1649,12 +1740,16 @@
    "C0507_Johnson2025.pdf",
    "C0730_Matchin2024.pdf",
    "C0780_Moore2024.pdf",
+   "C1031_Teghipco2023.pdf",
    "C12351_Walker2011.pdf",
    "C1480_Zhang2021.pdf",
    "C1498_Kourtidou2021.pdf",
    "C16575_Thurston2026.pdf",
    "C21300_Nouwens2013.pdf",
    "C2140_Xing2018.pdf",
+   "C22220_Gilbert2025.pdf",
+   "C22221_Willis2025.pdf",
+   "C22222_Hobden2024.pdf",
    "C5206_Hope2016.pdf",
    "C6024_Demeyere2024.pdf",
    "C7406_Riley2021.pdf",
@@ -1872,5 +1967,5 @@
    "@vanderMeulen2014"
   ]
  },
- "synced": "2026-11-12T11:05"
+ "synced": "2026-11-12T12:07"
 }

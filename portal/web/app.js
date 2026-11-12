@@ -498,10 +498,12 @@ function screenView(stage) {
   for (const c of cands) {
     const dec = decided[c.id] || {};
     const pdf = c.key ? paperPdf(c.key) : null;
+    const sourcePdf = state.manifest?.fulltext?.[c.id];
     const have = candidateHasPdf(c);
     const up = have ? null : uploadFor(c.id, c.key);
     const gated = stage === 'ft' && !have && !up;        // a full-text decision needs the paper
     const pdfLine = pdf ? h('span', {}, h('a', { href: pdf.annotated, target: '_blank', rel: 'noopener', text: 'annotated PDF' }))
+      : sourcePdf?.object ? h('a', { href: sourcePdf.object, target: '_blank', rel: 'noopener', text: 'Open PDF' })
       : have ? h('span', { class: 'small muted', text: 'PDF with the maintainer (not annotated yet)' })
         : up ? uploadedNote(up)
           : h('span', { class: 'pdfask' }, h('span', { class: `small ${stage === 'ft' ? '' : 'muted'}`, text: stage === 'ft' ? 'No PDF of this paper anywhere yet — upload it to assess the full text: ' : 'No PDF yet; if you have it: ' }), uploadControl(c.id, c.key, { required: stage === 'ft' }));

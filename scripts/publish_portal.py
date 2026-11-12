@@ -223,11 +223,11 @@ def wrangler(*args, timeout: int = 600) -> subprocess.CompletedProcess:
     return subprocess.run(["npx", "wrangler", *args], cwd=str(PORTAL), capture_output=True, text=True, timeout=timeout)
 
 
-FT_STAGES = ("awaiting_ft", "unsure_ft")
+FT_STAGES = ("awaiting_ta", "unsure_ta", "awaiting_ft", "unsure_ft")
 
 
 def fulltext_pdfs(papers_dir: Path, annotated: dict, root: Path = ROOT) -> dict[str, Path]:
-    """Candidates awaiting full-text screening whose PDF is in papers/ but has no annotated copy
+    """Candidates awaiting screening whose PDF is in papers/ but has no annotated copy
     in the portal: {candidate id: the PDF}. The portal shows these beside the decision, from the
     private bucket (pdf/<id>_fulltext.pdf)."""
     if not papers_dir.is_dir():

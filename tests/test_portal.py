@@ -102,6 +102,21 @@ class Publish(unittest.TestCase):
             finally:
                 P.licences = saved
 
+    def test_source_pdfs_available_during_title_abstract_screening(self):
+        import publish_portal as P
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory() as d:
+            papers = Path(d)
+            for cid in ("C0001", "C0002", "C0003"):
+                (papers / f"{cid}_Paper.pdf").write_bytes(b"%PDF-1.4")
+            rows = [{"id": cid, "stage": stage, "pdf_file": f"{cid}_Paper.pdf"}
+                    for cid, stage in (("C0001", "awaiting_ta"), ("C0002", "unsure_ta"),
+                                       ("C0003", "excluded_ft"))]
+            with patch.object(P.S, "load_candidates", return_value=[]), \
+                 patch.object(P.S, "kb_facts", return_value={}), \
+                 patch.object(P.S, "enrich", return_value=rows):
+                self.assertEqual(set(P.fulltext_pdfs(papers, {})), {"C0001", "C0002"})
+
     def test_full_texts_to_assess_are_mirrored_and_removed_when_decided(self):
         import publish_portal as P
         with tempfile.TemporaryDirectory() as d:

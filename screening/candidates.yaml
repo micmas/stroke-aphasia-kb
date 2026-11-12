@@ -21448,6 +21448,10 @@ candidates:
   sources:
   - search: S001
   - search: S005
+  - kind: hand_picked
+    date: '2026-11-12'
+    by: micmas
+    note: User supplied PDF from calmar-papers/_set_aside; linked without changing screening decisions.
   screening:
   - stage: title_abstract
     decision: include
@@ -21468,7 +21472,7 @@ candidates:
     rationale: Research Square preprint of an included journal article
     by: claude (pre-fill)
     date: '2026-10-28'
-  pdf_file: v1_covered_3cd671bd-1fe9-4e66-9f8b-9c7a6730af0e.pdf
+  pdf_file: C1031_Teghipco2023.pdf
 - id: C1032
   doi: 10.12890/2023_003947
   pmid: '37455687'
@@ -346387,3 +346391,48 @@ candidates:
   pdf_uploaded_at: '2026-11-12T00:03:19.131Z'
   pdf_file: U89f5cf2204955dda6d3e5ac6d8d564a1_Paper.pdf
   key: '@Sewell2025'
+- id: C22220
+  doi: 10.1016/j.neuropsychologia.2025.109251
+  title: Cognitive and neural correlates of prospective memory in acute to early sub-acute stroke
+  year: 2025
+  first_author: Gilbert
+  authors: Gilbert, Casey M.; Gibson, Emily C.; Moore, Margaret J.; Henry, Julie D.; Robinson, Gail A.
+  journal: Neuropsychologia
+  sources:
+  - kind: hand_picked
+    date: '2026-11-12'
+    by: micmas
+    note: User supplied PDF from calmar-papers/_set_aside; linked without changing screening decisions.
+  screening: []
+  pdf_file: C22220_Gilbert2025.pdf
+- id: C22221
+  doi: 10.1523/jneurosci.1263-24.2024
+  title: Voxel-Based Lesion–Symptom Mapping Localizes Residual Visual Function in Hemianopia
+  year: 2025
+  first_author: Willis
+  authors: >-
+    Willis, Hanna E.; Hameed, Junaid; Starling, Lucy; Kaltenbach, Carina; Moore, Margaret Jane; Khan,
+    Amirah; Maxwell, Rachel; Tamietto, Marco; Ajina, Sara; Bridge, Holly
+  journal: The Journal of Neuroscience
+  sources:
+  - kind: hand_picked
+    date: '2026-11-12'
+    by: micmas
+    note: User supplied PDF from calmar-papers/_set_aside; linked without changing screening decisions.
+  screening: []
+  pdf_file: C22221_Willis2025.pdf
+- id: C22222
+  doi: 10.1097/wnn.0000000000000355
+  title: >-
+    Poststroke Executive Function in Relation to White Matter Damage on Clinically Acquired CT Brain Imaging
+  year: 2024
+  first_author: Hobden
+  authors: Hobden, Georgina; Moore, Margaret Jane; Mair, Grant; Pendlebury, Sarah T.; Demeyere, Nele
+  journal: Cognitive and Behavioral Neurology
+  sources:
+  - kind: hand_picked
+    date: '2026-11-12'
+    by: micmas
+    note: User supplied PDF from calmar-papers/_set_aside; linked without changing screening decisions.
+  screening: []
+  pdf_file: C22222_Hobden2024.pdf
