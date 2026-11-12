@@ -803,3 +803,4 @@ add an `EXTRACTED` line for every run.
 2026-11-12 | PDFS-PROCESSED | — | screening register | 0 linked, 2 renamed, 0 not matching their record
 2026-11-12 | PORTAL-APPLIED | — | 3 record(s) | pdf 3 | by: michele
 2026-11-12 | PDFS-PROCESSED | — | screening register | 0 linked, 3 renamed, 0 not matching their record
+2026-11-12 | PORTAL-APPLIED | — | 6 record(s) | screen 6 | by: michele

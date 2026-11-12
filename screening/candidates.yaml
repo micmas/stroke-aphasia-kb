@@ -10910,7 +10910,13 @@ candidates:
   - search: S015
   - search: S016
   - search: S019
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 303
+    record: 20261112T005519Z-05_screen_m-massontrottier_c0432.json
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_file: C0432_Desjardins2026.pdf
@@ -12239,7 +12245,14 @@ candidates:
     by: michele
     note: Reviewer PDF upload (other source)
     record: 20261112T000350Z-01_paper_m-massontrottier_c0507.json
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: exclude
+    reason: not_aphasia
+    by: michele
+    date: '2026-11-12'
+    seq: 300
+    record: 20261112T005519Z-02_screen_m-massontrottier_c0507.json
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_uploaded_at: '2026-11-12T00:03:50.613Z'
@@ -16220,7 +16233,13 @@ candidates:
   - search: S008
   - search: S009
   - search: S010
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 302
+    record: 20261112T005519Z-04_screen_m-massontrottier_c0730.json
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_file: C0730_Matchin2024.pdf
@@ -30000,7 +30019,13 @@ candidates:
   - search: S015
   - search: S016
   - search: S019
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 304
+    record: 20261112T005519Z-06_screen_m-massontrottier_c1498.json
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_file: C1498_Kourtidou2021.pdf
@@ -127052,7 +127077,13 @@ candidates:
     by: michele
     note: Reviewer PDF upload (other source)
     record: 20261112T000432Z-01_paper_m-massontrottier_c7406.json
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 299
+    record: 20261112T005519Z-01_screen_m-massontrottier_c7406.json
   doc_type: journal
   doc_type_raw: JOUR/Review
   pdf_uploaded_at: '2026-11-12T00:04:32.262Z'
@@ -346312,6 +346343,12 @@ candidates:
     by: michele
     note: Reviewer PDF upload (other source)
     record: 20261112T000319Z-01_paper_m-massontrottier_u89f5cf2204955dda6d3e5ac6d8d564a1.json
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 301
+    record: 20261112T005519Z-03_screen_m-massontrottier_u89f5cf2204955dda6d3e5ac6d8d564a1.json
   pdf_uploaded_at: '2026-11-12T00:03:19.131Z'
   pdf_file: U89f5cf2204955dda6d3e5ac6d8d564a1_Paper.pdf
