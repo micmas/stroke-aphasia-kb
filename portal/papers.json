@@ -85,6 +85,12 @@
    "object": "pdf/C0730_fulltext.pdf",
    "sha256": "149c56aa49a55d479240eee0d965bf2e2534b7d19cf4844fe95db7e75ab67e5a"
   },
+  "C0769": {
+   "bytes": 1920985,
+   "file": "C0769_Osa2024.pdf",
+   "object": "pdf/C0769_fulltext.pdf",
+   "sha256": "97879f7958c0ed026714653549c73608c5240d1562ec101c151d0b9631e19637"
+  },
   "C0780": {
    "bytes": 9354932,
    "file": "C0780_Moore2024.pdf",
@@ -144,6 +150,12 @@
    "file": "C1802_Thye2021.pdf",
    "object": "pdf/C1802_fulltext.pdf",
    "sha256": "ad68c8b2ad667f4743d4ee38abf3d4398ed15769af423e150ab1d1a9d6761109"
+  },
+  "C2183": {
+   "bytes": 2873004,
+   "file": "C2183_Zhang2018.pdf",
+   "object": "pdf/C2183_fulltext.pdf",
+   "sha256": "1f55089b0daa53f85f07313b5f3862c188f569e267bb388418d56b3bf4748e56"
   },
   "C22220": {
    "bytes": 4395348,
@@ -1997,6 +2009,7 @@
    "@Jiang2025",
    "@Matchin2024",
    "@Biondo2024",
+   "@Osa2024",
    "@Moore2024",
    "@Yu2024",
    "@Stockbridge2024",
@@ -2033,6 +2046,7 @@
    "@Wright2018",
    "@Nouwens2013",
    "@Xing2018",
+   "@Zhang2018",
    "@Gilbert2025",
    "@Willis2025",
    "@Hobden2024",
@@ -2058,5 +2072,5 @@
    "@Ali2021"
   ]
  },
- "synced": "2026-11-12T15:08"
+ "synced": "2026-11-12T16:06"
 }
