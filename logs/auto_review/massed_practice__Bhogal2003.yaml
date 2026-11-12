@@ -1,0 +1,145 @@
+draft_path: drafts/therapies/massed_practice__Bhogal2003.md
+runs:
+- run_id: 1
+  timestamp: '2026-11-10T20:59:15'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.991): the hours of therapy provided in a week was
+      significantly correlated to greater …'
+    - '  - [anchored] f1.limitation (p.991): Most of the limitations of the present
+      review stem, in part, from the limitation…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 2
+  timestamp: '2026-11-10T21:34:12'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.991): the hours of therapy provided in a week was
+      significantly correlated to greater …'
+    - '  - [anchored] f1.limitation (p.991): Most of the limitations of the present
+      review stem, in part, from the limitation…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 3
+  timestamp: '2026-11-11T08:50:29'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.991): the hours of therapy provided in a week was
+      significantly correlated to greater …'
+    - '  - [anchored] f1.limitation (p.991): Most of the limitations of the present
+      review stem, in part, from the limitation…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 4
+  timestamp: '2026-11-11T10:43:04'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.991): the hours of therapy provided in a week was
+      significantly correlated to greater …'
+    - '  - [anchored] f1.limitation (p.991): Most of the limitations of the present
+      review stem, in part, from the limitation…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-11T10:43:04'
+latest_verdict: checks_passed
+latest_mode: deterministic_only

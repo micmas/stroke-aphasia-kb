@@ -1,0 +1,20 @@
+{
+ "citation": null,
+ "name": "1-s2.0-S1053811915008319-main.pdf",
+ "bytes": 587087,
+ "sha256": "958d8a86be14388bc200ab86e3f946d0fca7e82b3d3240be9a3e00369cbd5848",
+ "bucket": "stroke-aphasia-kb-uploads",
+ "object": "uploads/c5206.pdf",
+ "replaced": false,
+ "kind": "pdf",
+ "id": "C5206",
+ "reviewer": "m.massontrottier@uq.edu.au",
+ "reviewer_name": null,
+ "submitted": "2026-11-12T00:12:09.010Z",
+ "portal": 1,
+ "_outcome": {
+  "status": "applied",
+  "message": "papers/C5206_1-s2.0-S1053811915008319-main.pdf ← stroke-aphasia-kb-uploads/uploads/c5206.pdf (573 KB) by michele; linked to C5206",
+  "at": "2026-11-12T00:19:54+00:00"
+ }
+}

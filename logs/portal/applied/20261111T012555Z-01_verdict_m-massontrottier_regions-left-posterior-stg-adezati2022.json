@@ -1,0 +1,26 @@
+{
+ "kind": "verdict",
+ "id": "drafts/regions/left_posterior_stg__Adezati2022.md",
+ "citation": "@Adezati2022",
+ "verdict": "approve",
+ "rationale": "",
+ "per_finding": [
+  {
+   "id": "f1",
+   "verdict": "agree",
+   "concern": "",
+   "supports_approval": true,
+   "passages": {
+    "0": "fine",
+    "1": "fine",
+    "2": "fine",
+    "3": "truncated",
+    "4": "fine"
+   }
+  }
+ ],
+ "reviewer": "m.massontrottier@uq.edu.au",
+ "reviewer_name": null,
+ "submitted": "2026-11-11T01:25:55.859Z",
+ "portal": 1
+}

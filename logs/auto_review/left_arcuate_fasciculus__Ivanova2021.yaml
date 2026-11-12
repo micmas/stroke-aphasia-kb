@@ -1,0 +1,337 @@
+draft_path: drafts/regions/left_arcuate_fasciculus__Ivanova2021.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-30T23:56:45'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 15/15 quotes (100%) — elided 5, exact 10
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: A
+  tier_reasons: []
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft contains a discrepancy in the sample size for the time
+        post-onset statistic. The draft lists 'Mtimepost-onset = 96.6 93.1 months'
+        (likely a typo for 96.6 ± 93.1), but the paper text on page 4 clearly states
+        'Mtimepost−onset = 96.6 ± 93.1 months'. While minor, the lack of the '±' symbol
+        in the draft's sample field makes it technically inaccurate. Additionally,
+        the sample size is listed as n=32 in the findings, whereas the paper states
+        n=33 total, with 32 used for the final analysis; the draft is correct in its
+        usage but the discrepancy is noted.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: false
+        limitations_captured: true
+        omissions: ''
+        concern: The statistic for time post-onset in the sample field is missing
+          the '±' symbol found in the text (96.6 ± 93.1 months), making the representation
+          of the mean and SD ambiguous.
+        verdict: disagree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: false
+        limitations_captured: true
+        omissions: ''
+        concern: The statistic for time post-onset in the sample field is missing
+          the '±' symbol found in the text (96.6 ± 93.1 months).
+        verdict: disagree
+      - id: f3
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: false
+        limitations_captured: true
+        omissions: ''
+        concern: The statistic for time post-onset in the sample field is missing
+          the '±' symbol found in the text (96.6 ± 93.1 months).
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ contains a discrepancy in the sample size for the time post-onset statistic.\
+      \ The draft lists 'Mtimepost-onset = 96.6 93.1 months' (likely a typo for 96.6\
+      \ ± 93.1), but the paper text on page 4 clearly states 'Mtimepost−onset = 96.6\
+      \ ± 93.1 months'. While minor, the lack of the '±' symbol in the draft's sample\
+      \ field makes it technically inaccurate. Additionally, the sample size is listed\
+      \ as n=32 in the findings, whereas the paper states n=33 total, with 32 used\
+      \ for the final analysis; the draft is correct in its usage but the discrepancy\
+      \ is noted.\",\n  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"\
+      passage_present\": true,\n      \"passage_supports_field\": true,\n      \"\
+      relationship_faithful\": true,\n      \"strength_fair\": true,\n      \"numb"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 2
+  timestamp: '2026-11-09T14:13:58'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 15/15 quotes (100%) — elided 5, exact 10
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: A
+  tier_reasons: []
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft contains a discrepancy in the sample size (n=32 vs n=33)
+        and the mean time post-onset. While the text mentions 33 participants were
+        scanned, it explicitly states that one participant was eliminated from all
+        further analyses, leaving n=32 for the results. The draft lists n=32 but includes
+        a conflicting '33' in the sample description. Additionally, the relationship
+        is described as 'causal' in the draft, whereas the paper reports correlations
+        and regressions, which are correlational/predictive.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: false
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper uses regression
+          and correlation to show predictive/associative roles. The sample size is
+          inconsistent (n=32 vs 33).
+        verdict: disagree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: false
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper uses regression
+          and correlation. The sample size is inconsistent (n=32 vs 33).
+        verdict: disagree
+      - id: f3
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: false
+        strength_fair: true
+        numbers_match: false
+        limitations_captured: true
+        omissions: ''
+        concern: The relationship is recorded as 'causal', but the paper uses regression
+          and correlation. The sample size is inconsistent (n=32 vs 33).
+        verdict: disagree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ contains a discrepancy in the sample size (n=32 vs n=33) and the mean time\
+      \ post-onset. While the text mentions 33 participants were scanned, it explicitly\
+      \ states that one participant was eliminated from all further analyses, leaving\
+      \ n=32 for the results. The draft lists n=32 but includes a conflicting '33'\
+      \ in the sample description. Additionally, the relationship is described as\
+      \ 'causal' in the draft, whereas the paper reports correlations and regressions,\
+      \ which are correlational/predictive.\",\n  \"per_finding\": [\n    {\n    \
+      \  \"id\": \"f1\",\n      \"passage_present\": true,\n      \"passage_supports_field\"\
+      : true,\n      \"relationship_faithful\": false,\n      \"strength_fair\": true,\n\
+      \      \"numbers_match\": false,\n      \"limitations_captured\": true"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 3
+  timestamp: '2026-11-10T10:40:12'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 15/15 quotes (100%) — elided 5, exact 10
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: A
+  tier_reasons: []
+- run_id: 4
+  timestamp: '2026-11-10T20:58:57'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 15/15 quotes (100%) — elided 5, exact 10
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: A
+  tier_reasons: []
+- run_id: 5
+  timestamp: '2026-11-10T21:33:55'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 15/15 quotes (100%) — elided 5, exact 10
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: A
+  tier_reasons: []
+- run_id: 6
+  timestamp: '2026-11-11T08:50:17'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 15/15 quotes (100%) — elided 5, exact 10
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: A
+  tier_reasons: []
+- run_id: 7
+  timestamp: '2026-11-11T10:42:43'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 15/15 quotes (100%) — elided 5, exact 10
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: A
+  tier_reasons: []
+last_run: '2026-11-11T10:42:43'
+latest_verdict: checks_passed
+latest_mode: deterministic_only

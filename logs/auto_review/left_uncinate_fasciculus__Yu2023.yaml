@@ -1,0 +1,37 @@
+draft_path: drafts/regions/left_uncinate_fasciculus__Yu2023.md
+runs:
+- run_id: 1
+  timestamp: '2026-11-11T10:51:52'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 3/4 quotes (75%) — absent 1, exact 3
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.sample (p.4): Thirty-six participants... with acute/subacute PSA were
+      recruited…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-11T10:51:52'
+latest_verdict: auto_reject
+latest_mode: deterministic_only

@@ -1,0 +1,60 @@
+name: test
+on:
+  pull_request:
+  merge_group:
+  push:
+    branches: [main]
+    # A reviewer's decision or upload is one small file in logs/portal/inbox/. It changes
+    # nothing on the sites until it is applied (portal-apply.yml, by the Apply button or every
+    # six hours), and that apply is itself a push that starts this workflow. So a push that
+    # only adds inbox records does not start it: one build per apply, not one per decision.
+    paths-ignore:
+      - "logs/portal/inbox/**"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  parity:
+    name: parity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-ci.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: pip install -r requirements-ci.txt
+      - name: Regenerate browser export from this revision
+        run: python3 scripts/export_webapp.py --out export/stroke-aphasia-kb.json --fixtures export --indent 1
+      - run: npm test
+  python-tests:
+    name: python-tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-ci.txt
+      - run: pip install -r requirements-ci.txt
+      - run: python3 -c "import pymupdf"
+      - name: Run all Python checks
+        run: python3 -m pytest tests -q
+  portal:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node --test portal/functions/test/*.test.mjs

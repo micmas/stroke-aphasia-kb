@@ -1,0 +1,75 @@
+draft_path: drafts/regions/left_ifg_pars_opercularis__Haldin2026.md
+runs:
+- run_id: 1
+  timestamp: '2026-11-11T08:50:19'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — anchored 2, elided 1, exact 1, near 2
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): The inclusion criteria were: age above 18 years,
+      a left-hemispheric stroke confi…'
+    - '  - [anchored] f1.method (p.4): we used a multivariate method based on a machine
+      learning regression algorithm (…'
+    - '  - [near] f1.statistics (p.4): The resulting SVR-beta values were thresholded
+      voxel-wise at p < 0.005 and corre…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+- run_id: 2
+  timestamp: '2026-11-11T10:42:47'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — anchored 2, elided 1, exact 1, near 2
+    - '4 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): The inclusion criteria were: age above 18 years,
+      a left-hemispheric stroke confi…'
+    - '  - [anchored] f1.method (p.4): we used a multivariate method based on a machine
+      learning regression algorithm (…'
+    - '  - [near] f1.statistics (p.4): The resulting SVR-beta values were thresholded
+      voxel-wise at p < 0.005 and corre…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+last_run: '2026-11-11T10:42:47'
+latest_verdict: checks_passed
+latest_mode: deterministic_only

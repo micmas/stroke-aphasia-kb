@@ -1,0 +1,81 @@
+name: explorer-pages
+
+# Publishes the explorer to GitHub Pages at https://aphasia-kb.app (the CNAME
+# below): the explorer's files at the site root, export/ and js/ beside them,
+# so the page's relative paths still resolve. The export is regenerated from the entries on every push
+# so the site never lags the knowledge base. Until the KB content has moved
+# into this repository (scripts/export_webapp.py absent), the committed export is used.
+on:
+  push:
+    branches: [main]
+    # A reviewer's decision or upload is one small file in logs/portal/inbox/. It changes
+    # nothing on the sites until it is applied (portal-apply.yml, by the Apply button or every
+    # six hours), and that apply is itself a push that starts this workflow. So a push that
+    # only adds inbox records does not start it: one build per apply, not one per decision.
+    paths-ignore:
+      - "logs/portal/inbox/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Regenerate the export (when the KB lives here)
+        run: |
+          if [ -f scripts/export_webapp.py ]; then
+            pip install pandas pyyaml
+            python3 scripts/export_webapp.py --out export/stroke-aphasia-kb.json --fixtures export --indent 1
+            python3 scripts/export_webapp.py --include approved,in_review,draft --out export/stroke-aphasia-kb-drafts.json
+          else
+            echo "export_webapp.py not present yet; using the committed export"
+          fi
+      - name: Parity test of the JavaScript port
+        run: npm test
+      - name: Assemble the site
+        # The explorer is the site root (https://aphasia-kb.app/). Its relative paths
+        # ../export/ and ../js/ resolve to /export/ and /js/ from there, so the page is
+        # unchanged. The old /explorer/ address forwards to the root, keeping the #/…
+        # route, so permalinks already in CALMaR reports keep working.
+        run: |
+          mkdir -p site/explorer site/export site/js
+          cp -r explorer/. site/
+          cp export/stroke-aphasia-kb.json site/export/
+          if [ -f export/stroke-aphasia-kb-drafts.json ]; then cp export/stroke-aphasia-kb-drafts.json site/export/; fi
+          if [ -f export/model-benchmark.json ]; then cp export/model-benchmark.json site/export/; fi
+          cp js/kb-evidence.js site/js/
+          cat > site/explorer/index.html <<'HTML'
+          <!doctype html><meta charset="utf-8"><title>Stroke aphasia KB</title>
+          <script>location.replace('/' + location.search + location.hash);</script>
+          <a href="/">The explorer has moved to the site root.</a>
+          HTML
+          echo aphasia-kb.app > site/CNAME
+          touch site/.nojekyll
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

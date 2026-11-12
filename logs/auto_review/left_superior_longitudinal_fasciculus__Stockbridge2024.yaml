@@ -1,0 +1,87 @@
+draft_path: drafts/regions/left_superior_longitudinal_fasciculus__Stockbridge2024.md
+runs:
+- run_id: 1
+  timestamp: '2026-11-11T08:50:24'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/sessions/rcw-01mvxcaxbgbjkaokvzmvyrhk/mnt/GITHUB/stroke-aphasia-kb/drafts/regions/left_superior_longitudinal_fasciculus__Stockbridge2024.md:
+      finding[0] (id=f1): therapy {id, name} is required for a responder finding in
+      v2.8 (which intervention was given)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 1/4 quotes (25%) — absent 1, anchored 1, exact 1, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.6): Recovery following language treatment was significantly
+      predicted by days since …'
+    - '  - [near] f1.limitation (p.9): One of the main limitations is small sample
+      size with heterogeneous aphasia subt…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.region_definition (p.3): we used embedded maps... SLF (HCP842 map)…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 2
+  timestamp: '2026-11-11T10:42:55'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/regions/left_superior_longitudinal_fasciculus__Stockbridge2024.md:
+      finding[0] (id=f1): therapy {id, name} is required for a responder finding in
+      v2.8 (which intervention was given)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 1/4 quotes (25%) — absent 1, anchored 1, exact 1, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.6): Recovery following language treatment was significantly
+      predicted by days since …'
+    - '  - [near] f1.limitation (p.9): One of the main limitations is small sample
+      size with heterogeneous aphasia subt…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.region_definition (p.3): we used embedded maps... SLF (HCP842 map)…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-11T10:42:55'
+latest_verdict: auto_reject
+latest_mode: deterministic_only

@@ -1,0 +1,505 @@
+draft_path: drafts/regions/left_arcuate_fasciculus_slf__Han2016.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-30T23:58:33'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — absent 1, anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.8): the lesion percentages of the left SLF
+      were significantly negatively correlated …'
+    - '  - [anchored] f1.limitation (p.12): The current study is constrained by the
+      spatial scale of the John Hopkins Univer…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.method (p.5): For the lesion percentage measure... the lesion percentage...
+      was correlated wit…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: approve
+      rationale: The finding accurately reflects the paper's results. The claim of
+        association is supported by the correlation results for both lesion percentage
+        and FA. The sample details (n=69, stroke majority, age/SD/range) match the
+        text. The statistics (partial r values, Bonferroni thresholds) are correct.
+        The limitation regarding the JHU template scale is verbatim from the discussion.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: override_approve
+    raw_preview: "{\n  \"overall_verdict\": \"approve\",\n  \"rationale\": \"The finding\
+      \ accurately reflects the paper's results. The claim of association is supported\
+      \ by the correlation results for both lesion percentage and FA. The sample details\
+      \ (n=69, stroke majority, age/SD/range) match the text. The statistics (partial\
+      \ r values, Bonferroni thresholds) are correct. The limitation regarding the\
+      \ JHU template scale is verbatim from the discussion.\",\n  \"per_finding\"\
+      : [\n    {\n      \"id\": \"f1\",\n      \"passage_present\": true,\n      \"\
+      passage_supports_field\": true,\n      \"relationship_faithful\": true,\n  \
+      \    \"strength_fair\": true,\n      \"numbers_match\": true,\n      \"limitations_captured\"\
+      : true,\n      \"omissions\": \"\",\n      \"concern\": \"\",\n      \"verdict\"\
+      : \"agree\"\n    }\n  ]\n}"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - approve
+    - approve
+    - approve
+    unanimous: true
+    guardrails:
+    - model said approve on Tier B; recorded as agree_defer — a person must approve
+      this tier
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 2
+  timestamp: '2026-11-09T14:15:31'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — absent 1, anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.8): the lesion percentages of the left SLF
+      were significantly negatively correlated …'
+    - '  - [anchored] f1.limitation (p.12): The current study is constrained by the
+      spatial scale of the John Hopkins Univer…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.method (p.5): For the lesion percentage measure... the lesion percentage...
+      was correlated wit…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: approve
+      rationale: The finding accurately reflects the paper's results. The claim of
+        association between left SLF integrity and phonological encoding (naming errors
+        and reading accuracy) is supported by the text and Table 1. The statistical
+        values (r = -0.52 to -0.57 for lesion, 0.52 to 0.55 for FA) and the sample
+        details (n=69, mean age 46, stroke majority) match the text exactly. The relationship
+        is correctly identified as correlational (though the draft uses 'causal' as
+        a direction, the text describes it as 'predicted' and 'correlated', and the
+        method is cross-sectional).
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: override_approve
+    raw_preview: "{\n  \"overall_verdict\": \"approve\",\n  \"rationale\": \"The finding\
+      \ accurately reflects the paper's results. The claim of association between\
+      \ left SLF integrity and phonological encoding (naming errors and reading accuracy)\
+      \ is supported by the text and Table 1. The statistical values (r = -0.52 to\
+      \ -0.57 for lesion, 0.52 to 0.55 for FA) and the sample details (n=69, mean\
+      \ age 46, stroke majority) match the text exactly. The relationship is correctly\
+      \ identified as correlational (though the draft uses 'causal' as a direction,\
+      \ the text describes it as 'predicted' and 'correlated', and the method is cross-sectional).\"\
+      ,\n  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"passage_present\"\
+      : true,\n      \"passage_supports_field\": true,\n      \"relationship_faithful\"\
+      : true,\n      \"strength_fair\": true,\n      \""
+    error: null
+    votes: 3
+    vote_verdicts:
+    - approve
+    - approve
+    - approve
+    unanimous: true
+    guardrails:
+    - model said approve on Tier B; recorded as agree_defer — a person must approve
+      this tier
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 3
+  timestamp: '2026-11-10T10:40:13'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — absent 1, anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.8): the lesion percentages of the left SLF
+      were significantly negatively correlated …'
+    - '  - [anchored] f1.limitation (p.12): The current study is constrained by the
+      spatial scale of the John Hopkins Univer…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.method (p.5): For the lesion percentage measure... the lesion percentage...
+      was correlated wit…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+- run_id: 4
+  timestamp: '2026-11-10T20:58:43'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — absent 1, anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.8): the lesion percentages of the left SLF
+      were significantly negatively correlated …'
+    - '  - [anchored] f1.limitation (p.12): The current study is constrained by the
+      spatial scale of the John Hopkins Univer…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.method (p.5): For the lesion percentage measure... the lesion percentage...
+      was correlated wit…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+- run_id: 5
+  timestamp: '2026-11-10T20:58:57'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/7 quotes (71%) — anchored 1, elided 2, exact 3, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.5): The results were adjusted for the 17 tracts
+      using the Bonferroni correction meth…'
+    - '  - [near] f1.method (p.5): correlate the lesion percentage and the mean FA
+      value of each tract and phonolog…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+- run_id: 6
+  timestamp: '2026-11-10T21:33:40'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — absent 1, anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.8): the lesion percentages of the left SLF
+      were significantly negatively correlated …'
+    - '  - [anchored] f1.limitation (p.12): The current study is constrained by the
+      spatial scale of the John Hopkins Univer…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.method (p.5): For the lesion percentage measure... the lesion percentage...
+      was correlated wit…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+- run_id: 7
+  timestamp: '2026-11-10T21:33:55'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/7 quotes (71%) — anchored 1, elided 2, exact 3, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.5): The results were adjusted for the 17 tracts
+      using the Bonferroni correction meth…'
+    - '  - [near] f1.method (p.5): correlate the lesion percentage and the mean FA
+      value of each tract and phonolog…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+- run_id: 8
+  timestamp: '2026-11-11T08:50:07'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — absent 1, anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.8): the lesion percentages of the left SLF
+      were significantly negatively correlated …'
+    - '  - [anchored] f1.limitation (p.12): The current study is constrained by the
+      spatial scale of the John Hopkins Univer…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.method (p.5): For the lesion percentage measure... the lesion percentage...
+      was correlated wit…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+- run_id: 9
+  timestamp: '2026-11-11T08:50:17'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/7 quotes (71%) — anchored 1, elided 2, exact 3, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.5): The results were adjusted for the 17 tracts
+      using the Bonferroni correction meth…'
+    - '  - [near] f1.method (p.5): correlate the lesion percentage and the mean FA
+      value of each tract and phonolog…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+- run_id: 10
+  timestamp: '2026-11-11T10:42:28'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — absent 1, anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.8): the lesion percentages of the left SLF
+      were significantly negatively correlated …'
+    - '  - [anchored] f1.limitation (p.12): The current study is constrained by the
+      spatial scale of the John Hopkins Univer…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.method (p.5): For the lesion percentage measure... the lesion percentage...
+      was correlated wit…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+- run_id: 11
+  timestamp: '2026-11-11T10:42:44'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 5/7 quotes (71%) — anchored 1, elided 2, exact 3, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.statistics (p.5): The results were adjusted for the 17 tracts
+      using the Bonferroni correction meth…'
+    - '  - [near] f1.method (p.5): correlate the lesion percentage and the mean FA
+      value of each tract and phonolog…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - 'f1: strength=''strong'''
+last_run: '2026-11-11T10:42:44'
+latest_verdict: checks_passed
+latest_mode: deterministic_only

@@ -1,0 +1,67 @@
+name: review-portal
+
+# Builds and deploys the review portal (review.aphasia-kb.app) on every push to main,
+# like explorer-pages does for the explorer. The PDFs are not built here: they live in
+# the R2 bucket (publish_portal.py --sync, on the maintainer's machine) and the build
+# reads portal/papers.json. The abstracts cache, which is not in git, is fetched from
+# the same bucket. Secrets: CLOUDFLARE_API_TOKEN (Pages: Edit, Workers R2 Storage: Edit)
+# and CLOUDFLARE_ACCOUNT_ID.
+on:
+  push:
+    branches: [main]
+    # A reviewer's decision or upload is one small file in logs/portal/inbox/. It changes
+    # nothing on the sites until it is applied (portal-apply.yml, by the Apply button or every
+    # six hours), and that apply is itself a push that starts this workflow. So a push that
+    # only adds inbox records does not start it: one build per apply, not one per decision.
+    paths-ignore:
+      - "logs/portal/inbox/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portal
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: review-portal
+      url: https://review.aphasia-kb.app
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+          cache-dependency-path: requirements-ci.txt
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: portal/package-lock.json
+      - run: pip install -r requirements-ci.txt
+      - run: npm ci
+        working-directory: portal
+      - name: Regenerate the exports
+        run: |
+          python3 scripts/export_webapp.py --out export/stroke-aphasia-kb.json --fixtures export --indent 1
+          python3 scripts/export_webapp.py --include approved,in_review,draft --out export/stroke-aphasia-kb-drafts.json
+      - name: Fetch the abstracts cache from the bucket
+        working-directory: portal
+        run: |
+          bucket=$(python3 -c "import json; print(json.load(open('portal.config.json'))['pdfsBucket'])")
+          npx wrangler r2 object get "$bucket/private/abstracts.jsonl" --file ../screening/abstracts.jsonl --remote \
+            || echo "::warning::no abstracts in the bucket yet (publish_portal.py --sync); the queue will show titles without abstracts"
+      - name: Assemble the portal
+        run: python3 scripts/publish_portal.py
+      - name: Deploy to Cloudflare Pages
+        working-directory: portal
+        run: |
+          project=$(python3 -c "import json; print(json.load(open('portal.config.json'))['pagesProject'])")
+          npx wrangler pages deploy dist --project-name "$project" --branch main --commit-dirty=true

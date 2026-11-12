@@ -1,0 +1,43 @@
+draft_path: drafts/regions/left_arcuate_fasciculus__Yu2023.md
+runs:
+- run_id: 1
+  timestamp: '2026-11-11T10:51:52'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 4/11 quotes (36%) — absent 6, anchored 1, exact 4
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.imaging_details (p.5): All original T1-weighted and diffusion
+      image data were pre-processed with the FM…'
+    - '6 quote(s) absent from the PDF — first 3:'
+    - '  - f1.claim (p.7): the mean FA values and fiber number of the left LSAF rather
+      than the left UF was…'
+    - '  - f1.sample (p.4): Thirty-six participants... with acute/subacute PSA were
+      recruited... time post-s…'
+    - '  - f2.claim (p.7): the mean FA values and fiber number of the left LSAF rather
+      than the left UF was…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+last_run: '2026-11-11T10:51:52'
+latest_verdict: auto_reject
+latest_mode: deterministic_only

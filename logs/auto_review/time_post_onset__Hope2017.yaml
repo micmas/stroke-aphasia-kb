@@ -1,0 +1,494 @@
+draft_path: drafts/predictors/time_post_onset__Hope2017.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-22T05:55:02'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — anchored 2, elided 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+- run_id: 2
+  timestamp: '2026-10-22T06:17:48'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — anchored 2, elided 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+- run_id: 3
+  timestamp: '2026-10-22T11:02:24'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — anchored 2, elided 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+- run_id: 4
+  timestamp: '2026-10-22T21:09:02'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — anchored 2, elided 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+- run_id: 5
+  timestamp: '2026-10-23T12:42:39'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/calmar/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 2/4 quotes (50%) — anchored 2, elided 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+- run_id: 6
+  timestamp: '2026-10-30T14:16:30'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+- run_id: 7
+  timestamp: '2026-10-30T23:43:38'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+- run_id: 8
+  timestamp: '2026-11-09T14:01:00'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+- run_id: 9
+  timestamp: '2026-11-10T10:40:09'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+- run_id: 10
+  timestamp: '2026-11-10T20:58:53'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+- run_id: 11
+  timestamp: '2026-11-10T21:33:51'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+- run_id: 12
+  timestamp: '2026-11-11T08:50:14'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/sessions/rcw-01mvxcaxbgbjkaokvzmvyrhk/mnt/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+- run_id: 13
+  timestamp: '2026-11-11T10:42:39'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: false
+    blocker: true
+    details:
+    - '/Users/uqmmasso/GITHUB/stroke-aphasia-kb/drafts/predictors/time_post_onset__Hope2017.md:
+      predictor_type=''clinical'' requires assessment (non-empty list of test names)'
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, elided 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.3): Summary details of the 28 patients who met
+      these criteria are as follows: 10 fem…'
+    - '  - [anchored] f1.limitation (p.9): The distinction between improvers and decliners
+      might reflect some more subtle (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - schema not clean
+  - not every passage matched the PDF exactly
+  - 'f1: has provenance.flags'
+last_run: '2026-11-11T10:42:39'
+latest_verdict: auto_reject
+latest_mode: deterministic_only

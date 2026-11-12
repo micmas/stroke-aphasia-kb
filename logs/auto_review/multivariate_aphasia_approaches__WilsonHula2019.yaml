@@ -1,0 +1,408 @@
+draft_path: drafts/reviews/multivariate_aphasia_approaches__WilsonHula2019.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-31T01:00:35'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, exact 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f2.claim (p.5): In synthetic data in which damage to multiple
+      regions may contribute to behavior…'
+    - '  - [anchored] f3.claim (p.6): Most saliently, they showed that reduced interhemispheric
+      connectivity between h…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'reviews' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: evidence_quality=''narrative-review'''
+  - 'f2: evidence_quality=''narrative-review'''
+  - 'f3: evidence_quality=''narrative-review'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: approve
+      rationale: All findings are accurately extracted from the text. f1 correctly
+        synthesizes the introductory claims regarding the multifactorial nature of
+        aphasia. f2 accurately reflects the comparison between MLSM and univariate
+        approaches, including the specific mention of synthetic data performance.
+        f3 correctly identifies the predictive nature of interhemispheric connectivity
+        as stated in the Corbetta section.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f3
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: override_approve
+    raw_preview: "{\n  \"overall_verdict\": \"approve\",\n  \"rationale\": \"All findings\
+      \ are accurately extracted from the text. f1 correctly synthesizes the introductory\
+      \ claims regarding the multifactorial nature of aphasia. f2 accurately reflects\
+      \ the comparison between MLSM and univariate approaches, including the specific\
+      \ mention of synthetic data performance. f3 correctly identifies the predictive\
+      \ nature of interhemispheric connectivity as stated in the Corbetta section.\"\
+      ,\n  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"passage_present\"\
+      : true,\n      \"passage_supports_field\": true,\n      \"relationship_faithful\"\
+      : true,\n      \"strength_fair\": true,\n      \"numbers_match\": true,\n  \
+      \    \"limitations_captured\": true,\n      \"omissions\": \"\",\n      \"concern\"\
+      : \"\",\n      \"verdict\": \"agree\"\n    },\n    {\n      \"id\": \"f2\",\n\
+      \ "
+    error: null
+    votes: 3
+    vote_verdicts:
+    - approve
+    - approve
+    - approve
+    unanimous: true
+    guardrails:
+    - model said approve on Tier B; recorded as agree_defer — a person must approve
+      this tier
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 2
+  timestamp: '2026-11-09T15:14:05'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, exact 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f2.claim (p.5): In synthetic data in which damage to multiple
+      regions may contribute to behavior…'
+    - '  - [anchored] f3.claim (p.6): Most saliently, they showed that reduced interhemispheric
+      connectivity between h…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'reviews' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: evidence_quality=''narrative-review'''
+  - 'f2: evidence_quality=''narrative-review'''
+  - 'f3: evidence_quality=''narrative-review'''
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: approve
+      rationale: All findings accurately reflect the provided review text. The claims
+        regarding the multifactorial nature of aphasia (f1), the advantages of MLSM
+        in synthetic data (f2), and the predictive power of interhemispheric connectivity
+        (f3) are all supported by verbatim passages and correctly interpret the authors'
+        synthesis.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f3
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: override_approve
+    raw_preview: "{\n  \"overall_verdict\": \"approve\",\n  \"rationale\": \"All findings\
+      \ accurately reflect the provided review text. The claims regarding the multifactorial\
+      \ nature of aphasia (f1), the advantages of MLSM in synthetic data (f2), and\
+      \ the predictive power of interhemispheric connectivity (f3) are all supported\
+      \ by verbatim passages and correctly interpret the authors' synthesis.\",\n\
+      \  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"passage_present\"\
+      : true,\n      \"passage_supports_field\": true,\n      \"relationship_faithful\"\
+      : true,\n      \"strength_fair\": true,\n      \"numbers_match\": true,\n  \
+      \    \"limitations_captured\": true,\n      \"omissions\": \"\",\n      \"concern\"\
+      : \"\",\n      \"verdict\": \"agree\"\n    },\n    {\n      \"id\": \"f2\",\n\
+      \      \"passage_present\": true,\n      \"passage_supports_field\": true,\n\
+      \      \"relationsh"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - approve
+    - approve
+    - approve
+    unanimous: true
+    guardrails:
+    - model said approve on Tier B; recorded as agree_defer — a person must approve
+      this tier
+    extractor: agent:ollama-extract-cli/gemma4:31b-it-q8_0
+    independent: true
+    papers_missing: []
+- run_id: 3
+  timestamp: '2026-11-10T10:40:30'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, exact 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f2.claim (p.5): In synthetic data in which damage to multiple
+      regions may contribute to behavior…'
+    - '  - [anchored] f3.claim (p.6): Most saliently, they showed that reduced interhemispheric
+      connectivity between h…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'reviews' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: evidence_quality=''narrative-review'''
+  - 'f2: evidence_quality=''narrative-review'''
+  - 'f3: evidence_quality=''narrative-review'''
+- run_id: 4
+  timestamp: '2026-11-10T20:59:14'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, exact 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f2.claim (p.5): In synthetic data in which damage to multiple
+      regions may contribute to behavior…'
+    - '  - [anchored] f3.claim (p.6): Most saliently, they showed that reduced interhemispheric
+      connectivity between h…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'reviews' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: evidence_quality=''narrative-review'''
+  - 'f2: evidence_quality=''narrative-review'''
+  - 'f3: evidence_quality=''narrative-review'''
+- run_id: 5
+  timestamp: '2026-11-10T21:34:11'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, exact 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f2.claim (p.5): In synthetic data in which damage to multiple
+      regions may contribute to behavior…'
+    - '  - [anchored] f3.claim (p.6): Most saliently, they showed that reduced interhemispheric
+      connectivity between h…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'reviews' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: evidence_quality=''narrative-review'''
+  - 'f2: evidence_quality=''narrative-review'''
+  - 'f3: evidence_quality=''narrative-review'''
+- run_id: 6
+  timestamp: '2026-11-11T08:50:29'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, exact 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f2.claim (p.5): In synthetic data in which damage to multiple
+      regions may contribute to behavior…'
+    - '  - [anchored] f3.claim (p.6): Most saliently, they showed that reduced interhemispheric
+      connectivity between h…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'reviews' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: evidence_quality=''narrative-review'''
+  - 'f2: evidence_quality=''narrative-review'''
+  - 'f3: evidence_quality=''narrative-review'''
+- run_id: 7
+  timestamp: '2026-11-11T10:43:02'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/5 quotes (60%) — anchored 2, exact 3
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f2.claim (p.5): In synthetic data in which damage to multiple
+      regions may contribute to behavior…'
+    - '  - [anchored] f3.claim (p.6): Most saliently, they showed that reduced interhemispheric
+      connectivity between h…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'reviews' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: evidence_quality=''narrative-review'''
+  - 'f2: evidence_quality=''narrative-review'''
+  - 'f3: evidence_quality=''narrative-review'''
+last_run: '2026-11-11T10:43:02'
+latest_verdict: checks_passed
+latest_mode: deterministic_only

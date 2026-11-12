@@ -1,0 +1,21 @@
+# The Reviewer team of the review portal (docs/PORTAL.md, docs/GOVERNANCE.md §2).
+#
+# Cloudflare Access verifies the email at sign-in; this file maps it to the
+# `human:<name>` the KB uses and says which role the person has:
+#   reviewer  — listed here: screening decisions, per-finding verdicts, edits,
+#               passage marks, comments and uploaded PDFs are applied under
+#               their name; an `approve` from them is kept as an opinion
+#   approver  — `approver: true`: their approve / reject runs promote.py under
+#               their name — they are the accountable person for that entry
+#   maintainer — `maintainer: true`: sees the portal's "Apply now" button, which
+#               runs the apply workflow (the same email must be in MAINTAINERS in
+#               wrangler.toml, which is what the function enforces)
+# An email not listed here is applied as human:<local part> with no approval
+# right, and scripts/portal_import.py lists it so it can be added.
+# To add someone: their email in the portal's Access policy (so they can sign
+# in) and a block below; `approver: true` only by the maintainer's decision.
+reviewers:
+  m.massontrottier@uq.edu.au:
+    name: michele
+    approver: true
+    maintainer: true

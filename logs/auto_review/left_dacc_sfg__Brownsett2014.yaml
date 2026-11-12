@@ -1,0 +1,149 @@
+draft_path: drafts/regions/left_dacc_sfg__Brownsett2014.md
+runs:
+- run_id: 1
+  timestamp: '2026-11-10T20:58:58'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — anchored 2, elided 1, exact 2, near 1
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.250): The mean performance on the picture description
+      test across the three sessions w…'
+    - '  - [near] f1.method (p.244): Univariate whole-brain analyses were carried
+      out within the framework of the gen…'
+    - '  - [anchored] f1.statistics (p.250): The results of the regression indicated
+      that the model was statistically signifi…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 2
+  timestamp: '2026-11-10T21:33:56'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — anchored 2, elided 1, exact 2, near 1
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.250): The mean performance on the picture description
+      test across the three sessions w…'
+    - '  - [near] f1.method (p.244): Univariate whole-brain analyses were carried
+      out within the framework of the gen…'
+    - '  - [anchored] f1.statistics (p.250): The results of the regression indicated
+      that the model was statistically signifi…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 3
+  timestamp: '2026-11-11T08:50:17'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — anchored 2, elided 1, exact 2, near 1
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.250): The mean performance on the picture description
+      test across the three sessions w…'
+    - '  - [near] f1.method (p.244): Univariate whole-brain analyses were carried
+      out within the framework of the gen…'
+    - '  - [anchored] f1.statistics (p.250): The results of the regression indicated
+      that the model was statistically signifi…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 4
+  timestamp: '2026-11-11T10:42:45'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 3/6 quotes (50%) — anchored 2, elided 1, exact 2, near 1
+    - '3 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.claim (p.250): The mean performance on the picture description
+      test across the three sessions w…'
+    - '  - [near] f1.method (p.244): Univariate whole-brain analyses were carried
+      out within the framework of the gen…'
+    - '  - [anchored] f1.statistics (p.250): The results of the regression indicated
+      that the model was statistically signifi…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-11T10:42:45'
+latest_verdict: checks_passed
+latest_mode: deterministic_only

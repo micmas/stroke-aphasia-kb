@@ -1,0 +1,145 @@
+draft_path: drafts/therapies/inhibitory_rtms_right_ifg__Thiel2013.md
+runs:
+- run_id: 1
+  timestamp: '2026-11-10T20:59:14'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 7/9 quotes (78%) — exact 7, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.sample (p.2241): All patients were right handed, with German
+      as the first language.…'
+    - '  - [near] f2.claim (p.2243): Consistent with previous studies, the strongest
+      increase was observed on naming …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 2
+  timestamp: '2026-11-10T21:34:12'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 7/9 quotes (78%) — exact 7, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.sample (p.2241): All patients were right handed, with German
+      as the first language.…'
+    - '  - [near] f2.claim (p.2243): Consistent with previous studies, the strongest
+      increase was observed on naming …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 3
+  timestamp: '2026-11-11T08:50:29'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 7/9 quotes (78%) — exact 7, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.sample (p.2241): All patients were right handed, with German
+      as the first language.…'
+    - '  - [near] f2.claim (p.2243): Consistent with previous studies, the strongest
+      increase was observed on naming …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 4
+  timestamp: '2026-11-11T10:43:03'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 7/9 quotes (78%) — exact 7, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f1.sample (p.2241): All patients were right handed, with German
+      as the first language.…'
+    - '  - [near] f2.claim (p.2243): Consistent with previous studies, the strongest
+      increase was observed on naming …'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-11T10:43:03'
+latest_verdict: checks_passed
+latest_mode: deterministic_only

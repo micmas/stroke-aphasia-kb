@@ -1,0 +1,40 @@
+# Cloudflare Pages project for the review portal (docs/PORTAL.md).
+#   cd portal && npx wrangler pages deploy dist --project-name stroke-aphasia-kb-review
+# Non-secret settings can live here; GITHUB_TOKEN is a secret:
+#   npx wrangler pages secret put GITHUB_TOKEN --project-name stroke-aphasia-kb-review
+name = "stroke-aphasia-kb-review"
+pages_build_output_dir = "dist"
+compatibility_date = "2025-10-01"
+
+[vars]
+GITHUB_REPO = "micmas/stroke-aphasia-kb"
+GITHUB_BRANCH = "main"
+ACCESS_TEAM_DOMAIN = "sparkling-bird-a757"
+ACCESS_AUD = "879e6c3e21715bbca5946c01cb2a8e5c5a16ac96d001822866c40be04bbc68b7"
+UPLOADS_BUCKET = "stroke-aphasia-kb-uploads"
+PDFS_BUCKET = "stroke-aphasia-kb-pdfs"
+# who may press "Apply now" (functions/api/apply.js); keep in step with `maintainer: true` in reviewers.yaml
+MAINTAINERS = "m.massontrottier@uq.edu.au"
+
+# PDFs reviewers upload wait here until scripts/portal_import.py pulls them into papers/
+# (the OneDrive folder) and deletes them. Create once: npx wrangler r2 bucket create stroke-aphasia-kb-uploads
+[[r2_buckets]]
+binding = "UPLOADS"
+bucket_name = "stroke-aphasia-kb-uploads"
+
+# The annotated PDFs (cc/ public, pdf/ private) and the abstracts cache, mirrored from the
+# maintainer's papers folder by `publish_portal.py --sync` and served by functions/cc, functions/pdf.
+# Create once: npx wrangler r2 bucket create stroke-aphasia-kb-pdfs
+[[r2_buckets]]
+binding = "PDFS"
+bucket_name = "stroke-aphasia-kb-pdfs"
+
+# Reviewer requests by email (docs/PORTAL.md, step 12): the Worker in portal/mailer/
+# (cd portal/mailer && npx wrangler deploy), which sends through Email Routing to the
+# maintainers' verified addresses. When it cannot send (an address not verified yet), the
+# request is announced through GitHub instead (.github/workflows/portal-request.yml).
+# Remove this block if the Worker is ever deleted: a binding to a Worker that does not
+# exist makes the deploy fail.
+[[services]]
+binding = "MAILER"
+service = "portal-mailer"

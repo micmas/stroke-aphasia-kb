@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Stroke aphasia KB · review portal</title>
+  <!-- The one public page of the portal: who it is for, the sign-in for approved reviewers,
+       and the form for asking to become one (POST /welcome/request). Everything it needs is
+       under /welcome/, the only path open without a sign-in. -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2352489c'/%3E%3Ccircle cx='11' cy='13' r='4' fill='%234062bb'/%3E%3Ccircle cx='21' cy='19' r='4' fill='%23f45b69'/%3E%3Cpath d='M13.5 15.5l5 1.5' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+  <style>
+    main.welcome { max-width: 860px; }
+    .welcome .lead { font-size: 1.05rem; max-width: 62ch; }
+    .choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.4rem 0; align-items: start; }
+    .choice { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 1.1rem 1.2rem 1.2rem; background: var(--surface); display: grid; gap: .6rem; }
+    .choice h2 { margin: 0; font-size: 1.15rem; color: var(--grape); }
+    .choice p { margin: 0; }
+    .btn-big { display: inline-block; justify-self: start; padding: .55rem 1.1rem; border-radius: var(--radius); border: 1px solid var(--grape); background: var(--grape); color: #fff; font: inherit; font-weight: 600; cursor: pointer; text-decoration: none; }
+    .btn-big:hover { filter: brightness(1.08); text-decoration: none; }
+    .btn-big.quiet { background: transparent; color: var(--grape); }
+    .btn-big[disabled] { opacity: .55; cursor: progress; }
+    form.ask { display: grid; gap: .7rem; margin-top: .3rem; }
+    form.ask label { display: grid; gap: .2rem; font-size: .9rem; font-weight: 600; }
+    form.ask label span { font-weight: 400; color: var(--ink-2); }
+    form.ask input, form.ask textarea { font: inherit; padding: .45rem .55rem; border: 1px solid var(--line-strong); border-radius: var(--radius); background: var(--surface); color: inherit; width: 100%; box-sizing: border-box; }
+    form.ask textarea { min-height: 6.5rem; resize: vertical; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    .msg { border-radius: var(--radius); padding: .6rem .8rem; font-size: .92rem; }
+    .msg.err { background: var(--pink-tint); }
+    .msg.ok { background: var(--cyan-tint); }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="app-header">
+    <a class="brand" href="/welcome/"><span>Stroke aphasia KB</span><span class="sub">review portal</span></a>
+    <nav class="nav" aria-label="Site"><a href="https://aphasia-kb.app/">Public explorer</a></nav>
+  </header>
+  <main id="main" class="welcome" tabindex="-1">
+    <h1>Review portal</h1>
+    <p class="lead">Here, invited reviewers check what the stroke aphasia knowledge base says against the papers it came from: each draft beside its annotated paper, and the queue of papers waiting to be screened. The portal is open to approved reviewers. The knowledge base itself is public, in the <a href="https://aphasia-kb.app/">explorer</a>.</p>
+
+    <div class="choices">
+      <section class="choice" aria-labelledby="have">
+        <h2 id="have">I'm already an approved reviewer</h2>
+        <p>Sign in with the email address you were approved with. You get a one-time code by email: no account to create, no password.</p>
+        <p class="small muted">The sign-in page is run by Cloudflare Access. You do not need a Cloudflare account.</p>
+        <a class="btn-big" href="/api/signin">Sign in</a>
+      </section>
+
+      <section class="choice" aria-labelledby="want">
+        <h2 id="want">I'd like to become a reviewer</h2>
+        <p id="askIntro">Tell us who you are. The maintainer reads every request and answers by email. All you need to review is an email address: you sign in with a code sent to it, with no account to create. <a href="https://aphasia-kb.app/#/involve">What reviewing involves</a>.</p>
+        <button class="btn-big quiet" id="askOpen" type="button" aria-expanded="false" aria-controls="askForm">Ask to join</button>
+        <form class="ask" id="askForm" hidden novalidate>
+          <label>Name <input name="name" autocomplete="name" required maxlength="120"></label>
+          <label>Email <span>the address you would sign in with</span><input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+          <label>Affiliation or role <span>optional</span><input name="affiliation" autocomplete="organization" maxlength="200"></label>
+          <label>Your background, in a line or two <span>optional: clinical or research experience with aphasia, imaging, or reviewing</span><textarea name="note" maxlength="1500"></textarea></label>
+          <div class="hp" aria-hidden="true"><label>Leave this empty <input name="website" tabindex="-1" autocomplete="off"></label></div>
+          <div class="msg err" id="askError" role="alert" hidden></div>
+          <button class="btn-big" id="askSend" type="submit">Send request</button>
+          <p class="small muted">Your name and email are used only to answer this request and, if you join, to sign your reviews. They are not published.</p>
+        </form>
+        <div class="msg ok" id="askDone" role="status" hidden></div>
+      </section>
+    </div>
+  </main>
+  <footer class="app-footer">
+    Findings in the knowledge base are group-level literature associations with their citations and review provenance, not clinical predictions. Research use only.
+    · <a href="https://aphasia-kb.app/">Public explorer</a>
+    · <a href="https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/PORTAL.md" rel="noopener">How the portal works</a>
+  </footer>
+  <script>
+    (() => {
+      const open = document.getElementById('askOpen'), form = document.getElementById('askForm');
+      const error = document.getElementById('askError'), done = document.getElementById('askDone'), send = document.getElementById('askSend');
+      const say = (msg) => { error.textContent = msg; error.hidden = !msg; };
+      open.addEventListener('click', () => { form.hidden = false; open.hidden = true; open.setAttribute('aria-expanded', 'true'); form.elements.name.focus(); });
+      form.addEventListener('input', () => say(''));
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const f = form.elements, body = { name: f.name.value.trim(), email: f.email.value.trim(), affiliation: f.affiliation.value.trim(), note: f.note.value.trim(), website: f.website.value };
+        if (!body.name) { say('Please give your name.'); f.name.focus(); return; }
+        if (!/^\S+@\S+\.\S+$/.test(body.email)) { say('Please give the email address you would sign in with.'); f.email.focus(); return; }
+        say(''); send.disabled = true; send.textContent = 'Sending…';
+        try {
+          const res = await fetch('/welcome/request', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+          const out = await res.json().catch(() => ({}));
+          if (!res.ok || out.error) throw new Error(out.error || 'The request could not be sent. Please try again in a moment.');
+          form.hidden = true; document.getElementById('askIntro').hidden = true;
+          done.textContent = `Thank you, ${body.name}. Your request has been sent to the maintainer, who will answer at ${body.email}. Once you have been added, come back to this page and choose "I'm already an approved reviewer".`;
+          done.hidden = false; done.focus?.();
+        } catch (err) {
+          say(err.message.includes('fetch') ? 'The request could not be sent. Check your connection and try again.' : err.message);
+          send.disabled = false; send.textContent = 'Send request';
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

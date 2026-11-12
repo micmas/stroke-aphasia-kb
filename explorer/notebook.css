@@ -1,0 +1,127 @@
+/* The published notebook page (scripts/build_notebook_page.py → calmar.aphasia-kb.app). Appended to
+   styles.css at build time, so the palette and the light/dark tokens are the explorer's.
+   The page is long technical prose: it is set for reading — a 16 px body, a measure of about
+   75 characters, clear section breaks, and code and logs folded behind quiet controls. */
+
+.nbpage { font-size: 1.0667rem; }                         /* 16 px on the explorer's 15 px root */
+.nbpage main { max-width: none; margin: 0; padding: 0; }
+.nb-layout { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 3rem; max-width: 1100px; margin: 0 auto; padding: 1.5rem 16px 4rem; }
+.nbpage .nb-main { min-width: 0; max-width: 780px; }
+
+/* ---- contents --------------------------------------------------------------------------- */
+.nb-toc { position: sticky; top: 3.8rem; align-self: start; max-height: calc(100vh - 5rem); overflow-y: auto; font-size: .84rem; padding: .2rem .4rem 1rem 0; scrollbar-width: thin; }
+.nb-toc details { margin: 0; }
+.nb-toc .toc-title { list-style: none; cursor: default; font-weight: 600; color: var(--ink-2); text-transform: uppercase; letter-spacing: .06em; font-size: .7rem; margin: 0 0 .5rem; }
+.nb-toc .toc-title::-webkit-details-marker { display: none; }
+.nb-toc .toc-title:hover { text-decoration: none; }
+.nb-toc nav { border-left: 1px solid var(--line-strong); }
+.nb-toc a { display: block; padding: .22rem .6rem .22rem .85rem; margin-left: -1px; border-left: 2px solid transparent; color: var(--ink-2); line-height: 1.35; }
+.nb-toc a.toc-2 { color: var(--ink); font-weight: 500; margin-top: .15rem; }
+.nb-toc a.toc-3 { padding-left: 1.6rem; font-size: .8rem; }
+.nb-toc a.toc-4 { padding-left: 2.2rem; font-size: .78rem; }
+.nb-toc a:hover { color: var(--grape); text-decoration: none; }
+.nb-toc a.active { color: var(--grape); border-left-color: var(--grape); font-weight: 600; }
+.nb-toc.js a.toc-sub:not(.open) { display: none; }           /* with the script: only the current section's sub-headings */
+
+/* ---- top of the page ------------------------------------------------------------------ */
+.hero { padding: .4rem 0 .6rem; scroll-margin-top: 5rem; }
+.hero .eyebrow { margin: 0 0 .35rem; font-size: .78rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--blue); }
+.hero h1 { font-size: 2.1rem; line-height: 1.15; letter-spacing: -.01em; margin: 0 0 .8rem; }
+.hero .lead { font-size: 1.08rem; line-height: 1.65; color: var(--ink); margin: 0 0 1rem; }
+.facts { list-style: none; margin: 0; padding: .7rem 0 0; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: .45rem 1.4rem; font-size: .85rem; color: var(--ink-2); }
+.facts li { margin: 0; }
+.facts .k { font-weight: 600; color: var(--ink); margin-right: .25rem; }
+.facts li.warn .k { color: var(--pink); }
+.facts code { font-size: .82em; }
+
+.launch { border: 1px solid var(--line-strong); border-radius: 10px; background: var(--grape-tint); padding: 1rem 1.2rem 1rem; margin: 1.4rem 0 1rem; scroll-margin-top: 5rem; }
+.launch h2 { margin: 0 0 .25rem; font-size: 1.15rem; border: 0; padding: 0; }
+.launch p { margin: .2rem 0 .7rem; color: var(--ink-2); }
+.launch-row { display: flex; align-items: center; justify-content: space-between; gap: .6rem 1rem; flex-wrap: wrap; padding: .6rem 0; border-top: 1px solid color-mix(in oklab, var(--grape) 18%, transparent); }
+.launch-row > div:first-child { flex: 1 1 18rem; }
+.launch-links { display: flex; gap: .4rem; flex-wrap: wrap; }
+.launch .btn { display: inline-block; background: var(--grape); color: #fff; border-radius: 999px; padding: .38rem 1rem; font-weight: 500; font-size: .88rem; white-space: nowrap; }
+.launch .btn:hover { filter: brightness(1.12); text-decoration: none; }
+.launch .btn::before { content: "▶ "; font-size: .7em; vertical-align: .08em; }
+.nb-main > .caveat { font-size: .88rem; margin: 0 0 2rem; }
+
+/* ---- the notebook ------------------------------------------------------------------------ */
+.nb { line-height: 1.7; }
+.nb section { margin: 0; }
+.nb p, .nb li { margin: .55rem 0; }
+.nb ul, .nb ol { padding-left: 1.4rem; }
+.nb li > p { margin: .2rem 0; }
+.nb h1, .nb h2, .nb h3, .nb h4 { scroll-margin-top: 4.5rem; }
+.nb .md h1 { font-size: 1.6rem; margin: 2.5rem 0 .6rem; }
+/* a section (h2): a clear break, as a chapter would have */
+.nb .md h2 { font-size: 1.55rem; line-height: 1.2; margin: 3.4rem 0 .8rem; padding-top: 1.6rem; border-top: 2px solid var(--line); letter-spacing: -.005em; }
+.nb .md h3 { font-size: 1.22rem; margin: 2.2rem 0 .5rem; color: var(--ink); }
+.nb .md h4 { font-size: 1.06rem; margin: 2rem 0 .45rem; color: var(--grape); }
+.nb .md h2 + h3, .nb .md h2 + h4, .nb .md h3 + h4 { margin-top: 1rem; }
+/* "What:", "Inputs:", "Check:" — the lead-in labels the notebook starts its paragraphs with */
+.nb .md p > strong:first-child { color: var(--grape); }
+.nb .md hr { border: 0; border-top: 1px solid var(--line); margin: 2rem 0; }
+.nb .md blockquote { margin: 1rem 0; padding: .1rem 1rem; border-left: 3px solid var(--line-strong); color: var(--ink-2); }
+.nb .md img, .nb .out-image img { max-width: 100%; height: auto; border-radius: 4px; }
+.nb .out-image { margin: .8rem 0; }
+.nb code { font-size: .84em; background: var(--panel); border: 1px solid var(--line); padding: .02em .32em; border-radius: 4px; overflow-wrap: break-word; }
+.nb pre code { border: 0; padding: 0; background: none; }
+
+/* tables written in markdown: readable, scroll sideways rather than squeeze */
+.nb .md table { display: block; width: max-content; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-size: .9rem; line-height: 1.5; margin: 1rem 0; }
+.nb .md th { background: var(--panel); color: var(--ink); text-transform: none; letter-spacing: 0; font-size: .82rem; border-bottom: 1px solid var(--line-strong); white-space: nowrap; }
+.nb .md th, .nb .md td { padding: .45rem .7rem; vertical-align: top; }
+.nb .md td { border-bottom: 1px solid var(--line); min-width: 6rem; }
+.nb .md td:last-child { min-width: 16rem; }
+.nb .md td code { white-space: nowrap; overflow-wrap: normal; }
+
+/* folded code and logs: quiet controls, one click away */
+.nb details.code, .nb details.log, .nb details.error { margin: .6rem 0 1rem; }
+.nb details.code > summary, .nb details.log > summary, .nb details.error > summary {
+  display: inline-flex; align-items: center; gap: .45rem; max-width: 100%; list-style: none;
+  font-size: .8rem; font-weight: 500; color: var(--ink-2); line-height: 1.3;
+  border: 1px solid var(--line-strong); border-radius: 999px; padding: .22rem .75rem .22rem .6rem; background: var(--surface);
+}
+.nb details > summary::-webkit-details-marker { display: none; }
+.nb details.code > summary::before { content: "</>"; font-family: var(--mono); font-size: .72rem; font-weight: 700; color: var(--blue); }
+.nb details.log > summary::before { content: "≡"; font-weight: 700; color: var(--blue); }
+.nb details.error > summary { color: var(--pink); border-color: var(--pink); }
+.nb details.code > summary:hover, .nb details.log > summary:hover { color: var(--grape); border-color: var(--grape); text-decoration: none; }
+.nb details[open] > summary { border-bottom-left-radius: 0; border-bottom-right-radius: 0; background: var(--panel); }
+.nb pre { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: .7rem .9rem; font-family: var(--mono); font-size: .8rem; line-height: 1.5; overflow-x: auto; white-space: pre-wrap; word-break: break-word; margin: .4rem 0; }
+.nb details[open] > pre { margin-top: 0; border-top-left-radius: 0; }
+.nb pre.source { white-space: pre; word-break: normal; max-height: 32rem; }
+.nb pre.stream.stderr { border-color: var(--pink); }
+.nb .pause, .nb .panel-note { border: 1px dashed var(--line-strong); border-radius: 8px; padding: .55rem .85rem; font-size: .9rem; color: var(--ink-2); margin: .6rem 0; }
+.nb .pause { border-style: solid; border-left: 3px solid var(--cyan); }
+.nb .widget { margin: .8rem 0; overflow-x: auto; }
+
+/* Tables and panels the notebook wrote for JupyterLab: give them the variables they expect
+   and keep them readable in both themes. */
+.nb .out-html, .nb .widget {
+  --jp-ui-font-color0: var(--ink); --jp-ui-font-color1: var(--ink); --jp-ui-font-color2: var(--ink-2); --jp-ui-font-color3: var(--ink-2);
+  --jp-content-font-color0: var(--ink); --jp-content-font-color1: var(--ink); --jp-content-font-color2: var(--ink-2);
+  --jp-layout-color0: var(--surface); --jp-layout-color1: var(--surface); --jp-layout-color2: var(--panel); --jp-layout-color3: var(--panel);
+  --jp-border-color0: var(--line-strong); --jp-border-color1: var(--line-strong); --jp-border-color2: var(--line); --jp-border-color3: var(--line);
+  --jp-brand-color1: var(--grape); --jp-widgets-color: var(--ink); --jp-widgets-label-color: var(--ink);
+  --jp-code-font-family: var(--mono); --jp-ui-font-family: var(--font);
+  overflow-x: auto; font-size: .88rem; margin: .6rem 0; line-height: 1.5;
+}
+.nb .out-html table { border-collapse: collapse; width: auto; max-width: 100%; font-size: .84rem; border-color: var(--line-strong); }
+.nb .out-html th, .nb .out-html td { border: 1px solid var(--line-strong); padding: .3rem .5rem; vertical-align: top; text-align: left; }
+.nb .out-html th { background: var(--panel); text-transform: none; letter-spacing: 0; font-size: .82rem; color: var(--ink); }
+.nb .out-html h4 { color: var(--ink); font-size: .95rem; }
+.nb .md details:not(.code):not(.log) { margin: 1rem 0; }
+
+/* ---- narrow screens ------------------------------------------------------------------------ */
+@media (max-width: 860px) {
+  .nb-layout { grid-template-columns: minmax(0, 1fr); gap: .5rem; padding-top: .8rem; }
+  .nb-toc { position: static; max-height: none; padding: 0; border: 1px solid var(--line-strong); border-radius: 8px; }
+  .nb-toc .toc-title { cursor: pointer; list-style: none; padding: .55rem .8rem; margin: 0; }
+  .nb-toc .toc-title::after { content: " ▾"; }
+  .nb-toc details[open] .toc-title::after { content: " ▴"; }
+  .nb-toc nav { max-height: 60vh; overflow-y: auto; border-left: 0; border-top: 1px solid var(--line); padding: .3rem 0 .5rem; }
+  .nb-toc.js a.toc-sub:not(.open) { display: block; }       /* on a phone the list is opened on purpose: show it all */
+  .hero h1 { font-size: 1.65rem; }
+  .nb .md h2 { font-size: 1.35rem; margin-top: 2.6rem; }
+}

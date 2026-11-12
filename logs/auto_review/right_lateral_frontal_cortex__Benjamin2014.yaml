@@ -1,0 +1,601 @@
+draft_path: drafts/regions/right_lateral_frontal_cortex__Benjamin2014.md
+runs:
+- run_id: 1
+  timestamp: '2026-10-22T07:16:34'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 1/5 quotes (20%) — absent 2, anchored 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Fourteen chronic (>6 months) aphasia patients
+      participated. [...] Patients were …'
+    - '  - [anchored] f1.region_definition (p.4): Three regions of interest (ROIs;
+      medial frontal, lateral frontal, and posterior …'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.4): Lesions were masked on T1-weighted images using
+      ITK-Snap [...] and then warped i…'
+    - '  - f1.limitation (p.6): Small number of subjects in the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 2
+  timestamp: '2026-10-22T11:49:41'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 1/5 quotes (20%) — absent 2, anchored 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Fourteen chronic (>6 months) aphasia patients
+      participated. [...] Patients were …'
+    - '  - [anchored] f1.region_definition (p.4): Three regions of interest (ROIs;
+      medial frontal, lateral frontal, and posterior …'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.4): Lesions were masked on T1-weighted images using
+      ITK-Snap [...] and then warped i…'
+    - '  - f1.limitation (p.6): Small number of subjects in the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 3
+  timestamp: '2026-10-22T21:55:08'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 1/5 quotes (20%) — absent 2, anchored 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Fourteen chronic (>6 months) aphasia patients
+      participated. [...] Patients were …'
+    - '  - [anchored] f1.region_definition (p.4): Three regions of interest (ROIs;
+      medial frontal, lateral frontal, and posterior …'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.4): Lesions were masked on T1-weighted images using
+      ITK-Snap [...] and then warped i…'
+    - '  - f1.limitation (p.6): Small number of subjects in the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 4
+  timestamp: '2026-10-23T14:22:27'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 1/5 quotes (20%) — absent 2, anchored 2, exact 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Fourteen chronic (>6 months) aphasia patients
+      participated. [...] Patients were …'
+    - '  - [anchored] f1.region_definition (p.4): Three regions of interest (ROIs;
+      medial frontal, lateral frontal, and posterior …'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.4): Lesions were masked on T1-weighted images using
+      ITK-Snap [...] and then warped i…'
+    - '  - f1.limitation (p.6): Small number of subjects in the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 5
+  timestamp: '2026-10-30T15:11:33'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — absent 2, anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Fourteen chronic (>6 months) aphasia patients
+      participated. [...] Patients were …'
+    - '  - [anchored] f1.region_definition (p.4): Three regions of interest (ROIs;
+      medial frontal, lateral frontal, and posterior …'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.4): Lesions were masked on T1-weighted images using
+      ITK-Snap [...] and then warped i…'
+    - '  - f1.limitation (p.6): Small number of subjects in the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 6
+  timestamp: '2026-10-31T00:51:11'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — absent 2, anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Fourteen chronic (>6 months) aphasia patients
+      participated. [...] Patients were …'
+    - '  - [anchored] f1.region_definition (p.4): Three regions of interest (ROIs;
+      medial frontal, lateral frontal, and posterior …'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.4): Lesions were masked on T1-weighted images using
+      ITK-Snap [...] and then warped i…'
+    - '  - f1.limitation (p.6): Small number of subjects in the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 7
+  timestamp: '2026-11-09T15:04:57'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — absent 2, anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Fourteen chronic (>6 months) aphasia patients
+      participated. [...] Patients were …'
+    - '  - [anchored] f1.region_definition (p.4): Three regions of interest (ROIs;
+      medial frontal, lateral frontal, and posterior …'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.4): Lesions were masked on T1-weighted images using
+      ITK-Snap [...] and then warped i…'
+    - '  - f1.limitation (p.6): Small number of subjects in the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 8
+  timestamp: '2026-11-10T10:40:27'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — absent 2, anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Fourteen chronic (>6 months) aphasia patients
+      participated. [...] Patients were …'
+    - '  - [anchored] f1.region_definition (p.4): Three regions of interest (ROIs;
+      medial frontal, lateral frontal, and posterior …'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.4): Lesions were masked on T1-weighted images using
+      ITK-Snap [...] and then warped i…'
+    - '  - f1.limitation (p.6): Small number of subjects in the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 9
+  timestamp: '2026-11-10T20:58:47'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — absent 2, anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Fourteen chronic (>6 months) aphasia patients
+      participated. [...] Patients were …'
+    - '  - [anchored] f1.region_definition (p.4): Three regions of interest (ROIs;
+      medial frontal, lateral frontal, and posterior …'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.4): Lesions were masked on T1-weighted images using
+      ITK-Snap [...] and then warped i…'
+    - '  - f1.limitation (p.6): Small number of subjects in the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 10
+  timestamp: '2026-11-10T20:59:11'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/6 quotes (67%) — anchored 1, exact 4, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.imaging_details (p.548): the whole brain was imaged in 1.70
+      seconds using a gradient echo-echo planar seq…'
+    - '  - [near] f1.limitation (p.552): Because of the small number of subjects in
+      the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 11
+  timestamp: '2026-11-10T21:33:44'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — absent 2, anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Fourteen chronic (>6 months) aphasia patients
+      participated. [...] Patients were …'
+    - '  - [anchored] f1.region_definition (p.4): Three regions of interest (ROIs;
+      medial frontal, lateral frontal, and posterior …'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.4): Lesions were masked on T1-weighted images using
+      ITK-Snap [...] and then warped i…'
+    - '  - f1.limitation (p.6): Small number of subjects in the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 12
+  timestamp: '2026-11-10T21:34:09'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/6 quotes (67%) — anchored 1, exact 4, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.imaging_details (p.548): the whole brain was imaged in 1.70
+      seconds using a gradient echo-echo planar seq…'
+    - '  - [near] f1.limitation (p.552): Because of the small number of subjects in
+      the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 13
+  timestamp: '2026-11-11T08:50:09'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — absent 2, anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Fourteen chronic (>6 months) aphasia patients
+      participated. [...] Patients were …'
+    - '  - [anchored] f1.region_definition (p.4): Three regions of interest (ROIs;
+      medial frontal, lateral frontal, and posterior …'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.4): Lesions were masked on T1-weighted images using
+      ITK-Snap [...] and then warped i…'
+    - '  - f1.limitation (p.6): Small number of subjects in the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 14
+  timestamp: '2026-11-11T08:50:27'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/6 quotes (67%) — anchored 1, exact 4, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.imaging_details (p.548): the whole brain was imaged in 1.70
+      seconds using a gradient echo-echo planar seq…'
+    - '  - [near] f1.limitation (p.552): Because of the small number of subjects in
+      the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+- run_id: 15
+  timestamp: '2026-11-11T10:42:32'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 2/6 quotes (33%) — absent 2, anchored 2, exact 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.sample (p.2): Fourteen chronic (>6 months) aphasia patients
+      participated. [...] Patients were …'
+    - '  - [anchored] f1.region_definition (p.4): Three regions of interest (ROIs;
+      medial frontal, lateral frontal, and posterior …'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f1.imaging_details (p.4): Lesions were masked on T1-weighted images using
+      ITK-Snap [...] and then warped i…'
+    - '  - f1.limitation (p.6): Small number of subjects in the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket '_backup' always needs a person
+  - PDF quote match not run or not passed
+  - new entry id (not appending to an existing entry)
+- run_id: 16
+  timestamp: '2026-11-11T10:43:00'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/6 quotes (67%) — anchored 1, exact 4, near 1
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f1.imaging_details (p.548): the whole brain was imaged in 1.70
+      seconds using a gradient echo-echo planar seq…'
+    - '  - [near] f1.limitation (p.552): Because of the small number of subjects in
+      the groups...…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+last_run: '2026-11-11T10:43:00'
+latest_verdict: checks_passed
+latest_mode: deterministic_only

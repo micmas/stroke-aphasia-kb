@@ -1,0 +1,3359 @@
+{
+  "date": "2026-11-12",
+  "action": "Retire the previous draft queue before mapping source-reviewed dual extractions",
+  "authorized_by": "repository maintainer in cleanup request",
+  "approved_kb_entries_changed": false,
+  "replacement_findings_approved": false,
+  "previous_git_head": "2f8dc02d7a4b7f47fdac886d1ccb251bcaf5a066",
+  "history_bundle_sha256": "25f46671ae876d370a110277338475c5b87ddd3f07dbc932ac1f81bb2e39e8f3",
+  "backup_directory": "/Users/uqmmasso/Documents/agent-work/stroke-aphasia-kb/clean-baseline-2026-11-12",
+  "retired_drafts": [
+    {
+      "path": "drafts/impairments/alexia__Brookshire2014.md",
+      "sha256": "bc6411974e3befd1103408e08af38f9c9588c82869aa344efb1c0df919e3eee4",
+      "status": "draft",
+      "citations": [
+        "@Brookshire2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/impairments/anomic_aphasia__Hope2017.md",
+      "sha256": "d72c2ae32af0a03793c28ed81a15b46fd4910c8fe5582be34efc7e91065a384a",
+      "status": "draft",
+      "citations": [
+        "@Hope2017"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/impairments/crossed_aphasia__Coppens2002.md",
+      "sha256": "6f5d8efcfa1d8d15e5b4e42e1d4e2f4d04d159af55a0c0d7d478f823bc071f37",
+      "status": "draft",
+      "citations": [
+        "@Coppens2002"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/impairments/executive_functions__Butler2014.md",
+      "sha256": "b37287432b5ba85b5f684282863c14674c6850ac101c352197acc6e701094342",
+      "status": "draft",
+      "citations": [
+        "@Butler2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/impairments/perceptual_disorders__Hazelton2022.md",
+      "sha256": "007686a6a819c444694996eae21d8cea7913c514bca4fa74b9e3ce7f45ba3181",
+      "status": "draft",
+      "citations": [],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/impairments/pure_alexia__Pflugshaupt2009.md",
+      "sha256": "f89ba2e35d7f3290e59f7616963275f328cc7ac6c483ccbfa989449b1c364081",
+      "status": "draft",
+      "citations": [
+        "@Pflugshaupt2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/impairments/pusher_syndrome__Hazelton2022.md",
+      "sha256": "277a90ad8d9cde33383e7987506278cb333abb84d8c9190321c67889f6485b41",
+      "status": "draft",
+      "citations": [],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/impairments/recurring_utterances__Rodrigues2014.md",
+      "sha256": "dd5b55d0a0ca188fbd41d213dad3ac5362fe4b76d45d0cf132c287528d9345ba",
+      "status": "draft",
+      "citations": [
+        "@Rodrigues2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/impairments/rhythm_production__Kasdan2025.md",
+      "sha256": "874414f582ac5a4d01ff325818cac300c60338404caaabaa63ee477a6fb1c745",
+      "status": "draft",
+      "citations": [
+        "@Kasdan2025"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/impairments/tactile_perception__Hazelton2022.md",
+      "sha256": "95cb10f7b82b8e66cab1884a8baa91e20a38534991a5e08c6d0c43be4bb83d64",
+      "status": "draft",
+      "citations": [],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/impairments/visual_perception__Hazelton2022.md",
+      "sha256": "0743a5ddea1c12e371024fd159160928cfd294ebe6a4db2a66ae1aaa421bbf85",
+      "status": "draft",
+      "citations": [],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/age__Ali2021.md",
+      "sha256": "2e636d28f0133c2c4f9e320fb32ebba88488887ab25667b958c533f0e0aa0d4c",
+      "status": "draft",
+      "citations": [
+        "@Ali2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/age__Brady2022.md",
+      "sha256": "ab9585347fca56c959c2e345c87aa9bd34ba2b0e0c0dc552fe35e0eafdc93d27",
+      "status": "draft",
+      "citations": [
+        "@Brady2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/age__ElHachioui2013.md",
+      "sha256": "6ff0229accdc6d0bb52490b25dd5e95cf43704245a2d1315526e3318361269cd",
+      "status": "draft",
+      "citations": [
+        "@ElHachioui2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/age__Forkel2014.md",
+      "sha256": "c18110865addf35a4d9b4f2b9d3472dd9ecc47eb915d81a5ec7fd05ace032dd0",
+      "status": "draft",
+      "citations": [
+        "@Forkel2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/age__Hope2017.md",
+      "sha256": "dc3c08c4b1ebb52ea8e70e807dcaed8729b1b76a4e032350080dff79f9d6d4b8",
+      "status": "draft",
+      "citations": [
+        "@Hope2017"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/predictors/age__Laska2001.md",
+      "sha256": "e4a6b4f96bbe3d80eef13d49395095ac0f18b5bc3045b3b423f44c1500011494",
+      "status": "draft",
+      "citations": [
+        "@Laska2001"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/age__Pedersen1995.md",
+      "sha256": "ae8f726671f25bbbdbfb6e76691df806a6125c0a538b01d5ec8d144952ff0fed",
+      "status": "draft",
+      "citations": [
+        "@Pedersen1995"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/age__Sheppard2020.md",
+      "sha256": "baf7c2ae6bb93c568843ab7fdab8b451127a416d5f7d2a3d92d5603472517107",
+      "status": "draft",
+      "citations": [
+        "@Sheppard2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/age__Wallentin2018.md",
+      "sha256": "9064505be65ba1cf2a66023346f3d6b0aad74bb19bc561ddecbcc21ec207723d",
+      "status": "draft",
+      "citations": [
+        "@Wallentin2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/education__Brookshire2014.md",
+      "sha256": "4b4c91220a5bed5c92d3fabadb1e4bd46ab377dd46faa767d0a376abeebfe6fc",
+      "status": "draft",
+      "citations": [
+        "@Brookshire2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/education__Ramsey2017.md",
+      "sha256": "191925e8c4dae84b5fab69532e172811bb3210787de20c3855ab1315760d82ec",
+      "status": "draft",
+      "citations": [
+        "@Ramsey2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/executive_functions__Gilmore2019.md",
+      "sha256": "38df48b464536082f2b818481f3706f93fc7c77814a84a6dca21bc770588b4db",
+      "status": "draft",
+      "citations": [
+        "@Gilmore2019"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/predictors/executive_functions__Simic2019.md",
+      "sha256": "83a90badc8fc66b6880b6191aef9c6784dfdfdd65775f7e0988aeb9dbaf3bdaa",
+      "status": "draft",
+      "citations": [
+        "@Simic2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/imaging_metric__Hope2018.md",
+      "sha256": "3d7670ca1b4dd9d9cb486f5cfdfca7c30f77cdcc1b1a02969beca275e40455dc",
+      "status": "draft",
+      "citations": [
+        "@Hope2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/imaging_metric__Wright2018.md",
+      "sha256": "ed21224104c95bac72cb0af6f44fe94c93e30ef8ebeccaf436d0a9e71227dc7a",
+      "status": "draft",
+      "citations": [
+        "@Wright2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/imaging_metric_rsfc__Billot2022.md",
+      "sha256": "493cd77dc145076ed96b2e56f13d91b6dc4a3d27ff050de73c5c6bc12c0d744c",
+      "status": "draft",
+      "citations": [
+        "@Billot2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/initial_aphasia_severity__Benghanem2019.md",
+      "sha256": "3500cd6ac4fff42e622dbf522e9af3e41b1a33591519de19bdc7b7e48ecb8513",
+      "status": "draft",
+      "citations": [
+        "@Benghanem2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/initial_aphasia_severity__Lazar2008.md",
+      "sha256": "12e43fb97c5f8ad7b3134bdb0d3f9bbf88e09eefd5cacdd3e87d19d201c34075",
+      "status": "draft",
+      "citations": [
+        "@Lazar2008"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/initial_aphasia_severity__Pedersen1995.md",
+      "sha256": "362abcb704e8a46eca6f9a3d9066cc553ec88fff986f95aedcebc14d6c9ceb28",
+      "status": "draft",
+      "citations": [
+        "@Pedersen1995"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Basilakos2019.md",
+      "sha256": "f564825f590489b894468a2c2bf8e6dd93b81e0becef3cd1e5a91a560fd56ecf",
+      "status": "draft",
+      "citations": [
+        "@Basilakos2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Benghanem2019.md",
+      "sha256": "6af052030c33860e1cb51677fada0b0ff819f9850e5d9015a82acffc346ae867",
+      "status": "draft",
+      "citations": [
+        "@Benghanem2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Corbetta2015.md",
+      "sha256": "f603a05cf4eb5aa6181c726f92f59fb862772b0337d0ac459acbd2d2ffa7873e",
+      "status": "draft",
+      "citations": [
+        "@Corbetta2015"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Ding2023.md",
+      "sha256": "0472ff64064136dc9cdee6da91bf8af81db3338bffaf2ddd63fdbc2136335abf",
+      "status": "draft",
+      "citations": [
+        "@Ding2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Forkel2014.md",
+      "sha256": "ac85091705edabfdcf4dc617ec81aa3d1920e668febb96ce49179a90dc44e271",
+      "status": "draft",
+      "citations": [
+        "@Forkel2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Goldenberg1994.md",
+      "sha256": "b5f018594b47e2c4b5dd337334f2a2ddf8f0089188801c8906b460f2a58c6708",
+      "status": "approved",
+      "citations": [
+        "@Goldenberg1994"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Hope2013.md",
+      "sha256": "b24754ff5c1f1151c78a3ffa7c591945963639d4e120de6435459c5d72c0f6ef",
+      "status": "draft",
+      "citations": [
+        "@Hope2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Hope2017.md",
+      "sha256": "3d8b84aea1ec15ec9a4e396967b7e3f21e20871181e2060ae805ab89c77a0a02",
+      "status": "draft",
+      "citations": [
+        "@Hope2017"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Kristinsson2021.md",
+      "sha256": "1bb15cb0195a7b79ff50bfb4cff75179461b7276c63f18b711d391ecd9c5daf2",
+      "status": "draft",
+      "citations": [
+        "@Kristinsson2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Lazar2008.md",
+      "sha256": "3482d55ae780e8ec56b29575d8da50507321b76a46df932fe53ccdd499c8f039",
+      "status": "draft",
+      "citations": [
+        "@Lazar2008"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Meier2019.md",
+      "sha256": "70172812d26f9136aed537a4a7a88279d64127625a262f523539d48d5042038e",
+      "status": "draft",
+      "citations": [
+        "@Meier2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__SkipperKallal2017.md",
+      "sha256": "b7aef733f897b266b507f149847b998ab4435a7341e3b1d901908789e0c0bbd0",
+      "status": "draft",
+      "citations": [
+        "@SkipperKallal2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Thye2018.md",
+      "sha256": "8317091f9532567eefcc80b49a04364a14e16bd49b413474ee4136d6fd165db4",
+      "status": "draft",
+      "citations": [
+        "@Thye2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Yourganov2016.md",
+      "sha256": "280e3c085535f974b2436fcbc225dd1675a210d75cb8e1eb8c6f45ad78ead53c",
+      "status": "draft",
+      "citations": [
+        "@Yourganov2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Yu2022.md",
+      "sha256": "873a2d472ce51020bae4180f26331482860b3bcd4554a810fea0350dbc4e4d39",
+      "status": "draft",
+      "citations": [
+        "@Yu2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/leukoaraiosis__Basilakos2019.md",
+      "sha256": "d99d8836e811c1f019751d838e34357eda4ce65e5abc697dd3e4e5abe7c8eafa",
+      "status": "draft",
+      "citations": [
+        "@Basilakos2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Basilakos2019.md",
+      "sha256": "aba2ce4cf82b31c4ce9f1321ddc9f34ac1acf677be22fc2705e5e9e8d215722d",
+      "status": "draft",
+      "citations": [
+        "@Basilakos2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Billot2022.md",
+      "sha256": "98683ce86f27b32115585146c4bee4be03a87e0ac69acaaa877a87fe0d4dbe55",
+      "status": "draft",
+      "citations": [
+        "@Billot2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Brady2022.md",
+      "sha256": "07077f3463835d50d31e2ac89f425c46af65b125b701d9b9d0d8ab83bde1f101",
+      "status": "draft",
+      "citations": [
+        "@Brady2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Brookshire2014.md",
+      "sha256": "ed6cac940b29aca3b1c0f6b1061b031316e74b524a8aa626f20f6ddd61a8705d",
+      "status": "draft",
+      "citations": [
+        "@Brookshire2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__ElHachioui2013.md",
+      "sha256": "485e13a619a7fe5052b5f247f291ec0b1aa0df87d3189ede5a5ed5f9af13e1b7",
+      "status": "draft",
+      "citations": [
+        "@ElHachioui2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Fridriksson2018JAMA.md",
+      "sha256": "7aadf538d1a3bbc064c7f702f6e2eebc654b0a1d4f3d34c3072e3dabc7eafded",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2018JAMA"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Geranmayeh2017.md",
+      "sha256": "26816a16dcb4cc3d7cc18af30f1ad06cc0c6630085fa19a9b9cab8a573c9c370",
+      "status": "draft",
+      "citations": [
+        "@Geranmayeh2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Gilmore2019.md",
+      "sha256": "1c2afe540991d87f81e37e83fac75d1309ecd24f3621da7501d7e46587a985d7",
+      "status": "draft",
+      "citations": [
+        "@Gilmore2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Hartwigsen2019.md",
+      "sha256": "cbc882281a3bf65659436798c9a70844fd36a4eb9f2749cffb2386f6dc7914ae",
+      "status": "draft",
+      "citations": [
+        "@Hartwigsen2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Johnson2019.md",
+      "sha256": "6ae492e2efaa3412e91c18ce46b4f8f5713d0cea3fe83cd86e7f3bb1b5cf55e6",
+      "status": "draft",
+      "citations": [
+        "@Johnson2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Johnson2022.md",
+      "sha256": "f08535adf2f171fc7b7ed46704d5f8b0a61efff0ef2943302ced44d9b1b71f85",
+      "status": "draft",
+      "citations": [
+        "@Johnson2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Kristinsson2021.md",
+      "sha256": "f8d9962a6c4f178aed871215804f8c9580ba2f5ec8edb8e85cc3b521726a4ed5",
+      "status": "draft",
+      "citations": [
+        "@Kristinsson2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Leonard2008.md",
+      "sha256": "ec5c5a22acbfb054f11de0fbec95622dbd0625c6a2beabd6b3d444e59f8413a5",
+      "status": "draft",
+      "citations": [
+        "@Leonard2008"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Lo2019.md",
+      "sha256": "f54889ad114506e4d614b071020380609e53bb1ed38c50fec620709fa56b1a79",
+      "status": "draft",
+      "citations": [
+        "@Lo2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Lo2019_f2.md",
+      "sha256": "5dc65962f06b431f94ce0015ae2ca814df80ab587e66230799619ffaa2f49645",
+      "status": "draft",
+      "citations": [
+        "@Lo2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Munsch2016.md",
+      "sha256": "8c39be62a235168ddf3f609b6c134e9f6291876a4820b76f6aa89db5492ee7d6",
+      "status": "draft",
+      "citations": [
+        "@Munsch2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Ramsey2017.md",
+      "sha256": "df3a585af54cf8f3a9e44f40b9fdc6388455df52b228d8e613e33a36121f7a13",
+      "status": "draft",
+      "citations": [
+        "@Ramsey2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Rapcsak2009.md",
+      "sha256": "3c4fc8b1f91fadcda950dfbc7b8a1c40a0ea9fb28991bc7f6544af0ebf569e29",
+      "status": "draft",
+      "citations": [
+        "@Rapcsak2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Siegel2016.md",
+      "sha256": "73f946e1a0411eda44952dfd0160bab8cc81900b02a8da9ecac822621045c989",
+      "status": "draft",
+      "citations": [
+        "@Siegel2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Wilson2023.md",
+      "sha256": "1e77f9f696177d756863cdf29cf4315dcc7e66466ea7b876d18a1bdf38b724bb",
+      "status": "draft",
+      "citations": [
+        "@Wilson2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/severity_metric__Zevgolatakou2022.md",
+      "sha256": "32a786bed0d0ce6a1c8fa9bfe48ecc65fa5a87f55bcf640d99e6a15723482948",
+      "status": "draft",
+      "citations": [
+        "@Zevgolatakou2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/sex__Brady2022.md",
+      "sha256": "eb933ea2bf4ce2cbd1599a8939b2fa19ea04887084a0fb955a1aece74966c8ff",
+      "status": "draft",
+      "citations": [
+        "@Brady2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/sex__Coppens2002.md",
+      "sha256": "187fc4e6943be50915b32555653f4fd9c22196463eae1dbb2b03396fdb90c4df",
+      "status": "draft",
+      "citations": [
+        "@Coppens2002"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/sex__Wallentin2018.md",
+      "sha256": "819a451d35de914dcc0dfb8be839332b456223ae484147554dd281aea7612bcc",
+      "status": "draft",
+      "citations": [
+        "@Wallentin2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/stroke_severity_sss__Breitenstein2017.md",
+      "sha256": "2740a36c52ccbecd7954f5251d6c37a74431688623ce4beb4b86d47c7635c04c",
+      "status": "draft",
+      "citations": [
+        "@Breitenstein2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/time_post_onset__Ali2021.md",
+      "sha256": "e3fca2059217f4a778048660d1c6ed17b8fca0ff6c4635da6e15c158fc739954",
+      "status": "draft",
+      "citations": [
+        "@Ali2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/time_post_onset__Brady2022.md",
+      "sha256": "2458a166415da527817392d4a35551af74ab59dd645ebb826f1ff82c84ad9734",
+      "status": "draft",
+      "citations": [
+        "@Brady2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/time_post_onset__Hope2013.md",
+      "sha256": "9d64eaa48a8d3e362ed371a4cad86523faf02b3d1c425b18347a2893e401dda0",
+      "status": "draft",
+      "citations": [
+        "@Hope2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/predictors/time_post_onset__Hope2017.md",
+      "sha256": "c0a0858701f3f622cd46e7e2f27b7a2b8c20f49f7cd39992a433ec1cfa994815",
+      "status": "draft",
+      "citations": [
+        "@Hope2017"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/predictors/time_post_onset__vanderMeulen2014.md",
+      "sha256": "6988865c4ef1ccd71b93a739f83ae9f335164bb0dd7a584467d70a891b4781e1",
+      "status": "draft",
+      "citations": [
+        "@vanderMeulen2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/bilateral_middle_frontal_gyrus_recovery__Fridriksson2010Anomia.md",
+      "sha256": "a2dee5da68e55f6b5adc6c56bd46d744e7858abd9e8cea83f16e5953ad293371",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2010Anomia"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/corpus_callosum__Geschwind1965.md",
+      "sha256": "d0b29f9e1ec2e6185dc47031c650e5b0d64d19080365c8e1e136e3a4d52111fd",
+      "status": "draft",
+      "citations": [
+        "@Geschwind1965"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/global_structural_network__Bonilha2016.md",
+      "sha256": "4efa4f7132eb7d66645967825311aa2976829b4371a728daa148f37f25e667ad",
+      "status": "draft",
+      "citations": [
+        "@Bonilha2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_angular_gyrus__Binder2009.md",
+      "sha256": "601f4b0f57cb7b8e845e18e2f1be65f894a6e83155d69558c336286b6f2400ce",
+      "status": "draft",
+      "citations": [
+        "@Binder2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_angular_gyrus__Dronkers2004.md",
+      "sha256": "7c127ae5f6e0102c731baa86bca5e1750c8640b7554a0dfb997bee219c9dffcb",
+      "status": "draft",
+      "citations": [
+        "@Dronkers2004"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_angular_gyrus__Geschwind1965.md",
+      "sha256": "5b20abe76955ca2c1b20ee09aea0cbe1a02753a4cc8744658c006627f9f36370",
+      "status": "draft",
+      "citations": [
+        "@Geschwind1965"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_angular_gyrus__Henseler2014.md",
+      "sha256": "5eb8e07992f642ba29847c7b74acf981ff42e0a03b8dbd9bf275e535c7667d36",
+      "status": "draft",
+      "citations": [
+        "@Henseler2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_angular_gyrus__Lukic2021.md",
+      "sha256": "ee8f1813bfa01231dcc73409cc123dfff0b1d8a6244a895b14acb43275bfe0dd",
+      "status": "draft",
+      "citations": [
+        "@Lukic2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_angular_gyrus__Stockbridge2024.md",
+      "sha256": "236cf239061d4ff96f6d4c7607ed754cf77f23753975b4171229dd4bf0a1fe79",
+      "status": "draft",
+      "citations": [
+        "@Stockbridge2024"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_angular_gyrus__Wilmskoetter2021.md",
+      "sha256": "eae06a6b23390c8677eda4a6236aaac54cfaef37fe2961d07fc56ca8ab5d520b",
+      "status": "draft",
+      "citations": [
+        "@Wilmskoetter2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_angular_gyrus__Zhao2018.md",
+      "sha256": "8ee4773b56bb9368dc6c1b67a742eef4b3c56e353fc6d932d4c05069d0eb0ff5",
+      "status": "draft",
+      "citations": [
+        "@Zhao2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_anterior_arcuate_fasciculus__Fridriksson2013.md",
+      "sha256": "f4c3c1a9b5028d7ac91a58ea2a485cccc29021f397b4bbc9b328e869161b7bb9",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_anterior_arcuate_fasciculus__GajardoVidal2021.md",
+      "sha256": "1a67c3e544a8d70d89814a9eb6db2ab4cac54d9b1af743fb7315ae557fcd45b0",
+      "status": "draft",
+      "citations": [
+        "@GajardoVidal2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_anterior_temporal_lobe__Butler2014.md",
+      "sha256": "3865851c898d6a27d143a1ba80b96c525a6ebc7ef62ee6bf79536a3fda3cff44",
+      "status": "draft",
+      "citations": [
+        "@Butler2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_anterior_temporal_lobe__Halai2017.md",
+      "sha256": "25f5991cb13069b3911c925e619c4befc37043d840d8f0b6e76409191812ff88",
+      "status": "draft",
+      "citations": [
+        "@Halai2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_anterior_temporal_lobe__Halai2018.md",
+      "sha256": "321390473f6bc9743b147ef1fc1623e0261fd1422a36621c514a8fb72bed5b7a",
+      "status": "draft",
+      "citations": [
+        "@Halai2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_anterior_temporal_lobe__Henseler2014.md",
+      "sha256": "d68f1bca4d3818ef95ce28e81c6b38e2ba27fca5ea0f891ac27cdb1e48a7599c",
+      "status": "draft",
+      "citations": [
+        "@Henseler2014"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/left_anterior_temporal_lobe__Lukic2021.md",
+      "sha256": "0fdba2b5ff0abe3d7f5257a6cf5a7ef32c0a4dd406da07a13d4f3d6aadd19a83",
+      "status": "draft",
+      "citations": [
+        "@Lukic2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_anterior_temporal_lobe__Robson2014.md",
+      "sha256": "1a4b45cf18ad8b0fb90d5864f4232d9189c40068998a96a09868177eeb0aed6f",
+      "status": "approved",
+      "citations": [
+        "@Robson2014"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/left_anterior_temporal_lobe__Schwartz2009.md",
+      "sha256": "794f8fd94b857c6aa82ff74830fa740da2fbc9e7591768a91bc56c12142259e1",
+      "status": "draft",
+      "citations": [
+        "@Schwartz2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_anterior_temporal_lobe__Woollams2018.md",
+      "sha256": "8239d80eb84f99c8177c074f11b860f84eae09cac1b73870437af3d61cb2b843",
+      "status": "draft",
+      "citations": [
+        "@Woollams2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_anterior_thalamic_radiation__Bi2015.md",
+      "sha256": "f8228fb5a3f31c3c6235ec982aeb93554a3cdd17e1069b2a7ea2e60f1c412bbb",
+      "status": "draft",
+      "citations": [
+        "@Bi2015"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_anterior_thalamic_radiation__Han2013.md",
+      "sha256": "1f8bfdd5880cd5251c9f39e8376b1e381ad5cea5f818854baf324305764b53c8",
+      "status": "draft",
+      "citations": [
+        "@Han2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_anterior_thalamic_radiation__Li2017.md",
+      "sha256": "0788375b90d05f813cfb9a1959f898f4e185faf046b3428c1172bd2763c63377",
+      "status": "draft",
+      "citations": [
+        "@Li2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Alyahya2020.md",
+      "sha256": "a986e30bd165660a7d5e2ade26319249fbe9858ed071fd361a4ad101e885716d",
+      "status": "draft",
+      "citations": [
+        "@Alyahya2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Biondo2024.md",
+      "sha256": "330eee7730732980af0082140f1ec8b1150635b9be918714db529cb081a5a2c1",
+      "status": "draft",
+      "citations": [
+        "@Biondo2024"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Breier2008.md",
+      "sha256": "67d6faa06ae4d717c262a6d552d715ee9ecf539b559ea0731732b2d1c5c37e8a",
+      "status": "draft",
+      "citations": [
+        "@Breier2008"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Butler2014.md",
+      "sha256": "63fc189fd66068fed16b7e585011f30e6a20a58fb4d124844e27bf9f12285823",
+      "status": "draft",
+      "citations": [
+        "@Butler2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Ding2023.md",
+      "sha256": "0f9e40c1a0e92b039f5b281786ae037f5da510b9fbe46e18f9115e89bd94b47a",
+      "status": "draft",
+      "citations": [
+        "@Ding2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Fang2025.md",
+      "sha256": "2d1f1f892fe161aac1c53cc2db2aebe53bc1ed29500354673923a8e71b80653d",
+      "status": "draft",
+      "citations": [
+        "@Fang2025"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Fridriksson2010.md",
+      "sha256": "539172d0701b79eb05aa7daa0b09bfc225a5706af8d6b85a66fac8049d9cb09c",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2010"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Haldin2026.md",
+      "sha256": "6aeec40e8db7a9cd18332ea5541d8a5921997b1404528d85a97691bc64fd1bbd",
+      "status": "draft",
+      "citations": [
+        "@Haldin2026"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Hosomi2009.md",
+      "sha256": "fffcd7a13e375579de66e9a694777ef317dbb4bc815aa2e32697cca25f9c7d10",
+      "status": "draft",
+      "citations": [
+        "@Hosomi2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Ivanova2016.md",
+      "sha256": "661d6a8f19389e54fb43770c973282b7acc5089af99a953b8e19c62456f0372a",
+      "status": "draft",
+      "citations": [
+        "@Ivanova2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Ivanova2021.md",
+      "sha256": "4a1ee59be7aac6df5a9a458f939a0e628dcd31b77a449eba0aa7eba797b96160",
+      "status": "draft",
+      "citations": [
+        "@Ivanova2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Johnson2022.md",
+      "sha256": "5e7e380e5e538ec397e7e2243a3a2556cf3ee32e5d8a9960a60f7006e42109e6",
+      "status": "draft",
+      "citations": [
+        "@Johnson2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Keser2020.md",
+      "sha256": "d362db7aca1965218a2a5f2aefac36a927754d754e15c59dda14ca584c1d8689",
+      "status": "draft",
+      "citations": [
+        "@Keser2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Oeckel2021.md",
+      "sha256": "029689879f35426cbadad4ed4b8e1a4805d9c4d418ff27b5fb94ec83e988d912",
+      "status": "draft",
+      "citations": [
+        "@Oeckel2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Ramsey2017.md",
+      "sha256": "4569d77e2c6368f01c4535ba0f9a4caf83c700d3cda84f9464abb48c805c7df0",
+      "status": "draft",
+      "citations": [
+        "@Ramsey2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Soliman2023.md",
+      "sha256": "cdc28c9a77fb6f87c4c6a4c9174e9bf8ba0ae338612d5fd63535edd026096e36",
+      "status": "draft",
+      "citations": [
+        "@Soliman2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Stockbridge2024.md",
+      "sha256": "6fdda19392f462ad99b8e3e110cea7814625b3d8db7682d9670213c060d0f4af",
+      "status": "draft",
+      "citations": [
+        "@Stockbridge2024"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Yu2022.md",
+      "sha256": "3e6bd2291953484de63d536b07ba882041bd60be12b87bbd2bd7d598ed296918",
+      "status": "draft",
+      "citations": [
+        "@Yu2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Yu2023.md",
+      "sha256": "ac59ea5157981bfa9fedcf7f52e5173bb919d93af8cce64c910ca4ef88392290",
+      "status": "draft",
+      "citations": [
+        "@Yu2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus_anterior_segment__Basilakos2014.md",
+      "sha256": "f8a6b42b73484d362bbe82d5160a82f1977858dbf85a1abd08113727252a13b6",
+      "status": "draft",
+      "citations": [
+        "@Basilakos2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus_slf__Bates2003.md",
+      "sha256": "3061fd83977b61c7c2aab80846db0ed612cfebef9953b54b169d1d90aee30350",
+      "status": "draft",
+      "citations": [
+        "@Bates2003"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus_slf__Bi2015.md",
+      "sha256": "4c3dc72620a8c1768f7b4edc2f27850350ed4e3bac7e8ddc6a62faf5003533fa",
+      "status": "draft",
+      "citations": [
+        "@Bi2015"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus_slf__Han2016.md",
+      "sha256": "c9f4bf7aa04e6dc9fcae7c7c0b79ec21c592c9bbaf0cae09693e0d0bb3935225",
+      "status": "draft",
+      "citations": [
+        "@Han2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus_slf__Kummerer2013.md",
+      "sha256": "206ddc60e10f9707f29c896e2818d6e3bc336c89dadce4f3133d66b1f99f4d0e",
+      "status": "draft",
+      "citations": [
+        "@Kummerer2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus_slf__Li2017.md",
+      "sha256": "e445e167d7ddcd38e0f555db9e719cfb64804e9fbaa203680ea74201090dab19",
+      "status": "draft",
+      "citations": [
+        "@Li2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus_slf__Sheppard2022.md",
+      "sha256": "d0001a06a35f90c124ea3397f87cea168bb67bfee6869d64df7de0e344eb4fd1",
+      "status": "draft",
+      "citations": [
+        "@Sheppard2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus_slf__Yu2024.md",
+      "sha256": "af82aa498afed41ec2bf05d9d61e83ccd45e3195f9cab35e94e78346bb78c5f9",
+      "status": "draft",
+      "citations": [
+        "@Yu2024"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_basal_ganglia__Casilio2025.md",
+      "sha256": "74831377c3def4f0b6917aaf396a8218cfbed4883de5f2d4c9eff4efc62372a8",
+      "status": "draft",
+      "citations": [
+        "@Casilio2025"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_basal_ganglia__Stahl2011.md",
+      "sha256": "ed6e8609362b7a87006e6ea361c2f00e804e105b27e35ef70398d18590693153",
+      "status": "draft",
+      "citations": [
+        "@Stahl2011"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_caudate__Haldin2026.md",
+      "sha256": "37d22cc95950db228142d09fcbcaeb2f0818f94a1b9ab8002be0d19764a936dc",
+      "status": "draft",
+      "citations": [
+        "@Haldin2026"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_cortical_language_areas__Yu2024.md",
+      "sha256": "93c7770ca4b66ce727fb4d639fe0facb695855095f8107a9efcf4520988aa87d",
+      "status": "draft",
+      "citations": [
+        "@Yu2024"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_dacc_sfg__Brownsett2014.md",
+      "sha256": "3a83c78ec757209d2b8a08f26a264bb127c5a245ea792c90e7da06c0d2757da3",
+      "status": "draft",
+      "citations": [
+        "@Brownsett2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_dorsolateral_prefrontal_cortex__Bates2003.md",
+      "sha256": "afdfcba39435197110ff1595c1694b4ca8846f47e0bcdaaf54e71ca26c226f6c",
+      "status": "draft",
+      "citations": [
+        "@Bates2003"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_dorsomedial_prefrontal_cortex__Binder2009.md",
+      "sha256": "2e80704da9e464e682182a116a70c770ec58f455c3756b702a5c766ae9041228",
+      "status": "draft",
+      "citations": [
+        "@Binder2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_extreme_capsule__Butler2014.md",
+      "sha256": "4ee061ec2d24aea2a92cd22f5899c9bc1048f109883ce4902663defc16953142",
+      "status": "draft",
+      "citations": [
+        "@Butler2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_extreme_capsule__Kummerer2013.md",
+      "sha256": "012c7a03b193dcb41b4a2443f33e27627e7b111ad9bdb594fd64b8d7107cb588",
+      "status": "draft",
+      "citations": [
+        "@Kummerer2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_extreme_capsule__Oeckel2021.md",
+      "sha256": "98c08fad9f2bf64fb24e9e4c953e87b022b3fc41bc0749fe8403bb73367a9290",
+      "status": "draft",
+      "citations": [
+        "@Oeckel2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_frontal_aslant_tract__Basilakos2014.md",
+      "sha256": "6e75d45abeccd5391e979e2165c6401437bf6b5719fab6d1c7bbd3a4c1c9c255",
+      "status": "draft",
+      "citations": [
+        "@Basilakos2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_frontal_aslant_tract__Ding2023.md",
+      "sha256": "b2b74e804c2423d8c6c0276498522c9a739a6a020617b565fdc80266b261ffe3",
+      "status": "draft",
+      "citations": [
+        "@Ding2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_frontal_aslant_tract__Li2017.md",
+      "sha256": "a62845ba77d29fa7321174094b702d70188cef87b95bc85d9933d20e7b54fa5f",
+      "status": "draft",
+      "citations": [
+        "@Li2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_fusiform_gyrus__Binder2009.md",
+      "sha256": "4fcc2e55be7f830e62d34955637665be6da9c495369f826043c87b85cc366ea4",
+      "status": "draft",
+      "citations": [
+        "@Binder2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_fusiform_gyrus__Pflugshaupt2009.md",
+      "sha256": "04cafd6563912cd9b44ad66f59f84644356c0435a6032da627d033a3f02afeac",
+      "status": "draft",
+      "citations": [
+        "@Pflugshaupt2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_hemisphere_intrahemispheric_connectivity__Siegel2016.md",
+      "sha256": "fc91b69191989183d3208a4e8a8f366172f3fca1d64c9996c839b284a508570e",
+      "status": "draft",
+      "citations": [
+        "@Siegel2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_heschls_gyrus__Thye2018.md",
+      "sha256": "9b4d52f243cb7101f7e7a2a64b1eca613163d92b25a2f28fbae4ecf020c71c39",
+      "status": "draft",
+      "citations": [
+        "@Thye2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_hippocampus__Meinzer2010.md",
+      "sha256": "f84e5d6a517f3160d0175bb26518165e4597f36e9b7de550819faf303eeb898d",
+      "status": "draft",
+      "citations": [
+        "@Meinzer2010"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg__Saur2006.md",
+      "sha256": "bef2a45417e6a9bfb93a023ffe29da91787e0c54b8cb2a5526ad31ec86dd411f",
+      "status": "draft",
+      "citations": [
+        "@Saur2006"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Alyahya2020.md",
+      "sha256": "ccedda96897c303c02e52ccd55ebf8070d222c866590d6960f7e8d238a8d8c91",
+      "status": "draft",
+      "citations": [
+        "@Alyahya2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Dronkers2004.md",
+      "sha256": "7d11757bfcd9f806d902c1c89e799425ec254af638ec2dcb1c981ef1446ae453",
+      "status": "draft",
+      "citations": [
+        "@Dronkers2004"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Fridriksson2010.md",
+      "sha256": "9754360c6699091679e99f05885d9044f37abfac848719c6705e164be99d6e75",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2010"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Fridriksson2010Anomia.md",
+      "sha256": "5ba4ff8fa1559ce6c7f9697ad65ce87bdbb5b5b6ce34a9080910b87f71b13802",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2010Anomia"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Fridriksson2015.md",
+      "sha256": "7b2e5c6565d302bccb9901af6a7aeef8a6d2cbe8d54ea02410f81d8742f3caa7",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2015"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__GajardoVidal2021.md",
+      "sha256": "261f91046d2b063ab1d6a6331ae802c65e18d774b908d96a9867303c5994fda6",
+      "status": "draft",
+      "citations": [
+        "@GajardoVidal2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Haldin2026.md",
+      "sha256": "2ad0c6f02b6a6acb96026459346cf21b650967dc91eafcd1ba44a8597b661a39",
+      "status": "draft",
+      "citations": [
+        "@Haldin2026"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Hillis2004.md",
+      "sha256": "bf00da4f80495f62daad75bbb2263ee19e8f70d837ff0947d44ac5bd6cb389bc",
+      "status": "draft",
+      "citations": [
+        "@Hillis2004"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Hillis2006.md",
+      "sha256": "764009cb22ac099fefa663d7868ae2ab2ede84c0dd16475f76fa0a5b8fe9b691",
+      "status": "draft",
+      "citations": [
+        "@Hillis2006"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Lacey2017.md",
+      "sha256": "56ace7b3278cdc452f0c4cf8b479ad8cd840198f3887fff4e81fcc90498872ec",
+      "status": "draft",
+      "citations": [
+        "@Lacey2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Ochfeld2010.md",
+      "sha256": "b236e7ebfd04f22fb744ef2f662d2309d5efb4abbaf4c37e7c3abdcc2d4eae27",
+      "status": "draft",
+      "citations": [
+        "@Ochfeld2010"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Rapcsak2009.md",
+      "sha256": "30a736976f03e999d1e2bf008fe55662511ceaa67692988408e972ecb51a448e",
+      "status": "draft",
+      "citations": [
+        "@Rapcsak2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Rogalsky2018.md",
+      "sha256": "daf5b16bd587a9e74ea049b7b60649437fc12e4a2c60a983ab953b9785c0d67e",
+      "status": "draft",
+      "citations": [
+        "@Rogalsky2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Schwartz2012.md",
+      "sha256": "8d68ac57bd2b36e30ba497d05b1b39442626f55da8fa30788485402a2678e666",
+      "status": "draft",
+      "citations": [
+        "@Schwartz2012"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Sheppard2022.md",
+      "sha256": "3e1952692bdd96b1cc3e4ed3fd3cd666957efb6cfe0594d40fc673d001de2ed2",
+      "status": "draft",
+      "citations": [
+        "@Sheppard2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__SkipperKallal2017Functional.md",
+      "sha256": "4adfef02ac689fd7aaa1118ae68f2f6924271cd0aa0ed6c088d0a40fff23ea69",
+      "status": "draft",
+      "citations": [
+        "@SkipperKallal2017Functional"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Wilmskoetter2021.md",
+      "sha256": "ce3fd3cb54b0afbd370507282e7193e394589a1dc6a5cb638a7dbbd42fa13ad5",
+      "status": "draft",
+      "citations": [
+        "@Wilmskoetter2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis__Woollams2018.md",
+      "sha256": "f23694352c821f758911452a4550287fad64dbb953eb3d1efa953d4e539c2b35",
+      "status": "draft",
+      "citations": [
+        "@Woollams2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_opercularis_triangularis__Ochfeld2010_longitudinal.md",
+      "sha256": "5003d47dea7d96118bdb39643ec533fdface80d768f08999fd94649dcaf98f30",
+      "status": "draft",
+      "citations": [
+        "@Ochfeld2010"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_orbitalis__Binder2009.md",
+      "sha256": "ec8c5471c59a2973729807ae5eb451f64b864830f179514ff9ad90d4405ede58",
+      "status": "draft",
+      "citations": [
+        "@Binder2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_triangularis__Akkad2023.md",
+      "sha256": "a794419c794940e38e7720c950dc92f46102b2b97179a069423bcbcc2bf4182d",
+      "status": "draft",
+      "citations": [
+        "@Akkad2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_triangularis__Dronkers2004.md",
+      "sha256": "8aa6b048c99bbdca9f74000976ca2a31b605b165076886115467580953b75357",
+      "status": "draft",
+      "citations": [
+        "@Dronkers2004"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_triangularis__Matchin2020.md",
+      "sha256": "79a26c535c0b7eb9f254f3f3b5d406c42c285ad5b24452b167064ae170852b57",
+      "status": "draft",
+      "citations": [
+        "@Matchin2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_triangularis__Schwartz2009.md",
+      "sha256": "a532e743938525d0bc33cc7aa524a9189f96e0c63e165358aec8ad84ff121921",
+      "status": "draft",
+      "citations": [
+        "@Schwartz2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_triangularis__Stockert2020.md",
+      "sha256": "96730d2be1a6cfd275f2bfc6fcb8a58132f688ebaf706029dc7cafef43dcce99",
+      "status": "draft",
+      "citations": [
+        "@Stockert2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_triangularis__Zevgolatakou2022.md",
+      "sha256": "bd1f15e15afb323db9b214c585c97b4ef0b03353607d5f16dd52b243a6e2924c",
+      "status": "draft",
+      "citations": [
+        "@Zevgolatakou2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_frontal_gyrus__Jiang2025.md",
+      "sha256": "64fc85d8f84aae30c9ce8d48aa3096cf948947be78e3a2f686f1ef57fbeb8023",
+      "status": "draft",
+      "citations": [
+        "@Jiang2025"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_frontal_occipital_fasciculus__Ivanova2016.md",
+      "sha256": "7aeb50cbbc32f950c150e1dce42e0ce886fb6e2216f256b97eca21d2583f65f6",
+      "status": "draft",
+      "citations": [
+        "@Ivanova2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_frontal_occipital_fasciculus__Yu2024.md",
+      "sha256": "28b14a763cf7d2adc71b205a7c037dcdba6b856abda44723bcc4590c94e9b200",
+      "status": "draft",
+      "citations": [
+        "@Yu2024"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_fronto_occipital_fasciculus__Fang2025.md",
+      "sha256": "e672ddaf979307bbc697d1501544a05bc92b352df71445c94e4d846fc55ef1cd",
+      "status": "draft",
+      "citations": [
+        "@Fang2025"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_fronto_occipital_fasciculus__Han2013.md",
+      "sha256": "e5294b9a1493157d5587406f9e9ff9cb9c6e4af2e7b705440a66c45519768cbf",
+      "status": "draft",
+      "citations": [
+        "@Han2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_fronto_occipital_fasciculus__Li2017.md",
+      "sha256": "a05c6404cdc3fff57a01c8fa44882ecbd52782bfa92583265f0dfc9439dc14c8",
+      "status": "draft",
+      "citations": [
+        "@Li2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_fronto_occipital_fasciculus__Meier2019.md",
+      "sha256": "d4161c0ec34ba2d372e903dc957c5b4e5cc7fcf3fa0c9be61657aa9ae15b8eb6",
+      "status": "draft",
+      "citations": [
+        "@Meier2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_fronto_occipital_fasciculus__Xing2017.md",
+      "sha256": "c98433bc69d9a6c90a8f00367c1f656cfd463d98172f021e391e7e42a30cc276",
+      "status": "draft",
+      "citations": [
+        "@Xing2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_fronto_occipital_fasciculus__Yang2017.md",
+      "sha256": "09ed8ed5d54e33f8b9ed2376412f6e42d0c32eac50772d8dfa867556d2ac881b",
+      "status": "draft",
+      "citations": [
+        "@Yang2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_frontooccipital_fasciculus__Bi2015.md",
+      "sha256": "2dd2c00eb64da5732141fb52b0608a9fff17f0dc818ed484b872b4de2aacdac9",
+      "status": "draft",
+      "citations": [
+        "@Bi2015"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_longitudinal_fasciculus__Fridriksson2013.md",
+      "sha256": "e1a54ec7dbbbd2f112c6ef843aabdafe2a7eea06a26840945708df4210c7fee1",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_longitudinal_fasciculus__Ivanova2016.md",
+      "sha256": "3263d6741fd70e07f4bf2f3ef32901fd5538d4dfad79ff36413f2db09729a0a3",
+      "status": "draft",
+      "citations": [
+        "@Ivanova2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_longitudinal_fasciculus__Keser2020.md",
+      "sha256": "b02c463bc6383d76f9fcaf38da1c27b50f98ccc2b2b94598e66cd3b048adf8d4",
+      "status": "draft",
+      "citations": [
+        "@Keser2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_longitudinal_fasciculus__McKinnon2018.md",
+      "sha256": "cb69566105696d822b6dfc4922050362f1e1367a9afc58a8d87337e35e965924",
+      "status": "draft",
+      "citations": [
+        "@McKinnon2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_longitudinal_fasciculus__Meier2019.md",
+      "sha256": "f4dd8ce554f81589fe54218f22294a6f6699c4ecf61ab64c9015e46647977c2c",
+      "status": "draft",
+      "citations": [
+        "@Meier2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_longitudinal_fasciculus__Soliman2023.md",
+      "sha256": "f6282670108e1076e9b0d9f3972db65a66c93b1313d6e0cc90e7f371777f3400",
+      "status": "draft",
+      "citations": [
+        "@Soliman2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_longitudinal_fasciculus__Xing2017.md",
+      "sha256": "b8f30467cf8676bb3209669e66364d17d198e366ee297657787ae0b867b8feed",
+      "status": "draft",
+      "citations": [
+        "@Xing2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_inferior_temporal_gyrus__Pflugshaupt2009.md",
+      "sha256": "701183df4a1294c0aa5d4781fe8741dfe8cfbd5ae76560f653554fc1ed362c2f",
+      "status": "draft",
+      "citations": [
+        "@Pflugshaupt2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_insula__Rapcsak2009.md",
+      "sha256": "35425e5041a3b4fab8176a9d4c0d671aaf6978a29e4b9d899b4d5fd47addc136",
+      "status": "draft",
+      "citations": [
+        "@Rapcsak2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_frontal_gyrus__Alyahya2020.md",
+      "sha256": "7334aaa34ff3fc8c9a4c6669e3076313d0a7daf0f336b6eeec58b3db156c0ab6",
+      "status": "draft",
+      "citations": [
+        "@Alyahya2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_frontal_gyrus__Dronkers2004.md",
+      "sha256": "7a37959c470206c1096a7a9cb4b06a4d4381cfcc72e4a6dd397d1ad859d242b5",
+      "status": "draft",
+      "citations": [
+        "@Dronkers2004"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_frontal_gyrus__Glascher2012.md",
+      "sha256": "9f4231e39799e386d23a6a62aff0c23e8c425648b8f89fa56332e004d7ae09b7",
+      "status": "draft",
+      "citations": [
+        "@Glascher2012"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_frontal_gyrus__Lacey2017.md",
+      "sha256": "c994b967eef2245ecb21a2d680f2b77d5486c9b24fa236f724fb5dd3547eb681",
+      "status": "draft",
+      "citations": [
+        "@Lacey2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_frontal_gyrus__MartinezMolina2022.md",
+      "sha256": "aeded73091c65b02ca8ca9007cf826c49b15dc28064c11a59cd0c4ad352fa751",
+      "status": "draft",
+      "citations": [
+        "@MartinezMolina2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_frontal_gyrus__Schumacher2019.md",
+      "sha256": "6546bc12775d87c060843113ce2433cdcaf9177a8a7d30c9c5457f3ab3c9036b",
+      "status": "draft",
+      "citations": [
+        "@Schumacher2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_longitudinal_fasciculus__Dick2012.md",
+      "sha256": "9c8676d0b7b57c124d3eaed5cc6b8bd7fb1d9d5adf93bf7735ef3353a004b0c3",
+      "status": "draft",
+      "citations": [
+        "@Dick2012"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_longitudinal_fasciculus__Haldin2026.md",
+      "sha256": "def54e8659fe67864d9c140611a4252e935ed8c7fdd0a9a1e9a097632ce37a4c",
+      "status": "draft",
+      "citations": [
+        "@Haldin2026"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__Akkad2023.md",
+      "sha256": "2f18d30b99373a4a2c063db821b9144e5d754c75c212c62294aadfdb08cd2338",
+      "status": "draft",
+      "citations": [
+        "@Akkad2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__Baldo2013.md",
+      "sha256": "89223d47ccad5b075bf7e43901c55b3133cb9134b155223f389c942d1e0a57b5",
+      "status": "draft",
+      "citations": [
+        "@Baldo2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__Bates2003.md",
+      "sha256": "37e4d434e1395f5081f2601175c880c217040a6eb52a8e4676a26bb6b7a025a6",
+      "status": "draft",
+      "citations": [
+        "@Bates2003"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__Binder2009.md",
+      "sha256": "a6050ef7d9a2bbedee0be9becde79af9c1e2f5ebe38841d8b9c9331f27e41b60",
+      "status": "draft",
+      "citations": [
+        "@Binder2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__Biondo2024.md",
+      "sha256": "08707fd44450db1b27d5435a0e1cd552e54eac742783312cdbc38c2e0de3ed37",
+      "status": "draft",
+      "citations": [
+        "@Biondo2024"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__Dronkers2004.md",
+      "sha256": "a0fef4630f758d4e703519db0e6cf3bc7ad5ca798eae03d64c984aed0391ab13",
+      "status": "draft",
+      "citations": [
+        "@Dronkers2004"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__Fridriksson2010Anomia.md",
+      "sha256": "5e43aed66c3fdb7e7a9c88ba4e9fe988aaff169b4ea496ccb65c3acd76209030",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2010Anomia"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__Hillis2006.md",
+      "sha256": "e5af5170657be2a1abfdd2621b350fcf9a4d46dc4ac5d72ae0998b2c32408fe1",
+      "status": "draft",
+      "citations": [
+        "@Hillis2006"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__MartinezMolina2022.md",
+      "sha256": "5af90aec1af49474c0f485ac4fcaf18391ddef26dbdeb24429c14c75579d0893",
+      "status": "draft",
+      "citations": [
+        "@MartinezMolina2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__Pillay2017.md",
+      "sha256": "f56bff75f893f9df072a68c1a04f8bebd3f15f44c1ff1acf4245c57b1340ee94",
+      "status": "draft",
+      "citations": [
+        "@Pillay2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__Schwartz2009.md",
+      "sha256": "c76b4478d7405d244665536a955dad42b61b06073942988a1175d7834f555e87",
+      "status": "draft",
+      "citations": [
+        "@Schwartz2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__Wilmskoetter2021.md",
+      "sha256": "71f2ccad01ba80544c4a7a406db3411faf9e61f22d0e6046f75fa16056da5db7",
+      "status": "draft",
+      "citations": [
+        "@Wilmskoetter2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_middle_temporal_gyrus__Zhao2018.md",
+      "sha256": "ff0318980380caa8fd3fa5b4898c0869e3bd6f4d79c29a31a869790852551ca0",
+      "status": "draft",
+      "citations": [
+        "@Zhao2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_occipito_temporal_sulcus__Pflugshaupt2009.md",
+      "sha256": "5c700c6c7745dbb11341b3506f148d99ff6da44de36e8f5bdf04df1c226c486c",
+      "status": "draft",
+      "citations": [
+        "@Pflugshaupt2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_parietal_association_cortex__Bates2003.md",
+      "sha256": "86a15a76f4f4b5e5b298df0c27e0b9c9ea60ff63893240feac8621baaf2b4227",
+      "status": "draft",
+      "citations": [
+        "@Bates2003"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_cingulate_gyrus__Binder2009.md",
+      "sha256": "55e870e7f14dfebfee64db677b897d25c88aeb5afefd4e6419658b16b6dd0d5b",
+      "status": "draft",
+      "citations": [
+        "@Binder2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_inferior_temporal_gyrus__Stockbridge2024.md",
+      "sha256": "20f73584e105e9752d4b08d5d15daf764f1ea1e3c426dc39041c7750950ae7fc",
+      "status": "draft",
+      "citations": [
+        "@Stockbridge2024"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_insula__Johnson2022.md",
+      "sha256": "3f75e06724f3546d310ec3f587c28c6bad96e184a1a6b4bcdb0efa12d30a40bc",
+      "status": "draft",
+      "citations": [
+        "@Johnson2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_insula__Zavanone2018.md",
+      "sha256": "9ded69f36d800836edbfbe6860d7fc6f91a7bc63d59d1c7a76796df0e63928f1",
+      "status": "draft",
+      "citations": [
+        "@Zavanone2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_middle_temporal_gyrus__Kristinsson2020.md",
+      "sha256": "e92f2a280d65a84a08dee6f6ae5b93e3d206c4736a0696c5016481f6828c3f0e",
+      "status": "draft",
+      "citations": [
+        "@Kristinsson2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_middle_temporal_gyrus__Stockbridge2024.md",
+      "sha256": "93090de1f85377eb23c470a21391a94db6a92c0b55bcd7ddbf9996e859ef7553",
+      "status": "draft",
+      "citations": [
+        "@Stockbridge2024"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_planum_temporale_spt__Buchsbaum2011.md",
+      "sha256": "b939cd80a53d26f32e8eb06c7b024ac81711c2bbcc4ace6c891ab39774f0ddac",
+      "status": "draft",
+      "citations": [
+        "@Buchsbaum2011"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_stg__Akkad2023.md",
+      "sha256": "7316fbb71f10e68a73b073488a63ca895622a6c8767697b47bc8e36aad1fe0d1",
+      "status": "draft",
+      "citations": [
+        "@Akkad2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_stg__Biondo2024.md",
+      "sha256": "644bf447d8b779cfe6fd128b87f45bc98b32dc8f2f4737ed9acaab00fd5736ce",
+      "status": "draft",
+      "citations": [
+        "@Biondo2024"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_stg__Butler2014.md",
+      "sha256": "706a062bb269640cd50e642772442d85df9d95a60429576c918bbc6e28166157",
+      "status": "draft",
+      "citations": [
+        "@Butler2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_stg__Corbetta2015.md",
+      "sha256": "e1a01c3e95a40f2e306d2bb93a0f6ac2321b0fba8e56ad971bedd1d6d706f326",
+      "status": "draft",
+      "citations": [
+        "@Corbetta2015"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_stg__Kasdan2025.md",
+      "sha256": "77dafda74dc6fda0f117279c7725b5ede5eea56fd2b5d54dd2f6d8df9f95612f",
+      "status": "draft",
+      "citations": [
+        "@Kasdan2025"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_stg__Kristinsson2020.md",
+      "sha256": "26a485a5b60b130ac2faf02869fb8db0256e37c37fd59ead3c1babe6ce056618",
+      "status": "draft",
+      "citations": [
+        "@Kristinsson2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_stg__Matchin2020.md",
+      "sha256": "d6506cce2611f35960dc74c0a8f49c78299dd437d93d4c7c1061e16b47df2742",
+      "status": "draft",
+      "citations": [
+        "@Matchin2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_stg__Rogalsky2018.md",
+      "sha256": "3d59c2b4a55a577a8ce6b1d8904960af477ae37b4f651f7fa7d33e6cfb746e43",
+      "status": "draft",
+      "citations": [
+        "@Rogalsky2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_stg__Sheppard2022.md",
+      "sha256": "dfcc9951f64219fec22d2cde7b94b220527edf9ea2530329d9389ad44e0c0cd1",
+      "status": "draft",
+      "citations": [
+        "@Sheppard2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_stg__Wilson2023.md",
+      "sha256": "9e85afd2de7840c46914611dd7bdc2ecc59c7a72b00f3a2fed4776346013e81c",
+      "status": "draft",
+      "citations": [
+        "@Wilson2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_stg__Yourganov2016.md",
+      "sha256": "9fbe0371793a54d14907e889ce0e9ce248d1f5a7faabe50f49c86df52bbdbc1c",
+      "status": "draft",
+      "citations": [
+        "@Yourganov2016"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/left_posterior_stg__Zevgolatakou2022.md",
+      "sha256": "7e7cbefd5352d15ce3a64ace90bcb71a534aa8b276d43a1b67577cd070f94694",
+      "status": "draft",
+      "citations": [
+        "@Zevgolatakou2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_posterior_temporal_white_matter_bottleneck__Griffis2017.md",
+      "sha256": "6028b947c97a025d60399325082b1931147d268e9d66ca529c03b32cc3d07704",
+      "status": "draft",
+      "citations": [
+        "@Griffis2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_precentral_gyrus__Casilio2025.md",
+      "sha256": "2d923f24c77a1bafd6e55e1496ecaf9187951e16fb32dd68513c6a704ed5efea",
+      "status": "draft",
+      "citations": [
+        "@Casilio2025"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_precentral_gyrus__Fridriksson2010Anomia.md",
+      "sha256": "c48b563c0210940c49b159743fab27912dfd65f5d0bda62e98ec3f2d333f6e60",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2010Anomia"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/left_precentral_gyrus__Halai2017.md",
+      "sha256": "efdc01a0b3c4b51c2432364c6cd4b9503e5783101ce034b73014804b11783be5",
+      "status": "draft",
+      "citations": [
+        "@Halai2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_precentral_gyrus__Halai2018.md",
+      "sha256": "d440e5cc6ac15c6c1e81581623b529a849c3aa342fbe530ee3d6f92f1b3e3391",
+      "status": "draft",
+      "citations": [
+        "@Halai2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_precentral_gyrus__Rapcsak2009.md",
+      "sha256": "c8c2a1fbfc129659d4f9a7e10336ca4e1c61adcf9c7daf9104fbbfb7a9dc5b66",
+      "status": "draft",
+      "citations": [
+        "@Rapcsak2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_precentral_gyrus__Schwartz2012.md",
+      "sha256": "3538b67c21f8f3fbec0e029470a9ce2e4eb798d0bcfd34b9d39df7aefeb0bd57",
+      "status": "draft",
+      "citations": [
+        "@Schwartz2012"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_precentral_gyrus_insula__Baldo2011.md",
+      "sha256": "7c1c7a68b320fd1541e6b2f29556d450756ae7cae4873819175d271dac2c98ff",
+      "status": "draft",
+      "citations": [
+        "@Baldo2011"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_precentral_gyrus_insula__Bates2003.md",
+      "sha256": "eb41500dbc21327bc38de922e3b4437f152413493beac13fdba362bfaeed886d",
+      "status": "draft",
+      "citations": [
+        "@Bates2003"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_precentral_gyrus_insula__Hillis2004.md",
+      "sha256": "5f7d54395d70516f7fd94a837701b4d9eb406c419308f47758123af17b420120",
+      "status": "draft",
+      "citations": [
+        "@Hillis2004"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_presma_dacc__Geranmayeh2017.md",
+      "sha256": "d5e1c0100e487b06cdcbef97189119a419c2f7a49d1af4d14b5d22a5d6146538",
+      "status": "draft",
+      "citations": [
+        "@Geranmayeh2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_rostral_anterior_cingulate_cortex__Glascher2012.md",
+      "sha256": "1944480631d27285cf2d82dbc7a8e688c4ea352f42cbf5a10a3c1b7a6ccfc0ed",
+      "status": "draft",
+      "citations": [
+        "@Glascher2012"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_longitudinal_fasciculus__Breier2008.md",
+      "sha256": "a1fc551e63a79f9684a07994749a1b04db9373bd975ea9dbbf31cc7bd6feed32",
+      "status": "draft",
+      "citations": [
+        "@Breier2008"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_longitudinal_fasciculus__Ding2023.md",
+      "sha256": "bf827b2e9c8d26219af29a37d5b194947ca0c21046fc97764b3f1f9010e1efa1",
+      "status": "draft",
+      "citations": [
+        "@Ding2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_longitudinal_fasciculus__McKinnon2018.md",
+      "sha256": "4ade65bc09409434ad4a6a63da5f94f646aa5a326fce3f7387f0383467b6a129",
+      "status": "draft",
+      "citations": [
+        "@McKinnon2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_longitudinal_fasciculus__Stockbridge2024.md",
+      "sha256": "107388a85de9b37f7f2ca693a7a397e955e27efe412755f5b9829965ca4ef0d3",
+      "status": "draft",
+      "citations": [
+        "@Stockbridge2024"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_longitudinal_fasciculus__Yang2017.md",
+      "sha256": "c277d15a51135b5ef02e914063cf62f95a478667c75d97849112d514e44b3a24",
+      "status": "draft",
+      "citations": [
+        "@Yang2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_longitudinal_fasciculus_iii__Fang2025.md",
+      "sha256": "a6cedde0e9a78b954fd042eff3cd4c0cdfeb871f7b2d3b17aab6d4bf803e4ae2",
+      "status": "draft",
+      "citations": [
+        "@Fang2025"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__Baldo2013.md",
+      "sha256": "2f72a2d9537bf7be677e9cc52847646aad8ac74cb8b2fec133d6ea43a43ed7e2",
+      "status": "draft",
+      "citations": [
+        "@Baldo2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__Casilio2025.md",
+      "sha256": "da082d50c064516d4da8c5ce57cfe8776f57b1a1282aa3744991b30ac3d4c589",
+      "status": "draft",
+      "citations": [
+        "@Casilio2025"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__DeWitt2012.md",
+      "sha256": "aa52bfc8658f53055aecbdc2c5b1aa7d112dccc22e98a02516a1dc6ffb0aa4d3",
+      "status": "draft",
+      "citations": [
+        "@DeWitt2012"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__Dronkers2004.md",
+      "sha256": "4024c492d1b2e79b308029b5213ab04d7c4795d88cafefa606b6e0e83df11d1a",
+      "status": "draft",
+      "citations": [
+        "@Dronkers2004"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__Fridriksson2015.md",
+      "sha256": "92ccdca99eab9c9416ecc3f054aae714419b7214f632d09fd34606a736fb7c5c",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2015"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__Halai2017.md",
+      "sha256": "7a2ca5623725d46c3a727286cea2fa6fc5a5150dab72d6144ef258e6baa2132a",
+      "status": "draft",
+      "citations": [
+        "@Halai2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__Halai2018.md",
+      "sha256": "e177863856d5cccf5bc23c6675238e253baf04a225b2d91c11dad27f725e35db",
+      "status": "draft",
+      "citations": [
+        "@Halai2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__Lacey2017.md",
+      "sha256": "9933d7bf7a36b128ae219d2373a36250d049bfe379100460b34e3c2f569e8495",
+      "status": "draft",
+      "citations": [
+        "@Lacey2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__Leff2009.md",
+      "sha256": "30c5edd23d9afb98ca796ab64a93f232805273e6878a5cfbb0ca1112d32d4c2d",
+      "status": "approved",
+      "citations": [
+        "@Leff2009"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__Lukic2021.md",
+      "sha256": "7a15c3cb914edb018a28f95927a8dd9e6871d7559017367d604b7b0f8d3f61f2",
+      "status": "draft",
+      "citations": [
+        "@Lukic2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__MartinezMolina2022.md",
+      "sha256": "e72362d443a3110da5cc169d99b92cd627a6be9b8fd4f1f2d2e23e0a8255ac4b",
+      "status": "draft",
+      "citations": [
+        "@MartinezMolina2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__Munsch2016.md",
+      "sha256": "026fc1c6399c1e9cae8d8e3e0ab7c0be55649b9794736382dc7521f9c363bb3e",
+      "status": "draft",
+      "citations": [
+        "@Munsch2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__Rapcsak2009.md",
+      "sha256": "74a20d87a59ff28d743555131cf240eddf2c786d3c459b3ec9508be164353fe0",
+      "status": "draft",
+      "citations": [
+        "@Rapcsak2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus__Zavanone2018.md",
+      "sha256": "5b4533c66b167cd02c924eaaee20d4e10f3d30f8f882ef46e0c60eae1e7a2945",
+      "status": "draft",
+      "citations": [
+        "@Zavanone2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus_wernicke__Dronkers2004.md",
+      "sha256": "c73c104cd62eb72c7c70958560dbcb06010d47d8a4c99053afad5e7586f1060b",
+      "status": "draft",
+      "citations": [
+        "@Dronkers2004"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus_wernicke__Geschwind1965.md",
+      "sha256": "208b3c5ef1f5388a78bbe31f1303b000c410b75c24c284d1462777ee1f3c6c1b",
+      "status": "draft",
+      "citations": [
+        "@Geschwind1965"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus_wernicke__Hillis2006.md",
+      "sha256": "8af6ad9e5c5e7065cf75ee06cf45c87c24976318135caf58a3102f6e736440ab",
+      "status": "draft",
+      "citations": [
+        "@Hillis2006"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_gyrus_wernickes__Hillis2001.md",
+      "sha256": "2a46964a5814483a3587b446d5c3315769af98bd91c0b020dee3cc0a4befd8be",
+      "status": "draft",
+      "citations": [
+        "@Hillis2001"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_sulcus__Binder2009.md",
+      "sha256": "624eaf823feb14909d3cf95b3c8bf430d0a230a1f958bda1986889f45f259b5e",
+      "status": "draft",
+      "citations": [
+        "@Binder2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_superior_temporal_sulcus__DeWitt2012.md",
+      "sha256": "1576719d811fa19b711e4f073e482c71852d90cc3ae2508ad93476632e4254c5",
+      "status": "draft",
+      "citations": [
+        "@DeWitt2012"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_supramarginal_gyrus__Casilio2025.md",
+      "sha256": "12484a7a4605676c40f189061c4d9eaaae287d2c27b50c16999dbccaab88b3fb",
+      "status": "draft",
+      "citations": [
+        "@Casilio2025"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_supramarginal_gyrus__Fridriksson2010.md",
+      "sha256": "7a50fa441a34538c311b6b3bc5a1a6f2a1251559135435baba90821943943080",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2010"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_supramarginal_gyrus__Lacey2017.md",
+      "sha256": "b712fd9569462198acca3202860b823d27d88131087b7b8f185577e0e5bae164",
+      "status": "draft",
+      "citations": [
+        "@Lacey2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_supramarginal_gyrus__Rapcsak2009.md",
+      "sha256": "457c856ef4d6306addaba5f91d17010cc1c6514f652d056dc0526469a5722c7f",
+      "status": "draft",
+      "citations": [
+        "@Rapcsak2009"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_supramarginal_gyrus__Schwartz2012.md",
+      "sha256": "02d94e92263bd243d34f2abca3699cdf7a3d1d8a5bd2bf1b471a1c03e7c2dcbe",
+      "status": "draft",
+      "citations": [
+        "@Schwartz2012"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_supramarginal_gyrus__Sheppard2022.md",
+      "sha256": "98658571adecd69a1ae4dada12a560a909d529950edcdaa6fd47d4c96908c974",
+      "status": "draft",
+      "citations": [
+        "@Sheppard2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_supramarginal_gyrus_premotor__Fridriksson2010Anomia.md",
+      "sha256": "7732b8585ec60e343a33948e50790c1e1a69b71e2a9833b11bc6e9fe115949df",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2010Anomia"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/left_temporal_fusiform_cortex_posterior__Schumacher2019.md",
+      "sha256": "bdeb68b1a7287f4c72cb688e26b8d32460e92a1b5d3f1d4f1b7f5e22668a4500",
+      "status": "draft",
+      "citations": [
+        "@Schumacher2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_temporal_lobe__Bonilha2016.md",
+      "sha256": "682a0ff2549bd05dda350a836a5b12a88d6b508cbca57d0c30d3c505bcd7312b",
+      "status": "draft",
+      "citations": [
+        "@Bonilha2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_temporoparietal_junction__Benghanem2019.md",
+      "sha256": "b767182d05d1ee4ad39853f81a8604cc19f13b27c56cbed2b60019a0afe9d6a8",
+      "status": "draft",
+      "citations": [
+        "@Benghanem2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_temporoparietal_junction__Fridriksson2010.md",
+      "sha256": "e7f720bf2987a0222780f17169ba96091943659bbc325bbd1597d6b865333cef",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2010"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_temporoparietal_white_matter_crossroad__Rosso2015.md",
+      "sha256": "42bdc878ba0b12b3e9a107b26e45c9dd0cef4bce5c309218047277b187afd8a3",
+      "status": "draft",
+      "citations": [
+        "@Rosso2015"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_thalamus__Sebastian2014.md",
+      "sha256": "5bff0c0eacc6cda9414dba52aca2b0e9a675d1acd95e443b346b8c441c9c9366",
+      "status": "draft",
+      "citations": [
+        "@Sebastian2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_uncinate_fasciculus__Basilakos2014.md",
+      "sha256": "cda076d26ad6ce35ba5964e5b7c9fd97d9b3be0562942c3eccf740d10cd65c7e",
+      "status": "draft",
+      "citations": [
+        "@Basilakos2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_uncinate_fasciculus__Bi2015.md",
+      "sha256": "be452e976bb1d2d7f7a83337d7cf98b1845c4e64767903b039ab2824d800aa94",
+      "status": "draft",
+      "citations": [
+        "@Bi2015"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_uncinate_fasciculus__Fridriksson2013.md",
+      "sha256": "b19f83638dc6c48d00e48c684729c1d8ab1a09f9cdcf9f805518658d7ab0d72c",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_uncinate_fasciculus__Han2013.md",
+      "sha256": "f6d7e71051e5233ee8c4592680cf08f1dd5759a68029ed7a77ceeb4a42033ea9",
+      "status": "draft",
+      "citations": [
+        "@Han2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_uncinate_fasciculus__Li2017.md",
+      "sha256": "1bdf0e281970cb28d8e678a220ec555bacc6efe84c539ae3cf1d0d714edfac33",
+      "status": "draft",
+      "citations": [
+        "@Li2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_uncinate_fasciculus__Xing2017.md",
+      "sha256": "dd95f4fa2f737996846b09c91c632c445a9775c99adf919b33b386ea5ede0b62",
+      "status": "draft",
+      "citations": [
+        "@Xing2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_uncinate_fasciculus__Yang2017.md",
+      "sha256": "14c9cb08a0af00a99823f3e891ce436d9ee7be0e2df0cf740160e6875b45dc25",
+      "status": "draft",
+      "citations": [
+        "@Yang2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_uncinate_fasciculus__Yu2023.md",
+      "sha256": "9a7808794a49e6f10c66d52696a8ab823990c372fa5422112f5c541291e837ba",
+      "status": "draft",
+      "citations": [
+        "@Yu2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_uncinate_fasciculus_semantics__Basilakos2014.md",
+      "sha256": "a3e28c837974f1bfcfefcd356e0b02331b008f4620636fa71607e3972829c72c",
+      "status": "draft",
+      "citations": [
+        "@Basilakos2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/left_ventromedial_prefrontal_cortex__Glascher2012.md",
+      "sha256": "622146e89211a694f7f739ae5d5498eae8cccb0bc83847cc085f5058bb2bce5d",
+      "status": "draft",
+      "citations": [
+        "@Glascher2012"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_amygdala__Sheppard2020.md",
+      "sha256": "c3cb4d9126868af4fad94b97c75f166305880c3894bec19a0853dc73790c9c6f",
+      "status": "draft",
+      "citations": [
+        "@Sheppard2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_arcuate_fasciculus__Forkel2014.md",
+      "sha256": "de29005af8e3be8676f735961ec72d58d6a25e0d6cf598744f5fff39b5ebaa10",
+      "status": "draft",
+      "citations": [
+        "@Forkel2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_arcuate_fasciculus__OsaGarcia2020.md",
+      "sha256": "80f7d889099c37754503716e60baacd50e55ee0b135255ff3d2be53284b2982e",
+      "status": "draft",
+      "citations": [
+        "@OsaGarcia2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_arcuate_fasciculus__Schlaug2010.md",
+      "sha256": "70141e6873cadf6f1602b240f4670b44d75ca2fab3e1df9eff8acffd8dc0802b",
+      "status": "draft",
+      "citations": [
+        "@Schlaug2010"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_arcuate_fasciculus__Soliman2023.md",
+      "sha256": "7192cd26b84e98ba1f710a222df9bc915be5a8414444e0feb4aec4088eaa85bf",
+      "status": "draft",
+      "citations": [
+        "@Soliman2023"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_dlpfc__Stockert2020.md",
+      "sha256": "fc6f71a56d1b9173450c93fd757aaf3e6ceb26a3b0a40e32608dde51202eb26e",
+      "status": "draft",
+      "citations": [
+        "@Stockert2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_dorsolateral_prefrontal_cortex__Jiang2025.md",
+      "sha256": "89b474a733004e4051d574dfbac8eb68939efca17176c41097fc9215358eb40b",
+      "status": "draft",
+      "citations": [
+        "@Jiang2025"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_frontal_operculum__Ross2008.md",
+      "sha256": "7666267ba12fa8483102871c133a6e3e1816ddd615b57d4c09fde003cd2d295e",
+      "status": "draft",
+      "citations": [
+        "@Ross2008"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_ifg__Saur2006.md",
+      "sha256": "b19e9003264748fe30d6c7701cf596df6d248455437f41584e9658a4e732d034",
+      "status": "draft",
+      "citations": [
+        "@Saur2006"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_ifg_pars_opercularis__Lee2018.md",
+      "sha256": "50afb682358890a1af662e7fa14b72bac1f48dd2994a2b21f695858b9b2e67fa",
+      "status": "draft",
+      "citations": [
+        "@Lee2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_ifg_pars_opercularis__Turkeltaub2011.md",
+      "sha256": "441fbda1ef23f42f1c8e39691523f5b2208ceff6270b61703e904a4ae08035f8",
+      "status": "draft",
+      "citations": [
+        "@Turkeltaub2011"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_ifg_pars_triangularis__Turkeltaub2011.md",
+      "sha256": "7d9a5baafa6e0a3839976e86af2e0153b4780bb6c8a25449c1a88a4704f5f94b",
+      "status": "draft",
+      "citations": [
+        "@Turkeltaub2011"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_inferior_frontal_gyrus__Jiang2025.md",
+      "sha256": "d41554dd93035f7bc242bebeb0f8ff3795f9052e416fcc2c7e622f8569076f46",
+      "status": "draft",
+      "citations": [
+        "@Jiang2025"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_inferior_longitudinal_fasciculus__BlomSmink2020.md",
+      "sha256": "c6294df3b109d211b4604a7581145233d64d6b690acc58117e4df8d33023e05b",
+      "status": "draft",
+      "citations": [
+        "@BlomSmink2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_insula__Lukic2017.md",
+      "sha256": "f3ca7a139faace6fe4faa4deaca6bf7320cff5871703453916aaadbd53cbb9c0",
+      "status": "draft",
+      "citations": [
+        "@Lukic2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_lateral_frontal_cortex__Benjamin2014.md",
+      "sha256": "ffe52d6b69198607a2379d45ccbb1301dbfc78162c5b4032f11d5a8a44a1e3f9",
+      "status": "draft",
+      "citations": [
+        "@Benjamin2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_middle_temporal_gyrus__Hope2017.md",
+      "sha256": "f0386f8d02807b8de2a79e37c771a9a48639059b9590b9e81fac4b630d4745c8",
+      "status": "draft",
+      "citations": [
+        "@Hope2017"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/right_middle_temporal_gyrus__Lukic2017.md",
+      "sha256": "e55470f640a1e64c8ad24e963ae39bc855779c2a37880dadad81e8511f55b764",
+      "status": "draft",
+      "citations": [
+        "@Lukic2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_motor_cortex__SkipperKallal2017.md",
+      "sha256": "b04fd1d078b0e67d7d78241767317355ac04771c742688e9dcb76dda29a20999",
+      "status": "draft",
+      "citations": [
+        "@SkipperKallal2017"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/right_posterior_perisylvian_cortex__Benjamin2014.md",
+      "sha256": "5928be9320c8220882c757b63365c66b972cadf710b14be1563c19a47d967679",
+      "status": "draft",
+      "citations": [
+        "@Benjamin2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_posterior_stg__Sheppard2020.md",
+      "sha256": "d2eaeec12a7b44e8bec9a39db6d9a4ccbd4d95fa376f65a89b101e6eb83bf598",
+      "status": "draft",
+      "citations": [
+        "@Sheppard2020"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_precentral_gyrus__Hope2017.md",
+      "sha256": "582c662efebbc2c66c77e7e6348099293a4e0ddd6e0a756ac982cbf6f42ef2a5",
+      "status": "draft",
+      "citations": [
+        "@Hope2017"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/regions/right_superior_temporal_gyrus__Xing2016.md",
+      "sha256": "9f08049835038b0a97419d78da58eb5d4dd228cc433f2372ea64acc75d2f6522",
+      "status": "draft",
+      "citations": [
+        "@Xing2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_superior_temporal_sulcus__SkipperKallal2017Functional.md",
+      "sha256": "307073b4c59a185c19a57e842c3654125c641ea6dd630e4a20628b2266b9852e",
+      "status": "draft",
+      "citations": [
+        "@SkipperKallal2017Functional"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_supplementary_motor_area__Lukic2017.md",
+      "sha256": "5fa876063dd23917fd7fd94024d1a29a425aac77996ed46de7a385e669d033d9",
+      "status": "draft",
+      "citations": [
+        "@Lukic2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_supramarginal_gyrus__Xing2016.md",
+      "sha256": "137d2bc437138be05ea41ac42fe06d674f39f923a886fd70f4ade5ef053fc762",
+      "status": "draft",
+      "citations": [
+        "@Xing2016"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_temporal_operculum__Ross2008.md",
+      "sha256": "498996573006a5bbb6b701a222991da6955c26ee42e83ab12b98d76862287fa1",
+      "status": "draft",
+      "citations": [
+        "@Ross2008"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_thalamus__Ross2008.md",
+      "sha256": "0b958e9f4c061ea317142f55744d7bbc5da9fff9f78dc4a630b0e4b50278f3b1",
+      "status": "draft",
+      "citations": [
+        "@Ross2008"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/regions/right_thalamus__Sebastian2014.md",
+      "sha256": "52dac6dde364a70123ba1888037c0c2d14f3ab5f543a03beee766a41e284ecad",
+      "status": "draft",
+      "citations": [
+        "@Sebastian2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/affective_prosody_localization__Durfee2021.md",
+      "sha256": "08677135a984cd2fe58f15952e6ecea3eaa77d1607070efa9ea03468851a6ab2",
+      "status": "draft",
+      "citations": [
+        "@Durfee2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/aphasia_prognosis_predictors__Plowman2012.md",
+      "sha256": "214c96919bd0fea02f106aa6767096d2b07b79de0abd04d4ce8078447a82abe3",
+      "status": "draft",
+      "citations": [
+        "@Plowman2012"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/arcuate_fasciculus_disconnection__Catani2008.md",
+      "sha256": "d02d32e3ff97651c0c18de56f3a67e6c84a158c954124eba3131724bb2216cc2",
+      "status": "draft",
+      "citations": [
+        "@Catani2008"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/cerebral_small_vessel_disease_cognition__Biesbroek2017.md",
+      "sha256": "b5944312c728778df2ed0d6368068b27aee3fbc7f5837e1d5f8250e3013b742b",
+      "status": "draft",
+      "citations": [
+        "@Biesbroek2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/connectional_anatomy_of_language__Dick2012.md",
+      "sha256": "67df8ae09bd0df8f0e2007d15bf33372d61d7195999ffc87da889f0aa8cb1c24",
+      "status": "draft",
+      "citations": [
+        "@Dick2012"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/crossed_aphasia_dextrals__Marien2004.md",
+      "sha256": "9009a4f1a5487e4b4f2e3f8a31e9d0e1f831e4d9745ecf365a43bd92ef3471b8",
+      "status": "draft",
+      "citations": [
+        "@Marien2004"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/dual_stream_speech_processing__Hickok2007.md",
+      "sha256": "753df0589ee4faf702bd04d64b0b989a8bc6e0bb38f2a18a2becb48b901256c2",
+      "status": "draft",
+      "citations": [
+        "@Hickok2007"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/dysarthria_interventions__Mitchell2017.md",
+      "sha256": "578fcfbd58fdffea1a080940fcbde36f1acb743266928e57e77bd62bb8242ddd",
+      "status": "draft",
+      "citations": [
+        "@Mitchell2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/language_mapping_methods__Wilson2019.md",
+      "sha256": "72eeab38d827bf5f36878b7213be0e3d97c49eb74db7e8376dd11a01a6ed72e8",
+      "status": "draft",
+      "citations": [
+        "@Wilson2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/lesion_mapping_methods__Karnath2018.md",
+      "sha256": "8a1c814265c729bcf76387c7782fedfc39f2ffc13826398d049ce9873f35db4f",
+      "status": "draft",
+      "citations": [
+        "@Karnath2018"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/melodic_intonation_therapy__Zumbansen2014.md",
+      "sha256": "d6094be7b24948b2bc29fd2f0603a32429d3b88ccca3bb5d4cc25b2090a5e9c4",
+      "status": "draft",
+      "citations": [
+        "@Zumbansen2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/melodic_intonation_therapy__vanderMeulen2012.md",
+      "sha256": "bf7e0a92ab719ed12605d6dc22996e57e9f41155354db67809915cb4953e7973",
+      "status": "draft",
+      "citations": [
+        "@vanderMeulen2012"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/multivariate_aphasia_approaches__WilsonHula2019.md",
+      "sha256": "5a8eb12395109d68b6c21d7c354e2ba66ce1adb26d13db8eb0f27c7485139f77",
+      "status": "draft",
+      "citations": [
+        "@WilsonHula2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/neuroplasticity_language_network__Hartwigsen2019.md",
+      "sha256": "c76ffe6fb5045c7ae7d8a03990c772473d5f1be2c3c276ac81e65b90ccadf256",
+      "status": "draft",
+      "citations": [
+        "@Hartwigsen2019"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/neuroplasticity_poststroke_aphasia__Mohr2017.md",
+      "sha256": "c21f10e39bb418ad04344d4ffc6c8acf6092b9b7c8638be7199b3e44a3daa962",
+      "status": "draft",
+      "citations": [
+        "@Mohr2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/perceptual_disorders_interventions__Hazelton2022.md",
+      "sha256": "f0d5a0522b7879a7e09faa75f9c4c569a392dc4ddffb542f4871ef27dfd7ca10",
+      "status": "draft",
+      "citations": [
+        "@Hazelton2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/right_hemisphere_communication_profiles__Cote2007.md",
+      "sha256": "978fb70e330af5d0449a6afae78094a9f7715869b20ca856db0440e1239f1953",
+      "status": "draft",
+      "citations": [
+        "@Cote2007"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/reviews/thalamic_aphasia__Fritsch2022.md",
+      "sha256": "9e00fcc09e51e73fe72650b48afcf0e5f3ff19ef365356fc0c9566d99026d168",
+      "status": "draft",
+      "citations": [
+        "@Fritsch2022"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/cognitive_linguistic_treatment__Nouwens2017.md",
+      "sha256": "65bef24a348f718c8ce2184d2548484ab43789e1bb553927398fddad319b8c49",
+      "status": "draft",
+      "citations": [
+        "@Nouwens2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/constraint_induced_aphasia_therapy__Maher2006.md",
+      "sha256": "d98d2a4a4ec18a163fc8c86d2eaac6adebd0887e0ce3f020ba90d7586a3c1fc3",
+      "status": "draft",
+      "citations": [
+        "@Maher2006"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/constraint_induced_aphasia_therapy__Pulvermuller2001.md",
+      "sha256": "651bbd7ebcdbc8bfade59282ae887bf5c7f615ad7c11c6a3dbc9376fca8bf033",
+      "status": "draft",
+      "citations": [
+        "@Pulvermuller2001"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/inhibitory_rtms_right_ifg__Thiel2013.md",
+      "sha256": "78b9ac16ede039c5f8ff3397cccb2a62fab9770b2a281de7a62aca7cea6878e6",
+      "status": "draft",
+      "citations": [
+        "@Thiel2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/intensive_aphasia_therapy__Godecke2021.md",
+      "sha256": "1a9b7a7dc03cd77f391b6a106f674ddc77d5f94b87127c0b274bd5ea21108270",
+      "status": "draft",
+      "citations": [
+        "@Godecke2021"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/intensive_speech_and_language_therapy__Breitenstein2017.md",
+      "sha256": "f9fab9ec7c5f0197930ca3e3199023cf0b1aa54f8b98feb32e08b9adbc232743",
+      "status": "draft",
+      "citations": [
+        "@Breitenstein2017"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/intention_treatment__Benjamin2014.md",
+      "sha256": "1d40c61bc44e0cd84b519a179076906c264208e120ebde920ad0f4ff65458a1b",
+      "status": "draft",
+      "citations": [
+        "@Benjamin2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/massed_practice__Bhogal2003.md",
+      "sha256": "a93894718760a835034b76716f9a5aa3466939851e2239b0573e24186b9aece2",
+      "status": "draft",
+      "citations": [
+        "@Bhogal2003"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__Schlaug2008.md",
+      "sha256": "4b456013caaecb594c694acc63cf4d22cb28c944f0d47f10939db1a9523ec7f8",
+      "status": "draft",
+      "citations": [
+        "@Schlaug2008"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__Schlaug2010.md",
+      "sha256": "04bb999da121c0fd1117536bcacbcfd87c6f59b282ae541a546293411ff300c2",
+      "status": "draft",
+      "citations": [
+        "@Schlaug2010"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__Stahl2011.md",
+      "sha256": "147ef3d3c9f1c8d1f46bdb4b99680bdb7d3fa8120459e22d5fa3863ea0b39955",
+      "status": "draft",
+      "citations": [
+        "@Stahl2011"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__Stahl2013.md",
+      "sha256": "c7de6dce886eeb7fc18cb05ec78ad8b160a70b6625da9eca2643c6cdadf2b87c",
+      "status": "draft",
+      "citations": [
+        "@Stahl2013"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__vanderMeulen2012.md",
+      "sha256": "0119d502e228af161564eb5670a10b001786eaa599e23d5222bab0f549659755",
+      "status": "in_review",
+      "citations": [
+        "@vanderMeulen2012"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__vanderMeulen2014.md",
+      "sha256": "8c87a9c9d9ad4dc77ffc9155ffcff95d1aaed41c26f6a110b832e73ede685335",
+      "status": "draft",
+      "citations": [
+        "@vanderMeulen2014"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/phonological_component_analysis__Leonard2008.md",
+      "sha256": "12d213518cb9e09f98c2fe9e6382dd0f25bf4127bef9926e656b6d0cd9e5be64",
+      "status": "draft",
+      "citations": [
+        "@Leonard2008"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/therapies/phonological_component_analysis__MassonTrottier2021.md",
+      "sha256": "72b8603a8057f8e67c8f0f4ac43045c1fb9bd4e0072bf4548a66c88eb07f9703",
+      "status": "in_review",
+      "citations": [
+        "@MassonTrottier2021"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/therapies/semantic_feature_analysis__Boyle2004.md",
+      "sha256": "9aef65da7f17faed6f3ff3f905535b96af57cf1ea6c4da46f19ac9b58ed51f95",
+      "status": "draft",
+      "citations": [
+        "@Boyle2004"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/speech_and_language_therapy__Brady2022Dosage.md",
+      "sha256": "420420fdf8f0f7f0cd3c5f8f0e039e355319ddb645585bc73c78788261a2ce21",
+      "status": "draft",
+      "citations": [
+        "@Brady2022Dosage"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/spell_study_spell__Barbieri2023.md",
+      "sha256": "7014fbec36ffb6c7695e494d318064aed47852badca588cf234b38d4e2db87fd",
+      "status": "in_review",
+      "citations": [
+        "@Barbieri2023"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/therapies/tdcs_aphasia_treatment__Fridriksson2018BDNF.md",
+      "sha256": "34b66fbf4c4299a180491405563fa02e51ded02f5d7172890fed57e1a880b157",
+      "status": "in_review",
+      "citations": [
+        "@Fridriksson2018BDNF"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/therapies/tdcs_aphasia_treatment__Fridriksson2018JAMA.md",
+      "sha256": "75ac472c169b72f359cd04b4698ef1fcd3f906b3bc2d47c94793d50470e1a10a",
+      "status": "draft",
+      "citations": [
+        "@Fridriksson2018JAMA"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/therapies/tms_right_ifg__Naeser2005.md",
+      "sha256": "43d4793e7d76be3f70c610c120b888523594e3a12fa5b56538e9c9d820f16c7d",
+      "status": "in_review",
+      "citations": [
+        "@Naeser2005"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/therapies/treatment_of_underlying_forms__Barbieri2023.md",
+      "sha256": "53cb61e511f1105bae852eeb94dde77b7cfe4eb2ed0e79841eadd9aeb627ade5",
+      "status": "in_review",
+      "citations": [
+        "@Barbieri2023"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/therapies/treatment_of_underlying_forms__Thompson2003.md",
+      "sha256": "a9c547781be1573d367b8c5d7b15962679211dc64976e25ae7614520bb9453c5",
+      "status": "draft",
+      "citations": [
+        "@Thompson2003"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/treatment_of_underlying_forms__Thompson2003_f2.md",
+      "sha256": "4608696905eda07749844221ed3df766323e2a333e31aebe79dbdaa25df995e7",
+      "status": "draft",
+      "citations": [
+        "@Thompson2003"
+      ],
+      "review_material_preserved": false
+    },
+    {
+      "path": "drafts/therapies/typicality_semantic_feature_analysis__Barbieri2023.md",
+      "sha256": "719491ed81515c60bf0e691080771fcf343403ad07844594a78955151daf5028",
+      "status": "in_review",
+      "citations": [
+        "@Barbieri2023"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/therapies/typicality_semantic_feature_analysis__Efstratiadou2018.md",
+      "sha256": "bf021153c191d2a1d490e58a14a1ccde9ba3e1a3b9f852eeec6999c86e3837a8",
+      "status": "draft",
+      "citations": [
+        "@Efstratiadou2018"
+      ],
+      "review_material_preserved": true
+    },
+    {
+      "path": "drafts/therapies/virtual_reality_rehabilitation__Laver2025.md",
+      "sha256": "adbcea57af6a3dc3a25d70791401956c123b84ab697bb547a7826edb6902bd4f",
+      "status": "draft",
+      "citations": [
+        "@Laver2025"
+      ],
+      "review_material_preserved": false
+    }
+  ],
+  "preserved_review_material": [
+    "logs/baseline/reviewer-material/impairments/anomic_aphasia__Hope2017.md",
+    "logs/baseline/reviewer-material/predictors/age__Hope2017.md",
+    "logs/baseline/reviewer-material/predictors/executive_functions__Gilmore2019.md",
+    "logs/baseline/reviewer-material/predictors/lesion_volume__Goldenberg1994.md",
+    "logs/baseline/reviewer-material/predictors/lesion_volume__Hope2017.md",
+    "logs/baseline/reviewer-material/predictors/time_post_onset__Hope2017.md",
+    "logs/baseline/reviewer-material/regions/bilateral_middle_frontal_gyrus_recovery__Fridriksson2010Anomia.md",
+    "logs/baseline/reviewer-material/regions/left_anterior_temporal_lobe__Henseler2014.md",
+    "logs/baseline/reviewer-material/regions/left_anterior_temporal_lobe__Robson2014.md",
+    "logs/baseline/reviewer-material/regions/left_ifg_pars_opercularis__Fridriksson2010Anomia.md",
+    "logs/baseline/reviewer-material/regions/left_ifg_pars_opercularis__Hillis2006.md",
+    "logs/baseline/reviewer-material/regions/left_middle_temporal_gyrus__Fridriksson2010Anomia.md",
+    "logs/baseline/reviewer-material/regions/left_middle_temporal_gyrus__Hillis2006.md",
+    "logs/baseline/reviewer-material/regions/left_posterior_stg__Yourganov2016.md",
+    "logs/baseline/reviewer-material/regions/left_precentral_gyrus__Fridriksson2010Anomia.md",
+    "logs/baseline/reviewer-material/regions/left_superior_temporal_gyrus__Leff2009.md",
+    "logs/baseline/reviewer-material/regions/left_superior_temporal_gyrus_wernicke__Hillis2006.md",
+    "logs/baseline/reviewer-material/regions/left_supramarginal_gyrus_premotor__Fridriksson2010Anomia.md",
+    "logs/baseline/reviewer-material/regions/right_middle_temporal_gyrus__Hope2017.md",
+    "logs/baseline/reviewer-material/regions/right_motor_cortex__SkipperKallal2017.md",
+    "logs/baseline/reviewer-material/regions/right_precentral_gyrus__Hope2017.md",
+    "logs/baseline/reviewer-material/therapies/melodic_intonation_therapy__vanderMeulen2012.md",
+    "logs/baseline/reviewer-material/therapies/phonological_component_analysis__Leonard2008.md",
+    "logs/baseline/reviewer-material/therapies/phonological_component_analysis__MassonTrottier2021.md",
+    "logs/baseline/reviewer-material/therapies/spell_study_spell__Barbieri2023.md",
+    "logs/baseline/reviewer-material/therapies/tdcs_aphasia_treatment__Fridriksson2018BDNF.md",
+    "logs/baseline/reviewer-material/therapies/tdcs_aphasia_treatment__Fridriksson2018JAMA.md",
+    "logs/baseline/reviewer-material/therapies/tms_right_ifg__Naeser2005.md",
+    "logs/baseline/reviewer-material/therapies/treatment_of_underlying_forms__Barbieri2023.md",
+    "logs/baseline/reviewer-material/therapies/typicality_semantic_feature_analysis__Barbieri2023.md",
+    "logs/baseline/reviewer-material/therapies/typicality_semantic_feature_analysis__Efstratiadou2018.md"
+  ],
+  "note": "Reviewer material is an audit record, not an active draft or a new approval. Carry relevant unresolved review obligations into replacement source review."
+}

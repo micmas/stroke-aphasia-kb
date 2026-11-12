@@ -1,0 +1,538 @@
+draft_path: drafts/therapies/typicality_semantic_feature_analysis__Barbieri2023.md
+runs:
+- run_id: 1
+  timestamp: '2026-05-04T11:32:00'
+  mode: deterministic_only
+  verdict: provisional_approve
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: null
+    blocker: true
+    details:
+    - no PDFs available in /Users/Michele/neurodesktop-storage/calmar/stroke-aphasia-kb/papers
+      for any cited paper
+  - name: all_findings_confidence_high
+    passed: true
+    blocker: false
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: strength_moderate_or_better
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+- run_id: 2
+  timestamp: '2026-05-05T04:10:06'
+  mode: deterministic_only
+  verdict: auto_reject
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: false
+    blocker: true
+    details:
+    - matched 9/19 quotes (47%)
+    - '10 quotes did not match — first 3:'
+    - '  - f1.Methods 2.2 — Treatment (p.80): At Boston University, the participants
+      treated for anomia underwent a typicality…'
+    - '  - f1.Limitations (p.96): participants were recruited from different research
+      centers because they met cri…'
+    - '  - f2.Methods 2.3.2.2 — Data acquisition (p.81): Structural and functional
+      MR images were collected using 3T scanners (Siemens Tr…'
+  - name: all_findings_confidence_high
+    passed: true
+    blocker: false
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: strength_moderate_or_better
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+- run_id: 3
+  timestamp: '2026-05-05T04:12:03'
+  mode: deterministic_only
+  verdict: auto_approve
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 17/19 quotes (89%)
+    - '2 quotes did not match — first 3:'
+    - '  - f2.Table 5 — naming treatment post-treatment (p.87): Naming treatment (k  87)…'
+    - '  - f3.Table 6 — naming group (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+  - name: all_findings_confidence_high
+    passed: true
+    blocker: false
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: strength_moderate_or_better
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+- run_id: 4
+  timestamp: '2026-05-05T04:12:28'
+  mode: deterministic_only
+  verdict: auto_approve
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 17/19 quotes (89%)
+    - '2 quotes did not match — first 3:'
+    - '  - f2.Table 5 — naming treatment post-treatment (p.87): Naming treatment (k  87)…'
+    - '  - f3.Table 6 — naming group (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+  - name: all_findings_confidence_high
+    passed: true
+    blocker: false
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: strength_moderate_or_better
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+- run_id: 5
+  timestamp: '2026-05-06T12:28:31'
+  mode: deterministic_only
+  verdict: auto_approve
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 17/19 quotes (89%)
+    - '2 quotes did not match — first 3:'
+    - '  - f2.Table 5 — naming treatment post-treatment (p.87): Naming treatment (k  87)…'
+    - '  - f3.Table 6 — naming group (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+  - name: all_findings_confidence_high
+    passed: true
+    blocker: false
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: strength_moderate_or_better
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+- run_id: 6
+  timestamp: '2026-11-09T15:24:29'
+  mode: with_llm_review
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 46/50 quotes (92%) — absent 2, exact 46, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f3.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '  - [near] f6.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f2.statistics (p.87): Naming treatment (k  87)…'
+    - '  - f5.statistics (p.87): Naming treatment (k  87)…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f2: has provenance.flags'
+  - 'f3: has provenance.flags'
+  - 'f4: has provenance.flags'
+  - 'f4: strength=''strong'''
+  - 'f5: has provenance.flags'
+  - 'f6: has provenance.flags'
+  llm_review:
+    model: gemma4:26b
+    backend: ollama (local)
+    verdict_override: null
+    parsed:
+      overall_verdict: defer
+      rationale: The draft contains significant duplication errors. Findings f1/f4
+        are identical, and f2/f5 are identical, and f3/f6 are identical. This indicates
+        a failure in the extraction process where the same findings were recorded
+        multiple times under different IDs. I cannot approve a draft that contains
+        redundant findings as it violates the principle of unique findings per research
+        result.
+      per_finding:
+      - id: f1
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f2
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f3
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f4
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f5
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      - id: f6
+        passage_present: true
+        passage_supports_field: true
+        relationship_faithful: true
+        strength_fair: true
+        numbers_match: true
+        limitations_captured: true
+        omissions: ''
+        concern: ''
+        verdict: agree
+      overall_verdict_v1: agree_defer
+    raw_preview: "{\n  \"overall_verdict\": \"defer\",\n  \"rationale\": \"The draft\
+      \ contains significant duplication errors. Findings f1/f4 are identical, and\
+      \ f2/f5 are identical, and f3/f6 are identical. This indicates a failure in\
+      \ the extraction process where the same findings were recorded multiple times\
+      \ under different IDs. I cannot approve a draft that contains redundant findings\
+      \ as it violates the principle of unique findings per research result.\",\n\
+      \  \"per_finding\": [\n    {\n      \"id\": \"f1\",\n      \"passage_present\"\
+      : true,\n      \"passage_supports_field\": true,\n      \"relationship_faithful\"\
+      : true,\n      \"strength_fair\": true,\n      \"numbers_match\": true,\n  \
+      \    \"limitations_captured\": true,\n      \"omissions\": \"\",\n      \"concern\"\
+      : \"\",\n      \"verdict\": \"agree\"\n    },\n    {\n      \"id\": \"f2\",\n\
+      \      \"passage_present\":"
+    error: null
+    votes: 3
+    vote_verdicts:
+    - defer
+    - defer
+    - defer
+    unanimous: true
+    guardrails: []
+    extractor: agent:claude-opus-4-7
+    independent: true
+    papers_missing: []
+- run_id: 7
+  timestamp: '2026-11-10T10:40:32'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 46/50 quotes (92%) — absent 2, exact 46, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f3.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '  - [near] f6.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f2.statistics (p.87): Naming treatment (k  87)…'
+    - '  - f5.statistics (p.87): Naming treatment (k  87)…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f2: has provenance.flags'
+  - 'f3: has provenance.flags'
+  - 'f4: has provenance.flags'
+  - 'f4: strength=''strong'''
+  - 'f5: has provenance.flags'
+  - 'f6: has provenance.flags'
+- run_id: 8
+  timestamp: '2026-11-10T20:59:16'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 46/50 quotes (92%) — absent 2, exact 46, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f3.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '  - [near] f6.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f2.statistics (p.87): Naming treatment (k  87)…'
+    - '  - f5.statistics (p.87): Naming treatment (k  87)…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f2: has provenance.flags'
+  - 'f3: has provenance.flags'
+  - 'f4: has provenance.flags'
+  - 'f4: strength=''strong'''
+  - 'f5: has provenance.flags'
+  - 'f6: has provenance.flags'
+- run_id: 9
+  timestamp: '2026-11-10T21:34:14'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 46/50 quotes (92%) — absent 2, exact 46, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f3.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '  - [near] f6.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f2.statistics (p.87): Naming treatment (k  87)…'
+    - '  - f5.statistics (p.87): Naming treatment (k  87)…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f2: has provenance.flags'
+  - 'f3: has provenance.flags'
+  - 'f4: has provenance.flags'
+  - 'f4: strength=''strong'''
+  - 'f5: has provenance.flags'
+  - 'f6: has provenance.flags'
+- run_id: 10
+  timestamp: '2026-11-11T08:50:30'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 46/50 quotes (92%) — absent 2, exact 46, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f3.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '  - [near] f6.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f2.statistics (p.87): Naming treatment (k  87)…'
+    - '  - f5.statistics (p.87): Naming treatment (k  87)…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f2: has provenance.flags'
+  - 'f3: has provenance.flags'
+  - 'f4: has provenance.flags'
+  - 'f4: strength=''strong'''
+  - 'f5: has provenance.flags'
+  - 'f6: has provenance.flags'
+- run_id: 11
+  timestamp: '2026-11-11T10:43:05'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 46/50 quotes (92%) — absent 2, exact 46, near 2
+    - '2 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [near] f3.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '  - [near] f6.statistics (p.88): Time (Post- vs. Pre-treatment)  .016  .025  410.8  .653  .655…'
+    - '2 quote(s) absent from the PDF — first 3:'
+    - '  - f2.statistics (p.87): Naming treatment (k  87)…'
+    - '  - f5.statistics (p.87): Naming treatment (k  87)…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: has provenance.flags'
+  - 'f1: strength=''strong'''
+  - 'f2: has provenance.flags'
+  - 'f3: has provenance.flags'
+  - 'f4: has provenance.flags'
+  - 'f4: strength=''strong'''
+  - 'f5: has provenance.flags'
+  - 'f6: has provenance.flags'
+last_run: '2026-11-11T10:43:05'
+latest_verdict: checks_passed
+latest_mode: deterministic_only

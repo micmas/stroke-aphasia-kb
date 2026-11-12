@@ -1,0 +1,81 @@
+draft_path: drafts/therapies/speech_and_language_therapy__Brady2022Dosage.md
+runs:
+- run_id: 1
+  timestamp: '2026-11-11T08:50:30'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/6 quotes (67%) — absent 1, anchored 1, exact 4
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f3.claim (p.962): Prescribed home practice was associated with
+      greater gains in overall language (…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.confounders (p.957): Our 1-stage network meta-analysis... adjusting
+      for a priori-defined covariates (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+  - 'f2: strength=''strong'''
+- run_id: 2
+  timestamp: '2026-11-11T10:43:05'
+  mode: deterministic_only
+  verdict: checks_passed
+  checks:
+  - name: schema_valid
+    passed: true
+    blocker: true
+  - name: no_low_confidence_findings
+    passed: true
+    blocker: true
+  - name: no_contradictions
+    passed: true
+    blocker: true
+  - name: pdf_quote_match
+    passed: true
+    blocker: true
+    details:
+    - matched 4/6 quotes (67%) — absent 1, anchored 1, exact 4
+    - '1 quote(s) real but not verbatim (a person confirms) — first 3:'
+    - '  - [anchored] f3.claim (p.962): Prescribed home practice was associated with
+      greater gains in overall language (…'
+    - '1 quote(s) absent from the PDF — first 3:'
+    - '  - f1.confounders (p.957): Our 1-stage network meta-analysis... adjusting
+      for a priori-defined covariates (…'
+  - name: no_human_review_flags
+    passed: true
+    blocker: false
+  - name: cross_finding_consistency
+    passed: true
+    blocker: false
+  review_tier: B
+  tier_reasons:
+  - bucket 'therapies' always needs a person
+  - not every passage matched the PDF exactly
+  - new entry id (not appending to an existing entry)
+  - 'f1: strength=''strong'''
+  - 'f2: strength=''strong'''
+last_run: '2026-11-11T10:43:05'
+latest_verdict: checks_passed
+latest_mode: deterministic_only

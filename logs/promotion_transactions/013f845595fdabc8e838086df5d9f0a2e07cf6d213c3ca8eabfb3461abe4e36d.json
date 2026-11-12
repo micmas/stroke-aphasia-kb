@@ -1,0 +1,13 @@
+{
+  "draft": "drafts/_review/passage-correction-20261111T012009Z-02_edit_m-massontrottier_regions-left-ifg-pars-triangularis-adeza.json",
+  "canonical": "regions/left_ifg_pars_triangularis.md",
+  "log": "logs/extraction_log.md",
+  "draft_sha": "887575ca72ca84d815d074a33432f914ba096a87dd5595fccccbc8af33019f5a",
+  "before": "a24ca2196691dfe9353d941378785ab0c786fe0522dc925d292e84714536de9c",
+  "after": "669c2481fdafbc84fa2c66a6a58a277a83caded63cb11b342e29ecafdc1f2be1",
+  "line": "2026-11-12 | SOURCE-CORRECTED | @Adezati2022 | left_ifg_pars_triangularis f3 | operator: agent:codex | record: 20261111T012009Z-02_edit_m-massontrottier_regions-left-ifg-pars-triangularis-adeza.json\n",
+  "record_ids": [
+    "20261111T012009Z-02_edit_m-massontrottier_regions-left-ifg-pars-triangularis-adeza.json"
+  ],
+  "done": true
+}
