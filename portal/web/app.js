@@ -114,7 +114,7 @@ function uploadControl(id, citation, { required = false, label = null } = {}) {
       state.uploads.push({ object: data.object, id, name: file.name, bytes: file.size, by: state.me.email, uploaded: new Date().toISOString() });
       if (data.file) state.mine.inbox.push(data.file.split('/').pop());
       toast(`PDF uploaded for ${id} — the maintainer will add it to the papers folder`);
-      render();
+      render({ preserveScroll: location.hash === '#/screen/ta' });
     } catch (e) { toast(`Not uploaded: ${e.message}`, true); busy = false; btn.disabled = false; btn.textContent = label || 'Upload the PDF'; }
   };
   const btn = h('button', { class: `btn${required ? ' btn-primary' : ''}`, text: label || 'Upload the PDF', onclick: () => upload(input.files?.[0]) });
@@ -929,7 +929,9 @@ function showSelTool(x, y, quote, page) {
 
 // ---------------------------------------------------------------- shell
 function parseRoute() { const raw = location.hash.replace(/^#/, '') || '/'; return raw.split('/').filter(Boolean).map(decodeURIComponent); }
-function render() {
+function render({ preserveScroll = false } = {}) {
+  // Capture at refresh time: reviewers may keep scrolling while a PDF uploads.
+  const scroll = preserveScroll ? { left: window.scrollX, top: window.scrollY, behavior: 'instant' } : null;
   const main = document.getElementById('main');
   if (state.keyHandler) { document.removeEventListener('keydown', state.keyHandler); state.keyHandler = null; }
   const [head, ...rest] = parseRoute();
@@ -967,7 +969,8 @@ function render() {
   } catch (err) { console.error(err); view = h('p', { class: 'error', text: `This page could not be rendered: ${err.message}` }); }
   main.replaceChildren(view);
   for (const a of document.querySelectorAll('.nav a')) { if (a.getAttribute('href') === `#${current}`) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); }
-  if (head !== 'draft') window.scrollTo(0, 0);
+  if (scroll) window.scrollTo(scroll);
+  else if (head !== 'draft') window.scrollTo(0, 0);
 }
 
 async function init() {
