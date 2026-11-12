@@ -6,26 +6,7 @@
   "synced": "2026-11-10T08:44"
  },
  "bucket": "stroke-aphasia-kb-pdfs",
- "fulltext": {
-  "C0459": {
-   "bytes": 4150534,
-   "file": "C0459_Schellekens2026.pdf",
-   "object": "pdf/C0459_fulltext.pdf",
-   "sha256": "7570f761aaaf1c9cc476c7a77340fe8a212c1c335b17f076cdec383184722fb9"
-  },
-  "C1480": {
-   "bytes": 8659087,
-   "file": "C1480_Zhang2021.pdf",
-   "object": "pdf/C1480_fulltext.pdf",
-   "sha256": "96e619987834dcf3b519d8142823d11a54cb5095aea35cecde0b685b7a4f0963"
-  },
-  "C5206": {
-   "bytes": 587087,
-   "file": "C5206_Hope2016.pdf",
-   "object": "pdf/C5206_fulltext.pdf",
-   "sha256": "958d8a86be14388bc200ab86e3f946d0fca7e82b3d3240be9a3e00369cbd5848"
-  }
- },
+ "fulltext": {},
  "papers": {
   "@Adezati2022": {
    "annotated": "cc/Adezati2022_annotated.pdf",
@@ -1663,11 +1644,14 @@
   "files": [
    "00006114-200707100-00012.pdf",
    "C0306_Huygelier2025.pdf",
+   "C0432_Desjardins2026.pdf",
    "C0459_Schellekens2026.pdf",
    "C0507_Johnson2025.pdf",
+   "C0730_Matchin2024.pdf",
    "C0780_Moore2024.pdf",
    "C12351_Walker2011.pdf",
    "C1480_Zhang2021.pdf",
+   "C1498_Kourtidou2021.pdf",
    "C16575_Thurston2026.pdf",
    "C21300_Nouwens2013.pdf",
    "C2140_Xing2018.pdf",
@@ -1888,5 +1872,5 @@
    "@vanderMeulen2014"
   ]
  },
- "synced": "2026-11-12T10:20"
+ "synced": "2026-11-12T11:05"
 }
