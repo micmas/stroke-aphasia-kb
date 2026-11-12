@@ -16,6 +16,10 @@ Uploading never includes a paper automatically. PDFs stay in the private upload
 bucket; only bibliographic metadata and intake records enter GitHub.
 
 The normal **Apply** operation registers the paper and preserves its priority.
+The maintainer panel counts only hosted actions in its Apply button. Uploaded PDFs
+are listed separately as awaiting local download. Edits whose draft no longer
+exists remain preserved in the inbox and are listed as needing attention; repeated
+Apply clicks do not resolve them.
 PDF retrieval still happens on the maintainer's machine through `portal_import.py`;
 CI deliberately skips PDF retrieval. New upload identifiers start with `U` and
 remain stable; if a concurrent registration already exists, the importer retains

@@ -188,6 +188,7 @@ function applyPanel() {
   const status = h('span', { class: 'small muted', text: 'checking the inbox…' });
   const btn = h('button', { class: 'btn btn-primary', disabled: '', text: 'Apply now' });
   const runLine = h('div', { class: 'small muted' });
+  const waitingLine = h('div', { class: 'small' });
   const when = (iso) => (iso ? new Date(iso).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' }) : '?');
   const describe = (r) => {
     if (!r) return 'No apply run yet.';
@@ -200,10 +201,14 @@ function applyPanel() {
     try {
       const a = await api('apply');
       const running = a.run && a.run.status !== 'completed';
-      status.textContent = a.inbox ? `${plural(a.inbox, 'record')} waiting in the inbox` : 'The inbox is empty';
+      const ready = a.ready ?? a.inbox;
+      status.textContent = ready ? `${plural(ready, 'record')} ready to apply` : 'No records ready to apply';
+      waitingLine.replaceChildren(...[
+        a.pdf ? h('p', { text: `${plural(a.pdf, 'uploaded PDF')} waiting for local download. Apply does not download PDFs. On your computer run: .venv/bin/python scripts/portal_import.py --kind pdf --execute --no-intake` }) : null,
+        a.attention?.length ? h('details', {}, h('summary', { text: `${plural(a.attention.length, 'record')} need maintainer attention` }), a.attention.map((x) => h('p', { text: `${x.draft || x.file}: ${x.reason}` }))) : null].filter(Boolean));
       runLine.replaceChildren(describe(a.run));
-      btn.disabled = !a.inbox || running || a.local;
-      btn.textContent = running ? 'Applying…' : a.inbox ? `Apply ${plural(a.inbox, 'record')} now` : 'Apply now';
+      btn.disabled = !ready || running || a.local;
+      btn.textContent = running ? 'Applying…' : ready ? `Apply ${plural(ready, 'record')} now` : 'Nothing to apply';
       btn.classList.toggle('working', Boolean(running));
       if (running && document.body.contains(box)) timer = setTimeout(refresh, 20000);
       else if (a.local) status.textContent += ' — local stand-in: run portal_import.py in a terminal';
@@ -213,11 +218,11 @@ function applyPanel() {
     btn.disabled = true; btn.classList.add('working'); btn.textContent = 'Starting…';
     try {
       const out = await api('apply', { method: 'POST', body: '{}' });
-      toast(out.alreadyRunning ? 'An apply is already running' : 'Apply started: the records are applied and both sites rebuild in a few minutes');
+      toast(out.nothingToApply ? 'No records are ready to apply; check the items awaiting local download or attention.' : out.alreadyRunning ? 'An apply is already running' : 'Apply started: the records are applied and both sites rebuild in a few minutes');
       setTimeout(refresh, 4000);
     } catch (e) { toast(`Not started: ${e.message}`, true); btn.disabled = false; btn.classList.remove('working'); btn.textContent = 'Apply now'; }
   };
-  box.append(h('div', { class: 'row' }, h('strong', { text: 'Maintainer' }), status, btn), runLine,
+  box.append(h('div', { class: 'row' }, h('strong', { text: 'Maintainer' }), status, btn), runLine, waitingLine,
     h('div', { class: 'small muted', text: 'Apply runs portal_import.py in GitHub Actions: screening decisions into the register, verdicts, edits, marks and comments into the drafts, promote.py for approvers; then the explorer and this portal rebuild. Uploaded PDFs stay for you to pull on your machine (portal_import.py --kind pdf), and marks still need refocus.py there.' }));
   refresh();
   return box;
