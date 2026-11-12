@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 from extract_analysis_inventory import run
 from strict_data import load_json
+from source_limits import source_hold
 
 REVIEW_INSTRUCTIONS = '''Review BOTH independent extractions against the original paper.
 Do not prefer either model or treat agreement as evidence. Work from the union of
@@ -58,10 +59,15 @@ def prepare_review(first: Path, second: Path, output: Path) -> Path:
     return output/'packet.json'
 
 
-def run_pair(pdf, citation, output, models, max_tokens=10000, segment_chars=None):
+def run_pair(pdf, citation, output, models, max_tokens=10000, segment_chars=None, allow_long_paper=False):
     if max_tokens <= 0:
         raise ValueError('max_tokens must be positive')
     output.mkdir(parents=True,exist_ok=False)
+    hold = source_hold(pdf, allow_long_paper)
+    if hold:
+        (output/'status.json').write_text(json.dumps({'approved': False, **hold}, indent=2))
+        print(hold['reason'], flush=True)
+        return 1
     errors = []
     for label,model in zip(['A','B'],models):
         # Only original PDF and citation enter each run. No prior model output.
@@ -88,5 +94,6 @@ if __name__=='__main__':
     p.add_argument('--output-dir',type=Path,required=True)
     p.add_argument('--models',nargs=2,default=['gemma4:31b','qwen3.8:27b'])
     p.add_argument('--max-output-tokens',type=int,default=10000)
+    p.add_argument('--allow-long-papers', action='store_true', help='Explicitly allow the complete source over 50 pages')
     a=p.parse_args()
-    raise SystemExit(run_pair(a.pdf,a.citation,a.output_dir,a.models,a.max_output_tokens))
+    raise SystemExit(run_pair(a.pdf,a.citation,a.output_dir,a.models,a.max_output_tokens,allow_long_paper=a.allow_long_papers))

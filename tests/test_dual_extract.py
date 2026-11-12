@@ -2,6 +2,12 @@ import json
 import sys
 from pathlib import Path
 import pytest
+import pymupdf
+
+def make_pdf(path):
+    with pymupdf.open() as doc:
+        doc.new_page(); doc.save(path)
+
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]/'scripts'))
 import dual_extract as d
 
@@ -18,7 +24,7 @@ def test_pair_uses_same_source_and_keeps_both_answers(tmp_path,monkeypatch):
     calls=[]
     def tracked(*args,**kwargs): calls.append(args);return fake_run(*args,**kwargs)
     monkeypatch.setattr(d,'run',tracked)
-    pdf=tmp_path/'source.pdf';pdf.write_bytes(b'source')
+    pdf=tmp_path/'source.pdf';make_pdf(pdf)
     out=tmp_path/'pair'
     assert d.run_pair(pdf,'@Example2020',out,['one','two'])==0
     assert [c[0] for c in calls]==[pdf,pdf]
@@ -41,7 +47,7 @@ def test_segmented_pair_keeps_models_independent(tmp_path, monkeypatch):
     def fake_segment(pdf,citation,out,model,**kwargs):
         calls.append((pdf,model,kwargs));return fake_run(pdf,citation,out,model)
     monkeypatch.setattr(segments,'run_segmented',fake_segment)
-    pdf=tmp_path/'source.pdf';pdf.write_bytes(b'original')
+    pdf=tmp_path/'source.pdf';make_pdf(pdf)
     assert d.run_pair(pdf,'@Example2020',tmp_path/'segmented',['one','two'],32000,50000)==0
     assert [c[1] for c in calls]==['one','two']
     assert all(c[0]==pdf and c[2]=={'max_tokens':32000,'segment_chars':50000} for c in calls)

@@ -806,3 +806,4 @@ add an `EXTRACTED` line for every run.
 2026-11-12 | PORTAL-APPLIED | — | 6 record(s) | screen 6 | by: michele
 2026-11-12 | PORTAL-APPLIED | — | 5 record(s) | screen 5 | by: michele
 2026-11-12 | REGISTERED | — | screening → citations.md | 4 entries appended, 1 linked to existing keys
+2026-11-12 | PORTAL-APPLIED | — | 5 record(s) | pdf 5 | by: michele

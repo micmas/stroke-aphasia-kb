@@ -18,6 +18,11 @@ Run `.venv/bin/python kb.py sync` to download uploaded PDFs and publish their
 completion receipts. This does not start extraction or review, approve findings,
 or run intake/OCR. To download and prepare in one action, use
 `.venv/bin/python kb.py sync --intake` once processing is idle, or add `--wait`.
+Sync verifies uploaded bytes against both the working PDF and same-record files in
+`_originals`. An already received original is acknowledged even if intake changed
+the working copy. A genuinely different replacement remains pending for review;
+other uploads continue, and the working PDF is not overwritten.
+
 For files already downloaded, use `kb.py intake --execute`. Intake can rename,
 strip cover pages and OCR sources, so it will not run during extraction or review.
 It never starts model extraction. Create fresh manifests after changing PDFs.
@@ -48,6 +53,13 @@ Renaming alone does not require re-extraction. The tools resolve older citation
 filenames and still verify the frozen PDF checksum. Local `.filename-aliases.json`
 retains exceptional download-name mappings. Do not edit old run manifests; prepare
 a new manifest/output directory for a new extraction with updated code.
+
+Automatic extraction is limited to **50 PDF pages**. Longer sources remain in the
+manifest's pending list as `source_selection_required`; they are not excluded from
+the screening register. Select a shorter publication under its own citation key,
+or use `kb.py prepare --allow-long-papers` for a deliberate complete-source run.
+That override is recorded in the frozen manifest. No pages are silently omitted.
+The execution step also checks the limit, including for older manifests.
 
 Create a new run manifest for your selected keys:
 

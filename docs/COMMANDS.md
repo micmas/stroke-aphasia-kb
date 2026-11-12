@@ -9,7 +9,7 @@ For setup and the complete procedure, follow [HOWTO](HOWTO.md).
 | `intake` | Prepare PDFs already downloaded | Preview by default; `--execute` renames, checks, OCRs and syncs PDFs; no models |
 | `sync --intake` | Download, prepare PDFs and publish metadata together | Writes source files and metadata; no models |
 | `status --jobs` | Show active KB model processes | Read-only |
-| `prepare` | Select registered papers and freeze their source manifest | Writes manifest; no inference |
+| `prepare` | Select registered papers and freeze their source manifest; hold PDFs over 50 pages | Writes manifest; no inference |
 | `extract` | Two independent local extractions | Preview by default; `--run` starts inference |
 | `review` | Independent source reading and reconciliation | Preview by default; `--run` starts inference |
 | `status` | Inspect KB content and provenance | Read-only |

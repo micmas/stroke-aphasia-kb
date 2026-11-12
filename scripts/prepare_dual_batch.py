@@ -6,9 +6,10 @@ import json
 import re
 from pathlib import Path
 from strict_data import load_yaml
+from source_limits import source_hold
 
 
-def prepare(repo, output, papers=None, segment_chars=None):
+def prepare(repo, output, papers=None, segment_chars=None, allow_long_papers=False):
     if output.exists():
         raise ValueError('Manifest already exists; keep it frozen or choose a new path')
     text = (repo/'citations.md').read_text()
@@ -50,10 +51,16 @@ def prepare(repo, output, papers=None, segment_chars=None):
             pending.append({'key': key, 'status': 'source_preparation_required',
                             'reason': 'Bibliography marks source not extractable' if key in refused else 'Main PDF missing'})
             continue
+        hold = source_hold(pdf, allow_long_papers)
+        if hold:
+            pending.append({'key': key, **hold})
+            continue
         papers.append({'key': key, 'citation': '@'+key, 'pdf': str(pdf.resolve()),
                        'pdf_sha256': hashlib.sha256(pdf.read_bytes()).hexdigest(),
                        'licence_evidence': registry.get('@'+key) or {'category': 'unknown'},
                        'processing': 'local_only; review/publication rights checked separately'})
+    if allow_long_papers:
+        for row in papers: row['allow_long_paper'] = True
     if segment_chars is not None:
         for row in papers: row['segment_chars'] = segment_chars
     used = {Path(p['pdf']).stem for p in papers}
@@ -77,5 +84,6 @@ if __name__ == '__main__':
     p.add_argument('--output', type=Path, required=True)
     p.add_argument('--papers', nargs='+', help='Explicit recovery subset; default is the full bibliography')
     p.add_argument('--segment-chars', type=int, help='Bound source text per segment; all main-PDF text remains covered')
+    p.add_argument('--allow-long-papers', action='store_true', help='Explicitly allow complete PDFs over 50 pages; no pages omitted')
     a = p.parse_args()
-    prepare(a.repo.resolve(), a.output.resolve(), a.papers, a.segment_chars)
+    prepare(a.repo.resolve(), a.output.resolve(), a.papers, a.segment_chars, a.allow_long_papers)

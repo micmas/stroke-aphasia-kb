@@ -42,7 +42,7 @@ def _batch(manifest, output, models, budget=20000, execute=False, retry_failed=F
     scripts = Path(__file__).parent
     code = {name: hashlib.sha256((scripts/name).read_bytes()).hexdigest()
             for name in ['batch_dual_extract.py', 'dual_extract.py', 'extract_analysis_inventory.py',
-                         'extract.py', 'ollama_client.py', 'quote_check.py', 'strict_data.py', 'source_inventory_segments.py']}
+                         'extract.py', 'ollama_client.py', 'quote_check.py', 'strict_data.py', 'source_inventory_segments.py', 'source_limits.py']}
     config = {'manifest': data, 'models': models, 'max_output_tokens': budget, 'code': code}
     frozen = output / 'batch-config.json'
     if output.exists():
@@ -79,6 +79,8 @@ def _batch(manifest, output, models, budget=20000, execute=False, retry_failed=F
             print(f"Preserved failed attempt at {archive / str(attempt)}", flush=True)
         print(f"Extract {row['key']}", flush=True)
         options = {'segment_chars': row['segment_chars']} if row.get('segment_chars') is not None else {}
+        if row.get('allow_long_paper') is True:
+            options['allow_long_paper'] = True
         if run_pair(Path(row['pdf']), row['citation'], dest, models, max_tokens=budget, **options):
             print(f"Failed {row['key']}; failure preserved. No drafts changed.", flush=True)
             failures.append(row['key'])

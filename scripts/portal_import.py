@@ -566,6 +566,25 @@ def pdf_destination(rec: dict, state: dict) -> tuple[Path | None, dict | None, s
     return (dest, c, "") if dest else (None, c, f"skip: {why}")
 
 
+def received_pdf(rec: dict, dest: Path, candidate: dict | None) -> Path | None:
+    """Find exact received bytes, including originals retained before OCR/intake.
+
+    A filename or text similarity is never sufficient to dismiss a replacement.
+    Only same-record originals inside papers/ are eligible.
+    """
+    want = str(rec.get("sha256") or "").lower()
+    if not re.fullmatch(r"[0-9a-f]{64}", want):
+        return None
+    paths = [dest]
+    if candidate and re.fullmatch(r"C\d+", str(candidate.get("id") or "")):
+        paths.extend((PAPERS / "_originals").glob(candidate["id"] + "_*.pdf"))
+    for path in paths:
+        if path.is_file() and path.resolve().is_relative_to(PAPERS.resolve()):
+            if hashlib.sha256(path.read_bytes()).hexdigest() == want:
+                return path
+    return None
+
+
 def apply_pdf(rec: dict, by: str, execute: bool, state: dict) -> str:
     dest, cand, err = pdf_destination(rec, state)
     if err:
@@ -575,9 +594,13 @@ def apply_pdf(rec: dict, by: str, execute: bool, state: dict) -> str:
     local = rec.get("local_path")
     src = f"portal/.uploads ({local})" if local else f"{bucket}/{obj}"
     if dest.exists():
+        retained = received_pdf(rec, dest, cand)
+        if retained is None:
+            return f"skip: {dest.name}: upload differs from working PDF and retained originals; replacement needs review. Upload and working PDF preserved; other records continue."
         if execute and not local and obj and bucket:
             FETCH["delete"](bucket, obj)
-        return f"{dest.name}: already in papers/ — upload by {by} discarded ({src})"
+        location = retained.relative_to(PAPERS)
+        return f"{dest.name}: already in papers/ — exact uploaded bytes verified at {location}; working PDF retained ({src})"
     if not local and (not obj or not bucket):
         return "skip: record names no bucket object"
     size_kb = int(rec.get("bytes") or 0) // 1024

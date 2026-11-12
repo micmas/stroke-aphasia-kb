@@ -144,20 +144,10 @@ def sync(args, with_intake=False):
         if active_jobs() and git('diff', 'HEAD', 'origin/main', '--', 'scripts', 'kb.py').strip():
             raise ValueError('An active model job is using older code. Sync after it finishes; its files were not changed.')
         git('merge', '--ff-only', 'origin/main', capture=False)
-        # Do not discard a replacement upload just because an older file exists.
+        # Each upload is checked independently, including retained pre-processing originals.
+        # A conflicting replacement stays pending without blocking unrelated receipts.
         sys.path.insert(0, str(ROOT / 'scripts'))
         import portal_import as importer
-        state = {}
-        import hashlib
-        for path in importer.INBOX.glob('*.json'):
-            rec = json.loads(path.read_text())
-            if rec.get('kind') != 'pdf':
-                continue
-            dest, _, error = importer.pdf_destination(rec, state)
-            if not error and dest.exists():
-                digest = hashlib.sha256(dest.read_bytes()).hexdigest()
-                if not rec.get('sha256') or digest != rec['sha256']:
-                    raise ValueError(f'{dest.name}: upload differs from the existing PDF; preserved for manual review.')
         importer.run(True, False, 'pdf', intake=False)
         if with_intake:
             subprocess.run([sys.executable, str(ROOT / 'scripts/intake_papers.py'),
