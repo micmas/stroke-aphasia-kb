@@ -47,6 +47,20 @@ For portal synchronization and publication follow [PORTAL](../PORTAL.md); for
 export and website maintenance follow [EXPLORER](../EXPLORER.md). Preserve private
 PDF access boundaries and do not commit source PDFs or local `_compare/` runs.
 
+### Complete a passage-only edit after approval
+
+If a portal edit only adds source passages and its original draft has already
+been promoted, an explicitly authorized maintainer correction can use
+`promote.py --resolve-passage-edit RECORD --canonical ENTRY --source-pdf PDF
+--actor agent:NAME` (or `human:NAME`). The default is a preview; add `--execute`
+after inspecting the cited PDF page. This operation requires one unambiguous
+approved finding for that paper and entry, verifies each quotation on its stated
+page, and refuses edits to claim fields. It preserves the original approval and
+finding ID, records the actual correction operator and source hash, and archives
+the original portal record with its resolution. Recoverable promotion journals
+prevent duplicate evidence after interruption. This is not a route to approve new
+findings or make substantive changes to approved claims.
+
 CALMaR pins this repository as a submodule. Updating the KB does not automatically
 update that consumer; bump its pointer only after the intended KB revision is
 available on its integration branch.

@@ -1,0 +1,13 @@
+{
+  "draft": "drafts/_review/passage-correction-20261111T012555Z-02_edit_m-massontrottier_regions-left-posterior-stg-adezati2022.json",
+  "canonical": "regions/left_posterior_stg.md",
+  "log": "logs/extraction_log.md",
+  "draft_sha": "6c04ab887838ac901d3d8d39474e1c1edef1dfbee5be66a3c25c674b14756364",
+  "before": "a761702632c6194ee663a47cb61cdf0ce32157af0da3191cf37873ba7bc274ab",
+  "after": "213d6b6e5063a54606c21f2ed6e3e02d6d178db45f55ecb3d2fe4807f317ffd7",
+  "line": "2026-11-12 | SOURCE-CORRECTED | @Adezati2022 | left_posterior_stg f8 | operator: agent:codex | record: 20261111T012555Z-02_edit_m-massontrottier_regions-left-posterior-stg-adezati2022.json\n",
+  "record_ids": [
+    "20261111T012555Z-02_edit_m-massontrottier_regions-left-posterior-stg-adezati2022.json"
+  ],
+  "done": true
+}
