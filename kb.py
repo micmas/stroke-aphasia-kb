@@ -133,7 +133,10 @@ def sync(args):
                 if not rec.get('sha256') or digest != rec['sha256']:
                     raise ValueError(f'{dest.name}: upload differs from the existing PDF; preserved for manual review.')
         importer.run(True, False, 'pdf', intake=False)
-        git('add', '--', *paths)
+        files = git('ls-files', '-z', '--cached', '--others', '--exclude-standard', '--', *paths)
+        files = list(dict.fromkeys(f for f in files.split('\0') if f))
+        if files:
+            git('add', '-A', '--', *files)
         if git('diff', '--cached', '--name-only').strip():
             git('commit', '-m', 'Sync portal PDF download receipts', capture=False)
         git('push', 'origin', 'main', capture=False)

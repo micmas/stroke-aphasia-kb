@@ -88,6 +88,7 @@ def test_sync_only_publishes_import_paths_and_never_runs_intake(monkeypatch, tmp
         if args[0] == 'rev-parse': return str(tmp_path)
         if args[0] == 'branch': return 'main'
         if args[:2] == ('diff', '--cached'): return next(staged_checks)
+        if args[0] == 'ls-files': return 'logs/portal/ledger.jsonl\0'
         return ''
     monkeypatch.setattr(cli, 'git', fake_git)
     monkeypatch.setattr(cli, 'active_jobs', lambda: ['existing extraction'])
@@ -112,3 +113,19 @@ def test_sync_does_not_update_code_under_active_job(monkeypatch, tmp_path):
     monkeypatch.setattr(cli, 'active_jobs', lambda: ['existing extraction'])
     assert cli.main(['sync']) == 1
     assert not any(c[0] in ('merge', 'add', 'push') for c in calls)
+
+
+def test_sync_empty_inbox_does_not_stage_missing_directory(monkeypatch, tmp_path):
+    from types import SimpleNamespace
+    calls = []
+    def fake_git(*args, **kwargs):
+        calls.append(args)
+        if args[0] == 'rev-parse': return str(tmp_path)
+        if args[0] == 'branch': return 'main'
+        return ''
+    monkeypatch.setattr(cli, 'git', fake_git)
+    monkeypatch.setattr(cli, 'active_jobs', lambda: [])
+    monkeypatch.setitem(cli.sys.modules, 'portal_import', SimpleNamespace(
+        INBOX=tmp_path / 'absent', run=lambda *a, **k: None))
+    assert cli.main(['sync']) == 0
+    assert not any(c[0] in ('add', 'commit') for c in calls)
