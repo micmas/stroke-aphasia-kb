@@ -16,6 +16,16 @@ export function prioritizePapers(candidates, uploads) {
 export function orderScreeningPapers(candidates, uploads, stage) {
   return stage === 'ta' ? [...candidates] : prioritizePapers(candidates, uploads);
 }
+// A deployment date is not evidence that a submitted decision was applied.
+export function pendingScreenReceipts(sent, register) {
+  return Object.fromEntries(Object.entries(sent).filter(([id, receipt]) => {
+    const candidate = register.find((c) => c.id === id || (c.upload_ids || []).includes(id));
+    if (!candidate) return true;
+    if (receipt?.record) return !(candidate.history || []).some((h) => h.record === receipt.record);
+    // Older receipts have no record ID: only a confirmed stage transition can retire them.
+    return !receipt?.stage || ['awaiting_' + receipt.stage, 'unsure_' + receipt.stage].includes(candidate.stage);
+  }));
+}
 export function mergePendingPapers(candidates, uploads, register = candidates) {
   const out = [...candidates];
   for (const u of uploads) {

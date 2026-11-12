@@ -72,3 +72,15 @@ test('PDF uploads keep title/abstract order and append new papers', () => {
   assert.deepEqual(original.map(c=>c.id), ['C1','C2']);
   assert.equal(orderScreeningPapers(original, uploads, 'ft')[0].id, 'C2');
 });
+
+test('screen receipts survive rebuilds until the exact decision is in the register', async () => {
+ const { pendingScreenReceipts } = await import('../../web/paper-intake.js');
+ const sent = {C1:{at:'2026-11-12T01:00:00Z',stage:'ta',decision:'unsure',record:'new.json'}};
+ assert.deepEqual(pendingScreenReceipts(sent,[{id:'C1',stage:'awaiting_ta',history:[]}]),sent);
+ assert.deepEqual(pendingScreenReceipts(sent,[{id:'C1',stage:'unsure_ta',history:[{record:'old.json'}]}]),sent);
+ assert.deepEqual(pendingScreenReceipts(sent,[{id:'C1',stage:'unsure_ta',history:[{record:'new.json'}]}]),{});
+ assert.deepEqual(pendingScreenReceipts(sent,[]),sent);
+ const old={C1:{stage:'ta',decision:'include'}};
+ assert.deepEqual(pendingScreenReceipts(old,[{id:'C1',stage:'awaiting_ta'}]),old);
+ assert.deepEqual(pendingScreenReceipts(old,[{id:'C1',stage:'awaiting_ft'}]),{});
+});

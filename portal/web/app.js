@@ -26,7 +26,7 @@ const VOCAB = {
   target_kind: ['impairment', 'therapy', 'region', 'prognosis', 'predictor'],
   supports: ['claim', 'method', 'sample', 'statistics', 'confounders', 'region_definition', 'limitation', 'imaging_details'],
 };
-import { orderScreeningPapers, mergePendingPapers } from './paper-intake.js';
+import { orderScreeningPapers, mergePendingPapers, pendingScreenReceipts } from './paper-intake.js';
 import { applyState } from './apply-state.js';
 import { carryOver, sameBuild } from './review-state.js';
 
@@ -59,7 +59,7 @@ async function sha256Hex(text) {
 }
 
 async function api(path, init) {
-  const res = await fetch(`/api/${path}`, { headers: { 'Content-Type': 'application/json' }, ...init });
+  const res = await fetch(`/api/${path}`, { cache: 'no-store', headers: { 'Content-Type': 'application/json' }, ...init });
   const data = await res.json().catch(() => ({ error: `${res.status}` }));
   if (!res.ok || data.error) throw new Error(data.error || `${res.status}`);
   return data;
@@ -88,7 +88,7 @@ const paperPdf = (citation) => state.manifest?.papers?.[citation] || null;
 /** The maintainer has the paper's source PDF (annotated or not). */
 const paperSource = (citation) => Boolean(citation && (paperPdf(citation) || (state.manifest?.sources?.keys || []).includes(citation)));
 /** A candidate's PDF is with the maintainer: named after its key, or linked through `pdf_file`. */
-const candidateHasPdf = (c) => Boolean(c.pdf_file) || paperSource(c.key);
+const candidateHasPdf = (c) => Boolean(c.pdf_file || state.manifest?.fulltext?.[c.id]?.object || state.screeningIndex.find((r) => r.id === c.id)?.pdf_file) || paperSource(c.key);
 /** An upload waiting in the bucket for this candidate id or citation key, if any. */
 const uploadFor = (...ids) => {
   const aliases = (state.screening?.candidates || []).filter((c) => ids.includes(c.id)).flatMap((c) => c.upload_ids || []);
@@ -506,6 +506,7 @@ function screenView(stage) {
       : sourcePdf?.object ? h('a', { href: sourcePdf.object, target: '_blank', rel: 'noopener', text: 'Open PDF' })
       : have ? h('span', { class: 'small muted', text: 'PDF with the maintainer (not annotated yet)' })
         : up ? uploadedNote(up)
+          : !state.uploadsOk ? h('span', { class: 'notice', text: 'Upload status could not be checked. Reload before uploading this paper again.' })
           : h('span', { class: 'pdfask' }, h('span', { class: `small ${stage === 'ft' ? '' : 'muted'}`, text: stage === 'ft' ? 'No PDF of this paper anywhere yet — upload it to assess the full text: ' : 'No PDF yet; if you have it: ' }), uploadControl(c.id, c.key, { required: stage === 'ft' }));
     const card = h('article', { class: `screen${dec.decision ? ' done' : ''}${gated ? ' gated' : ''}`, tabindex: '-1', 'data-id': c.id },
       h('p', { class: 't' }, h('span', { class: 'chip', text: c.id }), ' ', esc(c.title)),
@@ -681,10 +682,10 @@ async function sendScreen(stage, decided, cands, btn = null, status = null) {
   }
   working();
   try {
-    await sendAll(items.map(([id, d]) => ({ kind: 'screen', id, stage: st, decision: d.decision, reason: d.decision === 'exclude' ? d.reason : null, note: d.note || '' })));
+    const receipt = await sendAll(items.map(([id, d]) => ({ kind: 'screen', id, stage: st, decision: d.decision, reason: d.decision === 'exclude' ? d.reason : null, note: d.note || '' })));
     const sentLocal = store.get('screen:sent', {});
     const at = new Date().toISOString();
-    for (const [id, d] of items) { delete decided[id]; sentLocal[id] = { at, stage, decision: d.decision }; }
+    for (const [i, [id, d]] of items.entries()) { delete decided[id]; sentLocal[id] = { at, stage, decision: d.decision, record: receipt.files?.[i]?.split('/').pop() }; }
     store.set(`screen:${stage}`, decided); store.set('screen:sent', sentLocal);
     toast(`Sent ${plural(items.length, 'decision')} — thank you. They leave the queue until the maintainer applies them${stage === 'ta' ? '; included papers then move to the Full text queue at the next build' : ''}.`);
     render();
@@ -990,9 +991,9 @@ async function init() {
     const consistent = sameBuild(manifest, bindings, kb, kbSha);
     state.bindings = consistent ? (bindings.drafts || {}) : {};
     state.bindingProblem = consistent ? '' : 'The portal files loaded are not all from the same build: reload the page before sending a draft review.';
-    try { const sent = store.get('screen:sent', {}); const built = manifest.built || ''; for (const [id, when] of Object.entries(sent)) if (built && String(when?.at || when) < built) delete sent[id]; store.set('screen:sent', sent); } catch { /* ignore */ }
-    state.screening = await fetch('screening.json').then((r) => (r.ok ? r.json() : null)).catch(() => null);
+    state.screening = await fetch('screening.json', fresh).then((r) => (r.ok ? r.json() : null)).catch(() => null);
     state.screeningIndex = await fetch('screening-index.json', fresh).then((r) => r.ok ? r.json() : null).then((x) => x?.candidates || []).catch(() => []);
+    store.set('screen:sent', pendingScreenReceipts(store.get('screen:sent', {}), state.screeningIndex));
     state.mine = await api('reviews').catch(() => ({ inbox: [], applied: [] }));
     try { const u = await api('upload'); state.uploads = u.uploads || []; state.uploadsOk = true; if (state.screening) state.screening.candidates = mergePendingPapers(state.screening.candidates, state.uploads, state.screeningIndex); } catch { state.uploads = []; state.uploadsOk = false; }
     document.getElementById('who').textContent = me.email;

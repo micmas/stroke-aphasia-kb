@@ -529,7 +529,9 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
     sb = screening_bundle(ta_limit=ta_limit)
     (DIST / "screening.json").write_text(json.dumps(sb, ensure_ascii=False, default=str), encoding="utf-8")
     # Full identity index: matching cannot be restricted to the visible ranked queue.
-    identity_index = [{k: c.get(k) for k in ("id", "key", "title", "doi", "stage", "duplicate_of", "upload_ids") if c.get(k)} for c in S.collect(ROOT)["candidates"]]
+    identity_index = [{k: c.get(k) for k in ("id", "key", "title", "doi", "stage", "duplicate_of", "upload_ids", "pdf_file") if c.get(k)}
+                      | {"history": [{"record": d["record"]} for d in c.get("screening", []) if d.get("record")]}
+                      for c in S.collect(ROOT)["candidates"]]
     (DIST / "screening-index.json").write_text(json.dumps({"candidates": identity_index}, ensure_ascii=False), encoding="utf-8")
     q = sb["queue"]
     print(f"  screening.json: {q['title_abstract']} of {q['title_abstract_total']} title/abstract records "
