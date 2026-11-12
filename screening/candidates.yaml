@@ -11380,9 +11380,21 @@ candidates:
   - search: S009
   - search: S010
   - search: S012
-  screening: []
+  - kind: hand_picked
+    date: '2026-11-11'
+    by: michele
+    note: Reviewer PDF upload (other source)
+    record: 20261111T235708Z-01_paper_m-massontrottier_c0459.json
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 293
+    record: 20261112T000211Z-01_screen_m-massontrottier_c0459.json
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_uploaded_at: '2026-11-11T23:57:08.818Z'
 - id: C0460
   doi: 10.7759/cureus.98185
   pmid: '41488270'
@@ -29627,7 +29639,13 @@ candidates:
   - search: S008
   - search: S009
   - search: S012
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 294
+    record: 20261112T000211Z-02_screen_m-massontrottier_c1480.json
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C1481
@@ -92279,7 +92297,13 @@ candidates:
   - search: S002
   - search: S009
   - search: S016
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 295
+    record: 20261112T000211Z-03_screen_m-massontrottier_c5206.json
   doc_type: journal
   doc_type_raw: JOUR/Article
 - id: C5207
