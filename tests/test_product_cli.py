@@ -129,3 +129,59 @@ def test_sync_empty_inbox_does_not_stage_missing_directory(monkeypatch, tmp_path
         INBOX=tmp_path / 'absent', run=lambda *a, **k: None))
     assert cli.main(['sync']) == 0
     assert not any(c[0] in ('add', 'commit') for c in calls)
+
+
+def test_intake_preview_dispatch_and_legacy_extraction_refusal(monkeypatch):
+    calls = []
+    monkeypatch.setattr(cli.os, 'execv', lambda exe,args: calls.append(args))
+    assert cli.main(['intake', '--no-ocr']) == 0
+    assert calls[0][1:] == [str(cli.ROOT/'scripts/intake_papers.py'), '--no-ocr']
+    assert cli.main(['intake', '--execute', '--extract']) == 2
+    assert len(calls) == 1
+
+
+def test_intake_and_combined_sync_do_not_touch_active_sources(monkeypatch, tmp_path):
+    monkeypatch.setattr(cli, 'git', lambda *a,**k: str(tmp_path))
+    monkeypatch.setattr(cli, 'active_jobs', lambda: ['python batch_dual_extract.py --run'])
+    monkeypatch.setattr(cli.subprocess, 'Popen', lambda *a,**k: pytest.fail('must not start intake'))
+    assert cli.main(['intake', '--execute']) == 2
+    assert cli.main(['sync', '--intake']) == 2
+
+
+@pytest.mark.parametrize('fail_intake', [False, True])
+def test_combined_sync_prepares_without_models_before_publishing(monkeypatch, tmp_path, fail_intake):
+    from types import SimpleNamespace
+    events = []; stages = iter(['', 'citations.md'])
+    def fake_git(*args, **kwargs):
+        if args[0] == 'rev-parse': return str(tmp_path)
+        if args[0] == 'branch': return 'main'
+        if args[:2] == ('diff','--cached'): return next(stages)
+        if args[0] == 'ls-files': return 'citations.md\0portal/papers.json\0'
+        if args[0] in ('commit','push'): events.append(args[0])
+        return ''
+    monkeypatch.setattr(cli, 'git', fake_git)
+    monkeypatch.setattr(cli, 'active_jobs', lambda: [])
+    def run(args, **kwargs):
+        script = Path(args[1]).name
+        events.append(script)
+        if script == 'intake_papers.py':
+            assert args[2:] == ['--execute', '--no-sync']
+            if fail_intake: raise cli.subprocess.CalledProcessError(2, args)
+        else:
+            assert script == 'publish_portal.py' and args[2:] == ['--sync']
+        return SimpleNamespace(returncode=0)
+    monkeypatch.setattr(cli.subprocess, 'run', run)
+    monkeypatch.setitem(cli.sys.modules, 'portal_import', SimpleNamespace(
+        INBOX=tmp_path/'absent', run=lambda *a,**k: events.append('download')))
+    assert cli.main(['sync','--intake']) == (1 if fail_intake else 0)
+    assert events == (['download','intake_papers.py'] if fail_intake else
+                      ['download','intake_papers.py','publish_portal.py','commit','push'])
+
+
+def test_standalone_intake_cannot_overlap_pdf_sync(monkeypatch, tmp_path):
+    monkeypatch.setattr(cli, 'git', lambda *a,**k: str(tmp_path))
+    monkeypatch.setattr(cli, 'active_jobs', lambda: [])
+    monkeypatch.setattr(cli.subprocess, 'Popen', lambda *a,**k: pytest.fail('sync is busy'))
+    with (tmp_path/'kb-sync.lock').open('a') as lock:
+        cli.fcntl.flock(lock, cli.fcntl.LOCK_EX | cli.fcntl.LOCK_NB)
+        assert cli.main(['intake','--execute']) == 2

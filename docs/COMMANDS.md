@@ -6,6 +6,8 @@ For setup and the complete procedure, follow [HOWTO](HOWTO.md).
 | Command | Purpose | Writes or runs models? |
 |---|---|---|
 | `sync` | Download portal PDFs and publish completion receipts | Downloads and Git sync; no models or PDF intake |
+| `intake` | Prepare PDFs already downloaded | Preview by default; `--execute` renames, checks, OCRs and syncs PDFs; no models |
+| `sync --intake` | Download, prepare PDFs and publish metadata together | Writes source files and metadata; no models |
 | `status --jobs` | Show active KB model processes | Read-only |
 | `prepare` | Select registered papers and freeze their source manifest | Writes manifest; no inference |
 | `extract` | Two independent local extractions | Preview by default; `--run` starts inference |
@@ -26,7 +28,24 @@ extraction nor reconciliation approves or publishes findings.
 .venv/bin/python kb.py status --jobs
 ```
 
-Sync fetches and fast-forwards main, downloads uploaded PDFs, then commits and
+To include source preparation in the same action, when the current processing job
+has finished:
+
+```bash
+.venv/bin/python kb.py sync --intake
+```
+
+Add `--wait` to wait in the terminal for the current KB processing job. Intake can
+change PDF bytes and filenames, so it uses the same guard as extraction/review.
+Prepare a fresh extraction manifest after intake. The combined command publishes
+both download receipts and intake metadata. If preparation or portal sync fails,
+local changes remain for inspection; it does not commit or push a partial result.
+For PDFs already downloaded, `kb.py intake` previews and `kb.py intake --execute`
+applies preparation (with the existing intake options). Standalone intake leaves
+its metadata changes for you to commit; use the combined command for one-step
+publication. Neither command permits the old `--extract` shortcut.
+
+Plain sync fetches and fast-forwards main, downloads uploaded PDFs, then commits and
 pushes only import records and their register links. It never runs extraction,
 review, intake/OCR, or approval. Other local edits are not committed. Staged edits
 or unpublished import records must be resolved first. A changed existing PDF is

@@ -16,7 +16,11 @@ does not automatically approve a newly extracted finding.
 
 Run `.venv/bin/python kb.py sync` to download uploaded PDFs and publish their
 completion receipts. This does not start extraction or review, approve findings,
-or run intake/OCR. Source preparation below remains necessary.
+or run intake/OCR. To download and prepare in one action, use
+`.venv/bin/python kb.py sync --intake` once processing is idle, or add `--wait`.
+For files already downloaded, use `kb.py intake --execute`. Intake can rename,
+strip cover pages and OCR sources, so it will not run during extraction or review.
+It never starts model extraction. Create fresh manifests after changing PDFs.
 
 Use `.venv/bin/python kb.py status --jobs` to see active KB model jobs. Start
 extraction or review only when you choose. Their `--run` commands refuse to

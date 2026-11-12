@@ -12,6 +12,7 @@ import shlex
 ROOT = Path(__file__).resolve().parent
 COMMANDS = {
     'sync': (None, [], 'Download portal PDFs and publish receipts; never run models'),
+    'intake': ('intake_papers.py', [], 'Prepare downloaded PDFs; no model extraction'),
     'prepare': ('prepare_dual_batch.py', [], 'Create a frozen paper manifest'),
     'extract': ('batch_dual_extract.py', [], 'Preview or run two independent local extractions'),
     'review': ('review_dual_extract.py', [], 'Preview or run local source reconciliation'),
@@ -34,7 +35,7 @@ def active_jobs():
                             capture_output=True, text=True)
     runners = ('batch_dual_extract.py', 'dual_extract.py', 'review_dual_extract.py',
                'extract_analysis_inventory.py', 'batch_extract.py', 'auto_review.py',
-               'extract.py', 'recheck_drafts.py', 'refocus.py')
+               'extract.py', 'recheck_drafts.py', 'refocus.py', 'intake_papers.py')
     jobs = []
     for line in result.stdout.splitlines():
         fields = line.strip().split(None, 1)
@@ -51,11 +52,11 @@ def active_jobs():
     return jobs
 
 
-def model_command(command, args, invocation):
+def model_command(command, args, invocation, operation=None):
     wait = '--wait' in args
     if '--run' not in args:
         if wait:
-            print('--wait requires --run.', file=sys.stderr)
+            print('--wait requires --execute.' if command == 'intake' else '--wait requires --run.', file=sys.stderr)
             return 2
         os.execv(sys.executable, invocation)
         return 0
@@ -72,33 +73,57 @@ def model_command(command, args, invocation):
                     break
                 fcntl.flock(lock, fcntl.LOCK_UN)
             except BlockingIOError:
-                busy = ['Another KB command is processing models.']
+                busy = ['Another KB processing command is running.']
             if not wait:
-                print('Models are busy. No work started. Use --wait to wait, or run later.\n' + '\n'.join(busy))
+                print('KB processing is busy. No work started. Use --wait to wait, or run later.\n' + '\n'.join(busy))
                 return 2
             if not announced:
-                print('Waiting for the existing KB model job. Ctrl-C cancels this wait.', flush=True)
+                print('Waiting for the existing KB processing job. Ctrl-C cancels this wait.', flush=True)
                 announced = True
             time.sleep(5)
-        # The parent retains the lock until its child finishes (including interruption).
-        child = subprocess.Popen(invocation, cwd=ROOT)
+        if operation is not None:
+            return operation()
+        return run_child(invocation)
+
+
+def run_child(invocation):
+    # The caller retains its lock until its child finishes, including interruption.
+    child = subprocess.Popen(invocation, cwd=ROOT)
+    try:
+        return child.wait()
+    except KeyboardInterrupt:
+        child.send_signal(2)
+        child.wait()
+        return 130
+
+
+def intake_operation(invocation):
+    common = Path(git('rev-parse', '--git-common-dir').strip())
+    if not common.is_absolute():
+        common = ROOT / common
+    with (common / 'kb-sync.lock').open('a') as lock:
         try:
-            return child.wait()
-        except KeyboardInterrupt:
-            child.send_signal(2)
-            child.wait()
-            return 130
+            fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BlockingIOError:
+            print('PDF sync is running. Intake has not started; try again after sync finishes.')
+            return 2
+        return run_child(invocation)
 
 
-def sync(args):
+def sync(args, with_intake=False):
     if args in (['--help'], ['-h']):
-        print('Usage: python kb.py sync\nDownload portal PDFs and publish their receipts. No models or PDF intake.\nRequires main, no staged changes, and clean import records. Other local edits stay untouched.')
+        print('Usage: python kb.py sync [--intake [--wait]]\nDownload PDFs and publish receipts. --intake also prepares PDFs and syncs the portal.\nNo model extraction. --wait keeps this terminal waiting for a busy KB job.\nRequires main, no staged changes, and clean import records; --intake also requires clean bibliography and PDF index.')
         return 0
     if args:
-        print('sync takes no options; extraction is a separate command.', file=sys.stderr)
-        return 2
+        if '--intake' not in args or any(a not in ('--intake', '--wait') for a in args):
+            print('Use sync [--intake [--wait]]; extraction is separate.', file=sys.stderr)
+            return 2
+        guard = ['--run'] + (['--wait'] if '--wait' in args else [])
+        return model_command('intake', guard, [], operation=lambda: sync([], with_intake=True))
     paths = ['screening/candidates.yaml', 'logs/portal/inbox',
              'logs/portal/applied', 'logs/portal/ledger.jsonl', 'logs/extraction_log.md']
+    if with_intake:
+        paths += ['citations.md', 'portal/papers.json']
     common = Path(git('rev-parse', '--git-common-dir').strip())
     if not common.is_absolute():
         common = ROOT / common
@@ -133,12 +158,17 @@ def sync(args):
                 if not rec.get('sha256') or digest != rec['sha256']:
                     raise ValueError(f'{dest.name}: upload differs from the existing PDF; preserved for manual review.')
         importer.run(True, False, 'pdf', intake=False)
+        if with_intake:
+            subprocess.run([sys.executable, str(ROOT / 'scripts/intake_papers.py'),
+                            '--execute', '--no-sync'], cwd=ROOT, check=True)
+            subprocess.run([sys.executable, str(ROOT / 'scripts/publish_portal.py'),
+                            '--sync'], cwd=ROOT, check=True)
         files = git('ls-files', '-z', '--cached', '--others', '--exclude-standard', '--', *paths)
         files = list(dict.fromkeys(f for f in files.split('\0') if f))
         if files:
             git('add', '-A', '--', *files)
         if git('diff', '--cached', '--name-only').strip():
-            git('commit', '-m', 'Sync portal PDF download receipts', capture=False)
+            git('commit', '-m', 'Sync and prepare portal PDFs' if with_intake else 'Sync portal PDF download receipts', capture=False)
         git('push', 'origin', 'main', capture=False)
         remaining = sum(json.loads(p.read_text()).get('kind') == 'pdf'
                         for p in importer.INBOX.glob('*.json'))
@@ -153,7 +183,7 @@ def main(argv=None):
             argv = [argv[1], '--help']
         else:
             print('Usage: python kb.py COMMAND [options]\n')
-            for heading, names in [('Portal downloads', ['sync']), ('Provisional source pipeline', ['prepare', 'extract', 'review']), ('Existing KB drafts and data', ['drafts', 'inspect', 'validate']), ('Read-only overview', ['status'])]:
+            for heading, names in [('PDF download and preparation', ['sync', 'intake']), ('Provisional source pipeline', ['prepare', 'extract', 'review']), ('Existing KB drafts and data', ['drafts', 'inspect', 'validate']), ('Read-only overview', ['status'])]:
                 print(heading + ':')
                 for name in names:
                     print(f'  {name:10} {COMMANDS[name][2]}')
@@ -182,12 +212,26 @@ def main(argv=None):
     if command == 'drafts' and any(a not in ['--help', '-h'] for a in args):
         print('drafts lists pending KB drafts. See docs/GOVERNANCE.md for approval.', file=sys.stderr)
         return 2
+    if command == 'intake':
+        if '--extract' in args:
+            print('Intake does not run models. Use kb.py extract for dual extraction.', file=sys.stderr)
+            return 2
+        if '--help' in args or '-h' in args:
+            print('Usage: python kb.py intake [--execute] [--wait] [options]\n'
+                  'Preview PDF preparation; --execute applies it. No model extraction.\n'
+                  'Options: --from DIR, --papers-dir DIR, --no-ocr, --no-register,\n'
+                  '         --no-sync, --allow-probable. --wait requires --execute.\n'
+                  'For download, intake and publishing together use kb.py sync --intake.')
+            return 0
     script, fixed, _ = COMMANDS[command]
     if command == 'prepare' and not any(a == '--repo' or a.startswith('--repo=') for a in args):
         fixed = ['--repo', str(ROOT)]
     # Replace the wrapper process: interrupts and exit status belong to the real job.
     # No shell interpretation, new inference logic, or changes to the existing runners.
     invocation = [sys.executable, str(ROOT/'scripts'/script), *fixed, *[a for a in args if a != '--wait']]
+    if command == 'intake':
+        guard = (['--run'] if '--execute' in args else []) + (['--wait'] if '--wait' in args else [])
+        return model_command(command, guard, invocation, operation=lambda: intake_operation(invocation))
     if command in ('extract', 'review'):
         return model_command(command, args, invocation)
     os.execv(sys.executable, invocation)
