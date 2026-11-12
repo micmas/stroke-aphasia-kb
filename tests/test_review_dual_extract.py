@@ -136,3 +136,55 @@ def test_output_must_not_touch_extraction(paper):
 
 def test_remote_host_rejected():
     with pytest.raises(ValueError,match='loopback'):r.identities('https://example.com')
+
+
+def test_review_uses_constrained_schema_and_records_it(paper, monkeypatch):
+    run,row,out=paper
+    calls=[]
+    def chat(prompt, **kwargs):
+        calls.append((prompt, kwargs))
+        return {'text':json.dumps(inventory() if len(calls)==1 else final())}
+    monkeypatch.setattr(r,'chat',chat)
+    assert r.batch(run,out,'reviewer',True)==0
+    for stage, (_, kwargs) in zip(['source-first','reconciliation'], calls):
+        schema=kwargs['fmt']
+        assert schema['type']=='object' and schema['additionalProperties'] is False
+        assert schema['required']==list(schema['properties'])
+        assert r.read(out/row['key']/stage/'response-schema.json')==schema
+    assert 'BLIND_AUDIT' in calls[1][0]
+    assert calls[1][1]['fmt']['properties']['decisions']['items']['properties']['arm']['enum']==['A','B']
+
+
+def test_duplicate_decisions_still_fail_closed(paper,monkeypatch):
+    run,row,out=paper
+    calls=[]
+    def chat(*args,**kwargs):
+        calls.append(1)
+        return {'text':json.dumps(inventory()) if len(calls)==1 else '{"decisions":[],"decisions":[]}'}
+    monkeypatch.setattr(r,'chat',chat)
+    assert r.batch(run,out,'reviewer',True)==1
+    assert 'Duplicate JSON' in r.read(out/row['key']/'status.json')['error']
+    assert not (out/row['key']/'inventory.json').exists()
+
+
+def test_wrong_unit_and_rewritten_quotes_are_distinguished_without_repair():
+    from review_format import quote_diagnostics
+    units={'P1-S1':{'text':'No association was detected.'},'P1-S2':{'text':'Other results.'}}
+    data={'evidence':[{'source_id':'P1-S2','quote':'No association was detected.'},
+                      {'source_id':'P1-S1','quote':'An association was detected.'}]}
+    before=json.dumps(data)
+    found=quote_diagnostics(data,units)
+    assert found[0]['classification']=='exact_in_other_unit'
+    assert found[0]['exact_candidate_source_ids']==['P1-S1']
+    assert found[1]['classification']=='not_exact_in_any_unit'
+    assert all(not item['automatic_correction'] for item in found)
+    assert json.dumps(data)==before
+
+
+def test_interrupt_is_preserved_as_interrupted(paper,monkeypatch):
+    run,row,out=paper
+    def stop(*args,**kwargs): raise KeyboardInterrupt()
+    monkeypatch.setattr(r,'chat',stop)
+    with pytest.raises(KeyboardInterrupt):r.batch(run,out,'reviewer',True)
+    assert r.read(out/row['key']/'status.json')['status']=='interrupted'
+    assert not (out/row['key']/'inventory.json').exists()

@@ -126,6 +126,16 @@ each original analysis, and accounts for every source-text unit. Both calls use
 a 20,000-token output allowance unless overridden. Model digest, prompts, settings,
 source hashes and raw responses are retained. Agreement is not evidence of truth.
 
+Both review calls use a constrained JSON schema (saved as `response-schema.json`)
+and still reject duplicate fields. Quote diagnostics distinguish exact text cited
+under the wrong source unit from text that is not exact anywhere in the supplied
+units. They never silently repair quotations or approve paraphrases. First-pass
+audit issues and quote diagnostics are supplied to reconciliation for correction
+against the source. Each stage saves `quote-diagnostics.json` when it parses.
+Use a fresh output directory after a failed/interrupted pilot or a reviewer change;
+old attempts are preserved, not overwritten. Formatting constraints do not establish
+scientific accuracy: inspect the small pilot before scaling up.
+
 Review outputs include `inventory.json`, `decisions.json`, `coverage.json`,
 `audit.json`, `provisional-extraction.txt`, `visual-review-required.json` and
 `status.json`. All have provisional meaning and `approved: false`; no status means approved.
@@ -133,6 +143,7 @@ Review outputs include `inventory.json`, `decisions.json`, `coverage.json`,
 | Status | Meaning |
 |---|---|
 | `failed` | Input integrity, parsing, transport or generation failed. |
+| `running` / `interrupted` | Review is in progress / was stopped; no completed review is available. |
 | `requires_revision` | The reconciliation failed evidence, schema, coverage or decision checks. |
 | `requires_visual_review` | Deterministic checks passed; semantic accuracy and completeness are not certified. |
 

@@ -16,8 +16,9 @@ from extract_analysis_inventory import audit_inventory, build_prompt, source_uni
 from extract import _extract_pdf_text
 from ollama_client import chat, autosize_num_ctx, normalize_host, is_local, DEFAULT_HOST, RepetitionLoop
 from strict_data import load_json
+from review_format import response_schema, quote_diagnostics, QUOTE_RULES
 
-VERSION = 'local-source-review-v1'
+VERSION = 'local-source-review-v2'
 
 
 def digest(path):
@@ -128,7 +129,7 @@ Cover EVERY source unit exactly once; overlapping units are duplicate evidence, 
 studies. Do not hide substantive missing analyses as not_substantive. Summary/context
 must agree with the inventory and preserve uncertainties. An exact quote is necessary
 but not proof of semantic correctness. This is a provisional review, NEVER approval.
-CITATION: ''' + citation + '\nSOURCE:\n' + json.dumps(units, ensure_ascii=False) + '\nBLIND_INVENTORY:\n' + json.dumps(blind, ensure_ascii=False) + '\nEXTRACTIONS:\n' + json.dumps(arms, ensure_ascii=False)
+CITATION: ''' + citation + QUOTE_RULES + '\nSOURCE:\n' + json.dumps(units, ensure_ascii=False) + '\nBLIND_INVENTORY:\n' + json.dumps(blind, ensure_ascii=False) + '\nBLIND_AUDIT (diagnostics, not verified findings; resolve against SOURCE):\n' + json.dumps({'issues': audit_inventory(blind, units, citation), 'quotes': quote_diagnostics(blind, units)}, ensure_ascii=False) + '\nEXTRACTIONS:\n' + json.dumps(arms, ensure_ascii=False)
 
 
 def validate(result, units, citation, arms):
@@ -191,15 +192,17 @@ def validate(result, units, citation, arms):
     return issues
 
 
-def call_stage(prompt, directory, model, host, budget):
+def call_stage(prompt, directory, model, host, budget, schema):
     directory.mkdir()
     (directory/'prompt.txt').write_text(prompt)
+    write(directory/'response-schema.json', schema)
     meta = {'model': model, 'prompt_sha256': digest(directory/'prompt.txt'), 'approved': False,
             'temperature': 0.0, 'think': False, 'max_output_tokens': budget, 'status': 'failed'}
+    meta['response_schema_sha256'] = digest(directory/'response-schema.json')
     try:
         response = chat(prompt, model=model, host=host, max_tokens=budget,
                         num_ctx=autosize_num_ctx(prompt, budget), temperature=0.0,
-                        think=False, fmt='json', timeout=3600)
+                        think=False, fmt=schema, timeout=3600)
         (directory/'raw.json').write_text(response['text'])
         meta['inference'] = {k:v for k,v in response.items() if k != 'text'}
         if response.get('truncated_input') or response.get('truncated_output'):
@@ -226,7 +229,7 @@ def review_one(run_dir, row, output, model, host, budget, tags):
                'input_hashes': hashes, 'max_output_tokens': budget, 'host': normalize_host(host),
                'code_hashes': {p.name: digest(p) for p in [Path(__file__), Path(__file__).with_name('extract_analysis_inventory.py'),
                     Path(__file__).with_name('ollama_client.py'), Path(__file__).with_name('quote_check.py'),
-                    Path(__file__).with_name('strict_data.py'), Path(__file__).with_name('extract.py')]}}
+                    Path(__file__).with_name('strict_data.py'), Path(__file__).with_name('review_format.py'), Path(__file__).with_name('extract.py')]}}
     if output.exists():
         meta = read(output/'status.json') if (output/'status.json').exists() else {}
         if meta.get('binding') == binding and meta.get('status') in ['requires_revision', 'requires_visual_review']:
@@ -237,17 +240,21 @@ def review_one(run_dir, row, output, model, host, budget, tags):
             return meta['status']
         raise ValueError('Existing review incomplete or inputs/settings changed; preserve it and use a new output directory')
     output.mkdir(parents=True)
-    state = {'status': 'failed', 'approved': False, 'binding': binding,
+    state = {'status': 'running', 'approved': False, 'binding': binding,
              'limitation': 'Extraction-time model digests were not recorded by the original runner; identity checks use extraction tags and currently installed digests.'}
     write(output/'status.json', state)
     started = time.monotonic()
     try:
         # Blind inventory receives original source only, never either extractor's answer.
-        blind = call_stage(build_prompt(units, row['citation']), output/'source-first', model, host, budget)
+        blind = call_stage(build_prompt(units, row['citation']) + QUOTE_RULES, output/'source-first', model, host, budget,
+                           response_schema(units, row['citation']))
         blind_issues = audit_inventory(blind, units, row['citation'])
         write(output/'source-first/audit.json', blind_issues)
+        write(output/'source-first/quote-diagnostics.json', quote_diagnostics(blind, units))
         final = call_stage(reconcile_prompt(units, row['citation'], arms, blind),
-                           output/'reconciliation', model, host, budget)
+                           output/'reconciliation', model, host, budget,
+                           response_schema(units, row['citation'], reconciliation=True))
+        write(output/'reconciliation/quote-diagnostics.json', quote_diagnostics(final, units))
         issues = validate(final, units, row['citation'], arms)
         write(output/'audit.json', {'blind_inventory_issues': blind_issues, 'reconciliation_issues': issues})
         # Inputs must remain unchanged over both calls.
@@ -267,8 +274,9 @@ def review_one(run_dir, row, output, model, host, budget, tags):
         state['status'] = 'requires_revision' if issues else 'requires_visual_review'
         state['output_hashes'] = {str(p.relative_to(output)): digest(p) for p in output.rglob('*') if p.is_file() and p.name != 'status.json'}
         return state['status']
-    except Exception as exc:
-        state['error'] = str(exc); raise
+    except BaseException as exc:
+        state['status'] = 'interrupted' if isinstance(exc, KeyboardInterrupt) else 'failed'
+        state['error'] = str(exc) or type(exc).__name__; raise
     finally:
         state['seconds'] = time.monotonic()-started
         write(output/'status.json', state)
