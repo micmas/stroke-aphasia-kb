@@ -10917,9 +10917,16 @@ candidates:
     date: '2026-11-12'
     seq: 303
     record: 20261112T005519Z-05_screen_m-massontrottier_c0432.json
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 307
+    record: 20261112T015249Z-03_screen_m-massontrottier_c0432.json
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_file: C0432_Desjardins2026.pdf
+  key: '@Desjardins2026'
 - id: C0433
   doi: 10.1212/wnl.0000000000214611
   pmid: '41616228'
@@ -16240,9 +16247,16 @@ candidates:
     date: '2026-11-12'
     seq: 302
     record: 20261112T005519Z-04_screen_m-massontrottier_c0730.json
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 308
+    record: 20261112T015249Z-04_screen_m-massontrottier_c0730.json
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_file: C0730_Matchin2024.pdf
+  key: '@Matchin2024'
 - id: C0731
   doi: 10.3760/cma.j.cn112150-20240602-00444
   pmid: '39710485'
@@ -30026,9 +30040,16 @@ candidates:
     date: '2026-11-12'
     seq: 304
     record: 20261112T005519Z-06_screen_m-massontrottier_c1498.json
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 309
+    record: 20261112T015249Z-05_screen_m-massontrottier_c1498.json
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_file: C1498_Kourtidou2021.pdf
+  key: '@Kourtidou2021'
 - id: C1499
   doi: 10.12786/bn.2021.14.e14
   pmid: '36743431'
@@ -127084,10 +127105,17 @@ candidates:
     date: '2026-11-12'
     seq: 299
     record: 20261112T005519Z-01_screen_m-massontrottier_c7406.json
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 305
+    record: 20261112T015249Z-01_screen_m-massontrottier_c7406.json
   doc_type: journal
   doc_type_raw: JOUR/Review
   pdf_uploaded_at: '2026-11-12T00:04:32.262Z'
   pdf_file: C7406_Riley2021.pdf
+  key: '@Riley2021'
 - id: C7407
   doi: 10.1080/09638288.2021.1955303
   pmid: '34383614'
@@ -346350,5 +346378,12 @@ candidates:
     date: '2026-11-12'
     seq: 301
     record: 20261112T005519Z-03_screen_m-massontrottier_u89f5cf2204955dda6d3e5ac6d8d564a1.json
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 306
+    record: 20261112T015249Z-02_screen_m-massontrottier_u89f5cf2204955dda6d3e5ac6d8d564a1.json
   pdf_uploaded_at: '2026-11-12T00:03:19.131Z'
   pdf_file: U89f5cf2204955dda6d3e5ac6d8d564a1_Paper.pdf
+  key: '@Sewell2025'

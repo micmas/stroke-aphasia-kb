@@ -2293,3 +2293,35 @@ Trajectory of depressive symptoms in a longitudinal stroke cohort.
 doi:10.1016/j.jstrokecerebrovasdis.2024.108197
 
 > Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: 1-s2.0-S1052305724006402-main.pdf). Check the entry; add a note on why the paper is in the KB.
+
+## @Desjardins2026  [seed]
+Desjardins MÈ, Marcotte K, Bedetti C, Houzé B, Brisebois A, Descoteaux M, Desautels A, Brambati SM.
+Longitudinal prediction of naming and connected speech in post-stroke aphasia: Contribution of acute white matter characteristics.
+*Cortex*. 2026;196:101-116.
+doi:10.1016/j.cortex.2026.01.004
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C0432). Included by the screening register (C0432; docs/SCREENING.md). Check the entry.
+
+## @Matchin2024  [seed]
+Matchin W, Mollasaraei ZK, Bonilha L, Rorden C, Hickok G, den Ouden D, Fridriksson J.
+Verbal working memory and syntactic comprehension segregate into the dorsal and ventral streams, respectively.
+*Brain Communications*. 2024;6(6).
+doi:10.1093/braincomms/fcae449
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C0730). Included by the screening register (C0730; docs/SCREENING.md). Check the entry.
+
+## @Kourtidou2021  [seed]
+Kourtidou E, Kasselimis D, Angelopoulou G, Karavasilis E, Velonakis G, Kelekis N, Zalonis I, Evdokimidis I, Potagas C, Petrides M.
+The Role of the Right Hemisphere White Matter Tracts in Chronic Aphasic Patients After Damage of the Language Tracts in the Left Hemisphere.
+*Front. Hum. Neurosci.*. 2021;15.
+doi:10.3389/fnhum.2021.635750
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C1498). Included by the screening register (C1498; docs/SCREENING.md). Check the entry.
+
+## @Riley2021  [seed]
+Riley EA, Hart E, Preston JL, Wu Y, Ashaie S.
+Pervasiveness of speech-language disorders and fatigue in stroke: A systematic scoping review.
+*Journal of Communication Disorders*. 2021;93:106145.
+doi:10.1016/j.jcomdis.2021.106145
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C7406). Included by the screening register (C7406; docs/SCREENING.md). Check the entry.
