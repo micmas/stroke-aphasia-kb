@@ -1,6 +1,6 @@
 {
  "kind": "screen",
- "id": "C1480",
+ "id": "C0459",
  "stage": "full_text",
  "decision": "include",
  "reason": null,
@@ -8,5 +8,10 @@
  "reviewer": "m.massontrottier@uq.edu.au",
  "reviewer_name": null,
  "submitted": "2026-11-12T00:12:19.454Z",
- "portal": 1
+ "portal": 1,
+ "_outcome": {
+  "status": "applied",
+  "message": "C0459: full_text include by michele",
+  "at": "2026-11-12T00:19:57+00:00"
+ }
 }

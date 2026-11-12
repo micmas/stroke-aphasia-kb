@@ -11392,9 +11392,16 @@ candidates:
     date: '2026-11-12'
     seq: 293
     record: 20261112T000211Z-01_screen_m-massontrottier_c0459.json
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 296
+    record: 20261112T001219Z-01_screen_m-massontrottier_c0459.json
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_uploaded_at: '2026-11-11T23:57:08.818Z'
+  key: '@Schellekens2026'
 - id: C0460
   doi: 10.7759/cureus.98185
   pmid: '41488270'
@@ -29652,8 +29659,15 @@ candidates:
     date: '2026-11-12'
     seq: 294
     record: 20261112T000211Z-02_screen_m-massontrottier_c1480.json
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 297
+    record: 20261112T001219Z-02_screen_m-massontrottier_c1480.json
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Zhang2021'
 - id: C1481
   doi: 10.1080/13554794.2021.1959935
   pmid: '34365896'
@@ -92310,8 +92324,15 @@ candidates:
     date: '2026-11-12'
     seq: 295
     record: 20261112T000211Z-03_screen_m-massontrottier_c5206.json
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-12'
+    seq: 298
+    record: 20261112T001219Z-03_screen_m-massontrottier_c5206.json
   doc_type: journal
   doc_type_raw: JOUR/Article
+  key: '@Hope2016'
 - id: C5207
   doi: 10.1080/13803395.2015.1038983
   pmid: '26332179'

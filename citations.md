@@ -2262,3 +2262,27 @@ Dosage, Intensity, and Frequency of Language Therapy for Aphasia: A Systematic R
 doi:10.1161/strokeaha.121.035216
 
 > Registered automatically from the PDF's DOI via Crossref on 2026-11-10 (file: screening C7373). Included by the screening register (C7373; docs/SCREENING.md). Check the entry.
+
+## @Schellekens2026  [seed]
+Schellekens MMI, Li H, Wijnands M, Papounidou A, Boot EM, Verhoeven JI, Ekker MS, van Alebeek ME, Brouwers PJAM, Arntz RM, van Dijk GW, Gons RAR, et al.
+Lesion locations are associated with cognitive impairment after ischemic stroke in young adults.
+*NeuroImage: Clinical*. 2026;49:103930.
+doi:10.1016/j.nicl.2025.103930
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C0459). Included by the screening register (C0459; docs/SCREENING.md). Check the entry.
+
+## @Zhang2021  [seed]
+Zhang J, Zheng W, Shang D, Chen Y, Zhong S, Ye J, Li L, Yu Y, Zhang L, Cheng R, He F, Wu D, et al.
+Fixel-based evidence of microstructural damage in crossing pathways improves language mapping in Post-stroke aphasia.
+*NeuroImage: Clinical*. 2021;31:102774.
+doi:10.1016/j.nicl.2021.102774
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C1480). Included by the screening register (C1480; docs/SCREENING.md). Check the entry.
+
+## @Hope2016  [seed]
+Hope TMH, Seghier ML, Prejawa S, Leff AP, Price CJ.
+Distinguishing the effect of lesion load from tract disconnection in the arcuate and uncinate fasciculi.
+*NeuroImage*. 2016;125:1169-1173.
+doi:10.1016/j.neuroimage.2015.09.025
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C5206). Included by the screening register (C5206; docs/SCREENING.md). Check the entry.
