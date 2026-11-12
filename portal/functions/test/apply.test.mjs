@@ -41,3 +41,24 @@ test('POST starts the workflow for a maintainer only, once', async () => {
   assert.equal(again.alreadyRunning, true);
   assert.equal(calls.filter((c) => c.url.includes('/dispatches')).length, 0);
 });
+
+test('four PDFs and two orphan edits are not six actionable records', async () => {
+  const saved = globalThis.fetch;
+  const names = ['1_pdf_x_c1.json','2_pdf_x_c2.json','3_pdf_x_c3.json','4_pdf_x_c4.json','5_edit_x_one.json','6_edit_x_two.json'];
+  let dispatched = false;
+  globalThis.fetch = async (url) => {
+    if (url.includes('/dispatches')) { dispatched = true; return new Response(null, {status:204}); }
+    if (url.includes('/runs?')) return Response.json({workflow_runs:[]});
+    if (url.includes('/contents/logs/portal/applied')) return new Response('',{status:404});
+    if (url.includes('/contents/drafts/')) return new Response('',{status:404});
+    if (url.includes('/inbox/') && url.includes('_edit_')) return Response.json({content:Buffer.from(JSON.stringify({id:'drafts/regions/already_approved.md'})).toString('base64')});
+    if (url.includes('/contents/logs/portal/inbox')) return Response.json(names.map(name=>({type:'file',name})));
+    throw new Error(`Unexpected request ${url}`);
+  };
+  try {
+    const out = await (await onRequestGet({env,data:as('maint@example.org')})).json();
+    assert.equal(out.inbox,6); assert.equal(out.ready,0); assert.equal(out.pdf,4); assert.equal(out.attention.length,2);
+    const post = await (await onRequestPost({env,data:as('maint@example.org')})).json();
+    assert.equal(post.nothingToApply,true); assert.equal(dispatched,false);
+  } finally { globalThis.fetch=saved; }
+});

@@ -20,10 +20,42 @@ async function latestRun(env) {
   return run ? { status: run.status, conclusion: run.conclusion, started: run.run_started_at || run.created_at, updated: run.updated_at, url: run.html_url, event: run.event } : null;
 }
 
+/** Separate records the hosted workflow can act on from local PDF intake and orphan edits.
+ * Keep attention records in the inbox: their content must not be silently discarded.
+ */
+export async function inboxSummary(env, records) {
+  let ready = 0, pdf = 0;
+  const attention = [];
+  for (const file of records.inbox) {
+    if (file.includes('_pdf_')) { pdf += 1; continue; }
+    if (['_edit_', '_mark_', '_comment_'].some((kind) => file.includes(kind))) {
+      const response = await gh(env, `contents/logs/portal/inbox/${encodeURIComponent(file)}?ref=${encodeURIComponent(env.GITHUB_BRANCH || 'main')}`);
+      if (!response.ok) throw new Error(`Cannot inspect pending record ${file}`);
+      let record;
+      try {
+        const body = await response.json();
+        record = JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(body.content.replace(/\s/g, '')), (c) => c.charCodeAt(0))));
+      } catch { attention.push({ file, reason: 'This record could not be read; maintainer review is needed.' }); continue; }
+      const path = String(record.id || '');
+      if (!/^drafts\/[a-z0-9_/-]+\.md$/i.test(path) || path.includes('..')) {
+        attention.push({ file, reason: 'This record does not identify a valid draft.' }); continue;
+      }
+      const draft = await gh(env, `contents/${path}?ref=${encodeURIComponent(env.GITHUB_BRANCH || 'main')}`);
+      if (draft.status === 404) {
+        attention.push({ file, draft: path, reason: 'The original draft is no longer pending (it may have been approved). This edit is preserved for maintainer review.' }); continue;
+      }
+      if (!draft.ok) throw new Error(`Cannot check draft ${path}`);
+    }
+    ready += 1;
+  }
+  return { ready, pdf, attention };
+}
+
 export async function onRequestGet({ env, data }) {
   try {
     const [run, records] = await Promise.all([latestRun(env), listRecords(env)]);
-    return Response.json({ maintainer: isMaintainer(env, data.reviewer?.email), inbox: records.inbox.length, run });
+    const summary = await inboxSummary(env, records);
+    return Response.json({ maintainer: isMaintainer(env, data.reviewer?.email), inbox: records.inbox.length, ...summary, run });
   } catch (e) {
     return Response.json({ error: e.message }, { status: e.status || 502 });
   }
@@ -36,6 +68,8 @@ export async function onRequestPost({ env, data }) {
     if (current && ['queued', 'in_progress', 'waiting', 'pending', 'requested'].includes(current.status)) {
       return Response.json({ ok: true, alreadyRunning: true, run: current });
     }
+    const summary = await inboxSummary(env, await listRecords(env));
+    if (!summary.ready) return Response.json({ ok: true, nothingToApply: true, ...summary });
     const res = await gh(env, `actions/workflows/${WORKFLOW}/dispatches`, {
       method: 'POST',
       body: JSON.stringify({ ref: env.GITHUB_BRANCH || 'main', inputs: { requested_by: data.reviewer.email } }),
