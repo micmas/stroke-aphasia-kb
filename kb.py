@@ -54,7 +54,8 @@ def active_jobs():
 
 def model_command(command, args, invocation, operation=None):
     wait = '--wait' in args
-    if '--run' not in args:
+    # argparse accepts abbreviated flags; guard those too before delegation.
+    if not any(a in ('--run', '--ru', '--r') for a in args):
         if wait:
             print('--wait requires --execute.' if command == 'intake' else '--wait requires --run.', file=sys.stderr)
             return 2
@@ -213,8 +214,10 @@ def main(argv=None):
         print('drafts lists pending KB drafts. See docs/GOVERNANCE.md for approval.', file=sys.stderr)
         return 2
     if command == 'intake':
-        if '--extract' in args:
-            print('Intake does not run models. Use kb.py extract for dual extraction.', file=sys.stderr)
+        allowed = {'--execute', '--wait', '--from', '--papers-dir', '--no-ocr',
+                   '--no-register', '--no-sync', '--allow-probable', '--help', '-h'}
+        if any(a.startswith('-') and a.split('=', 1)[0] not in allowed for a in args):
+            print('Use full intake options from kb.py intake --help. Extraction is separate.', file=sys.stderr)
             return 2
         if '--help' in args or '-h' in args:
             print('Usage: python kb.py intake [--execute] [--wait] [options]\n'

@@ -185,3 +185,16 @@ def test_standalone_intake_cannot_overlap_pdf_sync(monkeypatch, tmp_path):
     with (tmp_path/'kb-sync.lock').open('a') as lock:
         cli.fcntl.flock(lock, cli.fcntl.LOCK_EX | cli.fcntl.LOCK_NB)
         assert cli.main(['intake','--execute']) == 2
+
+
+@pytest.mark.parametrize('flag', ['--exec', '--ext', '--extract'])
+def test_intake_rejects_abbreviated_or_model_execution_flags(monkeypatch, flag):
+    monkeypatch.setattr(cli.os, 'execv', lambda *a: pytest.fail('unsafe delegation'))
+    assert cli.main(['intake', flag]) == 2
+
+
+def test_abbreviated_model_run_flag_is_still_guarded(monkeypatch, tmp_path):
+    monkeypatch.setattr(cli, 'git', lambda *a,**k: str(tmp_path))
+    monkeypatch.setattr(cli, 'active_jobs', lambda: ['existing extraction'])
+    monkeypatch.setattr(cli.os, 'execv', lambda *a: pytest.fail('unsafe delegation'))
+    assert cli.main(['extract', '--ru']) == 2
