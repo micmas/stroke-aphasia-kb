@@ -7,6 +7,17 @@ models you intend to use in Ollama. See [Models](MODELS.md).
 Extraction inventories, reconciled text and approved KB findings are different
 outputs. The pipeline below preserves that distinction.
 
+## Download portal uploads without starting models
+
+Run `.venv/bin/python kb.py sync` to download uploaded PDFs and publish their
+completion receipts. This does not start extraction or review, approve findings,
+or run intake/OCR. Source preparation below remains necessary.
+
+Use `.venv/bin/python kb.py status --jobs` to see active KB model jobs. Start
+extraction or review only when you choose. Their `--run` commands refuse to
+compete with a detected job; add `--wait` to wait in your open terminal.
+See [Commands](COMMANDS.md) for sync prerequisites and recovery.
+
 ## 1. Prepare verified sources
 
 Select papers under the [screening protocol](SCREENING.md), register their
