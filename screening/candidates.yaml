@@ -12225,9 +12225,15 @@ candidates:
   - search: S005
   - search: S008
   - search: S012
+  - kind: hand_picked
+    date: '2026-11-12'
+    by: michele
+    note: Reviewer PDF upload (other source)
+    record: 20261112T000350Z-01_paper_m-massontrottier_c0507.json
   screening: []
   doc_type: journal
   doc_type_raw: JOUR/Article
+  pdf_uploaded_at: '2026-11-12T00:03:50.613Z'
 - id: C0508
   doi: 10.3389/fpsyg.2025.1636531
   pmid: '41181681'
@@ -127013,9 +127019,15 @@ candidates:
   - search: S006
   - search: S013
   - search: S020
+  - kind: hand_picked
+    date: '2026-11-12'
+    by: michele
+    note: Reviewer PDF upload (other source)
+    record: 20261112T000432Z-01_paper_m-massontrottier_c7406.json
   screening: []
   doc_type: journal
   doc_type_raw: JOUR/Review
+  pdf_uploaded_at: '2026-11-12T00:04:32.262Z'
 - id: C7407
   doi: 10.1080/09638288.2021.1955303
   pmid: '34383614'
@@ -346261,3 +346273,14 @@ candidates:
   sources:
   - search: S024
   screening: []
+- id: U89f5cf2204955dda6d3e5ac6d8d564a1
+  title: Trajectory of depressive symptoms in a longitudinal stroke cohort
+  doi: 10.1016/j.jstrokecerebrovasdis.2024.108197
+  sources:
+  - kind: hand_picked
+    date: '2026-11-12'
+    by: michele
+    note: Reviewer PDF upload (other source)
+    record: 20261112T000319Z-01_paper_m-massontrottier_u89f5cf2204955dda6d3e5ac6d8d564a1.json
+  screening: []
+  pdf_uploaded_at: '2026-11-12T00:03:19.131Z'
