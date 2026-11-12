@@ -369,6 +369,88 @@ def cmd_reject(args):
 # ============================================================
 # Main
 # ============================================================
+def resolve_passage_edit(record_path, canonical, source_pdf, actor, execute=False):
+    """Complete an explicitly authorized, passage-only portal edit after promotion.
+
+    Claims, finding IDs and original approval stamps are preserved. The caller must
+    inspect the cited PDF page; this operation records a correction, not a new review.
+    """
+    import json
+    import fcntl
+    import pymupdf
+    from pipeline_files import atomic_write, BUCKETS
+    from promotion_transaction import commit, recover_pending
+    from quote_check import PaperText, grade_quote
+    record_path, canonical, source_pdf = map(lambda p: Path(p).resolve(), (record_path, canonical, source_pdf))
+    if record_path.parent != (ROOT / 'logs/portal/inbox').resolve():
+        raise ValueError('Correction must name an inbox record')
+    if not actor.startswith(('agent:', 'human:')):
+        raise ValueError('Name the actual operator as agent: or human:')
+    archived = ROOT / 'logs/portal/applied' / record_path.name
+    if not record_path.exists():
+        if archived.exists() and json.loads(archived.read_text()).get('_outcome', {}).get('status') == 'applied':
+            return 'Already resolved'
+        raise ValueError('Missing inbox record')
+    rec = json.loads(record_path.read_text())
+    if rec.get('kind') != 'edit' or rec.get('fields') or not rec.get('passages_added'):
+        raise ValueError('Only passage-only edits can use this correction path')
+    original = Path(str(rec.get('id', '')))
+    if original.parts[:1] != ('drafts',) or len(original.parts) != 3 or original.parts[1] not in BUCKETS or '__' not in original.stem:
+        raise ValueError('Invalid original draft identity')
+    entry, key = original.stem.split('__', 1)
+    if canonical != (ROOT / original.parts[1] / (entry + '.md')).resolve():
+        raise ValueError('Canonical entry does not match the original draft')
+    if rec.get('citation') != '@' + key or source_pdf.stem != key:
+        raise ValueError('Citation/PDF identity mismatch')
+    stage = ROOT / 'drafts/_review' / ('passage-correction-' + record_path.name)
+    with (ROOT / '.promotion.lock').open('a') as lock:
+        fcntl.flock(lock, fcntl.LOCK_EX)
+        if execute:
+            recover_pending(ROOT, stage)
+        fm, body, _ = _read(canonical)
+        matches = [f for f in fm.get('findings', []) if f.get('citation') == rec['citation']]
+        if fm.get('status') != 'approved' or len(matches) != 1:
+            raise ValueError('Requires one unambiguous approved finding for this citation')
+        finding = matches[0]
+        already = any(e.get('record') == record_path.name for e in finding.get('edits', []))
+        passages = []
+        with pymupdf.open(source_pdf) as doc:
+            for q in rec['passages_added']:
+                page = q.get('page')
+                if type(page) is not int or not 1 <= page <= len(doc):
+                    raise ValueError('Invalid source page')
+                raw = doc[page - 1].get_text()
+                # Recover only PDF whitespace/soft-hyphen differences, never paraphrases.
+                indices = [i for i, ch in enumerate(raw) if not ch.isspace() and ch != '\u00ad']
+                compact = ''.join(raw[i] for i in indices)
+                wanted = ''.join(ch for ch in str(q.get('quote') or '') if not ch.isspace() and ch != '\u00ad')
+                pos = compact.find(wanted)
+                if len(wanted) < 20 or pos < 0 or compact.find(wanted, pos + 1) >= 0:
+                    raise ValueError('Passage is absent or ambiguous on its stated page')
+                quote = raw[indices[pos]:indices[pos + len(wanted) - 1] + 1]
+                if grade_quote(quote, PaperText.from_text(raw)) != 'exact':
+                    raise ValueError('Recovered quote does not exactly match the PDF')
+                passages.append({'section': 'Statistical analysis (portal correction)', 'page': page,
+                                 'quote': quote, 'supports': q.get('supports') or 'statistics'})
+        if not execute:
+            return f"Would add {len(passages)} source passage(s) to {canonical.name} {finding['id']} and resolve {record_path.name}"
+        today = dt.date.today().isoformat()
+        if not already:
+            finding.setdefault('source_passages', []).extend(passages)
+            finding.setdefault('edits', []).append({'by': actor, 'date': today, 'fields': ['source_passages'],
+                'record': record_path.name, 'requested_by': rec.get('reviewer'),
+                'source_pdf_sha256': hashlib.sha256(source_pdf.read_bytes()).hexdigest(),
+                'note': 'Completed user-authorized passage-only correction after promotion; source page inspected; original approval preserved.'})
+            atomic_write(stage, json.dumps(rec, ensure_ascii=False, indent=2) + '\n')
+            text = '---\n' + yaml.safe_dump(fm, sort_keys=False, allow_unicode=True) + '---\n' + body
+            line = f"{today} | SOURCE-CORRECTED | {rec['citation']} | {fm['id']} {finding['id']} | operator: {actor} | record: {record_path.name}\n"
+            commit(ROOT, stage, canonical, text, LOG, line, record_ids=[record_path.name])
+        rec['_outcome'] = {'status': 'applied', 'message': f"Source passages added to {canonical.relative_to(ROOT)} {finding['id']}; original approval preserved", 'by': actor, 'at': dt.datetime.now(dt.timezone.utc).isoformat()}
+        atomic_write(archived, json.dumps(rec, ensure_ascii=False, indent=2) + '\n')
+        record_path.unlink()
+        return rec['_outcome']['message']
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description="Review/promote draft KB entries")
     g = p.add_mutually_exclusive_group(required=True)
@@ -377,6 +459,11 @@ def main(argv=None):
     g.add_argument("--diff",    metavar="PATH",      help="diff against canonical")
     g.add_argument("--approve", metavar="PATH",      help="approve a draft")
     g.add_argument("--reject",  metavar="PATH",      help="reject a draft")
+    g.add_argument("--resolve-passage-edit", metavar="RECORD", help="resolve an authorized passage-only edit after promotion (preview unless --execute)")
+    p.add_argument("--canonical", help="approved entry for the source correction")
+    p.add_argument("--source-pdf", help="main PDF inspected for the source correction")
+    p.add_argument("--actor", help="actual correction operator, agent:<name> or human:<name>")
+    p.add_argument("--execute", action="store_true", help="write a source correction")
     p.add_argument("--reviewer", help="human:<name> (a bare name is a person) "
                                       "or model:<ollama-tag>; required for "
                                       "approve/reject")
@@ -389,6 +476,11 @@ def main(argv=None):
                         "draft's created_by); a model reviewer must differ")
     args = p.parse_args(argv)
 
+    if args.resolve_passage_edit:
+        if not all((args.canonical, args.source_pdf, args.actor)):
+            p.error("Source correction requires --canonical, --source-pdf and --actor")
+        print(resolve_passage_edit(args.resolve_passage_edit, args.canonical, args.source_pdf, args.actor, args.execute))
+        return
     if args.approve and not args.reviewer:
         p.error("--approve requires --reviewer")
     if args.reject and not args.reviewer:

@@ -426,10 +426,27 @@ findings:
     quote: Note that Lwi et al. had a much larger sample size (N = 168) than the present
       study (N = 50).
     supports: limitation
+  - section: Statistical analysis (portal correction)
+    page: 4
+    quote: "Mass-univariate LSM results were corrected for multiple compari­\nsons\
+      \ using continuous permutation-based Family Wise Error Rate \n(FWER) at p <\
+      \ 0.05, with v = 100, meaning that there was a less than 5% \nchance of observing\
+      \ more than 100 false positive voxels"
+    supports: statistics
   review:
     reviewer: human:michele
     reviewed_on: '2026-11-11'
     tier: B
+  edits:
+  - by: agent:codex
+    date: '2026-11-12'
+    fields:
+    - source_passages
+    record: 20261111T012009Z-02_edit_m-massontrottier_regions-left-ifg-pars-triangularis-adeza.json
+    requested_by: m.massontrottier@uq.edu.au
+    source_pdf_sha256: c3b862039f6071dd869b806ed04e339c905c23d11d3d903d1cbe6fb4f89a977c
+    note: Completed user-authorized passage-only correction after promotion; source
+      page inspected; original approval preserved.
 source: draft
 reviewer: michele
 reviewed_on: '2026-05-06'
