@@ -11,7 +11,7 @@ For setup and the complete procedure, follow [HOWTO](HOWTO.md).
 | `status --jobs` | Show active KB model processes | Read-only |
 | `prepare` | Select registered papers and freeze their source manifest; hold PDFs over 50 pages | Writes manifest; no inference |
 | `extract` | Two independent local extractions | Preview by default; `--run` starts inference |
-| `review` | Independent source reading and reconciliation | Preview by default; `--run` starts inference |
+| `review` | Generate an incomplete source-review aid; human verification required | Preview by default; `--run` starts inference |
 | `status` | Inspect KB content and provenance | Read-only |
 | `drafts` | List existing KB drafts | Read-only |
 | `inspect --draft PATH` | Open a KB draft beside its source | Interactive review workbench; edits are logged |
@@ -67,11 +67,12 @@ not controlled. Use `kb.py` for new processing jobs.
 
 ```bash
 .venv/bin/python kb.py prepare --papers Paper2024 Another2025 --output _compare/my-batch/manifest.json
-.venv/bin/python kb.py extract --manifest _compare/my-batch/manifest.json --output-dir _compare/my-batch/extraction
+.venv/bin/python kb.py extract --profile relationships --manifest _compare/my-batch/manifest.json --output-dir _compare/my-batch/extraction
 .venv/bin/python kb.py review --run-dir _compare/my-batch/extraction --output-dir _compare/my-batch/review --model YOUR_REVIEW_MODEL --limit 3
 ```
 
-Replace paper keys and reviewer model with your selections. Add `--run` to
+This is the current relationship source-evidence workflow. Replace paper keys
+and reviewer model with your selections. Add `--run` to
 extraction or review only after checking the preview. Finish or stop extraction
 before starting local review. See [HOWTO](HOWTO.md) for source preparation,
 segmentation, recovery, visual checks and approval.

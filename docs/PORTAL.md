@@ -1,5 +1,22 @@
 # The review portal
 
+## Where human decisions enter the process
+
+| Stage | Person's task | What it does not do |
+|---|---|---|
+| Screening | Decide eligibility from the title/abstract, then the main paper; resolve duplicates | Uploading a PDF does not include it |
+| Source preparation | Verify the paper/version and resolve missing or over-50-page sources | Downloading and preparing do not start models |
+| Local extraction and model review | Choose when to run `kb.py extract` and `kb.py review`; inspect failures and unresolved evidence | Completing these calls does not approve findings |
+| Source verification | Check proposed relationships, personal factors, timing, analysis scope, tables and figures against the PDF; resolve omissions | Agreement between models does not replace this check |
+| Draft review and approval | Review mapped KB drafts in the portal; authorized approvers approve under the governance policy | Applying screening records does not approve an extraction |
+
+Relationship review saves a local `review.html` with its
+source evidence and unresolved checks. It does **not** automatically create portal
+drafts. Mapping source-verified proposals into the KB schema remains a separate
+maintainer task. The portal's Drafts page shows mapped drafts, not every completed
+model run. Existing published findings keep their recorded provenance until
+reviewed replacements are approved.
+
 ## Upload a paper for screening
 
 On **PDFs**, use **Upload any paper**. Choose or drop a main PDF, then check its

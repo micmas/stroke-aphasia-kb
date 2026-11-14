@@ -2,12 +2,11 @@
 # Install from this repository's root:  pip install -r requirements.txt
 # The KB itself (markdown entries with YAML frontmatter) needs nothing to read.
 #
-# CALMaR's requirements.txt (github.com/micmas/calmar) is a superset of this
-# file: a calmar checkout that already has its environment can run every
-# script in its stroke-aphasia-kb/ submodule without installing anything else.
+# Install this file when running the extraction tools from a standalone checkout.
 
 # Loader, validator, query module, export_webapp.py, kb_status.py
 PyYAML>=6.0
+jsonschema>=4.18  # strict validation of relationship extraction output
 pandas>=2.0
 numpy>=1.24
 scipy>=1.10

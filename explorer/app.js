@@ -89,7 +89,7 @@ const LEVELS = [
     does: ['Give the overall verdict that moves a draft into the knowledge base — or rejects it — under your name.', 'Take part in the 20 % quote audit and the re-review of pre-policy entries.'],
     gives: 'Accountability: nothing enters the KB without a named person.', link: 'reviewers', linkText: 'The Reviewer team (portal/reviewers.yaml)' },
   { n: 5, name: 'Build', verb: 'Extend the system', who: 'Developers, students with a laptop and a local model', time: 'hours to weeks', needs: 'a copy of the repository', colour: 'var(--ink-2)',
-    does: ['Run the extractor on new papers with a local model; add atlas mappings so lesions can reach new regions; improve the schema.', 'Work on this explorer, the review portal, the screening tools or the CALMaR / Neurodesk integration.'],
+    does: ['Run independent extraction and source review on screened papers with local models; add atlas mappings so lesions can reach new regions; improve the schema.', 'Work on this explorer, the review portal, the screening tools or the CALMaR / Neurodesk integration.'],
     gives: 'New papers, new regions, new tools — and the pipeline that keeps the KB honest.', link: 'contributing', linkText: 'CONTRIBUTING.md' },
 ];
 const REPO_DOCS = { reviewers: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/portal/reviewers.yaml', governance: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/GOVERNANCE.md', contributing: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/CONTRIBUTING.md', screening: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/SCREENING.md', portalDoc: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/PORTAL.md', models: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/MODELS.md' };
@@ -150,7 +150,7 @@ function involve(index) {
     h('h2', { text: 'How to start' }),
     h('p', {}, 'Level 1 needs nothing: you are already here. For levels 2 and 3, open the review portal and choose “I’d like to become a reviewer”: a short form with your name and the email you want to use. The maintainer adds that email to the portal’s allow-list and writes back. From then on you sign in with a one-time code sent to that address. All you need is the email address: there is no account to create and no password (the sign-in page is run by Cloudflare Access, but you do not need a Cloudflare account). The portal keeps your decisions in your browser until you send them, and each one is recorded under your name. ',
       portal ? h('a', { href: portal, target: '_blank', rel: 'noopener', text: 'Open the review portal' }) : 'The review portal is not configured for this build.', '.'),
-    h('p', {}, 'Level 4 is by agreement: approvers are listed by name in the ', h('a', { href: REPO_DOCS.reviewers, target: '_blank', rel: 'noopener', text: 'Reviewer team' }), ' (', h('code', { text: 'portal/reviewers.yaml' }), '), under the rules of the ', h('a', { href: REPO_DOCS.governance, target: '_blank', rel: 'noopener', text: 'governance policy' }), ', and the log keeps who approved what. Level 5 starts with a clone of the repository and ', h('a', { href: REPO_DOCS.contributing, target: '_blank', rel: 'noopener', text: 'CONTRIBUTING.md' }), '; the extractor runs on a local model only, so the papers never leave the machine they are on.'),
+    h('p', {}, 'Level 4 is by agreement: approvers are listed by name in the ', h('a', { href: REPO_DOCS.reviewers, target: '_blank', rel: 'noopener', text: 'Reviewer team' }), ' (', h('code', { text: 'portal/reviewers.yaml' }), '), under the rules of the ', h('a', { href: REPO_DOCS.governance, target: '_blank', rel: 'noopener', text: 'governance policy' }), ', and the log keeps who approved what. Level 5 starts with a clone of the repository and ', h('a', { href: REPO_DOCS.contributing, target: '_blank', rel: 'noopener', text: 'CONTRIBUTING.md' }), '; routine extraction and model review run locally; development audits of open-licence papers and their model provenance are disclosed on the Models page.'),
     h('p', { class: 'small muted', text: 'Papers are read under the project’s institutional access or their open licences; the private part of the portal is a shared folder with a lock for named collaborators, and only Creative-Commons papers are served openly.' }));
 }
 
@@ -191,16 +191,48 @@ function models(index) {
   loadBench();
   const b = state.bench;
   const head = h('div', { class: 'page-head' }, h('h1', { text: 'Models' }), h('span', { class: 'muted small', text: 'which local model reads the papers, and how it was chosen' }));
-  const intro = h('p', {}, 'Findings are drafted by open-weight language models running on the maintainer\'s own computer; no paper text is sent to a cloud service. ',
-    'A model only drafts: every finding is checked against the paper by a person, or for routine findings by a second, different model, before it is approved (',
-    h('a', { href: REPO_DOCS.governance, target: '_blank', rel: 'noopener', text: 'governance' }), '). Which model does the drafting is itself a measured choice, re-tested when new models appear.');
+  const intro = h('p', {}, 'Routine extraction and model review run on the maintainer\'s own computer. ',
+    'Model outputs are provisional. Source verification, mapping into KB drafts and authorized approval are separate stages under the ',
+    h('a', { href: REPO_DOCS.governance, target: '_blank', rel: 'noopener', text: 'governance policy' }), '. The results below distinguish tested candidates from models selected for use; matching outputs do not establish correctness.');
   if (b === 'loading' || b === undefined) return frag(head, intro, h('p', { class: 'loading', text: 'Loading the latest comparison…' }));
   if (!b) return frag(head, intro, h('p', { class: 'notice' }, 'No comparison has been published yet. The method and the decision log are in ', h('a', { href: REPO_DOCS.models, target: '_blank', rel: 'noopener', text: 'MODELS.md' }), '.'));
+  const current = b.current_method;
+  const currentPanel = current ? h('section', {},
+    h('h2', { text: `Current source-evidence workflow · ${current.updated}` }),
+    h('p', { class: 'notice', text: current.status }),
+    h('div', { class: 'tiles' }, current.extractors.map((model, i) => h('div', { class: 'tile' },
+      h('div', { class: 'label', text: `Independent extractor ${i + 1}` }), h('div', { class: 'value model-tag', text: model })))),
+    h('p', { text: current.method }),
+    h('p', { class: 'small', text: current.auditing }),
+    h('div', { class: 'table-wrap' }, h('table', { class: 'models' },
+      h('thead', {}, h('tr', {}, h('th', { text: 'Fresh-source validation paper' }), h('th', { text: 'Reference evidence groups located' }), h('th', { text: 'Both models: call time' }), h('th', { text: 'Qualification' }))),
+      h('tbody', {}, current.papers.map(p => h('tr', {}, h('td', { text: p.key }),
+        h('td', { text: `${p.families_located} / ${p.reference_families}` }), h('td', { text: `About ${Math.round(p.paired_component_minutes)} min` }), h('td', { text: p.qualification })))))),
+    h('p', { class: 'small', text: current.timing_note }), h('p', { class: 'small', text: current.coverage_note }),
+    h('h3', { text: 'Review step' }), h('p', { text: current.review_status }),
+    current.review_validation ? h('div', {},
+      h('p', { class: 'small', text: current.review_validation.scope }),
+      h('div', { class: 'table-wrap' }, h('table', { class: 'models' },
+        h('thead', {}, h('tr', {}, h('th', { text: 'Review paper' }), h('th', { text: 'Time' }), h('th', { text: 'Independent source audit' }))),
+        h('tbody', {}, current.review_validation.papers.map(p => h('tr', {},
+          h('td', {}, h('a', { href: paperHref(p.key), text: p.key })), h('td', { text: `${p.seconds} sec` }), h('td', { text: p.result })))))),
+      h('p', { class: 'notice', text: current.review_validation.decision }),
+      h('ul', {}, current.review_validation.caveats.map(text => h('li', { text })))) : null,
+    current.review_comparison ? h('div', {},
+      h('p', { class: 'small', text: current.review_comparison.scope }),
+      h('div', { class: 'table-wrap' }, h('table', { class: 'models' },
+        h('thead', {}, h('tr', {}, h('th', { text: 'Reviewer tested' }), h('th', { text: 'Call time' }), h('th', { text: 'Observed result' }))),
+        h('tbody', {}, current.review_comparison.models.map(m => h('tr', {},
+          h('td', { text: m.model }), h('td', { text: `${m.seconds} sec` }), h('td', { text: m.finding })))))),
+      h('p', { class: 'small', text: current.review_comparison.caveat })) : null,
+    current.additional_trials ? h('details', {}, h('summary', { text: 'Other tested settings and failed attempts' }),
+      h('ul', {}, current.additional_trials.map(text => h('li', { text })))) : null,
+    h('ul', {}, current.limitations.map(text => h('li', { text })))) : null;
   const roles = Object.entries(b.roles || {}).filter(([k]) => ROLE_TEXT[k]);
   const ms = [...(b.models || [])].sort((x, y) => (y.incumbent - x.incumbent) || (y.eligible - x.eligible) || ((y.link_recall || 0) - (x.link_recall || 0)));
   const thin = (b.papers || []).filter((p) => (p.findings || 0) < 5);
   const graded = (m) => (m.rows || []).some((r) => !r.ungraded && !r.failed);
-  const verdict = (m) => (m.incumbent ? h('span', { class: 'badge badge-model', text: 'in use' })
+  const verdict = (m) => (m.incumbent ? h('span', { class: 'badge badge-model', text: current ? 'used then' : 'in use' })
     : m.eligible ? h('span', { class: 'badge badge-human', title: 'Passes the rule on these papers; adopting it is still a person\'s decision', text: 'eligible' })
       : h('span', { class: 'badge badge-legacy', text: 'not eligible' }));
   const row = (m) => h('tr', {},
@@ -228,9 +260,9 @@ function models(index) {
         r.relationship_agreement !== undefined ? `, same relationship on ${share(r.relationship_agreement)} of them. ` : '. ',
         r.missed_links?.length ? ['Missed, among others: ', r.missed_links.map((x, i) => [i ? '; ' : '', linkLabel(index, x)]), '. '] : null,
         r.new_links?.length ? ['Links the reference does not have: ', r.new_links.map((x, i) => [i ? '; ' : '', linkLabel(index, x)]), '.'] : null))));
-  return frag(head, intro,
-    h('div', { class: 'tiles' }, roles.map(([k, r]) => h('div', { class: 'tile' }, h('div', { class: 'label', text: ROLE_TEXT[k][0] }), h('div', { class: 'value model-tag', text: r.model || '—' }), h('div', { class: 'detail', text: ROLE_TEXT[k][1] })))),
-    h('h2', { text: `Latest comparison · ${b.date}` }),
+  const previousPanel = frag(
+    current ? h('p', { class: 'notice', text: 'The comparison below used the previous drafting method. Its scores cannot be compared directly with the source-evidence pilot above.' }) : h('div', { class: 'tiles' }, roles.map(([k, r]) => h('div', { class: 'tile' }, h('div', { class: 'label', text: ROLE_TEXT[k][0] }), h('div', { class: 'value model-tag', text: r.model || '—' }), h('div', { class: 'detail', text: ROLE_TEXT[k][1] })))),
+    h('h2', { text: `${current ? 'Earlier method comparison' : 'Latest comparison'} · ${b.date}` }),
     h('p', { class: 'small' }, `${plural(ms.length, 'model')} each extracted the same ${plural((b.papers || []).length, 'paper')} the knowledge base already holds (`,
       (b.papers || []).map((p, i) => [i ? ', ' : '', h('a', { href: paperHref(p.key), text: p.key }), ` — ${plural(p.findings || 0, 'finding')}`]),
       '), and each result was scored against those curated findings.'),
@@ -255,6 +287,9 @@ function models(index) {
     h('p', { class: 'small' }, b.sourcing || 'Every model is downloaded from the Ollama library and runs offline on the maintainer\'s computer.',
       ' Open a model for its developer, licence and original weights, then its results paper by paper.'),
     ms.map(detail));
+  return frag(head, intro, currentPanel, current
+    ? h('details', {}, h('summary', { text: `Earlier drafting benchmark · ${b.date} · different method` }), previousPanel)
+    : previousPanel);
 }
 function provenance(m) {
   // where a model comes from: model_sources.yaml (curated) + `ollama show` on the publishing machine
@@ -447,7 +482,7 @@ function overview(index) {
       h('li', {}, h('a', { href: '#/papers', text: 'Papers' }), ' — every cited paper and its findings in page order, to spot-check an extraction against the PDF.'),
       h('li', {}, h('a', { href: '#/coverage', text: 'Coverage' }), ' — how the literature was searched and screened (PRISMA flow), what each evidence gap still needs, and where every candidate paper stands.'),
       state.notebook ? h('li', {}, h('a', { href: NOTEBOOK_PAGE, text: 'The CALMaR notebook' }), ' — a saved run of the pipeline that turns an MRI into a lesion map and a cited report, readable as a page, with buttons to run it in Neurodesk Play.') : null,
-      h('li', {}, h('a', { href: '#/models', text: 'The extraction models' }), ' — which local model drafts the findings, and the comparison behind that choice.'),
+      h('li', {}, h('a', { href: '#/models', text: 'The extraction models' }), ' — the extraction and review models, their measured results and remaining limitations.'),
       h('li', {}, h('a', { href: '#/involve', text: 'Get involved' }), ' — the five levels at which a person can take part, from reading to building; what each needs and what it gives.'),
       index.kb.portal?.url ? h('li', {}, h('a', { href: index.kb.portal.url, target: '_blank', rel: 'noopener', text: 'Review portal' }), ' — for collaborators: check drafts beside the annotated PDFs, screen candidate papers and send decisions back (sign-in with an invited email).') : null));
 }

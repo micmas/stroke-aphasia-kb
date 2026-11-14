@@ -36,7 +36,7 @@ Use **`kb.py`** for routine preparation, extraction, review and inspection. The
 
 1. Select and register the paper, then verify its main PDF.
 2. Extract independently with two local models, preserving source evidence and
-   both original outputs. Long papers can be processed in bounded source sections.
+   both original outputs. Sources over 50 PDF pages wait for source selection.
 3. Reconcile against the source with a separate local reviewer, recording
    corrections, omissions and unresolved issues.
 4. Verify tables and figures, resolve source questions, and map findings to KB
@@ -45,11 +45,20 @@ Use **`kb.py`** for routine preparation, extraction, review and inspection. The
 Dual extraction has shown complementary coverage in source audits, but a measured
 accuracy advantage has not been established; both models can share errors.
 
-**Current implementation:** extraction and local text reconciliation are
-available. Visual verification and mapping of reconciled inventories to KB drafts
+**Current implementation:** extraction and provisional local model review are
+available. Visual verification and mapping of reviewed evidence to KB drafts
 are separate review tasks, not an automated end-to-end process. Successful model
 calls do not approve findings. Existing published findings retain their recorded
 provenance until reviewed replacements are ready.
+
+The **relationship source-evidence workflow** uses `--profile relationships`: two
+models classify original passages and transcribe main-paper tables independently;
+source text is copied with page references rather than rewritten as quotations.
+Its separate local reviewer produces an incomplete triage sheet for imaging relationships,
+personal-factor roles and assessment timing. Every proposal and the original source need checking. Read the
+[current method and limitations](docs/MODELS.md) before starting a new batch.
+Pilot outputs are provisional evidence, not replacement approvals. The public
+corpus has not yet been migrated to this method.
 
 Only the main PDF is supplied to extraction; supplementary files are excluded.
 Original outputs and failed attempts are preserved. Models run locally through

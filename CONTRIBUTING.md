@@ -21,6 +21,11 @@ Install using the [README](README.md), then follow the single
 New papers must be screened, registered and matched to the correct main PDF.
 Two independent local extractions and a separate source review produce provisional
 inventories. Visual verification and mapping into KB drafts remain separate tasks.
+For relationship review, inspect the local `review.html` and its audit before
+mapping: check imaging measures and anatomical definitions, personal-factor roles,
+assessment timing, analysis-specific outcomes, nulls and qualifications. Empty
+fields mean not located, not proven absent. The review aid does not send proposals to
+the portal automatically; portal reviewers see mapped KB drafts.
 Do not treat a successful model run as an approved finding. Supplementary files
 are outside the extraction scope.
 

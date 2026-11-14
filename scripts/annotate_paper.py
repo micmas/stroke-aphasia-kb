@@ -79,6 +79,7 @@ import re
 # source of "quote not found" misses is hyphen / smart-quote / ligature
 # differences between what the agent wrote and what the PDF contains.
 _UNICODE_NORM = str.maketrans({
+    "\u00ad": "-",  # PDF discretionary hyphens use the existing word-join rules.
     "\u2010": "-", "\u2011": "-", "\u2012": "-",
     "\u2013": "-", "\u2014": "-", "\u2015": "-", "\u2212": "-",
     "\u2018": "'", "\u2019": "'", "\u201A": "'", "\u201B": "'",

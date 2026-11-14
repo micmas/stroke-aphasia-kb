@@ -15,7 +15,7 @@ COMMANDS = {
     'intake': ('intake_papers.py', [], 'Prepare downloaded PDFs; no model extraction'),
     'prepare': ('prepare_dual_batch.py', [], 'Create a frozen paper manifest'),
     'extract': ('batch_dual_extract.py', [], 'Preview or run two independent local extractions'),
-    'review': ('review_dual_extract.py', [], 'Preview or run local source reconciliation'),
+    'review': ('review_dual_extract.py', [], 'Preview or generate a local source-review aid; never approve findings'),
     'status': ('kb_status.py', [], 'Inspect knowledge-base content and provenance'),
     'drafts': ('promote.py', ['--list'], 'List existing KB drafts awaiting approval'),
     'inspect': ('review_app.py', [], 'Open the local review workbench (edits are logged)'),

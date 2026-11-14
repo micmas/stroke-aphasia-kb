@@ -34,16 +34,21 @@ def load_manifest(path):
     return data
 
 
-def _batch(manifest, output, models, budget=20000, execute=False, retry_failed=False, continue_on_error=False):
+def _batch(manifest, output, models, budget=20000, execute=False, retry_failed=False, continue_on_error=False, profile='analyses'):
     if budget <= 0 or len(models) != 2:
         raise ValueError('Positive output budget and two models required')
     data = load_manifest(manifest)
+    if profile not in {'analyses', 'relationships'}:
+        raise ValueError('Unknown extraction profile')
+    if profile == 'relationships' and any(r.get('segment_chars') is not None for r in data['papers']):
+        raise ValueError('Relationship pilot requires a fresh unsegmented manifest')
     # Include script/prompt code in the frozen identity so resume cannot mix versions.
     scripts = Path(__file__).parent
     code = {name: hashlib.sha256((scripts/name).read_bytes()).hexdigest()
             for name in ['batch_dual_extract.py', 'dual_extract.py', 'extract_analysis_inventory.py',
-                         'extract.py', 'ollama_client.py', 'quote_check.py', 'strict_data.py', 'source_inventory_segments.py', 'source_limits.py']}
-    config = {'manifest': data, 'models': models, 'max_output_tokens': budget, 'code': code}
+                         'extract.py', 'ollama_client.py', 'quote_check.py', 'strict_data.py', 'source_inventory_segments.py', 'source_limits.py',
+                         'relationship_inventory.py', 'relationship_context.py', 'relationship_prompt.txt', 'relationship_evidence.py', 'annotate_paper.py']}
+    config = {'manifest': data, 'models': models, 'max_output_tokens': budget, 'code': code, 'profile':profile}
     frozen = output / 'batch-config.json'
     if output.exists():
         if not frozen.exists() or json.loads(frozen.read_text()) != config:
@@ -79,6 +84,8 @@ def _batch(manifest, output, models, budget=20000, execute=False, retry_failed=F
             print(f"Preserved failed attempt at {archive / str(attempt)}", flush=True)
         print(f"Extract {row['key']}", flush=True)
         options = {'segment_chars': row['segment_chars']} if row.get('segment_chars') is not None else {}
+        if profile != 'analyses':
+            options['profile'] = profile
         if row.get('allow_long_paper') is True:
             options['allow_long_paper'] = True
         if run_pair(Path(row['pdf']), row['citation'], dest, models, max_tokens=budget, **options):
@@ -91,9 +98,9 @@ def _batch(manifest, output, models, budget=20000, execute=False, retry_failed=F
     return 1 if failures else 0
 
 
-def batch(manifest, output, models, budget=20000, execute=False, retry_failed=False, continue_on_error=False):
+def batch(manifest, output, models, budget=20000, execute=False, retry_failed=False, continue_on_error=False, profile='analyses'):
     if not execute:
-        return _batch(manifest, output, models, budget, False, retry_failed, continue_on_error)
+        return _batch(manifest, output, models, budget, False, retry_failed, continue_on_error, profile)
     output.parent.mkdir(parents=True, exist_ok=True)
     # The lock survives directory creation and is released even after Ctrl-C.
     with (output.parent / (output.name + '.lock')).open('a') as lock:
@@ -101,7 +108,7 @@ def batch(manifest, output, models, budget=20000, execute=False, retry_failed=Fa
             fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
         except BlockingIOError:
             raise ValueError('This batch is already running') from None
-        return _batch(manifest, output, models, budget, True, retry_failed, continue_on_error)
+        return _batch(manifest, output, models, budget, True, retry_failed, continue_on_error, profile)
 
 
 if __name__ == '__main__':
@@ -113,6 +120,8 @@ if __name__ == '__main__':
     p.add_argument('--run', action='store_true', help='Execute inference; default previews only')
     p.add_argument('--retry-failed', action='store_true', help='Archive failed paper attempts and explicitly retry them')
     p.add_argument('--continue-on-error', action='store_true', help='Preserve paper failures and continue through the cohort')
+    p.add_argument('--profile', choices=['analyses','relationships'], default='relationships',
+                   help='relationships: experimental KB/report relationship extraction; requires manual source review')
     a = p.parse_args()
     raise SystemExit(batch(a.manifest.resolve(), a.output_dir.resolve(), a.models,
-                          a.max_output_tokens, a.run, a.retry_failed, a.continue_on_error))
+                          a.max_output_tokens, a.run, a.retry_failed, a.continue_on_error, a.profile))

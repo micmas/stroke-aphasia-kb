@@ -76,6 +76,8 @@ def load_paper(run_dir, row):
     for label in ['A', 'B']:
         d = folder/label
         meta, raw, source = read(d/'meta.json'), read(d/'raw.json'), read(d/'source-units.json')
+        if meta.get('profile') == 'relationships' or raw.get('schema_version') == 'relationships-v1':
+            raise ValueError('Relationship pilot requires manual source review; incompatible automated review schema')
         if meta.get('status') != 'requires_review' or meta.get('citation') != row['citation'] or meta.get('pdf_sha256') != row['pdf_sha256']:
             raise ValueError(f'{label}: incomplete or mismatched extraction')
         if meta.get('source_scope') != 'main_paper_only':
@@ -192,6 +194,9 @@ def call_stage(prompt, directory, model, host, budget, schema):
 
 
 def review_one(run_dir, row, output, model, host, budget, tags):
+    if read(run_dir/'batch-config.json').get('profile') == 'relationships':
+        from relationship_review import review_one as review_relationships
+        return review_relationships(run_dir, row, output, model, host, budget, tags)
     arms, units, hashes = load_paper(run_dir, row)
     reviewer_digest = model_identity(model, tags)
     for arm in arms.values():
@@ -290,7 +295,11 @@ def batch(run_dir, output, model, execute=False, budget=20000, limit=None, host=
         output.mkdir(parents=True, exist_ok=True)
         write(output/'batch-status.json', {'approved': False, 'papers': outcomes, 'skipped': skipped,
               'note': 'No visual verification, KB replacement or approval performed.'})
-        return int(any(r['status'] != 'requires_visual_review' for r in outcomes))
+        failed = sum(r['status'] == 'failed' for r in outcomes)
+        revision = sum(r['status'] == 'requires_revision' for r in outcomes)
+        print(f'Review pass ended: {len(outcomes)-failed} saved review aids; {revision} have unresolved source checks; {failed} failed. Nothing approved or published.', flush=True)
+        print(f'Open each saved review.html and audit.json in {output}. Completeness is checked against original Results, tables and figures, not proposal counts.', flush=True)
+        return int(any(r['status'] not in {'requires_visual_review', 'requires_source_review'} for r in outcomes))
 
 
 if __name__ == '__main__':

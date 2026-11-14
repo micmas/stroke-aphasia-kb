@@ -22,6 +22,7 @@ Design notes
 from __future__ import annotations
 
 import json
+import base64
 import os
 import re
 import sys
@@ -178,7 +179,8 @@ def chat(prompt: str,
          loop_detect: bool = True,
          progress_every: float = 120.0,
          extra_options: dict | None = None,
-         think: bool | None = None) -> dict:
+         think: bool | None = None,
+         images: list[bytes] | None = None) -> dict:
     """POST /api/chat (streamed) and return a result dict.
 
     Returns {text, prompt_tokens, output_tokens, truncated_input,
@@ -197,6 +199,7 @@ def chat(prompt: str,
     against num_predict and are not output), True leaves it on, None
     sends nothing. Thinking tokens, when any arrive, are counted and
     reported separately.
+    images contains local source-image bytes; the caller retains image provenance.
     Raises OllamaError on transport failure or empty output.
     """
     host = normalize_host(host)
@@ -204,7 +207,7 @@ def chat(prompt: str,
         raise OllamaError('Paper processing requires a loopback Ollama host and a local model tag')
     full = (system or "") + prompt
     if num_ctx is None:
-        num_ctx = autosize_num_ctx(full, max_tokens)
+        num_ctx = autosize_num_ctx(full, max_tokens) + 4096 * len(images or [])
 
     options: dict = {
         "num_ctx": num_ctx,
@@ -220,6 +223,8 @@ def chat(prompt: str,
     if system:
         messages.append({"role": "system", "content": system})
     messages.append({"role": "user", "content": prompt})
+    if images:
+        messages[-1]["images"] = [base64.b64encode(data).decode("ascii") for data in images]
 
     payload: dict = {
         "model": model,
@@ -345,10 +350,15 @@ def chat(prompt: str,
               "incomplete. Rerun with a larger max-tokens.")
 
     if not text.strip():
+        if trunc_out:
+            raise OllamaError(
+                f"Output limit reached without a final answer ({n_think:,} thinking tokens). "
+                "The run is incomplete; reduce the task size or explicitly increase the output allowance.")
         raise OllamaError(
             "Ollama returned an empty response. Usually means the model was "
             "killed for memory — try a smaller --num-ctx or a smaller model.")
 
     return {"text": text, "prompt_tokens": n_in, "output_tokens": n_out,
+            "thinking_tokens": n_think,
             "truncated_input": trunc_in, "truncated_output": trunc_out,
             "duration_s": dur_s, "num_ctx": num_ctx, "model": model}

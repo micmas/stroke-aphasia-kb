@@ -38,7 +38,12 @@ def source_units(page_text: str) -> dict[str, dict]:
     return units
 
 
-def build_prompt(units: dict, citation: str) -> str:
+def build_prompt(units: dict, citation: str, profile: str = 'analyses') -> str:
+    if profile == 'relationships':
+        from relationship_inventory import build_prompt as relationships_prompt
+        return relationships_prompt(units, citation)
+    if profile != 'analyses':
+        raise ValueError('Unknown extraction profile')
     source = '\n\n'.join(f'[{key}; PDF page {v["page"]}]\n{v["text"]}' for key,v in units.items())
     return '''Extract a SOURCE-FIRST inventory of this paper's empirical analyses or synthesis claims.
 First identify its study type from the paper. For original studies, inventory their
@@ -100,8 +105,14 @@ Repeated overlapping source units are the same evidence, not separate analyses.
 CITATION: ''' + citation + '\n\nSOURCE:\n' + source
 
 
-def audit_inventory(result: dict, units: dict, citation: str) -> list[str]:
+def audit_inventory(result: dict, units: dict, citation: str, profile: str = 'analyses') -> list[str]:
     issues = []
+    if result.get('schema_version') == 'relationships-v2':
+        from relationship_inventory import audit_compact
+        return audit_compact(result, units) + ([] if result.get('citation') == citation else ['citation changed or missing'])
+    if profile == 'relationships' or result.get('schema_version') == 'relationships-v1':
+        from relationship_inventory import audit
+        issues.extend(audit(result, units))
     if result.get('citation') != citation:
         issues.append('citation changed or missing')
     outcomes = result.get('outcomes')
@@ -153,28 +164,36 @@ def audit_inventory(result: dict, units: dict, citation: str) -> list[str]:
     return issues
 
 
-def run(pdf: Path, citation: str, output: Path, model: str, max_tokens: int = 10000):
+def run(pdf: Path, citation: str, output: Path, model: str, max_tokens: int = 10000, profile: str = 'analyses'):
     if max_tokens <= 0:
         raise ValueError('max_tokens must be positive')
+    if profile not in {'analyses', 'relationships'}:
+        raise ValueError('Unknown extraction profile')
+    if profile == 'relationships':
+        from relationship_evidence import run_evidence
+        return run_evidence(pdf, citation, output, model, max_tokens)
     output.mkdir(parents=True,exist_ok=False)
     started = time.monotonic()
     meta = {'status':'failed','approved':False,'model':model,'citation':citation,
             'source_scope':'main_paper_only','temperature':0.0,'think':False,
-            'max_output_tokens':max_tokens,'automatic_retries':0}
+            'max_output_tokens':max_tokens,'automatic_retries':0,'profile':profile}
     try:
         text,_ = _extract_pdf_text(pdf)
         units = source_units(text)
         if not units or not any(u['text'].strip() for u in units.values()):
             raise ValueError('No extractable PDF text; source preparation required')
-        prompt = build_prompt(units,citation)
+        prompt = build_prompt(units,citation,profile)
+        source_images = []
+
         meta.update(pdf_sha256=hashlib.sha256(pdf.read_bytes()).hexdigest(),
                     prompt_sha256=hashlib.sha256(prompt.encode()).hexdigest())
         (output/'source-units.json').write_text(json.dumps(units,ensure_ascii=False,indent=2))
         (output/'prompt.txt').write_text(prompt)
         try:
             response = chat(prompt,model=model,max_tokens=max_tokens,
-                            num_ctx=_autosize_num_ctx(prompt,max_tokens),temperature=0.0,
-                            think=False,fmt='json',timeout=3600)
+                            num_ctx=_autosize_num_ctx(prompt,max_tokens) + 4096*len(source_images),temperature=0.0,
+                            think=False,fmt='json',timeout=3600,
+                            **({'images': source_images} if source_images else {}))
         except RepetitionLoop as exc:
             (output/'raw.json').write_text(exc.partial)
             raise
@@ -185,7 +204,7 @@ def run(pdf: Path, citation: str, output: Path, model: str, max_tokens: int = 10
             raise ValueError('Truncated inference; retain failure and rerun explicitly with adequate budget')
         result = load_json(raw)
         if not isinstance(result,dict): raise ValueError('Expected inventory object')
-        issues = audit_inventory(result,units,citation)
+        issues = audit_inventory(result,units,citation,profile)
         meta.update(status='requires_review',issues=issues,analysis_count=len(result.get('analyses',[])))
         return 1 if issues else 0
     except Exception as exc:
@@ -195,6 +214,55 @@ def run(pdf: Path, citation: str, output: Path, model: str, max_tokens: int = 10
         (output/'meta.json').write_text(json.dumps(meta,indent=2))
 
 
+def render_table_pages(pdf: Path, output: Path, pages=None):
+    """Render table candidates upright, accounting for the PDF's own rotation.
+
+    A caption locator is a retrieval hint, not proof that a table is a result.
+    Preserve the full page as well as any rotated-text crop for source review.
+    """
+    import math
+    import pymupdf
+    output.mkdir(parents=True, exist_ok=False)
+    source_hash = hashlib.sha256(pdf.read_bytes()).hexdigest()
+    records = []
+    with pymupdf.open(pdf) as doc:
+        for index, page in enumerate(doc):
+            if pages is not None and index + 1 not in pages:
+                continue
+            lines = [line for block in page.get_text('dict')['blocks']
+                     for line in block.get('lines', [])]
+            captions = [line for line in lines if re.match(
+                r'^\s*TABLE\s+\d+(?:\s*[.|:–—-]|\s*$|\s+[A-Z])', ''.join(span['text'] for span in line['spans']), re.I)]
+            if not captions:
+                continue
+            full_path = output / f'page-{index + 1}.png'
+            page.get_pixmap(matrix=pymupdf.Matrix(2, 2)).save(full_path)
+            for ordinal, caption in enumerate(captions, 1):
+                dx, dy = caption['dir']
+                angle = (-round(math.degrees(math.atan2(dy, dx))) - page.rotation) % 360
+                clip = page.rect
+                if abs(dy) > .9:
+                    matching = [line for line in lines if tuple(line['dir']) == tuple(caption['dir'])
+                                and not ''.join(s['text'] for s in line['spans']).startswith('Downloaded')]
+                    box = pymupdf.Rect(matching[0]['bbox'])
+                    for line in matching[1:]:
+                        box |= pymupdf.Rect(line['bbox'])
+                    # Text coordinates are unrotated; raster clipping uses page coordinates.
+                    box = box * page.rotation_matrix
+                    clip = pymupdf.Rect(box.x0-5, box.y0-5, box.x1+5, box.y1+5) & page.rect
+                crop = output / f'page-{index + 1}-table-{ordinal}.png'
+                page.get_pixmap(matrix=pymupdf.Matrix(2, 2).prerotate(angle), clip=clip).save(crop)
+                records.append({'pdf_page': index + 1,
+                                'caption': ''.join(s['text'] for s in caption['spans']),
+                                'source_pdf_sha256': source_hash, 'pdf_rotation': page.rotation,
+                                'additional_rotation': angle, 'clip': list(clip),
+                                'full_page': full_path.name, 'image': crop.name,
+                                'image_sha256': hashlib.sha256(crop.read_bytes()).hexdigest(),
+                                'status': 'requires_visual_source_review'})
+    (output / 'tables.json').write_text(json.dumps(records, indent=2))
+    return records
+
+
 if __name__ == '__main__':
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--pdf',type=Path,required=True)
@@ -202,5 +270,6 @@ if __name__ == '__main__':
     p.add_argument('--output-dir',type=Path,required=True)
     p.add_argument('--model',default='gemma4:31b')
     p.add_argument('--max-output-tokens',type=int,default=10000)
+    p.add_argument('--profile',choices=['analyses','relationships'],default='analyses')
     a=p.parse_args()
-    raise SystemExit(run(a.pdf,a.citation,a.output_dir,a.model,a.max_output_tokens))
+    raise SystemExit(run(a.pdf,a.citation,a.output_dir,a.model,a.max_output_tokens,a.profile))

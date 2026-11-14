@@ -1099,5 +1099,91 @@
   }
  ],
  "rule": "Eligible = zero absent quotes on every paper, and schema issues and over-claiming no worse than the incumbent (docs/MODELS.md §3).",
- "sourcing": "Every model is downloaded with `ollama pull <tag>` from the Ollama library (registry.ollama.ai), which repackages the weights its developer published, usually quantised to about 4 bits per weight. It then runs offline through Ollama on the maintainer's computer: no paper text leaves the machine, and no account with the developer is involved."
+ "sourcing": "Every model is downloaded with `ollama pull <tag>` from the Ollama library (registry.ollama.ai), which repackages the weights its developer published, usually quantised to about 4 bits per weight. It then runs offline through Ollama on the maintainer's computer: no paper text leaves the machine, and no account with the developer is involved.",
+ "current_method": {
+  "updated": "2026-11-14",
+  "status": "Source-evidence workflow available; full-corpus rerun not started",
+  "extractors": [
+   "qwen3.8:27b",
+   "gemma4:31b"
+  ],
+  "method": "Two independent passes classify original passages and transcribe main-paper tables. The script retains source text, page locations and unresolved disagreements. No supplementary files.",
+  "auditing": "Pilot source audits used Codex and Claude on open-licence papers. Routine extraction and experimental model review run locally.",
+  "papers": [
+   {
+    "key": "OsaGarcia2020",
+    "families_located": 10,
+    "reference_families": 10,
+    "paired_component_minutes": 6.99,
+    "qualification": "Some coefficient-level evidence remains in an unresolved table; source evidence located is not an approved clinical finding."
+   },
+   {
+    "key": "White2024",
+    "families_located": 7,
+    "reference_families": 7,
+    "paired_component_minutes": 11.72,
+    "qualification": "All six tables matched checked source values. Chronic outcome status and model feature importance still require careful interpretation."
+   }
+  ],
+  "timing_note": "Both extractors combined; summed original timings of exact reused calls plus new calls. Excludes source review and is not a fresh end-to-end benchmark.",
+  "coverage_note": "Evidence groups were defined in source references before these extraction outputs were inspected. Located evidence is not clinical extraction precision, proof of exhaustive completeness, or approval.",
+  "review_status": "gemma4:26b is used as a provisional source-review aid. It supplies flagged proposals and passages still to read, not a complete relationship list or automatic approval. Independent source verification remains mandatory.",
+  "limitations": [
+   "Complex table headers and formatting can remain unresolved.",
+   "Figures and source contradictions require independent source review.",
+   "Neither extractor has been declared a universal winner; both remain in the tested method.",
+   "These results do not establish clinical validity or approve any replacement KB findings.",
+   "Review proposals are incomplete; clinical and anatomical interpretation must use the original evidence and the coverage list, not proposal counts."
+  ],
+  "review_comparison": {
+   "scope": "Exploratory matched eight-passage block from OsaGarcia2020; same prompt and schema. Not a whole-paper accuracy ranking.",
+   "models": [
+    {
+     "model": "gemma4:26b",
+     "seconds": 19,
+     "units": 8,
+     "finding": "Claude found no critical error in this block, but incorrect category and source-link/context problems remained."
+    },
+    {
+     "model": "granite4.2:30b",
+     "seconds": 184,
+     "units": 3,
+     "finding": "Claude found one critical merged-analysis error and unsupported role assignments. Not selected for the next pilot."
+    },
+    {
+     "model": "ornith-1.5:122b",
+     "seconds": 73,
+     "units": 10,
+     "finding": "Exploratory local check: non-verbatim labels failed the contract. Not independently audited by Claude and not selected."
+    }
+   ],
+   "caveat": "Unit counts are output sizes, not correct-finding counts. Failed/confounded development runs are excluded from this matched comparison and preserved in local audit records."
+  },
+  "review_validation": {
+   "scope": "Review prompt tuned on OsaGarcia2020, then frozen for White2024 and checked against its pre-existing blind reference. Final diagnostic/display safeguards were checked on the saved outputs without changing model responses.",
+   "papers": [
+    {
+     "key": "OsaGarcia2020",
+     "seconds": 56,
+     "result": "Development regression: 22 proposals. Seven unflagged proposals were correct, but flagged errors and omitted relationship proposals remained. Missing Results passages were listed for review."
+    },
+    {
+     "key": "White2024",
+     "seconds": 239,
+     "result": "First review validation: 39 proposals; 3 of 7 relationship families covered, 4 partial. Of 8 unflagged proposals, 2 were correct and 6 needed discarding (role errors, methods or non-results). All missing Results passages remained listed."
+    }
+   ],
+   "decision": "Usable only as a triage sheet over complete literal evidence. Checking every proposal does not establish paper completeness. No findings were approved or replaced.",
+   "caveats": [
+    "The review aid has not been shown to save human review time. Start with about 20 papers and check usability on five.",
+    "Repeated calls differed despite the same temperature, seed and prompt. Saved outputs and model digests are essential; deterministic inference is not established.",
+    "Timing and role guesses can be wrong. Runaway context selections are held; every category needs source verification."
+   ]
+  },
+  "additional_trials": [
+   "Gemma reasoning enabled: one difficult block exhausted 12,000 output tokens in 150 seconds without a final answer; not adopted.",
+   "Ornith full-paper review: the study-frame response enumerated excessive source IDs and hit the 4,000-token limit after 105 seconds; no completed full-paper comparison.",
+   "Gemma plain JSON mode: a matched block took 23 seconds but failed the required category schema; not adopted."
+  ]
+ }
 }
