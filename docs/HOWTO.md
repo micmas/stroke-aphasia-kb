@@ -74,6 +74,10 @@ manifest but does not call a model. It records source hashes and licence metadat
 resolves known filename aliases by DOI, and lists missing sources separately.
 Without `--papers`, preparation selects the entire registered bibliography; use
 that for a deliberate full-corpus run, not as a substitute for screening new papers.
+Unregistered PDFs already excluded by the screening register are listed separately
+as `screened_out_unregistered_pdfs`; they do not need identification again. Their
+files and screening history are preserved. An unresolved or newly included PDF
+without a bibliography entry still needs registration before extraction.
 
 For the relationship workflow below, omit `--segment-chars`: it creates small
 passage and table tasks internally. Main-PDF appendices remain included; separate

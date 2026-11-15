@@ -7,6 +7,7 @@ import re
 from pathlib import Path
 from strict_data import load_yaml
 from source_limits import source_hold
+from screening import stage_of
 
 
 def prepare(repo, output, papers=None, segment_chars=None, allow_long_papers=False):
@@ -66,15 +67,28 @@ def prepare(repo, output, papers=None, segment_chars=None, allow_long_papers=Fal
     used = {Path(p['pdf']).stem for p in papers}
     unregistered = sorted(p.stem for p in (repo/'papers').glob('*.pdf')
                           if citation_stem(p) not in registered and p.stem not in used and not p.stem.endswith('_annotated'))
+    excluded = []
+    for stem in list(unregistered):
+        matches = [c for c in candidates if c.get('pdf_file') == stem + '.pdf']
+        if len(matches) != 1:
+            continue
+        candidate = matches[0]
+        stage, reason = stage_of(candidate)
+        if stage in {'excluded_ta', 'excluded_ft', 'duplicate'}:
+            excluded.append({'pdf_stem': stem, 'screening_id': candidate.get('id'),
+                             'stage': stage, 'reason': reason,
+                             'duplicate_of': candidate.get('duplicate_of')})
+            unregistered.remove(stem)
     data = {'source_scope': 'main_paper_only',
             'method': 'source-inventory-v2: two independent extractions plus separate source review',
             'selection': ('Explicit recovery subset: '+', '.join(selected_keys)+'. ' if selected_keys is not None else 'Every registered bibliography paper, regardless of prior extraction or approval. ')+
                          'Only main PDFs are queued. No supplements or annotated copies. Licence metadata is provenance, not permission for external sharing.',
             'papers': papers, 'pending': pending,
+            'screened_out_unregistered_pdfs': excluded,
             'unregistered_pdf_stems_requiring_identification': unregistered}
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(data, indent=2)+'\n')
-    print(f'{len(papers)} ready; {len(pending)} need source preparation; {len(unregistered)} unregistered PDFs need identification')
+    print(f'{len(papers)} ready; {len(pending)} need source preparation; {len(unregistered)} unregistered PDFs need identification; {len(excluded)} already screened out')
     return data
 
 
