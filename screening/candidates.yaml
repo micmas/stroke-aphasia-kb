@@ -12425,6 +12425,15 @@ candidates:
     date: '2026-11-12'
     seq: 300
     record: 20261112T005519Z-02_screen_m-massontrottier_c0507.json
+  - stage: title_abstract
+    decision: include
+    by: micmas
+    date: '2026-11-16'
+    seq: 323
+    note: >-
+      At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
+      This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
+      decisions remain in history.
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_uploaded_at: '2026-11-12T00:03:50.613Z'
@@ -21660,6 +21669,15 @@ candidates:
     date: '2026-10-30'
     seq: 102
     note: Research Square preprint of an included journal article
+  - stage: full_text
+    decision: unsure
+    by: micmas
+    date: '2026-11-16'
+    seq: 324
+    note: >-
+      At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
+      This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
+      decisions remain in history.
   suggestion_ft:
     decision: exclude
     reason: duplicate_report
@@ -41697,6 +41715,15 @@ candidates:
     by: michele
     date: '2026-11-10'
     seq: 290
+  - stage: full_text
+    decision: unsure
+    by: micmas
+    date: '2026-11-16'
+    seq: 325
+    note: >-
+      At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
+      This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
+      decisions remain in history.
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_file: C2140_Xing2018.pdf
@@ -333314,6 +333341,15 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 223
+  - stage: full_text
+    decision: unsure
+    by: micmas
+    date: '2026-11-16'
+    seq: 326
+    note: >-
+      At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
+      This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
+      decisions remain in history.
   pdf_file: C21300_Nouwens2013.pdf
 - id: C21301
   doi: 10.1111/j.1460-6984.2012.00202.x
@@ -346707,7 +346743,16 @@ candidates:
     date: '2026-11-12'
     by: micmas
     note: User supplied PDF from calmar-papers/_set_aside; linked without changing screening decisions.
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: micmas
+    date: '2026-11-16'
+    seq: 327
+    note: >-
+      At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
+      This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
+      decisions remain in history.
   pdf_file: C22220_Gilbert2025.pdf
 - id: C22221
   doi: 10.1523/jneurosci.1263-24.2024
@@ -346723,7 +346768,16 @@ candidates:
     date: '2026-11-12'
     by: micmas
     note: User supplied PDF from calmar-papers/_set_aside; linked without changing screening decisions.
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: micmas
+    date: '2026-11-16'
+    seq: 328
+    note: >-
+      At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
+      This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
+      decisions remain in history.
   pdf_file: C22221_Willis2025.pdf
 - id: C22222
   doi: 10.1097/wnn.0000000000000355
@@ -346738,7 +346792,16 @@ candidates:
     date: '2026-11-12'
     by: micmas
     note: User supplied PDF from calmar-papers/_set_aside; linked without changing screening decisions.
-  screening: []
+  screening:
+  - stage: title_abstract
+    decision: include
+    by: micmas
+    date: '2026-11-16'
+    seq: 329
+    note: >-
+      At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
+      This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
+      decisions remain in history.
   pdf_file: C22222_Hobden2024.pdf
 - id: C22224
   doi: 10.1002/hbm.70619
