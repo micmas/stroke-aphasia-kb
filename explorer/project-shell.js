@@ -38,7 +38,7 @@
     const link = (label, url, className) => {
       const a = document.createElement('a'); a.textContent = label; a.href = url;
       if (className) a.className = className;
-      if (new URL(url).hostname === location.hostname) a.setAttribute('aria-current', 'site');
+      if (new URL(url).hostname === location.hostname) a.setAttribute('aria-current', 'location');
       return a;
     };
     nav.append(link('Aphasia KB', 'https://aphasia-kb.app/', 'project-home'));

@@ -56,7 +56,7 @@
 .project-nav a:hover { text-decoration: underline; }
 .project-nav .project-home { font-weight: 700; color: var(--grape); }
 .project-nav .project-links { display: flex; flex-wrap: wrap; gap: .6rem 1.25rem; align-items: center; }
-.project-nav a[aria-current="site"] { text-decoration: underline; text-underline-offset: 5px; }
+.project-nav a[aria-current="location"] { text-decoration: underline; text-underline-offset: 5px; }
 .project-nav .project-theme { margin-left: auto; display: flex; align-items: center; gap: .5rem; font: inherit; color: var(--ink-2); white-space: nowrap; }
 .project-nav select { font: inherit; color: var(--ink); background: var(--surface); border: 1px solid var(--line-strong); border-radius: 4px; padding: .3rem .4rem; max-width: 130px; }
 .project-nav :focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
