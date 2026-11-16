@@ -832,7 +832,7 @@ function prismaDiagram(index) {
     return wrapped;
   });
   const contentHeight = (labels, w) => boxH + wrapLabels(labels, w).length * 16;
-  const box = ({ x, y: yy, w, title, n, sub, link, cls = '', params = null, id = null, tip = null, height = boxH }) => {
+  const box = ({ x, y: yy, w, title, n, sub, link, cls = '', params = null, id = null, tip = null, height = boxH, breakdown = null }) => {
     const subLines = Array.isArray(sub) ? wrapLabels(sub, w) : [];
     height = Math.max(height, boxH + subLines.length * 16);
     if (params && id) link = coverageHref({ ...params, box: id });
@@ -847,9 +847,12 @@ function prismaDiagram(index) {
     if (link) {
       const a = s('a', { href: link, class: 'pr-link' });
       if (params && cls.includes('pr-out')) {
-        a.addEventListener('mouseenter', (e) => showTip(e, index, title, params));
+        a.addEventListener('mouseenter', (e) => showTip(e, index, title, params, breakdown));
         a.addEventListener('mousemove', moveTip);
         a.addEventListener('mouseleave', hideTip);
+        a.setAttribute('tabindex', '0');
+        a.addEventListener('focus', () => { const r = a.getBoundingClientRect(); showTip({ clientX: r.left, clientY: r.bottom }, index, title, params, breakdown); });
+        a.addEventListener('blur', hideTip);
       } else a.append(s('title', { text: `${title}: ${n}${sub ? ` (${sub})` : ''}${tip ? `\n${tip}` : ''}\n— click to open these candidates` }));
       a.append(g);
       return a;
@@ -865,9 +868,6 @@ function prismaDiagram(index) {
   const taReasons = fmtReasons(db.excludedTitleAbstractReasons);
   const ftReasons = fmtReasons(db.excludedFullTextReasons);
   const otherReasons = fmtReasons(ot.excludedFullTextReasons);
-  const taH = contentHeight(taReasons, side);
-  const otherH = contentHeight(otherReasons, side);
-  const ftH = contentHeight(ftReasons, side);
 
   // Identification
   const dbSub = Object.entries(idn.databases.byDatabase || {}).map(([k, v]) => `${DATABASE_NAMES[k] || k}: ${v.toLocaleString()}`);
@@ -890,29 +890,29 @@ function prismaDiagram(index) {
   y += identificationH + rowGap;
   // row 1
   nodes.push(box({ x: colL, y, w: main, title: 'Records screened (title/abstract)', n: db.screened, sub: db.awaitingTitleAbstract ? `${db.awaitingTitleAbstract} awaiting` : null, link: coverageHref({ arm: 'databases', stage: dbStages }) }));
-  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Excluded at title/abstract', n: db.excludedTitleAbstract, sub: taReasons, params: { arm: 'databases', stage: 'excluded_ta' }, id: 'excluded_ta', cls: 'pr-side pr-out' }));
+  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Excluded at title/abstract', n: db.excludedTitleAbstract, breakdown: taReasons, params: { arm: 'databases', stage: 'excluded_ta' }, id: 'excluded_ta', cls: 'pr-side pr-out' }));
   nodes.push(box({ x: colR, y, w: main, title: 'Reports sought for retrieval', n: ot.sought, link: coverageHref({ arm: 'other', stage: dbStages }) }));
   nodes.push(box({ x: sideX(colR), y, w: side, title: 'Not retrieved', n: ot.notRetrieved, params: { arm: 'other', stage: 'not_retrieved' }, id: 'other_not_retrieved', cls: 'pr-side pr-out' }));
   arrowV(colL + main / 2, rows[0] + identificationH, y); arrowV(colR + main / 2, rows[0] + identificationH, y);
   arrowH(colL + main, sideX(colL), y + boxH / 2); arrowH(colR + main, sideX(colR), y + boxH / 2);
   rows.push(y);
-  y += taH + rowGap;
+  y += boxH + rowGap;
   // row 2
   nodes.push(box({ x: colL, y, w: main, title: 'Reports sought for retrieval', n: db.sought, link: coverageHref({ arm: 'databases', stage: soughtStages }) }));
   nodes.push(box({ x: sideX(colL), y, w: side, title: 'Not retrieved', n: db.notRetrieved, params: { arm: 'databases', stage: 'not_retrieved' }, id: 'db_not_retrieved', cls: 'pr-side pr-out' }));
   nodes.push(box({ x: colR, y, w: main, title: 'Reports assessed for eligibility', n: ot.assessed, sub: (ot.awaitingFullText + ot.unsureFullText) ? `${ot.awaitingFullText + ot.unsureFullText} awaiting decision` : null, link: coverageHref({ arm: 'other', stage: ['excluded_ft', 'included', 'awaiting_ft', 'unsure_ft', 'awaiting_ta', 'unsure_ta', 'excluded_ta'] }) }));
-  nodes.push(box({ x: sideX(colR), y, w: side, title: 'Excluded', n: ot.excludedFullText, sub: otherReasons, params: { arm: 'other', stage: ['excluded_ft', 'excluded_ta'] }, id: 'other_excluded', cls: 'pr-side pr-out' }));
+  nodes.push(box({ x: sideX(colR), y, w: side, title: 'Excluded', n: ot.excludedFullText, breakdown: otherReasons, params: { arm: 'other', stage: ['excluded_ft', 'excluded_ta'] }, id: 'other_excluded', cls: 'pr-side pr-out' }));
   arrowV(colL + main / 2, rows[1] + boxH, y); arrowV(colR + main / 2, rows[1] + boxH, y);
   arrowH(colL + main, sideX(colL), y + boxH / 2); arrowH(colR + main, sideX(colR), y + boxH / 2);
   rows.push(y);
-  y += otherH + rowGap;
+  y += boxH + rowGap;
   // row 3 (databases arm only)
   nodes.push(box({ x: colL, y, w: main, title: 'Reports assessed for eligibility', n: db.assessed, sub: (db.awaitingFullText + db.unsureFullText) ? `${db.awaitingFullText + db.unsureFullText} awaiting decision` : null, link: coverageHref({ arm: 'databases', stage: ['excluded_ft', 'included', 'awaiting_ft', 'unsure_ft'] }) }));
-  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Excluded at full text', n: db.excludedFullText, sub: ftReasons, params: { arm: 'databases', stage: 'excluded_ft' }, id: 'excluded_ft', cls: 'pr-side pr-out' }));
+  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Excluded at full text', n: db.excludedFullText, breakdown: ftReasons, params: { arm: 'databases', stage: 'excluded_ft' }, id: 'excluded_ft', cls: 'pr-side pr-out' }));
   arrowV(colL + main / 2, rows[2] + boxH, y);
   arrowH(colL + main, sideX(colL), y + boxH / 2);
   rows.push(y);
-  y += ftH + rowGap;
+  y += boxH + rowGap;
   // row 4: included (merged)
   const incX = (W - main) / 2;
   nodes.push(box({ x: incX, y, w: main, title: 'Papers included', n: inc.total, sub: `${inc.approvedFindings} approved findings`, link: coverageHref({ stage: 'included' }), cls: 'pr-included' }));
@@ -955,7 +955,7 @@ function tipEl() {
   if (!t) { t = h('div', { id: 'prtip', class: 'prtip', role: 'tooltip' }); document.body.append(t); }
   return t;
 }
-function showTip(e, index, title, params) {
+function showTip(e, index, title, params, breakdown = null) {
   const sc = index.screening;
   const rows = boxRows(index, params);
   const idn = sc.prisma?.identification || {};
@@ -963,9 +963,9 @@ function showTip(e, index, title, params) {
   const extra = params.stage === 'duplicate'
     ? [`${idn.duplicatesRemoved ?? 0} duplicates merged on import and after; ${idn.removedByRule || 0} grey-literature records removed by rule (${Object.entries(idn.removedByRuleTypes || {}).map(([k, v]) => `${k} ${v}`).join(', ') || 'none'}). Counted, not listed.`] : [];
   t.replaceChildren(h('b', { text: title }),
-    rows.length ? h('ul', {}, rows.slice(0, 12).map((c) => h('li', {}, h('span', { class: 'ay', text: sc.authorYear(c) }), ' — ', h('span', { text: whyText(index, c) })))) : (extra.length ? '' : h('p', { class: 'muted', text: 'No paper listed here.' })),
+    breakdown ? h('ul', {}, breakdown.length ? breakdown.map(text => h('li', { text })) : h('li', { text: 'No exclusions' })) : rows.length ? h('ul', {}, rows.slice(0, 12).map((c) => h('li', {}, h('span', { class: 'ay', text: sc.authorYear(c) }), ' — ', h('span', { text: whyText(index, c) })))) : (extra.length ? '' : h('p', { class: 'muted', text: 'No paper listed here.' })),
     ...extra.map((x) => h('p', { class: 'small muted', text: x })),
-    rows.length > 12 ? h('p', { class: 'small muted', text: `+${rows.length - 12} more — click for the full list` }) : rows.length ? h('p', { class: 'small muted', text: 'Click for the list with titles' }) : '');
+    !breakdown && rows.length > 12 ? h('p', { class: 'small muted', text: `+${rows.length - 12} more — click for the full list` }) : rows.length ? h('p', { class: 'small muted', text: 'Click for the list with titles' }) : '');
   t.classList.add('on'); moveTip(e);
 }
 function moveTip(e) {
