@@ -284,8 +284,8 @@ def batch(run_dir, output, model, execute=False, budget=20000, limit=None, host=
         except BlockingIOError: raise ValueError('Extraction/review is running. Stop extraction with Ctrl-C before local review.') from None
         tags = identities(host); model_identity(model, tags)
         outcomes = []
-        for row in ready:
-            print('Review '+row['key'], flush=True)
+        for position, row in enumerate(ready, start=1):
+            print(f"[{position}/{len(ready)}] Review {row['key']}", flush=True)
             try:
                 status = review_one(run_dir, row, output/row['key'], model, host, budget, tags)
                 outcomes.append({'paper': row['key'], 'status': status})
