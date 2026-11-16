@@ -11,7 +11,10 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2352489c'/%3E%3Ccircle cx='11' cy='13' r='4' fill='%234062bb'/%3E%3Ccircle cx='21' cy='19' r='4' fill='%23f45b69'/%3E%3Cpath d='M13.5 15.5l5 1.5' stroke='%23fff' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
   <style>
-    main.welcome { max-width: 860px; }
+    main.welcome { max-width: 960px; padding-top: 3rem; }
+    .welcome h1 { font: 400 clamp(2.2rem, 5vw, 3.4rem)/1.15 Georgia, serif; color: var(--ink); margin: 1rem 0; }
+    .welcome .choices { margin-top: 2.5rem; gap: 2rem; }
+    .welcome .choice { padding: 1.5rem; gap: 1rem; }
     .welcome .lead { font-size: 1.05rem; max-width: 62ch; }
     .choices { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin: 1.4rem 0; align-items: start; }
     .choice { border: 1px solid var(--line-strong); border-radius: var(--radius); padding: 1.1rem 1.2rem 1.2rem; background: var(--surface); display: grid; gap: .6rem; }
@@ -40,20 +43,22 @@
     <nav class="nav" aria-label="Site"><a href="https://aphasia-kb.app/">Public explorer</a></nav>
   </header>
   <main id="main" class="welcome" tabindex="-1">
-    <h1>Review portal</h1>
-    <p class="lead">Here, invited reviewers check what the stroke aphasia knowledge base says against the papers it came from: each draft beside its annotated paper, and the queue of papers waiting to be screened. The portal is open to approved reviewers. The knowledge base itself is public, in the <a href="https://aphasia-kb.app/">explorer</a>.</p>
+    <p class="eyebrow">Stroke aphasia knowledge base · Review team</p>
+    <h1>Help check the evidence.</h1>
+    <p class="lead">Read papers, check findings and help decide what belongs in the knowledge base. Clinicians, researchers and students are welcome.</p>
+    <p class="byline">A research project led by Michele Masson-Trottier. <a href="https://aphasia-kb.app/#/involve">Meet the project and find your role →</a></p>
 
     <div class="choices">
       <section class="choice" aria-labelledby="have">
-        <h2 id="have">I'm already an approved reviewer</h2>
-        <p>Sign in with the email address you were approved with. You get a one-time code by email: no account to create, no password.</p>
-        <p class="small muted">The sign-in page is run by Cloudflare Access. You do not need a Cloudflare account.</p>
+        <h2 id="have">Already a reviewer?</h2>
+        <p>Use your invited email address. We’ll send a code to sign you in.</p>
+        <p class="small muted">No password or Cloudflare account needed.</p>
         <a class="btn-big" href="/api/signin">Sign in</a>
       </section>
 
       <section class="choice" aria-labelledby="want">
-        <h2 id="want">I'd like to become a reviewer</h2>
-        <p id="askIntro">Tell us who you are. The maintainer reads every request and answers by email. All you need to review is an email address: you sign in with a code sent to it, with no account to create. <a href="https://aphasia-kb.app/#/involve">What reviewing involves</a>.</p>
+        <h2 id="want">Join the team</h2>
+        <p id="askIntro">Tell us a little about yourself. The project maintainer will reply by email. <a href="https://aphasia-kb.app/#/involve">What does reviewing involve?</a></p>
         <button class="btn-big quiet" id="askOpen" type="button" aria-expanded="false" aria-controls="askForm">Ask to join</button>
         <form class="ask" id="askForm" hidden novalidate>
           <label>Name <input name="name" autocomplete="name" required maxlength="120"></label>
@@ -70,7 +75,7 @@
     </div>
   </main>
   <footer class="app-footer">
-    Findings in the knowledge base are group-level literature associations with their citations and review provenance, not clinical predictions. Research use only.
+    Research use only. Findings describe study results, not individual clinical predictions.
     · <a href="https://aphasia-kb.app/">Public explorer</a>
     · <a href="https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/PORTAL.md" rel="noopener">How the portal works</a>
   </footer>
@@ -92,7 +97,7 @@
           const out = await res.json().catch(() => ({}));
           if (!res.ok || out.error) throw new Error(out.error || 'The request could not be sent. Please try again in a moment.');
           form.hidden = true; document.getElementById('askIntro').hidden = true;
-          done.textContent = `Thank you, ${body.name}. Your request has been sent to the maintainer, who will answer at ${body.email}. Once you have been added, come back to this page and choose "I'm already an approved reviewer".`;
+          done.textContent = `Thank you, ${body.name}. Your request has been sent to the maintainer, who will answer at ${body.email}. Once you have been added, come back to this page and choose "Already a reviewer?".`;
           done.hidden = false; done.focus?.();
         } catch (err) {
           say(err.message.includes('fetch') ? 'The request could not be sent. Check your connection and try again.' : err.message);

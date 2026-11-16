@@ -136,22 +136,21 @@ function wrapWords(text, width) { const out = []; let cur = ''; for (const w of 
 function wrapText(textEl, text, width, x, lineH) { wrapWords(text, width).forEach((t, i) => textEl.append(sv('tspan', { x, dy: i ? lineH : 0, text: t }))); }
 
 function involve(index) {
-  const portal = index.kb.portal?.url;
-  return frag(
-    h('div', { class: 'page-head' }, h('h1', { text: 'Get involved' }), h('span', { class: 'muted small', text: 'five levels, from reading to building' })),
-    h('p', {}, 'The knowledge base is built in the open and checked by people. Every claim in it points at a passage of a paper, and nothing becomes part of it until a named person has read that passage and agreed. That takes many hands, and there is a place for everyone, from ten minutes of screening abstracts to running the pipeline. The figure shows the five levels; each one stands on its own, and you can stay at any of them.'),
-    h('div', { class: 'involve-wrap' }, involvementFigure(index)),
-    h('div', { class: 'involve-grid' }, LEVELS.map((lv) => h('section', { class: 'involve-card', style: `border-top-color:${lv.colour}` },
-      h('h2', {}, h('span', { class: 'inv-badge', style: `background:${lv.colour}`, text: String(lv.n) }), ` ${lv.name} — ${lv.verb}`),
-      h('p', { class: 'small muted', text: `For ${lv.who.charAt(0).toLowerCase()}${lv.who.slice(1)} · ${lv.time} · needs ${lv.needs}.` }),
-      h('ul', {}, lv.does.map((d) => h('li', { text: d }))),
-      h('p', { class: 'small' }, h('b', { text: 'What it gives the KB: ' }), lv.gives),
-      h('p', { class: 'small' }, h('a', { href: levelHref(index, lv), target: lv.link === '#/matrix' ? null : '_blank', rel: 'noopener', text: lv.linkText }))))),
-    h('h2', { text: 'How to start' }),
-    h('p', {}, 'Level 1 needs nothing: you are already here. For levels 2 and 3, open the review portal and choose “I’d like to become a reviewer”: a short form with your name and the email you want to use. The maintainer adds that email to the portal’s allow-list and writes back. From then on you sign in with a one-time code sent to that address. All you need is the email address: there is no account to create and no password (the sign-in page is run by Cloudflare Access, but you do not need a Cloudflare account). The portal keeps your decisions in your browser until you send them, and each one is recorded under your name. ',
-      portal ? h('a', { href: portal, target: '_blank', rel: 'noopener', text: 'Open the review portal' }) : 'The review portal is not configured for this build.', '.'),
-    h('p', {}, 'Level 4 is by agreement: approvers are listed by name in the ', h('a', { href: REPO_DOCS.reviewers, target: '_blank', rel: 'noopener', text: 'Reviewer team' }), ' (', h('code', { text: 'portal/reviewers.yaml' }), '), under the rules of the ', h('a', { href: REPO_DOCS.governance, target: '_blank', rel: 'noopener', text: 'governance policy' }), ', and the log keeps who approved what. Level 5 starts with a clone of the repository and ', h('a', { href: REPO_DOCS.contributing, target: '_blank', rel: 'noopener', text: 'CONTRIBUTING.md' }), '; routine extraction and model review run locally; development audits of open-licence papers and their model provenance are disclosed on the Models page.'),
-    h('p', { class: 'small muted', text: 'Papers are read under the project’s institutional access or their open licences; the private part of the portal is a shared folder with a lock for named collaborators, and only Creative-Commons papers are served openly.' }));
+  return h('div', { class: 'editorial-page' },
+    h('p', { class: 'eyebrow', text: 'Open research · shared work' }),
+    h('h1', { text: 'Help make the evidence useful.' }),
+    h('p', { class: 'lead', text: 'We welcome clinicians, researchers and students interested in aphasia, brain imaging and recovery. You can contribute a paper, check a finding or help develop the tools.' }),
+    h('div', { class: 'ways-to-help' },
+      h('section', {}, h('h2', { text: 'Screen papers' }), h('p', { text: 'Read titles and abstracts, then full texts, to decide which studies belong in the knowledge base. Record a reason so others can follow the decision.' })),
+      h('section', {}, h('h2', { text: 'Check findings' }), h('p', { text: 'Compare a proposed finding with its source paper. Correct errors, flag missing context and check who the result applies to.' })),
+      h('section', {}, h('h2', { text: 'Build and test' }), h('p', {}, 'Help improve extraction, atlas mapping or reports. Start with the ', h('a', { href: REPO_DOCS.contributing, text: 'contribution guide' }), '.'))),
+    h('h2', { text: 'Join the review team' }),
+    h('p', { text: 'Tell us a little about your background. Once invited, you can sign in by email and choose a task in the portal. Your decisions are recorded under your name.' }),
+    h('a', { class: 'editorial-button', href: 'https://review.aphasia-kb.app/welcome/', text: 'Ask to join' }),
+    h('h2', { text: 'Who is responsible?' }),
+    h('p', {}, 'Michele Masson-Trottier leads the project. People set its research questions, screening criteria and approval policy. AI assists with coding and extracting evidence; it can miss or misread a result. Each finding keeps its source and review history.'),
+    h('p', {}, 'Final approval is a separate role, agreed with the maintainer. See the ', h('a', { href: REPO_DOCS.reviewers, text: 'reviewer team' }), ' and ', h('a', { href: REPO_DOCS.governance, text: 'review and approval policy' }), '.'),
+    h('p', { class: 'small muted', text: 'The knowledge base and code are public. Access to paper PDFs depends on their licences and reviewer permissions.' }));
 }
 
 // ---------------------------------------------------------------------------
@@ -190,14 +189,12 @@ function loadBench() {
 function models(index) {
   loadBench();
   const b = state.bench;
-  const head = h('div', { class: 'page-head' }, h('h1', { text: 'Models' }), h('span', { class: 'muted small', text: 'which local model reads the papers, and how it was chosen' }));
-  const intro = h('p', {}, 'Routine extraction and model review run on the maintainer\'s own computer. ',
-    'Model outputs are provisional. Source verification, mapping into KB drafts and authorized approval are separate stages under the ',
-    h('a', { href: REPO_DOCS.governance, target: '_blank', rel: 'noopener', text: 'governance policy' }), '. The results below distinguish tested candidates from models selected for use; matching outputs do not establish correctness.');
+  const head = h('div', { class: 'page-head' }, h('h1', { text: 'Models' }), h('span', { class: 'muted small', text: 'How AI assists the research' }));
+  const intro = h('p', { class: 'lead' }, 'AI helps us find and organise evidence in papers. We test what it gets right and what it misses. Agreement between models is not proof that a finding is correct.');
   if (b === 'loading' || b === undefined) return frag(head, intro, h('p', { class: 'loading', text: 'Loading the latest comparison…' }));
   if (!b) return frag(head, intro, h('p', { class: 'notice' }, 'No comparison has been published yet. The method and the decision log are in ', h('a', { href: REPO_DOCS.models, target: '_blank', rel: 'noopener', text: 'MODELS.md' }), '.'));
   const current = b.current_method;
-  const currentPanel = current ? h('section', {},
+  const currentPanel = current ? h('details', { class: 'editorial-details' }, h('summary', { text: 'Current method, test results and limitations' }),
     h('h2', { text: `Current source-evidence workflow · ${current.updated}` }),
     h('p', { class: 'notice', text: current.status }),
     h('div', { class: 'tiles' }, current.extractors.map((model, i) => h('div', { class: 'tile' },
@@ -291,7 +288,15 @@ function models(index) {
     h('p', { class: 'small' }, b.sourcing || 'Every model is downloaded from the Ollama library and runs offline on the maintainer\'s computer.',
       ' Open a model for its developer, licence and original weights, then its results paper by paper.'),
     ms.map(detail));
-  return frag(head, intro, currentPanel, current
+  return frag(head, intro, current ? h('section', { class: 'model-overview' },
+    h('h2', { text: 'From paper to finding' }),
+    h('ol', {},
+      h('li', {}, h('strong', { text: 'Extract. ' }), `${current.extractors.join(' and ')} independently collect relationships and supporting passages from the main paper.`),
+      h('li', {}, h('strong', { text: 'Check. ' }), 'Model checks help identify errors. A person still needs to verify the source, context and completeness.'),
+      h('li', {}, h('strong', { text: 'Approve. ' }), 'Source-checked evidence is mapped into KB drafts. Approval is recorded separately, with the reviewer’s identity.')),
+    h('p', { class: 'notice', text: current.review_status }),
+    h('p', {}, h('a', { href: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/HOWTO.md', text: 'Run the workflow: commands and human review steps →' }))) : null,
+    currentPanel, current
     ? h('details', {}, h('summary', { text: `Earlier drafting benchmark · ${b.date} · different method` }), previousPanel)
     : previousPanel);
 }
@@ -425,8 +430,6 @@ function barList(items, { max = null, link = null } = {}) {
 function overview(index) {
   const { kb, findings, papers, entries } = index;
   const v = kb.version || {};
-  const buckets = {};
-  for (const e of Object.values(entries)) buckets[e.bucket] = (buckets[e.bucket] || 0) + 1;
   const prov = provenanceCounts(findings);
   const countBy = (pred, key) => {
     const m = new Map();
@@ -441,54 +444,39 @@ function overview(index) {
   const unreachable = regionEntries.filter((e) => !index.mapping.regions[e.id]);
   const therapies = Object.values(entries).filter((e) => e.bucket === 'therapies').map((e) => ({ id: e.id, label: e.name, n: (index.bySource.get(e.id) || []).length + (index.byTarget.get(e.id) || []).length })).sort((a, b) => b.n - a.n);
 
-  return frag(
-    h('div', { class: 'page-head' }, h('h1', { text: 'Stroke aphasia knowledge base' }),
-      h('span', { class: 'muted small', text: `export of KB ${v.commit || 'uncommitted'}${v.date ? ` (${v.date})` : ''} · digest ${v.contentDigest || '?'} · exported ${v.exportedOn || '?'} · statuses: ${(v.statuses || []).join(', ')}` })),
-    h('p', {}, 'A curated, source-traceable literature base linking stroke lesion locations to aphasia impairments, therapy responses and recovery predictors. Every finding is one claim from one paper with the verbatim passages that support it. This page lets you read the base itself; CALMaR uses the same export to turn a lesion into a cited report.'),
-    h('p', { class: 'caveat', text: 'A research development built to support clinicians\u2019 reasoning, not to replace it: findings are group-level literature associations with their citations and review provenance, not clinical predictions, and no output here is clinical advice.' }),
-    (v.statuses || []).some((s) => s !== 'approved')
-      ? h('p', { class: 'caveat drafts', text: `This view includes findings nobody has approved yet (statuses: ${(v.statuses || []).join(', ')}). Filter by Status on the Findings page to separate them.` })
-      : null,
-    h('div', { class: 'tiles' },
-      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(Object.keys(entries).length) }), h('div', { class: 'label', text: 'entries' }),
-        h('div', { class: 'detail', text: Object.entries(buckets).map(([b, n]) => `${n} ${b}`).join(' · ') })),
-      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(findings.length) }), h('div', { class: 'label', text: 'findings' }),
-        h('div', { class: 'detail', text: `${findings.filter((f) => f.strength === 'strong').length} strong · ${findings.filter((f) => f.strength === 'moderate').length} moderate · ${findings.filter((f) => f.strength === 'weak').length} weak` })),
-      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(papers.length) }), h('div', { class: 'label', text: 'papers with findings' }),
-        h('div', { class: 'detail', text: `${Object.keys(kb.citations || {}).length} entries in the bibliography` })),
-      h('div', { class: 'tile' }, h('div', { class: 'value', text: pct(prov.human, findings.length) }), h('div', { class: 'label', text: 'findings approved by a named person' }),
-        h('div', { class: 'detail', text: `${prov.human} of ${findings.length}` })),
-      h('div', { class: 'tile' }, h('div', { class: 'value', text: `${reachable}/${regionEntries.length}` }), h('div', { class: 'label', text: 'region entries a lesion can reach' }),
-        h('div', { class: 'detail', text: 'through the curated atlas mapping' })),
-      index.screening.present ? h('div', { class: 'tile' }, h('div', { class: 'value', text: String(index.screening.prisma?.included?.total ?? 0) }), h('div', { class: 'label' }, h('a', { href: '#/coverage', text: 'papers included by screening' })),
-        h('div', { class: 'detail', text: `of ${index.screening.candidates.length} candidates · ${index.screening.candidates.filter((c) => ['awaiting_ta', 'awaiting_ft', 'unsure_ta', 'unsure_ft'].includes(c.stage)).length} awaiting a decision` })) : null),
-    h('h2', { text: 'Review provenance of findings' }),
-    stackBar(prov),
-    h('p', { class: 'small muted' }, 'Every finding is first drafted from the paper by a language model running on the maintainer\u2019s own computer (',
-      h('a', { href: '#/models', text: 'which model, and how it was chosen' }), '), then checked against the paper before it is approved. ',
-      'Who may approve what is set by the governance policy. Legacy findings were approved before it and are tagged for re-review. ',
-      h('a', { href: href('/findings', { review_kind: ['human'] }), text: 'Browse person-approved findings' }), ' · ',
-      h('a', { href: href('/findings', { review_kind: ['legacy'] }), text: 'browse legacy findings' })),
-    h('div', { class: 'grid-2' },
-      h('section', {}, h('h2', { text: 'Regions by number of findings' }), barList(countBy('region'), { max: 12, link: (x) => entryHref(x.id) }),
-        h('p', { class: 'small muted', text: 'Grey bars: regions that findings point to but that have no entry of their own yet (click one to see the findings that name it).' })),
-      h('section', {}, h('h2', { text: 'Impairments by number of findings' }), barList(countBy('impairment'), { max: 12, link: (x) => entryHref(x.id) }),
-        h('p', { class: 'small muted', text: 'Grey bars: impairments that findings point to but that have no entry of their own yet.' }))),
-    h('div', { class: 'grid-2' },
-      h('section', {}, h('h2', { text: 'Therapies' }), barList(therapies, { link: (x) => entryHref(x.id) })),
-      h('section', {}, h('h2', { text: 'Region entries a lesion cannot reach' }),
-        unreachable.length ? h('ul', {}, unreachable.map((e) => h('li', {}, entryLink(index, e.id), h('span', { class: 'small muted', text: index.unmappedReason(e.id) ? ` — ${index.unmappedReason(e.id)}` : '' })))) : h('p', { class: 'muted', text: 'All region entries are reachable.' }),
-        h('p', { class: 'small muted', text: 'Only regions present in the curated atlas mapping can be matched from a lesion mask; the others are still readable here.' }))),
-    h('h2', { text: 'Start exploring' }),
-    h('ul', {},
-      h('li', {}, h('a', { href: '#/matrix', text: 'Evidence matrix' }), ' — which region–impairment links are supported, by how many findings.'),
-      h('li', {}, h('a', { href: '#/findings', text: 'Findings browser' }), ' — filter by entry type, relationship, strength, method, stage, provenance or paper; full-text search of claims and quotes.'),
-      h('li', {}, h('a', { href: '#/papers', text: 'Papers' }), ' — every cited paper and its findings in page order, to spot-check an extraction against the PDF.'),
-      h('li', {}, h('a', { href: '#/coverage', text: 'Coverage' }), ' — how the literature was searched and screened (PRISMA flow), what each evidence gap still needs, and where every candidate paper stands.'),
-      state.notebook ? h('li', {}, h('a', { href: NOTEBOOK_PAGE, text: 'The CALMaR notebook' }), ' — a saved run of the pipeline that turns an MRI into a lesion map and a cited report, readable as a page, with buttons to run it in Neurodesk Play.') : null,
-      h('li', {}, h('a', { href: '#/models', text: 'The extraction models' }), ' — the extraction and review models, their measured results and remaining limitations.'),
-      h('li', {}, h('a', { href: '#/involve', text: 'Get involved' }), ' — the five levels at which a person can take part, from reading to building; what each needs and what it gives.'),
-      index.kb.portal?.url ? h('li', {}, h('a', { href: index.kb.portal.url, target: '_blank', rel: 'noopener', text: 'Review portal' }), ' — for collaborators: check drafts beside the annotated PDFs, screen candidate papers and send decisions back (sign-in with an invited email).') : null));
+  return h('div', { class: 'overview-page' },
+    h('header', { class: 'editorial-hero' },
+      h('p', { class: 'eyebrow', text: 'Stroke aphasia knowledge base' }),
+      h('h1', { text: 'What can research tell us about aphasia after stroke?' }),
+      h('p', { class: 'lead', text: 'Explore findings on brain injury, language, treatment and recovery. Follow each finding back to the paper, and see how it was reviewed.' }),
+      h('p', { class: 'byline', text: 'A research project led by Michele Masson-Trottier, open to collaborators.' }),
+      h('div', { class: 'editorial-actions' }, h('a', { class: 'editorial-button', href: '#/findings', text: 'Explore the findings' }), h('a', { href: '#/involve', text: 'Contribute to the project →' }))),
+    h('p', { class: 'caveat', text: 'Research in progress. These are findings from groups of participants; they do not predict an individual person’s outcome or replace clinical assessment.' }),
+    (v.statuses || []).some(s => s !== 'approved') ? h('p', { class: 'caveat drafts', text: 'This view includes unapproved drafts. Use the Status filter on the Findings page to separate them.' }) : null,
+    h('div', { class: 'project-counts' },
+      h('p', {}, h('strong', { text: String(papers.length) }), ' papers with findings'),
+      h('p', {}, h('strong', { text: String(findings.length) }), ' findings to explore'),
+      h('p', {}, h('strong', { text: pct(prov.human, findings.length) }), ' approved by a named person')),
+    h('div', { class: 'editorial-columns' },
+      h('section', {}, h('h2', { text: 'Read the evidence' }), h('p', { text: 'Look up a brain region, language difficulty or treatment. Read the claim, its supporting passage and the study context together.' }), h('a', { href: '#/matrix', text: 'Browse region–language links →' })),
+      h('section', {}, h('h2', { text: 'Connect it to imaging' }), h('p', { text: 'CALMaR brings lesion maps, white matter disconnection estimates and literature findings into a research report.' }), h('a', { href: NOTEBOOK_PAGE, text: 'Explore the CALMaR examples →' }))),
+    h('section', { class: 'review-summary' }, h('h2', { text: 'How much has been checked?' }),
+      stackBar(prov),
+      h('p', { text: 'Review status varies. Some findings have a named human approval; others have model approval or an older approval awaiting re-review. Read the status alongside the evidence.' }),
+      h('p', {}, h('a', { href: href('/findings', { review_kind: ['human'] }), text: 'See person-approved findings' }), ' · ', h('a', { href: '#/models', text: 'How we use and test AI' }))),
+    h('details', { class: 'editorial-details' }, h('summary', { text: 'Explore coverage and atlas mapping' }),
+      h('p', {}, h('a', { href: '#/coverage', text: 'Search methods, screening decisions and evidence gaps →' })),
+      h('div', { class: 'grid-2' },
+        h('section', {}, h('h2', { text: 'Brain regions' }), barList(countBy('region'), { max: 12, link: x => entryHref(x.id) })),
+        h('section', {}, h('h2', { text: 'Language difficulties' }), barList(countBy('impairment'), { max: 12, link: x => entryHref(x.id) }))),
+      h('p', { class: 'small muted', text: 'Bars count findings, not evidence quality. Grey bars refer to topics without a dedicated entry yet.' }),
+      h('h2', { text: 'Therapies' }), barList(therapies, { link: x => entryHref(x.id) }),
+      h('h2', { text: 'Atlas mapping' }), h('p', { text: `${reachable} of ${regionEntries.length} region entries can currently be matched to a lesion through the atlas mapping.` }),
+      unreachable.length ? h('details', {}, h('summary', { text: 'Regions without a mapping' }), h('ul', {}, unreachable.map(e => h('li', {}, entryLink(index, e.id), index.unmappedReason(e.id) ? ` — ${index.unmappedReason(e.id)}` : '')))) : null),
+    h('details', { class: 'editorial-details' }, h('summary', { text: 'Data version and reuse' }),
+      h('p', { class: 'small', text: `KB ${v.commit || 'uncommitted'} · ${v.date || ''} · digest ${v.contentDigest || '?'} · exported ${v.exportedOn || '?'} · statuses: ${(v.statuses || []).join(', ')}` }),
+      h('p', {}, 'The code, methods and review history are available in the ', h('a', { href: 'https://github.com/micmas/stroke-aphasia-kb', text: 'project repository' }), '.')));
+
 }
 
 function browse(index, route) {

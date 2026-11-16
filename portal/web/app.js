@@ -168,9 +168,12 @@ function home() {
   const missing = missingPdfs();
   const pendingTa = pendingSent().filter((x) => x.stage === 'ta' && x.decision === 'include').length;
   return frag(
-    h('div', { class: 'page-head' }, h('h1', { text: 'Review portal' }), h('span', { class: 'muted small', text: `KB ${m.kbCommit || '?'} (${m.kbDate || '?'}) · built ${m.built || '?'}` })),
-    h('p', {}, `You are signed in as ${state.me.email}. Everything you decide here is sent to the knowledge base's repository under that name and applied by the maintainer; the governance policy still decides who may approve what.`),
-    h('p', { class: 'small muted', text: 'This portal is a snapshot of the knowledge base, rebuilt after what reviewers sent has been applied. Your decisions reach the repository the moment you send them; the queues here (and a paper moving from title/abstract to full text) change at the next build, a few minutes after the maintainer applies the inbox, which also happens on its own every six hours.' }),
+    h('div', { class: 'page-head' }, h('h1', { text: 'Welcome back' })),
+    h('p', { class: 'lead', text: 'Choose a task below. Every paper screened and finding checked helps make the knowledge base more useful.' }),
+    h('p', { class: 'small muted', text: `Signed in as ${state.me.email}. Your decisions are recorded under this address.` }),
+    h('details', { class: 'editorial-details' }, h('summary', { text: 'When will my decisions appear?' }),
+      h('p', { text: 'Send your decisions when you are ready. The maintainer applies them and the site rebuilds; this also runs automatically every six hours. A paper moves to its next queue after that rebuild.' }),
+      h('p', { class: 'small muted', text: `KB ${m.kbCommit || '?'} · built ${m.built || '?'}. Approval permissions follow the project’s governance policy.` })),
     (m.maintainers || []).includes(String(state.me.email || '').toLowerCase()) ? frag(applyPanel(), requestsPanel()) : null,
     h('div', { class: 'tiles' },
       h('a', { class: 'tile tile-link', href: '#/drafts' }, h('div', { class: 'value', text: String(drafts.length) }), h('div', { class: 'label', text: 'drafts to review' }), h('div', { class: 'detail', text: `${drafts.reduce((n, d) => n + d.findings.length, 0)} findings` })),
@@ -178,9 +181,14 @@ function home() {
       h('a', { class: 'tile tile-link', href: '#/screen/ft' }, h('div', { class: 'value', text: String(ft.length) }), h('div', { class: 'label', text: 'full texts to assess' }), h('div', { class: 'detail', text: [missing.length ? `${missing.length} without a PDF yet` : '', pendingTa ? `${pendingTa} included by you at T/A, waiting to be applied` : ''].filter(Boolean).join(' · ') })),
       h('a', { class: 'tile tile-link', href: '#/pdfs' }, h('div', { class: 'value', text: String(m.counts?.private ?? 0) }), h('div', { class: 'label', text: 'annotated PDFs here (private)' }), h('div', { class: 'detail', text: `${m.counts?.public ?? 0} more are public (Creative Commons)${missing.length ? ` · ${missing.length} still needed` : ''}${state.uploads.length ? ` · ${plural(state.uploads.length, 'upload')} waiting` : ''}` })),
       h('a', { class: 'tile tile-link', href: '#/mine' }, h('div', { class: 'value', text: String(myRecords().length) }), h('div', { class: 'label', text: 'reviews you have sent' }))),
-    h('h2', { text: 'How to review' }),
-    h('p', { class: 'small' }, 'A draft contains proposed KB findings from one paper, each linked to supporting passages. Local extraction and model review produce provisional evidence; a maintainer maps source-checked findings into these drafts. Open it beside the annotated PDF (the highlights are the passages, in the colour of what they support) and say, finding by finding, whether the claim is what the paper shows. Fix a field when the paper says otherwise, select words in the PDF to add a passage or to mark something the extractor missed, then send the review. For screening, read the title and abstract (or the full text) against the eligibility criteria in SCREENING.md and include or exclude with a reason.'),
-    h('p', { class: 'small muted', text: 'Keys in the screening queues: i include · e exclude (then a reason) · u unsure · click a card first.' }));
+    h('details', { class: 'editorial-details' }, h('summary', { text: 'New here? How to review' }),
+      h('ol', {},
+        h('li', { text: 'Open a draft beside its paper. Read the proposed finding and highlighted source passage.' }),
+        h('li', { text: 'Check the meaning, study population and timing. Correct errors or mark missing evidence in the PDF.' }),
+        h('li', { text: 'Send your review. Model output is provisional; source checking and final approval are separate steps.' })),
+      h('p', {}, 'For screening, follow the ', h('a', { href: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/SCREENING.md', text: 'eligibility criteria' }), ' and record an include, exclude or unsure decision.'),
+      h('p', { class: 'small muted', text: 'Screening shortcuts: click a card, then i to include, e to exclude, or u for unsure.' })));
+
 }
 
 /** The maintainer's panel: what waits in the inbox, the last apply run, and the button that starts one. */
