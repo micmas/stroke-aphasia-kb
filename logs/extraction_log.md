@@ -821,3 +821,4 @@ add an `EXTRACTED` line for every run.
 
 2026-11-16 | REGISTRATION-WITHDRAWN | @Teghipco2023 | Newly auto-registered preprint removed from extraction bibliography after micmas corrected C1031 to duplicate_report; retain @Teghipco2024. Screening history and local source PDF preserved.
 2026-11-16 | DEDUPED | — | screening register | 23 preprint/published pairs linked retrospectively at micmas request; source evidence retained per record; no findings or extraction outputs changed
+2026-11-16 | SCREENED | — | full_text:unsure 5 | 5 decisions | by: micmas

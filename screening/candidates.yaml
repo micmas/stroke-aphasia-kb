@@ -3058,6 +3058,15 @@ candidates:
     by: michele
     date: '2026-10-28'
     seq: 48
+  - stage: full_text
+    decision: unsure
+    by: micmas
+    date: '2026-11-16'
+    seq: 338
+    note: >-
+      Reopened for full-text review with micmas confirmation on 2026-11-16 after an agent consistency
+      audit. Bhogal2003 synthesises therapy trials; no_imaging_primary is a primary-study reason, not
+      a synthesis reason. Earlier exclusion preserved; this is not an inclusion or approval.
   benchmark: true
   legacy:
     decisions:
@@ -4307,6 +4316,16 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 240
+  - stage: full_text
+    decision: unsure
+    by: micmas
+    date: '2026-11-16'
+    seq: 340
+    note: >-
+      Reopened for full-text review with micmas confirmation on 2026-11-16 after an agent consistency
+      audit. Bates2003 is indexed as a comparative study and reports lesion-symptom mapping; short format
+      alone does not justify not_full_report. Earlier exclusion preserved; this is not an inclusion or
+      approval.
   benchmark: true
   legacy:
     decisions:
@@ -5763,6 +5782,16 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 245
+  - stage: full_text
+    decision: unsure
+    by: micmas
+    date: '2026-11-16'
+    seq: 341
+    note: >-
+      Reopened for full-text review with micmas confirmation on 2026-11-16 after an agent consistency
+      audit. Rodrigues2014 concerns recurring utterances and recovery; the therapy_no_patient_factors
+      reason needs checking against the actual design and lesion evidence. Earlier exclusion preserved;
+      this is not an inclusion or approval.
   benchmark: true
   legacy:
     decisions:
@@ -6337,6 +6366,16 @@ candidates:
     date: '2026-10-30'
     seq: 249
     note: out of topic - pre-stroke and post-stroke dementia
+  - stage: full_text
+    decision: unsure
+    by: micmas
+    date: '2026-11-16'
+    seq: 342
+    note: >-
+      Reopened for full-text review with micmas confirmation on 2026-11-16 after an agent consistency
+      audit. Pendlebury2009 is a stroke-dementia synthesis; assess whether its cognitive/predictor evidence
+      fits current scope instead of relying on a generic out-of-topic note. Earlier exclusion preserved;
+      this is not an inclusion or approval.
   suggestion_ft:
     decision: exclude
     reason: design_out_of_scope
@@ -275069,6 +275108,15 @@ candidates:
     by: michele
     date: '2026-10-30'
     seq: 160
+  - stage: full_text
+    decision: unsure
+    by: micmas
+    date: '2026-11-16'
+    seq: 339
+    note: >-
+      Reopened for full-text review with micmas confirmation on 2026-11-16 after an agent consistency
+      audit. This is a systematic review of verb-tense treatment, not a primary study; review under the
+      synthesis criteria. Earlier exclusion preserved; this is not an inclusion or approval.
   doc_type: journal
   doc_type_raw: JOUR/Review
 - id: C17211

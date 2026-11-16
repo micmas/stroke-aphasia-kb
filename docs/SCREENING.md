@@ -101,13 +101,31 @@ reports; change this list and `screening.REASONS` together.
 | `narrative_review_out_of_scope` | a narrative (non-systematic) review that does not cover neuroimaging or lesion evidence in stroke | both passes |
 | `out_of_date_range` | published before 2000 (the protocol's `years`) and not entered as a pillar paper by citation chasing | both passes |
 | `design_out_of_scope` | nothing the schema can hold: no lesion–behaviour, therapy-response, predictor or network evidence (pure psycholinguistic modelling, instrument validation without brain or outcome data, qualitative studies of lived experience) | both passes |
-| `not_full_report` | editorial, letter, commentary, conference abstract, protocol, erratum, thesis | both passes |
+| `not_full_report` | protocol, editorial, commentary or erratum without eligible research results; article length or a research-letter format alone is not grounds for exclusion | both passes |
+| `grey_literature` | thesis, dissertation, book/chapter or conference abstract/proceedings; recorded separately as rule-based removal | before screening |
 | `insufficient_sample` | fewer than **5** participants for a lesion-mapping or therapy claim; single cases are kept only when they are the classic source for a region entry (note it) | both passes |
 | `language` | not available in a language the screener reads | both passes |
-| `duplicate_report` | a secondary publication of a cohort already included — note which; the primary report is the one extracted | both passes |
+| `duplicate_report` | a redundant report of the same analyses already covered by the retained report — identify it; shared participants alone do not make distinct analyses duplicate evidence. Preprint/publication versions belong in duplicate removal | both passes |
 | `not_retrieved` | the full text could not be obtained through the screener's access (counts as "reports not retrieved" in PRISMA, not as an exclusion for cause) | full text |
 | `not_extractable` | read in full, but the findings cannot be written into the schema with verbatim support (e.g. results only in figures, pooled across aetiologies with no stroke breakdown) — note why | full text |
 | `other` | anything else — the note is required | both passes |
+
+Use the most specific applicable reason and explain any judgement call in a note:
+
+- `no_imaging_primary` applies only to primary studies. Do not use it to exclude
+  a systematic review or meta-analysis because its underlying studies lack imaging.
+- For a therapy study, distinguish overall treatment effects from analyses of
+  which patient characteristics predict response. Absence of imaging alone does
+  not exclude the latter. Check the full text if the abstract is unclear.
+- Use `grey_literature` for theses, books and conference records, rather than
+  `not_full_report`. Neither label means that every short publication is ineligible.
+- Check the documented citation-chasing exception before excluding a pre-2000
+  pillar paper. Do not hide a date exclusion under `other`.
+- Shared participants do not establish duplicate evidence. Compare the analyses
+  and outcomes, and identify the retained report.
+- If a recorded reason conflicts with the paper type or scope, return the record
+  to full-text review with the named reviewer's authorisation. Preserve its earlier
+  decisions; reopening is not inclusion or approval.
 
 A candidate that is *not* excluded at title/abstract is included to
 full text. At full text it is included when it answers at least one

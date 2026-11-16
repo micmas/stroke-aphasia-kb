@@ -63,45 +63,50 @@ CHECK_ROLE = "check"
 
 # Exclusion reasons (docs/SCREENING.md §2). `ft_only` reasons apply at full text.
 REASONS: dict[str, dict] = {
-    "not_stroke": {"label": "Not (post-)stroke", "ft_only": False,
+    "not_stroke": {"label": "Population outside scope", "ft_only": False,
                    "text": "The population is not stroke (tumour, TBI, primary progressive aphasia, "
-                           "dementia, healthy only without a stroke question)."},
-    "not_aphasia": {"label": "No language, communication or cognitive outcome", "ft_only": False,
+                           "dementia). Healthy-volunteer language-mapping syntheses and explicitly documented pillar papers are exceptions."},
+    "not_aphasia": {"label": "Outcome outside scope", "ft_only": False,
                     "text": "No aphasia / language / communication (motor speech — dysarthria, apraxia of speech — and "
                             "prosody included) or domain-general cognitive measure is reported (e.g. motor recovery "
                             "only, spatial neglect only)."},
-    "no_imaging_primary": {"label": "Primary study without imaging", "ft_only": False,
+    "no_imaging_primary": {"label": "Primary study: no imaging link", "ft_only": False,
                            "text": "A primary study with no brain imaging or lesion data related to the outcome (e.g. a "
                                    "clinical prognostic cohort); its evidence enters through systematic reviews and "
                                    "meta-analyses. A therapy study is therapy_no_patient_factors instead (protocol v6)."},
     "narrative_review_out_of_scope": {"label": "Narrative review out of scope", "ft_only": False,
                                       "text": "A narrative (non-systematic) review that does not cover neuroimaging or "
                                               "lesion evidence in stroke."},
-    "design_out_of_scope": {"label": "Design out of scope", "ft_only": False,
+    "design_out_of_scope": {"label": "Study design outside scope", "ft_only": False,
                             "text": "Reports no lesion–behaviour, therapy-response, recovery-predictor or "
                                     "network evidence the schema can hold (e.g. pure modelling, instrument "
                                     "validation without brain or outcome data)."},
-    "not_full_report": {"label": "Not a full report", "ft_only": False,
-                        "text": "Editorial, letter, commentary, protocol or erratum."},
+    "not_full_report": {"label": "No eligible research results", "ft_only": False,
+                        "text": "Protocol, editorial, commentary or erratum without eligible research results. "
+                                "A short article or research letter is not excluded merely because of its format. "
+                                "Theses, books and conference records use grey_literature."},
     "grey_literature": {"label": "Thesis, book or conference record", "ft_only": False,
                         "text": "A thesis or dissertation, a book or book chapter, or a conference abstract or "
                                 "proceedings paper (protocol v4); preprints are eligible."},
-    "duplicate_report": {"label": "Duplicate report of an included study", "ft_only": False,
-                         "text": "A secondary publication of a cohort already included; note which."},
-    "therapy_no_patient_factors": {"label": "Therapy study, no patient-characteristic analysis", "ft_only": False,
+    "duplicate_report": {"label": "Redundant report of same study", "ft_only": False,
+                         "text": "A redundant report of the same analyses already covered by the retained report; "
+                                 "identify that report. A shared cohort alone is insufficient: distinct outcomes or "
+                                 "analyses may contribute new evidence. Preprint/publication versions are linked "
+                                 "in duplicate removal, not excluded here."},
+    "therapy_no_patient_factors": {"label": "Therapy: no patient-factor analysis", "ft_only": False,
                                    "text": "A therapy study (trial, case series, single-case design) without imaging that "
                                            "reports the therapy's overall effect but relates no patient characteristic to "
                                            "the response (protocol v5-v6); its efficacy evidence enters through syntheses."},
-    "out_of_date_range": {"label": "Outside the publication years", "ft_only": False,
+    "out_of_date_range": {"label": "Outside the date range", "ft_only": False,
                           "text": "Published before the protocol's first year (screening/strategies.yaml `years`) and not "
                                   "entered as a pillar paper by citation chasing."},
-    "insufficient_sample": {"label": "Insufficient sample", "ft_only": False,
+    "insufficient_sample": {"label": "Sample below protocol minimum", "ft_only": False,
                             "text": "Below the sample threshold set in docs/SCREENING.md for the question asked."},
-    "language": {"label": "Language", "ft_only": False,
+    "language": {"label": "Language not readable by reviewer", "ft_only": False,
                  "text": "Not available in a language the screener reads."},
     "not_retrieved": {"label": "Full text not retrieved", "ft_only": True,
                       "text": "The full text could not be obtained through the screener's access."},
-    "not_extractable": {"label": "Not extractable as it stands", "ft_only": True,
+    "not_extractable": {"label": "Findings cannot be extracted", "ft_only": True,
                         "text": "Read in full, but the findings cannot be written into the schema with "
                                 "verbatim support (see the note)."},
     "not_screened_stopping_rule": {"label": "Not screened (stopping rule met)", "ft_only": False,
@@ -707,8 +712,8 @@ def prisma_counts(rows: list[dict], searches: list[dict]) -> dict:
     def n(rs, *stages):
         return sum(1 for r in rs if r["stage"] in stages)
 
-    def reasons(rs, stage):
-        c = collections.Counter(str(r["reason"] or "other") for r in rs if r["stage"] == stage)
+    def reasons(rs, *stages):
+        c = collections.Counter(str(r["reason"] or "other") for r in rs if r["stage"] in stages)
         return dict(c.most_common())
 
     # Records that reached full text in each arm: included at T/A (or came in with full text).
@@ -751,7 +756,7 @@ def prisma_counts(rows: list[dict], searches: list[dict]) -> dict:
             "awaitingFullText": n(other_sought, "awaiting_ft", "awaiting_ta"),
             "unsureFullText": n(other_sought, "unsure_ft", "unsure_ta"),
             "excludedFullText": n(other_sought, "excluded_ft", "excluded_ta"),
-            "excludedFullTextReasons": {**reasons(other_sought, "excluded_ft"), **reasons(other_sought, "excluded_ta")},
+            "excludedFullTextReasons": reasons(other_sought, "excluded_ft", "excluded_ta"),
             "included": n(other_sought, "included"),
         },
         "included": {

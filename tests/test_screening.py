@@ -224,6 +224,17 @@ class Register(unittest.TestCase):
         self.assertEqual(S.kb_state({**base, "drafts": 2, "draft_rejected": 1, "draft_open": 1, "approved_findings": 3}), "in_kb")
         self.assertEqual(S.kb_state({**base, "refused": True}), "refused")
 
+    def test_other_source_exclusion_reasons_sum_across_stages(self):
+        rows = S.enrich([
+            {"id": "C1", "sources": [{"kind": "hand_picked"}], "screening": [
+                {"stage": "title_abstract", "decision": "exclude", "reason": "other"}]},
+            {"id": "C2", "sources": [{"kind": "hand_picked"}], "screening": [
+                {"stage": "full_text", "decision": "exclude", "reason": "other"}]},
+        ], {})
+        other = S.prisma_counts(rows, [])["other"]
+        self.assertEqual(other["excludedFullText"], 2)
+        self.assertEqual(other["excludedFullTextReasons"], {"other": 2})
+
     def test_prisma_arithmetic(self):
         searches = [{"id": "S1", "database": "pubmed", "retrieved": 10, "for": ["gap_a"]}]
         mk = lambda i, src, hist, **kw: {"id": f"C{i}", "sources": src, "screening": hist, **kw}  # noqa: E731
