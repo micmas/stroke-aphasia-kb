@@ -77,6 +77,34 @@ extraction or review only after checking the preview. Finish or stop extraction
 before starting local review. See [HOWTO](HOWTO.md) for source preparation,
 segmentation, recovery, visual checks and approval.
 
+## Extraction options
+
+`--profile relationships` selects the current source-evidence method: two local
+models independently classify original passages and transcribe main-paper tables.
+It preserves evidence for imaging–outcome relationships, personal factors and
+clinical context. It does not automatically create or approve KB findings.
+This is already the default; writing it explicitly makes the method clear.
+`--profile analyses` is retained for compatibility with older runs, not as the
+recommended choice for a new corpus extraction.
+
+| Option | What it does |
+|---|---|
+| `--manifest PATH` | Reads the frozen paper list, PDF checksums and source metadata created by `kb.py prepare`. |
+| `--output-dir PATH` | Saves this batch's evidence, model responses and progress. Use a fresh folder for a changed method or configuration. |
+| `--profile relationships` | Selects the current source-evidence extraction method (the default). |
+| `--run` | Starts local model calls. Without it, only previews the list. |
+| `--continue-on-error` | Preserves a failed paper's output and continues with the next paper. It does not fix or approve failures. |
+| `--models MODEL_A MODEL_B` | Overrides the default pair: `gemma4:31b` and `qwen3.8:27b`. |
+| `--retry-failed` | Archives and retries incomplete or failed paper attempts after inspection; completed pairs are reused. |
+| `--wait` | Waits in this terminal for another detected KB model job to finish. |
+| `--max-output-tokens N` | Advanced output allowance. The relationship method also applies smaller per-task caps; this is not a paper-length or input-context limit. |
+
+The terminal shows `[X/N] Extract PaperKey`, or `Reuse`, `Skip` or `Failed`.
+`X/N` is the paper's position in the full manifest, not the number of successful
+extractions or the percentage of processing time elapsed. Repeat the identical
+command to resume; with `--continue-on-error`, incomplete attempts remain skipped
+until explicitly retried. Do not change model code or prompts during a run.
+
 ## Maintainer operations
 
 Screening, intake, approval, export, portal administration and migration are

@@ -97,6 +97,10 @@ folder and a manifest without `segment_chars`. The models are
   --output-dir _compare/my-batch/extraction
 ```
 
+`--profile relationships` explicitly selects the current method; it is also the
+default. See [Extraction options](COMMANDS.md#extraction-options) for every option
+in this command and the progress counter.
+
 This previews the batch. Add `--run --continue-on-error` only when you choose to
 start local processing. Override the pair explicitly with `--models MODEL_A MODEL_B`
 when testing a different configuration. Changing a model, prompt or code requires
