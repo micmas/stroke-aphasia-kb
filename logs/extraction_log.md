@@ -815,3 +815,5 @@ add an `EXTRACTED` line for every run.
 2026-11-12 | PORTAL-APPLIED | — | 6 record(s) | screen 6 | by: michele
 2026-11-12 | REGISTERED | — | screening → citations.md | 6 entries appended, 0 linked to existing keys
 2026-11-16 | SCREENED | — | full_text:unsure 3, title_abstract:include 4 | 7 decisions | by: micmas
+2026-11-16 | PORTAL-APPLIED | — | 7 record(s) | screen 7 | by: michele
+2026-11-16 | REGISTERED | — | screening → citations.md | 6 entries appended, 0 linked to existing keys

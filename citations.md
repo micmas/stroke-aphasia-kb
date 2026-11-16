@@ -2373,3 +2373,51 @@ Syntactic Processing Depends on Dorsal Language Tracts.
 doi:10.1016/j.neuron.2011.09.014
 
 > Registered automatically from the PDF's DOI via Crossref on 2026-11-12 (file: screening C12473). Included by the screening register (C12473; docs/SCREENING.md). Check the entry.
+
+## @Johnson2025  [seed]
+Johnson JP, Dickey MW, Bohland JW, Hula WD.
+Test-retest reliability of edge-level resting-state functional connectivity in people with aphasia.
+*NeuroImage: Reports*. 2025;5(4):100296.
+doi:10.1016/j.ynirp.2025.100296
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-16 (file: screening C0507). Included by the screening register (C0507; docs/SCREENING.md). Check the entry.
+
+## @Teghipco2023  [seed]
+Teghipco A, Newman-Norlund R, Fridriksson J, Rorden C, Bonilha L.
+Distinct brain morphometry patterns revealed by deep learning improve prediction of aphasia severity.
+2023.
+doi:10.21203/rs.3.rs-3126126/v1
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-16 (file: screening C1031). Included by the screening register (C1031; docs/SCREENING.md). Check the entry.
+
+## @Xing2018  [seed]
+Xing S, Mandal A, Lacey EH, Skipper-Kallal LM, Zeng J, Turkeltaub PE.
+Behavioral Effects of Chronic Gray and White Matter Stroke Lesions in a Functionally Defined Connectome for Naming.
+*Neurorehabil Neural Repair*. 2018;32(6-7):613-623.
+doi:10.1177/1545968318780351
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-16 (file: screening C2140). Included by the screening register (C2140; docs/SCREENING.md). Check the entry.
+
+## @Gilbert2025  [seed]
+Gilbert CM, Gibson EC, Moore MJ, Henry JD, Robinson GA.
+Cognitive and neural correlates of prospective memory in acute to early sub-acute stroke.
+*Neuropsychologia*. 2025;218:109251.
+doi:10.1016/j.neuropsychologia.2025.109251
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-16 (file: screening C22220). Included by the screening register (C22220; docs/SCREENING.md). Check the entry.
+
+## @Willis2025  [seed]
+Willis HE, Hameed J, Starling L, Kaltenbach C, Moore MJ, Khan A, Maxwell R, Tamietto M, Ajina S, Bridge H.
+Voxel-Based Lesion–Symptom Mapping Localizes Residual Visual Function in Hemianopia.
+*J. Neurosci.*. 2025;45(9):e1263242024.
+doi:10.1523/jneurosci.1263-24.2024
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-16 (file: screening C22221). Included by the screening register (C22221; docs/SCREENING.md). Check the entry.
+
+## @Hobden2024  [seed]
+Hobden G, Moore MJ, Mair G, Pendlebury ST, Demeyere N.
+Poststroke Executive Function in Relation to White Matter Damage on Clinically Acquired CT Brain Imaging.
+*Cognitive and Behavioral Neurology*. 2024;37(1):23-31.
+doi:10.1097/wnn.0000000000000355
+
+> Registered automatically from the PDF's DOI via Crossref on 2026-11-16 (file: screening C22222). Included by the screening register (C22222; docs/SCREENING.md). Check the entry.

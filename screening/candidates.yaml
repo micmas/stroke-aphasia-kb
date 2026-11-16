@@ -12434,10 +12434,17 @@ candidates:
       At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
       This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
       decisions remain in history.
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-16'
+    seq: 330
+    record: 20261116T000010Z-01_screen_m-massontrottier_c0507.json
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_uploaded_at: '2026-11-12T00:03:50.613Z'
   pdf_file: C0507_Johnson2025.pdf
+  key: '@Johnson2025'
 - id: C0508
   doi: 10.3389/fpsyg.2025.1636531
   pmid: '41181681'
@@ -21678,6 +21685,12 @@ candidates:
       At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
       This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
       decisions remain in history.
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-16'
+    seq: 331
+    record: 20261116T000010Z-02_screen_m-massontrottier_c1031.json
   suggestion_ft:
     decision: exclude
     reason: duplicate_report
@@ -21686,6 +21699,7 @@ candidates:
     by: claude (pre-fill)
     date: '2026-10-28'
   pdf_file: C1031_Teghipco2023.pdf
+  key: '@Teghipco2023'
 - id: C1032
   doi: 10.12890/2023_003947
   pmid: '37455687'
@@ -41724,9 +41738,16 @@ candidates:
       At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
       This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
       decisions remain in history.
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-16'
+    seq: 332
+    record: 20261116T000010Z-03_screen_m-massontrottier_c2140.json
   doc_type: journal
   doc_type_raw: JOUR/Article
   pdf_file: C2140_Xing2018.pdf
+  key: '@Xing2018'
 - id: C2141
   doi: 10.3233/rnn-180812
   pmid: '29889086'
@@ -333350,6 +333371,13 @@ candidates:
       At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
       This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
       decisions remain in history.
+  - stage: full_text
+    decision: exclude
+    reason: not_full_report
+    by: michele
+    date: '2026-11-16'
+    seq: 333
+    record: 20261116T000010Z-04_screen_m-massontrottier_c21300.json
   pdf_file: C21300_Nouwens2013.pdf
 - id: C21301
   doi: 10.1111/j.1460-6984.2012.00202.x
@@ -346753,7 +346781,14 @@ candidates:
       At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
       This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
       decisions remain in history.
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-16'
+    seq: 334
+    record: 20261116T000010Z-05_screen_m-massontrottier_c22220.json
   pdf_file: C22220_Gilbert2025.pdf
+  key: '@Gilbert2025'
 - id: C22221
   doi: 10.1523/jneurosci.1263-24.2024
   title: Voxel-Based Lesion–Symptom Mapping Localizes Residual Visual Function in Hemianopia
@@ -346778,7 +346813,14 @@ candidates:
       At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
       This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
       decisions remain in history.
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-16'
+    seq: 335
+    record: 20261116T000010Z-06_screen_m-massontrottier_c22221.json
   pdf_file: C22221_Willis2025.pdf
+  key: '@Willis2025'
 - id: C22222
   doi: 10.1097/wnn.0000000000000355
   title: >-
@@ -346802,7 +346844,14 @@ candidates:
       At micmas request on 2026-11-16, send to full-text screening for their own eligibility decision.
       This is queue reopening, not full-text inclusion or approval of the model recommendation. Earlier
       decisions remain in history.
+  - stage: full_text
+    decision: include
+    by: michele
+    date: '2026-11-16'
+    seq: 336
+    record: 20261116T000010Z-07_screen_m-massontrottier_c22222.json
   pdf_file: C22222_Hobden2024.pdf
+  key: '@Hobden2024'
 - id: C22224
   doi: 10.1002/hbm.70619
   title: >-
