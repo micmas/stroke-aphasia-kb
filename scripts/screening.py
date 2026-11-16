@@ -28,6 +28,7 @@ from paper_paths import citation_stem
 
 import collections
 import datetime as dt
+import difflib
 import hashlib
 import os
 import re
@@ -296,7 +297,7 @@ def near_duplicates(candidates: list[dict]) -> list[tuple[dict, dict]]:
         v = sorted(v, key=lambda c: (not (c.get("doi") or c.get("pmid")), not c.get("key"), str(c.get("id"))))
         keep = v[0]
         for d in v[1:]:
-            if _conflicting_ids(keep, d):
+            if _conflicting_ids(keep, d) or (doc_type(keep)[0] == "preprint") != (doc_type(d)[0] == "preprint"):
                 continue
             ya, yb = keep.get("year"), d.get("year")
             if ya and yb and abs(int(ya) - int(yb)) > 1:
@@ -331,7 +332,7 @@ RIS_TYPES = {"THES": "thesis", "BOOK": "book", "EBOOK": "book", "EDBOOK": "book"
 SCOPUS_TYPES = {"conference paper": "conference", "conference review": "conference", "book chapter": "book", "book": "book",
                 "article": "journal", "review": "journal", "letter": "journal", "note": "journal", "editorial": "journal",
                 "erratum": "journal", "short survey": "journal", "data paper": "journal"}
-_PREPRINT_DOI = re.compile(r"^10\.(1101|21203|31234|20944|2139|31219|64898)/")
+_PREPRINT_DOI = re.compile(r"^10\.(?:1101/(?=\d)|(?:21203|31234|20944|2139|31219|64898)/)")
 _PREPRINT_J = re.compile(r"preprint|research square|biorxiv|medrxiv|psyarxiv|\bssrn\b", re.I)
 _BOOK_DOI = re.compile(r"^10\.(1007/978-|1016/b978-|1016/b0-|1017/97[89]|1093/acprof|1093/oso/|4324/97[89]|1201/97[89]|1002/97[89]|1037/0000|5772/)")
 _THESIS_J = re.compile(r"dissertation|\bthes[ie]s\b", re.I)
@@ -358,7 +359,7 @@ def doc_type(cand: dict) -> tuple[str | None, str]:
         return t, f"export type {cand.get('doc_type_raw') or t}"
     doi = norm_doi(cand.get("doi")) or ""
     src = str(cand.get("journal") or "")
-    if _PREPRINT_DOI.match(doi) or _PREPRINT_J.search(src):
+    if t == "preprint" or _PREPRINT_DOI.match(doi) or _PREPRINT_J.search(src):
         return "preprint", f"DOI {doi}" if doi else f"source: {src[:60]}"
     if t == "journal":
         return "journal", f"export type {cand.get('doc_type_raw') or t}"
@@ -371,6 +372,53 @@ def doc_type(cand: dict) -> tuple[str | None, str]:
     if _CONF_J.search(src) and not _JOURNAL_NOT_MEETING.search(src):
         return "conference", f"source: {src[:60]}"
     return t, ""
+
+
+def preprint_candidates(candidates: list[dict], abstracts: dict[str, str] | None = None) -> list[tuple[dict, dict, float]]:
+    """Changed-title candidates, never automatic merge evidence. Same first author,
+    within five years, and overlapping title words or similar titles."""
+    live = [c for c in candidates if not c.get("duplicate_of")]
+    published = collections.defaultdict(list)
+    for c in live:
+        if doc_type(c)[0] not in {"preprint", *GREY_TYPES} and c.get("doi"):
+            published[norm_title(c.get("first_author") or "")].append(c)
+    pairs = []
+    for pre in live:
+        if doc_type(pre)[0] != "preprint":
+            continue
+        author = norm_title(pre.get("first_author") or "")
+        if not author:
+            continue
+        for pub in published[author]:
+            if pre.get("year") and pub.get("year") and abs(int(pre["year"]) - int(pub["year"])) > 5:
+                continue
+            a, b = norm_title(pre.get("title")), norm_title(pub.get("title"))
+            words_a = set(re.findall(r"[a-z0-9]+", str(pre.get("title") or "").lower()))
+            words_b = set(re.findall(r"[a-z0-9]+", str(pub.get("title") or "").lower()))
+            overlap = len(words_a & words_b) / max(1, min(len(words_a), len(words_b)))
+            score = difflib.SequenceMatcher(None, a, b).ratio()
+            aa = set(re.findall(r"[a-z0-9]+", (abstracts or {}).get(pre["id"], "").lower()))
+            ab = set(re.findall(r"[a-z0-9]+", (abstracts or {}).get(pub["id"], "").lower()))
+            abstract_overlap = len(aa & ab) / max(1, len(aa | ab))
+            if score >= .6 or (len(words_a & words_b) >= 5 and overlap >= .65) or (min(len(aa), len(ab)) >= 50 and abstract_overlap >= .55):
+                pairs.append((pub, pre, round(score, 3)))
+    return pairs
+
+
+def merge_preprint(keep: dict, preprint: dict, by: str, date: str, evidence: list[dict]) -> None:
+    """Retain both versions' identities and history; only sources transfer.
+    A publisher/server relationship or a documented source comparison is required.
+    This does not approve the published article or its findings."""
+    if keep is preprint or keep.get("duplicate_of") or preprint.get("duplicate_of") or doc_type(preprint)[0] != "preprint":
+        raise ValueError("Expected a preprint and a live published record")
+    if doc_type(keep)[0] in {"preprint", *GREY_TYPES} or not evidence:
+        raise ValueError("Published version and supporting evidence required")
+    for src in preprint.get("sources") or []:
+        if src not in (keep.get("sources") or []):
+            keep.setdefault("sources", []).append(src)
+    preprint["duplicate_of"] = keep["id"]
+    preprint["duplicate"] = {"kind": "preprint_published", "by": by, "date": date,
+                             "evidence": evidence}
 
 
 def ruled_out(cand: dict) -> bool:
@@ -678,6 +726,8 @@ def prisma_counts(rows: list[dict], searches: list[dict]) -> dict:
             # PRISMA 2020 "records removed before screening … for other reasons": grey literature by rule
             "removedByRule": len(ruled), "removedByRuleTypes": dict(ruled_types),
             "duplicatesMerged": len(dups),
+            # A subset of duplicatesRemoved, not an additional subtraction.
+            "preprintsSuperseded": sum((r.get("duplicate") or {}).get("kind") == "preprint_published" for r in dups),
         },
         "screening": {
             "screened": len(db),

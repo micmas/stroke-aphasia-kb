@@ -12,6 +12,7 @@ import json
 import sys
 import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]  # repository root
@@ -45,6 +46,53 @@ PUBMED_WITH_REFS = b"""<?xml version="1.0"?><PubmedArticleSet><PubmedArticle><Me
 <ArticleTitle book="statpearls">Frontal Lobe Syndrome</ArticleTitle><AuthorList><Author><LastName>Jabbari</LastName><Initials>B</Initials></Author></AuthorList>
 <PublicationType UI="D000072643">Study Guide</PublicationType><Abstract><AbstractText>Frontal lobe syndrome is ...</AbstractText></Abstract>
 </BookDocument></PubmedBookArticle></PubmedArticleSet>"""
+
+
+class PreprintVersions(unittest.TestCase):
+    def test_merge_preserves_version_identity_history_and_count(self):
+        pre = {"id": "C1", "doi": "10.1101/2024.01.01.123456", "key": "@Pre",
+               "sources": [{"search": "S1"}], "screening": [{"stage": "full_text", "decision": "exclude", "reason": "duplicate_report"}]}
+        pub = {"id": "C2", "doi": "10.1234/journal", "sources": [{"search": "S2"}], "screening": []}
+        history = list(pre["screening"])
+        S.merge_preprint(pub, pre, "micmas", "2026-11-16", [{"method": "PubMed UpdateIn"}])
+        self.assertEqual(pre["screening"], history)
+        self.assertEqual(pre["doi"], "10.1101/2024.01.01.123456")
+        self.assertNotIn("key", pub)
+        self.assertEqual(S.stage_of(pub)[0], "awaiting_ta")
+        p = S.prisma_counts(S.enrich([pre, pub], {}), [{"database": "pubmed", "retrieved": 2}])
+        self.assertEqual(p["identification"]["duplicatesRemoved"], 1)
+        self.assertEqual(p["identification"]["preprintsSuperseded"], 1)
+        self.assertEqual(p["screening"]["excludedFullText"], 0)
+        with self.assertRaises(ValueError):
+            S.merge_preprint(pub, pre, "micmas", "2026-11-16", [{"method": "again"}])
+
+    def test_explicit_relationships_require_one_registered_target(self):
+        pre = {"id": "C1", "doi": "10.21203/rs.3.rs-1/v1", "screening": []}
+        pub = {"id": "C2", "doi": "10.1234/a", "screening": []}
+        link = {"doi": pub["doi"], "method": "Crossref is-preprint-of"}
+        with patch.object(screen, "pubmed_publication_links", return_value={}), \
+             patch.object(screen, "load_abstracts", return_value={}), \
+             patch.object(screen, "preprint_publications", return_value=([link, {**link, "doi": "10.1234/b"}], [])):
+            self.assertEqual(screen.dedupe_preprints([pre, pub], "micmas", "2026-11-16", True), 0)
+            self.assertNotIn("duplicate_of", pre)
+        with patch.object(screen, "pubmed_publication_links", return_value={}), \
+             patch.object(screen, "load_abstracts", return_value={}), \
+             patch.object(screen, "preprint_publications", return_value=([link], [])):
+            self.assertEqual(screen.dedupe_preprints([pre, pub], "micmas", "2026-11-16", False), 1)
+            self.assertNotIn("duplicate_of", pre)
+            self.assertEqual(screen.dedupe_preprints([pre, pub], "micmas", "2026-11-16", True), 1)
+            self.assertEqual(pre["duplicate_of"], "C2")
+
+    def test_changed_title_only_flags_and_journal_prefix_is_not_preprint(self):
+        pre = {"id": "C1", "doi": "10.1101/2024.01.01.123456", "first_author": "Smith", "year": 2024,
+               "title": "Brain atrophy predicts language recovery following stroke"}
+        pub = {"id": "C2", "doi": "10.1234/a", "first_author": "Smith", "year": 2025,
+               "title": "Brain atrophy and language recovery after stroke"}
+        self.assertEqual(len(S.preprint_candidates([pre, pub])), 1)
+        self.assertNotIn("duplicate_of", pre)
+        self.assertEqual(S.near_duplicates([pre, {**pub, "title": pre["title"]}]), [])
+        self.assertNotEqual(S.doc_type({"doi": "10.1101/cshperspect.a006171"})[0], "preprint")
+        self.assertNotEqual(S.doc_type({"doi": "10.1101/sqb.2014.79.024802"})[0], "preprint")
 
 
 class Parsers(unittest.TestCase):

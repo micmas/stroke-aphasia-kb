@@ -49,6 +49,7 @@ from paper_paths import resolve_paper, citation_stem, paper_filename
 
 import argparse
 import collections
+import concurrent.futures
 import csv
 import datetime as dt
 import html
@@ -859,23 +860,140 @@ def cmd_chase(args) -> int:
     return 0
 
 
+def preprint_publications(cand: dict) -> tuple[list[dict], list[str]]:
+    """Explicit DOI relationships only; an absent link is not evidence of uniqueness."""
+    doi = S.norm_doi(cand.get("doi"))
+    links, errors = [], []
+    if not doi:
+        return links, [f"{cand['id']}: no DOI for publication lookup"]
+    url = "https://api.crossref.org/works/" + urllib.parse.quote(doi, safe="/")
+    try:
+        msg = json.loads(_get(url, timeout=20))["message"]
+        for rel in (msg.get("relation") or {}).get("is-preprint-of", []):
+            if rel.get("id-type") == "doi":
+                links.append({"doi": S.norm_doi(rel["id"]), "url": url, "method": "Crossref is-preprint-of"})
+    except Exception as exc:
+        errors.append(f"{cand['id']}: Crossref lookup failed: {exc}")
+    if doi.startswith(("10.1101/", "10.64898/")):
+        for server in ("biorxiv", "medrxiv"):
+            url = f"https://api.biorxiv.org/details/{server}/{doi}"
+            try:
+                records = json.loads(_get(url, timeout=20)).get("collection", [])
+                records = [r for r in records if S.norm_doi(r.get("doi")) == doi]
+                for rec in records:
+                    pub = S.norm_doi(rec.get("published"))
+                    if pub and pub.startswith("10.") and pub != doi:
+                        links.append({"doi": pub, "url": url, "method": f"{server} published DOI"})
+                if records:
+                    break
+            except Exception as exc:
+                errors.append(f"{cand['id']}: {server} lookup failed: {exc}")
+    return links, errors
+
+
+def pubmed_publication_links(preprints: list[dict], candidates: list[dict]) -> dict[str, list[dict]]:
+    """Batch PubMed UpdateIn relationships; only resolve to a registered DOI."""
+    by_pmid = {str(c["pmid"]): c for c in candidates if c.get("pmid") and not c.get("duplicate_of")}
+    pmids = [str(c["pmid"]) for c in preprints if c.get("pmid")]
+    links = collections.defaultdict(list)
+    for start in range(0, len(pmids), 100):
+        url = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&id=" + ",".join(pmids[start:start + 100])
+        try:
+            root = ET.fromstring(_get(url, timeout=30))
+            for article in root.findall("PubmedArticle"):
+                pmid = article.findtext("MedlineCitation/PMID")
+                pre = by_pmid.get(pmid)
+                if not pre:
+                    continue
+                for rel in article.findall(".//CommentsCorrections[@RefType='UpdateIn']"):
+                    target = rel.findtext("PMID")
+                    pub = by_pmid.get(target, {})
+                    if pub.get("doi"):
+                        links[pre["id"]].append({"doi": S.norm_doi(pub["doi"]),
+                            "url": f"https://pubmed.ncbi.nlm.nih.gov/{pmid}/",
+                            "method": "PubMed UpdateIn", "published_pmid": target})
+                    else:
+                        print(f"  REVIEW {pre['id']}: PubMed update {target} is missing a registered DOI")
+        except Exception as exc:
+            print(f"  Lookup warning: PubMed publication links unavailable: {exc}")
+    return links
+
+
+def dedupe_preprints(candidates: list[dict], by: str, date: str, execute: bool) -> int:
+    preprints = [c for c in candidates if not c.get("duplicate_of") and S.doc_type(c)[0] == "preprint"]
+    by_doi = collections.defaultdict(list)
+    for c in candidates:
+        if not c.get("duplicate_of") and S.doc_type(c)[0] not in {"preprint", *S.GREY_TYPES}:
+            if doi := S.norm_doi(c.get("doi")):
+                by_doi[doi].append(c)
+    print(f"Checking publication links for {len(preprints)} preprints…", flush=True)
+    merged = set()
+    pubmed = pubmed_publication_links(preprints, candidates)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+        for pre, (links, errors) in zip(preprints, pool.map(preprint_publications, preprints)):
+            for error in errors:
+                print(f"  Lookup warning: {error}")
+            links += pubmed.get(pre["id"], [])
+            targets = {link["doi"] for link in links}
+            if len(targets) != 1:
+                if targets:
+                    print(f"  REVIEW {pre['id']}: conflicting publication links: {sorted(targets)}")
+                continue
+            doi = next(iter(targets))
+            matches = by_doi.get(doi, [])
+            if len(matches) != 1:
+                print(f"  REVIEW {pre['id']}: published DOI {doi} has {len(matches)} live register matches")
+                continue
+            pub = matches[0]
+            print(f"  Preprint {pre['id']} → published {pub['id']} ({doi})")
+            if execute:
+                S.merge_preprint(pub, pre, by, date, links)
+            merged.add(pre["id"])
+    possible = [(pub, pre, score) for pub, pre, score in S.preprint_candidates(candidates, load_abstracts()) if pre["id"] not in merged]
+    for pub, pre, score in possible:
+        print(f"  REVIEW changed-title candidate {pre['id']} → {pub['id']} (similarity {score:.2f}); not merged")
+    print(f"{len(merged)} confirmed preprint/publication pairs; {len(possible)} possible pairs need source comparison.")
+    return len(merged)
+
+
 def cmd_dedupe(args) -> int:
     """Second de-duplication pass, after all imports: records the import could not merge
     (no shared DOI/PMID, epub and print years differing by one)."""
     candidates = S.load_candidates()
+    if args.preprint or args.published or args.evidence:
+        if not (args.preprint and args.published and args.evidence):
+            raise SystemExit("Use --preprint, --published and --evidence together after source comparison.")
+        indexed = {c["id"]: c for c in candidates}
+        if args.preprint not in indexed or args.published not in indexed:
+            raise SystemExit("Both screening record IDs must exist.")
+        pre, pub = indexed[args.preprint], indexed[args.published]
+        if pre.get("duplicate_of"):
+            raise SystemExit(f"{pre['id']} is already linked to {pre['duplicate_of']}; inspect its history first.")
+        S.merge_preprint(pub, pre, args.by, dt.date.today().isoformat(),
+                         [{"method": "documented source comparison", "note": args.evidence}])
+        print(f"Preprint {pre['id']} → published {pub['id']}")
+        if args.execute:
+            S.save_candidates(candidates)
+            _log("DEDUPED", pre["id"], f"preprint superseded by {pub['id']} | by: {args.by}")
+        else:
+            print("Dry run — nothing written. Add --execute.")
+        return 0
     pairs = S.near_duplicates(candidates)
     for keep, dup in pairs:
         print(f"  {dup['id']} → {keep['id']}  {dup.get('year')}/{keep.get('year')}  {str(keep.get('title') or '')[:80]}")
     print(f"{len(pairs)} likely duplicates.")
+    today = dt.date.today().isoformat()
+    # Resolve ordinary duplicates in memory first, including during preview, so
+    # version matching never targets a record that this same command will merge.
+    for keep, dup in pairs:
+        S.merge_duplicate(keep, dup, args.by, today)
+    versions = dedupe_preprints(candidates, args.by, today, args.execute) if not args.offline else 0
     if not args.execute:
         print("Dry run — nothing written. Add --execute.")
         return 0
-    today = dt.date.today().isoformat()
-    for keep, dup in pairs:
-        S.merge_duplicate(keep, dup, args.by, today)
-    if pairs:
+    if pairs or versions:
         S.save_candidates(candidates)
-        _log("DEDUPED", "screening register", f"{len(pairs)} near-duplicates merged | by: {args.by}")
+        _log("DEDUPED", "screening register", f"{len(pairs)} ordinary duplicates; {versions} preprints superseded | by: {args.by}")
     return 0
 
 
@@ -2190,7 +2308,11 @@ def _cli(argv=None) -> int:
     p.add_argument("--date")
     p.add_argument("--execute", action="store_true")
     p.set_defaults(fn=cmd_stop)
-    p = sub.add_parser("dedupe", help="second de-duplication pass: same title, years ±1, no conflicting ids")
+    p = sub.add_parser("dedupe", help="ordinary duplicates plus verified preprint/published versions")
+    p.add_argument("--offline", action="store_true", help="skip publication-link lookups (ordinary duplicates only)")
+    p.add_argument("--preprint", help="preprint record ID for a source-verified pair")
+    p.add_argument("--published", help="published record ID for that pair")
+    p.add_argument("--evidence", help="source URLs and matching study details; title similarity alone is insufficient")
     p.add_argument("--by", required=True)
     p.add_argument("--execute", action="store_true")
     p.set_defaults(fn=cmd_dedupe)

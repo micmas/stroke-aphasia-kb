@@ -852,7 +852,7 @@ function prismaDiagram(index) {
 
   // Identification
   const dbSub = Object.entries(idn.databases.byDatabase || {}).map(([k, v]) => `${DATABASE_NAMES[k] || k}: ${v.toLocaleString()}`);
-  const identificationH = boxH + dbSub.length * 16;
+  const identificationH = boxH + Math.max(dbSub.length, 3) * 16;
   const otSub = Object.entries(idn.other.byKind || {}).map(([k, v]) => `${k.replace(/_/g, ' ')} ${v}`).join(', ');
   const sideX = (col) => col + main + gapX;
   // row 0
@@ -861,8 +861,9 @@ function prismaDiagram(index) {
   for (const sx of index.screening.searches.values()) for (const q of sx.for || []) byQuestion[q] = (byQuestion[q] || 0) + Number(sx.hits ?? sx.retrieved ?? 0);
   const qTip = Object.keys(byQuestion).length ? 'By question (search hits, before de-duplication):\n' + Object.entries(byQuestion).sort((a, b) => b[1] - a[1]).map(([q, v]) => `  ${q.replace(/_/g, ' ')}: ${v.toLocaleString()}`).join('\n') : null;
   nodes.push(box({ x: colL, y, w: main, title: 'Records from databases', n: idn.databases.records, sub: dbSub, link: coverageHref({ arm: 'databases' }), tip: qTip, height: identificationH }));
-  const removedSub = [`${idn.duplicatesRemoved} duplicates`, idn.removedByRule ? `${idn.removedByRule} grey literature` : null].filter(Boolean).join(' · ');
-  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Removed before screening', n: idn.duplicatesRemoved + (idn.removedByRule || 0), sub: removedSub, params: { stage: 'duplicate' }, id: 'removed', cls: 'pr-side pr-out' }));
+  const preprints = idn.preprintsSuperseded || 0;
+  const removedSub = [`Other duplicates: ${(idn.duplicatesRemoved - preprints).toLocaleString()}`, `Preprint → published: ${preprints.toLocaleString()}`, `Grey literature: ${(idn.removedByRule || 0).toLocaleString()}`];
+  nodes.push(box({ x: sideX(colL), y, w: side, title: 'Removed before screening', n: idn.duplicatesRemoved + (idn.removedByRule || 0), sub: removedSub, params: { stage: 'duplicate' }, id: 'removed', cls: 'pr-side pr-out', height: identificationH }));
   nodes.push(box({ x: colR, y, w: main + gapX + side, title: 'Records from other sources', n: idn.other.records, sub: otSub, link: coverageHref({ arm: 'other' }) }));
   arrowH(colL + main, sideX(colL), y + boxH / 2);
   rows.push(y);
@@ -923,7 +924,7 @@ const boxFilter = (params) => Object.fromEntries(Object.entries(params).map(([k,
 const boxRows = (index, params) => index.screening.candidates.filter((c) => matches(c, boxFilter(params), ''));
 function whyText(index, c) {
   const sc = index.screening;
-  if (c.stage === 'duplicate') return `duplicate of ${c.duplicate_of || '?'}`;
+  if (c.stage === 'duplicate') return c.duplicate?.kind === 'preprint_published' ? `Preprint superseded by published article ${c.duplicate_of}` : `Duplicate of ${c.duplicate_of || '?'}`;
   if (c.stage === 'included') return KB_STATE_TEXT[c.kb] || c.kb;
   const d = sc.lastDecision(c);
   const r = c.reason && c.reason !== 'not excluded' ? sc.reasonLabel(c.reason) : (d ? d.decision : STAGE_TEXT[c.stage] || c.stage);
@@ -972,10 +973,10 @@ function boxPanel(index, route, rows) {
       h('p', {}, h('a', { href: '#/searches', text: 'Questions, exact search terms and counts by database →' }))) : null,
     (sc.omitted.awaitingTitleAbstract || sc.omitted.removedByRule) && id !== 'removed' ? h('p', { class: 'small muted', text: 'Records still awaiting title/abstract screening and records removed by the grey-literature rule are counted in the flow but omitted from the public paper list.' }) : null,
     !rows.length ? h('p', { text: 'No matching papers are listed in this public export.' }) : null,
-    id === 'removed' ? h('p', { class: 'small muted', text: `This box counts ${idn.duplicatesRemoved ?? 0} duplicates and ${idn.removedByRule || 0} grey-literature records (theses, books, conference records, removed by rule); only duplicates merged after import are listed.` }) : null,
+    id === 'removed' ? h('p', { class: 'small muted', text: `This box counts ${(idn.duplicatesRemoved || 0) - (idn.preprintsSuperseded || 0)} other duplicates, ${idn.preprintsSuperseded || 0} preprints superseded by published articles, and ${idn.removedByRule || 0} grey-literature records. Preprints are a subset of the duplicate total, not an additional subtraction. Only duplicates linked after import are listed; both versions and earlier decisions are retained in the register.` }) : null,
     rows.length ? h('table', { class: 'cand-list box-list' },
       h('thead', {}, h('tr', {}, h('th', { text: 'Paper' }), h('th', { text: 'Title' }), h('th', { text: 'Why' }), h('th', { text: 'Decided' }))),
-      h('tbody', {}, rows.slice(0, 400).map((c) => { const d = sc.lastDecision(c); return h('tr', {},
+      h('tbody', {}, rows.slice(0, 400).map((c) => { const d = c.duplicate || sc.lastDecision(c); return h('tr', {},
         h('td', {}, c.key && (index.byPaper.has(c.key) || index.kb.citations?.[c.key]) ? h('a', { href: paperHref(c.key), text: sc.authorYear(c) }) : h('b', { text: sc.authorYear(c) }), h('div', { class: 'small muted', text: c.id })),
         h('td', {}, h('span', { text: c.title || '(no title)' }), c.doi ? h('div', { class: 'small' }, h('a', { href: `https://doi.org/${c.doi}`, rel: 'noopener', target: '_blank', text: c.doi })) : null),
         h('td', { text: whyText(index, c) }),

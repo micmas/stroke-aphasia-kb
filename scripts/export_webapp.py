@@ -315,7 +315,7 @@ def version(root: Path, kb) -> dict:
 
 
 CANDIDATE_FIELDS = ("id", "key", "doi", "pmid", "title", "year", "first_author", "journal", "for",
-                    "stage", "reason", "arm", "kb", "decided_by", "decided_on", "duplicate_of")
+                    "stage", "reason", "arm", "kb", "decided_by", "decided_on", "duplicate_of", "duplicate")
 
 
 def screening(root: Path) -> dict:

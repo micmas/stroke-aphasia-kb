@@ -77,8 +77,9 @@ They are identified by rule before screening (`screen.py grey`): the
 record type the export states (RIS `TY`, Scopus document type) when it is
 known, otherwise a book DOI prefix or the source title; each record keeps
 the evidence, and PRISMA reports them as removed before screening.
-Preprints are eligible; a preprint and its journal version are one study
-(`duplicate_report`).
+Preprints are eligible when no published version has been identified. A preprint
+and its journal version are one report: retain the published record for screening
+and link the preprint under duplicate removal (`preprint_published`).
 
 **Publication years: 2000 onward** (`years` in
 `screening/strategies.yaml`). Earlier papers enter only as pillar papers
@@ -255,9 +256,40 @@ search to that candidate's `sources` instead of creating a new one.
 what the first pass could not — the same title with publication years one
 apart (epub vs print) and no conflicting identifiers — and marks each with
 `duplicate_of` (the record with identifiers is kept; sources move to it).
-Duplicates noticed during screening are merged the same way. PRISMA
-"duplicates removed" is the database records retrieved minus the unique
-candidates they became.
+The same command also checks Crossref, PubMed and bioRxiv/medRxiv publication links for
+preprints, including versions with changed titles and different DOIs. A verified
+link to one published record removes the preprint from the queue; it does not
+include or approve the journal article. Both records, PDFs and previous decisions
+are preserved. Sources are carried forward; version-specific DOIs and citation
+keys stay with their own records.
+
+```bash
+python scripts/screen.py dedupe --by micmas              # preview
+python scripts/screen.py dedupe --by micmas --execute    # apply verified pairs
+```
+
+Similar titles with the same first author and nearby publication years are
+flagged for source comparison, never merged on similarity alone. Check authors,
+cohort, methods and outcomes, or an explicit publisher version link. To record a
+confirmed pair in the same duplicate-removal step:
+
+```bash
+python scripts/screen.py dedupe --preprint CXXXX --published CYYYY \
+  --evidence "Source URLs and the matching study details" --by micmas --execute
+```
+
+Failed lookups, conflicting links and published articles missing from the register
+are reported and remain unresolved. Import a missing published record before
+linking its preprint. `--offline` skips online version checks. A repeat audit is
+safe: already linked records are not processed again. There is no claim that an
+unlinked preprint has no published version.
+
+PRISMA reports **Preprint → published** on a separate line within duplicate
+removal, alongside other duplicates. It is a subset of the duplicate total,
+never counted twice. Retroactive corrections preserve earlier screening
+decisions but move confirmed preprints out of screening exclusions and into this
+version-duplicate category. Reports with merely overlapping cohorts or different
+analyses are not automatically version duplicates.
 
 ## 4. Screening
 
