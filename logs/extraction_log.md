@@ -817,3 +817,6 @@ add an `EXTRACTED` line for every run.
 2026-11-16 | SCREENED | — | full_text:unsure 3, title_abstract:include 4 | 7 decisions | by: micmas
 2026-11-16 | PORTAL-APPLIED | — | 7 record(s) | screen 7 | by: michele
 2026-11-16 | REGISTERED | — | screening → citations.md | 6 entries appended, 0 linked to existing keys
+2026-11-16 | SCREENED | — | full_text:exclude 1 | 1 decisions | by: micmas
+
+2026-11-16 | REGISTRATION-WITHDRAWN | @Teghipco2023 | Newly auto-registered preprint removed from extraction bibliography after micmas corrected C1031 to duplicate_report; retain @Teghipco2024. Screening history and local source PDF preserved.

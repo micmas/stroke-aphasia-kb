@@ -2382,14 +2382,6 @@ doi:10.1016/j.ynirp.2025.100296
 
 > Registered automatically from the PDF's DOI via Crossref on 2026-11-16 (file: screening C0507). Included by the screening register (C0507; docs/SCREENING.md). Check the entry.
 
-## @Teghipco2023  [seed]
-Teghipco A, Newman-Norlund R, Fridriksson J, Rorden C, Bonilha L.
-Distinct brain morphometry patterns revealed by deep learning improve prediction of aphasia severity.
-2023.
-doi:10.21203/rs.3.rs-3126126/v1
-
-> Registered automatically from the PDF's DOI via Crossref on 2026-11-16 (file: screening C1031). Included by the screening register (C1031; docs/SCREENING.md). Check the entry.
-
 ## @Xing2018  [seed]
 Xing S, Mandal A, Lacey EH, Skipper-Kallal LM, Zeng J, Turkeltaub PE.
 Behavioral Effects of Chronic Gray and White Matter Stroke Lesions in a Functionally Defined Connectome for Naming.

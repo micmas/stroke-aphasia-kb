@@ -21691,6 +21691,16 @@ candidates:
     date: '2026-11-16'
     seq: 331
     record: 20261116T000010Z-02_screen_m-massontrottier_c1031.json
+  - stage: full_text
+    decision: exclude
+    reason: duplicate_report
+    by: micmas
+    date: '2026-11-16'
+    seq: 337
+    note: >-
+      Correction requested by micmas on 2026-11-16: Teghipco2023 is the Research Square preprint of included
+      Teghipco2024, DOI 10.1038/s43856-024-00541-8 (C0018). Extract the published report only; do not
+      count the preprint as independent evidence.
   suggestion_ft:
     decision: exclude
     reason: duplicate_report
@@ -21699,7 +21709,6 @@ candidates:
     by: claude (pre-fill)
     date: '2026-10-28'
   pdf_file: C1031_Teghipco2023.pdf
-  key: '@Teghipco2023'
 - id: C1032
   doi: 10.12890/2023_003947
   pmid: '37455687'
