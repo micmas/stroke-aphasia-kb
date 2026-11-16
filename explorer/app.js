@@ -975,6 +975,91 @@ function boxPanel(index, route, rows) {
     rows.length > 400 ? h('p', { class: 'small muted', text: `First 400 of ${rows.length}; the full list is in the Candidates table below.` }) : null);
 }
 
+// Plain-English explanations of recorded strategies; the search register remains authoritative.
+const SEARCH_QUESTIONS = {
+  q1_lesion_impairment: ['How is brain damage related to language difficulties after stroke?',
+    'Looks for aphasia, stroke and brain imaging together, to find studies linking brain regions or connections to language difficulties.'],
+  q1b_language_lesion_mapping: ['Where does brain damage affect reading, writing, speaking or understanding language?',
+    'Looks for specific language skills alongside stroke and lesion mapping. This helps find papers that study language difficulties without using the word “aphasia”.'],
+  q1c_cognition_prosody_lesion: ['How does stroke affect thinking skills and the rhythm or tone of speech?',
+    'Combines two routes: cognitive skills with lesion–symptom mapping, or prosody (the rhythm, stress and tone of speech) with brain imaging. Both routes include stroke terms.'],
+  q2b_therapy_response_neural: ['How are brain structure and activity related to the response to aphasia therapy?',
+    'Looks for aphasia therapy alongside imaging or lesion evidence. The aim is to understand brain features associated with treatment response.'],
+  q2c_therapy_response_patient_factors: ['Which personal or clinical characteristics are linked to the response to a particular aphasia therapy?',
+    'Looks for treatment response alongside patient characteristics, such as demographic, clinical, cognitive, language or genetic factors. Imaging is not required for this question.'],
+  q3_predictor_outcome: ['Which brain imaging findings are associated with aphasia severity or recovery after stroke?',
+    'Looks for aphasia, stroke, predictors and imaging together. Studies may also consider clinical or demographic factors alongside the imaging findings.'],
+  q4_synthesis: ['What do reviews tell us about aphasia, treatment and recovery?',
+    'Looks for systematic reviews, scoping reviews and meta-analyses of aphasia. The additional route for narrative reviews requires stroke and brain imaging terms.'],
+  q5_recruitment_meta: ['Which brain regions support language, according to imaging meta-analyses?',
+    'Looks for language tasks, imaging and meta-analysis terms. This provides synthesis evidence about language networks, including work in people without stroke; individual healthy-volunteer studies do not enter through this search.'],
+};
+const DATABASE_NAMES = { pubmed: 'PubMed', scopus: 'Scopus', psycinfo: 'PsycINFO', openalex: 'OpenAlex' };
+function searchQuestions(index, route) {
+  const searches = [...index.screening.searches.values()];
+  const groups = new Map();
+  for (const run of searches) {
+    const key = run.strategy || run.id;
+    if (!groups.has(key)) groups.set(key, []);
+    groups.get(key).push(run);
+  }
+  const selected = route.params.get('q');
+  const filterText = run => Object.entries(run.filters || {}).map(([key, value]) => `${key}: ${value}`).join(' · ') || 'No filters recorded';
+  const download = () => {
+    const text = ['Stroke aphasia KB — recorded database searches',
+      'Plain-English questions explain the search purpose; exact queries below are unchanged from the search register.',
+      ...searches.map(run => [
+        `\n${run.id} — ${DATABASE_NAMES[run.database] || run.database} — ${run.date || 'date not recorded'}`,
+        `Strategy: ${run.strategy || 'not recorded'}`,
+        `Question: ${SEARCH_QUESTIONS[run.strategy]?.[0] || 'See the recorded query'}`,
+        `Filters: ${filterText(run)}`, `Hits: ${run.hits ?? 'not recorded'}; retrieved: ${run.retrieved ?? 'not recorded'}`,
+        `Run by: ${run.run_by || 'not recorded'}`,
+        `Protocol version: ${run.protocol?.version ?? 'not recorded'}; fingerprint: ${run.protocol?.fingerprint || 'not recorded'}; commit: ${run.protocol?.commit || 'not recorded'}`,
+        run.query || 'No query recorded',
+      ].join('\n'))].join('\n\n');
+    const url = URL.createObjectURL(new Blob([text], { type: 'text/plain;charset=utf-8' }));
+    const a = h('a', { href: url, download: 'aphasia-kb-database-searches.txt' });
+    document.body.append(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+  return h('div', { class: 'editorial-page search-guide' },
+    h('p', { class: 'eyebrow', text: 'How we find the literature' }),
+    h('h1', { text: 'The questions behind our searches' }),
+    h('p', { class: 'lead', text: 'These questions explain what we looked for. Open a question’s search records to see the original terms, dates and filters.' }),
+    h('p', {}, `${searches.length} recorded searches · ${groups.size} question areas. `,
+      h('a', { href: '#/coverage', text: 'Back to the screening flow →' })),
+    h('p', { class: 'small', text: 'Searches find possible papers; screening decides which belong in the KB. Results overlap between searches, so their hit counts should not be added to estimate unique papers.' }),
+    h('div', { class: 'editorial-actions' },
+      h('button', { class: 'btn', type: 'button', onclick: download, text: 'Download all questions and exact searches' }),
+      h('a', { href: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/SCREENING.md', text: 'Read the screening protocol' })),
+    selected ? h('p', {}, h('a', { href: '#/searches', text: 'Show all search questions' })) : null,
+    selected && !groups.has(selected) ? h('p', { class: 'notice', text: 'No recorded search matches this question.' }) : null,
+    [...groups.entries()].sort(([a], [b]) => { const order = Object.keys(SEARCH_QUESTIONS); return (order.includes(a) ? order.indexOf(a) : order.length) - (order.includes(b) ? order.indexOf(b) : order.length); }).filter(([key]) => !selected || selected === key).map(([key, runs]) => {
+      const [question, explanation] = SEARCH_QUESTIONS[key] || ['What does this recorded search look for?', 'This search has no plain-English summary yet. Its original query is available below.'];
+      return h('section', { class: 'search-question' },
+        h('h2', { text: question }), h('p', { text: explanation }),
+        h('p', { class: 'small muted' }, runs.map(run => DATABASE_NAMES[run.database] || run.database).filter((v, i, a) => a.indexOf(v) === i).join(' · '),
+          ' · ', h('a', { href: `#/searches?q=${encodeURIComponent(key)}`, text: 'Link to this question' })),
+        h('details', {}, h('summary', { text: `Exact search terms and records (${runs.length})` }),
+          runs.map(run => h('section', { class: 'search-run' },
+            h('h3', { text: `${DATABASE_NAMES[run.database] || run.database} · ${run.id} · ${run.date || 'date not recorded'}` }),
+            h('p', { class: 'small', text: `${filterText(run)} · ${run.hits ?? '?'} hits · ${run.retrieved ?? '?'} retrieved · run by ${run.run_by || 'not recorded'}` }),
+            h('pre', { class: 'search-query', tabindex: '0', 'aria-label': `Exact query for ${run.id}` }, h('code', { text: run.query || 'No query recorded' })),
+            h('p', { class: 'small muted', text: `Strategy: ${key}. Protocol version ${run.protocol?.version ?? '?'} · fingerprint ${run.protocol?.fingerprint || '?'} · commit ${run.protocol?.commit || '?'}.` }),
+            run.file ? h('p', { class: 'small muted', text: `Imported from ${run.file}` }) : null,
+            h('a', { href: coverageHref({ search: run.id }), text: `See listed records from ${run.id} →` })))));
+    }),
+    h('details', { class: 'editorial-details' }, h('summary', { text: 'How to read the database terms' }),
+      h('ul', {},
+        h('li', { text: 'OR groups alternatives: any of the listed words can match.' }),
+        h('li', { text: 'AND joins concepts: the record must match both groups.' }),
+        h('li', { text: 'An asterisk (*) allows word endings. Quotation marks group phrases; the exact behaviour depends on the database.' }),
+        h('li', { text: 'Field labels tell a database where to search. For example, PubMed [tiab] means title or abstract and [Mesh] means a subject heading. Scopus uses TITLE-ABS-KEY; PsycINFO uses labels such as TI (title), AB (abstract) and DE (subject heading).' }))),
+    h('p', { class: 'small muted' }, 'This page lists searches recorded as run, with their original strings and filters. The ',
+      h('a', { href: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/screening/strategies.yaml', text: 'strategy file' }),
+      ' also contains additional targeted searches; a planned strategy is not evidence that a search was run. ',
+      h('a', { href: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/screening/searches.yaml', text: 'View the full search register' }), '.'));
+}
+
 function coverage(index, route) {
   const sc = index.screening;
   if (!sc.present) {
@@ -1056,17 +1141,11 @@ function coverage(index, route) {
       h('td', { class: 'num', text: String(g.included || 0) }), h('td', { class: 'num' }, h('b', { text: String(g.in_kb || 0) })), h('td', { class: 'num', text: String(g.approved_findings || 0) }))))) : h('p', { class: 'muted', text: 'No evidence gaps are declared (atlas_mapping/evidence_gaps.yaml) and no search names what it serves.' });
 
   const searches = [...sc.searches.values()];
-  const searchTable = searches.length ? h('table', { class: 'search-list' },
-    h('thead', {}, h('tr', {}, h('th', { text: 'Id' }), h('th', { text: 'Database' }), h('th', { text: 'Date' }), h('th', { text: 'Query' }), h('th', { text: 'Serves' }), h('th', { class: 'num', text: 'Hits' }), h('th', { class: 'num', text: 'Retrieved' }), h('th', { text: 'Run by' }))),
-    h('tbody', {}, searches.map((x) => h('tr', {},
-      h('td', {}, h('a', { class: 'chip', href: coverageHref({ search: x.id }), text: x.id })), h('td', { text: x.database }), h('td', { text: x.date || '' }),
-      h('td', {}, h('code', { class: 'query', text: x.query || '' }), x.filters ? h('div', { class: 'small muted', text: Object.entries(x.filters).map(([k, v]) => `${k}: ${v}`).join(' · ') }) : null, x.file ? h('div', { class: 'small muted', text: `imported from ${x.file}` }) : null),
-      h('td', { class: 'small' }, (x.for || []).map((g, i) => [i ? ', ' : '', h('a', { href: coverageHref({ gap: g }), text: g.replace(/_/g, ' ') })])),
-      h('td', { class: 'num', text: String(x.hits ?? '') }), h('td', { class: 'num', text: String(x.retrieved ?? '') }), h('td', { text: x.run_by || '' }))))) : h('p', { class: 'muted', text: 'No database search has been recorded yet; every candidate came from other sources. `python scripts/screen.py search` records one.' });
+
 
   return frag(
     h('div', { class: 'page-head' }, h('h1', { text: 'Coverage' }), h('span', { class: 'muted small', text: `${sc.candidates.length} candidates · ${searches.length} searches · ${inc.total} included · ${inc.kb?.in_kb ?? 0} in the knowledge base` })),
-    h('p', {}, 'How the literature was searched and screened, and where every candidate paper stands: identified, screened, excluded (and why), included, extracted, approved into the knowledge base or rejected. The register is kept by ', h('code', { text: 'scripts/screen.py' }), ' under the protocol in SCREENING.md; decisions are made by a named person, and papers that entered the bibliography before the register existed are shown as "other sources" with legacy decisions.'),
+    h('p', { class: 'lead', text: 'Follow the papers from search results to screening decisions and findings in the knowledge base.' }),
     h('div', { class: 'tiles' },
       h('div', { class: 'tile' }, h('div', { class: 'value', text: String(sc.candidates.length + (sc.omitted.awaitingTitleAbstract || 0) + (sc.omitted.removedByRule || 0)) }), h('div', { class: 'label', text: 'candidate papers' }), h('div', { class: 'detail', text: `${p?.identification.databases.records ?? 0} database records · ${p?.identification.other.records ?? 0} from other sources` })),
       h('div', { class: 'tile' }, h('div', { class: 'value', text: String(decided) }), h('div', { class: 'label', text: 'screened' }), h('div', { class: 'detail', text: `${awaiting + (sc.omitted.awaitingTitleAbstract || 0)} awaiting a decision` })),
@@ -1074,6 +1153,7 @@ function coverage(index, route) {
       h('div', { class: 'tile' }, h('div', { class: 'value', text: String(inc.kb?.in_kb ?? 0) }), h('div', { class: 'label', text: 'in the knowledge base' }), h('div', { class: 'detail', text: `${inc.approvedFindings} approved findings · ${inc.kb?.in_review ?? 0} in review` }))),
     h('h2', { text: 'Flow of papers (PRISMA 2020)' }),
     h('p', { class: 'small muted', text: 'Hover over a pink box (an exit) to see its papers: author, year and why. Click any box to list its papers with titles just below the diagram. The knowledge-base row shows where included papers stand in the extraction and review pipeline.' }),
+    h('p', {}, h('a', { href: '#/searches', text: 'What did we search for? Questions in plain English and exact database terms →' })),
     h('div', { class: 'prisma-wrap' }, prismaDiagram(index)),
     boxPanel(index, route, rows),
     h('div', { class: 'grid-2' },
@@ -1086,8 +1166,8 @@ function coverage(index, route) {
     h('h2', { text: 'Coverage of the evidence gaps' }),
     h('p', { class: 'small', text: 'For each gap declared in atlas_mapping/evidence_gaps.yaml (and each entry a search was run for): how many candidates were found, screened and included, and how many are already in the knowledge base. A gap with candidates found but none in the KB is waiting on extraction or review; a gap with none found needs a search.' }),
     gapTable,
-    h('h2', { text: 'Searches' }),
-    searchTable,
+    h('h2', { text: 'Database searches' }),
+    h('p', {}, h('a', { href: '#/searches', text: 'Read the search questions and exact database terms →' })),
     h('h2', { id: 'candidates', text: 'Candidates' }),
     sc.omitted.awaitingTitleAbstract || sc.omitted.removedByRule ? h('p', { class: 'small muted', text: `Listed: every candidate someone has decided on, and everything past title/abstract. Counted in the flow above but not listed: ${sc.omitted.awaitingTitleAbstract || 0} records awaiting title/abstract screening and ${sc.omitted.removedByRule || 0} grey-literature records removed by rule.` }) : null,
     h('div', { class: 'two-col' },
@@ -1133,6 +1213,7 @@ function render() {
     else if (head === 'matrix') { view = matrix(index, route); current = '/matrix'; }
     else if (head === 'papers') { view = papers(index); current = '/papers'; }
     else if (head === 'licences') { view = licencesView(index, route); current = '/papers'; }
+    else if (head === 'searches') { view = searchQuestions(index, route); current = '/coverage'; }
     else if (head === 'coverage') { view = coverage(index, route); current = '/coverage'; }
     else if (head === 'involve') { view = involve(index); current = '/involve'; }
     else if (head === 'models') { view = models(index); current = null; }   // reached from the Overview, not from the menu
