@@ -53,25 +53,27 @@ def _batch(manifest, output, models, budget=20000, execute=False, retry_failed=F
     if output.exists():
         if not frozen.exists() or json.loads(frozen.read_text()) != config:
             raise ValueError('Existing batch differs or is incomplete; use a new output directory')
-    print(f"{'RUN' if execute else 'PREVIEW'}: {len(data['papers'])} papers, two independent extractions each", flush=True)
+    total = len(data['papers'])
+    print(f"{'RUN' if execute else 'PREVIEW'}: {total} papers, two independent extractions each", flush=True)
     if not execute:
-        for row in data['papers']:
-            print(row['key'])
+        for index, row in enumerate(data['papers'], 1):
+            print(f"[{index}/{total}] {row['key']}")
         return 0
     output.mkdir(parents=True, exist_ok=True)
     if not frozen.exists():
         frozen.write_text(json.dumps(config, indent=2) + '\n')
     failures = []
-    for row in data['papers']:
+    for index, row in enumerate(data['papers'], 1):
+        progress = f'[{index}/{total}]'
         dest = output / row['key']
         if dest.exists():
             status = dest / 'status.json'
             if status.exists() and json.loads(status.read_text()).get('status') == 'awaiting_independent_review':
-                print(f"Reuse {row['key']}: awaiting source review", flush=True)
+                print(f"{progress} Reuse {row['key']}: awaiting source review", flush=True)
                 continue
             if not retry_failed and continue_on_error:
                 failures.append(row['key'])
-                print(f"Skip {row['key']}: failed attempt preserved; --retry-failed required", flush=True)
+                print(f"{progress} Skip {row['key']}: failed attempt preserved; --retry-failed required", flush=True)
                 continue
             if not retry_failed:
                 raise ValueError(f"{row['key']}: incomplete/failed output preserved; inspect, then use --retry-failed")
@@ -82,14 +84,14 @@ def _batch(manifest, output, models, budget=20000, execute=False, retry_failed=F
                 attempt += 1
             dest.rename(archive / str(attempt))
             print(f"Preserved failed attempt at {archive / str(attempt)}", flush=True)
-        print(f"Extract {row['key']}", flush=True)
+        print(f"{progress} Extract {row['key']}", flush=True)
         options = {'segment_chars': row['segment_chars']} if row.get('segment_chars') is not None else {}
         if profile != 'analyses':
             options['profile'] = profile
         if row.get('allow_long_paper') is True:
             options['allow_long_paper'] = True
         if run_pair(Path(row['pdf']), row['citation'], dest, models, max_tokens=budget, **options):
-            print(f"Failed {row['key']}; failure preserved. No drafts changed.", flush=True)
+            print(f"{progress} Failed {row['key']}; failure preserved. No drafts changed.", flush=True)
             failures.append(row['key'])
             if not continue_on_error:
                 return 1
