@@ -17,3 +17,10 @@ Put new disposable diagnostics and development reports outside the checkout.
 Git commits for this repository use micmas <michelemt8@gmail.com>. Do not add AI
 authors or Co-authored-by trailers. Preserve actual model/reviewer provenance in
 evidence and audit records; commit ownership does not imply human verification.
+
+Public websites share the CALMaR palette and project navigation in
+`explorer/project-shell.css` and `explorer/project-shell.js`. Keep a visible link
+back to https://aphasia-kb.app/ and to the CALMaR webapp on every HTML page.
+Use plain language, foreground human research responsibility, and keep source
+and review provenance available. Theme changes must be checked in light and dark
+mode and deployed to the explorer, portal and CALMaR notebook/demo site together.

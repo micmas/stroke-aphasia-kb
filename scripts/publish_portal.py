@@ -499,12 +499,15 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
         shutil.rmtree(DIST / "welcome")
     shutil.copytree(WEB / "welcome", DIST / "welcome")
     shutil.copy2(ROOT / "explorer" / "styles.css", DIST / "welcome" / "styles.css")
+    for name in ("project-shell.css", "project-shell.js"):
+        shutil.copy2(ROOT / "explorer" / name, DIST / name)
+        shutil.copy2(ROOT / "explorer" / name, DIST / "welcome" / name)
     # A new build must not run against a browser's cached copy of the old page code: the
     # page asks for its script and stylesheets under this build's stamp.
     stamp = dt.datetime.now().strftime("%Y%m%d%H%M%S")
     page = DIST / "index.html"
     html = page.read_text(encoding="utf-8")
-    for name in ("app.js", "portal.css", "explorer-styles.css"):
+    for name in ("app.js", "portal.css", "explorer-styles.css", "project-shell.css", "project-shell.js"):
         html = re.sub(rf'((?:src|href)="{re.escape(name)})(?:\?v=\d+)?"', rf'\1?v={stamp}"', html)
     page.write_text(html, encoding="utf-8")
     welcome = DIST / "welcome" / "index.html"
