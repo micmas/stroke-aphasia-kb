@@ -821,14 +821,16 @@ function prismaDiagram(index) {
   const lines = [];
   const text = (x, yy, t, cls = '') => s('text', { x, y: yy, class: `pr-text ${cls}` }, t);
   const fit = (t, w, px) => { const max = Math.max(4, Math.floor(w / px)); return String(t).length > max ? `${String(t).slice(0, max - 1)}…` : String(t); };
-  const box = ({ x, y: yy, w, title, n, sub, link, cls = '', params = null, id = null, tip = null }) => {
+  const box = ({ x, y: yy, w, title, n, sub, link, cls = '', params = null, id = null, tip = null, height = boxH }) => {
     if (params && id) link = coverageHref({ ...params, box: id });
+    else if (link) link += `${link.includes('?') ? '&' : '?'}box=${encodeURIComponent(title)}`;
     const g = s('g', { class: `pr-box ${cls}` });
-    g.append(s('rect', { x, y: yy, width: w, height: boxH, rx: 6 }));
+    g.append(s('rect', { x, y: yy, width: w, height, rx: 6 }));
     g.append(text(x + 10, yy + 20, fit(title, w - 16, 5.5), 'pr-title'));
     const line = text(x + 10, yy + 41, String(n), 'pr-n');
-    if (sub) line.append(s('tspan', { class: 'pr-sub', dx: 6 }, fit(sub, w - 24 - 9 * String(n).length, 5.4)));
+    if (sub && !Array.isArray(sub)) line.append(s('tspan', { class: 'pr-sub', dx: 6 }, fit(sub, w - 24 - 9 * String(n).length, 5.4)));
     g.append(line);
+    if (Array.isArray(sub)) sub.forEach((label, i) => g.append(text(x + 10, yy + 60 + i * 16, label, 'pr-sub')));
     if (link) {
       const a = s('a', { href: link, class: 'pr-link' });
       if (params && cls.includes('pr-out')) {
@@ -849,7 +851,8 @@ function prismaDiagram(index) {
   const fmtReasons = (obj) => Object.entries(obj || {}).map(([k, v]) => `${index.screening.reasonLabel(k)} ${v}`).join(', ');
 
   // Identification
-  const dbSub = Object.entries(idn.databases.byDatabase || {}).map(([k, v]) => `${k} ${v}`).join(', ') || 'no search run yet';
+  const dbSub = Object.entries(idn.databases.byDatabase || {}).map(([k, v]) => `${DATABASE_NAMES[k] || k}: ${v.toLocaleString()}`);
+  const identificationH = boxH + dbSub.length * 16;
   const otSub = Object.entries(idn.other.byKind || {}).map(([k, v]) => `${k.replace(/_/g, ' ')} ${v}`).join(', ');
   const sideX = (col) => col + main + gapX;
   // row 0
@@ -857,19 +860,19 @@ function prismaDiagram(index) {
   const byQuestion = {};
   for (const sx of index.screening.searches.values()) for (const q of sx.for || []) byQuestion[q] = (byQuestion[q] || 0) + Number(sx.hits ?? sx.retrieved ?? 0);
   const qTip = Object.keys(byQuestion).length ? 'By question (search hits, before de-duplication):\n' + Object.entries(byQuestion).sort((a, b) => b[1] - a[1]).map(([q, v]) => `  ${q.replace(/_/g, ' ')}: ${v.toLocaleString()}`).join('\n') : null;
-  nodes.push(box({ x: colL, y, w: main, title: 'Records from databases', n: idn.databases.records, sub: dbSub, link: coverageHref({ arm: 'databases' }), tip: qTip }));
+  nodes.push(box({ x: colL, y, w: main, title: 'Records from databases', n: idn.databases.records, sub: dbSub, link: coverageHref({ arm: 'databases' }), tip: qTip, height: identificationH }));
   const removedSub = [`${idn.duplicatesRemoved} duplicates`, idn.removedByRule ? `${idn.removedByRule} grey literature` : null].filter(Boolean).join(' · ');
   nodes.push(box({ x: sideX(colL), y, w: side, title: 'Removed before screening', n: idn.duplicatesRemoved + (idn.removedByRule || 0), sub: removedSub, params: { stage: 'duplicate' }, id: 'removed', cls: 'pr-side pr-out' }));
   nodes.push(box({ x: colR, y, w: main + gapX + side, title: 'Records from other sources', n: idn.other.records, sub: otSub, link: coverageHref({ arm: 'other' }) }));
   arrowH(colL + main, sideX(colL), y + boxH / 2);
   rows.push(y);
-  y += boxH + rowGap;
+  y += identificationH + rowGap;
   // row 1
   nodes.push(box({ x: colL, y, w: main, title: 'Records screened (title/abstract)', n: db.screened, sub: db.awaitingTitleAbstract ? `${db.awaitingTitleAbstract} awaiting` : null, link: coverageHref({ arm: 'databases', stage: dbStages }) }));
   nodes.push(box({ x: sideX(colL), y, w: side, title: 'Excluded at title/abstract', n: db.excludedTitleAbstract, sub: db.unsureTitleAbstract ? `${db.unsureTitleAbstract} unsure` : null, params: { arm: 'databases', stage: 'excluded_ta' }, id: 'excluded_ta', cls: 'pr-side pr-out' }));
   nodes.push(box({ x: colR, y, w: main, title: 'Reports sought for retrieval', n: ot.sought, link: coverageHref({ arm: 'other', stage: dbStages }) }));
   nodes.push(box({ x: sideX(colR), y, w: side, title: 'Not retrieved', n: ot.notRetrieved, params: { arm: 'other', stage: 'not_retrieved' }, id: 'other_not_retrieved', cls: 'pr-side pr-out' }));
-  arrowV(colL + main / 2, rows[0] + boxH, y); arrowV(colR + main / 2, rows[0] + boxH, y);
+  arrowV(colL + main / 2, rows[0] + identificationH, y); arrowV(colR + main / 2, rows[0] + boxH, y);
   arrowH(colL + main, sideX(colL), y + boxH / 2); arrowH(colR + main, sideX(colR), y + boxH / 2);
   rows.push(y);
   y += boxH + rowGap;
@@ -955,7 +958,7 @@ function hideTip() { document.getElementById('prtip')?.classList.remove('on'); }
 const BOX_TITLES = { removed: 'Removed before screening', excluded_ta: 'Excluded at title/abstract', excluded_ft: 'Excluded at full text',
   other_excluded: 'Other sources: excluded', db_not_retrieved: 'Full text not retrieved', other_not_retrieved: 'Other sources: not retrieved' };
 function boxPanel(index, route, rows) {
-  const id = route.params.get('box');
+  const id = route.params.get('box') || (route.params.get('arm') === 'databases' && !route.params.has('stage') ? 'Records from databases' : route.params.get('arm') === 'other' && !route.params.has('stage') ? 'Records from other sources' : null);
   if (!id) return null;
   hideTip();
   const sc = index.screening;
@@ -964,6 +967,11 @@ function boxPanel(index, route, rows) {
   return h('section', { id: 'boxlist', class: 'panel box-panel' },
     h('div', { class: 'results-head' }, h('h2', { text: `${title}: ${rows.length} paper${rows.length === 1 ? '' : 's'} listed` }),
       h('a', { class: 'small', href: '#/coverage', text: 'close ×' })),
+    id === 'Records from databases' ? h('div', {},
+      h('p', { text: `${(idn.databases?.records || 0).toLocaleString()} database records were retrieved before duplicates were removed. The table below lists the matching records available in this public export; it does not contain every search hit.` }),
+      h('p', {}, h('a', { href: '#/searches', text: 'Questions, exact search terms and counts by database →' }))) : null,
+    (sc.omitted.awaitingTitleAbstract || sc.omitted.removedByRule) && id !== 'removed' ? h('p', { class: 'small muted', text: 'Records still awaiting title/abstract screening and records removed by the grey-literature rule are counted in the flow but omitted from the public paper list.' }) : null,
+    !rows.length ? h('p', { text: 'No matching papers are listed in this public export.' }) : null,
     id === 'removed' ? h('p', { class: 'small muted', text: `This box counts ${idn.duplicatesRemoved ?? 0} duplicates and ${idn.removedByRule || 0} grey-literature records (theses, books, conference records, removed by rule); only duplicates merged after import are listed.` }) : null,
     rows.length ? h('table', { class: 'cand-list box-list' },
       h('thead', {}, h('tr', {}, h('th', { text: 'Paper' }), h('th', { text: 'Title' }), h('th', { text: 'Why' }), h('th', { text: 'Decided' }))),
@@ -1004,6 +1012,18 @@ function searchQuestions(index, route) {
     groups.get(key).push(run);
   }
   const selected = route.params.get('q');
+  const questionCode = key => key.startsWith('q') ? key.split('_')[0].replace(/^q/, 'Q') : key;
+  const databases = [...new Set(searches.map(run => run.database))].sort((a, b) => (['pubmed', 'scopus', 'psycinfo'].indexOf(a) - ['pubmed', 'scopus', 'psycinfo'].indexOf(b)));
+  const orderedGroups = [...groups.entries()].sort(([a], [b]) => { const order = Object.keys(SEARCH_QUESTIONS); return (order.includes(a) ? order.indexOf(a) : order.length) - (order.includes(b) ? order.indexOf(b) : order.length); });
+  const retrievedCount = runs => !runs.length ? '—' : runs.some(run => run.retrieved == null) ? 'Not recorded' : runs.reduce((total, run) => total + Number(run.retrieved), 0).toLocaleString();
+  const countTable = h('div', { class: 'table-wrap' }, h('table', { class: 'search-counts' },
+    h('caption', { text: 'Records retrieved (N), before removing duplicates within or between searches' }),
+    h('thead', {}, h('tr', {}, h('th', { scope: 'col', text: 'Question' }), databases.map(db => h('th', { scope: 'col', class: 'num', text: DATABASE_NAMES[db] || db })), h('th', { scope: 'col', class: 'num', text: 'Total' }))),
+    h('tbody', {}, orderedGroups.map(([key, runs]) => h('tr', {},
+      h('th', { scope: 'row' }, h('a', { href: `#/searches?q=${encodeURIComponent(key)}`, text: `${questionCode(key)} · ${SEARCH_QUESTIONS[key]?.[0] || key}` })),
+      databases.map(db => h('td', { class: 'num', text: retrievedCount(runs.filter(run => run.database === db)) })), h('td', { class: 'num', text: retrievedCount(runs) })))),
+    h('tfoot', {}, h('tr', {}, h('th', { scope: 'row', text: 'All recorded searches' }), databases.map(db => h('td', { class: 'num', text: retrievedCount(searches.filter(run => run.database === db)) })), h('td', { class: 'num', text: retrievedCount(searches) })))));
+
   const filterText = run => Object.entries(run.filters || {}).map(([key, value]) => `${key}: ${value}`).join(' · ') || 'No filters recorded';
   const download = () => {
     const text = ['Stroke aphasia KB — recorded database searches',
@@ -1011,7 +1031,7 @@ function searchQuestions(index, route) {
       ...searches.map(run => [
         `\n${run.id} — ${DATABASE_NAMES[run.database] || run.database} — ${run.date || 'date not recorded'}`,
         `Strategy: ${run.strategy || 'not recorded'}`,
-        `Question: ${SEARCH_QUESTIONS[run.strategy]?.[0] || 'See the recorded query'}`,
+        `Question ${questionCode(run.strategy || run.id)}: ${SEARCH_QUESTIONS[run.strategy]?.[0] || 'See the recorded query'}`,
         `Filters: ${filterText(run)}`, `Hits: ${run.hits ?? 'not recorded'}; retrieved: ${run.retrieved ?? 'not recorded'}`,
         `Run by: ${run.run_by || 'not recorded'}`,
         `Protocol version: ${run.protocol?.version ?? 'not recorded'}; fingerprint: ${run.protocol?.fingerprint || 'not recorded'}; commit: ${run.protocol?.commit || 'not recorded'}`,
@@ -1027,17 +1047,19 @@ function searchQuestions(index, route) {
     h('p', { class: 'lead', text: 'These questions explain what we looked for. Open a question’s search records to see the original terms, dates and filters.' }),
     h('p', {}, `${searches.length} recorded searches · ${groups.size} question areas. `,
       h('a', { href: '#/coverage', text: 'Back to the screening flow →' })),
-    h('p', { class: 'small', text: 'Searches find possible papers; screening decides which belong in the KB. Results overlap between searches, so their hit counts should not be added to estimate unique papers.' }),
+    h('p', { class: 'small', text: 'Question labels follow the search protocol. Counts below are retrieved records before removing duplicates; the same paper can appear in several questions or databases. Screening decides which papers belong in the KB.' }),
     h('div', { class: 'editorial-actions' },
       h('button', { class: 'btn', type: 'button', onclick: download, text: 'Download all questions and exact searches' }),
       h('a', { href: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/SCREENING.md', text: 'Read the screening protocol' })),
     selected ? h('p', {}, h('a', { href: '#/searches', text: 'Show all search questions' })) : null,
     selected && !groups.has(selected) ? h('p', { class: 'notice', text: 'No recorded search matches this question.' }) : null,
-    [...groups.entries()].sort(([a], [b]) => { const order = Object.keys(SEARCH_QUESTIONS); return (order.includes(a) ? order.indexOf(a) : order.length) - (order.includes(b) ? order.indexOf(b) : order.length); }).filter(([key]) => !selected || selected === key).map(([key, runs]) => {
+    !selected ? h('section', { class: 'search-count-summary' }, h('h2', { text: 'Records by question and database' }), countTable) : null,
+    orderedGroups.filter(([key]) => !selected || selected === key).map(([key, runs]) => {
       const [question, explanation] = SEARCH_QUESTIONS[key] || ['What does this recorded search look for?', 'This search has no plain-English summary yet. Its original query is available below.'];
       return h('section', { class: 'search-question' },
+        h('p', { class: 'eyebrow', text: `Question ${questionCode(key)}` }),
         h('h2', { text: question }), h('p', { text: explanation }),
-        h('p', { class: 'small muted' }, runs.map(run => DATABASE_NAMES[run.database] || run.database).filter((v, i, a) => a.indexOf(v) === i).join(' · '),
+        h('p', { class: 'small muted' }, databases.filter(db => runs.some(run => run.database === db)).map(db => `${DATABASE_NAMES[db] || db}: ${retrievedCount(runs.filter(run => run.database === db))}`).join(' · '),
           ' · ', h('a', { href: `#/searches?q=${encodeURIComponent(key)}`, text: 'Link to this question' })),
         h('details', {}, h('summary', { text: `Exact search terms and records (${runs.length})` }),
           runs.map(run => h('section', { class: 'search-run' },
@@ -1076,7 +1098,7 @@ function coverage(index, route) {
   else if (sort === 'decided') rows = rows.slice().sort((a, b) => String(b.decided_on || '').localeCompare(String(a.decided_on || '')) || a.ordinal - b.ordinal);
   const go = (next, params = {}) => { location.hash = coverageHref({ ...next, q: query, sort, ...params }); };
   const toggle = (key, value) => { const cur = new Set(filters[key] || []); if (cur.has(value)) cur.delete(value); else cur.add(value); go({ ...filters, [key]: [...cur] }); };
-  const valueLabel = (key, v) => (key === 'stage' ? STAGE_TEXT[v] || v : key === 'kb' ? KB_STATE_TEXT[v] || v : key === 'arm' ? ARM_TEXT[v] || v : key === 'reason' ? (v === 'not excluded' ? v : sc.reasonLabel(v)) : key === 'origin' ? (sc.sourceKinds[v] || String(v).replace(/_/g, ' ')) : key === 'search' ? (sc.searches.get(v) ? `${v} · ${sc.searches.get(v).database}` : v) : String(v).replace(/_/g, ' '));
+  const valueLabel = (key, v) => (key === 'stage' ? STAGE_TEXT[v] || v : key === 'kb' ? KB_STATE_TEXT[v] || v : key === 'arm' ? ARM_TEXT[v] || v : key === 'reason' ? (v === 'not excluded' ? v : sc.reasonLabel(v)) : key === 'database' ? (DATABASE_NAMES[v] || v) : key === 'origin' ? (sc.sourceKinds[v] || String(v).replace(/_/g, ' ')) : key === 'search' ? (sc.searches.get(v) ? `${v} · ${DATABASE_NAMES[sc.searches.get(v).database] || sc.searches.get(v).database}` : v) : String(v).replace(/_/g, ' '));
   const anyFilter = Object.values(filters).some((v) => v?.length) || query;
 
   const facetNodes = SCREENING_FACETS.map((facet) => {
@@ -1117,7 +1139,7 @@ function coverage(index, route) {
         paperKnown ? h('a', { href: paperHref(c.key), text: c.key }) : c.key ? h('span', { class: 'chip', text: c.key }) : null,
         h('div', { class: 'cand-title', text: c.title || '(no title)' }),
         h('div', { class: 'small muted' }, [c.first_author ? `${c.first_author}${c.year ? ` ${c.year}` : ''}` : (c.year ? String(c.year) : ''), c.journal, c.doi ? h('a', { href: `https://doi.org/${c.doi}`, rel: 'noopener', target: '_blank', text: c.doi }) : null].filter(Boolean).flatMap((x, i) => (i ? [' · ', x] : [x])))),
-      h('td', { class: 'small' }, (c.sources || []).map((src, i) => [i ? h('br') : null, src.search ? h('a', { href: coverageHref({ search: src.search }), text: `${src.search}${sc.searches.get(src.search) ? ` ${sc.searches.get(src.search).database}` : ''}` }) : h('span', { text: sc.sourceKinds[src.kind] || src.kind })])),
+      h('td', { class: 'small' }, (c.sources || []).map((src, i) => [i ? h('br') : null, src.search ? h('a', { href: coverageHref({ search: src.search }), text: `${src.search}${sc.searches.get(src.search) ? ` ${DATABASE_NAMES[sc.searches.get(src.search).database] || sc.searches.get(src.search).database}` : ''}` }) : h('span', { text: sc.sourceKinds[src.kind] || src.kind })])),
       h('td', {}, stageBadge(c.stage), c.stage !== 'included' && c.reason && c.reason !== 'not excluded' ? h('div', { class: 'small muted', text: sc.reasonLabel(c.reason) }) : null,
         c.suggestion && ['awaiting_ta', 'unsure_ta'].includes(c.stage) ? h('div', { class: 'small muted', title: `${c.suggestion.model} suggested ${c.suggestion.decision}${c.suggestion.reason && c.suggestion.reason !== 'none' ? ` (${sc.reasonLabel(c.suggestion.reason)})` : ''}; a suggestion, not a decision`, text: `model suggests: ${c.suggestion.decision}` }) : null),
       h('td', {}, c.kbInfo ? frag(kbBadge(c.kb), c.kbInfo.approved_findings ? h('div', { class: 'small muted', text: `${plural(c.kbInfo.approved_findings, 'approved finding')}` }) : c.kbInfo.drafts ? h('div', { class: 'small muted', text: `${plural(c.kbInfo.drafts, 'draft')}${c.kbInfo.draft_rejected ? `, ${c.kbInfo.draft_rejected} rejected` : ''}` }) : null) : h('span', { class: 'muted', text: '—' })),
@@ -1187,7 +1209,7 @@ function screeningPanel(index, key) {
   if (!c) return null;
   const sc = index.screening;
   const steps = [];
-  for (const src of c.sources || []) steps.push({ when: sc.searches.get(src.search)?.date || '', what: src.search ? `identified by search ${src.search} (${sc.searches.get(src.search)?.database || '?'})` : `identified: ${sc.sourceKinds[src.kind] || src.kind}` });
+  for (const src of c.sources || []) steps.push({ when: sc.searches.get(src.search)?.date || '', what: src.search ? `identified by search ${src.search} (${DATABASE_NAMES[sc.searches.get(src.search)?.database] || sc.searches.get(src.search)?.database || '?'})` : `identified: ${sc.sourceKinds[src.kind] || src.kind}` });
   for (const d of c.history || []) steps.push({ when: d.date || '', what: `${d.stage === 'title_abstract' ? 'title/abstract' : 'full text'}: ${d.decision}${d.reason ? ` — ${sc.reasonLabel(d.reason)}` : ''} (${d.by})`, legacy: d.by === 'legacy' });
   if (c.kbInfo) steps.push({ when: '', what: KB_STATE_TEXT[c.kb] || c.kb, kb: true });
   return h('section', { class: 'panel' },
@@ -1230,7 +1252,7 @@ function render() {
     if (a.getAttribute('href') === `#${current}`) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   }
   if (head === 'finding' || location.hash.includes('#f-')) { /* permalinks scroll via :target */ }
-  else if (head === 'coverage' && route.params.get('box')) document.getElementById('boxlist')?.scrollIntoView({ block: 'start' });
+  else if (head === 'coverage' && (route.params.has('box') || route.params.has('arm') || route.params.has('search'))) (document.getElementById('boxlist') || document.getElementById('candidates'))?.scrollIntoView({ block: 'start' });
   else window.scrollTo(0, 0);
   document.title = `${head ? `${head[0].toUpperCase()}${head.slice(1)}${rest[0] ? ` · ${index.name(rest[0])}` : ''} · ` : ''}Stroke aphasia KB`;
 }

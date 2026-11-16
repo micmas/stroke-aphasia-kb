@@ -418,3 +418,10 @@ a.chip:hover { border-color: var(--blue); text-decoration: none; }
 .search-question summary { cursor: pointer; font-weight: 600; padding: .5rem 0; }
 .search-run { padding: 1rem 0; border-bottom: 1px solid var(--line); }
 .search-query { white-space: pre-wrap; overflow-wrap: anywhere; max-height: 24rem; overflow: auto; padding: 1rem; background: var(--panel); border: 1px solid var(--line); font-size: .85rem; line-height: 1.6; }
+
+.search-count-summary { margin: 2rem 0; }
+.search-counts th { text-transform: none; letter-spacing: normal; }
+.search-counts caption { text-align: left; padding: .6rem 0; color: var(--ink-2); }
+.search-counts th[scope="row"] { font-weight: 500; max-width: 46ch; white-space: normal; }
+.search-counts tfoot { font-weight: 700; border-top: 2px solid var(--line-strong); }
+.box-panel { scroll-margin-top: 7rem; }
