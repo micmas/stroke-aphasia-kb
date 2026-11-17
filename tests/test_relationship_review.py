@@ -134,3 +134,33 @@ def test_retry_preserves_invalid_response_and_validates_plain_json(monkeypatch, 
     assert attempts == [schema, 'json']
     assert (tmp_path / 'call/attempt-1/raw.json').read_text() == '{broken'
     assert (tmp_path / 'call/raw.json').read_text() == '{"value": 3}'
+
+
+def test_pdf_control_character_encoding_preserves_content_and_raw(monkeypatch, tmp_path):
+    import json
+    import relationship_review as r
+    raw = '{"label":"group\x03stimulus", "source_id":"P1"}'
+    monkeypatch.setattr(r, 'chat', lambda *a, **kw: {'text': raw})
+    schema = r.obj({'label': r.TEXT, 'source_id': r.enum(['P1'])})
+    output = tmp_path / 'call'
+    result = r.call('source', schema, output, 'test', 'local', 100)
+    assert result == json.loads(raw, strict=False)
+    assert (output / 'raw.json').read_text() == raw
+    assert json.loads((output / 'encoding-repaired.json').read_text()) == result
+    meta = json.loads((output / 'meta.json').read_text())
+    assert meta['json_encoding_repair']['characters'][0]['codepoint'] == 3
+    assert meta['json_encoding_repair']['sha256'] == r.digest(output / 'encoding-repaired.json')
+    assert json.loads((output / 'selected-attempt.json').read_text())['attempt'] == 1
+
+
+def test_encoding_repair_does_not_accept_duplicate_keys_or_invalid_source(monkeypatch, tmp_path):
+    import pytest
+    import relationship_review as r
+    from strict_data import DuplicateKeyError
+    schema = r.obj({'label': r.TEXT, 'source_id': r.enum(['P1'])})
+    cases = [('{"label":"a\x03", "label":"b", "source_id":"P1"}', DuplicateKeyError),
+             ('{"label":"a\x03", "source_id":"P2"}', jsonschema.ValidationError)]
+    for i, (raw, error) in enumerate(cases):
+        monkeypatch.setattr(r, 'chat', lambda *a, **kw: {'text': raw})
+        with pytest.raises(error):
+            r._call_once('source', schema, tmp_path / str(i), 'test', 'local', 100)

@@ -26,12 +26,15 @@ The relationship profile caps extraction passage calls at 4,000 and table calls 
 seed, reasoning setting and actual model digest. Input capacity and output allowance
 are different limits: increasing output tokens cannot fix an oversized input.
 Relationship extraction creates small tasks internally; omit `--segment-chars`.
-Review v5 selects the frame across bounded source windows, then merges the selected
+Review v6 selects the frame across bounded source windows, then merges the selected
 IDs; it no longer sends the whole paper in one frame call. It uses 32,768 context
 tokens and at most four relationship targets per window. Truncated calls remain
 invalid. A second attempt uses plain JSON, seed 17 and temperature 0.1, with the
 same schema validation; first attempts use schema-constrained output, seed 7 and
 temperature 0. Recovery improves execution reliability, not demonstrated accuracy.
+Version 6 also escapes literal control characters copied from PDFs into JSON
+strings. The original response and a separately logged encoding correction are
+both kept; decoded text and strict source-ID/schema checks are unchanged.
 
 Older `analyses` runs remain readable by the compatibility path, which uses its
 own inventory reconciliation. Do not compare its output counts or timings directly
@@ -130,8 +133,10 @@ No clinical findings were approved, replaced or published by these tests.
 The November 2026 corpus run with the v4 reviewer saved 194 review aids from 223
 papers; 190 had unresolved checks and 29 failed (14 repetition loops, 9 truncated
 calls, 6 malformed JSON responses). These are execution and audit counts, not
-accuracy scores. The v5 recovery run retains the original outputs and retries only
-the failures. Source-checked subsets become held drafts, with agent checks
+accuracy scores. The v5 recovery saved 25 of those 29 papers. Four remaining
+failures started with unescaped PDF control characters; their original responses
+pass the schema after encoding alone. Targeted v6 retries preserve all earlier
+outputs. Source-checked subsets become held drafts, with agent checks
 distinguished from human approval. No whole-corpus accuracy advantage has been
 established.
 

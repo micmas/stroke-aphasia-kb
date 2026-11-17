@@ -177,12 +177,18 @@ check completeness against the original Results and dispositions; inspect all
 main-paper tables and figures visually. The HTML is a read-only review sheet,
 not a portal approval form. Mapping into KB drafts is still a separate task.
 
-Review v5 processes the study frame in bounded source windows and keeps all
+Review v6 processes the study frame in bounded source windows and keeps all
 selected IDs when merging them. Conflicting window summaries remain mixed or
 uncertain. Relationship windows contain at most four target passages. Each model
 call may make one logged retry using plain JSON, a different seed and a larger
 output allowance; the same schema validation applies to both attempts. Raw
 responses, settings and errors remain in `attempt-1/` and `attempt-2/`.
+
+If a response copies a non-printing PDF character into a JSON string, v6 records
+an encoding-only correction in `encoding-repaired.json`. The decoded text is
+unchanged and `raw.json` preserves the model response. Duplicate fields, unknown
+source IDs, incomplete responses and schema errors still fail validation. This
+does not interpret damaged PDF glyphs or replace a visual source check.
 
 Recover selected failures without rerunning completed papers:
 

@@ -18,7 +18,7 @@ from paper_paths import resolve_paper
 from relationship_evidence import main_text_units, pair_evidence, normalized
 from strict_data import load_json
 
-VERSION = 'relationship-review-v5'
+VERSION = 'relationship-review-v6'
 
 
 def read(path):
@@ -93,6 +93,29 @@ def enum(values):
 TEXT = {'type': 'string', 'maxLength': 1200}
 
 
+def encode_json_string_controls(text):
+    """Escape literal control bytes inside JSON strings without changing decoded values.
+
+    PDF glyph encodings can include these characters. This only fixes their JSON
+    representation; duplicate keys, source IDs, schema and truncation checks remain.
+    """
+    result, positions = [], []
+    inside = escaped = False
+    for position, char in enumerate(text):
+        if inside and not escaped and ord(char) < 32:
+            result.append('\\u%04x' % ord(char))
+            positions.append({'offset': position, 'codepoint': ord(char)})
+        else:
+            result.append(char)
+        if escaped:
+            escaped = False
+        elif inside and char == '\\':
+            escaped = True
+        elif char == '"':
+            inside = not inside
+    return ''.join(result), positions
+
+
 def _call_once(prompt, schema, directory, model, host, budget, retry=False):
     prompt += '\nREQUIRED RESPONSE SCHEMA:\n' + json.dumps(schema, separators=(',', ':'))
     directory.mkdir(parents=True)
@@ -112,7 +135,19 @@ def _call_once(prompt, schema, directory, model, host, budget, retry=False):
         meta['inference'] = {k: v for k, v in response.items() if k != 'text'}
         if response.get('truncated_input') or response.get('truncated_output'):
             raise ValueError('Truncated review response; no partial review accepted')
-        result = load_json(response['text'])
+        try:
+            result = load_json(response['text'])
+        except json.JSONDecodeError:
+            encoded, positions = encode_json_string_controls(response['text'])
+            if not positions:
+                raise
+            # Keep the exact model response in raw.json. Record the encoding-only
+            # correction separately and still reject duplicate keys or invalid JSON.
+            (directory / 'encoding-repaired.json').write_text(encoded)
+            meta['json_encoding_repair'] = {'kind': 'escape_literal_string_controls',
+                'characters': positions, 'file': 'encoding-repaired.json',
+                'sha256': digest(directory / 'encoding-repaired.json')}
+            result = load_json(encoded)
         jsonschema.validate(result, schema)
         meta['status'] = 'generated'
         return result
@@ -135,6 +170,8 @@ def call(prompt, schema, directory, model, host, budget):
                                 min(10000, budget * (attempt + 1)), retry=bool(attempt))
             for name in ('raw.json', 'meta.json', 'prompt.txt', 'schema.json'):
                 (directory / name).write_bytes((folder / name).read_bytes())
+            if (folder / 'encoding-repaired.json').exists():
+                (directory / 'encoding-repaired.json').write_bytes((folder / 'encoding-repaired.json').read_bytes())
             write(directory / 'selected-attempt.json', {'attempt': attempt + 1})
             return result
         except (ValueError, jsonschema.ValidationError, OllamaError):
