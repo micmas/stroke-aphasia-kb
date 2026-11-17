@@ -1,0 +1,63 @@
+{
+  "checked_pdf_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "visual_pages": [
+    2,
+    3,
+    5
+  ],
+  "tables_checked": [
+    1,
+    2,
+    3
+  ],
+  "figures_checked": [
+    1,
+    2
+  ],
+  "corrections": [
+    "Recovered primary LSM Results passages omitted from model units, including frontal corona radiata.",
+    "Time since stroke is a tested null association, not a prognostic recovery effect.",
+    "Keep AAL/JHU lesion labels separate from AAL3 tractography nodes; Colin27 lesion space differs from native diffusion space.",
+    "Regression Table 3 has four graph metrics although Methods says five; retain the inconsistency.",
+    "No region-level effect size or confidence interval is reported for the LSM clusters."
+  ],
+  "remaining": [
+    "Named-person approval and reconciliation with existing findings.",
+    "No supplementary files examined; no individual-patient predictions established."
+  ],
+  "checked_by": "agent:codex",
+  "date": "2026-11-17",
+  "pdf_sha256": "c3b862039f6071dd869b806ed04e339c905c23d11d3d903d1cbe6fb4f89a977c",
+  "licence": {
+    "category": "cc",
+    "label": "CC BY 4.0",
+    "url": "http://creativecommons.org/licenses/by/4.0/",
+    "version": "published",
+    "source": "crossref",
+    "doi": "10.1016/j.ynirp.2021.100076",
+    "checked": "2026-10-30",
+    "consulted": [
+      "crossref",
+      "unpaywall",
+      "pdf"
+    ]
+  },
+  "approved": false,
+  "scope": "Agent source check for specified mapped claims; not human approval or certification of whole-paper completeness",
+  "mapped_entries": [
+    "left_posterior_temporal_sentence_cluster",
+    "left_ifg_pars_triangularis",
+    "left_frontal_corona_radiata",
+    "structural_connectome_graph_metrics",
+    "lesion_volume",
+    "time_post_onset"
+  ],
+  "model_review_status_sha256": "1c4071d2a004c4126d6c5926369e50d5c24aff88f81e7f416a4fa65d3fc71a81"
+}

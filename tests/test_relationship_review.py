@@ -101,3 +101,36 @@ def test_metric_direction_distinguishes_model_metrics_from_clinical_performance(
         unit['outcome']['text'] = label
         flags, _ = gate_unit(unit, {'P1': row}, {'P1'}, {})
         assert ('model_metric_direction_not_clinical_effect' in flags) == expected
+
+
+def test_frame_windows_preserve_all_sources_and_merge_disagreement(monkeypatch, tmp_path):
+    import relationship_review as r
+    seen = []
+    def fake(prompt, schema, directory, model, host, budget):
+        ids = schema['$defs']['source_id']['enum']
+        seen.extend(ids)
+        assert len(ids) <= 24
+        assert schema['properties']['slots']['properties']['analysed_sample']['uniqueItems']
+        directory.mkdir(parents=True)
+        return {'slots': {k: ids[:1] for k in r.FRAME_SLOTS},
+                'outcome_type': 'change_from_baseline' if len(seen) > 24 else 'status_at_assessment',
+                'imaging_vs_outcome': 'not_stated', 'validation_type': 'not_stated'}
+    monkeypatch.setattr(r, 'call', fake)
+    rows = [{'evidence_id': f'P{i}', 'source': {'text': 'example', 'page': 1}} for i in range(50)]
+    frame = r.select_frame(rows, tmp_path, 'test', 'local', 4000)
+    assert set(seen) == {row['evidence_id'] for row in rows}
+    assert frame['outcome_type'] == 'both_reported'
+
+
+def test_retry_preserves_invalid_response_and_validates_plain_json(monkeypatch, tmp_path):
+    import relationship_review as r
+    attempts = []
+    def fake(prompt, **kwargs):
+        attempts.append(kwargs['fmt'])
+        return {'text': '{broken' if len(attempts) == 1 else '{"value": 3}'}
+    monkeypatch.setattr(r, 'chat', fake)
+    schema = {'type': 'object', 'properties': {'value': {'type': 'integer'}}, 'required': ['value']}
+    assert r.call('test', schema, tmp_path / 'call', 'test', 'local', 100)['value'] == 3
+    assert attempts == [schema, 'json']
+    assert (tmp_path / 'call/attempt-1/raw.json').read_text() == '{broken'
+    assert (tmp_path / 'call/raw.json').read_text() == '{"value": 3}'

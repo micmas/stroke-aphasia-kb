@@ -1,0 +1,48 @@
+{
+  "checked_by": "agent:codex",
+  "date": "2026-11-17",
+  "approved": false,
+  "pdf_sha256": "e892d43e338ecd29cd3f64363943450b6e1a22e1bb59f948bd635d56d9f8b6cb",
+  "licence": {
+    "category": "cc",
+    "label": "CC BY",
+    "url": "https://doi.org/10.1161/strokeaha.120.031162",
+    "version": "published",
+    "source": "unpaywall",
+    "doi": "10.1161/strokeaha.120.031162",
+    "checked": "2026-10-30",
+    "consulted": [
+      "crossref",
+      "unpaywall",
+      "pdf"
+    ]
+  },
+  "checked_pdf_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8
+  ],
+  "visual_pages": [
+    4,
+    5
+  ],
+  "scope": "Selected main-text mean-change estimates and clinical qualifiers; not complete source review of figures or supplementary material",
+  "corrections": [
+    "Observed change is baseline to first follow-up, not from stroke onset; median follow-up 10 weeks after baseline.",
+    "Numbers below are subgroup mean changes, not between-group effect sizes or individual prognoses.",
+    "Primary figures use RCT-derived participants but age and enrolment timing were not randomised exposures.",
+    "Do not infer a causal benefit of earlier therapy: spontaneous recovery could not be accounted for.",
+    "No education, handedness or socioeconomic null effect inferred: these were excluded as covariates.",
+    "For functional communication, main Results report +0.75 (age<55) and +1.0 (<1 month), while abstract rounds/reports +0.8 and +1.1; use main Results and flag disagreement.",
+    "Post-six-month auditory-comprehension estimate CI includes zero despite narrative saying gains evident."
+  ],
+  "remaining": [
+    "Named-person approval and reconciliation with existing RELEASE findings; avoid double counting overlapping RELEASE datasets.",
+    "Figures 1\u20133 and supplementary-only estimates not completely adjudicated. Exact final covariate set for each domain cannot be established from main text alone."
+  ]
+}

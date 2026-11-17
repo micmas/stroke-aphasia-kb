@@ -92,9 +92,33 @@ def build(item, review_dir):
     # Source text/page is copied, never generated or accepted from the mapping file.
     finding['source_passages'] = [dict(section='Source passage ' + i,
         page=passages[i]['page'], quote=passages[i]['text'], supports='claim') for i in selected]
+    # Source checking can recover omitted Methods/Results without editing the model run.
+    # Only existing source IDs are accepted; the converter still copies original text.
+    for support in item.get('additional_evidence', []):
+        sid = support['source_id']
+        if sid not in passages:
+            raise ValueError(f'Unknown additional source ID: {sid}')
+        finding['source_passages'].append(dict(section=support.get('section', 'Source passage ' + sid),
+            page=passages[sid]['page'], quote=passages[sid]['text'], supports=support['supports']))
+    if item.get('pdf_evidence'):
+        import pymupdf
+        pdf = Path(item['source_pdf'])
+        if digest(pdf) != state['binding']['input_hashes']['pdf']:
+            raise ValueError('Source PDF differs from the reviewed PDF')
+        with pymupdf.open(pdf) as document:
+            for support in item['pdf_evidence']:
+                page = support['page']
+                if not isinstance(page, int) or not 1 <= page <= len(document):
+                    raise ValueError('Invalid PDF evidence page')
+                quote = support['quote']
+                if not quote.strip() or ' '.join(quote.split()) not in ' '.join(document[page - 1].get_text().split()):
+                    raise ValueError('Additional quotation not found on its source PDF page')
+                finding['source_passages'].append({k: support[k] for k in ('section', 'page', 'quote', 'supports')})
     provenance = {'paper': paper, 'proposal_id': unit['id'], 'review_status_sha256': item['review_status_sha256'],
                   'review_binding': state['binding'], 'proposal': unit, 'audit': read(path / 'audit.json'),
                   'study_frame': read(path / 'study-frame.json'), 'approved': False}
+    if item.get('source_check'):
+        provenance['source_check'] = item['source_check']
     entry['relationship_review'] = provenance
     entry['reviewer_marks'] = [{'id': 'relationship-source-check', 'page': passages[selected[0]]['page'],
         'quote': passages[selected[0]]['text'], 'status': 'pending', 'by': 'agent:relationship-converter',
@@ -104,7 +128,10 @@ def build(item, review_dir):
     _validate_v2_entry(entry, paper, issues)
     if issues:
         raise ValueError('\n'.join(issues))
-    filename = f"{entry['id']}__{paper}__{unit['id']}.md"
+    suffix = item.get('draft_suffix', '')
+    if suffix and not re.fullmatch(r'[a-z0-9][a-z0-9_-]*', suffix):
+        raise ValueError('Invalid draft suffix')
+    filename = f"{entry['id']}__{paper}__{unit['id']}" + (f'__{suffix}' if suffix else '') + '.md'
     body = '\n# Source review required\n\nThis draft is unapproved. The full audit and original proposal are retained in the frontmatter. Resolve the pending source-check mark before approval.\n'
     return Path('drafts') / bucket / filename, '---\n' + yaml.safe_dump(entry, sort_keys=False, allow_unicode=True) + '---\n' + body
 

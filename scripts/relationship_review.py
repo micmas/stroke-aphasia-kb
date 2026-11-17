@@ -13,12 +13,12 @@ import jsonschema
 
 from extract import _extract_pdf_text
 from extract_analysis_inventory import source_units
-from ollama_client import chat, DEFAULT_HOST, normalize_host
+from ollama_client import chat, DEFAULT_HOST, normalize_host, OllamaError
 from paper_paths import resolve_paper
 from relationship_evidence import main_text_units, pair_evidence, normalized
 from strict_data import load_json
 
-VERSION = 'relationship-review-v4'
+VERSION = 'relationship-review-v5'
 
 
 def read(path):
@@ -93,7 +93,7 @@ def enum(values):
 TEXT = {'type': 'string', 'maxLength': 1200}
 
 
-def call(prompt, schema, directory, model, host, budget):
+def _call_once(prompt, schema, directory, model, host, budget, retry=False):
     prompt += '\nREQUIRED RESPONSE SCHEMA:\n' + json.dumps(schema, separators=(',', ':'))
     directory.mkdir(parents=True)
     write(directory / 'schema.json', schema)
@@ -102,10 +102,12 @@ def call(prompt, schema, directory, model, host, budget):
     meta = {'model': model, 'approved': False, 'status': 'failed',
             'prompt_sha256': digest(directory / 'prompt.txt'),
             'schema_sha256': digest(directory / 'schema.json'),
-            'temperature': 0, 'seed': 7, 'think': False, 'max_output_tokens': budget}
+            'temperature': 0.1 if retry else 0, 'seed': 17 if retry else 7, 'think': False,
+            'format': 'json' if retry else 'schema', 'max_output_tokens': budget}
     try:
-        response = chat(prompt, model=model, host=host, temperature=0, seed=7,
-                        think=False, fmt=schema, max_tokens=budget, timeout=1200)
+        response = chat(prompt, model=model, host=host, temperature=meta['temperature'], seed=meta['seed'],
+                        think=False, fmt='json' if retry else schema, max_tokens=budget,
+                        num_ctx=32768, timeout=1200)
         (directory / 'raw.json').write_text(response['text'])
         meta['inference'] = {k: v for k, v in response.items() if k != 'text'}
         if response.get('truncated_input') or response.get('truncated_output'):
@@ -122,6 +124,50 @@ def call(prompt, schema, directory, model, host, budget):
     finally:
         meta['seconds'] = time.monotonic() - start
         write(directory / 'meta.json', meta)
+
+
+def call(prompt, schema, directory, model, host, budget):
+    """Two bounded attempts; preserve failures and validate both formats equally."""
+    for attempt in range(2):
+        folder = directory / f'attempt-{attempt + 1}'
+        try:
+            result = _call_once(prompt, schema, folder, model, host,
+                                min(10000, budget * (attempt + 1)), retry=bool(attempt))
+            for name in ('raw.json', 'meta.json', 'prompt.txt', 'schema.json'):
+                (directory / name).write_bytes((folder / name).read_bytes())
+            write(directory / 'selected-attempt.json', {'attempt': attempt + 1})
+            return result
+        except (ValueError, jsonschema.ValidationError, OllamaError):
+            if attempt:
+                raise
+            print('  Retrying response with plain JSON and validation; first attempt preserved', flush=True)
+
+
+def select_frame(rows, output, model, host, budget):
+    # Bound the source-ID vocabulary as well as the source text. No passages are discarded.
+    chunks, chunk, size = [], [], 0
+    for row in rows:
+        length = len(row['source']['text'])
+        if chunk and (size + length > 10000 or len(chunk) >= 24):
+            chunks.append(chunk); chunk, size = [], 0
+        chunk.append(row); size += length
+    if chunk:
+        chunks.append(chunk)
+    frames = []
+    for i, chunk in enumerate(chunks, 1):
+        print(f'  Study frame {i}/{len(chunks)}', flush=True)
+        schema = frame_schema({r['evidence_id'] for r in chunk})
+        for slot in schema['properties']['slots']['properties'].values():
+            slot.update(maxItems=8, uniqueItems=True)
+        frames.append(call(FRAME_PROMPT + '\nThis is one source window. Select up to eight distinct IDs per slot. Never repeat an ID within a slot.\n' + source_text(chunk),
+                           schema, output / 'frame' / f'chunk-{i:03d}', model, host, min(budget, 4000)))
+    merged = {'slots': {slot: list(dict.fromkeys(sid for f in frames for sid in f['slots'][slot])) for slot in FRAME_SLOTS}}
+    for field in ('outcome_type', 'imaging_vs_outcome', 'validation_type'):
+        values = {f[field] for f in frames} - {'not_stated'}
+        merged[field] = next(iter(values)) if len(values) == 1 else 'not_stated' if not values else 'both_reported' if field == 'outcome_type' else 'mixed'
+    merged['window_merge'] = 'Union of selected IDs; differing window enums retained conservatively as both/mixed. Not verified study-level facts.'
+    write(output / 'frame' / 'merged.json', merged)
+    return merged
 
 
 IDS = array({'type': 'string'}, 80)
@@ -261,7 +307,7 @@ def worklist(evidence):
         if not review_candidate(row):
             continue
         length = len(row['source']['text'])
-        if part and (size + length > 6000 or len(part) >= 8):
+        if part and (size + length > 4000 or len(part) >= 4):
             windows.append(part); part, size = [], 0
         part.append(row); size += length
     if part:
@@ -487,8 +533,7 @@ def review_one(run_dir, row, output, model, host, budget, tags):
                                      for r in rows if not review_candidate(r)],
             'policy': 'Results, disagreements and flagged passages receive model proposals. Other passages retain visible classifier-based dispositions; all source text needs a completeness check.'})
         print('  Study frame', flush=True)
-        frame = call(FRAME_PROMPT + '\n' + source_text(rows), frame_schema(sources),
-                     output / 'frame', model, host, min(budget, 4000))
+        frame = select_frame(rows, output, model, host, budget)
         frame_ids = {key for values in frame['slots'].values() for key in values}
         if not frame_ids <= sources.keys():
             raise ValueError('Frame selected unknown source IDs')
@@ -512,7 +557,7 @@ def review_one(run_dir, row, output, model, host, budget, tags):
                 else:
                     retained.append(sid)
             frame['slots'][slot] = retained
-        frame['policy'] = 'All slots and enums remain unverified. Held selections are not evidence of absence. Original response is preserved in frame/raw.json.'
+        frame['policy'] = 'All slots and enums remain unverified. Held selections are not evidence of absence. Original responses are preserved in frame/chunk-*/attempt-*/raw.json.'
         # Do not show Results targets twice as both context and evidence: this caused
         # the proposer to discard genuine results as already represented restatements.
         priority_slots = ['dependent_variable_statement', 'outcome_definition', 'adjustment_roles',

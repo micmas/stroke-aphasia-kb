@@ -227,30 +227,30 @@
  "papers": {
   "@Adezati2022": {
    "annotated": "cc/C1336_Adezati2022_annotated.pdf",
-   "bytes": 1852906,
+   "bytes": 2423301,
    "category": "cc",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "3af72ecf00cbcd2da6537f23ed7cf4a42da3189975954ac00da962cfa50c4b5c"
+   "sha256": "b6e29591763d84f30cc3ede37603e870d1dd74f5d23b1866e2117d0a8ac62ad7"
   },
   "@Akkad2023": {
    "annotated": "cc/C1050_Akkad2023_annotated.pdf",
-   "bytes": 2418192,
+   "bytes": 3441705,
    "category": "cc",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "02b89a84b57063d10820edaa39e2e96bc6836479b5341824b42e165a044721be"
+   "sha256": "be2bc8b23f1b1f73094957561242c21753fc5fcb0a295ad984402e3c47fa920e"
   },
   "@Ali2021": {
    "annotated": "cc/C7442_Ali2021_annotated.pdf",
-   "bytes": 1830613,
+   "bytes": 3028132,
    "category": "cc",
    "label": "CC BY",
    "public": true,
    "public_basis": "cc",
-   "sha256": "14c3b11afecb57f5c88c3a38f4e2a94dd93d21692e185e7276410dc9079a3bdd"
+   "sha256": "47ee814197296e4ba415c72f4f885788f201a22f3c59522f630425d6da2997ba"
   },
   "@Alyahya2018NounVerb": {
    "annotated": "cc/C0007_Alyahya2018NounVerb_annotated.pdf",

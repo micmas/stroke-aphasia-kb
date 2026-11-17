@@ -267,12 +267,17 @@ def review_one(run_dir, row, output, model, host, budget, tags):
         write(output/'status.json', state)
 
 
-def batch(run_dir, output, model, execute=False, budget=20000, limit=None, host=DEFAULT_HOST):
+def batch(run_dir, output, model, execute=False, budget=20000, limit=None, host=DEFAULT_HOST, papers=None):
     run_dir, output = run_dir.resolve(), output.resolve()
     if output == run_dir or run_dir in output.parents or output in run_dir.parents:
         raise ValueError('Review output must be separate from the extraction run directory')
     if budget <= 0 or (limit is not None and limit <= 0): raise ValueError('Budget/limit must be positive')
     ready, skipped = completed(run_dir)
+    if papers:
+        requested = set(papers)
+        missing = requested - {r['key'] for r in ready}
+        if missing: raise ValueError(f'Requested papers lack completed extractions: {sorted(missing)}')
+        ready = [r for r in ready if r['key'] in requested]
     if limit: ready = ready[:limit]
     print(f"{'RUN' if execute else 'PREVIEW'}: {len(ready)} completed pairs; {len(skipped)} incomplete/failed/not started; reviewer {model}", flush=True)
     if not execute:
@@ -309,6 +314,7 @@ if __name__ == '__main__':
     p.add_argument('--model', required=True, help='Installed reviewer distinct from both extractors; no automatic download')
     p.add_argument('--max-output-tokens', type=int, default=20000)
     p.add_argument('--limit', type=int)
+    p.add_argument('--papers', nargs='+', help='Review only these paper keys; use a fresh output directory for recovery')
     p.add_argument('--run', action='store_true')
     a = p.parse_args()
-    raise SystemExit(batch(a.run_dir, a.output_dir, a.model, a.run, a.max_output_tokens, a.limit))
+    raise SystemExit(batch(a.run_dir, a.output_dir, a.model, a.run, a.max_output_tokens, a.limit, papers=a.papers))

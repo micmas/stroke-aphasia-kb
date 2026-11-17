@@ -1,0 +1,65 @@
+{
+  "checked_pdf_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "visual_pages": [
+    3,
+    4,
+    5,
+    6
+  ],
+  "tables_checked": [
+    1,
+    2,
+    3
+  ],
+  "figures_checked": [
+    1,
+    2
+  ],
+  "corrections": [
+    "Converted variable-to-voxel model labels into explicitly correlational brain-behaviour claims; not causal predictions.",
+    "Retained lesion-volume sensitivity: executive-function cluster requires a relaxed voxel threshold after adjustment.",
+    "Age/time-post-stroke are adjustment variables; stable maps do not establish independent null personal effects.",
+    "White-matter labels arise from structural MRI VBCM, not diffusion tractography or measured disconnection.",
+    "Results text points to Fig. 2, but the cluster map is Fig. 1 on PDF page 3; Fig. 2 on page 5 is lesion overlap.",
+    "Executive-factor lesion-volume r=-0.426, p=0.10 is retained as a source inconsistency; no correction or significance inferred."
+  ],
+  "remaining": [
+    "Named-person approval; unresolved source inconsistency in lesion-volume executive-factor correlation.",
+    "Supplementary-only assessments and individual scores not extracted. Not evidence of treatment response."
+  ],
+  "checked_by": "agent:codex",
+  "date": "2026-11-17",
+  "pdf_sha256": "84a00ab74d2b971ceb854a33aa548a335443cae5658f32e4cc3444237e344e40",
+  "licence": {
+    "category": "cc",
+    "label": "CC BY 4.0",
+    "url": "http://creativecommons.org/licenses/by/4.0/",
+    "version": "published",
+    "source": "crossref",
+    "doi": "10.1016/j.nicl.2023.103452",
+    "checked": "2026-10-30",
+    "consulted": [
+      "crossref",
+      "unpaywall",
+      "pdf"
+    ]
+  },
+  "approved": false,
+  "scope": "Agent source check for specified mapped claims; not human approval or certification of whole-paper completeness",
+  "mapped_entries": [
+    "left_superior_parietal_phonology_cluster",
+    "left_temporal_semantic_clusters",
+    "left_temporoparietal_verbal_memory_cluster",
+    "left_frontal_executive_cluster",
+    "left_ba44_45_executive_roi"
+  ],
+  "model_review_status_sha256": "15ad6658b87971a6e568f6ae98cd0be730493d4704512aa6376c56a31606b3df"
+}

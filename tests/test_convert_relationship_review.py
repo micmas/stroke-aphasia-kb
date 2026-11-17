@@ -84,3 +84,32 @@ class ConversionTests(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class PdfEvidenceTests(unittest.TestCase):
+    def test_pdf_support_requires_matching_hash_and_literal_page_text(self):
+        import pymupdf
+        fixture = ConversionTests('test_changed_review_refused_before_writes')
+        fixture.setUp()
+        try:
+            pdf = fixture.root / 'source.pdf'
+            with pymupdf.open() as doc:
+                doc.new_page().insert_text((72, 72), 'Table 1: example value 42')
+                doc.save(pdf)
+            state = conversion.read(fixture.paper / 'status.json')
+            state['binding']['input_hashes'] = {'pdf': conversion.digest(pdf)}
+            (fixture.paper / 'status.json').write_text(json.dumps(state))
+            data = conversion.read(fixture.mapping)
+            item = data['items'][0]
+            item['review_status_sha256'] = conversion.digest(fixture.paper / 'status.json')
+            item['source_pdf'] = str(pdf)
+            item['pdf_evidence'] = [{'page': 1, 'section': 'Table 1', 'quote': 'example value 42', 'supports': 'statistics'}]
+            fixture.mapping.write_text(json.dumps(data))
+            self.assertEqual(len(conversion.convert(fixture.mapping, fixture.root)), 1)
+            item['pdf_evidence'][0]['quote'] = 'invented value 43'
+            fixture.mapping.write_text(json.dumps(data))
+            with self.assertRaisesRegex(ValueError, 'not found'):
+                conversion.convert(fixture.mapping, fixture.root, True)
+            self.assertFalse((fixture.root / 'drafts').exists())
+        finally:
+            fixture.doCleanups()

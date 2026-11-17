@@ -58,7 +58,9 @@ ENTRY_FIELDS = ("id", "name", "kind", "aliases", "short_description", "status", 
                 "targets_impairments", "rtss_ingredients", "rtss_category", "direction_of_severity", "units",
                 "predictor_type")
 FINDING_RAW_FIELDS = ("relationship", "design", "sample", "statistics", "author_limitations", "source_passages",
-                      "region_definition", "primary_papers_cited", "instrument", "therapy")
+                      "region_definition", "primary_papers_cited", "instrument", "therapy",
+                      "notes", "imaging_details", "confounders_controlled", "confounders_not_controlled",
+                      "outcome_timing")
 # Columns of KnowledgeBase.findings the webapp reads (the rest are tooling).
 FINDING_FLAT_FIELDS = ("source_id", "source_kind", "source_status", "source_path", "id", "target", "target_kind",
                        "claim", "direction", "citation", "method", "design", "evidence_quality", "strength",
@@ -200,12 +202,16 @@ def _present(value):
 def findings(kb, root: Path) -> list:
     """Flat rows merged with the nested blocks of the raw finding."""
     raw = {}
+    source_checks = {}
     for table in (kb.regions, kb.impairments, kb.therapies, kb.predictors):
         if table is None or table.empty:
             continue
         for _, entry in table.iterrows():
             for finding in entry.get("findings") or []:
                 raw[(str(entry.get("_path") or ""), finding.get("id"))] = finding
+                provenance = entry.get('relationship_review')
+                if isinstance(provenance, dict) and provenance.get('source_check'):
+                    source_checks[str(entry.get('_path') or '')] = provenance['source_check']
     out = []
     for _, row in kb.findings.iterrows():
         item = {k: _clean(row.get(k)) for k in FINDING_FLAT_FIELDS if k in row}
@@ -217,6 +223,8 @@ def findings(kb, root: Path) -> list:
         review = nested.get("review") or {}
         if review:
             item["review"] = _clean(review)
+        if str(row.get('source_path') or '') in source_checks:
+            item['source_check'] = _clean(source_checks[str(row.get('source_path') or '')])
         item["stages"] = sorted(finding_stages(item))
         out.append(item)
     return out

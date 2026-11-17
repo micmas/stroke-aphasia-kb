@@ -177,7 +177,22 @@ check completeness against the original Results and dispositions; inspect all
 main-paper tables and figures visually. The HTML is a read-only review sheet,
 not a portal approval form. Mapping into KB drafts is still a separate task.
 
-No hidden retries are performed. Failed/interrupted attempts stay preserved;
+Review v5 processes the study frame in bounded source windows and keeps all
+selected IDs when merging them. Conflicting window summaries remain mixed or
+uncertain. Relationship windows contain at most four target passages. Each model
+call may make one logged retry using plain JSON, a different seed and a larger
+output allowance; the same schema validation applies to both attempts. Raw
+responses, settings and errors remain in `attempt-1/` and `attempt-2/`.
+
+Recover selected failures without rerunning completed papers:
+
+```bash
+.venv/bin/python kb.py review --run-dir _compare/my-batch/extraction \
+  --output-dir _compare/my-batch/review-recovery \
+  --model YOUR_REVIEW_MODEL --papers Paper2021 Other2023 --run
+```
+
+Failed/interrupted attempts stay preserved;
 use a new review directory after changing the configuration or retrying an
 incomplete attempt. Completed outputs can be reused only if their inputs, code,
 settings and output hashes still match.
@@ -223,6 +238,15 @@ study frame, strips approval stamps, and adds a pending source-check mark.
 Changed review files and conflicting existing drafts stop conversion. Unmapped
 proposals remain in the mapping file; conversion does not declare a paper complete.
 The command neither publishes drafts nor replaces existing KB findings.
+
+Source mapping can add `additional_evidence` entries with an existing `source_id`
+and schema `supports` category. For a table omitted from the passage inventory,
+`pdf_evidence` supplies page, section, quote and supports alongside `source_pdf`:
+conversion checks the reviewed PDF hash and exact page text. This text check does
+not replace inspecting the table layout. Record agent source checks separately
+from human approvals in `logs/source-review/`; a checked subset must not be called
+a complete paper review. Use `draft_suffix` to distinguish different outcomes
+mapped from the same proposal to the same entry.
 
 New drafts can then enter the normal portal publication workflow described in
 [PORTAL.md](PORTAL.md). Resolve the source-check mark only after the checks below;
