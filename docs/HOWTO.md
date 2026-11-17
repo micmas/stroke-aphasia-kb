@@ -191,8 +191,44 @@ check for omissions shared by every model.
 
 Map source-verified findings into the [KB schema](schema.md), retaining unmatched
 findings rather than forcing an incorrect anatomical or outcome label. This
-mapping stage is currently a separate task; there is no automatic conversion from
-`proposals.json` to approvable KB drafts.
+mapping is explicit: the converter does not infer an atlas parcel or treat model
+labels as verified findings. Prepare a mapping file from completed reviews:
+
+```bash
+.venv/bin/python kb.py convert --review-dir _compare/my-batch/review \
+  --mapping _compare/my-batch/mapping.json
+```
+
+This takes a snapshot of completed proposals, skipping unfinished papers. It can
+run while other papers are being reviewed and does not start a model. Use a new
+mapping filename to collect later results; existing mapping files are preserved.
+
+For each proposal being retained, fill `bucket` (for example, `regions` or
+`predictors`) and `entry`, a schema 2.8 entry containing exactly one mapped
+finding. Leave `entry: null` for unresolved proposals. This is a maintainer-facing
+JSON mapping step, not yet a point-and-click mapping interface. Use the original
+PDF and `review.html` to establish the claim, target, method, sample, timing and
+limitations; schema validity alone cannot establish scientific accuracy.
+
+Preview the completed mappings, then create held drafts:
+
+```bash
+.venv/bin/python kb.py convert --mapping _compare/my-batch/mapping.json
+.venv/bin/python kb.py convert --mapping _compare/my-batch/mapping.json --execute
+```
+
+The converter validates every selected entry before writing. It copies the
+proposal's original source quotations and pages, attaches its full audit and
+study frame, strips approval stamps, and adds a pending source-check mark.
+Changed review files and conflicting existing drafts stop conversion. Unmapped
+proposals remain in the mapping file; conversion does not declare a paper complete.
+The command neither publishes drafts nor replaces existing KB findings.
+
+New drafts can then enter the normal portal publication workflow described in
+[PORTAL.md](PORTAL.md). Resolve the source-check mark only after the checks below;
+automatic re-extraction is not a substitute for that check. Approval and canonical
+publication remain separate steps. Existing approved findings must be reconciled
+against the new source-verified findings, not blindly appended as duplicates.
 
 Record the visual check in a separate `human-check.md` beside the paper's review
 outputs, with reviewer, date, source PDF hash, checked pages, unresolved issues and

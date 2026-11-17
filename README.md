@@ -46,8 +46,10 @@ Dual extraction has shown complementary coverage in source audits, but a measure
 accuracy advantage has not been established; both models can share errors.
 
 **Current implementation:** extraction and provisional local model review are
-available. Visual verification and mapping of reviewed evidence to KB drafts
-are separate review tasks, not an automated end-to-end process. Successful model
+available. `kb.py convert` prepares a mapping file and converts explicitly mapped
+findings into held drafts, preserving source quotes and review warnings (see
+[the workflow](docs/HOWTO.md#4-verify-map-and-approve)). Visual verification and
+clinical mapping remain separate review tasks. Successful model
 calls do not approve findings. Existing published findings retain their recorded
 provenance until reviewed replacements are ready.
 

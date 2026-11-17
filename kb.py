@@ -16,6 +16,7 @@ COMMANDS = {
     'prepare': ('prepare_dual_batch.py', [], 'Create a frozen paper manifest'),
     'extract': ('batch_dual_extract.py', [], 'Preview or run two independent local extractions'),
     'review': ('review_dual_extract.py', [], 'Preview or generate a local source-review aid; never approve findings'),
+    'convert': ('convert_relationship_review.py', [], 'Map reviewed proposals into held, unapproved KB drafts'),
     'status': ('kb_status.py', [], 'Inspect knowledge-base content and provenance'),
     'drafts': ('promote.py', ['--list'], 'List existing KB drafts awaiting approval'),
     'inspect': ('review_app.py', [], 'Open the local review workbench (edits are logged)'),
@@ -174,14 +175,14 @@ def main(argv=None):
             argv = [argv[1], '--help']
         else:
             print('Usage: python kb.py COMMAND [options]\n')
-            for heading, names in [('PDF download and preparation', ['sync', 'intake']), ('Provisional source pipeline', ['prepare', 'extract', 'review']), ('Existing KB drafts and data', ['drafts', 'inspect', 'validate']), ('Read-only overview', ['status'])]:
+            for heading, names in [('PDF download and preparation', ['sync', 'intake']), ('Provisional source pipeline', ['prepare', 'extract', 'review', 'convert']), ('Existing KB drafts and data', ['drafts', 'inspect', 'validate']), ('Read-only overview', ['status'])]:
                 print(heading + ':')
                 for name in names:
                     print(f'  {name:10} {COMMANDS[name][2]}')
             print('\nUse COMMAND --help for options. Start with docs/HOWTO.md.\n'
                   'Prepare writes a manifest. Extract and review preview unless --run is supplied.\n'
                   'Model outputs are provisional; review outputs are not KB drafts.\n'
-                  'Mapping is manual (docs/HOWTO.md); approval uses promote.py under docs/GOVERNANCE.md.')
+                  'Convert supports explicit source mapping (docs/HOWTO.md); approval uses promote.py under docs/GOVERNANCE.md.')
             return 0
     command, args = argv[0], argv[1:]
     if command not in COMMANDS:
