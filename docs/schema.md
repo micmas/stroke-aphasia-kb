@@ -1,4 +1,4 @@
-# Schema v2.8
+# Schema v2.9
 
 Every entry is a single markdown file with **YAML frontmatter** followed by
 **prose**. The frontmatter is the contract that `aphasia_kb.py`,
@@ -6,7 +6,7 @@ Every entry is a single markdown file with **YAML frontmatter** followed by
 Changing field names or controlled vocabularies should be a deliberate,
 documented change to *this file* and the loader together.
 
-> **Status note.** Schema v1 → v2.0 → v2.1 → v2.2 → v2.3 → **v2.4** → v2.5 → v2.6 → v2.7 → **v2.8** (current).
+> **Status note.** Schema v1 → v2.0 → v2.1 → v2.2 → v2.3 → **v2.4** → v2.5 → v2.6 → v2.7 → **v2.8** → **v2.9** (current).
 >
 > - **v2.0** introduced the rich finding object (method/sample/stats/etc.).
 > - **v2.1** made `source_passages` required and added `imaging_details`
@@ -80,14 +80,14 @@ documented change to *this file* and the loader together.
 >   findings; `backfill.py --fields therapy` fills the therapy block
 >   from the paper.
 >
-> New entries must declare `schema_version: 2.8`. The loader reads older
+> New chapter-labelled entries declare `schema_version: 2.9`; existing v2.8 entries remain valid. The loader reads older
 > entries (v1, v2.0–v2.7) for backwards compatibility.
 
 ## File-level fields (every entry)
 
 | Field            | Type    | Required | Notes |
 |------------------|---------|----------|-------|
-| `schema_version` | number or string | yes | New entries use `2.8`; older v2 versions remain readable. |
+| `schema_version` | number or string | yes | New chapter-labelled entries use `2.9`; older v2 versions remain readable. |
 | `id`             | string  | yes      | Stable join key, lowercase, dash-or-underscore-separated. |
 | `name`           | string  | yes      | Human-readable name. |
 | `aliases`        | list    | no       | Other names that should resolve to this entry. |
@@ -591,3 +591,16 @@ Fridriksson J, Yourganov G, Bonilha L, ... Revealing the dual streams of
 speech processing. Proc Natl Acad Sci USA. 2018;115(7):1432–1437.
 doi:10.1073/pnas.1714922115
 ```
+
+## v2.9: chapter membership
+
+New v2.9 entries require `chapters: [aphasia]`, `[dysphagia]`, or
+`[aphasia, dysphagia]`. Each finding may override that default with its own
+non-empty, unique list from the same vocabulary. Omitted legacy fields resolve
+to Aphasia; this is a compatibility default, not a new review or approval.
+Unknown, empty or malformed lists are invalid and excluded by the loader.
+
+One source and anatomical entry may support both chapters. Membership does not
+merge outcomes, eligibility decisions, review status or cohort identities.
+Existing IDs and source paths stay stable. The default loader and browser export
+remain Aphasia-only. See [migration boundaries](CHAPTER_MIGRATION.md).
