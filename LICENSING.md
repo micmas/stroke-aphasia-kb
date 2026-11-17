@@ -1,5 +1,10 @@
 # Non-commercial project use
 
+Scope: the owner’s `micmas/stroke-aphasia-kb` (future Stroke KB) and
+`micmas/calmar` repositories and their own KB/demo websites. This change does
+not apply to the separate Neurodesk CALMaR webapp, `micmas/webapps`, other
+Neurodesk projects or unrelated repositories.
+
 Project-owned CALMaR / Stroke KB software, websites, documentation and original
 knowledge-base material are offered under the [CALMaR and Stroke KB Noncommercial
 License 1.0](LICENSE). Commercial use is not permitted under this licence.
