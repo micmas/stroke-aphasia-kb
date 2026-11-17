@@ -48,3 +48,9 @@ Use the [developer guide](docs/development/README.md) for implementation,
 validation and publication. PDFs stay outside Git. Approved entries change through
 the approval tooling under the governance policy. Schema or approval changes must
 update both the documentation and the code that enforces them.
+
+## Contribution licensing
+
+Submit only material you have authority to contribute under the project’s
+[noncommercial licence](LICENSE). Identify and preserve third-party terms.
+Contributing does not relicense source papers or revoke earlier grants.

@@ -14,5 +14,6 @@
     "deploy": "cd .. && python3 scripts/publish_portal.py --deploy",
     "dev": "wrangler pages dev dist",
     "test": "node --test functions/test/*.test.mjs"
-  }
+  },
+  "license": "SEE LICENSE IN LICENSE"
 }

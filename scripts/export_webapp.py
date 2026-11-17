@@ -374,7 +374,8 @@ def export(root: Path, include) -> dict:
     return {
         "schemaVersion": SCHEMA_VERSION,
         "_comment": ("Aphasia knowledge base exported for the CALMaR webapp by stroke-aphasia-kb/export_webapp.py. "
-                     "Regenerate with that script; do not edit by hand. Findings are group-level literature "
+                     "Project-owned material is non-commercial only: https://aphasia-kb.app/licensing.html. "
+                     "Third-party sources retain their own terms. Regenerate with that script; do not edit by hand. Findings are group-level literature "
                      "associations with their citations and review provenance, not clinical predictions."),
         "version": version(root, kb),
         "entries": entries(kb),
