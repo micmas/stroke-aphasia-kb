@@ -113,4 +113,8 @@ reviewer material is retained under `logs/baseline/reviewer-material/` for the
 replacement review. This is an audit archive, not another draft queue. Source,
 screening, approval and correction records remain part of the product.
 
-Code is [MIT licensed](LICENSE). Source papers retain their own licences.
+Project-owned code, websites and original KB material are [non-commercial only](LICENSE).
+See [licensing scope and prior-release terms](LICENSING.md). Source papers and
+other third-party material retain their own licences.
+
+[Start the Dysphagia search strategy](https://aphasia-kb.app/dysphagia-search/): eight databases, a search log and a pilot screening sheet.
