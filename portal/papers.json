@@ -304,12 +304,12 @@
   },
   "@Basilakos2014": {
    "annotated": "cc/C2738_Basilakos2014_annotated.pdf",
-   "bytes": 1271391,
+   "bytes": 2925901,
    "category": "cc",
    "label": "CC BY",
    "public": true,
    "public_basis": "cc",
-   "sha256": "f665604cd3a1854e3fb647e3033338a99faff60a2d17b94107348b8da11874e6"
+   "sha256": "c1de565024c728928422ad499b4a0748c3cbfb7ab3f23f8556f94306ea33dbfc"
   },
   "@Basilakos2015": {
    "annotated": "pdf/C0049_Basilakos2015_annotated.pdf",
@@ -2096,5 +2096,5 @@
    "@Ali2021"
   ]
  },
- "synced": "2026-11-17T17:54"
+ "synced": "2026-11-17T18:02"
 }

@@ -1,0 +1,51 @@
+{
+  "checked_by": "agent:codex",
+  "date": "2026-11-17",
+  "approved": false,
+  "pdf_sha256": "ef936e4f2e06d05151975ac93052b5430b4a91bd28862b9a95907eea3746054f",
+  "licence": {
+    "category": "cc",
+    "label": "CC BY",
+    "url": "https://doi.org/10.3389/fnhum.2014.00845",
+    "version": "published",
+    "source": "unpaywall",
+    "doi": "10.3389/fnhum.2014.00845",
+    "checked": "2026-10-30",
+    "consulted": [
+      "crossref",
+      "unpaywall",
+      "pdf"
+    ]
+  },
+  "checked_pdf_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9
+  ],
+  "visual_pages": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "scope": "Main ROI fluency and semantic relationships, Table 1 and Figures 1\u20133; selected regression and null qualifiers. No supplements.",
+  "corrections": [
+    "Study measured atlas-based structural T1 intensity, not patient diffusion tractography or disconnection.",
+    "Six ROIs distinguish unique tract portions from ASAF/aslant and uncinate/ILF overlaps.",
+    "76 participants for fluency; 57 for semantic processing. Ten years describes data collection, not individual follow-up.",
+    "Cross-sectional chronic status, not prospective recovery prediction. Scan and language testing usually same day, at most one month apart.",
+    "Unadjusted correlations distinguished from stepwise models; lesion size entered as candidate/control but retained final model not enumerated as volume-adjusted in Table 1.",
+    "P5 semantic paragraph ends with an apparent fluency typo; Table 1 confirms semantic outcome. Figure 2 caption mentions aslant and ASAF, whereas legend displays overlap and uncinate-unique.",
+    "Source F, p and R2 values retained as reported; no p values recomputed or confidence intervals invented."
+  ],
+  "remaining": [
+    "Named-person approval and reconciliation with existing findings, including possible cohort overlap with Fridriksson2013.",
+    "Exact atlas mask files/thresholds and final retained volume term not supplied here.",
+    "Exploratory Hotelling comparisons and AphasiaBank measurement-validation analysis not separately converted."
+  ]
+}
