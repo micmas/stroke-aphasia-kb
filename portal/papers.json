@@ -227,30 +227,30 @@
  "papers": {
   "@Adezati2022": {
    "annotated": "cc/C1336_Adezati2022_annotated.pdf",
-   "bytes": 2423301,
+   "bytes": 2180497,
    "category": "cc",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "b6e29591763d84f30cc3ede37603e870d1dd74f5d23b1866e2117d0a8ac62ad7"
+   "sha256": "a5f01a041a28c06524c9b2c11f6da365308cfdd6d541516ab646fd0cb57b871f"
   },
   "@Akkad2023": {
    "annotated": "cc/C1050_Akkad2023_annotated.pdf",
-   "bytes": 3441705,
+   "bytes": 3054567,
    "category": "cc",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "be2bc8b23f1b1f73094957561242c21753fc5fcb0a295ad984402e3c47fa920e"
+   "sha256": "f72fc60a352f990d4720e9c4ba45f8d33425c231159ec10c26f1d3eda76dc704"
   },
   "@Ali2021": {
    "annotated": "cc/C7442_Ali2021_annotated.pdf",
-   "bytes": 3028132,
+   "bytes": 2232633,
    "category": "cc",
    "label": "CC BY",
    "public": true,
    "public_basis": "cc",
-   "sha256": "47ee814197296e4ba415c72f4f885788f201a22f3c59522f630425d6da2997ba"
+   "sha256": "57e3379af9e26919b103caf8f0d65f0a65520f61050a8bdff810cb0d6c95d477"
   },
   "@Alyahya2018NounVerb": {
    "annotated": "cc/C0007_Alyahya2018NounVerb_annotated.pdf",
@@ -304,12 +304,12 @@
   },
   "@Basilakos2014": {
    "annotated": "cc/C2738_Basilakos2014_annotated.pdf",
-   "bytes": 2925901,
+   "bytes": 1584582,
    "category": "cc",
    "label": "CC BY",
    "public": true,
    "public_basis": "cc",
-   "sha256": "c1de565024c728928422ad499b4a0748c3cbfb7ab3f23f8556f94306ea33dbfc"
+   "sha256": "bfc44a88f7d21d5168078be04ff4d91e1cbfb0207124dc6f9f79f0b2990690e5"
   },
   "@Basilakos2015": {
    "annotated": "pdf/C0049_Basilakos2015_annotated.pdf",
@@ -793,12 +793,12 @@
   },
   "@Halai2017": {
    "annotated": "cc/C0068_Halai2017_annotated.pdf",
-   "bytes": 2454739,
+   "bytes": 2173586,
    "category": "cc",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "1265d3050504bdb151854b9f8ae2a4f7d7525ebd4bafdc5d493cacc058af7fd5"
+   "sha256": "2da1605fc45f13496aaf446d68adbe819896e1d557143ee5232f649a725b03ec"
   },
   "@Halai2018": {
    "annotated": "cc/C2234_Halai2018_annotated.pdf",
@@ -1296,12 +1296,12 @@
   },
   "@Oeckel2021": {
    "annotated": "cc/C0125_Oeckel2021_annotated.pdf",
-   "bytes": 1462911,
+   "bytes": 934850,
    "category": "cc",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "4321d3e41acef1b06f7d35eb9f91e333daae662fc8f64c7bf4554aa3259c7b93"
+   "sha256": "74e5fc80735f73272d9674ac70001cbab87d4d22ec122a27c3036529edaa04e9"
   },
   "@OsaGarcia2020": {
    "annotated": "cc/C1829_OsaGarcia2020_annotated.pdf",
@@ -2096,5 +2096,5 @@
    "@Ali2021"
   ]
  },
- "synced": "2026-11-17T18:33"
+ "synced": "2026-11-17T19:18"
 }

@@ -135,8 +135,10 @@ papers; 190 had unresolved checks and 29 failed (14 repetition loops, 9 truncate
 calls, 6 malformed JSON responses). These are execution and audit counts, not
 accuracy scores. The v5 recovery saved 25 of those 29 papers. Four remaining
 failures started with unescaped PDF control characters; their original responses
-pass the schema after encoding alone. Targeted v6 retries preserve all earlier
-outputs. Source-checked subsets become held drafts, with agent checks
+pass the schema after encoding alone. Targeted v6 retries recovered all four,
+giving 223 saved review aids while preserving all earlier outputs. All source-PDF
+and saved-review hashes were checked. These counts measure completion, not
+scientific accuracy. Source-checked subsets become held drafts, with agent checks
 distinguished from human approval. No whole-corpus accuracy advantage has been
 established.
 

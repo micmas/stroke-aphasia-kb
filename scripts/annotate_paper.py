@@ -390,6 +390,9 @@ def annotate(
     n_pages = doc.page_count
 
     summary = {"placed": [], "missed": []}
+    # A shared Methods passage may support many findings. Painting it repeatedly
+    # makes the PDF unreadable; keep every finding link but draw each rectangle once.
+    highlights = {}
 
     for fid, passage in all_passages:
         supports = passage.get("supports", "claim")
@@ -424,13 +427,13 @@ def annotate(
             if not rects:
                 continue
             for rect in rects:
-                annot = page.add_highlight_annot(rect)
-                annot.set_colors(stroke=color)
-                annot.set_info(
-                    title=f"[{fid}] {supports}",
-                    content=quote[:200] + ("…" if len(quote) > 200 else ""),
-                )
-                annot.update()
+                key = (pno, tuple(round(v, 3) for v in rect), tuple(color))
+                item = highlights.setdefault(key, {
+                    "rect": rect, "page": pno, "color": color, "supports": supports,
+                    "findings": set(), "quotes": set(),
+                })
+                item["findings"].add(fid)
+                item["quotes"].add(quote)
             summary["placed"].append({
                 "finding": fid, "supports": supports,
                 "page": pno + 1, "n_rects": len(rects),
@@ -448,6 +451,17 @@ def annotate(
                 "page_hint": hinted_page,
                 "quote_preview": quote[:80] + ("…" if len(quote) > 80 else ""),
             })
+
+    for item in highlights.values():
+        page = doc[item["page"]]
+        annot = page.add_highlight_annot(item["rect"])
+        annot.set_colors(stroke=item["color"])
+        annot.set_opacity(0.35)
+        annot.set_info(
+            title=item["supports"] + ": " + ", ".join(sorted(item["findings"])),
+            content="\n\n".join(sorted(item["quotes"])),
+        )
+        annot.update()
 
     # Add a legend page
     if add_legend:
