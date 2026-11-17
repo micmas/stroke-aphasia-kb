@@ -1,0 +1,54 @@
+{
+  "checked_by": "agent:codex",
+  "date": "2026-11-17",
+  "approved": false,
+  "pdf_sha256": "8734accf0936fda0c0b3612e1ecaed66ef0b23f19bce849e602298fd90306020",
+  "licence": {
+    "category": "cc",
+    "label": "CC BY 4.0",
+    "url": "http://creativecommons.org/licenses/by/4.0/",
+    "version": "published",
+    "source": "crossref",
+    "doi": "10.1016/j.cortex.2016.04.016",
+    "checked": "2026-10-30",
+    "consulted": [
+      "crossref",
+      "unpaywall",
+      "pdf"
+    ]
+  },
+  "checked_pdf_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "visual_pages": [
+    9,
+    11,
+    13
+  ],
+  "scope": "Selected omnibus PCA/VBCM clusters and executive-volume association; main-text review with Table 6 and Figures 2\u20134 visual checks. Not complete conversion of all reported analyses.",
+  "corrections": [
+    "Separate speech-only PCA (no clusters survive volume adjustment) from omnibus PCA (three factors retain clusters).",
+    "Table 6 coordinates and Z values visually checked; extracted minus signs are control characters.",
+    "Results p9 gives cluster FWE p<=.001, whereas Figures 3\u20134 give p<.01; preserve disagreement.",
+    "White-matter labels reflect structural-MRI cluster overlap and a probabilistic FAT overlay, not participant tractography or disconnection estimates.",
+    "Same 31 patients as Butler2014: not an independent replication.",
+    "Age, education, sex and time since stroke are descriptive or eligibility variables here, not demonstrated independent clinical effects."
+  ],
+  "remaining": [
+    "Named-person approval and reconciliation with Butler2014/shared-cohort findings.",
+    "Threshold discrepancy unresolved; exact MNI template version and voxel-to-atlas mapping unavailable.",
+    "Earlier single-measure and speech-only analyses not separately converted; no whole-paper completeness claim."
+  ]
+}

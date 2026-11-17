@@ -793,12 +793,12 @@
   },
   "@Halai2017": {
    "annotated": "cc/C0068_Halai2017_annotated.pdf",
-   "bytes": 2039754,
+   "bytes": 2454739,
    "category": "cc",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "74bb664fb037751ebfedf10bec9796efb9c2c8329513ba2d00d3af010abe4392"
+   "sha256": "1265d3050504bdb151854b9f8ae2a4f7d7525ebd4bafdc5d493cacc058af7fd5"
   },
   "@Halai2018": {
    "annotated": "cc/C2234_Halai2018_annotated.pdf",
@@ -2096,5 +2096,5 @@
    "@Ali2021"
   ]
  },
- "synced": "2026-11-16T09:45"
+ "synced": "2026-11-17T17:54"
 }
