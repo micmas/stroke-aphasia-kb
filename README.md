@@ -1,4 +1,9 @@
-# Stroke aphasia knowledge base
+# Stroke knowledge base
+
+A shared knowledge base with Aphasia and Dysphagia as sibling chapters.
+Aphasia contains the existing evidence; Dysphagia is in protocol preparation.
+See the [chapter structure](chapters/README.md) and
+[migration compatibility contract](docs/CHAPTER_MIGRATION.md).
 
 Traceable research findings about language, recovery and intervention after
 stroke. Each finding connects a claim to its source paper, study context and

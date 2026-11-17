@@ -48,19 +48,21 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]  # repository root (this file lives in scripts/)
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # sibling modules in scripts/
 
+from chapters import CHAPTERS
+
 import aphasia_kb  # noqa: E402
 import aphasia_rules  # noqa: E402
 import atlas_mapping  # noqa: E402
 import screening as _screening  # noqa: E402
 
 SCHEMA_VERSION = 1
-ENTRY_FIELDS = ("id", "name", "kind", "aliases", "short_description", "status", "reviewer", "review_tier",
+ENTRY_FIELDS = ("chapters", "id", "name", "kind", "aliases", "short_description", "status", "reviewer", "review_tier",
                 "targets_impairments", "rtss_ingredients", "rtss_category", "direction_of_severity", "units",
                 "predictor_type")
 FINDING_RAW_FIELDS = ("relationship", "design", "sample", "statistics", "author_limitations", "source_passages",
                       "region_definition", "primary_papers_cited", "instrument", "therapy")
 # Columns of KnowledgeBase.findings the webapp reads (the rest are tooling).
-FINDING_FLAT_FIELDS = ("source_id", "source_kind", "source_status", "source_path", "id", "target", "target_kind",
+FINDING_FLAT_FIELDS = ("chapters", "source_id", "source_kind", "source_status", "source_path", "id", "target", "target_kind",
                        "claim", "direction", "citation", "method", "design", "evidence_quality", "strength",
                        "sample_n", "population", "time_post_onset", "phase", "phase_source", "stat_threshold",
                        "stat_effect_size", "confidence", "flags", "reviewer", "review_tier", "review_kind",
@@ -373,6 +375,8 @@ def export(root: Path, include) -> dict:
         raise FileNotFoundError(f"No aphasia knowledge base entries under {root}")
     return {
         "schemaVersion": SCHEMA_VERSION,
+        "chapter": "aphasia",
+        "chapters": CHAPTERS,
         "_comment": ("Aphasia knowledge base exported for the CALMaR webapp by stroke-aphasia-kb/export_webapp.py. "
                      "Regenerate with that script; do not edit by hand. Findings are group-level literature "
                      "associations with their citations and review provenance, not clinical predictions."),

@@ -36,6 +36,7 @@ from typing import Any, Iterable, Sequence
 
 import pandas as pd
 from strict_data import load_yaml
+from chapters import membership, select_entry, CHAPTERS
 
 
 # ============================================================
@@ -331,6 +332,14 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
     for f in ("id", "name", "kind", "status", "created_by", "created_on"):
         if not entry.get(f):
             err(f"missing required file-level field: {f}")
+    try:
+        membership(entry)
+        for finding in findings or []:
+            membership(finding, entry)
+        if str(entry.get("schema_version")) == "2.9" and "chapters" not in entry:
+            err("schema v2.9 requires explicit entry chapters")
+    except ValueError as exc:
+        err(str(exc))
     sv = entry.get("schema_version")
     # Accept 2 (legacy v2.0), 2.1, 2.2, 2.3, and 2.4 (current).
     # v2.1+ entries get the stricter source_passages + imaging_details checks.
@@ -339,10 +348,10 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
     # v2.4+ entries can use method=narrative_review with relaxed field rules.
     # v2.5 adds optional review-provenance fields (review_tier, per-finding
     # review block, audited_by/audited_on); no structural change.
-    _ALL_SV = (2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8,
-               "2", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8")
+    _ALL_SV = (2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9,
+               "2", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9")
     if sv not in _ALL_SV:
-        err(f"schema_version must be 2–2.8, got {sv!r}")
+        err(f"schema_version must be 2–2.9, got {sv!r}")
     # Compare numerically: the slice-based test this replaces silently
     # excluded every version added after it was written (2.6 drafts
     # failed "predictor entries require schema_version 2.3 or higher").
@@ -664,15 +673,21 @@ class KnowledgeBase:
 
     def __init__(self, root: str | Path,
                  include: Sequence[str] = ("approved",),
-                 review_kinds: Sequence[str] | None = None):
+                 review_kinds: Sequence[str] | None = None,
+                 chapter: str = "aphasia"):
         """
         include       entry statuses to load (default: approved only).
+        chapter       aphasia (legacy default), dysphagia, or all; filters findings.
+                      Chapter selection does not adapt clinical interpretation rules.
         review_kinds  if given, keep only findings whose review provenance
                       is in this set — e.g. ("human",) for the clinical
                       interpretation path (docs/GOVERNANCE.md §4). Kinds are
                       'human' | 'model' | 'legacy' | 'none'. Findings
                       dropped this way are counted in `review_excluded`.
         """
+        if chapter not in (*CHAPTERS, "all"):
+            raise ValueError(f"Unknown chapter: {chapter}")
+        self.chapter = chapter
         self.root = Path(root)
         self.include = tuple(include)
         self.review_kinds = tuple(review_kinds) if review_kinds else None
@@ -733,7 +748,7 @@ class KnowledgeBase:
                 for e in entries:
                     src = e["_path"]
                     sv = e.get("schema_version")
-                    if str(sv) in {"2", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8"}:
+                    if str(sv) in {"2", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9"}:
                         _validate_v2_entry(e, src, self.issues)
                     else:
                         _validate_v1_entry(e, src, self.issues)
@@ -771,12 +786,25 @@ class KnowledgeBase:
                 if keep(e):
                     dest.append(e)
 
+        def scoped(records):
+            result = []
+            for entry in records:
+                try:
+                    selected = select_entry(entry, self.chapter)
+                except ValueError as exc:
+                    self.issues.append(f"{entry.get('_path')}: {exc}; entry skipped")
+                    continue
+                if selected is not None:
+                    result.append(selected)
+            return result
+
+        regions, impairs, theras, preds = map(scoped, (regions, impairs, theras, preds))
         self.regions     = pd.DataFrame(regions)
         self.impairments = pd.DataFrame(impairs)
         self.therapies   = pd.DataFrame(theras)
         self.predictors  = pd.DataFrame(preds)
         # Ingredients live only in the canonical folder (no drafts/legacy)
-        ings = [e for e in (approved.get('ingredients') or [])]
+        ings = scoped([e for e in (approved.get('ingredients') or [])])
         self.ingredients = pd.DataFrame(ings) if ings else pd.DataFrame()
 
         # Long-format findings table
@@ -790,6 +818,7 @@ class KnowledgeBase:
             for e in sub_entries:
                 for f in e.get("findings") or []:
                     rows.append({
+                        "chapters": membership(f, e),
                         "source_id":   e.get("id"),
                         "source_kind": sub,
                         "source_status": e.get("status"),
