@@ -1,6 +1,6 @@
 // kb-evidence.js — JavaScript port of the stroke aphasia KB's evidence logic.
 //
-// Canonical home: github.com/micmas/stroke-aphasia-kb (js/kb-evidence.js, MIT).
+// Canonical home: github.com/micmas/stroke-aphasia-kb (js/kb-evidence.js; project-owned code: non-commercial, see LICENSE).
 // The CALMaR webapp (neurodesk/webapps, apps/calmar) vendors this file at a
 // pinned commit; do not edit the vendored copy. Dependency-free on purpose:
 // it runs in the browser, in Node tests and in the explorer alike.
