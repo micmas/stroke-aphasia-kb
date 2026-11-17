@@ -1296,12 +1296,12 @@
   },
   "@Oeckel2021": {
    "annotated": "cc/C0125_Oeckel2021_annotated.pdf",
-   "bytes": 751082,
+   "bytes": 1462911,
    "category": "cc",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "864f5897eae9a1e8c872051097dcbc91e4a1a2ff60169aa4f3a3aa47a106e872"
+   "sha256": "4321d3e41acef1b06f7d35eb9f91e333daae662fc8f64c7bf4554aa3259c7b93"
   },
   "@OsaGarcia2020": {
    "annotated": "cc/C1829_OsaGarcia2020_annotated.pdf",
@@ -2096,5 +2096,5 @@
    "@Ali2021"
   ]
  },
- "synced": "2026-11-17T18:02"
+ "synced": "2026-11-17T18:33"
 }

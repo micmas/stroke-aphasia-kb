@@ -1,0 +1,53 @@
+{
+  "checked_by": "agent:codex",
+  "date": "2026-11-17",
+  "approved": false,
+  "pdf_sha256": "00103d75e25b594a6d03d2307f95a3a74e4b0e05673537ffd7c34149926a91ec",
+  "licence": {
+    "category": "cc",
+    "label": "CC BY 4.0",
+    "url": "http://creativecommons.org/licenses/by/4.0/",
+    "version": "published",
+    "source": "crossref",
+    "doi": "10.1093/braincomms/fcab040",
+    "checked": "2026-10-30",
+    "consulted": [
+      "crossref",
+      "unpaywall",
+      "pdf"
+    ]
+  },
+  "checked_pdf_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "visual_pages": [
+    3,
+    5,
+    7
+  ],
+  "scope": "Main adjusted ECF/AF relationships and Table3 personal/volume factors; selected source checks, not all imaging acquisitions or individual-patient records.",
+  "corrections": [
+    "123 patients total,18 aphasia cases; acute outcome within 10 days, not later recovery.",
+    "Exclusion covers four Stanford language ROIs, not every cortical language region.",
+    "Exposure is maximum lesion/template slice-area overlap, not whole-tract percentage or a count of severed streamlines.",
+    "ECF region contains anatomically overlapping fibre systems; do not assign the effect uniquely to IFOF or uncinate.",
+    "Table3 uses >=15% whereas prose often says >15%; preserve threshold discrepancy.",
+    "Age>=70 adjusted OR 3.97 CI 1.02\u201315.46 p=.05 conflicts with Discussion stating no age association.",
+    "Token Test criterion is >=7 in Methods but >7 in Results; do not invent a resolved threshold.",
+    "Age, sex and lesion volume tested in Table3, not merely listed as covariates."
+  ],
+  "remaining": [
+    "Named-person approval, including definition/mapping of binary aphasia_presence target.",
+    "Resolve age/threshold discrepancies if needed; AF labels in Table3 appear clipped.",
+    "Figure2 and individual-patient Table2 not visually adjudicated; no overall completeness claim.",
+    "Exact template registration space not established from main text."
+  ]
+}
