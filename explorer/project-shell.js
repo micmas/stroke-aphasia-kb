@@ -43,7 +43,7 @@
     };
     nav.append(link('Aphasia KB', 'https://aphasia-kb.app/', 'project-home'));
     const links = document.createElement('div'); links.className = 'project-links';
-    links.append(link('Review portal', 'https://review.aphasia-kb.app/welcome/'), link('CALMaR examples', 'https://calmar.aphasia-kb.app/'), link('Open webapp ↗', 'https://webapps.neurodesk.org/calmar/'));
+    links.append(link('Review portal', 'https://review.aphasia-kb.app/welcome/'), link('CALMaR examples', 'https://calmar.aphasia-kb.app/'), link('Open webapp ↗', 'https://webapps.neurodesk.org/calmar/'), link('Non-commercial use', 'https://aphasia-kb.app/licensing.html'));
     const label = document.createElement('label'); label.className = 'project-theme'; label.append('Theme');
     select = document.createElement('select'); select.setAttribute('aria-label', 'Colour theme');
     for (const [value, text] of [['system', 'System'], ['light', 'Light'], ['dark', 'Dark']]) {

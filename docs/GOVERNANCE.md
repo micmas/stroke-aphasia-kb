@@ -242,7 +242,8 @@ from the approved export.
 - Lesion masks used with `aphasia_kb_rag.py` are patient-derived data
   and are processed locally only; nothing about a lesion is written to
   the KB or the log.
-- The KB is MIT-licensed as part of CALMaR. Model licences are noted
+- Project-owned KB material is non-commercial under `LICENSE`; see
+  `LICENSING.md` for third-party exclusions and earlier MIT grants. Model licences are noted
   in `MODELS.md` (OpenMDW for Nemotron, Apache 2.0 for Granite, Gemma
   terms for Gemma).
 
