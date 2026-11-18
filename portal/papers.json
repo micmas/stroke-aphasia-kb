@@ -254,21 +254,21 @@
   },
   "@Alyahya2018NounVerb": {
    "annotated": "cc/C0007_Alyahya2018NounVerb_annotated.pdf",
-   "bytes": 1139830,
+   "bytes": 5331226,
    "category": "cc",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "a782fecf4e9dc3fdaafbc48b31b93c798ce91fedbf29f0c69d1ef22b29660cad"
+   "sha256": "71aa64cd13a536b4138ee95df7bddfdb901eeeb5394ffad4dd7de7e65a1b7558"
   },
   "@Alyahya2020": {
    "annotated": "cc/C0069_Alyahya2020_annotated.pdf",
-   "bytes": 1147773,
+   "bytes": 6852723,
    "category": "cc",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "fc3ec07ebdf58a70f28738a003c5d7719c3bea63cc7c5975586e963996a9f32e"
+   "sha256": "af67afaaeeb4d1c8bf5e89dd7859229c2fd5e725321811ff61643ee86030f012"
   },
   "@Baldo2006": {
    "annotated": "pdf/C0001_Baldo2006_annotated.pdf",

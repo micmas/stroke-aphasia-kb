@@ -1,0 +1,57 @@
+{
+  "checked_by": "agent:codex",
+  "date": "2026-11-18",
+  "approved": false,
+  "pdf_sha256": "7c7fe679ca9614ffbed99fcf352167912a75739289a9dcd5406488095ae29b29",
+  "licence": {
+    "category": "cc",
+    "label": "CC BY 4.0",
+    "url": "http://creativecommons.org/licenses/by/4.0/",
+    "version": "published",
+    "source": "crossref",
+    "doi": "10.1093/brain/awaa074",
+    "checked": "2026-10-30",
+    "consulted": [
+      "crossref",
+      "unpaywall",
+      "pdf"
+    ]
+  },
+  "checked_pdf_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "visual_pages": [
+    4,
+    5,
+    8,
+    9,
+    10
+  ],
+  "scope": "Main-paper review: seven PCA imaging components, lesion-volume correlation, discourse-task differences and fluent/non-fluent group contrast. Table 1, Table 2, Figure 4 and numerical Results visually checked. Supplements excluded.",
+  "corrections": [
+    "Separate models with and without lesion-volume correction; verbal quantity and motor speech survive only a lenient adjusted threshold, while verbal quality and semantics are not among surviving adjusted components.",
+    "Executive cluster appears only after lesion-volume adjustment.",
+    "White-matter anatomy is descriptive atlas overlap, not patient tractography or measured disconnection.",
+    "Age, education and time since stroke are adjustment variables, not demonstrated independent predictors; sex is descriptive.",
+    "Same or overlapping cohort with Alyahya2018 papers, Butler2014 and Halai2017; no independent replication claim.",
+    "Visual PDF confirms <= signs in discourse results that text extraction renders as >; subgroup interaction df=188 is printed despite n=46, retained as unresolved."
+  ],
+  "remaining": [
+    "Named-person approval; reconcile shared-cohort evidence before synthesis.",
+    "Voxel maps and exact atlas/template versions unavailable from main paper; no whole-parcel or tract-specific causal claim.",
+    "Figure 2/3 distributions not visually audited; no exhaustive conversion of every behavioural interaction or PCA loading.",
+    "Supplement-only acquisition/preprocessing details excluded."
+  ]
+}

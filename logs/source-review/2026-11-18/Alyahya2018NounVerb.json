@@ -1,0 +1,57 @@
+{
+  "checked_by": "agent:codex",
+  "date": "2026-11-18",
+  "approved": false,
+  "pdf_sha256": "5ed1039a01ab3cfc667a78c7b356bbe093a4c29145b49409590d3fd9a46f60f5",
+  "licence": {
+    "category": "cc",
+    "label": "CC BY 4.0",
+    "url": "http://creativecommons.org/licenses/by/4.0/",
+    "version": "published",
+    "source": "crossref",
+    "doi": "10.1016/j.nicl.2018.01.023",
+    "checked": "2026-10-30",
+    "consulted": [
+      "crossref",
+      "unpaywall",
+      "pdf"
+    ]
+  },
+  "checked_pdf_pages": [
+    1,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "visual_pages": [
+    7,
+    11,
+    12
+  ],
+  "scope": "Main-paper core PCA imaging findings, noun/verb overlap and direct contrasts, matched/unmatched behavioural accuracy and imageability. Table 6 and Figures 2,4,5 visually inspected. Main-paper scope only.",
+  "corrections": [
+    "Age/education null correlations on page 4 concern 25 healthy older controls, not the 48 stroke participants; do not convert into patient predictors.",
+    "Age-of-acquisition is a word characteristic, not participant age at stroke.",
+    "Fluency cluster disappears with lesion-volume adjustment; generic statement that PCA clusters remain cannot override the specific result.",
+    "Executive association requires a relaxed voxel threshold. Figure 5 adjusted threshold .005 differs from Methods .001; preserve discrepancy.",
+    "Printed lesion-volume correlations have positive signs despite better-performance interpretation being unclear; no signed clinical volume effect inferred.",
+    "Atlas tract names describe T1 cluster overlap, not acquired diffusion or disconnectome measurements.",
+    "Overlapping cohort with later Alyahya2020 and Butler/Halai work, not independent replication."
+  ],
+  "remaining": [
+    "Named-person review; shared-cohort reconciliation.",
+    "Do not infer precise ROI boundaries or tract-specific effects from cluster labels.",
+    "Regression reporting has inconsistent t/p combinations and unclear observational unit (df differs from 48 participants); retain as qualified assessment finding only.",
+    "Individual exceptions, all error subtypes and every secondary contrast not separately converted; no exhaustive completeness claim.",
+    "Table 5 page 10 not visually checked; coordinates not transcribed. Supplements excluded."
+  ]
+}
