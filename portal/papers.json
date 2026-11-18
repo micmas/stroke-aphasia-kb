@@ -1759,12 +1759,12 @@
   },
   "@Xing2017": {
    "annotated": "cc/C2356_Xing2017_annotated.pdf",
-   "bytes": 2430452,
+   "bytes": 2666490,
    "category": "cc",
    "label": "CC BY",
    "public": true,
    "public_basis": "cc",
-   "sha256": "e0a92bee7ab09fba161c08c2adc6e583a11e3de6629cde51f8ab6670ef206f89"
+   "sha256": "6dc1a21ec0b6f97c834c7d9c2bf1b11f6f7ef0b669808047c6525be6efa94f77"
   },
   "@Yang2017": {
    "annotated": "pdf/C2467_Yang2017_annotated.pdf",

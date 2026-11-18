@@ -1,0 +1,84 @@
+{
+  "checked_by": "agent:codex",
+  "date": "2026-11-18",
+  "approved": false,
+  "pdf_sha256": "820ed5ec7c771ad0988c848ea6743d010885b6864be048780c48d1078c7717b5",
+  "model_check_before_agent_corrections": {
+    "checked_by": "model:gemma4:31b",
+    "model_digest": "92808281a855666acf35743d49004bb30c810152cd004baf78f31b4578920e49",
+    "date": "2026-11-18",
+    "approved": false,
+    "pdf_sha256": "820ed5ec7c771ad0988c848ea6743d010885b6864be048780c48d1078c7717b5",
+    "scope": "One candidate checked against main-PDF text; not visual inspection or paper completeness certification",
+    "checks": {
+      "population": "supported",
+      "timing": "supported",
+      "anatomy": "supported",
+      "outcome": "supported",
+      "direction": "supported",
+      "statistics": "supported",
+      "adjustment": "supported",
+      "limitations": "supported",
+      "current_study": "supported"
+    },
+    "reason": "The candidate identifies a relationship between DTI metrics and WLC scores. The paper specifically reports that DTI metrics of the left uncinate fasciculus (UF) are associated with word-level comprehension (WLC) scores. I have recovered the specific anatomical exposure (left UF) and the specific direction (reduced integrity/increased diffusivity associated with impairment).",
+    "semantic_checker": "qwen3.8:27b",
+    "semantic_checker_digest": "47951e4a666180bc2aedfc93c169472f2de783696fe196efbf063f5730ecf163",
+    "binding": {
+      "version": "source-check-v8",
+      "model": "gemma4:31b",
+      "model_digest": "92808281a855666acf35743d49004bb30c810152cd004baf78f31b4578920e49",
+      "checker_model": "qwen3.8:27b",
+      "checker_digest": "47951e4a666180bc2aedfc93c169472f2de783696fe196efbf063f5730ecf163",
+      "pdf_sha256": "820ed5ec7c771ad0988c848ea6743d010885b6864be048780c48d1078c7717b5",
+      "review_sha256": "09a4579a1a08e50ddf86bae14deeae8da17c4dca3772f601a416870aa964c92e",
+      "code_sha256": "dc05ea1b563a8f5d2afaa36ab53e178026c94e2a8595eef1353018f153744027",
+      "converter_sha256": "048f1e35905528676837a00b1b2406b1c97cb1eb47c48d63f121a5c00cc0afeb",
+      "schema_sha256": "09335e2c6adf91057d31449f9743b179f23448be337fedadaa33e9f99fb35500",
+      "max_output_tokens": 6000,
+      "host": "http://localhost:11434"
+    },
+    "remaining": [
+      "Human approval",
+      "Main-paper figure/table and completeness review"
+    ],
+    "semantic_audit": {
+      "verdict": "accept",
+      "checks": {
+        "population": "supported",
+        "timing": "supported",
+        "anatomy": "supported",
+        "outcome": "supported",
+        "direction": "supported",
+        "statistics": "supported",
+        "adjustment": "supported",
+        "limitations": "supported",
+        "current_study": "supported",
+        "target_label": "supported",
+        "cohort_identity": "supported"
+      },
+      "issues": []
+    }
+  },
+  "scope": "Follow-up source check of this finding, including Table 2 and Results. The embedded model audit applies to the pre-correction mapping, not these agent edits.",
+  "checked_pdf_pages": [
+    2,
+    3,
+    4,
+    6,
+    8
+  ],
+  "visual_pages": [
+    4,
+    6
+  ],
+  "corrections": [
+    "Separate primary Table 2 coefficients from additional PPT adjustment; FA has corrected p=0.08 after PPT.",
+    "Describe healthy-template sampling rather than individual patient tractography.",
+    "Keep word-level auditory comprehension explicit; clarify cohort, cross-sectional timing and cortical limitations."
+  ],
+  "remaining": [
+    "Named-person approval.",
+    "Other paper findings and completeness are still under review."
+  ]
+}
