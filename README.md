@@ -46,8 +46,10 @@ Dual extraction has shown complementary coverage in source audits, but a measure
 accuracy advantage has not been established; both models can share errors.
 
 **Current implementation:** extraction and provisional local model review are
-available. `kb.py convert` prepares a mapping file and converts explicitly mapped
-findings into held drafts, preserving source quotes and review warnings (see
+available. `kb.py source-check` checks candidates, repairs recoverable errors and
+optionally creates held drafts, with a second local model checking the mapping.
+`kb.py convert` also supports explicit agent/person mappings. Both preserve source
+quotes and unresolved review obligations (see
 [the workflow](docs/HOWTO.md#4-verify-map-and-approve)). Visual verification and
 clinical mapping remain separate review tasks. Successful model
 calls do not approve findings. Existing published findings retain their recorded

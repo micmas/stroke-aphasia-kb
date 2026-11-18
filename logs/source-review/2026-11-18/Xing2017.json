@@ -80,5 +80,26 @@
   "remaining": [
     "Named-person approval.",
     "Other paper findings and completeness are still under review."
-  ]
+  ],
+  "released_proposals": [
+    "U001",
+    "U003",
+    "U004"
+  ],
+  "review_status_sha256": "09a4579a1a08e50ddf86bae14deeae8da17c4dca3772f601a416870aa964c92e",
+  "proposal_dispositions": {
+    "U002": {
+      "status": "merged",
+      "into": "U001",
+      "reason": "Same UF-word-comprehension relationship; preserve PPT-adjusted sensitivity as qualifier, not independent replication."
+    },
+    "U005": {
+      "status": "excluded_candidate",
+      "reason": "Handedness was a sensitivity covariate, not an independently demonstrated comprehension predictor."
+    },
+    "U006": {
+      "status": "excluded_candidate",
+      "reason": "Handedness was a sensitivity covariate, not an independently demonstrated comprehension predictor."
+    }
+  }
 }

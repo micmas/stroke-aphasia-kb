@@ -1101,7 +1101,7 @@
  "rule": "Eligible = zero absent quotes on every paper, and schema issues and over-claiming no worse than the incumbent (docs/MODELS.md §3).",
  "sourcing": "Every model is downloaded with `ollama pull <tag>` from the Ollama library (registry.ollama.ai), which repackages the weights its developer published, usually quantised to about 4 bits per weight. It then runs offline through Ollama on the maintainer's computer: no paper text leaves the machine, and no account with the developer is involved.",
  "current_method": {
-  "updated": "2026-11-14",
+  "updated": "2026-11-18",
   "status": "Source-evidence workflow available; full-corpus rerun not started",
   "extractors": [
    "qwen3.8:27b",
@@ -1127,7 +1127,7 @@
   ],
   "timing_note": "Both extractors combined; summed original timings of exact reused calls plus new calls. Excludes source review and is not a fresh end-to-end benchmark.",
   "coverage_note": "Evidence groups were defined in source references before these extraction outputs were inspected. Located evidence is not clinical extraction precision, proof of exhaustive completeness, or approval.",
-  "review_status": "gemma4:26b is used as a provisional source-review aid. It supplies flagged proposals and passages still to read, not a complete relationship list or automatic approval. Independent source verification remains mandatory.",
+  "review_status": "Gemma 26B provides the provisional review aid. Source checking then uses Gemma 31B to map findings and Qwen 27B to check interpretations. Unresolved findings stay held; drafts need source review and a person’s approval.",
   "limitations": [
    "Complex table headers and formatting can remain unresolved.",
    "Figures and source contradictions require independent source review.",
@@ -1184,6 +1184,10 @@
    "Gemma reasoning enabled: one difficult block exhausted 12,000 output tokens in 150 seconds without a final answer; not adopted.",
    "Ornith full-paper review: the study-frame response enumerated excessive source IDs and hit the 4,000-token limit after 105 seconds; no completed full-paper comparison.",
    "Gemma plain JSON mode: a matched block took 23 seconds but failed the required category schema; not adopted."
-  ]
+  ],
+  "source_check": {
+   "process": "Supported findings can move into the draft queue one at a time. Recoverable errors are revised; saved responses can be checked again without repeating extraction. Table-dependent evidence waits for visual review.",
+   "pilot": "On Xing2017, source follow-up produced three unapproved drafts. Both models still missed an adjustment-specific qualifier, which was corrected against the paper and Table 2. An overlapping candidate was merged; handedness covariates were not treated as predictor findings. This is not a whole-paper accuracy benchmark."
+  }
  }
 }

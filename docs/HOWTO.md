@@ -217,8 +217,9 @@ labels as verified findings. Choose the bulk model-assisted route below or prepa
 an explicit mapping after an agent/person source check.
 
 For a large batch, `kb.py source-check` asks a local model to check each candidate
-against the original main-paper text and propose a corrected mapping. This is a
-model source check, **not a human or visual review**. It holds unclear findings,
+against the original main-paper text and propose a corrected mapping. A separate
+local model checks the interpretation before a finding can become a draft. This
+is a model source check, **not a human or visual review**. It holds unclear findings,
 table/figure-dependent interpretations, missing quotations and invalid mappings.
 Existing drafts are preserved. No findings are approved or published by this command.
 This route is experimental: inspect a small pilot before a corpus-wide conversion.
@@ -229,7 +230,7 @@ A model can return a valid mapping that still misinterprets the source.
   --run-dir _compare/my-batch/extraction \
   --review-dir _compare/my-batch/review \
   --output-dir _compare/my-batch/source-check \
-  --model gemma4:26b
+  --model gemma4:31b --checker-model qwen3.8:27b
 ```
 
 This previews the paper list. Add `--run` to start the local model and `--convert`
@@ -240,13 +241,31 @@ limit are held for manual source selection; their input is never silently shorte
 
 Run the same command and output folder to resume. Completed decisions are reused
 only with matching source, review, code, prompt and model bindings. Failed attempts
-are retained and retried; each new check allows at most one correction attempt
-for invalid output. Changed settings require a new output folder. Each paper
+are retained and retried. To recover an earlier run into a new output folder, add
+`--recover-from PATH_TO_OLD_SOURCE_CHECK`. Saved mapper responses are reused only
+when PDF, reviewed proposals and mapper digest match; interpretation is checked
+again under the current rules. This does not rerun the original extraction.
+A finding gets at most three mapping attempts, including
+format repairs and interpretation corrections. Useful null findings are recovered
+when possible instead of discarding a candidate with a mistaken direction. The
+checker sees the mapping without the mapper’s self-ratings. Both model digests
+are recorded and must differ. Changed settings require a new output folder. Each paper
 has `status.json`, a conversion `mapping.json`, and per-candidate prompts, raw model
-responses and checks. `batch-status.json` separates drafts, holds, exclusions,
-failures and preserved existing drafts. These are candidate checks: missing findings
+responses, checks and a copy of the script. `batch-status.json` separates drafts, holds, exclusions,
+failures and preserved existing drafts/source-review decisions. Bound agent/person
+merge decisions are retained so an already combined finding is not recreated. These are candidate checks: missing findings
 and the original coverage warnings still need a paper-level completeness review.
 Exact quotation matching and schema validation do not certify scientific accuracy.
+
+You can release supported drafts in small batches: the entire corpus does not
+need to finish first. Check each completed paper's mapping and remaining issues,
+then rerun its same source-check command with `--convert` to create drafts from
+saved checks. Commit and push the new draft files to make them available in the
+review portal and the explorer's drafts view. Refresh the annotated PDF when
+new evidence passages have been added. A person's review and approval are still
+required before these become approved KB findings. Existing approved content is
+not replaced by this process. An excluded *candidate* is recorded in the local
+report; it does not change the paper's screening decision.
 
 The explicit mapping workflow remains available for agent/person source checks:
 

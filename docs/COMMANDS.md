@@ -12,6 +12,8 @@ For setup and the complete procedure, follow [HOWTO](HOWTO.md).
 | `prepare` | Select registered papers and freeze their source manifest; hold PDFs over 50 pages | Writes manifest; no inference |
 | `extract` | Two independent local extractions | Preview by default; `--run` starts inference |
 | `review` | Generate an incomplete source-review aid; human verification required | Preview by default; `--run` starts inference |
+| `source-check` | Check and recover reviewed candidates against the main PDF | Preview by default; `--run` starts mapper and checker; `--convert` writes held drafts |
+| `convert` | Convert explicit source-checked mappings | Preview by default; `--execute` writes held drafts; no models |
 | `status` | Inspect KB content and provenance | Read-only |
 | `drafts` | List existing KB drafts | Read-only |
 | `inspect --draft PATH` | Open a KB draft beside its source | Interactive review workbench; edits are logged |
@@ -56,7 +58,7 @@ Sync can run alongside model processing. If incoming code changes would affect
 an active job, it stops before updating the checkout; retry after the job finishes.
 New downloads still need source verification/preparation before extraction.
 
-`extract --run` and `review --run` refuse to start while another detected KB model
+`extract --run`, `review --run` and `source-check --run` refuse to start while another detected KB model
 job is active. Add `--wait` to wait in the terminal and start when idle; keep that
 terminal open. Ctrl-C cancels a waiting command. This is not a persistent scheduler.
 The shared lock protects commands started through `kb.py`; older direct script
@@ -113,3 +115,34 @@ specialist operations documented in the [developer guide](development/README.md)
 [governance policy](GOVERNANCE.md). The modules under `scripts/` remain available
 for those operations and existing integrations; they are not alternative
 recommended extraction workflows.
+
+
+## Recover interpretations and prepare drafts
+
+```bash
+.venv/bin/python kb.py source-check \
+  --run-dir _compare/my-batch/extraction \
+  --review-dir _compare/my-batch/review \
+  --output-dir _compare/my-batch/source-check \
+  --model gemma4:31b --checker-model qwen3.8:27b \
+  --limit 3
+```
+
+Add `--run` to process the previewed papers. Add `--convert` to create held drafts
+for supported findings. Omit `--limit` to cover the complete frozen manifest.
+Use `--papers KEY1 KEY2` for selected papers. Existing drafts are preserved.
+Use `--recover-from OLD_SOURCE_CHECK_DIR` with a new output folder to reuse saved
+mapper responses for fresh checking, rather than repeating their generation.
+PDF, review and mapper identity must match. The same command resumes from matching saved checks; changed model, source or
+code requires a new output directory. Ctrl-C preserves completed work.
+
+The mapper can recover incorrect interpretations, including useful null results.
+A separate model checks the mapping without the mapper's self-ratings. Unresolved
+interpretations and invalid mappings remain held. Outputs include attempts,
+checker decisions, `mapping.json`, per-paper `status.json` and `batch-status.json`.
+Checking candidate findings is not a paper-completeness assessment.
+
+New drafts become visible online when committed and pushed; source checking alone
+does not publish them. They remain unapproved until the person reviewing resolves
+the source-check mark and applies the approval rules. You can release completed
+papers incrementally rather than waiting for the whole corpus.

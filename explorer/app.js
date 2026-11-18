@@ -211,6 +211,7 @@ function models(index) {
         h('td', { text: `${p.families_located} / ${p.reference_families}` }), h('td', { text: `About ${Math.round(p.paired_component_minutes)} min` }), h('td', { text: p.qualification })))))),
     h('p', { class: 'small', text: current.timing_note }), h('p', { class: 'small', text: current.coverage_note }),
     h('h3', { text: 'Review step' }), h('p', { text: current.review_status }),
+    current.source_check ? h('div', {}, h('h3', { text: 'Source checking and draft recovery' }), h('p', { text: current.source_check.process }), h('p', { class: 'small', text: current.source_check.pilot })) : null,
     current.review_validation ? h('div', {},
       h('p', { class: 'small', text: current.review_validation.scope }),
       h('div', { class: 'table-wrap' }, h('table', { class: 'models' },

@@ -180,3 +180,51 @@ Use a small pilot before bulk conversion. Every converted draft retains a pendin
 source-check mark and explicit model provenance. Candidate checks also cannot
 certify completeness: omitted findings and important tables/figures still need
 attention. This command never approves or publishes findings.
+
+
+### Interpretation recovery (18 November 2026)
+
+The bulk source-check path now separates mapping from interpretation checking.
+Gemma 31B proposes a corrected finding; Qwen 27B checks its meaning against the
+main paper without seeing the mapper's self-ratings. Up to three mapping attempts
+are allowed, including repairs. Unresolved findings stay out of drafts. A mistaken
+positive/negative claim can be recovered as a supported null finding. Rejection
+of a candidate never excludes its paper from the screening register.
+
+This change was tested first on saved errors, not just successful JSON responses.
+Gemma 26B accepted two known incorrect mappings and was not selected as the
+interpretation checker. Qwen identified the wrong outcome label and the wrongly
+discarded null result, but missed an analysis-specific lesion-volume error.
+Additional checks now require source evidence for direct lesion-volume correction
+and prevent a known predictor identifier from being used as an impairment label.
+These checks block the two saved bad mappings; they are narrow safeguards, not a
+claim that all interpretation errors can be detected automatically.
+
+A new-paper trial on Xing2017 with Gemma 26B as mapper produced one valid staged
+draft, one excluded candidate and four failures among six candidates. This was
+not adequate for bulk mapping, so recovery uses Gemma 31B. Full prompts, attempts,
+source IDs, model digests and checker decisions are retained. Shared paper content
+now precedes the changing candidate in prompts, allowing input-cache reuse.
+
+Release remains incremental: supported drafts can enter the online review queue
+while other findings remain held. Drafts are unapproved and the paper's missing
+findings and visual checks remain explicit. Model agreement is not human approval.
+
+
+The larger-mapper trial was stopped after the first four candidates had been
+processed. Two accepted mappings still overgeneralised the PPT-adjusted result:
+FA was not significant after that extra adjustment. One candidate failed because
+`MNI` was not a valid reference-space enum; another received a statistical repair
+request. Source follow-up, including visual Table 2 inspection, produced three
+unapproved drafts: one UF finding with its sensitivity qualifier, and two AF null
+findings for different outcomes. The overlapping UF candidate was merged;
+handedness candidates were covariate checks, not independent predictor findings.
+This was not a successful unattended whole-paper accuracy benchmark.
+
+The resulting safeguards hold table/figure evidence for visual review even if a
+separate display-warning flag is absent. They also hold mappings that drop a
+selected source's trend/marginal qualifier. Generic `MNI` labels can be represented
+as `other` with the original wording retained; no specific template is inferred.
+`--recover-from` permits fresh checks of saved mapper responses with matching PDF,
+review and model identity. Original responses are preserved. These changes reduce
+avoidable reruns while retaining a review obligation for scientific uncertainty.
