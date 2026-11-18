@@ -151,3 +151,32 @@ of what was used. Do not modify code, prompts or settings underneath an active r
 
 Consult each model's own licence before deployment or redistribution. Repository
 code licensing does not grant rights to model weights or source papers.
+
+
+## Bulk source checks and draft mapping
+
+`kb.py source-check` checks one reviewed candidate at a time against the main PDF
+and proposes a KB mapping. It uses local models, records their exact digest and
+keeps prompts, raw responses and validation failures. Quoted evidence is copied
+from source IDs and checked against the original PDF page. One correction attempt
+is allowed for invalid output; unresolved findings are held.
+
+This is an experimental aid, not a validated replacement for source review.
+A three-candidate Adezati2022 pilot with Gemma 26B produced two schema-valid
+staged drafts and one failed mapping. Reading those drafts exposed an incorrect
+outcome label and a confusion between direct lesion-volume correction and a
+regression covariate. Valid JSON and exact quotations did not establish that the
+interpretation was correct. The test drafts were kept outside the KB.
+
+On the same three candidates, Qwen 27B produced two valid staged mappings and
+rejected the third candidate in about 216 seconds of inference. It identified
+the false negative-effect claim, but discarded it rather than preserving the
+source's useful null result. The two mappings still needed checks of anatomical
+labels and cohort descriptions. Neither model passed a whole-paper accuracy or
+completeness benchmark. Replaying the Qwen run reused all three saved decisions
+without further inference or duplicate drafts.
+
+Use a small pilot before bulk conversion. Every converted draft retains a pending
+source-check mark and explicit model provenance. Candidate checks also cannot
+certify completeness: omitted findings and important tables/figures still need
+attention. This command never approves or publishes findings.

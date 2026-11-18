@@ -92,6 +92,12 @@ def build(item, review_dir):
     # Source text/page is copied, never generated or accepted from the mapping file.
     finding['source_passages'] = [dict(section='Source passage ' + i,
         page=passages[i]['page'], quote=passages[i]['text'], supports='claim') for i in selected]
+    if item.get('replace_proposal_passages'):
+        if not item.get('source_check') or not item.get('pdf_evidence'):
+            raise ValueError('Replacing proposal passages requires a source check and PDF evidence')
+        # A corrected claim must not inherit unchecked quotations from its original proposal.
+        # The replacement quotations below must pass the original-PDF hash/page checks.
+        finding['source_passages'] = []
     # Source checking can recover omitted Methods/Results without editing the model run.
     # Only existing source IDs are accepted; the converter still copies original text.
     for support in item.get('additional_evidence', []):
@@ -120,8 +126,9 @@ def build(item, review_dir):
     if item.get('source_check'):
         provenance['source_check'] = item['source_check']
     entry['relationship_review'] = provenance
-    entry['reviewer_marks'] = [{'id': 'relationship-source-check', 'page': passages[selected[0]]['page'],
-        'quote': passages[selected[0]]['text'], 'status': 'pending', 'by': 'agent:relationship-converter',
+    first_passage = finding['source_passages'][0]
+    entry['reviewer_marks'] = [{'id': 'relationship-source-check', 'page': first_passage['page'],
+        'quote': first_passage['quote'], 'status': 'pending', 'by': 'agent:relationship-converter',
         'date': mapping_date,
         'note': 'Before approval: verify mapped claim/target, anatomy, timing, personal-factor roles, all qualifiers, source audit issues and main-PDF tables/figures; check missing results. This model proposal is not verified.'}]
     issues = []

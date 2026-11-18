@@ -106,6 +106,14 @@ class PdfEvidenceTests(unittest.TestCase):
             item['pdf_evidence'] = [{'page': 1, 'section': 'Table 1', 'quote': 'example value 42', 'supports': 'statistics'}]
             fixture.mapping.write_text(json.dumps(data))
             self.assertEqual(len(conversion.convert(fixture.mapping, fixture.root)), 1)
+            item['replace_proposal_passages'] = True
+            with self.assertRaisesRegex(ValueError, 'requires a source check'):
+                conversion.build(item, fixture.reviews)
+            item['source_check'] = {'checked_by': 'model:fixture', 'approved': False}
+            _, rendered = conversion.build(item, fixture.reviews)
+            fm = yaml.safe_load(rendered.split('---')[1])
+            self.assertEqual([p['quote'] for p in fm['findings'][0]['source_passages']], ['example value 42'])
+            self.assertEqual(fm['reviewer_marks'][0]['page'], 1)
             item['pdf_evidence'][0]['quote'] = 'invented value 43'
             fixture.mapping.write_text(json.dumps(data))
             with self.assertRaisesRegex(ValueError, 'not found'):

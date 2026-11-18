@@ -213,7 +213,42 @@ check for omissions shared by every model.
 Map source-verified findings into the [KB schema](schema.md), retaining unmatched
 findings rather than forcing an incorrect anatomical or outcome label. This
 mapping is explicit: the converter does not infer an atlas parcel or treat model
-labels as verified findings. Prepare a mapping file from completed reviews:
+labels as verified findings. Choose the bulk model-assisted route below or prepare
+an explicit mapping after an agent/person source check.
+
+For a large batch, `kb.py source-check` asks a local model to check each candidate
+against the original main-paper text and propose a corrected mapping. This is a
+model source check, **not a human or visual review**. It holds unclear findings,
+table/figure-dependent interpretations, missing quotations and invalid mappings.
+Existing drafts are preserved. No findings are approved or published by this command.
+This route is experimental: inspect a small pilot before a corpus-wide conversion.
+A model can return a valid mapping that still misinterprets the source.
+
+```bash
+.venv/bin/python kb.py source-check \
+  --run-dir _compare/my-batch/extraction \
+  --review-dir _compare/my-batch/review \
+  --output-dir _compare/my-batch/source-check \
+  --model gemma4:26b
+```
+
+This previews the paper list. Add `--run` to start the local model and `--convert`
+to create held drafts from supported checks. Use `--papers KEY1 KEY2` or `--limit 3`
+for a pilot. `--max-proposals 3` checks only the first three candidates per paper
+and explicitly records a partial pass. Papers over 50 pages or the text input
+limit are held for manual source selection; their input is never silently shortened.
+
+Run the same command and output folder to resume. Completed decisions are reused
+only with matching source, review, code, prompt and model bindings. Failed attempts
+are retained and retried; each new check allows at most one correction attempt
+for invalid output. Changed settings require a new output folder. Each paper
+has `status.json`, a conversion `mapping.json`, and per-candidate prompts, raw model
+responses and checks. `batch-status.json` separates drafts, holds, exclusions,
+failures and preserved existing drafts. These are candidate checks: missing findings
+and the original coverage warnings still need a paper-level completeness review.
+Exact quotation matching and schema validation do not certify scientific accuracy.
+
+The explicit mapping workflow remains available for agent/person source checks:
 
 ```bash
 .venv/bin/python kb.py convert --review-dir _compare/my-batch/review \

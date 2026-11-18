@@ -16,6 +16,7 @@ COMMANDS = {
     'prepare': ('prepare_dual_batch.py', [], 'Create a frozen paper manifest'),
     'extract': ('batch_dual_extract.py', [], 'Preview or run two independent local extractions'),
     'review': ('review_dual_extract.py', [], 'Preview or generate a local source-review aid; never approve findings'),
+    'source-check': ('source_check_relationships.py', [], 'Check reviewed candidates against the main PDF; optionally create held drafts'),
     'convert': ('convert_relationship_review.py', [], 'Map reviewed proposals into held, unapproved KB drafts'),
     'status': ('kb_status.py', [], 'Inspect knowledge-base content and provenance'),
     'drafts': ('promote.py', ['--list'], 'List existing KB drafts awaiting approval'),
@@ -36,7 +37,7 @@ def active_jobs():
                             capture_output=True, text=True)
     runners = ('batch_dual_extract.py', 'dual_extract.py', 'review_dual_extract.py',
                'extract_analysis_inventory.py', 'batch_extract.py', 'auto_review.py',
-               'extract.py', 'recheck_drafts.py', 'refocus.py', 'intake_papers.py')
+               'extract.py', 'recheck_drafts.py', 'refocus.py', 'intake_papers.py', 'source_check_relationships.py')
     jobs = []
     for line in result.stdout.splitlines():
         fields = line.strip().split(None, 1)
@@ -175,7 +176,7 @@ def main(argv=None):
             argv = [argv[1], '--help']
         else:
             print('Usage: python kb.py COMMAND [options]\n')
-            for heading, names in [('PDF download and preparation', ['sync', 'intake']), ('Provisional source pipeline', ['prepare', 'extract', 'review', 'convert']), ('Existing KB drafts and data', ['drafts', 'inspect', 'validate']), ('Read-only overview', ['status'])]:
+            for heading, names in [('PDF download and preparation', ['sync', 'intake']), ('Provisional source pipeline', ['prepare', 'extract', 'review', 'source-check', 'convert']), ('Existing KB drafts and data', ['drafts', 'inspect', 'validate']), ('Read-only overview', ['status'])]:
                 print(heading + ':')
                 for name in names:
                     print(f'  {name:10} {COMMANDS[name][2]}')
@@ -226,7 +227,7 @@ def main(argv=None):
     if command == 'intake':
         guard = (['--run'] if '--execute' in args else []) + (['--wait'] if '--wait' in args else [])
         return model_command(command, guard, invocation, operation=lambda: intake_operation(invocation))
-    if command in ('extract', 'review'):
+    if command in ('extract', 'review', 'source-check'):
         return model_command(command, args, invocation)
     os.execv(sys.executable, invocation)
     return 0
