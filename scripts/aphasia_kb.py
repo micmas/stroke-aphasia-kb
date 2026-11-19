@@ -137,7 +137,7 @@ DIRECTION_OF_SEVERITY_VOCAB = {
     "higher_is_worse", "lower_is_worse", "nonmonotonic", "not_applicable",
 }
 METHOD_VOCAB = {
-    "LSM", "VLSM", "RLSM", "VBCM", "MLPA", "MVPA",
+    "LSM", "VLSM", "RLSM", "VBCM", "VBM", "MLPA", "MVPA",
     "fMRI_activation", "fMRI_FC", "rs_fMRI",
     "DTI", "NODDI", "tractography",
     "lesion_network_mapping", "disconnectome",

@@ -153,78 +153,57 @@ Consult each model's own licence before deployment or redistribution. Repository
 code licensing does not grant rights to model weights or source papers.
 
 
-## Bulk source checks and draft mapping
+## Source checks that produce drafts
 
-`kb.py source-check` checks one reviewed candidate at a time against the main PDF
-and proposes a KB mapping. It uses local models, records their exact digest and
-keeps prompts, raw responses and validation failures. Quoted evidence is copied
-from source IDs and checked against the original PDF page. One correction attempt
-is allowed for invalid output; unresolved findings are held.
+Use `kb.py source-check --profile core --refresh-candidates --run --convert` with
+an extraction directory, review directory and a new output directory. See
+[the commands](COMMANDS.md) for the complete example.
 
-This is an experimental aid, not a validated replacement for source review.
-A three-candidate Adezati2022 pilot with Gemma 26B produced two schema-valid
-staged drafts and one failed mapping. Reading those drafts exposed an incorrect
-outcome label and a confusion between direct lesion-volume correction and a
-regression covariate. Valid JSON and exact quotations did not establish that the
-interpretation was correct. The test drafts were kept outside the KB.
+Gemma4:31b prepares one qualitative finding per analysis. Qwen3.8:27b checks its
+meaning against the original source. Shared PDF readings are prepared once per
+paper. There is no repeated rewrite loop. The draft retains the clinical or
+imaging relationship, population, timing and material qualifications. Detailed
+statistics and atlas metadata can remain explicitly pending for human review.
 
-On the same three candidates, Qwen 27B produced two valid staged mappings and
-rejected the third candidate in about 216 seconds of inference. It identified
-the false negative-effect claim, but discarded it rather than preserving the
-source's useful null result. The two mappings still needed checks of anatomical
-labels and cohort descriptions. Neither model passed a whole-paper accuracy or
-completeness benchmark. Replaying the Qwen run reused all three saved decisions
-without further inference or duplicate drafts.
+Software holds conflicts between an adjusted null claim and an agreed 95% ratio
+confidence interval excluding 1, and rankings that omit a possible tie. These
+are conservative questions for a reviewer, not automatic statistical conclusions.
+They do not cover every coefficient, P value, analysis or source contradiction.
+A robustness-only statement is held rather than turned into a patient-factor
+finding. Anatomical collection routing follows the entity kind; clinical wording
+is preserved.
 
-Use a small pilot before bulk conversion. Every converted draft retains a pending
-source-check mark and explicit model provenance. Candidate checks also cannot
-certify completeness: omitted findings and important tables/figures still need
-attention. This command never approves or publishes findings.
+### Targeted pilot, 19 November 2026
 
+Four open-licence papers were checked with Claude against their source evidence:
+Billot2022, Leff2009, Akkad2023 and Oeckel2021. Eleven selected findings across the
+two pilot versions were useful as **unapproved human-review drafts**. The later
+Billot ranking output lost a tie and was held; its earlier audited version was
+retained in the pilot preview. An age finding with conflicting table evidence
+and a robustness-only candidate remain held.
 
-### Interpretation recovery (18 November 2026)
+The follow-up corrected damaged timing text, distinguished patient lesion overlap
+with a reference tract template from patient diffusion imaging, and preserved
+valid adjusted and unadjusted null findings. Both models still accepted the age
+conflict and the later omitted tie. Final software checks held these saved outputs
+without changing their clinical wording or pretending the models caught them.
 
-The bulk source-check path now separates mapping from interpretation checking.
-Gemma 31B proposes a corrected finding; Qwen 27B checks its meaning against the
-main paper without seeing the mapper's self-ratings. Up to three mapping attempts
-are allowed, including repairs. Unresolved findings stay out of drafts. A mistaken
-positive/negative claim can be recovered as a supported null finding. Rejection
-of a candidate never excludes its paper from the screening register.
+This was a targeted development check, not held-out accuracy or completeness
+validation. For three selected Leff findings, shared PDF preparation and model
+checks took about nine minutes; this excludes the earlier candidate inventory
+and does not establish a full-paper runtime. Model outputs varied between runs.
 
-This change was tested first on saved errors, not just successful JSON responses.
-Gemma 26B accepted two known incorrect mappings and was not selected as the
-interpretation checker. Qwen identified the wrong outcome label and the wrongly
-discarded null result, but missed an analysis-specific lesion-volume error.
-Additional checks now require source evidence for direct lesion-volume correction
-and prevent a known predictor identifier from being used as an impairment label.
-These checks block the two saved bad mappings; they are narrow safeguards, not a
-claim that all interpretation errors can be detected automatically.
+A final integration check rebuilt Leff2009’s inventory into seven candidates.
+Of the two candidates attempted, one analysis mismatch was blocked and the
+separately identified adjusted result produced a draft. The saved inventory
+and PDF readings were reused on continuation. This checks the fresh-inventory
+path, not all seven findings or whole-paper completeness.
 
-A new-paper trial on Xing2017 with Gemma 26B as mapper produced one valid staged
-draft, one excluded candidate and four failures among six candidates. This was
-not adequate for bulk mapping, so recovery uses Gemma 31B. Full prompts, attempts,
-source IDs, model digests and checker decisions are retained. Shared paper content
-now precedes the changing candidate in prompts, allowing input-cache reuse.
+### Human responsibilities
 
-Release remains incremental: supported drafts can enter the online review queue
-while other findings remain held. Drafts are unapproved and the paper's missing
-findings and visual checks remain explicit. Model agreement is not human approval.
-
-
-The larger-mapper trial was stopped after the first four candidates had been
-processed. Two accepted mappings still overgeneralised the PPT-adjusted result:
-FA was not significant after that extra adjustment. One candidate failed because
-`MNI` was not a valid reference-space enum; another received a statistical repair
-request. Source follow-up, including visual Table 2 inspection, produced three
-unapproved drafts: one UF finding with its sensitivity qualifier, and two AF null
-findings for different outcomes. The overlapping UF candidate was merged;
-handedness candidates were covariate checks, not independent predictor findings.
-This was not a successful unattended whole-paper accuracy benchmark.
-
-The resulting safeguards hold table/figure evidence for visual review even if a
-separate display-warning flag is absent. They also hold mappings that drop a
-selected source's trend/marginal qualifier. Generic `MNI` labels can be represented
-as `other` with the original wording retained; no specific template is inferred.
-`--recover-from` permits fresh checks of saved mapper responses with matching PDF,
-review and model identity. Original responses are preserved. These changes reduce
-avoidable reruns while retaining a review obligation for scientific uncertainty.
+Draft creation is not approval. Before approving a finding, check the original
+PDF, the measurement and analysis, important qualifications, and fields marked
+pending. Check the paper's Results, tables and figures for missing relationships;
+reviewing all proposed candidates does not establish completeness. Review a sample
+of each new batch early and investigate recurring material errors before approving
+that batch. Existing drafts and approved findings are preserved by the run.

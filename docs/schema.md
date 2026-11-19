@@ -443,7 +443,7 @@ predictor_type    = behavioural | demographic | clinical | imaging_metric
 direction_of_severity = higher_is_worse | lower_is_worse | nonmonotonic
                       | not_applicable
 target_kind       = impairment | therapy | region | prognosis | predictor
-method            = LSM | VLSM | RLSM | VBCM | MLPA | MVPA
+method            = LSM | VLSM | RLSM | VBCM | VBM | MLPA | MVPA
                   | fMRI_activation | fMRI_FC | rs_fMRI
                   | DTI | NODDI | tractography
                   | lesion_network_mapping | disconnectome
@@ -477,6 +477,11 @@ region_definition.kind = atlas | manual_ROI | peak_coord_sphere | tract
   lower than quantitative findings by downstream tools. Use `strength:
   weak` unless the review is explicitly based on a large evidence base
   with little contradictory evidence.
+
+- **`VBM`** (voxel-based morphometry): use when the paper explicitly analyses
+  continuous tissue measurements with VBM. This label does not establish
+  tractography, connectivity, lesion-volume adjustment or a particular
+  statistical model; record those separately from the source.
 
 - **`VBCM`** (Voxel-Based Correlational Methodology, Tyler et al. 2005):
   a continuous-intensity variant of VLSM. Instead of binarised lesion

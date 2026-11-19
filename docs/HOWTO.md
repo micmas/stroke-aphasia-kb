@@ -216,46 +216,75 @@ mapping is explicit: the converter does not infer an atlas parcel or treat model
 labels as verified findings. Choose the bulk model-assisted route below or prepare
 an explicit mapping after an agent/person source check.
 
-For a large batch, `kb.py source-check` asks a local model to check each candidate
-against the original main-paper text and propose a corrected mapping. A separate
-local model checks the interpretation before a finding can become a draft. This
-is a model source check, **not a human or visual review**. It holds unclear findings,
-table/figure-dependent interpretations, missing quotations and invalid mappings.
-Existing drafts are preserved. No findings are approved or published by this command.
-This route is experimental: inspect a small pilot before a corpus-wide conversion.
-A model can return a valid mapping that still misinterprets the source.
+`kb.py source-check --profile core` prepares short, source-linked drafts. Gemma
+writes one finding; Qwen independently checks its analysis, direction, clinical
+and imaging meaning, qualifications and missing caveats. There is no automatic
+rewrite cycle. Unclear findings stay held while supported findings can move on.
+Population and timing numbers are read from PDF crops once per paper by two
+local models. The original text and both readings remain in the audit. This is
+model assistance for a human reviewer, not approval or a completeness certificate.
+Test a few papers before a full batch.
 
 ```bash
-.venv/bin/python kb.py source-check \
+.venv/bin/python kb.py source-check --profile core \
   --run-dir _compare/my-batch/extraction \
   --review-dir _compare/my-batch/review \
-  --output-dir _compare/my-batch/source-check \
-  --model gemma4:31b --checker-model qwen3.8:27b
+  --output-dir _compare/my-batch/core-drafts \
+  --model gemma4:31b --checker-model qwen3.8:27b \
+  --limit 3
 ```
 
-This previews the paper list. Add `--run` to start the local model and `--convert`
-to create held drafts from supported checks. Use `--papers KEY1 KEY2` or `--limit 3`
-for a pilot. `--max-proposals 3` checks only the first three candidates per paper
-and explicitly records a partial pass. Papers over 50 pages or the text input
-limit are held for manual source selection; their input is never silently shortened.
+This previews the papers. Add `--run --convert` to run the local models and write
+unapproved drafts. Remove `--limit 3` for the full manifest. Use `--papers KEY1
+KEY2` to select papers, or `--proposals R001 R004` for a focused test. Progress
+shows both the paper and finding counts. Existing drafts and source-review
+decisions are preserved. A separate `--repo PATH` keeps pilot drafts outside
+the live queue.
 
-Run the same command and output folder to resume. Completed decisions are reused
-only with matching source, review, code, prompt and model bindings. Failed attempts
-are retained and retried. To recover an earlier run into a new output folder, add
-`--recover-from PATH_TO_OLD_SOURCE_CHECK`. Saved mapper responses are reused only
-when PDF, reviewed proposals and mapper digest match; interpretation is checked
-again under the current rules. This does not rerun the original extraction.
-A finding gets at most three mapping attempts, including
-format repairs and interpretation corrections. Useful null findings are recovered
-when possible instead of discarding a candidate with a mistaken direction. The
-checker sees the mapping without the mapper’s self-ratings. Both model digests
-are recorded and must differ. Changed settings require a new output folder. Each paper
-has `status.json`, a conversion `mapping.json`, and per-candidate prompts, raw model
-responses, checks and a copy of the script. `batch-status.json` separates drafts, holds, exclusions,
-failures and preserved existing drafts/source-review decisions. Bound agent/person
-merge decisions are retained so an already combined finding is not recreated. These are candidate checks: missing findings
-and the original coverage warnings still need a paper-level completeness review.
-Exact quotation matching and schema validation do not certify scientific accuracy.
+A core draft keeps the exposure, measured outcome, population, timing, useful
+null findings and qualifications needed to interpret the result. For example,
+a relaxed threshold, a selected patient population or internal-only validation
+must remain explicit. Detailed statistics, coordinates, atlas fields and
+structured covariate lists can remain **not transcribed**. That means pending
+work, not that the paper did not report them. Each omitted field is flagged.
+
+Before approving, the person reviewing must:
+
+- Check the claim and quotations against the main PDF, including relevant tables
+  and figures. Model text checking does not establish visual accuracy.
+- Confirm the population, timing, clinical outcome and imaging measurement;
+  template overlap must not be presented as patient tractography.
+- Resolve the pending metadata needed for the intended use and check whether
+  important findings are missing from the paper's draft set.
+
+When rebuilding a corpus, add `--repo _compare/my-batch/new-drafts` to keep the
+new draft batch separate from the current review queue. The generated Markdown
+files are under that folder’s `drafts/`. They are not online until deliberately
+transferred and published. Papers with earlier drafts or source-review records
+are flagged for reconciliation; new candidate IDs do not inherit earlier
+decisions. Corrected PDF image readings appear in the draft notes beside the
+unchanged source-text quotations.
+
+Every paper saves `status.json`, a conversion `mapping.json`, and each finding's
+prompts, responses and five review answers. `batch-status.json` reports drafts,
+holds, failures and preserved earlier work. The source PDF, code and model
+identities are recorded. Neither JSON validation nor two-model agreement proves
+scientific accuracy.
+
+Repeat the identical command to resume completed checks. Changed source, code,
+models or settings require a new output directory. Incomplete or invalid saved
+model responses are preserved for inspection; they are not silently overwritten.
+Papers over 50 pages or the input limit require manual source selection.
+`--refresh-candidates` rebuilds the analysis inventory from the main paper while
+preserving the previous review packet. It adds processing time and still does
+not certify completeness. The core profile includes independent readings of numeric population/timing
+passages and flagged PDF text by default. Disputed numbers become explicitly
+pending rather than being copied as facts; a dispute about the core finding
+still holds the finding. All drafts require human PDF review.
+
+The older detailed checker remains available as `--profile full` for existing
+runs. Its repair, consolidation and alternative context options are separate
+from the core workflow. Do not mix settings or relabel old checks as core checks.
 
 You can release supported drafts in small batches: the entire corpus does not
 need to finish first. Check each completed paper's mapping and remaining issues,

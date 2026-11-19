@@ -1101,8 +1101,8 @@
  "rule": "Eligible = zero absent quotes on every paper, and schema issues and over-claiming no worse than the incumbent (docs/MODELS.md §3).",
  "sourcing": "Every model is downloaded with `ollama pull <tag>` from the Ollama library (registry.ollama.ai), which repackages the weights its developer published, usually quantised to about 4 bits per weight. It then runs offline through Ollama on the maintainer's computer: no paper text leaves the machine, and no account with the developer is involved.",
  "current_method": {
-  "updated": "2026-11-18",
-  "status": "Source-evidence workflow available; full-corpus rerun not started",
+  "updated": "2026-11-19",
+  "status": "Qualitative core draft workflow available; human source review and approval required",
   "extractors": [
    "qwen3.8:27b",
    "gemma4:31b"
@@ -1186,8 +1186,8 @@
    "Gemma plain JSON mode: a matched block took 23 seconds but failed the required category schema; not adopted."
   ],
   "source_check": {
-   "process": "Supported findings can move into the draft queue one at a time. Recoverable errors are revised; saved responses can be checked again without repeating extraction. Table-dependent evidence waits for visual review.",
-   "pilot": "On Xing2017, source follow-up produced three unapproved drafts. Both models still missed an adjustment-specific qualifier, which was corrected against the paper and Table 2. An overlapping candidate was merged; handedness covariates were not treated as predictor findings. This is not a whole-paper accuracy benchmark."
+   "process": "Gemma4:31b maps one qualitative finding per analysis; Qwen3.8:27b checks source meaning once. PDF readings are shared per paper. Supported candidates become unapproved drafts; conflicting results stay held. Optional statistics and atlas metadata are explicitly pending. There is no repeated rewrite loop.",
+   "pilot": "Four-paper targeted development pilot: 11 useful human-review drafts selected across two versions. Timing and patient measurement errors were corrected. Both models still missed an age/table conflict and an omitted performance tie; software checks held those saved versions. This is not a held-out accuracy, completeness or full-paper runtime benchmark."
   }
  }
 }

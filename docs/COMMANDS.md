@@ -117,30 +117,43 @@ for those operations and existing integrations; they are not alternative
 recommended extraction workflows.
 
 
-## Recover interpretations and prepare drafts
+## Prepare source-linked drafts
 
 ```bash
-.venv/bin/python kb.py source-check \
+.venv/bin/python kb.py source-check --profile core \
   --run-dir _compare/my-batch/extraction \
   --review-dir _compare/my-batch/review \
-  --output-dir _compare/my-batch/source-check \
+  --output-dir _compare/my-batch/core-drafts \
   --model gemma4:31b --checker-model qwen3.8:27b \
   --limit 3
 ```
 
-Add `--run` to process the previewed papers. Add `--convert` to create held drafts
-for supported findings. Omit `--limit` to cover the complete frozen manifest.
-Use `--papers KEY1 KEY2` for selected papers. Existing drafts are preserved.
-Use `--recover-from OLD_SOURCE_CHECK_DIR` with a new output folder to reuse saved
-mapper responses for fresh checking, rather than repeating their generation.
-PDF, review and mapper identity must match. The same command resumes from matching saved checks; changed model, source or
-code requires a new output directory. Ctrl-C preserves completed work.
+Add `--run --convert` to start the models and create unapproved drafts. Remove
+`--limit` for the full manifest, or use `--papers KEY1 KEY2`. Use `--repo PATH`
+for isolated pilot drafts. Existing drafts are preserved.
 
-The mapper can recover incorrect interpretations, including useful null results.
-A separate model checks the mapping without the mapper's self-ratings. Unresolved
-interpretations and invalid mappings remain held. Outputs include attempts,
-checker decisions, `mapping.json`, per-paper `status.json` and `batch-status.json`.
-Checking candidate findings is not a paper-completeness assessment.
+The core profile uses one mapping call and one independent review per finding,
+with no rewrite loop. It keeps clinically important qualifications and leaves
+optional detailed metadata explicitly pending. Unclear interpretations stay
+held. Test a small batch and inspect its drafts before scaling up.
+
+When rebuilding a corpus, add `--repo _compare/my-batch/new-drafts` to keep the
+new draft batch separate from the current review queue. The generated Markdown
+files are under that folder’s `drafts/`. They are not online until deliberately
+transferred and published. Papers with earlier drafts or source-review records
+are flagged for reconciliation; new candidate IDs do not inherit earlier
+decisions. Corrected PDF image readings appear in the draft notes beside the
+unchanged source-text quotations.
+
+Repeat the same command to reuse matching saved checks. Changed code, models,
+settings or sources require a new output directory. `--refresh-candidates`
+rebuilds an analysis inventory from the main paper. Core checks include
+two independent PDF readings of numeric population/timing passages and flagged
+text, once per paper. This does not certify complete coverage. The older detailed
+workflow remains available as `--profile full`; its recovery and alternate
+context options do not apply to core checks.
+
+See [the draft review steps](HOWTO.md) for what the person reviewing must check.
 
 New drafts become visible online when committed and pushed; source checking alone
 does not publish them. They remain unapproved until the person reviewing resolves
