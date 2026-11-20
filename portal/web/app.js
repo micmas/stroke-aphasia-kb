@@ -340,7 +340,10 @@ function draftView(path) {
   const left = draftLeft(d, r, save, pdf, path);
   const right = h('div', { class: 'right' });
   const layout = h('div', { class: 'review-layout', 'data-path': path }, left, right);
-  if (pdf) mountPdf(right, pdf.annotated, d, r, save);
+  if (pdf) {
+    if (pdf.annotation_passages_missed) right.append(h('p', { class: 'small muted', text: pdf.annotation_passages_missed + ' source passages in this paper could not be highlighted automatically. Use the quoted text and page numbers to locate them.' }));
+    mountPdf(right, pdf.annotated, d, r, save);
+  }
   else {
     const up = uploadFor(d.citation);
     right.append(h('div', { class: 'pdf-missing' }, h('h3', { text: 'No annotated PDF here' }),

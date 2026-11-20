@@ -203,11 +203,12 @@ def findings(kb, root: Path) -> list:
     """Flat rows merged with the nested blocks of the raw finding."""
     raw = {}
     source_checks = {}
-    for table in (kb.regions, kb.impairments, kb.therapies, kb.predictors):
+    for table in (kb.regions, kb.impairments, kb.therapies, kb.predictors, kb.ingredients):
         if table is None or table.empty:
             continue
         for _, entry in table.iterrows():
-            for finding in entry.get("findings") or []:
+            saved_findings = entry.get("findings")
+            for finding in saved_findings if isinstance(saved_findings, list) else []:
                 raw[(str(entry.get("_path") or ""), finding.get("id"))] = finding
                 provenance = entry.get('relationship_review')
                 if isinstance(provenance, dict) and provenance.get('source_check'):
