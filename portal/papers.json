@@ -363,13 +363,13 @@
   "@Bates2003": {
    "annotated": "pdf/C0110_Bates2003_annotated.pdf",
    "annotation_passages_missed": 0,
-   "annotation_source_digest": "d81a474e2de4bdf92aad7b21a30313cac84ef45f7d2b2596dbe91179bf61d696",
-   "bytes": 399131,
+   "annotation_source_digest": "b21b1924c06c9a154d8fb5d86f85f3ff86e33768e7d58569d2fdfb537e5219a6",
+   "bytes": 391047,
    "category": "rights_reserved",
    "draft_snapshot": "2026-11-20T04:46:04.095683+00:00",
    "label": "publisher TDM licence (text mining only)",
    "public": false,
-   "sha256": "7b0bebe208759c8e8a2675ec25e7d32ffd79fbc6fe3451dfc51576367406f8d0"
+   "sha256": "988dbe81dfab5c8b1379336c53ee3fb94dbaa6752573ca055155e6f6f67ef1de"
   },
   "@Benghanem2019": {
    "annotated": "pdf/C0090_Benghanem2019_annotated.pdf",

@@ -596,12 +596,16 @@
     "drafts/ingredients/butanedione_monoxime__Bates2003__R006.md": {
       "source_sha256": "3d2c763abd5423bd37d4ca432ea92064a5c1e3863329dec6d202ca0b2867c826",
       "paper": "Bates2003",
-      "candidate": "R006"
+      "candidate": "R006",
+      "publication_disposition": "withdrawn_wrong_article",
+      "reason": "Source passage P1-S1-C14 belongs to the preceding cochlear outer-hair-cell article on the shared journal page, not Bates2003 VLSM."
     },
     "drafts/ingredients/butanedione_monoxime__Bates2003__R007.md": {
       "source_sha256": "ac742220cb0b85885394c1af7189d806532aabe544e5d5fbd99021d33bf875a8",
       "paper": "Bates2003",
-      "candidate": "R007"
+      "candidate": "R007",
+      "publication_disposition": "withdrawn_wrong_article",
+      "reason": "Source passage P1-S1-C14 belongs to the preceding cochlear outer-hair-cell article on the shared journal page, not Bates2003 VLSM."
     },
     "drafts/regions/anterior_insula__Bates2003__R010.md": {
       "source_sha256": "ce3271d31204101b48c9a9dc43fff8c356c4e92f15e6f9ecd2db2dbb3ad9a20c",

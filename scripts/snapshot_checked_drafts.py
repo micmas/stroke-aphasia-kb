@@ -56,8 +56,9 @@ def snapshot(run_dir, source_repo, destination):
             'approved_by_snapshot': False,
             'files': records,
         }, indent=2) + '\n')
-    return {'added': len(added), 'published_source_records': len(records),
-            'papers': len({v['paper'] for v in records.values()}),
+    active = {k:v for k,v in records.items() if not v.get('publication_disposition', '').startswith('withdrawn')}
+    return {'added': len(added), 'published_source_records': len(active), 'source_records_including_withdrawn': len(records),
+            'papers': len({v['paper'] for v in active.values()}),
             'changed_source_versions_not_overwritten': changed}
 
 if __name__ == '__main__':
