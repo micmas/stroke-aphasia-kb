@@ -72,12 +72,18 @@ class SchemaV28(unittest.TestCase):
         self.assertFalse(K._syndrome_claim({"claim": "Naming accuracy improved after therapy."}))
 
     def test_findings_table_carries_therapy(self):
-        import pandas as pd  # noqa: F401
+        import tempfile
+        import yaml
         e = copy.deepcopy(ENTRY)
         e["findings"][0]["therapy"] = {"id": "sfa", "name": "semantic feature analysis"}
-        kb = K.KnowledgeBase(ROOT, include=("approved",))
-        row = kb.findings.iloc[0]
-        self.assertIn("therapy_name", row.index)
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            (root / "drafts/regions").mkdir(parents=True)
+            (root / "drafts/regions/left_mfg.md").write_text("---\n" + yaml.safe_dump(e) + "---\n")
+            kb = K.KnowledgeBase(root, include=("draft",))
+            row = kb.findings.iloc[0]
+            self.assertEqual(row["therapy_id"], "sfa")
+            self.assertEqual(row["therapy_name"], "semantic feature analysis")
 
     def test_retarget_plan_and_backfill_check(self):
         import retarget_symptoms as RS
