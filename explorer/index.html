@@ -25,12 +25,13 @@
     </nav>
     <div class="header-tools">
       <label class="kb-version" title="Approved findings only, or approved findings plus unreviewed drafts">Findings
-        <select id="kbVersion"><option value="approved">approved only</option><option value="drafts">approved + drafts</option></select></label>
+        <select id="kbVersion"><option value="approved">approved only</option><option value="drafts">current findings (includes drafts)</option></select></label>
       <span class="source-badge" id="sourceBadge" title="Which export this page is showing">loading…</span>
       <label for="kbFile" title="Show a local export (for example one that includes drafts) without publishing it">Open a local export<input type="file" id="kbFile" accept="application/json,.json"></label>
     </div>
   </header>
-  <main id="main" tabindex="-1"><p class="loading">Loading the knowledge base…</p></main>
+  <aside class="small" style="padding:12px 24px">New findings are being added as unapproved drafts. <a href="https://github.com/micmas/stroke-aphasia-kb/tree/archive/pre-core-drafts-2026-11-20">Previous KB archive</a> · <a href="https://review.aphasia-kb.app/#/drafts">Review the drafts</a></aside>
+<main id="main" tabindex="-1"><p class="loading">Loading the knowledge base…</p></main>
   <footer class="app-footer">
     <span id="footerVersion"></span> ·
     Research use only. Study findings do not predict an individual’s outcome.

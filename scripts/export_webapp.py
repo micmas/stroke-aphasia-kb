@@ -488,7 +488,8 @@ def fixtures(root: Path, include) -> dict:
         }
     # The measures section for the one measure the webapp has: lesion volume.
     out["measures"] = {}
-    f = kb.findings[kb.findings["source_kind"] == "predictor"]
+    f = (kb.findings[kb.findings["source_kind"] == "predictor"] if not kb.findings.empty else
+         pd.DataFrame(columns=["id", "source_id", "target", "target_kind", "claim", "direction", "citation"]))
     for pid in ("lesion_volume",):
         g = f[(f["source_id"] == pid) & (f["target"] != pid)]
         shown = g.drop_duplicates(subset=["claim", "citation"])

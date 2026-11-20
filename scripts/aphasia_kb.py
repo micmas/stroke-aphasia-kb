@@ -775,8 +775,8 @@ class KnowledgeBase:
         self.impairments = pd.DataFrame(impairs)
         self.therapies   = pd.DataFrame(theras)
         self.predictors  = pd.DataFrame(preds)
-        # Ingredients live only in the canonical folder (no drafts/legacy)
-        ings = [e for e in (approved.get('ingredients') or [])]
+        # Ingredients follow the same status filter as other evidence.
+        ings = [e for e in (approved.get('ingredients') or []) + (drafts.get('ingredients') or []) if keep(e)]
         self.ingredients = pd.DataFrame(ings) if ings else pd.DataFrame()
 
         # Long-format findings table
@@ -786,6 +786,7 @@ class KnowledgeBase:
             (impairs, "impairment"),
             (theras,  "therapy"),
             (preds,   "predictor"),
+            (ings,    "ingredient"),
         ):
             for e in sub_entries:
                 for f in e.get("findings") or []:

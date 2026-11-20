@@ -30,7 +30,7 @@ const by = (...keys) => (a, b) => {
 
 test('the exported knowledge base has the shape the port reads', () => {
   assert.equal(kb.schemaVersion, 1);
-  assert.ok(kb.findings.length > 100);
+  assert.equal(kb.findings.length, kb.version.findings);
   assert.ok(Object.keys(kb.mapping.units).length >= 50);
   assert.ok(Object.keys(kb.mapping.regions).length >= 80);
   assert.ok(kb.mapping.disconnectome.units.arcuate_fasciculus);
@@ -156,7 +156,7 @@ test('symptom filter, names and display bins follow the Python rules', () => {
   assert.deepEqual(evidenceStrength(kb, -2), [2, 'moderate']);
   assert.deepEqual(evidenceStrength(kb, 12), [4, 'very strong / replicated']);
   const coverage = locationCoverage(kb, [], []);
-  assert.ok(coverage.findings > 0 && coverage.unmappable >= 0 && coverage.undamaged <= coverage.findings);
+  assert.ok(coverage.findings >= 0 && coverage.unmappable >= 0 && coverage.undamaged <= coverage.findings);
 });
 
 test('design weighting, cohort groups and the measures section follow the v2.7 Python', () => {
@@ -180,6 +180,7 @@ test('design weighting, cohort groups and the measures section follow the v2.7 P
   // Measures: lesion volume against the Python measures_section fixture.
   const want = parity.measures.lesion_volume;
   const [measure] = measuresReport(kb, { lesion_volume: 42.5 });
+  if (want.findings.length) {
   assert.equal(measure.id, 'lesion_volume');
   assert.equal(measure.value, 42.5);
   assert.equal(measure.units, 'ml (cc)');
@@ -189,6 +190,7 @@ test('design weighting, cohort groups and the measures section follow the v2.7 P
   const ids = measure.outcomes.flatMap((g) => g.findings.map((f) => `${f.citation}/${f.finding_id}`)).sort();
   const wantIds = [...new Set(want.findings.map((f) => `${f.citation}/${f.finding_id}`))].sort();
   for (const id of ids) assert.ok(wantIds.includes(id), id);
+  } else assert.equal(measure, undefined, 'No measure evidence without approved findings');
   assert.deepEqual(measuresReport(kb, {}), []);
   assert.deepEqual(measuresReport(kb, { no_such_measure: 1 }), []);
   assert.deepEqual(lesionSizeNote(12.34, [{ region: 'a' }, { region: 'a' }, { region: 'b' }]), { volumeMl: 12.34, regions: 2 });
@@ -201,10 +203,15 @@ test('evaluateLesion assembles the three sections from a damage table', () => {
   const fractions = Object.fromEntries(Object.entries(parity.disconnectome.arcuate_cut.fractions).map(([k, v]) => [k, v === null ? NaN : v]));
   const result = evaluateLesion(kb, { damage, disconnection: disconnectionFromFractions(fractions, kb.mapping), lesionVolumeMl: 30 });
   assert.equal(result.settings.minOverlapPct, 5);
-  assert.equal(result.measures.length, 1);
+  assert.equal(result.measures.length, parity.measures.lesion_volume.findings.length ? 1 : 0);
   assert.equal(result.lesionSize.volumeMl, 30);
   assert.equal(result.lesionSize.regions, new Set(result.rows.map((r) => r.region)).size);
   assert.equal(evaluateLesion(kb, { damage }).lesionSize, null);
+  if (!kb.findings.length) {
+    assert.deepEqual(result.location.summaries, []);
+    assert.deepEqual(result.measures, []);
+    return;
+  }
   assert.ok(result.location.summaries.length > 0);
   for (const s of result.location.summaries) assert.ok(isSymptomTarget(kb, s.target, s.kind), s.target);
   assert.ok(result.location.summaries.every((s, i, all) => i === 0 || Math.abs(all[i - 1].score) >= Math.abs(s.score)));

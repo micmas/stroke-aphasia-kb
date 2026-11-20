@@ -1,3 +1,4 @@
+import { clinicalContext } from './clinical-context.js';
 // Indexes the exported knowledge base (scripts/export_webapp.py → stroke-aphasia-kb.json)
 // for exploration: lookups by entry, by paper, by (region, impairment) pair, and
 // faceted filtering of findings. Pure functions over the JSON; no DOM.
@@ -32,10 +33,10 @@ export const REVIEW_LABEL = {
 };
 
 export const FACETS = [
-  { key: 'source_kind', label: 'Entry type', order: ['region', 'impairment', 'therapy', 'predictor'] },
+  { key: 'source_kind', label: 'Entry type', order: ['region', 'impairment', 'therapy', 'personal_factor', 'predictor'], labels: { personal_factor: 'Personal factors' } },
   { key: 'target_kind', label: 'Target type', order: ['impairment', 'region', 'therapy', 'predictor', 'prognosis'] },
   { key: 'relationship', label: 'Relationship', order: ['causal', 'correlational', 'recruitment', 'responder', 'treatment_response', 'synthesis'] },
-  { key: 'strength', label: 'Strength', order: ['strong', 'moderate', 'weak'] },
+  { key: 'strength', label: 'Strength', order: ['strong', 'moderate', 'weak', 'not_assessed'], labels: { not_assessed: 'evidence strength not yet assessed' } },
   { key: 'source_status', label: 'Status', order: ['approved', 'in_review', 'draft'] },
   { key: 'review_kind', label: 'Review provenance', order: ['human', 'model', 'legacy', 'none'] },
   { key: 'stage', label: 'Recovery stage', order: ['acute', 'subacute', 'chronic', 'not stated'] },
@@ -53,6 +54,11 @@ export const FACETS = [
 const BUCKET_KIND = { regions: 'region', impairments: 'impairment', therapies: 'therapy', predictors: 'predictor', reviews: 'review', ingredients: 'ingredient' };
 
 const asList = (v) => (v === null || v === undefined ? [] : Array.isArray(v) ? v.map(String) : [String(v)]);
+
+// Display aliases never change citation keys, routes or extraction provenance.
+export function paperLabel(key) {
+  return String(key || '').replace(/^@/, '') === 'Ali2021' ? 'RELEASE(2021)' : String(key || '');
+}
 
 export function yearOf(citationKey, text) {
   const fromKey = String(citationKey || '').match(/(19|20)\d{2}/);
@@ -85,18 +91,25 @@ export function pairOf(f) {
   if (s === 'impairment' && t === 'region') return { kind: 'region-impairment', row: f.target, col: f.source_id };
   if (s === 'therapy' && t === 'impairment') return { kind: 'therapy-impairment', row: f.source_id, col: f.target };
   if (s === 'impairment' && t === 'therapy') return { kind: 'therapy-impairment', row: f.target, col: f.source_id };
-  if (s === 'predictor') return { kind: 'predictor-outcome', row: f.source_id, col: f.target };
+  if (s === 'predictor' || s === 'personal_factor') return { kind: 'predictor-outcome', row: f.source_id, col: f.target };
   if (s === 'region' && t === 'region') return { kind: 'region-region', row: f.source_id, col: f.target };
   return null;
 }
 
 export function buildIndex(kb) {
-  const entries = kb.entries || {};
+  const entries = { ...(kb.entries || {}) };
   const findings = (kb.findings || []).map((f, i) => {
     const stages = findingStages(f);
+    const presentation = f.presentation || clinicalContext(f, kb);
+    const sourceKind = presentation?.category === 'Personal or timing factor' ? 'personal_factor'
+      : presentation?.match_status === 'no_direct_imaging_match' && f.source_kind === 'region' ? 'predictor' : f.source_kind;
     return {
       ...f,
-      key: `${f.source_id}/${f.id}`,
+      presentation,
+      source_kind: sourceKind,
+      recorded_source_kind: f.source_kind,
+      strength: (f.flags || []).includes('not_transcribed:strength') ? 'not_assessed' : f.strength,
+      key: `${f.source_path || f.source_id}/${f.id}`,
       ordinal: i,
       stage: stages.length ? stages : ['not stated'],
       method: asList(f.method).length ? asList(f.method) : ['not reported'],
@@ -106,8 +119,8 @@ export function buildIndex(kb) {
       therapy_name: f.therapy && f.therapy.name ? String(f.therapy.name) : (['treatment_response', 'responder'].includes(f.relationship) || f.target_kind === 'therapy' ? 'not recorded' : 'not applicable'),
       year: yearOf(f.citation, kb.citations?.[f.citation]),
       page: pagesOf(f),
-      pair: pairOf(f),
-      text: [f.claim, f.population, f.time_post_onset, ...(f.source_passages || []).map((p) => p.quote), f.source_id, f.target, f.citation, f.therapy?.name, f.therapy?.id,
+      pair: pairOf({ ...f, source_kind: sourceKind }),
+      text: [f.claim, f.population, f.time_post_onset, ...(f.source_passages || []).map((p) => p.quote), f.source_id, f.target, f.citation, paperLabel(f.citation), f.therapy?.name, f.therapy?.id,
         labelFor(kb, f.source_id), labelFor(kb, f.target), ...(f.flags || []), ...(f.author_limitations || [])]
         .filter(Boolean).join(' \n ').toLowerCase(),
     };
@@ -120,6 +133,20 @@ export function buildIndex(kb) {
     (byTarget.get(f.target) || byTarget.set(f.target, []).get(f.target)).push(f);
     (byPaper.get(f.citation) || byPaper.set(f.citation, []).get(f.citation)).push(f);
   }
+
+  // Presentation categories leave the saved extraction and report-scoring inputs intact.
+  for (const [id, rows] of bySource) {
+    const kinds = new Set(rows.map(f => f.source_kind));
+    if (kinds.size === 1 && entries[id] && ['personal_factor', 'predictor'].includes(rows[0].source_kind)) {
+      const kind = rows[0].source_kind;
+      entries[id] = { ...entries[id], bucket: kind === 'personal_factor' ? 'personal_factors' : 'predictors' };
+    }
+  }
+
+  // Keep old permalinks only when the entry/finding pair is unambiguous.
+  const oldKeys = new Map();
+  for (const f of findings) { const key = `${f.source_id}/${f.id}`; oldKeys.set(key, oldKeys.has(key) ? null : f); }
+  for (const [key, f] of oldKeys) if (f && !byKey.has(key)) byKey.set(key, f);
 
   const papers = [...byPaper.entries()].map(([key, rows]) => {
     const text = kb.citations?.[key] || '';
@@ -149,11 +176,11 @@ export function buildIndex(kb) {
 
   return {
     kb, entries, findings, byKey, bySource, byTarget, byPaper, papers, ids, mapping, unmappedReason, therapiesFor, screening,
-    name: (id) => displayName(kb, id),
+    name: (id) => paperLabel(id) !== String(id || '') ? paperLabel(id) : displayName(kb, id),
     hasEntry: (id) => Boolean(entries[id]),
     kindOf(id) {
       const e = entries[id];
-      if (e) return BUCKET_KIND[e.bucket] || e.bucket;
+      if (e) return e.bucket === 'personal_factors' ? 'personal_factor' : BUCKET_KIND[e.bucket] || e.bucket;
       const f = byTarget.get(id)?.[0];
       return f ? f.target_kind : 'unknown';
     },
@@ -256,7 +283,7 @@ export function buildScreeningIndex(kb) {
     /** The decision that put a candidate where it is (last one of record at its stage). */
     lastDecision: (c) => { const st = /_ft$|^included$|^not_retrieved$/.test(c.stage) ? 'full_text' : 'title_abstract'; let d = null; for (const x of c.history || []) if (x.stage === st && !x.role) d = x; return d; },
     /** "Smith 2021" for lists. */
-    authorYear: (c) => `${c.first_author || String(c.key || '').replace(/^@/, '').replace(/[0-9]{4}.*$/, '') || c.id}${c.year ? ` ${c.year}` : ''}`,
+    authorYear: (c) => paperLabel(c.key) === 'RELEASE(2021)' ? paperLabel(c.key) : `${c.first_author || String(c.key || '').replace(/^@/, '').replace(/[0-9]{4}.*$/, '') || c.id}${c.year ? ` ${c.year}` : ''}`,
   };
 }
 

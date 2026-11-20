@@ -1,0 +1,747 @@
+{
+  "snapshot_at": "2026-11-20T04:46:04.095683+00:00",
+  "archive_tag": "archive/pre-core-drafts-2026-11-20",
+  "approved_by_snapshot": false,
+  "files": {
+    "drafts/regions/posterior_superior_temporal_lobe_ifg_pars_triangularis__Adezati2022__R001.md": {
+      "source_sha256": "2f737e8f2652f109f23448995915228db35d7e18af37424e5bba753ad09f45b7",
+      "paper": "Adezati2022",
+      "candidate": "R001"
+    },
+    "drafts/regions/sentence_comprehension_sccan_cluster__Adezati2022__R002.md": {
+      "source_sha256": "30b6125cd885e0280bc65f4a04579932058fcfa0cd7b0ee51719a56a59f30986",
+      "paper": "Adezati2022",
+      "candidate": "R002"
+    },
+    "drafts/predictors/overall_lesion_volume__Adezati2022__R003.md": {
+      "source_sha256": "29184e2b38815162121866cdbce246cf4d4e954d0f0d9b12fc764f18d6f0c9c6",
+      "paper": "Adezati2022",
+      "candidate": "R003"
+    },
+    "drafts/predictors/connectome_disruption_metrics__Adezati2022__R004.md": {
+      "source_sha256": "876c4ca2f16e664e8dc2a09ca4a728f1d301fcbb27f119e4c5003a8f8f66372c",
+      "paper": "Adezati2022",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_parietal_phonology_cluster__Akkad2023__R001.md": {
+      "source_sha256": "dfc9a77c90f427b5b216d7a39257e113cfca2f98ecab06b17185c85a4aeae0ea",
+      "paper": "Akkad2023",
+      "candidate": "R001"
+    },
+    "drafts/regions/semantic_factor_cluster__Akkad2023__R002.md": {
+      "source_sha256": "fbebdb502f353783d7e665b05cac70da66263e60d28cea31e473b6bb2c64cb5b",
+      "paper": "Akkad2023",
+      "candidate": "R002"
+    },
+    "drafts/regions/verbal_working_memory_cluster__Akkad2023__R003.md": {
+      "source_sha256": "2b7842552bac14320b96615490dc3ec7923a9bdf2c3c224897843c3d2fd5b705",
+      "paper": "Akkad2023",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_frontal_executive_cluster__Akkad2023__R004.md": {
+      "source_sha256": "80aa9d511eef09a47d858e3f12490d98f5eb5116ed125fd0feeae05bed848b49",
+      "paper": "Akkad2023",
+      "candidate": "R004"
+    },
+    "drafts/regions/brocas_area__Akkad2023__R005.md": {
+      "source_sha256": "c8c52ea818c6a61da7dc05a4e59786d181114a05fcc5087431011cdacd1c01a3",
+      "paper": "Akkad2023",
+      "candidate": "R005"
+    },
+    "drafts/regions/brocas_area_executive_function__Akkad2023__R006.md": {
+      "source_sha256": "29e73e1fc25ce6e983707e1a1620d434dbcf1e816d0ebc430ff529e3b94c882c",
+      "paper": "Akkad2023",
+      "candidate": "R006"
+    },
+    "drafts/regions/lifc_executive_cluster__Akkad2023__R007.md": {
+      "source_sha256": "fd36d35e547b07dafd670c1e5581dfb927a8dc8fb3091c23682725fdabc31840",
+      "paper": "Akkad2023",
+      "candidate": "R007"
+    },
+    "drafts/regions/age_under_55__Ali2021__R001.md": {
+      "source_sha256": "15fc3d37e7b94b9d1c52cfa63916688974c04a8551e3d33ba8f02cf915262823",
+      "paper": "Ali2021",
+      "candidate": "R001"
+    },
+    "drafts/predictors/enrollment_within_1_month_of_stroke__Ali2021__R002.md": {
+      "source_sha256": "ba4c3773e4120f165f2381ad86b300e135f40063c0f81799f4423ccb7a309e90",
+      "paper": "Ali2021",
+      "candidate": "R002"
+    },
+    "drafts/regions/sex__Ali2021__R003.md": {
+      "source_sha256": "cc851c50627e09d7baec7ff535df1bc279ec547e2d8ce6394c4ac0abce00e2fc",
+      "paper": "Ali2021",
+      "candidate": "R003"
+    },
+    "drafts/predictors/age_under_55_auditory_comprehension__Ali2021__R004.md": {
+      "source_sha256": "6242a39221eefb62a5d87aaa4f7dabb34803d4e5ca5a0f0fe168f5a51286d44f",
+      "paper": "Ali2021",
+      "candidate": "R004"
+    },
+    "drafts/predictors/enrollment_within_1_month_stroke__Ali2021__R005.md": {
+      "source_sha256": "4e0b36717cdd434c7488ca0730dc046d1d079f5ebdcc5e747939daef3b6cc9a1",
+      "paper": "Ali2021",
+      "candidate": "R005"
+    },
+    "drafts/predictors/age_under_55_naming_recovery__Ali2021__R006.md": {
+      "source_sha256": "fd07c29e44a8be715c14e3751c08c7308083ddb1615be004560e062b214f15b2",
+      "paper": "Ali2021",
+      "candidate": "R006"
+    },
+    "drafts/predictors/enrollment_within_1_month_stroke__Ali2021__R007.md": {
+      "source_sha256": "db1b268962ddd4ef5776e7c6fcca4f58b41a7cf71dc3fa8150dd0f90f45c0433",
+      "paper": "Ali2021",
+      "candidate": "R007"
+    },
+    "drafts/predictors/age_under_55_functional_communication__Ali2021__R008.md": {
+      "source_sha256": "2ac7f69efff0ac65762d268f23026d7c8c126f395124d7a260fe4721cbb098f4",
+      "paper": "Ali2021",
+      "candidate": "R008"
+    },
+    "drafts/predictors/enrollment_within_1_month_of_stroke__Ali2021__R009.md": {
+      "source_sha256": "1909b57bf72f57b56cdbce9be2e544b01c06248b69bbb0e45ae30a9e6cc86e87",
+      "paper": "Ali2021",
+      "candidate": "R009"
+    },
+    "drafts/regions/sex__Ali2021__R010.md": {
+      "source_sha256": "a3bbcc07da25354cf69eeaa40f86967b581bb335c3f598074d9bb64efc7ee167",
+      "paper": "Ali2021",
+      "candidate": "R010"
+    },
+    "drafts/predictors/language_domain_recovery_proportion__Ali2021__R011.md": {
+      "source_sha256": "5710ff3b1658a140c66668075b918785246aa021e2520b783f93853872eda824",
+      "paper": "Ali2021",
+      "candidate": "R011"
+    },
+    "drafts/predictors/language_domain_recovery_proportion__Ali2021__R012.md": {
+      "source_sha256": "0d058a74a68acf21c330fa40c85bb869846e7d8e376d848476ff9462faa8eea5",
+      "paper": "Ali2021",
+      "candidate": "R012"
+    },
+    "drafts/predictors/enrollment_within_1_month__Ali2021__R013.md": {
+      "source_sha256": "39e07fd33534417a055be1aac0fd18312dfa9c1d74ff4094f684e0f980687799",
+      "paper": "Ali2021",
+      "candidate": "R013"
+    },
+    "drafts/predictors/language_domain_recovery_proportion__Ali2021__R014.md": {
+      "source_sha256": "fa85a27766da6544bb596598bdbd401d8d362aef9e6e333e2b2c39be8a1e4848",
+      "paper": "Ali2021",
+      "candidate": "R014"
+    },
+    "drafts/predictors/age_and_chronicity__Ali2021__R015.md": {
+      "source_sha256": "78722fa88e10faea8696b912b4e65937b83c1fdb2b45a3e4062d678a08084ca7",
+      "paper": "Ali2021",
+      "candidate": "R015"
+    },
+    "drafts/regions/word_class_comprehension__Alyahya2018NounVerb__R001.md": {
+      "source_sha256": "7de3e8d8aa6dcc6d71fce9d62da14feacd90ed2515d63b81d23fa420dd3f8db7",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R001"
+    },
+    "drafts/impairments/noun_verb_naming_accuracy__Alyahya2018NounVerb__R002.md": {
+      "source_sha256": "8fa3882c7f5a35e728a3610df6a7f021b3d8395921d950e70995a40eed7d3066",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R002"
+    },
+    "drafts/regions/noun_verb_comprehension_accuracy__Alyahya2018NounVerb__R003.md": {
+      "source_sha256": "67dbc1475cfc526c0a24b9ae7f5f061417aa7b17844d0f8b0883d8531f2e05fa",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R003"
+    },
+    "drafts/impairments/noun_verb_naming_accuracy__Alyahya2018NounVerb__R004.md": {
+      "source_sha256": "2ce4c8e16289b6389eac55c2c46932c6c45b1aba6cda1b3a33090ff62f7497aa",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R004"
+    },
+    "drafts/regions/noun_verb_naming_error_type__Alyahya2018NounVerb__R006.md": {
+      "source_sha256": "1a5fc8cc67991b27c5b2922f7c71c0965194f0cad97e804d7bbee31d207265b0",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R006"
+    },
+    "drafts/predictors/aphasia_group_fluent_non_fluent__Alyahya2018NounVerb__R007.md": {
+      "source_sha256": "44d311aa03520cd2f12e330633e12b0a9c0d9f130445e05cc58c4eec1edf48f1",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R007"
+    },
+    "drafts/ingredients/word_class_effect__Alyahya2018NounVerb__R008.md": {
+      "source_sha256": "d720bd9de7b88071a773e165b0ad0b7f6de62d7abf947ac0e90dd26b06fdcdf0",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R008"
+    },
+    "drafts/impairments/noun_verb_naming_accuracy__Alyahya2018NounVerb__R009.md": {
+      "source_sha256": "cbaea96b5e3af9456faba0a209bcd93febfd7756d993e99edba7aec915192825",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R009"
+    },
+    "drafts/ingredients/word_imageability__Alyahya2018NounVerb__R010.md": {
+      "source_sha256": "fea5ce81accd258bf1db40c1fd2eb2e4c825a5cd3f19b84d7ee765a969be7953",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R010"
+    },
+    "drafts/predictors/imageability_aoa_comprehension_predictor__Alyahya2018NounVerb__R011.md": {
+      "source_sha256": "b89c83b92b521468a7a296bf2cdb54dc72423138eb949e2b2f7eff87ffe5b033",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R011"
+    },
+    "drafts/predictors/language_cognitive_pca_model__Alyahya2018NounVerb__R012.md": {
+      "source_sha256": "37e51e76c005cb76cd8c8b8713dfec9d4b02a8628f0fa3975a00343e82145f51",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R012"
+    },
+    "drafts/predictors/noun_verb_processing_pca__Alyahya2018NounVerb__R013.md": {
+      "source_sha256": "81e0a2a4ab940e5ef60a497e1ede0b4ee5689bc904f6d18a0829b50c30d1bb4c",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R013"
+    },
+    "drafts/regions/noun_verb_naming_overlap__Alyahya2018NounVerb__R014.md": {
+      "source_sha256": "084aef3778f9b5f3c6e91f78f4e6e8eb671478cf45b4bae1331a01366149def0",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R014"
+    },
+    "drafts/predictors/verb_naming_over_noun_naming__Alyahya2018NounVerb__R015.md": {
+      "source_sha256": "278b23a4306ef5aa689f62a66906ddb33672c939836c91c2ed25a8e99b3a9b74",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R015"
+    },
+    "drafts/regions/noun_verb_comprehension_network__Alyahya2018NounVerb__R016.md": {
+      "source_sha256": "b9dd332249e447e1b62dff960d619be9f47040c77ce1bab1cb7e8827c2cb016d",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R016"
+    },
+    "drafts/regions/verb_comprehension_cluster__Alyahya2018NounVerb__R017.md": {
+      "source_sha256": "05e766c7d9cb1ea44b535c72ad1432fb3786f9e80ed234bff3b004d42d8954df",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R017"
+    },
+    "drafts/regions/naming_vs_comprehension_cluster__Alyahya2018NounVerb__R018.md": {
+      "source_sha256": "af98b8f7ab68126fd99b179ddf7b8676d60ac184241420da3e9ef4da8c80a98d",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R018"
+    },
+    "drafts/predictors/pca_language_cognitive_factors__Alyahya2018NounVerb__R020.md": {
+      "source_sha256": "38e1f66ea3be0a93c104d6b05ce87e6e21be6a113c700a5f7f1b985e0bacc38b",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R020"
+    },
+    "drafts/predictors/lesion_volume_covariate_noun_verb_processing__Alyahya2018NounVerb__R021.md": {
+      "source_sha256": "d0fcb18bacd889bfd052b12daaadabd2248aa6bd45bd3287ac19f5fd1d52ea16",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R021"
+    },
+    "drafts/predictors/pca_language_factors__Alyahya2018NounVerb__R022.md": {
+      "source_sha256": "d2fc7cd29c88d44dfb8e26924be2cf91b8d1733eb4ec4a7bef41ed3bac238109",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R022"
+    },
+    "drafts/predictors/lesion_volume__Alyahya2018NounVerb__R023.md": {
+      "source_sha256": "22a1839bd0d2993e9f26bd202205281a29ccf6699b499db34250b901bf3f223e",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R023"
+    },
+    "drafts/ingredients/discourse_genre__Alyahya2020__R001.md": {
+      "source_sha256": "b907a2897ac5d75c1204865ffd77254c206a5aecc3a266aedc24279089e5c08e",
+      "paper": "Alyahya2020",
+      "candidate": "R001"
+    },
+    "drafts/ingredients/discourse_genre__Alyahya2020__R002.md": {
+      "source_sha256": "c0fd0a1681871de4dee215454b47e5aa97214fcc6232381f94baae2e30094ff7",
+      "paper": "Alyahya2020",
+      "candidate": "R002"
+    },
+    "drafts/impairments/post_stroke_aphasia__Alyahya2020__R003.md": {
+      "source_sha256": "bf426a8cb2d9c0b5ede755d5294c226aff55dfac33b299b99f127ffa1f53cb27",
+      "paper": "Alyahya2020",
+      "candidate": "R003"
+    },
+    "drafts/impairments/post_stroke_aphasia__Alyahya2020__R004.md": {
+      "source_sha256": "e740f619aece708f89057b6fae613ed991dfaf75884c7b21533412a6df885047",
+      "paper": "Alyahya2020",
+      "candidate": "R004"
+    },
+    "drafts/regions/discourse_genre_interaction__Alyahya2020__R005.md": {
+      "source_sha256": "a0de59ab7ce9e646112a989e1657fdff181fc6257c2b443d5bdaaffeb162a617",
+      "paper": "Alyahya2020",
+      "candidate": "R005"
+    },
+    "drafts/regions/discourse_genre_lexical_diversity__Alyahya2020__R006.md": {
+      "source_sha256": "ace04edab94e78b155d8fe24fa7fdfb565f07924a084a2df0236def5583caac4",
+      "paper": "Alyahya2020",
+      "candidate": "R006"
+    },
+    "drafts/regions/fluent_vs_non_fluent_aphasia__Alyahya2020__R007.md": {
+      "source_sha256": "d68263aa53f0ca7cdced93cc2317dfe606e60244adc722906b14e93d7271c3d9",
+      "paper": "Alyahya2020",
+      "candidate": "R007"
+    },
+    "drafts/ingredients/discourse_genre_effect__Alyahya2020__R008.md": {
+      "source_sha256": "5f7a0ed8741c9b2d5634c1600319fbb6dbccfea33d0099083071afc69fb0d727",
+      "paper": "Alyahya2020",
+      "candidate": "R008"
+    },
+    "drafts/regions/fluent_vs_non_fluent_discourse_interaction__Alyahya2020__R009.md": {
+      "source_sha256": "3e04ac2687a3ad363e93e19ca80b5d77f95d1db232116f33189e23590bcf1a85",
+      "paper": "Alyahya2020",
+      "candidate": "R009"
+    },
+    "drafts/regions/discourse_genre_lexical_diversity__Alyahya2020__R010.md": {
+      "source_sha256": "62e483bcde21873da2b7e689c193082e584c795c19dff315ce68f3dda760d774",
+      "paper": "Alyahya2020",
+      "candidate": "R010"
+    },
+    "drafts/predictors/unified_pca_model__Alyahya2020__R012.md": {
+      "source_sha256": "643a39f8c06d96d248b76183bc79d8a521d38eefe67b2a1b7f321dc011916c13",
+      "paper": "Alyahya2020",
+      "candidate": "R012"
+    },
+    "drafts/regions/verbal_quantity_cluster__Alyahya2020__R013.md": {
+      "source_sha256": "9e92630df0b13706200ef348fb113e78b7bb7cb1a1c6f542a9e5d19b1ebc1114",
+      "paper": "Alyahya2020",
+      "candidate": "R013"
+    },
+    "drafts/regions/verbal_quality_cluster__Alyahya2020__R014.md": {
+      "source_sha256": "b3f1b4ce6fdf37d7cea474e4226ac197fe5f35cee113c4247df89ccd625778c6",
+      "paper": "Alyahya2020",
+      "candidate": "R014"
+    },
+    "drafts/regions/motor_speech_cluster__Alyahya2020__R015.md": {
+      "source_sha256": "094c1ac1cffae621dd0db090c58befd9f337216b044dffd3c251361803ce8acd",
+      "paper": "Alyahya2020",
+      "candidate": "R015"
+    },
+    "drafts/regions/phonological_recognition_semantic_processing_cluster__Alyahya2020__R016.md": {
+      "source_sha256": "ec7b5663e73153c09cf7fc1745a2828e97043c2f2076bbcf7ee444035b9e8914",
+      "paper": "Alyahya2020",
+      "candidate": "R016"
+    },
+    "drafts/regions/semantic_processing_cluster__Alyahya2020__R017.md": {
+      "source_sha256": "abd1b21c76d1c63cb4bf17c93f6ba07456f267493d4af5027c608169188d6861",
+      "paper": "Alyahya2020",
+      "candidate": "R017"
+    },
+    "drafts/regions/angular_gyrus_posterior_supramarginal_gyrus_posterior_arcuate_fasciculus_cluster__Alyahya2020__R018.md": {
+      "source_sha256": "4b13ad41a582bde4fc39ab83704c06b4dbee1efafe47eb9254cad535e26adef8",
+      "paper": "Alyahya2020",
+      "candidate": "R018"
+    },
+    "drafts/regions/phonological_production_cluster__Alyahya2020__R020.md": {
+      "source_sha256": "07b03420b12786adebba3586d7ed09f90026cc9b0bf95ed7f3cf66c845d4a286",
+      "paper": "Alyahya2020",
+      "candidate": "R020"
+    },
+    "drafts/regions/executive_function_cluster__Alyahya2020__R021.md": {
+      "source_sha256": "012bfb6cd67c3d1117d23be23bbf8651f23013c3949ae55a08895dd9475ad40a",
+      "paper": "Alyahya2020",
+      "candidate": "R021"
+    },
+    "drafts/regions/executive_function_cluster__Alyahya2020__R022.md": {
+      "source_sha256": "d5d1933eb2c7500741c7978ccd0c8c5956d823aec251bbd594bdc71ff0bd189b",
+      "paper": "Alyahya2020",
+      "candidate": "R022"
+    },
+    "drafts/predictors/verbal_quantity_motor_speech_model__Alyahya2020__R023.md": {
+      "source_sha256": "07ce49785e92450e27d9ee18632ae09c427c8f4b7fcdd844f74be2c7bf26e275",
+      "paper": "Alyahya2020",
+      "candidate": "R023"
+    },
+    "drafts/regions/letter_fluency_cluster__Baldo2006__R001.md": {
+      "source_sha256": "3e8d010f9f28629e61d514b45ac6897c7fd7b79c4df9352cb38837e67b15c1c1",
+      "paper": "Baldo2006",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_posterior_category_fluency_cluster__Baldo2006__R002.md": {
+      "source_sha256": "440d6ed3c2b0f35a20d52e85bedc7be45206e418970dc6ac5536cf4ddba4ba5e",
+      "paper": "Baldo2006",
+      "candidate": "R002"
+    },
+    "drafts/regions/letter_fluency_subtraction_cluster__Baldo2006__R003.md": {
+      "source_sha256": "a0386a4d22e2b06dd5fa0683787ac0fcfd6bcf16d36442cc0bf2a151b99c9ff0",
+      "paper": "Baldo2006",
+      "candidate": "R003"
+    },
+    "drafts/regions/category_fluency_cluster__Baldo2006__R004.md": {
+      "source_sha256": "ce6e7fa25c089bf956783d6da5122805e8a90c2d009ff9deecbf5806d6a09b38",
+      "paper": "Baldo2006",
+      "candidate": "R004"
+    },
+    "drafts/regions/posterior_regions_category_fluency_cluster__Baldo2006__R006.md": {
+      "source_sha256": "7e3625f47cf24afaa4f1012bc2615c2ca5d7f86d002fc4fa735add47d13fe394",
+      "paper": "Baldo2006",
+      "candidate": "R006"
+    },
+    "drafts/regions/supermarket_fluency_cluster__Baldo2006__R007.md": {
+      "source_sha256": "7c128d9eb168e517f4559c46bd1d04a0aadacebf7340c8135307d87830749a72",
+      "paper": "Baldo2006",
+      "candidate": "R007"
+    },
+    "drafts/regions/inferior_parietal_cortex__Baldo2006__R008.md": {
+      "source_sha256": "8fdbbe66cb9a22fcbff54591b30fcdc125338ba0a94d57a2ecfe2c0101e59110",
+      "paper": "Baldo2006",
+      "candidate": "R008"
+    },
+    "drafts/regions/insula_putamen_cluster__Baldo2006__R009.md": {
+      "source_sha256": "fb3e18c93be91e36927399baca9f02d1c003d031b78fe4a751e79cc2b85ed849",
+      "paper": "Baldo2006",
+      "candidate": "R009"
+    },
+    "drafts/regions/left_spgi__Baldo2011__R001.md": {
+      "source_sha256": "5ec89518aafb2dc8ab1cb6468c4df405adb5fd9a7d23925d2241619adcb32944",
+      "paper": "Baldo2011",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_spgi__Baldo2011__R002.md": {
+      "source_sha256": "449598341acc1e3c135f10d45af31c56ac4b00000d752a5f01f68004baaf1b42",
+      "paper": "Baldo2011",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_spgi__Baldo2011__R003.md": {
+      "source_sha256": "fa7cd41fae57cf65d72151ba6772d93588f48cc788780e0104af242577bd5145",
+      "paper": "Baldo2011",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_spgi__Baldo2011__R005.md": {
+      "source_sha256": "2db6dcafe9c2c8bc4fe31afa3c94be58a5473f8afff4054b5b0b936b1483eb05",
+      "paper": "Baldo2011",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_spgi__Baldo2011__R007.md": {
+      "source_sha256": "e69f36852cd6f31223d9115e3dab0311661fed14e8585f216415bf5dc49a0432",
+      "paper": "Baldo2011",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_spgi__Baldo2011__R008.md": {
+      "source_sha256": "c37a5945ccb8edee2e2239e164a0d4011abda3fcdbf454e2e788137dccc937b1",
+      "paper": "Baldo2011",
+      "candidate": "R008"
+    },
+    "drafts/regions/three_syllable_word_articulation__Baldo2011__R009.md": {
+      "source_sha256": "7dacf871279801a012b4c01f02efb9fad380752cc70d48b900d26bad456ec59a",
+      "paper": "Baldo2011",
+      "candidate": "R009"
+    },
+    "drafts/ingredients/articulatory_travel_complexity__Baldo2011__R011.md": {
+      "source_sha256": "e5851b3b66fefe09f0ddcecacdc6f9a4cd9da16f2d859a8e6be770a4de8d6cd5",
+      "paper": "Baldo2011",
+      "candidate": "R011"
+    },
+    "drafts/ingredients/initial_consonant_cluster_absence__Baldo2011__R014.md": {
+      "source_sha256": "7a31a63b36a081e467406eb1847d81c022419ddce28c7136ceab554618a0a3eb",
+      "paper": "Baldo2011",
+      "candidate": "R014"
+    },
+    "drafts/regions/left_naming_network_cluster__Baldo2013__R001.md": {
+      "source_sha256": "61f7cc461e222393914f06ae9b7d210422c3f9657380f444cb300eb9a685acd5",
+      "paper": "Baldo2013",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_mid_posterior_mtg_cluster__Baldo2013__R002.md": {
+      "source_sha256": "aa2db190e9bda76dc0453032689d08072fbaf61b5378e8cf52f0c3a782cdc0ce",
+      "paper": "Baldo2013",
+      "candidate": "R002"
+    },
+    "drafts/predictors/bnt_semantic_errors_vlsm__Baldo2013__R004.md": {
+      "source_sha256": "13c13db46e0a5cb4f0ba54961e10653a5fb3d8de1f876d5938cee03f99452406",
+      "paper": "Baldo2013",
+      "candidate": "R004"
+    },
+    "drafts/regions/aslant_tract__Basilakos2014__R002.md": {
+      "source_sha256": "dbd470d7bff478cadf59c16f803b1bafa80f0b60a0289de0ca473374f1a1be38",
+      "paper": "Basilakos2014",
+      "candidate": "R002"
+    },
+    "drafts/regions/asaf__Basilakos2014__R003.md": {
+      "source_sha256": "e72a65335789107d4b16dae56d48e6b5a70bd46eb21bcb941e2c0bbd61bc271e",
+      "paper": "Basilakos2014",
+      "candidate": "R003"
+    },
+    "drafts/regions/uncinate_fasciculus__Basilakos2014__R004.md": {
+      "source_sha256": "d7c56cdef48a0cf1a97cece994a20b99f46829d8e248957ce93eda42e7a5c6eb",
+      "paper": "Basilakos2014",
+      "candidate": "R004"
+    },
+    "drafts/regions/uncinate_ilf_overlap_cluster__Basilakos2014__R005.md": {
+      "source_sha256": "4db69fca7d8e87cd079d43fe6c8c367f5188db93d2ce0b62d1ceb90d5d1ec5d2",
+      "paper": "Basilakos2014",
+      "candidate": "R005"
+    },
+    "drafts/regions/ilf__Basilakos2014__R006.md": {
+      "source_sha256": "ba3120befe68784644ca00ec5c96d57e0fb5ec1067de2944c87109cc5996b85a",
+      "paper": "Basilakos2014",
+      "candidate": "R006"
+    },
+    "drafts/regions/asaf_aslant_overlap__Basilakos2014__R007.md": {
+      "source_sha256": "ace05d665fd8f08a511a83958f5579d153ee57be289830647d43ac9fb8a92b75",
+      "paper": "Basilakos2014",
+      "candidate": "R007"
+    },
+    "drafts/predictors/asaf_aslant_overlap_predictor__Basilakos2014__R009.md": {
+      "source_sha256": "90814e6636443f6a2d6996b2a796605d5bd49f2edbb8d457d2a468d9d75acc56",
+      "paper": "Basilakos2014",
+      "candidate": "R009"
+    },
+    "drafts/predictors/asaf_aslant_uncinate_model__Basilakos2014__R010.md": {
+      "source_sha256": "bd677adda459fe8eabe8718f1deab83a0e9521dca972ec326b70ef4281749aa2",
+      "paper": "Basilakos2014",
+      "candidate": "R010"
+    },
+    "drafts/predictors/remaining_tracts_fluency_model__Basilakos2014__R011.md": {
+      "source_sha256": "608effc7aa46970c7636249bb75105c3a6766c9cecc96ce091c28d7e80285c7a",
+      "paper": "Basilakos2014",
+      "candidate": "R011"
+    },
+    "drafts/regions/uncinate_fasciculus_semantic_processing__Basilakos2014__R012.md": {
+      "source_sha256": "f461b2b713ef8ea8382e22afa7252a72063cc481649b74399e2a0127b8cdfb31",
+      "paper": "Basilakos2014",
+      "candidate": "R012"
+    },
+    "drafts/regions/aslant_tract__Basilakos2014__R013.md": {
+      "source_sha256": "2cb5b99720c1009a95f1cbbd89692f65b5b2447c5a443c266adb73313bed09fe",
+      "paper": "Basilakos2014",
+      "candidate": "R013"
+    },
+    "drafts/regions/uncinate_ilf_overlap__Basilakos2014__R014.md": {
+      "source_sha256": "29929596fab23b0daf07f61ff13738a6c52bb0159f62d9d37bd51f7d6f22f74a",
+      "paper": "Basilakos2014",
+      "candidate": "R014"
+    },
+    "drafts/predictors/semantic_processing_roi_comparison__Basilakos2014__R015.md": {
+      "source_sha256": "aecdb57da5a384871e9f2c86802f897997580ba9066de37515df99e7dbd70cf4",
+      "paper": "Basilakos2014",
+      "candidate": "R015"
+    },
+    "drafts/predictors/uncinate_fasciculus_semantic_predictor__Basilakos2014__R016.md": {
+      "source_sha256": "2995af97ede145a1cfab9e4201b87faaaf4502af9f226612c797398335b66a53",
+      "paper": "Basilakos2014",
+      "candidate": "R016"
+    },
+    "drafts/predictors/semantic_processing_model_remaining_rois__Basilakos2014__R017.md": {
+      "source_sha256": "3c7b1508988c696d56779b794939564ae7460acca9e7ded24707b5a6f5b17f61",
+      "paper": "Basilakos2014",
+      "candidate": "R017"
+    },
+    "drafts/impairments/words_per_minute__Basilakos2014__R018.md": {
+      "source_sha256": "cf6436aad9b44f40a3546129dfdb2216b38665817c97546ffc8409ff8f064512",
+      "paper": "Basilakos2014",
+      "candidate": "R018"
+    },
+    "drafts/regions/aos_motor_somatosensory_cluster__Basilakos2015__R001.md": {
+      "source_sha256": "681d272262b877033027230e402153fa1d0d9c6f6476a710caa6a3e28ebfda7f",
+      "paper": "Basilakos2015",
+      "candidate": "R001"
+    },
+    "drafts/regions/aphasia_aos_production_cluster__Basilakos2015__R002.md": {
+      "source_sha256": "e43e60d27c9213cf3ee03926e0af1a0db6f16e91ed0c03b723e84d3f7a360827",
+      "paper": "Basilakos2015",
+      "candidate": "R002"
+    },
+    "drafts/regions/aos_aphasia_common_cluster__Basilakos2015__R003.md": {
+      "source_sha256": "3aa26657caafb0e2193e92803183c86462c0605eaf2f70052cd083770382e3dc",
+      "paper": "Basilakos2015",
+      "candidate": "R003"
+    },
+    "drafts/regions/insula__Basilakos2015__R004.md": {
+      "source_sha256": "ee7abd45590b3a0e735b28ba001e87619b3a17f172045d263b6333b7f6e6a1e5",
+      "paper": "Basilakos2015",
+      "candidate": "R004"
+    },
+    "drafts/regions/insula__Basilakos2015__R005.md": {
+      "source_sha256": "709eeb5faa1141675adae054e7ede135388cd216fc18efc1a5a036395f4626ad",
+      "paper": "Basilakos2015",
+      "candidate": "R005"
+    },
+    "drafts/regions/ifgpo__Basilakos2015__R006.md": {
+      "source_sha256": "484b902420be692015a5fd84fa3ef5e38aa77d71244d3ce4a83c99061749cf32",
+      "paper": "Basilakos2015",
+      "candidate": "R006"
+    },
+    "drafts/regions/ifgpo__Basilakos2015__R007.md": {
+      "source_sha256": "61086de1dc1745cd31f3ee20585004b833036821b1b077ee7bb6632c1d7cd776",
+      "paper": "Basilakos2015",
+      "candidate": "R007"
+    },
+    "drafts/predictors/leukoaraiosis_aq_change_model__Basilakos2019__R003.md": {
+      "source_sha256": "3f5465dba2e36fddae580467f247699f23061ad3adca46c20c99f38ef51f7659",
+      "paper": "Basilakos2019",
+      "candidate": "R003"
+    },
+    "drafts/predictors/leukoaraiosis_severity__Basilakos2019__R004.md": {
+      "source_sha256": "f6d6e5dcf649a590f904bd467a0f55320cbb97d30ce92937739daaab2efe20a4",
+      "paper": "Basilakos2019",
+      "candidate": "R004"
+    },
+    "drafts/predictors/leukoaraiosis_severity__Basilakos2019__R005.md": {
+      "source_sha256": "1bfa703cb62db48c479dd13310d97a9474b85da6ce7310dcbf804a97fec25782",
+      "paper": "Basilakos2019",
+      "candidate": "R005"
+    },
+    "drafts/predictors/leukoaraiosis_severity__Basilakos2019__R007.md": {
+      "source_sha256": "e34d97b67cf05aea482007d8f672f1b9222c425411c8daa616f48d4bd99b9b9a",
+      "paper": "Basilakos2019",
+      "candidate": "R007"
+    },
+    "drafts/regions/lesion_volume__Basilakos2019__R008.md": {
+      "source_sha256": "f0260b24e4bd11c40b9418e87d0859cae7b788ed49d633ea18c31ce90c4e82ef",
+      "paper": "Basilakos2019",
+      "candidate": "R008"
+    },
+    "drafts/regions/lesion_volume__Basilakos2019__R009.md": {
+      "source_sha256": "8a6d163c137f0e5ef328e83b31459ede6f13302a210d23a54265f8c64a71de7d",
+      "paper": "Basilakos2019",
+      "candidate": "R009"
+    },
+    "drafts/predictors/age_at_evaluation__Basilakos2019__R011.md": {
+      "source_sha256": "bdd3b86962c38e1cc967a8d1e0391dd340cdb244e0dd1aeb8e0e56a371f333d2",
+      "paper": "Basilakos2019",
+      "candidate": "R011"
+    },
+    "drafts/ingredients/butanedione_monoxime__Bates2003__R006.md": {
+      "source_sha256": "3d2c763abd5423bd37d4ca432ea92064a5c1e3863329dec6d202ca0b2867c826",
+      "paper": "Bates2003",
+      "candidate": "R006"
+    },
+    "drafts/ingredients/butanedione_monoxime__Bates2003__R007.md": {
+      "source_sha256": "ac742220cb0b85885394c1af7189d806532aabe544e5d5fbd99021d33bf875a8",
+      "paper": "Bates2003",
+      "candidate": "R007"
+    },
+    "drafts/regions/anterior_insula__Bates2003__R010.md": {
+      "source_sha256": "ce3271d31204101b48c9a9dc43fff8c356c4e92f15e6f9ecd2db2dbb3ad9a20c",
+      "paper": "Bates2003",
+      "candidate": "R010"
+    },
+    "drafts/regions/brocas_area__Bates2003__R011.md": {
+      "source_sha256": "b504320ef73df7bb9ffe56e96f248d964325158a43f5540a3fdc9f1f3c509fb2",
+      "paper": "Bates2003",
+      "candidate": "R011"
+    },
+    "drafts/regions/wernickes_area__Bates2003__R013.md": {
+      "source_sha256": "c5764078e67688b2cf351a5898c0fda85ff81a2fbce415716bba769b1f325430",
+      "paper": "Bates2003",
+      "candidate": "R013"
+    },
+    "drafts/predictors/fluency_comprehension_map_correlation__Bates2003__R014.md": {
+      "source_sha256": "bb333be053dc3559c1ef15334204355c8cc0701b3916922f7c881027e4217ecf",
+      "paper": "Bates2003",
+      "candidate": "R014"
+    },
+    "drafts/predictors/art_d7__Benghanem2019__R001.md": {
+      "source_sha256": "5f9af865628bd590baceb0f0edb2dd24c916bf78511465a10e24fa5c12d091c6",
+      "paper": "Benghanem2019",
+      "candidate": "R001"
+    },
+    "drafts/predictors/infarct_volume__Benghanem2019__R002.md": {
+      "source_sha256": "bf2467f632c0e46286e959ce7f24fc357eebea6bd50f4564c2d2ecbbc7ba58da",
+      "paper": "Benghanem2019",
+      "candidate": "R002"
+    },
+    "drafts/predictors/intersection_index__Benghanem2019__R003.md": {
+      "source_sha256": "9b41697fd3123cfbd86337871478441f85e59292edfbe101830033020bf953e4",
+      "paper": "Benghanem2019",
+      "candidate": "R003"
+    },
+    "drafts/predictors/combined_volume_intersection_index__Benghanem2019__R005.md": {
+      "source_sha256": "11b9037237ff6ecc2b3272098fb75592b83c1d403c6f878d2aa0be5a357e9ea4",
+      "paper": "Benghanem2019",
+      "candidate": "R005"
+    },
+    "drafts/predictors/art_d7_imaging_combined_model__Benghanem2019__R006.md": {
+      "source_sha256": "df9a30885359d6e0eedcafb748096c1863d8b75eee75c3b06fcd04968ab82be1",
+      "paper": "Benghanem2019",
+      "candidate": "R006"
+    },
+    "drafts/predictors/art_d7_combined_imaging_model__Benghanem2019__R007.md": {
+      "source_sha256": "e76e145bdccd21ad085a7b635feea376a8558131f78cba173894ec06ca7b9dcb",
+      "paper": "Benghanem2019",
+      "candidate": "R007"
+    },
+    "drafts/predictors/art_d7_imaging_interaction__Benghanem2019__R008.md": {
+      "source_sha256": "73ab2d505c38f7bbbb51b5f022caa6878ee6158de21cdd3e4106a1f474e754e0",
+      "paper": "Benghanem2019",
+      "candidate": "R008"
+    },
+    "drafts/predictors/combined_volume_intersection_index__Benghanem2019__R009.md": {
+      "source_sha256": "663eddd9ed352d64c59e8b537f86b1091ad54e34ce83336ebb3a0e134526c998",
+      "paper": "Benghanem2019",
+      "candidate": "R009"
+    },
+    "drafts/predictors/combined_volume_intersection_index__Benghanem2019__R010.md": {
+      "source_sha256": "85bb58666173158c5d3da625f054cd3aeb44b892774820b6216f1f70eba8f1b2",
+      "paper": "Benghanem2019",
+      "candidate": "R010"
+    },
+    "drafts/therapies/intention_treatment__Benjamin2014__R001.md": {
+      "source_sha256": "c8edf847a88b6288b0ec9757b1e222ed5801406615fe9822ce28d450c18ff0e4",
+      "paper": "Benjamin2014",
+      "candidate": "R001"
+    },
+    "drafts/predictors/control_treatment_lateral_frontal_laterality__Benjamin2014__R002.md": {
+      "source_sha256": "bfcff85bb537a7a3b3008deb1b530a915dbed04379558723bcebf19292f12c38",
+      "paper": "Benjamin2014",
+      "candidate": "R002"
+    },
+    "drafts/therapies/intention_treatment__Benjamin2014__R003.md": {
+      "source_sha256": "2260eb2a997a20fa47a9f2043448999893a12b66985a0d928c1317c8021b47a4",
+      "paper": "Benjamin2014",
+      "candidate": "R003"
+    },
+    "drafts/therapies/intention_treatment__Benjamin2014__R005.md": {
+      "source_sha256": "2c6044775f0c9ea88a846e6571a8caab0d158f2e1490317e93ea71ab03b5f3ef",
+      "paper": "Benjamin2014",
+      "candidate": "R005"
+    },
+    "drafts/therapies/control_treatment_aphasia__Benjamin2014__R006.md": {
+      "source_sha256": "6cdba72bc8032579160d99a9855c51ddd2c8812e25dac506bb512bf1f266b929",
+      "paper": "Benjamin2014",
+      "candidate": "R006"
+    },
+    "drafts/regions/posterior_perisylvian_rightward_shift__Benjamin2014__R007.md": {
+      "source_sha256": "5998f0d12dfdfca56f69593eff00c38158b9b900408f4a6fd881c46d1a340518",
+      "paper": "Benjamin2014",
+      "candidate": "R007"
+    },
+    "drafts/predictors/posterior_perisylvian_laterality_shift__Benjamin2014__R008.md": {
+      "source_sha256": "f96766aa5a067070e936058e9047dcf90549ecdd61cc46a2ae04ee2af854f9b8",
+      "paper": "Benjamin2014",
+      "candidate": "R008"
+    },
+    "drafts/predictors/frontal_laterality_shift__Benjamin2014__R009.md": {
+      "source_sha256": "969d2b6f61f99ca2093ee191671655aefdaeec4aadc483c07bc148ad302325a9",
+      "paper": "Benjamin2014",
+      "candidate": "R009"
+    },
+    "drafts/predictors/laterality_shift_picture_naming__Benjamin2014__R010.md": {
+      "source_sha256": "f17500737d035be04ff2e2eabcf60ef0ea38c806a0e32a8d5ba8e7c722b8a086",
+      "paper": "Benjamin2014",
+      "candidate": "R010"
+    },
+    "drafts/ingredients/therapy_intensity__Bhogal2003__R001.md": {
+      "source_sha256": "671ca100c9adf076a83a6c69ab8f3d11a6377c985a9a97d6b631b243af4ef9f0",
+      "paper": "Bhogal2003",
+      "candidate": "R001"
+    },
+    "drafts/ingredients/therapy_length_intensity_correlation__Bhogal2003__R002.md": {
+      "source_sha256": "e038eeaa425e838f4e054bc3ac3f0de0d9ed6370a7f754157ca26ef4627d945f",
+      "paper": "Bhogal2003",
+      "candidate": "R002"
+    },
+    "drafts/predictors/therapy_length_pica__Bhogal2003__R003.md": {
+      "source_sha256": "3e83f6d5126685034101b474b1af0fdce840a31967ff3b301b3dc09701a8661e",
+      "paper": "Bhogal2003",
+      "candidate": "R003"
+    },
+    "drafts/ingredients/total_therapy_hours__Bhogal2003__R005.md": {
+      "source_sha256": "d7f5ba8d9c8debd537dc306140abb379f63a0ffa02d45c98e6b770a8664d98f5",
+      "paper": "Bhogal2003",
+      "candidate": "R005"
+    },
+    "drafts/predictors/therapy_length_token_test__Bhogal2003__R006.md": {
+      "source_sha256": "582eb7f198ee64169d085016fad05f79614aeec53cd396c6759073a10585c98c",
+      "paper": "Bhogal2003",
+      "candidate": "R006"
+    },
+    "drafts/predictors/therapy_intensity_fcp__Bhogal2003__R008.md": {
+      "source_sha256": "be9e18168734c2d3e0db6321bad66e4abf84d933434c62b71a72542f0890f22e",
+      "paper": "Bhogal2003",
+      "candidate": "R008"
+    }
+  }
+}

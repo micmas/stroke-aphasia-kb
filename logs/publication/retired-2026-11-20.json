@@ -1,0 +1,508 @@
+{
+  "archive_tag": "archive/pre-core-drafts-2026-11-20",
+  "reason": "Replace prior findings with new unapproved core source-checked drafts; user authorized 2026-11-20",
+  "retired_files": [
+    {
+      "path": "regions/left_posterior_stg.md",
+      "sha256": "213d6b6e5063a54606c21f2ed6e3e02d6d178db45f55ecb3d2fe4807f317ffd7",
+      "findings": 8
+    },
+    {
+      "path": "regions/left_precentral_gyrus.md",
+      "sha256": "e97989603ab49b7a2b8316dc26cbd9435dbfd43d222d7837cf88cf0f02e70d73",
+      "findings": 7
+    },
+    {
+      "path": "regions/left_arcuate_fasciculus.md",
+      "sha256": "4ec5e5b20695119600e7bb75fca0a336d9ca12354cf64dd4276d81ba5ea7b368",
+      "findings": 11
+    },
+    {
+      "path": "regions/left_extreme_capsule.md",
+      "sha256": "7c85691fdc854db07da2573a25c80a221a07fa887b82071dec6b3d6608a6badc",
+      "findings": 4
+    },
+    {
+      "path": "regions/left_superior_temporal_gyrus_wernicke.md",
+      "sha256": "fe62287662b9e08a44f14fc66914887ff288e83ac93c4cda4704c1ad5dbfd952",
+      "findings": 3
+    },
+    {
+      "path": "regions/left_ifg_pars_opercularis.md",
+      "sha256": "1b16a49bd3c7caa486232aa62346a8f577a14ec255d028e6c648780aacc93a28",
+      "findings": 10
+    },
+    {
+      "path": "regions/left_precentral_gyrus_insula.md",
+      "sha256": "8217ba05646446205521fe4f2b1c5954bc3215fdd5044bb076ec3d0006dce66f",
+      "findings": 2
+    },
+    {
+      "path": "regions/left_arcuate_fasciculus_slf.md",
+      "sha256": "b050152e1fd41a8379bc19d6ea575e8ce0a0461081f97fd1bcbc259f1c460d97",
+      "findings": 5
+    },
+    {
+      "path": "regions/left_anterior_temporal_lobe.md",
+      "sha256": "c401d31587816b2d144d6dd94133cb7ce7e3218a6ba05ee4671593b5caec8583",
+      "findings": 2
+    },
+    {
+      "path": "regions/left_frontal_white_matter_bottleneck.md",
+      "sha256": "3b7f9e4812edeaadacda43a7d307f3a0b50ad65922a8e2abc2fa7420542bcf9a",
+      "findings": 3
+    },
+    {
+      "path": "regions/left_superior_temporal_gyrus.md",
+      "sha256": "feae6a091d4963c4634c9a3266259d720044134502fb94e4fcc51f6a76888194",
+      "findings": 2
+    },
+    {
+      "path": "regions/left_temporobasal__Goldenberg1994.md",
+      "sha256": "f557aee839b11d2031fee15dee881ee60035fe39a6ded1a5f115b599e0139670",
+      "findings": 1
+    },
+    {
+      "path": "regions/left_ifg_pars_triangularis.md",
+      "sha256": "669c2481fdafbc84fa2c66a6a58a277a83caded63cb11b342e29ecafdc1f2be1",
+      "findings": 3
+    },
+    {
+      "path": "regions/left_superior_temporal_gyrus_wernickes.md",
+      "sha256": "04240b258720de2e090ae5ab0742c595096c4c31c84d0afa77f449a6c236dff9",
+      "findings": 3
+    },
+    {
+      "path": "regions/left_supramarginal_gyrus_premotor.md",
+      "sha256": "5a6fe78b47fbcf70dca32f80c3cea2f4fe66e33ae9f9cbffe5a1eac00c317c60",
+      "findings": 3
+    },
+    {
+      "path": "regions/left_angular_gyrus.md",
+      "sha256": "e61c6ffdbf829d4e8dfc7d9ccb8d4c285bba4f51a39a0e95b2a3e42d02556946",
+      "findings": 3
+    },
+    {
+      "path": "regions/left_middle_temporal_gyrus.md",
+      "sha256": "dc93cbd7590232914fa26cd50c4ac724654a91e56f1a8b484b05f03669d3954e",
+      "findings": 2
+    },
+    {
+      "path": "regions/bilateral_middle_frontal_gyrus_recovery.md",
+      "sha256": "32dde77452c9bc09503e5ba6b2b8cf3a22fb5e56e0261cc4a8615c996d44ff16",
+      "findings": 4
+    },
+    {
+      "path": "impairments/executive_functions.md",
+      "sha256": "3c0fb42771968a7084517a0d9de811dcfbb1ef648459e3419c70065614abbbac",
+      "findings": 3
+    },
+    {
+      "path": "impairments/global_aphasia.md",
+      "sha256": "f40dfb62505c6c2b62ab7a46b56ef05f5a05c642a9fa6e4b5e355db68e67b485",
+      "findings": 16
+    },
+    {
+      "path": "impairments/wernickes_aphasia.md",
+      "sha256": "f01033ee8ccb334ecc2e5a3f29cfc450154c6fa073b20663efc398a6f2adc8b3",
+      "findings": 7
+    },
+    {
+      "path": "impairments/form_to_articulation.md",
+      "sha256": "4d2b3451efc39ce014ea3d2ea4183f0462a09b681e583358366b2a7e86470c54",
+      "findings": 10
+    },
+    {
+      "path": "impairments/phonological_production.md",
+      "sha256": "dc8a32a3295e5cca3c5afe20049a6259cc1dd40c482a1e65431a14f972982069",
+      "findings": 10
+    },
+    {
+      "path": "impairments/form_to_meaning.md",
+      "sha256": "3486e0741c525de1cceda1757e0ebd84bae47ca439e2de0a0a6e8554728a2668",
+      "findings": 14
+    },
+    {
+      "path": "impairments/syntactic_processing.md",
+      "sha256": "a4fbe24502fba18862e3a51c9d70a8739b6165237f92cefa37488ee80fe5aa24",
+      "findings": 6
+    },
+    {
+      "path": "impairments/brocas_aphasia.md",
+      "sha256": "32999cf1707b87fd2c9f8ac2d0db00080462b9f4f9eb27bd613d81c57f207598",
+      "findings": 14
+    },
+    {
+      "path": "impairments/semantics.md",
+      "sha256": "758e9a74ea3db5112a593471c236b098653efd1ac45d02897c1fffddc306d7dd",
+      "findings": 5
+    },
+    {
+      "path": "impairments/conduction_aphasia.md",
+      "sha256": "51bb39e87828665602fbc452e2662650d25a98f617b1580268771e4b3542b5c2",
+      "findings": 3
+    },
+    {
+      "path": "impairments/fluency.md",
+      "sha256": "f52efc5e09f99cf1d573368ec2847df4803b31b05bfdf75c67c40d4bde72ed6f",
+      "findings": 3
+    },
+    {
+      "path": "impairments/phonological_recognition.md",
+      "sha256": "086a5bb037d54b8c3a87cb16eb1b679f741b46f5b580384304b0fa36ba574be2",
+      "findings": 6
+    },
+    {
+      "path": "predictors/auditory_temporal_processing.md",
+      "sha256": "895addbfff12b4bdb4bc32f204201fe84c927acab98d6621a0499915f38a8fdd",
+      "findings": 4
+    },
+    {
+      "path": "predictors/lesion_volume.md",
+      "sha256": "996aa2d3ab693edcd62f64fb4822b57e2e2b7ddec5a0417db6936aea83e903eb",
+      "findings": 11
+    },
+    {
+      "path": "predictors/stroke_severity_sss.md",
+      "sha256": "1a7b1fe79c4713af914afe1d85f074dd4e44a8c7973492287755bc6ef0c47feb",
+      "findings": 4
+    },
+    {
+      "path": "predictors/age.md",
+      "sha256": "8c90c4268b331ccdc99a140458ee6340c239196ce70acd0579c787c9b562dd7d",
+      "findings": 1
+    },
+    {
+      "path": "predictors/bdnf_val66met.md",
+      "sha256": "a623bf8e2a4c8e2526a853b1a9201687eede3fa886028d559107f5877c01c560",
+      "findings": 7
+    },
+    {
+      "path": "predictors/initial_aphasia_severity.md",
+      "sha256": "b03a4f7a7a48506acf0c4d079ca4c2dd8a3f2f31160e5b007a37cae6f85a32e4",
+      "findings": 2
+    },
+    {
+      "path": "predictors/severity_metric.md",
+      "sha256": "3a5e80050b30845dad98b6b2b5f46a44c340128b987a6a5231f30444abd2d9cc",
+      "findings": 10
+    },
+    {
+      "path": "reviews/aphasia_prognosis_predictors__Watila2015.md",
+      "sha256": "c8f8f564900960418cf68fb7e17aa543f881e5ad00bbaa36b129ab8618ff9872",
+      "findings": 3
+    },
+    {
+      "path": "reviews/aphasia_therapy_neuroplasticity_fmri__Shekari2022.md",
+      "sha256": "45a67f8e3591920a9de883253490cd46fa29897337adb2009ff657c94b99a3cd",
+      "findings": 3
+    },
+    {
+      "path": "reviews/neuroplasticity_poststroke_aphasia__Wilson2021.md",
+      "sha256": "2910db9bdebe54a0fec8efe969972077c7e4f78f735782aeb327d50c587795a6",
+      "findings": 4
+    },
+    {
+      "path": "reviews/treatment_neuroplasticity_aphasia__Simic2023.md",
+      "sha256": "35399bf36c45348982188b139d3180f496b4710fc13a0397c82ddb18b4bb66d6",
+      "findings": 3
+    },
+    {
+      "path": "reviews/constraint_induced_language_therapy__Raymer.md",
+      "sha256": "a1cdadfa9ed5945815ae27ce9e526b5859a69b78caa764d100a0793a2a416ed9",
+      "findings": 3
+    },
+    {
+      "path": "reviews/subcortical_aphasia__NadeauCrosson1997.md",
+      "sha256": "438ba18ac3f04ea91479b6fd8e8728a7b5ff530c802d58a47f915ac25929122c",
+      "findings": 4
+    },
+    {
+      "path": "reviews/basal_ganglia_aphasia__Radanovic2017.md",
+      "sha256": "e82ae6d64123e801437e5232beae627558ecb286dfdf14e74ef143d061b8c19d",
+      "findings": 4
+    },
+    {
+      "path": "reviews/thalamic_language_mechanisms__Crosson1999.md",
+      "sha256": "b2d48411cd18448a5e4f050644cc884af3afdb46319d7aeb07dab5e824255bf2",
+      "findings": 3
+    },
+    {
+      "path": "reviews/lsm_language_systems_review__MirmanThye2018.md",
+      "sha256": "22684299ecd847ab3232a43d68c9baaee40b6fabca169795c9caef23fef47161",
+      "findings": 4
+    },
+    {
+      "path": "drafts/regions/left_temporo_parietal_phonological_recognition_cluster__Alyahya2020__U034.md",
+      "sha256": "b9e102093a2a7dbe84ce31b2383cc858f61f09a80f95276534ac4af00734328e"
+    },
+    {
+      "path": "drafts/regions/left_uncinate_ilf_overlap__Basilakos2014__U005.md",
+      "sha256": "7ad41c8ccd742245076834cd98ef4e48a4cabd12c9f1bfedeeb227df4903bbb8"
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Xing2017__U004.md",
+      "sha256": "2fdf30aa9a7404a4533ea1f0dfe8e28e98aa0a6feaa4bb0db2fe23c9b6b924ea"
+    },
+    {
+      "path": "drafts/regions/left_frontoparietal_naming_comprehension_contrast__Alyahya2018NounVerb__U056.md",
+      "sha256": "7674f6d01ebc20422f4dcb8486656919c3b562c80de491d6568b610d2c57345a"
+    },
+    {
+      "path": "drafts/regions/left_frontal_speech_quanta_cluster__Halai2017__U032.md",
+      "sha256": "6c8991fd74dca74fa9c987897a474f45fd81a5ac16f2c2046415c95d746496a0"
+    },
+    {
+      "path": "drafts/regions/left_uncinate_unique__Basilakos2014__U004.md",
+      "sha256": "119edc226f583a671efd1fc63f34bb1f6938c08e5ac1e0c91c41d36ab6a0e00a"
+    },
+    {
+      "path": "drafts/regions/left_frontal_aslant_unique__Basilakos2014__U002.md",
+      "sha256": "0e96fdcc77126b79059968f34bde75b21ec39779ce708b665c2d3d2d6ae8cbcd"
+    },
+    {
+      "path": "drafts/regions/left_frontocentral_fluency_cluster__Alyahya2018NounVerb__U060.md",
+      "sha256": "fe0e7c24298378d404f68c4e68657af7642ec1109ffb339d03f03334377d3114"
+    },
+    {
+      "path": "drafts/regions/left_frontal_aslant_unique__Basilakos2014__U016.md",
+      "sha256": "b0113866d8a9c72037306ec0b84f879318eac8d01734db8be0075720aee9a419"
+    },
+    {
+      "path": "drafts/regions/left_temporo_occipital_semantic_cluster__Alyahya2018NounVerb__U059.md",
+      "sha256": "e2e9d6b5ffca226ca1a35b762d75baa1b950128bf5755090a1a0ea4a46a13f9c"
+    },
+    {
+      "path": "drafts/regions/left_frontal_corona_radiata__Adezati2022__U001.md",
+      "sha256": "c49165a9e0d7a705ec491be5bb963acae1aadfd27171a7e31ad7027c11e76fc3"
+    },
+    {
+      "path": "drafts/regions/left_temporal_phonology_cluster__Halai2017__U027.md",
+      "sha256": "56df199a6a3bf12f92d44bd1e9dac7c6e67bc463b5e8f9eb0a24071dc88cddb2"
+    },
+    {
+      "path": "drafts/regions/left_asaf_aslant_overlap__Basilakos2014__U001.md",
+      "sha256": "88bda1fd044efaff6adf2f33b65f8a5bd5c2faf0895900293f618e3812d6174f"
+    },
+    {
+      "path": "drafts/regions/left_extreme_capsule_fibre_region__Oeckel2021__U006.md",
+      "sha256": "0e582134ee2559aa22fe3d746ee3b255dddeeacaf2333ef7a733e071b98e5f13"
+    },
+    {
+      "path": "drafts/regions/left_uncinate_unique__Basilakos2014__U015.md",
+      "sha256": "7aeea2df0eeec758b23a7f09bba94e57bb73bd3fa9b48b8aa18f5cdff8dad6d7"
+    },
+    {
+      "path": "drafts/regions/left_ilf_unique__Basilakos2014__U006.md",
+      "sha256": "6e6e91e17fbaa6224cb457b3e5aa82d5bfcf95aa765bde3dae5b85260c364f00"
+    },
+    {
+      "path": "drafts/regions/left_temporo_occipital_semantic_cluster__Alyahya2020__U032.md",
+      "sha256": "2c66cf536ed3ac21c9802ab2ba94e87ba3dfe44e6b4ca590e51c179336ff9e95"
+    },
+    {
+      "path": "drafts/regions/left_fronto_parietal_verbal_quality_cluster__Alyahya2020__U027.md",
+      "sha256": "b7484221a386e6f4afc24c424529de264b5cd8bcb6931b894d0bb33e6967379a"
+    },
+    {
+      "path": "drafts/regions/left_temporal_semantic_clusters__Akkad2023__U003.md",
+      "sha256": "9b7ae6d8bbdcbf200545f6cd8502bfd74efa6d365f58d5989368cb1369e193dc"
+    },
+    {
+      "path": "drafts/regions/left_temporoparietal_verbal_memory_cluster__Akkad2023__U004.md",
+      "sha256": "b5144d8c39f3462b3db59c90855a09ba87ddb24e367586ab77582756de27705a"
+    },
+    {
+      "path": "drafts/regions/left_ba44_45_executive_roi__Akkad2023__U006.md",
+      "sha256": "2a256425e8db3c1612607d2c384c05ac7b9e15085d9c00f1d2c17e38571c2f5f"
+    },
+    {
+      "path": "drafts/regions/left_parietal_verb_comprehension_contrast__Alyahya2018NounVerb__U052.md",
+      "sha256": "43312b6fc72750c17611fb8cca1d782a09e4404086b75bc35c0d75f93031eb35"
+    },
+    {
+      "path": "drafts/regions/left_ifg_pars_triangularis__Adezati2022__U001.md",
+      "sha256": "9df0611d70161ba299d3a5244720d425dc24c817549ea13dbbd8b639cb6ff095"
+    },
+    {
+      "path": "drafts/regions/left_parietal_phonological_production_cluster__Alyahya2020__U035.md",
+      "sha256": "3527d24230045378d25e0f0487615f1322f7c2da45a7a7afb0d793dc9d6bb9e3"
+    },
+    {
+      "path": "drafts/regions/left_motor_auditory_speech_rate_cluster__Alyahya2020__U028.md",
+      "sha256": "566f359981772f38b488150fdabc1c534535e8317f54bb3994d0985e5bb3181a"
+    },
+    {
+      "path": "drafts/regions/left_frontal_executive_cluster__Akkad2023__U005.md",
+      "sha256": "1a1c17c51e97dd7835d3fd25da5d0053af26dbaeaa173a1cf2c87370138a632f"
+    },
+    {
+      "path": "drafts/regions/left_anterior_temporal_semantic_cluster__Halai2017__U029.md",
+      "sha256": "19dc740973c3290fa4ddca57f0cd1f876660a6379504faa917020304f339e648"
+    },
+    {
+      "path": "drafts/regions/left_frontal_executive_cluster__Alyahya2018NounVerb__U092.md",
+      "sha256": "43c9902aa417ecc03907d8bc71efbd8c2554f4dacc57e31217a5906270273fe1"
+    },
+    {
+      "path": "drafts/regions/left_frontocentral_verbal_quantity_cluster__Alyahya2020__U026.md",
+      "sha256": "cc510e0f63d4ec39e7ffd7c664f5948f8ad460647f88474654d89f7e6910d7ee"
+    },
+    {
+      "path": "drafts/regions/left_arcuate_template_region__Oeckel2021__U009.md",
+      "sha256": "33a9b0cd7696d81b766a92bb30ed21076d54c145d7fd7f2c72345cd610440354"
+    },
+    {
+      "path": "drafts/regions/left_uncinate_fasciculus__Xing2017__U001.md",
+      "sha256": "7d24c5e6fd8a951c9ae6f2f48d86b57271d55fd3e7be562761220f31d9cad3c7"
+    },
+    {
+      "path": "drafts/regions/left_parietal_phonological_production_cluster__Alyahya2018NounVerb__U057.md",
+      "sha256": "4d3182f547c6a7ea7ccf28f692304ffc1aebb7f2114668b49aa5e0b762f18d14"
+    },
+    {
+      "path": "drafts/regions/left_temporo_occipital_comprehension_network__Alyahya2018NounVerb__U051.md",
+      "sha256": "050e44e3f1fdb75c7cc48808adb141515f3cf935fd4ced19a4ca6b1b8086837d"
+    },
+    {
+      "path": "drafts/regions/left_ilf_unique__Basilakos2014__U018.md",
+      "sha256": "1c32dcca0716001d5e69774c98bb8313cebb572317a3dedab83dc264dcb53206"
+    },
+    {
+      "path": "drafts/regions/left_arcuate_fasciculus__Xing2017__U003.md",
+      "sha256": "a3db0faf45a46cbc1831bdabd87d02c51e7a23905499ad392549a470399312e3"
+    },
+    {
+      "path": "drafts/regions/left_frontal_executive_cluster__Alyahya2020__U039.md",
+      "sha256": "cb72577c788ed6549ffb3ad77d9b5f9c80d5b4903cde9e93e2f55adbe70b5ffb"
+    },
+    {
+      "path": "drafts/regions/left_arcuate_anterior_unique__Basilakos2014__U003.md",
+      "sha256": "c165a81a711df62b785cd0aadcb8242dc69473856611f40640677367245124db"
+    },
+    {
+      "path": "drafts/regions/left_posterior_temporal_sentence_cluster__Adezati2022__U001.md",
+      "sha256": "8b8fe3b7ee5415193b2aca9a41b0720ec73116c983c2e2796909d2a3e7bc59a8"
+    },
+    {
+      "path": "drafts/regions/left_temporo_parietal_phonological_recognition_cluster__Alyahya2018NounVerb__U058.md",
+      "sha256": "e84ca098669eec037492e1f3c422968fe325c0607ae9120d9f7c0b7f6299f0a1"
+    },
+    {
+      "path": "drafts/regions/left_temporo_parietal_naming_network__Alyahya2018NounVerb__U045.md",
+      "sha256": "5c14927b1d98494ec1214048326b848bb2750d773ce5bd81964fab37888ddc04"
+    },
+    {
+      "path": "drafts/regions/left_asaf_aslant_overlap__Basilakos2014__U019.md",
+      "sha256": "17d74871010ab06ff483c26413257526bcea6bcdf809f8ef6e7724af67fc20ff"
+    },
+    {
+      "path": "drafts/regions/left_uncinate_ilf_overlap__Basilakos2014__U017.md",
+      "sha256": "27f633eb696747c62ce5b478075daa35d314c4834b45912ca7b7ceadff93f617"
+    },
+    {
+      "path": "drafts/regions/left_superior_parietal_phonology_cluster__Akkad2023__U002.md",
+      "sha256": "c198df5972930e93fd3986288aeffcdf11f807f5465933bf17801b74d29f9885"
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Oeckel2021__U014.md",
+      "sha256": "170b1651cfa2b39c27909a61a3c92ce311a6b91e80a007476a43aa08744adc4a"
+    },
+    {
+      "path": "drafts/predictors/word_imageability__Alyahya2018NounVerb__U036.md",
+      "sha256": "7d22af985056296db517103a6f8f7794207c8ec1901059c5cd2b47f4527e1d13"
+    },
+    {
+      "path": "drafts/predictors/discourse_elicitation_task__Alyahya2020__U008.md",
+      "sha256": "d7258c3d51d91fc90d8e8df288c98b8d9422610cfea031c765119189a6aefba3"
+    },
+    {
+      "path": "drafts/predictors/age__Ali2021__U001__functional_communication.md",
+      "sha256": "49cf6fccd8f3eefb89aad6165298d3364496204de57e66df6cbc8d4f66614001"
+    },
+    {
+      "path": "drafts/predictors/sex__Ali2021__U013__functional_communication.md",
+      "sha256": "b56e715af03d112fcb52f589075855d76d5a5021b52be3a9307236c732bc9e74"
+    },
+    {
+      "path": "drafts/predictors/time_post_onset__Ali2021__U002__functional_communication.md",
+      "sha256": "b03d98cd0d4824d1df9c499a292435ef0be4fa6fdb0a9d63e0b86314899c320a"
+    },
+    {
+      "path": "drafts/predictors/age__Ali2021__U001__overall_language.md",
+      "sha256": "d450600d30e7787209a11e59f68027a3af068175e107a87f14fcd0289e29c447"
+    },
+    {
+      "path": "drafts/predictors/discourse_elicitation_task__Alyahya2020__U053.md",
+      "sha256": "95a9d4e94caca9ffc7e7b234bdbd8a6dba2c2237222096c19b3a9d55a682849c"
+    },
+    {
+      "path": "drafts/predictors/age__Ali2021__U009__auditory_comprehension.md",
+      "sha256": "0d1828d40951bd3ca7910049af3fbce0d23b8339a11bae60b19d336de430aa0e"
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Adezati2022__U005.md",
+      "sha256": "c21a171b64cd5fe82348d679044f6c047e80bac4dfc4ab71a3ccfaaf881e6c32"
+    },
+    {
+      "path": "drafts/predictors/discourse_elicitation_task__Alyahya2020__U007.md",
+      "sha256": "00cdd6377bcd3037fd06e08b28981a0aed478c3dc7ec795ba92815112676715c"
+    },
+    {
+      "path": "drafts/predictors/structural_connectome_graph_metrics__Adezati2022__U006.md",
+      "sha256": "2e9b9c70dbcea43024c1ab2510f5b2f5f4db4a472fd42d4b1f6abaccac19b84a"
+    },
+    {
+      "path": "drafts/predictors/age__Oeckel2021__U014.md",
+      "sha256": "f3e39c565b0b4a9096c9965abe985f436e40b57bfb5b971cca4048ddcc71ec3a"
+    },
+    {
+      "path": "drafts/predictors/unmatched_word_class_assessment__Alyahya2018NounVerb__U034.md",
+      "sha256": "ef7fb3069b1898e82d101a3cda3ccd30851c2df5e91fe70397ef072368ec9980"
+    },
+    {
+      "path": "drafts/predictors/aphasia_fluency_classification__Alyahya2020__U011.md",
+      "sha256": "630657c51363b225d303feeb22c35873b5e1beca87e3afb8b30cd8863760ee98"
+    },
+    {
+      "path": "drafts/predictors/time_post_onset__Ali2021__U002__naming.md",
+      "sha256": "67450cd31c0b2be71cb0aa7a670b7d7da5bee5692414471c88b242300ab6586b"
+    },
+    {
+      "path": "drafts/predictors/time_post_onset__Ali2021__U006__overall_language.md",
+      "sha256": "43ac4c2373efa38c308ff25ab2b2e002307bd8698c2b8fb0e157515390e7474f"
+    },
+    {
+      "path": "drafts/predictors/sex__Oeckel2021__U014.md",
+      "sha256": "0f195b4a41ab884eedda4d3ca5ddaa41b53888053b21668925d32cae60f38bb5"
+    },
+    {
+      "path": "drafts/predictors/time_post_onset__Adezati2022__U003.md",
+      "sha256": "3af3e3535d0e1b2ea4683424ff6186ca69bbfcb3c49bd3aa1ce8d1656732e003"
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Alyahya2020__U036.md",
+      "sha256": "7e99a95f6990d34607cc6711034ad6521bd4c8ab5db7ea73c292067c2233e86c"
+    },
+    {
+      "path": "drafts/predictors/age__Ali2021__U001__naming.md",
+      "sha256": "0a99d1b49eba5692327eb3838e7142a3bc047baad17b6d92a5a1022d1f4a8cf4"
+    },
+    {
+      "path": "drafts/predictors/matched_word_class_assessment__Alyahya2018NounVerb__U001.md",
+      "sha256": "5563066f50aabb85c078e4bf38f393d26505ac0b783585c2ec29c621af9be47c"
+    },
+    {
+      "path": "drafts/predictors/sex__Ali2021__U008__overall_language.md",
+      "sha256": "6e5aa78159a3287d71f88964ba4311bd76056fa74ff572b7d4e3386032b2ae37"
+    },
+    {
+      "path": "drafts/predictors/time_post_onset__Ali2021__U010__auditory_comprehension.md",
+      "sha256": "d61f3876cc92d639ee1bca4c0985d19bd4eb1047706041fca0b6a28a7d16abed"
+    },
+    {
+      "path": "drafts/predictors/lesion_volume__Halai2017__U036.md",
+      "sha256": "06aaa75dfa4c7f38cabea76157f7acce17a60af140153cb06e76c5553beaa489"
+    }
+  ]
+}
