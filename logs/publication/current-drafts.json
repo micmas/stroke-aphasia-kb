@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-20T04:46:04.095683+00:00",
+  "snapshot_at": "2026-11-20T10:49:25.138068+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -746,6 +746,676 @@
       "source_sha256": "be9e18168734c2d3e0db6321bad66e4abf84d933434c62b71a72542f0890f22e",
       "paper": "Bhogal2003",
       "candidate": "R008"
+    },
+    "drafts/regions/left_tool_concept_tract_cluster__Bi2015__R002.md": {
+      "source_sha256": "880639bae4b463ec1fc251b25d102e9212ddaf9c4b0dd5bcd54f3c97ee798926",
+      "paper": "Bi2015",
+      "candidate": "R002"
+    },
+    "drafts/regions/tool_use_concept_dissociation__Bi2015__R009.md": {
+      "source_sha256": "48b823fd3b85924f9a0aff3200dd9bbfd4b724aef45defdbecb511db6724353c",
+      "paper": "Bi2015",
+      "candidate": "R009"
+    },
+    "drafts/regions/tool_use_tracts__Bi2015__R010.md": {
+      "source_sha256": "e5a0a9b61e68fb8beea4c25f014037d6aa44a6d8a68a05d9bb06b1537dccc5ed",
+      "paper": "Bi2015",
+      "candidate": "R010"
+    },
+    "drafts/regions/lifg_lipl_tract__Bi2015__R011.md": {
+      "source_sha256": "1fe674492006a27098794abd7f4fce70bed3c19eac451309e1ec7c331bdd736e",
+      "paper": "Bi2015",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_insula_putamen_cluster__Bi2015__R012.md": {
+      "source_sha256": "fdeee0de56830c74d7b718057b96bf0267673b8327a62fdeb3151d0eac16ce98",
+      "paper": "Bi2015",
+      "candidate": "R012"
+    },
+    "drafts/regions/vfsm_tool_use_cluster__Bi2015__R013.md": {
+      "source_sha256": "5530e7530f20995f3329f95b7305de9ea1ba2b32341103c23a5973a47545ea5d",
+      "paper": "Bi2015",
+      "candidate": "R013"
+    },
+    "drafts/regions/tool_concept_vlsm_vfsm_cluster__Bi2015__R014.md": {
+      "source_sha256": "b24db7f53f052b4d0630f7cbd517454a15f9440dfff09f2704e5d13c15792a63",
+      "paper": "Bi2015",
+      "candidate": "R014"
+    },
+    "drafts/regions/atr_forceps_minor_cluster__Biesbroek2017__R017.md": {
+      "source_sha256": "93331671e517f4f19d43902868cfce872119a58faffa8daa57c7f15eef47acd4",
+      "paper": "Biesbroek2017",
+      "candidate": "R017"
+    },
+    "drafts/regions/atr_forceps_minor_slf_cluster__Biesbroek2017__R019.md": {
+      "source_sha256": "425a7d384d54163716c14d9f118d608efdd64ff41fec8b44c112de2a6d99b14b",
+      "paper": "Biesbroek2017",
+      "candidate": "R019"
+    },
+    "drafts/regions/forceps_minor_major_wmh__Biesbroek2017__R020.md": {
+      "source_sha256": "b55b14c2691bc9e4f5afa8f09c263bbb8aff89516f04730279055704bf9f43b5",
+      "paper": "Biesbroek2017",
+      "candidate": "R020"
+    },
+    "drafts/regions/wmh_atr_forceps_minor_volume__Biesbroek2017__R024.md": {
+      "source_sha256": "fa5be0ec05971ba376a68ee909fe562016abd23ab1431122b36200982868a370",
+      "paper": "Biesbroek2017",
+      "candidate": "R024"
+    },
+    "drafts/predictors/svm_multimodal_rehab_predictor__Billot2022__R001.md": {
+      "source_sha256": "32d95d0c506ac21d93e1ca86f52bcf782a1519f7f8247cf788c68b64c1612089",
+      "paper": "Billot2022",
+      "candidate": "R001"
+    },
+    "drafts/predictors/multimodal_svm_rehab_predictor__Billot2022__R002.md": {
+      "source_sha256": "c57c43e971d1079949aa41c30f8d1512a0aad060c6684935cda0643d8191c1ff",
+      "paper": "Billot2022",
+      "candidate": "R002"
+    },
+    "drafts/predictors/svm_optimal_rehab_predictor__Billot2022__R003.md": {
+      "source_sha256": "2cfe08f661e09aa9ad1dbeefbcc559a70fe4f697556183a2daba1b84f9b2d073",
+      "paper": "Billot2022",
+      "candidate": "R003"
+    },
+    "drafts/predictors/rs_fmri_connectivity_rf_model__Billot2022__R004.md": {
+      "source_sha256": "ff79ce847a7af5abee222b4b310484f9aec594130022b47aff3cf07bb13e77f8",
+      "paper": "Billot2022",
+      "candidate": "R004"
+    },
+    "drafts/predictors/rf_rehab_response_predictor__Billot2022__R005.md": {
+      "source_sha256": "d63f0b77358fac23544fe18e3fbf1ab111d93146376fae3b7c8ae33d2f29a5e4",
+      "paper": "Billot2022",
+      "candidate": "R005"
+    },
+    "drafts/predictors/svm_individual_feature_performance__Billot2022__R007.md": {
+      "source_sha256": "701d7148417117edca84378b9860ca8fcc212b001e24dd68f93699a6c82a2119",
+      "paper": "Billot2022",
+      "candidate": "R007"
+    },
+    "drafts/predictors/svm_vs_rf_treatment_response__Billot2022__R008.md": {
+      "source_sha256": "3ff08e9847eb58f08034248be19402ac0ce5ddcdde4b2132f4df2f8eb58021f7",
+      "paper": "Billot2022",
+      "candidate": "R008"
+    },
+    "drafts/predictors/rs_fmri_connectivity__Billot2022__R009.md": {
+      "source_sha256": "2fcdc782e64a76e1245aac29d2088f6735d452b1e72764e91b53c29e0d83bdcc",
+      "paper": "Billot2022",
+      "candidate": "R009"
+    },
+    "drafts/ingredients/sentence_type_complexity__Biondo2024__R001.md": {
+      "source_sha256": "dbac24a99efabd378910e9a220ded5a4c929016ca88d539f2c46499ebdcfed1f",
+      "paper": "Biondo2024",
+      "candidate": "R001"
+    },
+    "drafts/impairments/simple_sentence_comprehension__Biondo2024__R002.md": {
+      "source_sha256": "3a00f4dd4fc1f18904cdd987f892e22e0d37d9ec686b59e47fe16302fae8bd71",
+      "paper": "Biondo2024",
+      "candidate": "R002"
+    },
+    "drafts/impairments/passive_comprehension_accuracy__Biondo2024__R003.md": {
+      "source_sha256": "1516e411bb9b17365bc825c7ced3deab519439f6a17a6427edaead81f626dcb7",
+      "paper": "Biondo2024",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_mid_posterior_temporal_ipl_cluster__Biondo2024__R004.md": {
+      "source_sha256": "d19f1c922cc83d6f7191efd807027eaf3b6715d722aaa5387f4d9ac4e1088f94",
+      "paper": "Biondo2024",
+      "candidate": "R004"
+    },
+    "drafts/regions/inferior_temporal_lobe_simple_sentence_cluster__Biondo2024__R005.md": {
+      "source_sha256": "11de5f142ab97a31432c83ce3a40048018b4472eaf1d9ccfbe2a1d1ff0c5840e",
+      "paper": "Biondo2024",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_temporal_complex_sentence_cluster__Biondo2024__R006.md": {
+      "source_sha256": "f7c1252ffd73f2325e100c32c877fff234ef76d43bd183b8c2f9e5937d005547",
+      "paper": "Biondo2024",
+      "candidate": "R006"
+    },
+    "drafts/regions/angular_gyrus_passive_comprehension__Biondo2024__R007.md": {
+      "source_sha256": "1a0481579ac1d6b9c944a0986d91fbb880708fc9b046cd5066abf261bebe49c0",
+      "paper": "Biondo2024",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_sentence_comprehension_tract_disconnection__Biondo2024__R008.md": {
+      "source_sha256": "cdfbf34856985965ac5a84ff5fb0e65e7931b149a8dcfb8be7cf527f439a709d",
+      "paper": "Biondo2024",
+      "candidate": "R008"
+    },
+    "drafts/regions/left_slf_af_ccmdpoeror_disconnection__Biondo2024__R010.md": {
+      "source_sha256": "87003d9d698bbb311f84f0ca488e353a6cd08074f201e628b7fecf49ba25a32d",
+      "paper": "Biondo2024",
+      "candidate": "R010"
+    },
+    "drafts/predictors/passive_sentence_comprehension_disconnection__Biondo2024__R011.md": {
+      "source_sha256": "a33183718a11570744e7716b97798d4f04d26d4dccc124d64290724381b75339",
+      "paper": "Biondo2024",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_ifg_pars_orbitalis__Biondo2024__R013.md": {
+      "source_sha256": "46fefd45c9ef266a773f537b90a12e5d5f1a44af20b103e4a1654c532ae653f2",
+      "paper": "Biondo2024",
+      "candidate": "R013"
+    },
+    "drafts/regions/left_ifg_pars_triangularis__Biondo2024__R014.md": {
+      "source_sha256": "fd3b8f02abcd0cef8d63bfba1b0c19c29ad4905ad2608750cf2aa868edae4aac",
+      "paper": "Biondo2024",
+      "candidate": "R014"
+    },
+    "drafts/regions/left_ifg_pars_triangularis__Biondo2024__R015.md": {
+      "source_sha256": "bd2f0b59b1f80eb5d7641225965adbfff3c970d66ece5f25d8bd06f22d9ed171",
+      "paper": "Biondo2024",
+      "candidate": "R015"
+    },
+    "drafts/regions/right_ilf_fa_change__BlomSmink2020__R001.md": {
+      "source_sha256": "50548ea343c585a763a94062534d31a09e531a80b368eef0891fc9e614396234",
+      "paper": "BlomSmink2020",
+      "candidate": "R001"
+    },
+    "drafts/regions/other_language_tracts_fa_change__BlomSmink2020__R002.md": {
+      "source_sha256": "16e305a58bfac007dcd6e580fa6414cbf0239ed1cc95e534330b8efc13fd0a2d",
+      "paper": "BlomSmink2020",
+      "candidate": "R002"
+    },
+    "drafts/regions/ba_22_necrosis__Bonilha2014__R003.md": {
+      "source_sha256": "d1e88643ccf8905ce8d20ad6f6d6d6dd9911f589c6acf3e01806d1503f922dba",
+      "paper": "Bonilha2014",
+      "candidate": "R003"
+    },
+    "drafts/regions/ba_45_necrosis__Bonilha2014__R005.md": {
+      "source_sha256": "456efda62d72f63b481cfc4fa2ed56e288eec3cabfdc2b62990ad225156b13e8",
+      "paper": "Bonilha2014",
+      "candidate": "R005"
+    },
+    "drafts/predictors/overall_lesion_size__Bonilha2014__R007.md": {
+      "source_sha256": "e8868e44034e8f19f7bce02742066df761d5ae2b4e406fdb7d515730a34610e4",
+      "paper": "Bonilha2014",
+      "candidate": "R007"
+    },
+    "drafts/predictors/global_network_nsw__Bonilha2016__R002.md": {
+      "source_sha256": "725373c857dfa83ccbdfef96646b8341d8d310c3d166b94d3e1a4d4562e2b59f",
+      "paper": "Bonilha2016",
+      "candidate": "R002"
+    },
+    "drafts/predictors/nsw_left_temporal_bc_model__Bonilha2016__R003.md": {
+      "source_sha256": "422135e07c374889082ac7be67723dc0c988dcfe72b5b37bd30e07b9703ef735",
+      "paper": "Bonilha2016",
+      "candidate": "R003"
+    },
+    "drafts/regions/lesion_volume__Bonilha2016__R005.md": {
+      "source_sha256": "fd0158dd3188b531d8db0b7119e6aa3a4f0565c2c6520cdcf5ace28a8fbfcded",
+      "paper": "Bonilha2016",
+      "candidate": "R005"
+    },
+    "drafts/impairments/baseline_aphasia_severity__Bonilha2016__R006.md": {
+      "source_sha256": "0989ac0244e098e676d05f335cf1f45794c17313696d85969f8f13db9855d782",
+      "paper": "Bonilha2016",
+      "candidate": "R006"
+    },
+    "drafts/regions/right_hemisphere_nodal_bc__Bonilha2016__R010.md": {
+      "source_sha256": "a6275552a7ff7400ccdca16cd14942dd9318192daf62953badedf8912a019450",
+      "paper": "Bonilha2016",
+      "candidate": "R010"
+    },
+    "drafts/therapies/sfa_treatment__Boyle2004__R001.md": {
+      "source_sha256": "8112534d86b425066b270697b3787e260d951ed9182bc59a43b30e88c881966b",
+      "paper": "Boyle2004",
+      "candidate": "R001"
+    },
+    "drafts/therapies/sfa_treatment__Boyle2004__R003.md": {
+      "source_sha256": "210105c1ddd8de0334367192028b9c27154a62cfb176d880eb9323954d038474",
+      "paper": "Boyle2004",
+      "candidate": "R003"
+    },
+    "drafts/therapies/sfa_treatment__Boyle2004__R004.md": {
+      "source_sha256": "a3d4361a7677c200c2a0b643167218e214cdd78bdccb4ae9cb30b2c8df4e5754",
+      "paper": "Boyle2004",
+      "candidate": "R004"
+    },
+    "drafts/therapies/sfa_treatment_cius_p2__Boyle2004__R005.md": {
+      "source_sha256": "f35504149e1a27195ec1219255c72a9d23ac6012bf3a1737303f7c6b3443ff42",
+      "paper": "Boyle2004",
+      "candidate": "R005"
+    },
+    "drafts/therapies/sfa_treatment_discourse_efficiency__Boyle2004__R006.md": {
+      "source_sha256": "df41e4c9d6ff806d7861f9442b759ef3064a8eae74408336115f3de7218fdac5",
+      "paper": "Boyle2004",
+      "candidate": "R006"
+    },
+    "drafts/therapies/sfa_treatment_discourse_informativeness__Boyle2004__R007.md": {
+      "source_sha256": "e47e1f6a97e646eaa080a280eeee92e28ed4b0455d0b6f0784952ef8d5fe8aab",
+      "paper": "Boyle2004",
+      "candidate": "R007"
+    },
+    "drafts/therapies/sfa_treatment__Boyle2004__R008.md": {
+      "source_sha256": "fb59f88270347a0e50a0cf4bb1d006ae28b7be64379c477fb63e8a2cdf682049",
+      "paper": "Boyle2004",
+      "candidate": "R008"
+    },
+    "drafts/therapies/sfa_treatment_discourse_delays__Boyle2004__R009.md": {
+      "source_sha256": "a6f0cfe9a89de9a625c2f2f272d90a0f77a6781af812ceeabd18aac6a4248cc8",
+      "paper": "Boyle2004",
+      "candidate": "R009"
+    },
+    "drafts/therapies/sfa_treatment_discourse_behaviors_p2__Boyle2004__R010.md": {
+      "source_sha256": "e2795e6cbfb7e0ecb09f6fdd392c09e96b49162a08f5554a59c1baf7c8c4f4e7",
+      "paper": "Boyle2004",
+      "candidate": "R010"
+    },
+    "drafts/therapies/sfa_exemplar_count__Boyle2004__R011.md": {
+      "source_sha256": "b7399d32fcf315c2375173c79a70f8b37a75590e6f43c4b9c22df712619f5588",
+      "paper": "Boyle2004",
+      "candidate": "R011"
+    },
+    "drafts/predictors/semantic_category_access_generalization__Boyle2004__R012.md": {
+      "source_sha256": "e595c8c383a152883a90132d6a7bd9c7a454e065342738e66d95cf91338ed900",
+      "paper": "Boyle2004",
+      "candidate": "R012"
+    },
+    "drafts/predictors/slt_frequency_age_overall_language__Brady2022__R001.md": {
+      "source_sha256": "cecd8017004104cc1a8a185a4473660709a38cd327ecff75ee5f32285226a5f1",
+      "paper": "Brady2022",
+      "candidate": "R001"
+    },
+    "drafts/predictors/slt_frequency_auditory_comprehension__Brady2022__R002.md": {
+      "source_sha256": "625fadbb6d24afc6ce5cca89ba1b59893c4313f45c3a480590cc3b3b5d735309",
+      "paper": "Brady2022",
+      "candidate": "R002"
+    },
+    "drafts/predictors/slt_frequency_functional_communication__Brady2022__R003.md": {
+      "source_sha256": "1697cbfe9bd08125550b26de93cb65b2d3c2d33a92e708af640be06115dc5890",
+      "paper": "Brady2022",
+      "candidate": "R003"
+    },
+    "drafts/predictors/slt_intensity_working_age__Brady2022__R004.md": {
+      "source_sha256": "cd70b85b090396138a9e0ae5730d4e07cd1659a27edf8c782a10eafb2c5bcf17",
+      "paper": "Brady2022",
+      "candidate": "R004"
+    },
+    "drafts/predictors/slt_intensity_auditory_comprehension__Brady2022__R005.md": {
+      "source_sha256": "d6c2d4f4495306624a33bd95c13543a16a2ef69e10687abebf0194d9e0208fbb",
+      "paper": "Brady2022",
+      "candidate": "R005"
+    },
+    "drafts/predictors/slt_intensity_functional_communication__Brady2022__R006.md": {
+      "source_sha256": "c9610dfcaf0c2242d4ef116e9e68de5dc3eb6876cff6923b2cae39d774411275",
+      "paper": "Brady2022",
+      "candidate": "R006"
+    },
+    "drafts/predictors/slt_dosage_auditory_comprehension__Brady2022__R008.md": {
+      "source_sha256": "4af0959487aa3d9bcb064d7081549c5b8e7626c7d7ddbfebdf32534e5b68657a",
+      "paper": "Brady2022",
+      "candidate": "R008"
+    },
+    "drafts/predictors/slt_dosage_older_functional_communication__Brady2022__R009.md": {
+      "source_sha256": "28faa8ec3de20dc66b635aaa6afef71053114043b631447bcc76337ef7f77d03",
+      "paper": "Brady2022",
+      "candidate": "R009"
+    },
+    "drafts/predictors/slt_frequency_chronicity__Brady2022__R010.md": {
+      "source_sha256": "eb46b038569218290518163629265f3bf8b25f85ee6c089753e31439ebc269a3",
+      "paper": "Brady2022",
+      "candidate": "R010"
+    },
+    "drafts/predictors/slt_frequency_auditory_comprehension__Brady2022__R011.md": {
+      "source_sha256": "fdb1d3926054a2d43a139686c4500599561adb52350d12df19b6e16e88e8f566",
+      "paper": "Brady2022",
+      "candidate": "R011"
+    },
+    "drafts/predictors/slt_frequency_functional_communication__Brady2022__R012.md": {
+      "source_sha256": "e207f4ee63da074e04bd9d0487beeabe8f45807f6f418b0322c7fe4b25c7fbd3",
+      "paper": "Brady2022",
+      "candidate": "R012"
+    },
+    "drafts/predictors/slt_intensity_overall_language__Brady2022__R013.md": {
+      "source_sha256": "8c896270c4a9c3ac94bb1171d7647989210d15a502f813379fea2f9a2dfe86e6",
+      "paper": "Brady2022",
+      "candidate": "R013"
+    },
+    "drafts/predictors/slt_intensity_auditory_comprehension__Brady2022__R014.md": {
+      "source_sha256": "8ad963227e300345e67f5f4dbad4484d89d68d3c2093dcb5141e8376663aed1e",
+      "paper": "Brady2022",
+      "candidate": "R014"
+    },
+    "drafts/predictors/slt_intensity_functional_communication__Brady2022__R015.md": {
+      "source_sha256": "8e4fde9c88d26ddc8116ab491d75de5b56321d577b1a8dad78f5233b444aac37",
+      "paper": "Brady2022",
+      "candidate": "R015"
+    },
+    "drafts/predictors/slt_dosage_overall_language__Brady2022__R016.md": {
+      "source_sha256": "e7b6e4785ba7ca32bd5e2f754d92e5449118d55f02026846420293a6e361339a",
+      "paper": "Brady2022",
+      "candidate": "R016"
+    },
+    "drafts/predictors/slt_dosage_auditory_comprehension__Brady2022__R017.md": {
+      "source_sha256": "73268a333add5679eb46c69198f28e5d7eeb3dac168db47cf0887f381e7f5756",
+      "paper": "Brady2022",
+      "candidate": "R017"
+    },
+    "drafts/predictors/slt_dosage_functional_communication__Brady2022__R018.md": {
+      "source_sha256": "0147597da73b42099cf4c9a9ec4250ec58088308c54430338837d2d94f235588",
+      "paper": "Brady2022",
+      "candidate": "R018"
+    },
+    "drafts/predictors/slt_frequency_moderate_severe_aphasia__Brady2022__R019.md": {
+      "source_sha256": "48be8022419492ce2438ba78444eda3525e32cdcea523568bde88262a0f54fda",
+      "paper": "Brady2022",
+      "candidate": "R019"
+    },
+    "drafts/predictors/slt_frequency_moderate_severe_aphasia__Brady2022__R020.md": {
+      "source_sha256": "d848d12f0d0c2e9c02a0f9a3947f5672bfd98a9b0d9746f3808ffcf591d8f6f7",
+      "paper": "Brady2022",
+      "candidate": "R020"
+    },
+    "drafts/predictors/slt_frequency_moderate_severe_aphasia__Brady2022__R021.md": {
+      "source_sha256": "e15cb11ac94b00772d14ffff871f50abe7ee134ab9416320ccd38630455ee3d1",
+      "paper": "Brady2022",
+      "candidate": "R021"
+    },
+    "drafts/predictors/slt_intensity_overall_language__Brady2022__R022.md": {
+      "source_sha256": "657c5f51fc8f7f214d91e009060362a44f715e5c7187b4573e57b1d0e65bba0e",
+      "paper": "Brady2022",
+      "candidate": "R022"
+    },
+    "drafts/predictors/slt_intensity_moderate_severe__Brady2022__R023.md": {
+      "source_sha256": "00713b520593b8b7324d838bf6000770c200e2208a009faa2e82f40c94b41864",
+      "paper": "Brady2022",
+      "candidate": "R023"
+    },
+    "drafts/predictors/slt_intensity_mild_moderate_aphasia__Brady2022__R024.md": {
+      "source_sha256": "2f59dd5daae36fe4f158fff4daf1451f1cf2f944a5414c96bbc360ac05d955f3",
+      "paper": "Brady2022",
+      "candidate": "R024"
+    },
+    "drafts/predictors/slt_dosage_overall_language__Brady2022__R025.md": {
+      "source_sha256": "f252b03dc2a5c85de56420310e302a2c3ab79675a5691896d6f7bc7a86c8cab4",
+      "paper": "Brady2022",
+      "candidate": "R025"
+    },
+    "drafts/predictors/slt_dosage_auditory_comprehension__Brady2022__R026.md": {
+      "source_sha256": "93025d571262890fd9c24b67153e5fb7c50d56321c604012489b59b7ade78496",
+      "paper": "Brady2022",
+      "candidate": "R026"
+    },
+    "drafts/predictors/slt_dosage_functional_communication__Brady2022__R027.md": {
+      "source_sha256": "562ea1f6e852021e51d10cfe8cf9ac4488c6496b4a1a36aa383556d595c9742c",
+      "paper": "Brady2022",
+      "candidate": "R027"
+    },
+    "drafts/predictors/slt_frequency_sex__Brady2022__R028.md": {
+      "source_sha256": "01f5ff27798fd7a2c75dc91e4787ca0a7456af6d68db9d08f5ccd247125fc867",
+      "paper": "Brady2022",
+      "candidate": "R028"
+    },
+    "drafts/predictors/slt_frequency_auditory_comprehension_sex__Brady2022__R029.md": {
+      "source_sha256": "0ee418f5bb643caae190a0e20cdcac7f406b447d25ecdca07e36e7849f232648",
+      "paper": "Brady2022",
+      "candidate": "R029"
+    },
+    "drafts/predictors/slt_frequency_male__Brady2022__R030.md": {
+      "source_sha256": "4ebafc11fafcc7b63e00cbac9b003b39fa7624a3f5ae5e43a2ca627e4b5c101b",
+      "paper": "Brady2022",
+      "candidate": "R030"
+    },
+    "drafts/predictors/slt_intensity_sex_interaction__Brady2022__R031.md": {
+      "source_sha256": "28da8ecfb798e87973bbaa4e7278058c6319ce1eb02ca7611421178410382b0d",
+      "paper": "Brady2022",
+      "candidate": "R031"
+    },
+    "drafts/predictors/slt_intensity_auditory_comprehension__Brady2022__R032.md": {
+      "source_sha256": "a236566f841a6fe71ae6b6e5826b837d5715ba54afdc11d4c53f845a6973d5f1",
+      "paper": "Brady2022",
+      "candidate": "R032"
+    },
+    "drafts/predictors/slt_intensity_functional_communication_sex__Brady2022__R033.md": {
+      "source_sha256": "34f421b47f6e5730e9e5849b9b516a866722e89bd840bcaf15798ae9726287d9",
+      "paper": "Brady2022",
+      "candidate": "R033"
+    },
+    "drafts/predictors/slt_dosage_sex__Brady2022__R034.md": {
+      "source_sha256": "989f99b7dc3e03c8bf827fe7db7d98b3e0867388f72bc02e513ab4ef76591af2",
+      "paper": "Brady2022",
+      "candidate": "R034"
+    },
+    "drafts/predictors/slt_dosage_auditory_comprehension__Brady2022__R035.md": {
+      "source_sha256": "703284d72ad8a54baca8ccf1c246908bc03c4ccce94abf5b3a6c0140c11aa553",
+      "paper": "Brady2022",
+      "candidate": "R035"
+    },
+    "drafts/predictors/slt_dosage_functional_communication__Brady2022__R036.md": {
+      "source_sha256": "0d2230cf07331988d1a6bf1a1ce939f69994a3c5dd3751715b3a11e9d6eb5774",
+      "paper": "Brady2022",
+      "candidate": "R036"
+    },
+    "drafts/predictors/slt_dosage_20_50h__Brady2022Dosage__R001.md": {
+      "source_sha256": "7a0aaf236147b40ee42d2306616e7ea8e19ec1b220048ccc7c06aaabf0cfbce4",
+      "paper": "Brady2022Dosage",
+      "candidate": "R001"
+    },
+    "drafts/regions/slt_dosage_14_20h__Brady2022Dosage__R002.md": {
+      "source_sha256": "aacb92931e8d71fb278c802b064c4d7dc7c3b46c4e13466f5c1a9d2570570fb9",
+      "paper": "Brady2022Dosage",
+      "candidate": "R002"
+    },
+    "drafts/predictors/slt_dosage_20_50h__Brady2022Dosage__R003.md": {
+      "source_sha256": "8f902e1acfa7dc340d40c9a312b9de6da3b40467fb880b0e6229dcf0de9e9019",
+      "paper": "Brady2022Dosage",
+      "candidate": "R003"
+    },
+    "drafts/predictors/slt_dosage_50_plus_hours__Brady2022Dosage__R004.md": {
+      "source_sha256": "db5abac737f41de5c76ab00a1382f61e1cd67f8ae3149cd53c2453d5d7021b6e",
+      "paper": "Brady2022Dosage",
+      "candidate": "R004"
+    },
+    "drafts/predictors/slt_dosage_low__Brady2022Dosage__R005.md": {
+      "source_sha256": "4e6a1a24afe1a5aa562ade8129945a209fab95218cf5cfe940fc71345bcc6a58",
+      "paper": "Brady2022Dosage",
+      "candidate": "R005"
+    },
+    "drafts/predictors/slt_dosage_low__Brady2022Dosage__R006.md": {
+      "source_sha256": "2ba701bf81a390c9b6dca4896f4fa4eb8767406a13c6499d9c4655afa09f99dc",
+      "paper": "Brady2022Dosage",
+      "candidate": "R006"
+    },
+    "drafts/predictors/slt_intensity_low__Brady2022Dosage__R007.md": {
+      "source_sha256": "842108dc71165284816a78b14404f4dfe0e618d55b041d0ae7f60ed429fd801d",
+      "paper": "Brady2022Dosage",
+      "candidate": "R007"
+    },
+    "drafts/predictors/slt_intensity_overall_language__Brady2022Dosage__R008.md": {
+      "source_sha256": "4b543807b63ed1380a9bf6ca832eaf365b5ef89dad47cbaeef252a8d12b115e5",
+      "paper": "Brady2022Dosage",
+      "candidate": "R008"
+    },
+    "drafts/predictors/slt_intensity_low__Brady2022Dosage__R009.md": {
+      "source_sha256": "df2a10e2766ca97a45c60fb4d3913125ee8a2329601123a7367cd491bd604705",
+      "paper": "Brady2022Dosage",
+      "candidate": "R009"
+    },
+    "drafts/predictors/slt_intensity_functional_communication__Brady2022Dosage__R010.md": {
+      "source_sha256": "2631593e787672def0760cb3f6aa3be86ba261a9ad5ed5a7776f9d4f87f91952",
+      "paper": "Brady2022Dosage",
+      "candidate": "R010"
+    },
+    "drafts/ingredients/slt_intensity_9plus_weekly__Brady2022Dosage__R011.md": {
+      "source_sha256": "2c608d634a0d92cc9cc40cbed2ce420fd63eeb0f1f1363fce7695371fbca7e7c",
+      "paper": "Brady2022Dosage",
+      "candidate": "R011"
+    },
+    "drafts/predictors/slt_intensity_auditory_comprehension__Brady2022Dosage__R012.md": {
+      "source_sha256": "42a15c59f1f459cd750e5dac01f9a6fd62e688cf548da84664c3503bd347a391",
+      "paper": "Brady2022Dosage",
+      "candidate": "R012"
+    },
+    "drafts/therapies/slt_intensity_auditory_comprehension__Brady2022Dosage__R013.md": {
+      "source_sha256": "dd423af4431c06d94d2529d43ffe2a4cbe9c4392ff991f9ff6916cfa0caf8072",
+      "paper": "Brady2022Dosage",
+      "candidate": "R013"
+    },
+    "drafts/regions/slt_frequency_5_days_week__Brady2022Dosage__R014.md": {
+      "source_sha256": "7db1735d807b4f2eebec2798b85cb36d593e81b2d900d941ee547e7eeeb185ce",
+      "paper": "Brady2022Dosage",
+      "candidate": "R014"
+    },
+    "drafts/predictors/slt_frequency_overall_language__Brady2022Dosage__R015.md": {
+      "source_sha256": "0661563191eec7bdd40c54da726a8257678b1c4e929bcfc0a32957445890c86f",
+      "paper": "Brady2022Dosage",
+      "candidate": "R015"
+    },
+    "drafts/predictors/slt_frequency_functional_communication__Brady2022Dosage__R016.md": {
+      "source_sha256": "bc64103177ecc83eb8aa19858ea2c6e9469972986296b6d9e46be31ea6f204a3",
+      "paper": "Brady2022Dosage",
+      "candidate": "R016"
+    },
+    "drafts/regions/slt_frequency_5plus_days__Brady2022Dosage__R017.md": {
+      "source_sha256": "83692dd40b3206184b79159aeea6a14ec8f08b96056759011d302814f9396849",
+      "paper": "Brady2022Dosage",
+      "candidate": "R017"
+    },
+    "drafts/predictors/slt_frequency_auditory_comprehension__Brady2022Dosage__R018.md": {
+      "source_sha256": "36254214dc77102147fac93f86a0c7983b77a30e3a83ffc9a1e37860369c0a99",
+      "paper": "Brady2022Dosage",
+      "candidate": "R018"
+    },
+    "drafts/therapies/mixed_expressive_receptive_approach__Brady2022Dosage__R019.md": {
+      "source_sha256": "cb83e4d72a20f834eb09caa2cde7d4fccd976f9ff3daa3688195f9d8a13b5f67",
+      "paper": "Brady2022Dosage",
+      "candidate": "R019"
+    },
+    "drafts/therapies/word_finding_approach__Brady2022Dosage__R020.md": {
+      "source_sha256": "e0c0a88e89536c823d98d404103258d27bf4f2b35e6553108bb346bfb36984b2",
+      "paper": "Brady2022Dosage",
+      "candidate": "R020"
+    },
+    "drafts/therapies/semantic_phonological_recovery_slt__Brady2022Dosage__R021.md": {
+      "source_sha256": "6c313631e2e28f4535ab625a5f9aed873ec8b401886623e8d30eca114d1e8629",
+      "paper": "Brady2022Dosage",
+      "candidate": "R021"
+    },
+    "drafts/therapies/functional_pragmatic_slt__Brady2022Dosage__R022.md": {
+      "source_sha256": "c9b5dee4f70bdd1d607ceeab2bb15e79a92408f85d0198969f03e053bde1f127",
+      "paper": "Brady2022Dosage",
+      "candidate": "R022"
+    },
+    "drafts/ingredients/prescribed_home_practice__Brady2022Dosage__R023.md": {
+      "source_sha256": "25b50adf0f1d8a8d7cba33761289679fab9b45281fbf6de67e72428d1ee2c6c9",
+      "paper": "Brady2022Dosage",
+      "candidate": "R023"
+    },
+    "drafts/ingredients/home_practice_absence__Brady2022Dosage__R024.md": {
+      "source_sha256": "e7d1a2b0c0ccadeb219a9245b4c012b4a2633c07c2d22b6bc0ffeba5ab1ae3fa",
+      "paper": "Brady2022Dosage",
+      "candidate": "R024"
+    },
+    "drafts/therapies/functionally_tailored_slt__Brady2022Dosage__R025.md": {
+      "source_sha256": "eebc056c1419b3ae7b57f904b288f6208a0fd422e0ffdeeeffd64a4cc88246d3",
+      "paper": "Brady2022Dosage",
+      "candidate": "R025"
+    },
+    "drafts/therapies/functionally_tailored_slt__Brady2022Dosage__R026.md": {
+      "source_sha256": "53bd611cdf4cd875691e655cbdfc2c46b85182c9928cf317be39d98bd5f02369",
+      "paper": "Brady2022Dosage",
+      "candidate": "R026"
+    },
+    "drafts/therapies/slt_tailoring_difficulty__Brady2022Dosage__R027.md": {
+      "source_sha256": "e408deb73ddfecc27e71f3bb37e1beb9bdfb13bdceb7a31221daf792d08fd74b",
+      "paper": "Brady2022Dosage",
+      "candidate": "R027"
+    },
+    "drafts/predictors/slt_delivery_setting_provider__Brady2022Dosage__R028.md": {
+      "source_sha256": "9e52aebe02910ee1b1d5c46a10032acbcc255a3128ed257f0e83fe5b88152cfe",
+      "paper": "Brady2022Dosage",
+      "candidate": "R028"
+    },
+    "drafts/regions/left_uf_fa__Breier2008__R003.md": {
+      "source_sha256": "f39a7fa0cfb0fd3bd79e726604faee0768f7b520f6e47d8997b742c8fa91e2c5",
+      "paper": "Breier2008",
+      "candidate": "R003"
+    },
+    "drafts/predictors/left_af_fa__Breier2008__R004.md": {
+      "source_sha256": "dc7a8802e37324d71c7bb99b4c261c26055d1a67f90d192c03b20b834588551c",
+      "paper": "Breier2008",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_af_fa__Breier2008__R005.md": {
+      "source_sha256": "e75ac5d2881eb1aa72d2067ebd81c53c1ca17ac0fa9b4b3c3d3e8742f88fdd30",
+      "paper": "Breier2008",
+      "candidate": "R005"
+    },
+    "drafts/predictors/left_slf_fa__Breier2008__R006.md": {
+      "source_sha256": "fd2be7360673b93e05720cb67fdcfb26c466a305bff7bdb9fce52b8d1e84e941",
+      "paper": "Breier2008",
+      "candidate": "R006"
+    },
+    "drafts/regions/left_af_fa__Breier2008__R008.md": {
+      "source_sha256": "e23d7f92a7124b73cfbf0d4ef21e9bcbdd921863111061ede4fe1920aede4d11",
+      "paper": "Breier2008",
+      "candidate": "R008"
+    },
+    "drafts/predictors/right_hemisphere_homotopic_fa__Breier2008__R009.md": {
+      "source_sha256": "927087ce70cfd1e69d664b1a0330d81a9a12cef9d8851147780b1e53197c9b48",
+      "paper": "Breier2008",
+      "candidate": "R009"
+    },
+    "drafts/regions/left_hemisphere_fa_comparison__Breier2008__R011.md": {
+      "source_sha256": "a192d2dc24bf29106d1f4827ce2858fbfc030a113003fa513ad5cb03dfc6b2b9",
+      "paper": "Breier2008",
+      "candidate": "R011"
+    },
+    "drafts/predictors/acute_stroke_action_naming_lasso__Breining2022__R005.md": {
+      "source_sha256": "9e4f5dcbf1535ea944cfe01476e605a277bb4b97dfb6553ac87b06929b010a25",
+      "paper": "Breining2022",
+      "candidate": "R005"
+    },
+    "drafts/regions/ppa_vs_stroke_naming_substrates__Breining2022__R006.md": {
+      "source_sha256": "332bb582476f3ca7d9849c80d9659ff01be7081bfc3c483d1e61078fec7c9b6c",
+      "paper": "Breining2022",
+      "candidate": "R006"
+    },
+    "drafts/therapies/intensive_speech_language_therapy_3_weeks__Breitenstein2017__R001.md": {
+      "source_sha256": "6f47165a3c26b63395b4a19692051b876a7d62b6c4994402338a3c452b874e87",
+      "paper": "Breitenstein2017",
+      "candidate": "R001"
+    },
+    "drafts/therapies/treatment_deferral_3_weeks__Breitenstein2017__R002.md": {
+      "source_sha256": "302eed29309cb6207ebd22606d1c809b856dfa39cbc92a66210c64fdac510461",
+      "paper": "Breitenstein2017",
+      "candidate": "R002"
+    },
+    "drafts/therapies/extended_intensive_slt__Breitenstein2017__R005.md": {
+      "source_sha256": "c656c487286765376c10ad4f66304cf8cb069cec196b81874bad62dcd3629827",
+      "paper": "Breitenstein2017",
+      "candidate": "R005"
+    },
+    "drafts/therapies/intensive_speech_language_therapy_3_weeks__Breitenstein2017__R006.md": {
+      "source_sha256": "18e58afe86ac9b5ba80c6f6859c43c487782cf34b66b0ccad9da5a2d93a07c0f",
+      "paper": "Breitenstein2017",
+      "candidate": "R006"
+    },
+    "drafts/therapies/intensive_slt_3_weeks__Breitenstein2017__R007.md": {
+      "source_sha256": "bc32e2b719062a22bd42772d154b5d8ab329dae5b795ef5654aebaabe5f49034",
+      "paper": "Breitenstein2017",
+      "candidate": "R007"
+    },
+    "drafts/predictors/baseline_stroke_severity__Breitenstein2017__R009.md": {
+      "source_sha256": "80dce3dc2223a1134cd3cbb330066a17af25eccb2cd718f747ce792febcd458a",
+      "paper": "Breitenstein2017",
+      "candidate": "R009"
+    },
+    "drafts/therapies/intensive_speech_language_therapy_replication__Breitenstein2017__R011.md": {
+      "source_sha256": "f6f97270825108eabd7013d6745f63237ec5e5dd4fbcf89f6d14bcffc21fc634",
+      "paper": "Breitenstein2017",
+      "candidate": "R011"
+    },
+    "drafts/therapies/low_intensity_slt_deferral__Breitenstein2017__R012.md": {
+      "source_sha256": "497272edfb10087e1bf44a968e5d2db800ee4b26da50cb169c2b307254e6d139",
+      "paper": "Breitenstein2017",
+      "candidate": "R012"
+    },
+    "drafts/therapies/low_intensity_slt_followup__Breitenstein2017__R013.md": {
+      "source_sha256": "45d5d7f8ac320882627654ef9ad35b231c7343bdadc62eb7ed6088e81caa26fc",
+      "paper": "Breitenstein2017",
+      "candidate": "R013"
     }
   }
 }
