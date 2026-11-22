@@ -561,11 +561,14 @@
   },
   "@Brookshire2014": {
    "annotated": "pdf/C0103_Brookshire2014_annotated.pdf",
-   "bytes": 366920,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "4f7c77eaad5d2b1abd1298137f7f8916ffbe01716d4186d1e55318d9db81b474",
+   "bytes": 406406,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-22T23:07:48.352291+00:00",
    "label": "no open copy known",
    "public": false,
-   "sha256": "2cb13a7ec2326adad7e772095bc2069d09a6976b40be245e565802369dd5e468"
+   "sha256": "adfb52f3ed549d6be97a560d48f4a81b615c116760c43389b88db93d2e966a9c"
   },
   "@Brownsett2014": {
    "annotated": "cc/C0152_Brownsett2014_annotated.pdf",

@@ -8633,10 +8633,10 @@
     "kb": {
      "approved_findings": 0,
      "draft_rejected": 0,
-     "drafts": 0,
+     "drafts": 4,
      "entries": [],
      "pdf": false,
-     "state": "awaiting_extraction",
+     "state": "in_review",
      "tag": "seed"
     },
     "key": "@Brookshire2014",
@@ -17599,7 +17599,7 @@
    "regions": 20,
    "therapies": 0
   },
-  "exportedOn": "2026-11-20",
+  "exportedOn": "2026-11-23",
   "findings": 0,
   "findingsReviewed": 0,
   "papers": 0,

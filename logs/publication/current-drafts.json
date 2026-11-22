@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-20T10:49:25.138068+00:00",
+  "snapshot_at": "2026-11-22T23:07:48.352291+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -1416,6 +1416,26 @@
       "source_sha256": "45d5d7f8ac320882627654ef9ad35b231c7343bdadc62eb7ed6088e81caa26fc",
       "paper": "Breitenstein2017",
       "candidate": "R013"
+    },
+    "drafts/impairments/sublexical_alexia__Brookshire2014__R004.md": {
+      "source_sha256": "f062db6a72807ef639aaaabd38e65bce2b90350497c77a213295e7f88a64ddbf",
+      "paper": "Brookshire2014",
+      "candidate": "R004"
+    },
+    "drafts/predictors/wab_aq_reading_performance__Brookshire2014__R006.md": {
+      "source_sha256": "4147d6827f0ab2f4adf143cc12f965aa695c9d5a054207cd20c3e2fe01c21fe5",
+      "paper": "Brookshire2014",
+      "candidate": "R006"
+    },
+    "drafts/predictors/wab_aq_lexical_reading_predictor__Brookshire2014__R007.md": {
+      "source_sha256": "2f7f057d01a2981abc12de679e63fe88b2cd9bf97f6b1d2247033d8141f9e5f7",
+      "paper": "Brookshire2014",
+      "candidate": "R007"
+    },
+    "drafts/predictors/wab_aq_sublexical_reading__Brookshire2014__R008.md": {
+      "source_sha256": "11ec743bba8e9d321c3457165374dfbdd1f547287fdb8f1c6e035dfe82260d42",
+      "paper": "Brookshire2014",
+      "candidate": "R008"
     }
   }
 }
