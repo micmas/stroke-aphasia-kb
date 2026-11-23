@@ -11,8 +11,8 @@ run_worker_first = true
 GITHUB_BRANCH = "main"
 SCREENING_CHAPTER = "dysphagia"
 ACCESS_TEAM_DOMAIN = "sparkling-bird-a757"
-# Set to the dedicated Dysphagia Access application's audience before enabling sign-in.
-ACCESS_AUD = ""
+# Dedicated Dysphagia Access application e08897e1-8b7c-4699-a0e2-b3975b9e981d.
+ACCESS_AUD = "4531402a8aaa6e843eef716ef92e8eaf5f24dd65982b273dec1771444b18690a"
 [[r2_buckets]]
 binding = "PRIVATE"
 bucket_name = "dysphagia-kb-private"
