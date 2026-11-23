@@ -1,3 +1,4 @@
+import { groupedMatrix } from './evidence-groups.js';
 // Stroke aphasia KB explorer — views and routing.
 //
 // A static page: it loads export/stroke-aphasia-kb.json (approved findings), or
@@ -538,7 +539,8 @@ function browse(index, route) {
       many && shown.length < values.length ? h('p', { class: 'small muted', text: `${values.length - shown.length} more — narrow with the search box` }) : null);
   });
 
-  const active = Object.entries(filters).flatMap(([k, vs]) => vs.map((v) => h('button', { type: 'button', onclick: () => toggle(k, v), text: `${FACETS.find((f) => f.key === k)?.label || k}: ${FACETS.find((f) => f.key === k)?.link ? index.name(v) : (FACETS.find((f) => f.key === k)?.labels?.[v] || v)} ×` })));
+  const active = Object.entries(filters).filter(([k]) => k !== 'key').flatMap(([k, vs]) => vs.map((v) => h('button', { type: 'button', onclick: () => toggle(k, v), text: `${FACETS.find((f) => f.key === k)?.label || k}: ${FACETS.find((f) => f.key === k)?.link ? index.name(v) : (FACETS.find((f) => f.key === k)?.labels?.[v] || v)} ×` })));
+  if (filters.key?.length) active.push(h('button', { type: 'button', onclick: () => go({ ...filters, key: [] }), text: `Matrix selection: ${filters.key.length} findings ×` }));
   if (query) active.push(h('button', { type: 'button', onclick: () => go(filters, { q: '' }), text: `search: ${query} ×` }));
   if (active.length) active.push(h('button', { type: 'button', onclick: () => { location.hash = '#/findings'; }, text: 'clear all' }));
 
@@ -566,24 +568,28 @@ function matrix(index, route) {
   const min = Number(route.params.get('min') || 1);
   const onlyEntries = route.params.get('entries') === '1';
   const find = (route.params.get('find') || '').toLowerCase();
-  const m = matrixOf(index, kind);
-  const keep = (id) => (!onlyEntries || index.hasEntry(id)) && (!find || index.name(id).toLowerCase().includes(find) || id.toLowerCase().includes(find));
+  const level = ['broad', 'specific', 'paper'].includes(route.params.get('level')) ? route.params.get('level') : 'broad';
+  const grouped = level !== 'paper';
+  const m = grouped ? groupedMatrix(index, kind, level) : matrixOf(index, kind);
+  const name = grouped ? m.name : index.name;
+  const rowLink = r => grouped ? href('/findings', { key: [...new Set(m.cols.flatMap(c => m.cell(r, c).map(f => f.key)))] }) : entryHref(r);
+  const colLink = c => grouped ? href('/findings', { key: [...new Set(m.rows.flatMap(r => m.cell(r, c).map(f => f.key)))] }) : entryHref(c);
+  const keep = (id) => (grouped || !onlyEntries || index.hasEntry(id)) && (!find || name(id).toLowerCase().includes(find) || id.toLowerCase().includes(find));
   const rows = m.rows.filter((r) => keep(r) && m.rowTotals.get(r) >= min);
   const cols = m.cols.filter((c) => keep(c) && m.colTotals.get(c) >= min);
   const kinds = { 'region-impairment': ['Region', 'Impairment'], 'therapy-impairment': ['Therapy', 'Impairment'], 'predictor-outcome': ['Predictor', 'Outcome'], 'region-region': ['Region', 'Region (network / tract)'] };
   const [rowLabel, colLabel] = kinds[kind] || ['Entry', 'Target'];
   const cls = (n) => (n >= 8 ? 'c6' : n >= 5 ? 'c5' : n >= 4 ? 'c4' : n === 3 ? 'c3' : n === 2 ? 'c2' : n === 1 ? 'c1' : '');
-  const go = (params) => { location.hash = href('/matrix', { kind, min, entries: onlyEntries ? '1' : '', find, ...params }); };
+  const go = (params) => { location.hash = href('/matrix', { kind, min, level, entries: onlyEntries ? '1' : '', find, ...params }); };
 
-  const filtersFor = (r, c) => (kind === 'predictor-outcome' ? { source_id: [r], target: [c] }
-    : { source_id: [r, c], target: [r, c] });
+  const filtersFor = (r, c) => ({ key: m.cell(r, c).map(f => f.key) });
   const tooltip = h('div', { class: 'tooltip hidden', role: 'tooltip' });
   const showTip = (e, r, c) => {
     const cell = m.cell(r, c);
     const prov = provenanceCounts(cell);
     const rel = {}; const str = {};
     for (const f of cell) { rel[f.relationship] = (rel[f.relationship] || 0) + 1; str[f.strength] = (str[f.strength] || 0) + 1; }
-    tooltip.replaceChildren(h('b', { text: `${index.name(r)} × ${index.name(c)}` }), h('br'),
+    tooltip.replaceChildren(h('b', { text: `${name(r)} × ${name(c)}` }), h('br'),
       `${plural(cell.length, 'finding')} from ${plural(new Set(cell.map((f) => f.citation)).size, 'paper')}`, h('br'),
       `strength: ${Object.entries(str).map(([k, n]) => `${k === 'not_assessed' ? 'evidence strength not yet assessed' : k} ${n}`).join(', ')}`, h('br'),
       `relationship: ${Object.entries(rel).map(([k, n]) => `${k} ${n}`).join(', ')}`, h('br'),
@@ -596,21 +602,23 @@ function matrix(index, route) {
 
   const table = h('table', { class: 'matrix' },
     h('thead', {}, h('tr', {}, h('th', { class: 'corner', scope: 'col', text: `${rowLabel} ↓ · ${colLabel} →` }),
-      cols.map((c) => h('th', { scope: 'col', class: index.hasEntry(c) ? '' : 'noentry' }, h('a', { class: 'rot', href: entryHref(c), title: `${index.name(c)} (${m.colTotals.get(c)})`, text: index.name(c) }))),
+      cols.map((c) => h('th', { scope: 'col', class: grouped || index.hasEntry(c) ? '' : 'noentry' }, h('a', { class: 'rot', href: colLink(c), title: `${name(c)} (${m.colTotals.get(c)})`, text: name(c) }))),
       h('th', { scope: 'col', class: 'total' }, h('span', { class: 'rot', text: 'total' })))),
     h('tbody', {}, rows.map((r) => h('tr', {},
-      h('th', { scope: 'row', class: index.hasEntry(r) ? '' : 'noentry' }, h('a', { href: entryHref(r), title: index.hasEntry(r) ? r : `${r} — no entry of its own yet`, text: index.name(r) })),
-      cols.map((c) => { const n = m.cell(r, c).length; return h('td', { class: cls(n) }, n ? h('a', { href: href('/findings', filtersFor(r, c)), 'aria-label': `${n} findings for ${index.name(r)} and ${index.name(c)}`, onmousemove: (e) => showTip(e, r, c), onmouseleave: hideTip, onfocus: (e) => showTip({ clientX: e.target.getBoundingClientRect().left, clientY: e.target.getBoundingClientRect().top }, r, c), onblur: hideTip, text: String(n) }) : ''); }),
+      h('th', { scope: 'row', class: grouped || index.hasEntry(r) ? '' : 'noentry' }, h('a', { href: rowLink(r), title: grouped ? name(r) : index.hasEntry(r) ? r : `${r} — no entry of its own yet`, text: name(r) })),
+      cols.map((c) => { const n = m.cell(r, c).length; return h('td', { class: cls(n) }, n ? h('a', { href: href('/findings', filtersFor(r, c)), 'aria-label': `${n} findings for ${name(r)} and ${name(c)}`, onmousemove: (e) => showTip(e, r, c), onmouseleave: hideTip, onfocus: (e) => showTip({ clientX: e.target.getBoundingClientRect().left, clientY: e.target.getBoundingClientRect().top }, r, c), onblur: hideTip, text: String(n) }) : ''); }),
       h('td', { class: 'total', text: String(m.rowTotals.get(r)) })))),
     h('tfoot', {}, h('tr', { class: 'total' }, h('th', { scope: 'row', text: 'total' }), cols.map((c) => h('td', { text: String(m.colTotals.get(c)) })), h('td', { text: String([...m.cells.values()].reduce((n, x) => n + x.length, 0)) }))));
 
   return frag(
     h('div', { class: 'page-head' }, h('h1', { text: 'Evidence matrix' }), h('span', { class: 'muted small', text: `${rows.length} ${rowLabel.toLowerCase()} rows × ${cols.length} ${colLabel.toLowerCase()} columns` })),
-    h('p', { class: 'small' }, 'Each cell is the number of findings linking the row and the column, in either direction (a region entry whose finding targets an impairment, or an impairment entry whose finding targets a region). Click a cell to read them. Rows and columns are ordered by total; a row name in grey has no entry of its own yet.'),
+    h('p', { class: 'small' }, 'Start with broad anatomy and clinical domains, then refine the labels or see the original paper terms. Each finding appears in one cell; compound regions and combined outcomes stay together. Click a cell to read the original findings.'),
+    h('p', { class: 'small muted', text: 'These are browsing groups, not atlas-equivalent parcels or pooled effects. Unclear anatomy stays unclassified. Harvard–Oxford correspondence needs a verified anatomical or spatial mapping; white-matter tracts keep their own names.' }),
     h('div', { class: 'matrix-controls' },
+      h('label', {}, 'detail ', h('select', { 'aria-label': 'Matrix label detail', onchange: e => go({ level: e.target.value }) }, [['broad','Broad groups'],['specific','More specific labels'],['paper','Original paper terms']].map(([v,label]) => h('option', {value:v, selected:v===level?'':null, text:label})))),
       h('label', {}, 'matrix ', h('select', { onchange: (e) => go({ kind: e.target.value }) }, Object.entries(kinds).map(([v, [a, b]]) => h('option', { value: v, selected: v === kind ? '' : null, text: `${a} × ${b}` })))),
       h('label', {}, 'at least ', h('select', { onchange: (e) => go({ min: e.target.value }) }, [1, 2, 3, 5].map((v) => h('option', { value: v, selected: v === min ? '' : null, text: `${v}` }))), ' findings on the margin'),
-      h('label', {}, h('input', { type: 'checkbox', checked: onlyEntries ? '' : null, onchange: (e) => go({ entries: e.target.checked ? '1' : '' }) }), ' only ids with an entry'),
+      !grouped ? h('label', {}, h('input', { type: 'checkbox', checked: onlyEntries ? '' : null, onchange: (e) => go({ entries: e.target.checked ? '1' : '' }) }), ' only ids with an entry') : null,
       h('input', { type: 'search', placeholder: 'find a row or column…', value: find, 'aria-label': 'Filter rows and columns', onchange: (e) => go({ find: e.target.value.trim() }) }),
       h('span', { class: 'ramp' }, '1', h('i', { style: 'background:var(--seq-1)' }), h('i', { style: 'background:var(--seq-2)' }), h('i', { style: 'background:var(--seq-3)' }), h('i', { style: 'background:var(--seq-4)' }), h('i', { style: 'background:var(--seq-5)' }), h('i', { style: 'background:var(--seq-6)' }), '8+ findings')),
     rows.length && cols.length ? h('div', { class: 'matrix-wrap' }, table) : h('p', { class: 'notice', text: 'Nothing to show with these settings.' }),

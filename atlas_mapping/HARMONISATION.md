@@ -127,3 +127,23 @@ prediction. The existing report generator does not consume it automatically.
 
 Method references: [BIDS spatial coordinate identifiers](https://bids-specification.readthedocs.io/en/stable/glossary.html)
 and [Nilearn resampling documentation](https://nilearn.github.io/dev/modules/generated/nilearn.image.resample_to_img.html).
+
+## Explorer matrix browsing groups
+
+The matrix defaults to broad anatomy and clinical domains. Its detail selector
+shows more specific labels or the original paper terms. These navigation labels
+are defined in `explorer/evidence-groups.js`; they do not change saved findings,
+scientific approval, atlas mappings, or CALMaR report scoring.
+
+Named anatomical identifiers are grouped conservatively. Paper-specific cluster
+names require an explicit description checked against that finding's saved source
+passages. Compound regions, map-overlap comparisons and composite outcomes remain
+together: each finding contributes to exactly one cell. Cell links retain the exact
+finding identities, including paper and source path. Unknown terms remain visible
+as awaiting classification. New extraction labels therefore cannot silently become
+new atlas assignments.
+
+These are a first navigation vocabulary, not a validated clinical ontology or a
+Harvard–Oxford crosswalk. A generic temporal cluster cannot be assigned to one
+Harvard–Oxford parcel from its name. White-matter tracts retain tract names; voxel
+or parcel correspondence still requires the spatial evidence described above.
