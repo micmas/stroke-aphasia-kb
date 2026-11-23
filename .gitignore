@@ -47,3 +47,4 @@ portal/.dysphagia-cache/
 !.dev.vars.example
 .env*
 !.env.example
+deployment/dysphagia-review/dist/

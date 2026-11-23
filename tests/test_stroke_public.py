@@ -11,5 +11,5 @@ class PublicBuild(unittest.TestCase):
   with tempfile.TemporaryDirectory() as path:
    p=Path(path);(p/'index.html').write_text('<a href="/dysphagia/screening/">screen</a> STAGING · Stroke KB')
    prepare_public(p)
-   self.assertIn('https://review.aphasia-kb.app/dysphagia/',(p/'index.html').read_text())
+   self.assertIn('https://review.dysphagia-kb.app/',(p/'index.html').read_text())
    self.assertNotIn('STAGING',(p/'index.html').read_text())

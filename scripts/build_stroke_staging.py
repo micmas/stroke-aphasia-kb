@@ -83,14 +83,14 @@ def prepare_public(dest):
         text=text.replace('staging explorer','explorer').replace('staging workspace','screening workspace')
         text=text.replace('Aphasia review portal (production)','Aphasia review portal')
         text=text.replace('<meta name="robots" content="noindex,nofollow">','')
-        text=text.replace('/dysphagia/screening/', 'https://review.aphasia-kb.app/dysphagia/')
+        text=text.replace('/dysphagia/screening/', 'https://review.dysphagia-kb.app/')
         if p.name=='project-shell.js':text=text.replace("link('Stroke KB', '/')","link('Review portal', 'https://review.aphasia-kb.app/welcome/')")
         if p.name=='chapter-bar.js':
             text=text.replace("['Stroke KB home','/',null]", "['Stroke KB home','https://stroke-kb.app/',null]").replace("['Aphasia','/aphasia/','aphasia']","['Aphasia','https://stroke-kb.app/aphasia/','aphasia']").replace("['Dysphagia','/dysphagia/','dysphagia']","['Dysphagia','https://dysphagia-kb.app/','dysphagia']")
             text=text.replace("window.STROKE_CHAPTER=chapter;", "window.STROKE_CHAPTER=chapter;\nif(location.hostname==='dysphagia-kb.app' && location.pathname==='/') location.replace('/dysphagia/'+location.search+location.hash);")
         p.write_text(text)
     (dest/'_headers').write_text('/*\n  Cache-Control: no-cache\n  X-Content-Type-Options: nosniff\n')
-    (dest/'_redirects').write_text('/dysphagia/screening/* https://review.aphasia-kb.app/dysphagia/:splat 302\n')
+    (dest/'_redirects').write_text('/dysphagia/screening/* https://review.dysphagia-kb.app/:splat 302\n')
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--exports',type=Path);p.add_argument('--public',action='store_true');p.add_argument('--reuse-exports',action='store_true');args=p.parse_args();build(args.exports,args.public,args.reuse_exports)

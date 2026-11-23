@@ -58,8 +58,6 @@ jobs:
           bucket=$(python3 -c "import json; print(json.load(open('portal.config.json'))['pdfsBucket'])")
           npx wrangler r2 object get "$bucket/private/abstracts.jsonl" --file ../screening/abstracts.jsonl --remote \
             || echo "::warning::no abstracts in the bucket yet (publish_portal.py --sync); the queue will show titles without abstracts"
-      - name: Fetch Dysphagia screening records (private)
-        run: python3 scripts/dysphagia_portal.py --fetch
       - name: Assemble the portal
         run: python3 scripts/publish_portal.py
       - name: Deploy to Cloudflare Pages
