@@ -41,8 +41,17 @@
       if (new URL(url).hostname === location.hostname) a.setAttribute('aria-current', 'location');
       return a;
     };
+    const chapter = /^\/(aphasia|dysphagia)(?:\/|$)/.exec(location.pathname)?.[1]
+      || (location.pathname.startsWith('/dysphagia-search') ? 'dysphagia'
+        : /(^|\.)dysphagia-kb\.app$/.test(location.hostname) ? 'dysphagia'
+        : /(^|\.)aphasia-kb\.app$/.test(location.hostname) && !location.hostname.startsWith('calmar.') ? 'aphasia' : null);
     nav.append(link('Stroke KB', 'https://stroke-kb.app/'), link('Dysphagia KB', 'https://dysphagia-kb.app/'));
-    nav.append(link('Aphasia KB', 'https://aphasia-kb.app/', 'project-home'));
+    nav.append(link('Aphasia KB', 'https://aphasia-kb.app/'));
+    for (const [label, id] of [['Aphasia KB', 'aphasia'], ['Dysphagia KB', 'dysphagia']]) {
+      const a = [...nav.children].find(item => item.textContent === label);
+      a.removeAttribute('aria-current');
+      if (chapter === id) { a.classList.add('project-home'); a.setAttribute('aria-current', 'location'); }
+    }
     const links = document.createElement('div'); links.className = 'project-links';
     links.append(link('Review portal', 'https://review.aphasia-kb.app/welcome/'), link('CALMaR examples', 'https://calmar.aphasia-kb.app/'), link('Open webapp ↗', 'https://webapps.neurodesk.org/calmar/'), link('Non-commercial use', 'https://aphasia-kb.app/licensing.html'));
     const label = document.createElement('label'); label.className = 'project-theme'; label.append('Theme');

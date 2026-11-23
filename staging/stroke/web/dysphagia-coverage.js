@@ -43,14 +43,15 @@ export function renderDysphagiaCoverage(manifest, prismaDiagram) {
   ]) tiles.append(node('div', {class:'tile'}, node('div', {class:'value', text:value || '\u00a0'}),
     node('div', {class:'label', text:label}), node('div', {class:'detail', text:detail})));
   page.append(tiles, node('h2', {text:'Flow of papers (PRISMA 2020)'}),
-    node('p', {class:'small muted', text:'Only the records imported from databases are populated. Later counts are left blank until screening, inclusion and extraction results are ready to report. Blank boxes do not mean zero.'}),
+    node('p', {class:'small muted', text:'Database records and duplicates removed during import are populated. Later counts are left blank until screening, inclusion and extraction results are ready to report. Blank boxes do not mean zero.'}),
     paragraph('Select “Records from databases” to see the export details below.'),
   );
   // Reuse the Aphasia diagram, including its geometry, colours and responsive styling.
   // Missing downstream values stay blank; no Aphasia evidence is loaded here.
   const index = {screening:{
     prisma:{identification:{databases:{records:manifest.raw_records,
-      byDatabase:Object.fromEntries(groups.map(group => [group.id, group.records]))}, other:{}},
+      byDatabase:Object.fromEntries(groups.map(group => [group.id, group.records]))},
+      duplicatesRemoved:manifest.duplicates_collapsed, other:{}},
       screening:{}, other:{}, included:{}},
     searches:new Map(), sourceKinds:{}, reasonLabel:key => key,
   }};
@@ -75,7 +76,7 @@ export function renderDysphagiaCoverage(manifest, prismaDiagram) {
   for (const warning of manifest.warnings || []) searchSection.append(node('p', {class:'notice',
     text:`Export check: ${warning} Totals use the actual file contents; check this discrepancy against the saved database search history.`}));
   searchSection.append(node('p', {class:'small muted', text:'Search completion was reported by the researcher. The exact queries, filters and database result totals still need to be checked against the saved search histories.'}));
-  const audit = node('details', {class:'editorial-details'}, node('summary', {text:'Export files and import details'}),
+  const audit = node('details', {class:'editorial-details', id:'duplicate-import-details'}, node('summary', {text:'Export files and import details'}),
     paragraph(`The import combined ${number(manifest.duplicates_collapsed)} duplicate occurrences, leaving ${number(manifest.unique_records)} unique candidates for screening. ${number(manifest.missing_abstracts)} candidates have no abstract. These are import statistics, not eligibility decisions.`),
     paragraph(manifest.deduplication),
     paragraph('The CENTRAL export has “cdsr” in its filename. Its folder and CN accession numbers identify it as CENTRAL; the original filename is retained.'),

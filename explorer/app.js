@@ -870,9 +870,10 @@ function prismaDiagram(index, { identificationOnly = false } = {}) {
   const contentHeight = (labels, w) => boxH + wrapLabels(labels, w).length * 16;
   const box = ({ x, y: yy, w, title, n, sub, link, cls = '', params = null, id = null, tip = null, height = boxH, breakdown = null }) => {
     // Publish initial search totals without implying downstream decisions.
-    if (identificationOnly && title !== 'Records from databases') {
+    if (identificationOnly && title !== 'Records from databases' && !(id === 'removed' && Number.isFinite(idn.duplicatesRemoved))) {
       n = null; sub = null; link = null; params = null; breakdown = null;
     }
+    if (identificationOnly && id === 'removed') { params = null; link = null; }
     const subLines = Array.isArray(sub) ? wrapLabels(sub, w) : [];
     height = Math.max(height, boxH + subLines.length * 16);
     if (params && id) link = coverageHref({ ...params, box: id });
@@ -922,7 +923,7 @@ function prismaDiagram(index, { identificationOnly = false } = {}) {
   const qTip = Object.keys(byQuestion).length ? 'By question (search hits, before de-duplication):\n' + Object.entries(byQuestion).sort((a, b) => b[1] - a[1]).map(([q, v]) => `  ${q.replace(/_/g, ' ')}: ${v.toLocaleString()}`).join('\n') : null;
   nodes.push(box({ x: colL, y, w: main, title: 'Records from databases', n: idn.databases.records, sub: dbSub, link: coverageHref({ arm: 'databases' }), tip: qTip, height: identificationH }));
   const preprints = idn.preprintsSuperseded || 0;
-  const removedSub = identificationOnly ? [] : [`Other duplicates: ${(idn.duplicatesRemoved - preprints).toLocaleString()}`, `Preprint → published: ${preprints.toLocaleString()}`, `Grey literature: ${(idn.removedByRule || 0).toLocaleString()}`];
+  const removedSub = identificationOnly ? ['Duplicate records'] : [`Other duplicates: ${(idn.duplicatesRemoved - preprints).toLocaleString()}`, `Preprint → published: ${preprints.toLocaleString()}`, `Grey literature: ${(idn.removedByRule || 0).toLocaleString()}`];
   nodes.push(box({ x: sideX(colL), y, w: side, title: 'Removed before screening', n: idn.duplicatesRemoved + (idn.removedByRule || 0), sub: removedSub, params: { stage: 'duplicate' }, id: 'removed', cls: 'pr-side pr-out', height: identificationH }));
   nodes.push(box({ x: colR, y, w: main + gapX + side, title: 'Records from other sources', n: idn.other.records, sub: otSub, height: identificationH, link: coverageHref({ arm: 'other' }) }));
   arrowH(colL + main, sideX(colL), y + boxH / 2);
