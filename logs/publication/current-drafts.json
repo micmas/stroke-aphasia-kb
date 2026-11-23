@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-23T05:06:13.346310+00:00",
+  "snapshot_at": "2026-11-23T06:19:01.902616+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -1771,6 +1771,67 @@
       "source_sha256": "5690e3dd909e3992df69765d8555930ee2454893a3c73c2973a9f43b576f1a3d",
       "paper": "Corbetta2015",
       "candidate": "R012"
+    },
+    "drafts/regions/cluster_1__Cote2007__R002.md": {
+      "source_sha256": "f0d4ead7fd1e2a5bef5ea9ce92c1272374b9389253938224fb4ba218eecd639b",
+      "paper": "Cote2007",
+      "candidate": "R002"
+    },
+    "drafts/regions/cluster_2__Cote2007__R003.md": {
+      "source_sha256": "ed5dd49a1b49e7f55efd9f22bab7685e3d5368255c0b94c8e2d53824cf49a18f",
+      "paper": "Cote2007",
+      "candidate": "R003"
+    },
+    "drafts/regions/outlier_cluster__Cote2007__R005.md": {
+      "source_sha256": "c5c487bdec1e742fac09754b3aab3cb8eba2db40ad376d88758e9535ca65203a",
+      "paper": "Cote2007",
+      "candidate": "R005"
+    },
+    "drafts/regions/rhd_lesion_site__Cote2007__R006.md": {
+      "source_sha256": "c18a9eda631583bc14784fa750910fcce97a2fc6e4829f8fa8304e72758880ad",
+      "paper": "Cote2007",
+      "candidate": "R006"
+    },
+    "drafts/predictors/age_education_communication_clusters__Cote2007__R007.md": {
+      "source_sha256": "1eacf80667cdf6feb0b86dad65718744b37da4ccb39b0effd5aee83685058b6c",
+      "paper": "Cote2007",
+      "candidate": "R007"
+    },
+    "drafts/regions/right_hemisphere_lesion__Cote2007__R008.md": {
+      "source_sha256": "5b4829d6402ec20a1923265dca76b0c4eb0fc18e3118b510c456a3530c489b7e",
+      "paper": "Cote2007",
+      "candidate": "R008"
+    },
+    "drafts/regions/subcortical_lesion_rh__Cote2007__R009.md": {
+      "source_sha256": "3d35e9aa8d701f047aa197ed4a80e982136824e3b6f92d2c255fbc49b7eb88d1",
+      "paper": "Cote2007",
+      "candidate": "R009"
+    },
+    "drafts/regions/frontal_inferior_thalamic_peduncle_nucleus_reticularis_centromedian_system__Crosson1999__R001.md": {
+      "source_sha256": "0079c76ace3ece8dc43dacbedc66cd87e7852ad91ca262146712c0aa83237d9e",
+      "paper": "Crosson1999",
+      "candidate": "R001",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Crosson1999 explicitly reviews four previously published cases, not a new primary lesion-mapping dataset. These drafts classify the study as case-study/LSM or VLSM; source design and method require reconciliation before publication. Original source-check outputs preserved."
+    },
+    "drafts/regions/frontal_inferior_thalamic_peduncle_nucleus_reticularis_centromedian_system__Crosson1999__R002.md": {
+      "source_sha256": "214d3fae3d7f149a3eb330d6bdda295423cea77a47b402b076943e4e707ccf5c",
+      "paper": "Crosson1999",
+      "candidate": "R002",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Crosson1999 explicitly reviews four previously published cases, not a new primary lesion-mapping dataset. These drafts classify the study as case-study/LSM or VLSM; source design and method require reconciliation before publication. Original source-check outputs preserved."
+    },
+    "drafts/regions/frontal_inferior_thalamic_peduncle_nucleus_reticularis_centromedian_system__Crosson1999__R003.md": {
+      "source_sha256": "62a9ffa663a42e026248f225dc9deecd5c2851d3eeeb7fdfb14027779953a851",
+      "paper": "Crosson1999",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Crosson1999 explicitly reviews four previously published cases, not a new primary lesion-mapping dataset. These drafts classify the study as case-study/LSM or VLSM; source design and method require reconciliation before publication. Original source-check outputs preserved."
+    },
+    "drafts/regions/left_ifg_triangular_part__DenOuden2019__R001.md": {
+      "source_sha256": "ec976d3176d75a0b551ec8bd54f926dc945d28bf022be985b0698397cdd3fff3",
+      "paper": "DenOuden2019",
+      "candidate": "R001"
     }
   }
 }

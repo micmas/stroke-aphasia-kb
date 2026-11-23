@@ -649,11 +649,14 @@
   },
   "@Cote2007": {
    "annotated": "pdf/C0151_Cote2007_annotated.pdf",
-   "bytes": 247440,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "7c3d694a54f202759ef9c2e37d2c4e6fd743cfbac9397154431c50e2349775bc",
+   "bytes": 367935,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-23T06:19:01.902616+00:00",
    "label": "no open copy known",
    "public": false,
-   "sha256": "d72bffc937a7aff3ba6ce53a129c93f444373dc17597f76ed9cab679c41651c2"
+   "sha256": "bc4d940a7225cc1c0502a0a696aaf928d3277c5f2e3830bcd70bcc0d10a33053"
   },
   "@Crosson1999": {
    "annotated": "pdf/C0053_Crosson1999_annotated.pdf",
@@ -673,11 +676,14 @@
   },
   "@DenOuden2019": {
    "annotated": "pdf/C0040_DenOuden2019_annotated.pdf",
-   "bytes": 2702709,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "7061f780d4bab349235c19d15ff01678e18808d151a1d657d8b83bd28cd453d1",
+   "bytes": 2766029,
    "category": "free_to_read",
+   "draft_snapshot": "2026-11-23T06:19:01.902616+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "2bca1940c15faef5a5b175232b934cf166be52f8a0e45ea2f366714cabe1830e"
+   "sha256": "36f27a5f695af1233cfbdff2d016166a8559f3d26c607ef5ef31856f547eec71"
   },
   "@Dick2012": {
    "annotated": "pdf/C0100_Dick2012_annotated.pdf",
