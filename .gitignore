@@ -39,3 +39,4 @@ _sync_snapshot.tgz
 staging/dysphagia/dist/
 staging/dysphagia/.wrangler/
 .wrangler/
+staging/stroke/dist/
