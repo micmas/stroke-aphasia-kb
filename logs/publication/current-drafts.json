@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-23T06:19:01.902616+00:00",
+  "snapshot_at": "2026-11-23T08:49:00.758407+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -1831,6 +1831,276 @@
     "drafts/regions/left_ifg_triangular_part__DenOuden2019__R001.md": {
       "source_sha256": "ec976d3176d75a0b551ec8bd54f926dc945d28bf022be985b0698397cdd3fff3",
       "paper": "DenOuden2019",
+      "candidate": "R001"
+    },
+    "drafts/regions/medial_left_stg_cluster__DenOuden2019__R002.md": {
+      "source_sha256": "a57644613d0fc585a745b83f0f40442696aa26695c454578cb21e725aca9fad0",
+      "paper": "DenOuden2019",
+      "candidate": "R002"
+    },
+    "drafts/regions/dorsal_ventral_connectivity_syntactic_deficit__DenOuden2019__R003.md": {
+      "source_sha256": "e6391105d251a2861ee2e29f90618a681125dbff4e2b846780097f6fc55cb011",
+      "paper": "DenOuden2019",
+      "candidate": "R003"
+    },
+    "drafts/regions/stg_medial_heschl_cluster__DenOuden2019__R004.md": {
+      "source_sha256": "8dcaf23ae5d0590c2473b84dbb386e820b6cf39e92f1f92915d4f2abdca85235",
+      "paper": "DenOuden2019",
+      "candidate": "R004"
+    },
+    "drafts/regions/angular_gyrus__DenOuden2019__R005.md": {
+      "source_sha256": "a823da97f9a1c8cb4c481e5a19bed4569b5850cf7980acf61410c1561bb0f72a",
+      "paper": "DenOuden2019",
+      "candidate": "R005"
+    },
+    "drafts/regions/mtg_insula_dorsoventral_connectivity__DenOuden2019__R006.md": {
+      "source_sha256": "96ef8248e8da58ee9c18025e62c785a6dcd27d2a50af0b1f5f0c0782d58d3c79",
+      "paper": "DenOuden2019",
+      "candidate": "R006"
+    },
+    "drafts/regions/posterior_temporal_inferior_parietal_cluster__DenOuden2019__R007.md": {
+      "source_sha256": "14f7c148e1123d91364aa424d436b86da9c9363ec2e4becca94d8953b66948ff",
+      "paper": "DenOuden2019",
+      "candidate": "R007"
+    },
+    "drafts/regions/ventral_ifg_connectivity__DenOuden2019__R008.md": {
+      "source_sha256": "c4c8e03e3fe43ac27848ffaf48c4057dcae9e45e5da7c9fa9b88ac616285eab7",
+      "paper": "DenOuden2019",
+      "candidate": "R008"
+    },
+    "drafts/predictors/navs_lda_pd_mr__DenOuden2019__R009.md": {
+      "source_sha256": "4b96c7ff6eb6130c2e2994fac45d6962fe5ced3a26c15f8a6abe8ed6738b85b2",
+      "paper": "DenOuden2019",
+      "candidate": "R009"
+    },
+    "drafts/predictors/navs_pd_mr_predictor_model__DenOuden2019__R010.md": {
+      "source_sha256": "611e7299b001e9b7c3cf8acfb61ec12192e9e9971e79ed6cb54ef71123dea82d",
+      "paper": "DenOuden2019",
+      "candidate": "R010"
+    },
+    "drafts/predictors/navs_complexity_measures__DenOuden2019__R013.md": {
+      "source_sha256": "f130f4ab01a229aa0272f3300e692bfe6dab69a418e0c22b175501f85f2c696e",
+      "paper": "DenOuden2019",
+      "candidate": "R013"
+    },
+    "drafts/predictors/acute_naming__Desjardins2026__R001.md": {
+      "source_sha256": "a4244c50d15a16c8df795c52f9da9dd68f86cb3deced4f94211352ae363605d9",
+      "paper": "Desjardins2026",
+      "candidate": "R001"
+    },
+    "drafts/predictors/acute_total_lesion_volume__Desjardins2026__R002.md": {
+      "source_sha256": "9ed0cf0403e29227376a44511424b27135297e45a2cc6d8e8f1add0f15309ecb",
+      "paper": "Desjardins2026",
+      "candidate": "R002"
+    },
+    "drafts/regions/ifof_lesion_load__Desjardins2026__R003.md": {
+      "source_sha256": "02874ed1d5eb0343d7c548a3ce726a051c30c9d33c276680a446949ef72220bf",
+      "paper": "Desjardins2026",
+      "candidate": "R003"
+    },
+    "drafts/predictors/acute_cius_min__Desjardins2026__R004.md": {
+      "source_sha256": "1ccd08b07ae7908c44e8555154a78a65457b95001e918ce6cbf485803dda1ae6",
+      "paper": "Desjardins2026",
+      "candidate": "R004"
+    },
+    "drafts/regions/ifof_lesion_load__Desjardins2026__R005.md": {
+      "source_sha256": "71fb46f7518c05cbc43d164efbb1ef7f1cb71048dde016ed741389e18f1b9da5",
+      "paper": "Desjardins2026",
+      "candidate": "R005"
+    },
+    "drafts/predictors/af_lesion_load__Desjardins2026__R006.md": {
+      "source_sha256": "53a718822d952d96908ed4684f168eba31d20d0f7e2b7807bf3f1a5d204dd653",
+      "paper": "Desjardins2026",
+      "candidate": "R006"
+    },
+    "drafts/predictors/acute_naming__Desjardins2026__R008.md": {
+      "source_sha256": "4f345e50fa298dbac75d9526a117c14b71e54cb56c02bd5484e7b5b30fb318a8",
+      "paper": "Desjardins2026",
+      "candidate": "R008"
+    },
+    "drafts/predictors/acute_cius_ifof_load_model__Desjardins2026__R009.md": {
+      "source_sha256": "bd6d7eb42e995e1dccdb9d50615345c73c86efcceadc3ea27fdd684e6db4ecf3",
+      "paper": "Desjardins2026",
+      "candidate": "R009"
+    },
+    "drafts/impairments/ciu_genre_consistency__Ding2023__R001.md": {
+      "source_sha256": "6e9ab1fe8db2e9851a11597598fe0d41ea29ef0e49fd78090c2c13e50806c5f7",
+      "paper": "Ding2023",
+      "candidate": "R001"
+    },
+    "drafts/impairments/ciu_genre_consistency__Ding2023__R002.md": {
+      "source_sha256": "ed63e99e0b38c3b939678c8f1996583823875a6aa7827cc847e91b5cd071436e",
+      "paper": "Ding2023",
+      "candidate": "R002"
+    },
+    "drafts/impairments/ciu_measure_consistency__Ding2023__R003.md": {
+      "source_sha256": "a1d19c492ed3f9b5f046ff0e6fada5a67c8ddc15a18948e82ac9133b8476d6a6",
+      "paper": "Ding2023",
+      "candidate": "R003"
+    },
+    "drafts/predictors/ciu_language_components_pca__Ding2023__R004.md": {
+      "source_sha256": "4e2955e1ea4c1bf11613de07cfa18d2c466d6569d61e86ce4afc7b4193db29f5",
+      "paper": "Ding2023",
+      "candidate": "R004"
+    },
+    "drafts/regions/ciu_quantity_cluster__Ding2023__R006.md": {
+      "source_sha256": "13b3e555076febee8d005f4395064a244fa5b1b858a55b693797b07826e7b9bf",
+      "paper": "Ding2023",
+      "candidate": "R006"
+    },
+    "drafts/regions/cius_min_predictor_cluster__Ding2023__R007.md": {
+      "source_sha256": "6b6b4cf3beba4b547c2d748048b3c031ad03f71adcc24cc9b457698d9ccb84d0",
+      "paper": "Ding2023",
+      "candidate": "R007"
+    },
+    "drafts/predictors/lesion_lsm_percent_cius__Ding2023__R008.md": {
+      "source_sha256": "b874d8ab11022b904d235bea3816ee1e9df4c89d146d0fdacc95ad87bd99e388",
+      "paper": "Ding2023",
+      "candidate": "R008"
+    },
+    "drafts/regions/disconnection_lsm_cius_quantity__Ding2023__R009.md": {
+      "source_sha256": "f311f210c4d33a51a36f79edff766fd64c80a8d914d1fc2fd97b19d6ab59d405",
+      "paper": "Ding2023",
+      "candidate": "R009"
+    },
+    "drafts/regions/disconnection_cius_min__Ding2023__R010.md": {
+      "source_sha256": "13e834724053e06d07c89612ee84c52b5e451f971470f845f6b2a81f73a0fd87",
+      "paper": "Ding2023",
+      "candidate": "R010"
+    },
+    "drafts/predictors/disconnection_lsm_percent_cius__Ding2023__R011.md": {
+      "source_sha256": "54ef2caa52447533c1e36f5bcdde7be9fc50a9b3bff463188cb9a387fc578fc6",
+      "paper": "Ding2023",
+      "candidate": "R011"
+    },
+    "drafts/regions/dorsal_white_matter_pathways__Ding2023__R012.md": {
+      "source_sha256": "7dc38b1ce91cf6073e0182cbe9b1b0d750c9873e2a9fc771867357e9c05e1d59",
+      "paper": "Ding2023",
+      "candidate": "R012"
+    },
+    "drafts/regions/ventral_white_matter_pathways__Ding2023__R013.md": {
+      "source_sha256": "94594a81f3635a0c5967e8ff17b59b19c02611d71a5663f6fb1c211306b1eda6",
+      "paper": "Ding2023",
+      "candidate": "R013"
+    },
+    "drafts/regions/white_matter_tracts_percent_cius__Ding2023__R014.md": {
+      "source_sha256": "bdff6ad40a07ed1f4056e0764ab39435203460e53330fe1df7af54a8f8fb4082",
+      "paper": "Ding2023",
+      "candidate": "R014"
+    },
+    "drafts/predictors/aphasia_subtype_ciu_consistency__Ding2023__R015.md": {
+      "source_sha256": "1a9a3a0ee57f10406106bf1f624fb3ea029edc7f738bbaa8a27cc333114f6915",
+      "paper": "Ding2023",
+      "candidate": "R015"
+    },
+    "drafts/regions/arcuate_fasciculus__Ding2023__R016.md": {
+      "source_sha256": "c0ecac9dfa12e803fbe2f0107fed7f5e0e8eb28353c4fb15806e4aa8e30ae830",
+      "paper": "Ding2023",
+      "candidate": "R016"
+    },
+    "drafts/predictors/ciu_lesion_lsm_sensitivity__Ding2023__R017.md": {
+      "source_sha256": "2dcf675bda9ce88ed4166756069999661985cc2d9ca30159701f2b43351232fc",
+      "paper": "Ding2023",
+      "candidate": "R017"
+    },
+    "drafts/regions/posterior_grey_matter_cluster__Ding2023__R019.md": {
+      "source_sha256": "d81dbec6b690b99c948423d6a2a1bc03c4a5d914fbcfc6a40c55ec95632c3753",
+      "paper": "Ding2023",
+      "candidate": "R019"
+    },
+    "drafts/predictors/ciu_quantity_speed_motor_control__Ding2023__R020.md": {
+      "source_sha256": "b9320766229f1e3be55e76a55e541b1de0f89eb168dcb44d1e8cfbd982e04b71",
+      "paper": "Ding2023",
+      "candidate": "R020"
+    },
+    "drafts/regions/dorsal_white_matter_pathways__Ding2023__R021.md": {
+      "source_sha256": "8d534eb802532290a15861cbace658d20d74d09ae0f78b5f50964681051ae64d",
+      "paper": "Ding2023",
+      "candidate": "R021"
+    },
+    "drafts/regions/genre_specific_ci_quantity_lesion_lsm__Ding2023__R023.md": {
+      "source_sha256": "81e9bfbd46f9887ce14312efc09e2b24e1144f8bb887b872d2850427dd597b5d",
+      "paper": "Ding2023",
+      "candidate": "R023"
+    },
+    "drafts/regions/inferior_frontal_gyrus__Ding2023__R024.md": {
+      "source_sha256": "e07d9cf40d828b68e823c39c0a2d238256f45cef1def3eb30140e1c34b3a29c4",
+      "paper": "Ding2023",
+      "candidate": "R024"
+    },
+    "drafts/regions/arcuate_fasciculus__Ding2023__R025.md": {
+      "source_sha256": "93dde82c9ac083f0d83b84d0682cca3f30054f84aa3a74312546b070e27ce377",
+      "paper": "Ding2023",
+      "candidate": "R025"
+    },
+    "drafts/regions/af__Ding2023__R028.md": {
+      "source_sha256": "216836cebb28977ca1ccdea74170af562836b03bb54ecaf455713ecb28d81826",
+      "paper": "Ding2023",
+      "candidate": "R028"
+    },
+    "drafts/regions/wab_fluency_lesion_correlates__Ding2023__R029.md": {
+      "source_sha256": "91caa78d2a6aa6fd70bbe1544f0a8ec9332d2e81c02e9ac70eac629e6947d74f",
+      "paper": "Ding2023",
+      "candidate": "R029"
+    },
+    "drafts/predictors/base_model_aphasia_severity__Dresang2022__R001.md": {
+      "source_sha256": "0d22569d1be0a27883c29719eb26674f73546a76542854c74f10e6f4b7658383",
+      "paper": "Dresang2022",
+      "candidate": "R001"
+    },
+    "drafts/ingredients/bdnf_val66met_polymorphism__Dresang2022__R002.md": {
+      "source_sha256": "9260f43ab2ae2da94aa6bf21bb0024c4a99016dc336ec0e040c00cc706bec0eb",
+      "paper": "Dresang2022",
+      "candidate": "R002"
+    },
+    "drafts/predictors/age_bdnf_interaction__Dresang2022__R003.md": {
+      "source_sha256": "e22d1742c7822bf1ec0e8a0fc944ac5424be1eafe9dca04fd2c13d4fba8cbe1e",
+      "paper": "Dresang2022",
+      "candidate": "R003"
+    },
+    "drafts/predictors/bdnf_cortical_excitability_interaction__Dresang2022__R004.md": {
+      "source_sha256": "204244db6f18ef13280c0548e2eaa5f57edb717c7ab9ce1bedb33aeab7b30d04",
+      "paper": "Dresang2022",
+      "candidate": "R004"
+    },
+    "drafts/predictors/bdnf_plasticity_interaction__Dresang2022__R005.md": {
+      "source_sha256": "b82b83fade25b59b1a87ed6d10480ec4120faf6b3d34930597165e065a89c24b",
+      "paper": "Dresang2022",
+      "candidate": "R005"
+    },
+    "drafts/predictors/age_bdnf_interaction_model__Dresang2022__R006.md": {
+      "source_sha256": "b9eea460f02e6137f2d328dd204f5ec3fc53bed26f6a4aa82f31391407ae895f",
+      "paper": "Dresang2022",
+      "candidate": "R006"
+    },
+    "drafts/predictors/mepbase_bdnf_model__Dresang2022__R007.md": {
+      "source_sha256": "8da5a9a3a437604aa307f77c29a931c5e509e0a1884dbce9de468f0555901183",
+      "paper": "Dresang2022",
+      "candidate": "R007"
+    },
+    "drafts/predictors/bdnf_mepd10_model__Dresang2022__R008.md": {
+      "source_sha256": "7bad333ab37de8aec83411d56844793ffcb00f94afc7d77617d990dd35939f30",
+      "paper": "Dresang2022",
+      "candidate": "R008"
+    },
+    "drafts/regions/left_insular_precentral_gyrus_cluster__Dronkers1996__R001.md": {
+      "source_sha256": "fd23c24f20a40c319a43f2c1586c2c833e40cf33aa6c71bcccec7408e03c45d1",
+      "paper": "Dronkers1996",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_insular_precentral_gyrus_cluster__Dronkers1996__R002.md": {
+      "source_sha256": "fd27082d5c8573e60652310d5011d69a3c517121d9872ae127ccd13f171c3f27",
+      "paper": "Dronkers1996",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_precentral_gyrus_of_the_insula__Dronkers1996__R003.md": {
+      "source_sha256": "fa9e185798841769aad1ff0a3c2bba7b53fc30ca40ea77b5e2c549a2c3aa1403",
+      "paper": "Dronkers1996",
+      "candidate": "R003"
+    },
+    "drafts/regions/cycle_r_comprehension_network__Dronkers2004__R001.md": {
+      "source_sha256": "a218ee004ce900173bbdac90e0f6a22a4a16ec2961129b929de5207f63e5782c",
+      "paper": "Dronkers2004",
       "candidate": "R001"
     }
   }

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-23T06:19:01.902616+00:00",
+  "last_publication_snapshot": "2026-11-23T08:49:00.758407+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -42,7 +42,12 @@
     "Cote2007",
     "Crosson1999",
     "DeWitt2012",
-    "Demeyere2024"
+    "Demeyere2024",
+    "DenOuden2019",
+    "Desjardins2026",
+    "Ding2023",
+    "Dresang2022",
+    "Dronkers1996"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
   "recovery_publication_ready_seen": false
