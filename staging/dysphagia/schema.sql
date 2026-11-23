@@ -11,3 +11,9 @@ CREATE TABLE IF NOT EXISTS decision_events (
  revision INTEGER NOT NULL,
  changes TEXT NOT NULL
 );
+CREATE TABLE IF NOT EXISTS screening_decisions (
+ reviewer TEXT NOT NULL,
+ record_id TEXT NOT NULL,
+ value TEXT NOT NULL,
+ PRIMARY KEY (reviewer, record_id)
+);

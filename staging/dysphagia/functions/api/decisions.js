@@ -15,7 +15,8 @@ export async function onRequest({request,env,data}) {
   const email=data.reviewer.email;
   try {
     const file=await env.SCREENING.prepare('SELECT * FROM reviewer_state WHERE reviewer = ?').bind(email).first();
-    const saved=file?JSON.parse(file.decisions):{};
+    const rows=await env.SCREENING.prepare('SELECT record_id,value FROM screening_decisions WHERE reviewer = ?').bind(email).all();
+    const saved=Object.fromEntries(rows.results.map(row=>[row.record_id,JSON.parse(row.value)]));
     const revision=file?.revision||0;
     if(request.method==='GET') return Response.json({reviewer:email,decisions:saved,sha:revision,branch:BRANCH});
     if(request.method!=='POST') return new Response('Method not allowed',{status:405});
@@ -26,7 +27,8 @@ export async function onRequest({request,env,data}) {
     for(const d of body.decisions) saved[d.id]={id:d.id,decision:d.decision,reason:d.reason,notes:d.notes,reviewer:email,date:now,stage:'title_abstract',chapter:'dysphagia'};
     const results=await env.SCREENING.batch([
       env.SCREENING.prepare('INSERT OR IGNORE INTO reviewer_state (reviewer) VALUES (?)').bind(email),
-      env.SCREENING.prepare('UPDATE reviewer_state SET decisions = ?, revision = revision + 1, write_id = ? WHERE reviewer = ? AND revision = ?').bind(JSON.stringify(saved),writeId,email,revision),
+      env.SCREENING.prepare('UPDATE reviewer_state SET revision = revision + 1, write_id = ? WHERE reviewer = ? AND revision = ?').bind(writeId,email,revision),
+      ...body.decisions.map(d=>env.SCREENING.prepare('INSERT INTO screening_decisions (reviewer,record_id,value) SELECT ?,?,? WHERE EXISTS (SELECT 1 FROM reviewer_state WHERE reviewer = ? AND write_id = ?) ON CONFLICT(reviewer,record_id) DO UPDATE SET value = excluded.value').bind(email,d.id,JSON.stringify(saved[d.id]),email,writeId)),
       env.SCREENING.prepare('INSERT INTO decision_events (write_id,reviewer,saved_at,revision,changes) SELECT ?,?,?,revision,? FROM reviewer_state WHERE reviewer = ? AND write_id = ?').bind(writeId,email,now,JSON.stringify(body.decisions),email,writeId)
     ]);
     if(!results[1].meta.changes) return Response.json({error:'Another save arrived first. Reload before saving; pending choices are retained.'},{status:409});
