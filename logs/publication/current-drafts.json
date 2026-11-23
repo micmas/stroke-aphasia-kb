@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-23T20:04:12.177963+00:00",
+  "snapshot_at": "2026-11-23T21:34:12.390125+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -3397,6 +3397,215 @@
       "source_sha256": "1891744487de217fb6a66d01282bffc98639e9a2d3b7c9ff6823c1d2c2d4c311",
       "paper": "Harvey2022",
       "candidate": "R005"
+    },
+    "drafts/predictors/psychosocial_treatment_recovery_model__Harvey2022__R006.md": {
+      "source_sha256": "73824a4088216f8fb87c0b6f2302488b4c3997c4844e7cccf04cacf7a0efa90b",
+      "paper": "Harvey2022",
+      "candidate": "R006"
+    },
+    "drafts/predictors/long_term_recovery_predictor_model__Harvey2022__R007.md": {
+      "source_sha256": "93540eb558ef69eeb26d3a772f302709a424e87a476a254588c7cae6b7926ef9",
+      "paper": "Harvey2022",
+      "candidate": "R007"
+    },
+    "drafts/ingredients/amount_of_slt__Harvey2022__R008.md": {
+      "source_sha256": "3fe2d889fbc902532c3969e04e7e1b27be035dc98d412c74cf4d21db232f2de9",
+      "paper": "Harvey2022",
+      "candidate": "R008"
+    },
+    "drafts/predictors/psychosocial_treatment_factors_sensitivity__Harvey2022__R010.md": {
+      "source_sha256": "224997cb9a2fd6838429f0d4518bf775b1d3439244eed498226a57e9511fba36",
+      "paper": "Harvey2022",
+      "candidate": "R010"
+    },
+    "drafts/regions/temporoparietal_frontal_perisylvian_cluster__Harvey2022__R011.md": {
+      "source_sha256": "fd4926e092c57766405a7627ef83bd4116d13bc8b5e19ac9fb4c6beafb51a3f7",
+      "paper": "Harvey2022",
+      "candidate": "R011"
+    },
+    "drafts/regions/perisylvian_language_network_cluster__Harvey2022__R012.md": {
+      "source_sha256": "159a52f492bcc5a5fb6c9978d0b6a816d4f5f8fe09c45409754171e9c54d584d",
+      "paper": "Harvey2022",
+      "candidate": "R012"
+    },
+    "drafts/regions/brocas_aphasia_syndrome_cluster__Henseler2014__R001.md": {
+      "source_sha256": "e910b262fb8eede8f213f8f1cc74df3e9f60783fc7a1118922d34a2d58ae2944",
+      "paper": "Henseler2014",
+      "candidate": "R001"
+    },
+    "drafts/regions/wernickes_aphasia_cluster__Henseler2014__R002.md": {
+      "source_sha256": "74294067cd1435bf4675e1ab4230f7de687018a8b13fa9c8cc1a60d075a7056c",
+      "paper": "Henseler2014",
+      "candidate": "R002"
+    },
+    "drafts/regions/global_aphasia_cluster__Henseler2014__R003.md": {
+      "source_sha256": "d165870404ecbb65f0bf0eb6d373cf1b7549c6cfe865362d868b1ed3eff835eb",
+      "paper": "Henseler2014",
+      "candidate": "R003"
+    },
+    "drafts/regions/amnestic_aphasia_syndrome__Henseler2014__R004.md": {
+      "source_sha256": "adb65228d8ef4f5b5772b628ab07e556e89c91eea2c1a314f844a7c56c457950",
+      "paper": "Henseler2014",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_insula_cluster__Henseler2014__R005.md": {
+      "source_sha256": "f626a893814bfcdc1f4b07b969d94e11804b6aa1b39393f5434df0edc653aa46",
+      "paper": "Henseler2014",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_supramarginal_gyrus_phonematic_cluster__Henseler2014__R006.md": {
+      "source_sha256": "109bd560b8a29a02a6fefceb6518881345c7cc39d9e89222afea99872bb23ea4",
+      "paper": "Henseler2014",
+      "candidate": "R006"
+    },
+    "drafts/regions/semantic_structure_cluster__Henseler2014__R007.md": {
+      "source_sha256": "28536bf407d3bd5446ff07998aeece5ebd9a4b545e8fc4c8b23aaf3972e64488",
+      "paper": "Henseler2014",
+      "candidate": "R007"
+    },
+    "drafts/regions/speech_automatisms_cluster__Henseler2014__R009.md": {
+      "source_sha256": "7cbc0c6484bd45bec26fbffd245003156281503919279fbbf8ca7d40781f174e",
+      "paper": "Henseler2014",
+      "candidate": "R009"
+    },
+    "drafts/predictors/token_test_impairment__Henseler2014__R010.md": {
+      "source_sha256": "c49e1ea2a7fdfeea422d68289f7ac5c5cd0bf96709fee0b4a9013b0d1cbcc7b2",
+      "paper": "Henseler2014",
+      "candidate": "R010"
+    },
+    "drafts/regions/speech_repetition_cluster__Henseler2014__R011.md": {
+      "source_sha256": "4a8518e182c888605549c1bd08d920e5a46f7df346ba5dbe6c2fca9becd87ad6",
+      "paper": "Henseler2014",
+      "candidate": "R011"
+    },
+    "drafts/regions/aat_repetition_complexity_cluster__Henseler2014__R012.md": {
+      "source_sha256": "73ce842f76f84f339b177b4ea564c4db66b39e78b4952ba4d1e592dd838f6f6b",
+      "paper": "Henseler2014",
+      "candidate": "R012"
+    },
+    "drafts/regions/aat_language_comprehension_cluster__Henseler2014__R013.md": {
+      "source_sha256": "5ace3aa73701e3b3f70411dc0f7bbe7407842d4f977980f25fafbcf07a3055c5",
+      "paper": "Henseler2014",
+      "candidate": "R013"
+    },
+    "drafts/regions/picture_naming_cluster__Henseler2014__R016.md": {
+      "source_sha256": "3d1ba37b16623c61f24f92b54bc4e251949efef13e883c6415a862e7a33a1f80",
+      "paper": "Henseler2014",
+      "candidate": "R016"
+    },
+    "drafts/regions/middle_temporal_cortex_non_living_naming__Henseler2014__R017.md": {
+      "source_sha256": "fd91027f6546b1e6117f13e142960001b3043eb61aa0c14d34c812afb3bd2857",
+      "paper": "Henseler2014",
+      "candidate": "R017"
+    },
+    "drafts/regions/left_anterior_temporal_lobe__Henseler2014__R018.md": {
+      "source_sha256": "37cd5d6d2fba2d3e065988ebe33376ced195ead0486ac8c821db4608af8169c9",
+      "paper": "Henseler2014",
+      "candidate": "R018"
+    },
+    "drafts/regions/speeded_naming_cluster__Henseler2014__R019.md": {
+      "source_sha256": "23bcd4f5e629b5739c556d727bc71e08bce9f30b07f9c841c5863a6fe8b19b92",
+      "paper": "Henseler2014",
+      "candidate": "R019"
+    },
+    "drafts/regions/orbital_inferior_frontal_gyrus__Henseler2014__R020.md": {
+      "source_sha256": "7160729534f11d4a114d2f101524b9fa82850330318cbde0ee79514c2a4219fe",
+      "paper": "Henseler2014",
+      "candidate": "R020"
+    },
+    "drafts/regions/inferior_frontal_gyrus_semantic_differentiation_cluster__Henseler2014__R021.md": {
+      "source_sha256": "41a2c7a1082ebcb4da9dac8b050e999cc488e99d1905f08f2267353b605224de",
+      "paper": "Henseler2014",
+      "candidate": "R021"
+    },
+    "drafts/regions/left_inferior_frontal_gyrus_fluency_cluster__Henseler2014__R022.md": {
+      "source_sha256": "38ccee92dba709071a9840911b4a89682508bbb2d52860baa48d5716e8677ca7",
+      "paper": "Henseler2014",
+      "candidate": "R022"
+    },
+    "drafts/regions/left_posterior_superior_temporal_gyrus_cluster__Henseler2014__R023.md": {
+      "source_sha256": "c7f6008fe683b0b5bf7fc31d722dca289ee7d65650e07a6d3935e600bbf4455f",
+      "paper": "Henseler2014",
+      "candidate": "R023"
+    },
+    "drafts/predictors/time_constraint_naming__Henseler2014__R026.md": {
+      "source_sha256": "d515d9646b92b5c11092b08cd48d29f8cea82ed57fbc49d9b78cd4b75dd9b0e2",
+      "paper": "Henseler2014",
+      "candidate": "R026"
+    },
+    "drafts/regions/area_spt__Hickok2007__R010.md": {
+      "source_sha256": "279e0c4f1788fc9f7fc095e79adc53f624eb0bca7a3c5bfd32f863ddb5549c56",
+      "paper": "Hickok2007",
+      "candidate": "R010",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Hickok2007 is an Opinion article. PDF page 8 attributes the pianist humming-versus-keyboard observation to G.H., unpublished observations. The draft labels this as cohort evidence without preserving its unpublished status; reconcile source design and attribution before publication."
+    },
+    "drafts/predictors/wernickes_area_perfusion_delay__Hillis2001__R001.md": {
+      "source_sha256": "0ea81fe861bffac299cfeada86e90485411cefd65c48e58b2663201cac7fd55b",
+      "paper": "Hillis2001",
+      "candidate": "R001"
+    },
+    "drafts/predictors/ba22_ttp_delay__Hillis2001__R002.md": {
+      "source_sha256": "8b7a08caec6fb8aae56e4497b19325ebf9d63851360ddf2572db4d980d3a8db9",
+      "paper": "Hillis2001",
+      "candidate": "R002"
+    },
+    "drafts/regions/subcortical_lesion_cluster__Hillis2002__R001.md": {
+      "source_sha256": "1dae5e9d3c886a7e367c539b64942bf972f24c1af26cdd3086f00e1b01e5653c",
+      "paper": "Hillis2002",
+      "candidate": "R001"
+    },
+    "drafts/therapies/reperfusion_intervention__Hillis2002__R002.md": {
+      "source_sha256": "614dc0cbcd18d18d97fcd162078b2e3decfeddb2deaf23e39584d015b6d0c73f",
+      "paper": "Hillis2002",
+      "candidate": "R002",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Draft method clinical_RCT is unsupported: PDF page 4 describes six selected intervention patients (four induced blood pressure elevation, one endarterectomy, one stent) and one untreated comparison, without random allocation. The abstract says 100% immediate resolution, whereas page 5 describes substantial improvement with full recovery in most cases. Reconcile design and outcome wording before publication."
+    },
+    "drafts/predictors/aphasia_neglect_cortical_hypoperfusion_prediction__Hillis2002__R003.md": {
+      "source_sha256": "6c648bdf73c64e31f0a2ce198aceb58fdf4fcda8359382cb7f73fb77e6228f98",
+      "paper": "Hillis2002",
+      "candidate": "R003"
+    },
+    "drafts/predictors/aphasia_neglect_ppv__Hillis2002__R004.md": {
+      "source_sha256": "8ba97a35cebd84215ab7b93ef27f7cc64ab3a099ef603100b94f37d082c3cceb",
+      "paper": "Hillis2002",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_subcortical_lesions__Hillis2002__R005.md": {
+      "source_sha256": "e3157d8170e02cf806b25127065c8239b40b60e8eea8dec40c8f3596cbbefafa",
+      "paper": "Hillis2002",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_corona_radiata__Hillis2002__R006.md": {
+      "source_sha256": "22d27d2b5579323b2b1d8f9336654181d1d9cb24371bd98acbda625777ac9c69",
+      "paper": "Hillis2002",
+      "candidate": "R006"
+    },
+    "drafts/regions/left_caudate_cluster__Hillis2002__R007.md": {
+      "source_sha256": "293c70f75c1db6c0efa8b5feec252bb41efd81ca32e673d52412782c47672037",
+      "paper": "Hillis2002",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_thalamus_cluster__Hillis2002__R008.md": {
+      "source_sha256": "dc32866e4f1de7c527db08810a32712d8ae4e1b318026082ae2d2ba7bb9960b2",
+      "paper": "Hillis2002",
+      "candidate": "R008"
+    },
+    "drafts/regions/right_subcortical_neglect_cluster__Hillis2002__R010.md": {
+      "source_sha256": "6d0e5efbf40c1f1f4ff0c2012d7cc4b4369e0cfb2823cf3ad912d3b161412630",
+      "paper": "Hillis2002",
+      "candidate": "R010"
+    },
+    "drafts/predictors/lexical_deficits_cortical_hypoperfusion__Hillis2002__R011.md": {
+      "source_sha256": "0db9ade864710e104027e5861c34bdb9e64e018447f797e4f2f6a22d9a1aae3a",
+      "paper": "Hillis2002",
+      "candidate": "R011"
+    },
+    "drafts/predictors/hemispatial_neglect_pwi_association__Hillis2002__R012.md": {
+      "source_sha256": "e757cc86a9ba0b92473bbb2eca9e814ed19c2a7b639605168577014eef788d07",
+      "paper": "Hillis2002",
+      "candidate": "R012"
     }
   }
 }

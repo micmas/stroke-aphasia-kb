@@ -1030,13 +1030,13 @@
   "@Harvey2022": {
    "annotated": "pdf/C0015_Harvey2022_annotated.pdf",
    "annotation_passages_missed": 0,
-   "annotation_source_digest": "286a054848ae2d1cf6ce2f5d6b32bd51a6471787c2b40c439d575699785678ca",
-   "bytes": 1293171,
+   "annotation_source_digest": "84a76a9f7e39749ba8ea64b37c2f9a9d1a2e42a1f2fb46cfbf2caeb6f8bf7247",
+   "bytes": 1431400,
    "category": "free_to_read",
-   "draft_snapshot": "2026-11-23T20:04:12.177963+00:00",
+   "draft_snapshot": "2026-11-23T21:34:12.390125+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "2bff35f04f8ffc91d42d8e764dbc24e71ae8ba32773c987d47cdb171a1afcf78"
+   "sha256": "236ee3a58bfa1ffc1c262b40bd77b6452f2f389ace82f0cbd5fe3b2b9398c0ca"
   },
   "@Hazelton2022": {
    "annotated": "cc/C0107_Hazelton2022_annotated.pdf",
@@ -1049,11 +1049,14 @@
   },
   "@Henseler2014": {
    "annotated": "pdf/C0066_Henseler2014_annotated.pdf",
-   "bytes": 1544595,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "97406c0c3e2a8868424754ad2fba6865760aa3d463292aa7e179922a952c9c71",
+   "bytes": 2031621,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-23T21:34:12.390125+00:00",
    "label": "no open copy known",
    "public": false,
-   "sha256": "5f0af0dad99f727ccd023a801809b6f6d968be5fcac33d668087b38c4d70d7c6"
+   "sha256": "557122b0a190dc42cce79fae68280bf0f48b1980aed7161a8ea7e870355ca7db"
   },
   "@Hickok2007": {
    "annotated": "pdf/C0098_Hickok2007_annotated.pdf",
@@ -1065,11 +1068,14 @@
   },
   "@Hillis2001": {
    "annotated": "pdf/C0132_Hillis2001_annotated.pdf",
-   "bytes": 2539581,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "84b9f40ec52012b544414a5d3e8f2ede6b9ca57e4208a6b46072205c8af51196",
+   "bytes": 2583715,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-23T21:34:12.390125+00:00",
    "label": "publisher terms (onlinelibrary.wiley.com)",
    "public": false,
-   "sha256": "452cf6ead2750fbb056b92d16951484c11cd1e75b00658683ddf965a6fd189f0"
+   "sha256": "c566be0ccb30c95962ccbddba29190da3fb702d7a3f5556e273bdd7fce004448"
   },
   "@Hillis2004": {
    "annotated": "pdf/C0063_Hillis2004_annotated.pdf",
