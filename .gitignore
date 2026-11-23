@@ -36,3 +36,6 @@ portal/.wrangler/
 portal/.uploads/
 .promotion.lock
 _sync_snapshot.tgz
+staging/dysphagia/dist/
+staging/dysphagia/.wrangler/
+.wrangler/

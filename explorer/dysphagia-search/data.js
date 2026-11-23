@@ -1,9 +1,12 @@
 // Search protocol draft: no database run or screening approval is implied.
-export const VERSION = 'dysphagia-initial-v0.1';
+export const VERSION = 'dysphagia-initial-v0.2';
 export const stroke = 'stroke* OR poststroke OR "post-stroke" OR cerebrovascular OR "cerebral infarct*" OR "brain infarct*" OR "cerebral hemorrhag*" OR "cerebral haemorrhag*" OR "intracerebral hemorrhag*" OR "intracerebral haemorrhag*"';
 export const swallow = 'dysphagi* OR swallow* OR deglutition';
 const ebsco = `(TI (${stroke}) OR AB (${stroke})) AND (TI (${swallow}) OR AB (${swallow}))`;
-const cochrane = `(${stroke}):ti,ab,kw AND (${swallow}):ti,ab,kw`;
+// Cochrane requires ordered adjacency for truncated phrases, not quotation marks.
+const cochraneStroke = stroke.replace(/"([^"\n]*[*?][^"\n]*)"/g,
+ (_, phrase) => `(${phrase.split(/\s+/).join(' NEXT ')})`);
+const cochrane = `(${cochraneStroke}):ti,ab,kw AND (${swallow}):ti,ab,kw`;
 export const DATABASES = [
  {id:'pubmed',name:'MEDLINE / PubMed',platform:'PubMed',url:'https://pubmed.ncbi.nlm.nih.gov/advanced/', established:true,
  query:'("Stroke"[Mesh] OR "Brain Ischemia"[Mesh] OR "Intracranial Hemorrhages"[Mesh] OR stroke*[tiab] OR poststroke[tiab] OR "post-stroke"[tiab] OR cerebrovascular[tiab] OR "cerebral infarct*"[tiab] OR "brain infarct*"[tiab] OR "cerebral hemorrhag*"[tiab] OR "cerebral haemorrhag*"[tiab] OR "intracerebral hemorrhag*"[tiab] OR "intracerebral haemorrhag*"[tiab]) AND ("Deglutition Disorders"[Mesh] OR dysphagi*[tiab] OR swallow*[tiab] OR deglutition[tiab])',
