@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-23T08:49:00.758407+00:00",
+  "snapshot_at": "2026-11-23T11:34:10.398535+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -2102,6 +2102,343 @@
       "source_sha256": "a218ee004ce900173bbdac90e0f6a22a4a16ec2961129b929de5207f63e5782c",
       "paper": "Dronkers2004",
       "candidate": "R001"
+    },
+    "drafts/regions/middle_temporal_gyrus__Dronkers2004__R003.md": {
+      "source_sha256": "ce038dc205d371cc0bec34b1528eeea04714dff7270e5ef6d0d242efc180b73a",
+      "paper": "Dronkers2004",
+      "candidate": "R003"
+    },
+    "drafts/regions/anterior_ba22__Dronkers2004__R004.md": {
+      "source_sha256": "92b2d303301256651304ac3d15ef1b4b4d27cc0824c7abc3d81ea84d50b1ac43",
+      "paper": "Dronkers2004",
+      "candidate": "R004"
+    },
+    "drafts/regions/sts_ba39_cluster__Dronkers2004__R005.md": {
+      "source_sha256": "44be976492e33402198903547c62847f33651358d18f6f0fccbb145307f3bd14",
+      "paper": "Dronkers2004",
+      "candidate": "R005"
+    },
+    "drafts/regions/ba46__Dronkers2004__R006.md": {
+      "source_sha256": "fce0e664405b3c0568c9a51796c3c41230569f9fb066aba6ce19e6410e317824",
+      "paper": "Dronkers2004",
+      "candidate": "R006"
+    },
+    "drafts/regions/ba47__Dronkers2004__R007.md": {
+      "source_sha256": "4cecf4aa68591b4815e1ed01726dc49e787869455ec31747274c65dbc1576495",
+      "paper": "Dronkers2004",
+      "candidate": "R007"
+    },
+    "drafts/regions/brocas_area__Dronkers2004__R008.md": {
+      "source_sha256": "5c8a028fe16f2d958db024b9f8df232ae0274fa9c69366d1b01fada3a2add980",
+      "paper": "Dronkers2004",
+      "candidate": "R008"
+    },
+    "drafts/regions/wernickes_area_posterior_ba22__Dronkers2004__R009.md": {
+      "source_sha256": "6db09bf5939e25c5714f0cc6f7224500a8bfcc36beb958dadb193493c5b9634d",
+      "paper": "Dronkers2004",
+      "candidate": "R009"
+    },
+    "drafts/regions/posterior_stg_mtg_white_matter_cluster__Dronkers2004__R010.md": {
+      "source_sha256": "d4266e88995857b130b217290df5a5fcca479cff4bd75725e6d9576d030590ee",
+      "paper": "Dronkers2004",
+      "candidate": "R010"
+    },
+    "drafts/regions/postcentral_gyrus__Dronkers2004__R011.md": {
+      "source_sha256": "7be226684c40f8be4677df0bad2450f5094e410adaf560c359905eab4caf2358",
+      "paper": "Dronkers2004",
+      "candidate": "R011"
+    },
+    "drafts/regions/mtg_cluster__Dronkers2004__R012.md": {
+      "source_sha256": "2ea18bef25da4692c308c4e7fe72c53421f2438dd0f7b47b5e300ae4d545a620",
+      "paper": "Dronkers2004",
+      "candidate": "R012"
+    },
+    "drafts/regions/vlsm_regions_non_mtg__Dronkers2004__R013.md": {
+      "source_sha256": "3fce0e906d3d9c2ef3d090520040a0ef575c98a0b97defa7af9f131b9acc6af0",
+      "paper": "Dronkers2004",
+      "candidate": "R013"
+    },
+    "drafts/regions/vlsm_spared_cluster__Dronkers2004__R014.md": {
+      "source_sha256": "12a5fb6d128d3471a4a8b3d7e2491d32bd45aa3eda3ed814fe5a8489185edb91",
+      "paper": "Dronkers2004",
+      "candidate": "R014"
+    },
+    "drafts/regions/vlsm_defined_regions_cluster__Dronkers2004__R015.md": {
+      "source_sha256": "e73d434e7ecd066ba26346203918b5382908b110c65c94f80d5207502e0c4aaf",
+      "paper": "Dronkers2004",
+      "candidate": "R015"
+    },
+    "drafts/regions/mtg_cluster__Dronkers2004__R016.md": {
+      "source_sha256": "459455d510a14d4ea5d841ed807e64d0489adf64979b75510e3dfa8e404917d4",
+      "paper": "Dronkers2004",
+      "candidate": "R016"
+    },
+    "drafts/regions/mtg_cluster__Dronkers2004__R017.md": {
+      "source_sha256": "6f62596135c6c231bdb32fcced7c5b6ff4d05bfc2fa7c6bc25294451a81f5c93",
+      "paper": "Dronkers2004",
+      "candidate": "R017"
+    },
+    "drafts/regions/mtg_cluster__Dronkers2004__R018.md": {
+      "source_sha256": "867abd8ada3558df220b28ae17b563689f1a94d5cc9ca09180794c39bafeb755",
+      "paper": "Dronkers2004",
+      "candidate": "R018"
+    },
+    "drafts/impairments/lh_aphasia_cycle_r__Dronkers2004__R021.md": {
+      "source_sha256": "57283ebbb93fe0a04689a64326a66cfb6cc752819c3c4aaf2c2068eb84f7a8ce",
+      "paper": "Dronkers2004",
+      "candidate": "R021"
+    },
+    "drafts/impairments/wernickes_aphasia__Dronkers2004__R023.md": {
+      "source_sha256": "8ee49ec6a1cfa3ee46e9bf1858a6ec1f6a55836b1dd0dbf7fe37448e96f7f604",
+      "paper": "Dronkers2004",
+      "candidate": "R023"
+    },
+    "drafts/impairments/brocas_aphasia__Dronkers2004__R024.md": {
+      "source_sha256": "ee9d0f7edb32250ac03160cba25c9a5d36c011441333b924125d5c1e3bb7fa95",
+      "paper": "Dronkers2004",
+      "candidate": "R024"
+    },
+    "drafts/impairments/conduction_aphasia__Dronkers2004__R025.md": {
+      "source_sha256": "3309b01af0d701bcada06673310b326ed714a7651a63524d4f9d7e8b82c218be",
+      "paper": "Dronkers2004",
+      "candidate": "R025"
+    },
+    "drafts/impairments/anomic_aphasia__Dronkers2004__R026.md": {
+      "source_sha256": "e296186c60a4993bb8be636d32652a3503cc5f8a72c5c94d8d07ef6aae7b844e",
+      "paper": "Dronkers2004",
+      "candidate": "R026"
+    },
+    "drafts/regions/rh_postero_lateral_cluster__Durfee2021__R002.md": {
+      "source_sha256": "3aaaa0a4d3aabcd8033fffa629903cfdb4d6fde2bc321f01f23b9c88f8ce68e6",
+      "paper": "Durfee2021",
+      "candidate": "R002",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/right_temporoparietal_basal_ganglia_cluster__Durfee2021__R003.md": {
+      "source_sha256": "9813bc067bbe949ffefc405d85d061419b8baec922ef34fe6f1779916fb84071",
+      "paper": "Durfee2021",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/right_posterior_superior_temporal_cortex__Durfee2021__R004.md": {
+      "source_sha256": "6d08b3c0a9820107e5a5ebcd764f55c2b7a05a15453647ec40da963a338b9211",
+      "paper": "Durfee2021",
+      "candidate": "R004",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/predictors/amygdala_fearful_prosody_predictor__Durfee2021__R005.md": {
+      "source_sha256": "d7c3c0071fd9d6e6e44c0feeab75b06eb7f239abbb0dcff4dfdefa9b02c807be",
+      "paper": "Durfee2021",
+      "candidate": "R005",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/rh_temporal_parietal_lesions__Durfee2021__R006.md": {
+      "source_sha256": "3497cb4d7cb35f7d4e2252a921f3105f7115abb3da3935de9ca22f4199ba897c",
+      "paper": "Durfee2021",
+      "candidate": "R006",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/rh_mca_inferior_division__Durfee2021__R009.md": {
+      "source_sha256": "dace40c9a365a83c4a3b70fb2f90677c4f9f55565d04134cc218837a9af1925c",
+      "paper": "Durfee2021",
+      "candidate": "R009",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/right_temporoparietal_cortex__Durfee2021__R011.md": {
+      "source_sha256": "5caed8a6dd60afd55b32b62d45a5494db4b6947a1fe77db39e1ffcc3e2759bdf",
+      "paper": "Durfee2021",
+      "candidate": "R011",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/rh_subcortical_frontal_receptive_aprosodia__Durfee2021__R012.md": {
+      "source_sha256": "828c38ea73bc9e71cc376157a0e13e30ee3bd30487f6b870b9cae437837051de",
+      "paper": "Durfee2021",
+      "candidate": "R012",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/right_temporoparietal_basal_ganglia_cluster__Durfee2021__R014.md": {
+      "source_sha256": "b701202a96cf3f17993223845e015932ce18986e6af50edca672713a35a8e1d4",
+      "paper": "Durfee2021",
+      "candidate": "R014",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/right_smg_slf_damage__Durfee2021__R015.md": {
+      "source_sha256": "695f93efab0a7359ceff4aa4d18308fb4233ff649cc6d5f7b40e8ed8109929a9",
+      "paper": "Durfee2021",
+      "candidate": "R015",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/predictors/acute_spectral_flatness_predictor__Durfee2021__R016.md": {
+      "source_sha256": "7a0c3e44f5941b54bd698c800a3f224b377211454572463d86067c21a806d878",
+      "paper": "Durfee2021",
+      "candidate": "R016",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/ventral_stream_receptive_prosody_regions__Durfee2021__R017.md": {
+      "source_sha256": "472160a524c7d581b5f8c4407676ca746fced30bd3cdcfa156ca225e99ca4575",
+      "paper": "Durfee2021",
+      "candidate": "R017",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/subcortical_prosody_cluster__Durfee2021__R019.md": {
+      "source_sha256": "65dc2077a3735bbb552a0b936464b64be8b543c45a86c934ce99ea5fc364d683",
+      "paper": "Durfee2021",
+      "candidate": "R019",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/rh_frontal_insula_white_matter_expressive_aprosodia__Durfee2021__R029.md": {
+      "source_sha256": "1ce9c80da5c5da5be5fac7f48f9f423a374d6adcb9690c1b3de1ca5c3d6f50c2",
+      "paper": "Durfee2021",
+      "candidate": "R029",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/rh_posterior_subcortical_cluster__Durfee2021__R030.md": {
+      "source_sha256": "176cdabd4bac0a66af0d9961278d97d5868a46bba4a2a7e9b8db7d475f51958a",
+      "paper": "Durfee2021",
+      "candidate": "R030",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/regions/right_parietal_lobe__Durfee2021__R031.md": {
+      "source_sha256": "57c05cbce87681741eb711690861e01dc43ea513272b220d57a79383286cdf76",
+      "paper": "Durfee2021",
+      "candidate": "R031",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+    },
+    "drafts/therapies/semantic_feature_analysis__Efstratiadou2018__R002.md": {
+      "source_sha256": "715c00091429448be4d2291fce7a5b0f59835c59260cf9f27b9396dd8d4669d1",
+      "paper": "Efstratiadou2018",
+      "candidate": "R002"
+    },
+    "drafts/therapies/semantic_feature_analysis__Efstratiadou2018__R005.md": {
+      "source_sha256": "6a7bf430e24e8a21298e5b0ab935e52abd8a92e1471996bcf95eda82a66dc0f6",
+      "paper": "Efstratiadou2018",
+      "candidate": "R005"
+    },
+    "drafts/therapies/semantic_feature_analysis__Efstratiadou2018__R006.md": {
+      "source_sha256": "edfb7a1523224990cfaf53c1bf7b1887c357fcb03668aef91793d61f4e5dcc41",
+      "paper": "Efstratiadou2018",
+      "candidate": "R006"
+    },
+    "drafts/therapies/sfa_generalization_brocas__Efstratiadou2018__R007.md": {
+      "source_sha256": "5a644d6bdc136a0d1d19a74eaa083691aa57726b4c42fc350930c78c2317cd16",
+      "paper": "Efstratiadou2018",
+      "candidate": "R007"
+    },
+    "drafts/therapies/semantic_feature_analysis__Efstratiadou2018__R010.md": {
+      "source_sha256": "82829cac71cab8ee451c082855700e8dd88e57a3ba25ac6e4415ee866f569c62",
+      "paper": "Efstratiadou2018",
+      "candidate": "R010"
+    },
+    "drafts/predictors/baseline_linguistic_components__ElHachioui2013__R001.md": {
+      "source_sha256": "045a10a1c94bb91dabf459f7de49a3e6f02f2601dfc4b2d5da134b3ffb71cf3b",
+      "paper": "ElHachioui2013",
+      "candidate": "R001"
+    },
+    "drafts/predictors/baseline_linguistic_components__ElHachioui2013__R002.md": {
+      "source_sha256": "db1959e4a7f863bed9beaacbe056f4e5488c5a39fad9986a6eb47c8ff2adc734",
+      "paper": "ElHachioui2013",
+      "candidate": "R002"
+    },
+    "drafts/predictors/baseline_phonology__ElHachioui2013__R003.md": {
+      "source_sha256": "d78e46571432402e3e98d9eeebeb45c40d8c8980cbc3b5a7b8212eb0b2d7b482",
+      "paper": "ElHachioui2013",
+      "candidate": "R003"
+    },
+    "drafts/predictors/baseline_clinical_demographic_predictors__ElHachioui2013__R004.md": {
+      "source_sha256": "7f039b8b4cd483808cfacb28062f348c8ad61c755604b9d2701a1035f39b6990",
+      "paper": "ElHachioui2013",
+      "candidate": "R004"
+    },
+    "drafts/predictors/aphasia_outcome_baseline_model__ElHachioui2013__R005.md": {
+      "source_sha256": "84bdfe9850da250f2487bdf2a12fd55c46cfdad16c0d481f96f8fd9be15e34d0",
+      "paper": "ElHachioui2013",
+      "candidate": "R005"
+    },
+    "drafts/predictors/phonological_recovery_t1_t3__ElHachioui2013__R006.md": {
+      "source_sha256": "8f8e2b354012b8c7fdfebc6592a48eb576257559d3d4db473ea3967c972f601a",
+      "paper": "ElHachioui2013",
+      "candidate": "R006"
+    },
+    "drafts/impairments/sentence_type_comprehension__Fang2025__R001.md": {
+      "source_sha256": "9572abb6cd7f5f84bc0649d7a51b5c5646c28eb529b816077adeaab308e6d651",
+      "paper": "Fang2025",
+      "candidate": "R001"
+    },
+    "drafts/impairments/subject_relative_clause_comprehension__Fang2025__R002.md": {
+      "source_sha256": "61e37859943c22314a2b64759cc5c61ae6f8bbcd065ef63d6288a1517c51bfdf",
+      "paper": "Fang2025",
+      "candidate": "R002"
+    },
+    "drafts/impairments/canonical_non_canonical_comprehension_association__Fang2025__R003.md": {
+      "source_sha256": "2659b15042d2c5ad31a3669faba618a8c884a93d9a8b4c44e11fa9408b857497",
+      "paper": "Fang2025",
+      "candidate": "R003"
+    },
+    "drafts/impairments/canonical_sentence_comprehension__Fang2025__R004.md": {
+      "source_sha256": "9cee5ef94aa9f89ed06c34a68a335ad9ec2570618690abf48cfaca2c086b14ba",
+      "paper": "Fang2025",
+      "candidate": "R004"
+    },
+    "drafts/impairments/non_canonical_sentence_comprehension__Fang2025__R005.md": {
+      "source_sha256": "f77e166b68eee961d2029cd42ad5a1c4d133d9b8677a74894bb0856575a4be6c",
+      "paper": "Fang2025",
+      "candidate": "R005"
+    },
+    "drafts/predictors/fdc_non_canonical_comprehension__Fang2025__R006.md": {
+      "source_sha256": "203bfe27f831a9bf31e656a74809d7434d481c5a2c2f534dbab6db1430120112",
+      "paper": "Fang2025",
+      "candidate": "R006"
+    },
+    "drafts/regions/left_mdlf_slf2_fdc__Fang2025__R010.md": {
+      "source_sha256": "dc37809b1d1c902e5b3fcf7bb6886a912a1fbe19d63a9d44dbfdaf96ce584596",
+      "paper": "Fang2025",
+      "candidate": "R010"
+    },
+    "drafts/regions/left_slf_iii__Fang2025__R011.md": {
+      "source_sha256": "97d4fe660f23ae2af85126dcb05afcfdeebbbf50f5c0bc431e7e998ed7b795bc",
+      "paper": "Fang2025",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_slf_ii__Fang2025__R012.md": {
+      "source_sha256": "887c8e722bfef423dc3cfc32f240002f72ed76eaf4f7c54c6e5c049cc5c97c45",
+      "paper": "Fang2025",
+      "candidate": "R012"
+    },
+    "drafts/regions/icc_fd__Fang2025__R013.md": {
+      "source_sha256": "5c6d4519ad6a2a55b0120af3fe03ca95f7ec9f1bcd4df05413fbae7c123804c7",
+      "paper": "Fang2025",
+      "candidate": "R013"
+    },
+    "drafts/regions/left_af_slf_fd_cluster__Fang2025__R014.md": {
+      "source_sha256": "567d70f64689d1380de4a30e5b49fc7d7a270063aa734b4d41d5d1cbf71e0440",
+      "paper": "Fang2025",
+      "candidate": "R014"
+    },
+    "drafts/regions/left_af_slf3_mdlf_fd__Fang2025__R015.md": {
+      "source_sha256": "ca4639704c2a9983594358982a42e6849c02a4f594bd7d46fb4ddc81bbb368bf",
+      "paper": "Fang2025",
+      "candidate": "R015"
+    },
+    "drafts/predictors/mean_fc_tracts_of_interest__Fang2025__R016.md": {
+      "source_sha256": "7409f0d87e762629ab0edbda9d0393d8a49182ee466def76a2e887c7311a82f7",
+      "paper": "Fang2025",
+      "candidate": "R016"
     }
   }
 }

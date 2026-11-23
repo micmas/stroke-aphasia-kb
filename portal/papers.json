@@ -730,13 +730,13 @@
   "@Dronkers2004": {
    "annotated": "pdf/C0062_Dronkers2004_annotated.pdf",
    "annotation_passages_missed": 0,
-   "annotation_source_digest": "59ae2bb7692689def7d3e308e4c4b163a11a50a4fbc4c0bb749089f3a85cd890",
-   "bytes": 855198,
+   "annotation_source_digest": "9dfe24ded2b93729d8db6e9a2f0d20f696efe98b02687bca7d3407d411ba6416",
+   "bytes": 1096837,
    "category": "free_to_read",
-   "draft_snapshot": "2026-11-23T08:49:00.758407+00:00",
+   "draft_snapshot": "2026-11-23T11:34:10.398535+00:00",
    "label": "other oa",
    "public": false,
-   "sha256": "b1d79860eb545ec1d701ad3d8a9b26b4555e65abf4e74d3e5b8fef1dec92e2d8"
+   "sha256": "9d35adbafa8db5fcd4ce6cf4091f0da144b2a70e7f669628de5a88d561037d01"
   },
   "@Durfee2021": {
    "annotated": "pdf/C0144_Durfee2021_annotated.pdf",
@@ -748,27 +748,36 @@
   },
   "@Efstratiadou2018": {
    "annotated": "pdf/C0078_Efstratiadou2018_annotated.pdf",
-   "bytes": 405277,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "6184d0968ef29050a13b6a12e5ce99280dd92854101b555436ede193fd8fa05b",
+   "bytes": 563900,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-23T11:34:10.398535+00:00",
    "label": "no open copy known",
    "public": false,
-   "sha256": "838847d0cf9bf73a1e252bdff69e64e508a31ab8e50ee84e1aedc97efe6b9e34"
+   "sha256": "548433eb359bd52627ba9be62fd233b4636f90a8c832f8f1f6be7952f17ebbe3"
   },
   "@ElHachioui2013": {
    "annotated": "pdf/C0145_ElHachioui2013_annotated.pdf",
-   "bytes": 205374,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "fb89c8b6feef472e7302e8042d61b87eb8ff53cca7f182ec241a56453124577c",
+   "bytes": 990828,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-23T11:34:10.398535+00:00",
    "label": "no open copy known",
    "public": false,
-   "sha256": "16aed524471dbc664d6d2b04bfa46e7bc7662149c823fba19ec336ea8bb13f72"
+   "sha256": "37d35347e35493bd6bd1a378cd5df6b3f121ec9cc29f0a3bcdfa183dadcce36c"
   },
   "@Fang2025": {
    "annotated": "pdf/C0516_Fang2025_annotated.pdf",
-   "bytes": 31134344,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "40a793fd6b7e6e2e6a271c3b5ff9f32bfd63aa338aa7de94259d6b0bbbd5e9bf",
+   "bytes": 31322200,
    "category": "unknown",
+   "draft_snapshot": "2026-11-23T11:34:10.398535+00:00",
    "label": null,
    "public": false,
-   "sha256": "328992f44497fd6c9fda0ca0fa8bd16122d4cf5748d6ab56f922d4394e940b03"
+   "sha256": "261b116e9ce5837b6a60397475c6c24114799dc01272b6830d97f92cf91d4e20"
   },
   "@Forkel2014": {
    "annotated": "pdf/C0087_Forkel2014_annotated.pdf",
