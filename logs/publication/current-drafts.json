@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-23T17:34:05.140616+00:00",
+  "snapshot_at": "2026-11-23T20:04:12.177963+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -3152,6 +3152,251 @@
       "source_sha256": "f2a5ce0bc7498fdbaf99e0652ddcc5fec1b3dd4a3c5df012fc828d5ff9d6a5c6",
       "paper": "Halai2017",
       "candidate": "R003"
+    },
+    "drafts/regions/mlu_fluency_cluster__Halai2017__R004.md": {
+      "source_sha256": "935c71ee9669606dc985dd180573aa9cebc6343a9c8e3e7dc75bc8100d6debe1",
+      "paper": "Halai2017",
+      "candidate": "R004"
+    },
+    "drafts/regions/ttr_semantic_variety_cluster__Halai2017__R005.md": {
+      "source_sha256": "fa3e6bdc63831ed7f7e6528a416ca61516e497674d078965f37829a2ba9dd4aa",
+      "paper": "Halai2017",
+      "candidate": "R005"
+    },
+    "drafts/regions/token_measure__Halai2017__R007.md": {
+      "source_sha256": "39dcfe2b4e45c95881e0c9a7cdde004f8e54073b1063525e87b22823ab4d1547",
+      "paper": "Halai2017",
+      "candidate": "R007"
+    },
+    "drafts/regions/ttr_lesion_association__Halai2017__R008.md": {
+      "source_sha256": "5116cac0c06d96365c53af37e0e8d02f6809215c359f5a3d1a97a77fdd40e0dd",
+      "paper": "Halai2017",
+      "candidate": "R008"
+    },
+    "drafts/regions/mlu_left_superior_insula_cluster__Halai2017__R009.md": {
+      "source_sha256": "6fce1a91d8c36cff649cd7ecde766ae1aeebcaf97e9cdc9a4d21db4ae3066fca",
+      "paper": "Halai2017",
+      "candidate": "R009"
+    },
+    "drafts/regions/speech_quanta_cluster__Halai2017__R010.md": {
+      "source_sha256": "e845558a6c75e40ff413994a87dcdc86bdcdbfe3a88cf2b0f0e106548c9030ad",
+      "paper": "Halai2017",
+      "candidate": "R010"
+    },
+    "drafts/regions/semantic_variety_cluster__Halai2017__R011.md": {
+      "source_sha256": "59a019af4c7c6edeac95092102a3a1521365872e19ab63b2c47e2738b9a53224",
+      "paper": "Halai2017",
+      "candidate": "R011"
+    },
+    "drafts/predictors/speech_production_pca_factors__Halai2017__R012.md": {
+      "source_sha256": "366e960f6fa9e55a02b28610f5413c46877996c555563a7bcc9bf3868e89f215",
+      "paper": "Halai2017",
+      "candidate": "R012"
+    },
+    "drafts/predictors/speech_quanta_factor__Halai2017__R013.md": {
+      "source_sha256": "129bcd5f0c1c0647899afe0ec5cd6c5576933222527425babd086293220dbb14",
+      "paper": "Halai2017",
+      "candidate": "R013"
+    },
+    "drafts/predictors/semantic_variety_speech_factor__Halai2017__R014.md": {
+      "source_sha256": "645cc02045825edfe4f56d0f9bf41824397ea05fe0cf67a638611345c9e7e4f2",
+      "paper": "Halai2017",
+      "candidate": "R014"
+    },
+    "drafts/regions/phonological_cluster__Halai2017__R015.md": {
+      "source_sha256": "d65e14f920038f17cfce47797243d21d9b087bbae603718f27c0b91ca15a7afb",
+      "paper": "Halai2017",
+      "candidate": "R015"
+    },
+    "drafts/regions/semantic_factor_cluster__Halai2017__R016.md": {
+      "source_sha256": "6e66159864537dbfb4e6b912b1061e4a3f48bf2cb44a53e83f6ff625d72aa46b",
+      "paper": "Halai2017",
+      "candidate": "R016"
+    },
+    "drafts/regions/speech_quanta_cluster__Halai2017__R017.md": {
+      "source_sha256": "73319a5bd1fad2f2b07a4deba7c8de1582cffca3b5b2aca52c73514217e4bb80",
+      "paper": "Halai2017",
+      "candidate": "R017"
+    },
+    "drafts/regions/executive_factor_cluster__Halai2017__R018.md": {
+      "source_sha256": "cafe6219b2ccae111f4e9f2b42ea8b53c43a137568123f959c01a54b58e9726a",
+      "paper": "Halai2017",
+      "candidate": "R018"
+    },
+    "drafts/regions/lesion_volume__Halai2017__R019.md": {
+      "source_sha256": "b1f5a20ade4e26b62f2a2f1bcf0745f19342bb6477b8eed81426d4ad17394137",
+      "paper": "Halai2017",
+      "candidate": "R019"
+    },
+    "drafts/regions/precg_phonological_errors__Halai2018__R001.md": {
+      "source_sha256": "13add9182f3dadc89e1d9ba5210b350afc79e315bdbd237dc470c3eb8363ffae",
+      "paper": "Halai2018",
+      "candidate": "R001"
+    },
+    "drafts/regions/atl_omission_cluster__Halai2018__R002.md": {
+      "source_sha256": "6e58d8d512d25a72a231597443f7f38d90363b3130c155409c8ee4744729cf2c",
+      "paper": "Halai2018",
+      "candidate": "R002"
+    },
+    "drafts/regions/anterior_temporal_region__Halai2018__R003.md": {
+      "source_sha256": "5a645155b427e95d7ce12c20a26c936d98040407b323e950fc14c47548941381",
+      "paper": "Halai2018",
+      "candidate": "R003"
+    },
+    "drafts/regions/omerr_mtg_phg_cluster__Halai2018__R004.md": {
+      "source_sha256": "e0e0d9e4db1503586b5697c60e37b2ade861a41d345cd157c12e549313568cf5",
+      "paper": "Halai2018",
+      "candidate": "R004"
+    },
+    "drafts/impairments/expressive_phonological_ability__Halai2018__R005.md": {
+      "source_sha256": "028a7b0ea365ebfe7a83e60658af5920893ae6617ef5b6bd069885ab8105fee9",
+      "paper": "Halai2018",
+      "candidate": "R005"
+    },
+    "drafts/predictors/omission_errors_semantic_phonological_wm__Halai2018__R006.md": {
+      "source_sha256": "1282dfbeba581fd8f4f6b3e50047a1f2788ad15e7e5663a03268f4a7959fe182",
+      "paper": "Halai2018",
+      "candidate": "R006"
+    },
+    "drafts/impairments/phonological_working_memory__Halai2018__R007.md": {
+      "source_sha256": "6ac0054dd5baaf0b88e36dfd406ec778760d79ae07377def9d5135ff062c290a",
+      "paper": "Halai2018",
+      "candidate": "R007"
+    },
+    "drafts/predictors/omnibus_pca_fluency_factor__Halai2018__R008.md": {
+      "source_sha256": "532f763e55c36b8459a8a4c590cbd21012b96b2fc172cfed9e6c74f972326d8e",
+      "paper": "Halai2018",
+      "candidate": "R008"
+    },
+    "drafts/regions/sem_err__Halai2018__R009.md": {
+      "source_sha256": "4a53398d262a41ae01fd20477ad34abec77eab527041548a4f4b61acc53d0233",
+      "paper": "Halai2018",
+      "candidate": "R009"
+    },
+    "drafts/regions/phonological_working_memory_cluster__Halai2018__R010.md": {
+      "source_sha256": "5dbe0e08e012544789996b4633299583e4c4b416219397038b9a80f5d31ccc82",
+      "paper": "Halai2018",
+      "candidate": "R010"
+    },
+    "drafts/regions/speech_quanta_factor__Halai2018__R011.md": {
+      "source_sha256": "1e19d63c899185719d153882fde9ca2e66f226f31d9064e99799f0aa2969f8fe",
+      "paper": "Halai2018",
+      "candidate": "R011"
+    },
+    "drafts/regions/semantic_ability_cluster__Halai2018__R012.md": {
+      "source_sha256": "515947e40816775be3ccdd652925c77a8c7a91579665eeebeb13e6ba2fb99034",
+      "paper": "Halai2018",
+      "candidate": "R012"
+    },
+    "drafts/predictors/omnibus_pca_remaining_factors__Halai2018__R013.md": {
+      "source_sha256": "803ab82917dfa6a247609e2bfd33715c79a44e5f77c0b2800d6711bccafb5039",
+      "paper": "Halai2018",
+      "candidate": "R013"
+    },
+    "drafts/regions/precg_central_opercular_cortex__Halai2018__R014.md": {
+      "source_sha256": "2061151825d4ca9bf90cc9b81a196a6a85f8b9ee3562a3efe0265b530559d3cd",
+      "paper": "Halai2018",
+      "candidate": "R014"
+    },
+    "drafts/regions/semantic_error_cluster__Halai2018__R015.md": {
+      "source_sha256": "76333654bd6e3bf39820a1666ceeac662b0baf861852f4367ebf6feb1e91b967",
+      "paper": "Halai2018",
+      "candidate": "R015"
+    },
+    "drafts/regions/left_caudate__Haldin2026__R001.md": {
+      "source_sha256": "52125e8d4383b7c2fe94503bfb2727975d73504f0aab5a998ba4d1c55db4ca8b",
+      "paper": "Haldin2026",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_ifg_op_cluster__Haldin2026__R002.md": {
+      "source_sha256": "63e7845057f4c818f12928f4515b48093825bcf92e9b8a2971075fd5345f3f5d",
+      "paper": "Haldin2026",
+      "candidate": "R002"
+    },
+    "drafts/regions/naming_disconnection_cluster__Haldin2026__R004.md": {
+      "source_sha256": "71cccec98e6bbe53435674d1341e47a1d33c5a946c0ba511b520e95c7793d511",
+      "paper": "Haldin2026",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_slf_iii_disconnection__Haldin2026__R005.md": {
+      "source_sha256": "658ceca7c360679c6b0019ad03c9da05477c2666c4aef9815d06f9e1e9c95128",
+      "paper": "Haldin2026",
+      "candidate": "R005"
+    },
+    "drafts/regions/executive_dysfunction_cluster_svr_dsm__Haldin2026__R006.md": {
+      "source_sha256": "36febe107f8ad8bdfd6b1d5daf47e5916dce56c9caebee135f0fe13a9b49d3b2",
+      "paper": "Haldin2026",
+      "candidate": "R006"
+    },
+    "drafts/regions/cortical_regions_initial_severity_naming__Haldin2026__R007.md": {
+      "source_sha256": "47e25619fb2006e617ad6a28ec2b33278c532794269da080f77fec28a4d7f23c",
+      "paper": "Haldin2026",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_semantic_tract_cluster__Han2013__R001.md": {
+      "source_sha256": "9f7df8b4b34137597118c3bcb1331d2f2a6046dfe0289c0b698091907314e80d",
+      "paper": "Han2013",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_semantic_tracts_control__Han2013__R007.md": {
+      "source_sha256": "31e10a865579b038fed137afec7ac7454a2b0805470615bcb9d1cad779604b6e",
+      "paper": "Han2013",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_atr_lesion_percentage__Han2013__R008.md": {
+      "source_sha256": "ca7916a24ac0fff76643e841c549b711e0ad42af08801502b06da2dd6a76c9db",
+      "paper": "Han2013",
+      "candidate": "R008"
+    },
+    "drafts/predictors/left_ifof_uf_lesion_percentage__Han2013__R009.md": {
+      "source_sha256": "44030401c4d5469026fdf39a3344842407ea3d7c89fb4f9a7e22ee3ba6df0447",
+      "paper": "Han2013",
+      "candidate": "R009"
+    },
+    "drafts/regions/left_slf__Han2016__R001.md": {
+      "source_sha256": "c8818a9b65dcafd540f9e6f852a9c39ee5234590c1499f1ea4da163462c98b3a",
+      "paper": "Han2016",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_slf__Han2016__R008.md": {
+      "source_sha256": "eb67d8fa4b70d124050e94569b9d0920fe2c0594ecd90f74874e864d056d1091",
+      "paper": "Han2016",
+      "candidate": "R008"
+    },
+    "drafts/regions/left_slf__Han2016__R010.md": {
+      "source_sha256": "eed9d5aea9cd62baaddef880f421577be6085c286c32ea109dc20d65a208755f",
+      "paper": "Han2016",
+      "candidate": "R010"
+    },
+    "drafts/regions/left_phonological_encoding_cluster__Han2016__R011.md": {
+      "source_sha256": "8a70dfef7a7978566f3e89b6b18cdc6b532ed1c64f7dd5d95bf3e7eb84708ef1",
+      "paper": "Han2016",
+      "candidate": "R011"
+    },
+    "drafts/regions/lesion_volume__Harvey2022__R001.md": {
+      "source_sha256": "0af2352f119b0377d543c0f13e61ea9dca7753ac14ad6236fe5d37ec96cf2581",
+      "paper": "Harvey2022",
+      "candidate": "R001"
+    },
+    "drafts/regions/lesion_volume_long_term_recovery__Harvey2022__R002.md": {
+      "source_sha256": "4f86b42f1b2aa332f8e3c7f816ea957c41c139f4df1f4192f97625164984b1a7",
+      "paper": "Harvey2022",
+      "candidate": "R002"
+    },
+    "drafts/predictors/ala_participation_score__Harvey2022__R003.md": {
+      "source_sha256": "a1760d89fe03ac3e1e488c66dcf152fb2dfcd3d123f1fd150467d94609deaa54",
+      "paper": "Harvey2022",
+      "candidate": "R003"
+    },
+    "drafts/predictors/ala_aphasia_domain__Harvey2022__R004.md": {
+      "source_sha256": "43887280b41fee443a1845bd5eaf031e06ba136148b398e7bb4ed535d12dfbc2",
+      "paper": "Harvey2022",
+      "candidate": "R004"
+    },
+    "drafts/ingredients/amount_of_slt_received__Harvey2022__R005.md": {
+      "source_sha256": "1891744487de217fb6a66d01282bffc98639e9a2d3b7c9ff6823c1d2c2d4c311",
+      "paper": "Harvey2022",
+      "candidate": "R005"
     }
   }
 }
