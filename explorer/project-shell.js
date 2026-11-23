@@ -45,15 +45,40 @@
       || (location.pathname.startsWith('/dysphagia-search') ? 'dysphagia'
         : /(^|\.)dysphagia-kb\.app$/.test(location.hostname) ? 'dysphagia'
         : /(^|\.)aphasia-kb\.app$/.test(location.hostname) && !location.hostname.startsWith('calmar.') ? 'aphasia' : null);
-    nav.append(link('Stroke KB', 'https://stroke-kb.app/'), link('Dysphagia KB', 'https://dysphagia-kb.app/'));
-    nav.append(link('Aphasia KB', 'https://aphasia-kb.app/'));
-    for (const [label, id] of [['Aphasia KB', 'aphasia'], ['Dysphagia KB', 'dysphagia']]) {
-      const a = [...nav.children].find(item => item.textContent === label);
-      a.removeAttribute('aria-current');
-      if (chapter === id) { a.classList.add('project-home'); a.setAttribute('aria-current', 'location'); }
-    }
+    const isReview = location.hostname.startsWith('review.') || location.pathname.includes('/screening/');
+    const group = (title, items) => {
+      const details = document.createElement('details'); details.className = 'project-menu';
+      const summary = document.createElement('summary'); summary.textContent = title;
+      const children = document.createElement('div'); children.className = 'project-menu-items';
+      for (const [text, url, active] of items) {
+        const a = link(text, url); a.removeAttribute('aria-current');
+        if (active) { a.classList.add('project-home'); a.setAttribute('aria-current', 'location'); }
+        children.append(a);
+      }
+      details.append(summary, children);
+      details.addEventListener('toggle', () => {
+        if (details.open) for (const other of nav.querySelectorAll('.project-menu')) if (other !== details) other.open = false;
+      });
+      return details;
+    };
+    nav.append(group('Stroke KB', [
+      ['Stroke KB home', 'https://stroke-kb.app/', !chapter && location.hostname === 'stroke-kb.app'],
+      ['Aphasia KB', 'https://aphasia-kb.app/', chapter === 'aphasia' && !isReview],
+      ['Dysphagia KB', 'https://dysphagia-kb.app/', chapter === 'dysphagia' && !isReview],
+    ]), group('Review portal', [
+      ['Aphasia', 'https://review.aphasia-kb.app/welcome/', chapter === 'aphasia' && isReview],
+      ['Dysphagia', 'https://review.dysphagia-kb.app/', chapter === 'dysphagia' && isReview],
+    ]));
+    document.addEventListener('click', event => {
+      for (const menu of nav.querySelectorAll('.project-menu')) if (!menu.contains(event.target)) menu.open = false;
+    });
+    nav.addEventListener('keydown', event => {
+      if (event.key === 'Escape') for (const menu of nav.querySelectorAll('.project-menu[open]')) {
+        menu.open = false; menu.querySelector('summary').focus();
+      }
+    });
     const links = document.createElement('div'); links.className = 'project-links';
-    links.append(link('Review portal', 'https://review.aphasia-kb.app/welcome/'), link('CALMaR examples', 'https://calmar.aphasia-kb.app/'), link('Open webapp ↗', 'https://webapps.neurodesk.org/calmar/'), link('Non-commercial use', 'https://aphasia-kb.app/licensing.html'));
+    links.append(link('CALMaR examples', 'https://calmar.aphasia-kb.app/'), link('Open webapp ↗', 'https://webapps.neurodesk.org/calmar/'), link('Non-commercial use', 'https://aphasia-kb.app/licensing.html'));
     const label = document.createElement('label'); label.className = 'project-theme'; label.append('Theme');
     select = document.createElement('select'); select.setAttribute('aria-label', 'Colour theme');
     for (const [value, text] of [['system', 'System'], ['light', 'Light'], ['dark', 'Dark']]) {
