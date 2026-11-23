@@ -572,15 +572,15 @@
   },
   "@Brownsett2014": {
    "annotated": "cc/C0152_Brownsett2014_annotated.pdf",
-   "annotation_passages_missed": 1,
+   "annotation_passages_missed": 0,
    "annotation_source_digest": "52b96a9c023f9123f32d3bd5128ab04f0a365bb00dcadc8bf715a8fe89e47de6",
-   "bytes": 1472261,
+   "bytes": 1478574,
    "category": "cc",
    "draft_snapshot": "2026-11-23T05:06:13.346310+00:00",
    "label": "CC BY",
    "public": true,
    "public_basis": "cc",
-   "sha256": "9bc3fd1f5ca60b0d961e62e1822c4d411b14646a0b5ae5a41293d152f4a9c108"
+   "sha256": "022b631aa0ad0ec0f129d596400265a487632953af2bc3b5ebcabc7ddc8b4208"
   },
   "@Buchsbaum2011": {
    "annotated": "pdf/C0030_Buchsbaum2011_annotated.pdf",
@@ -638,14 +638,14 @@
   },
   "@Corbetta2015": {
    "annotated": "pdf/C0129_Corbetta2015_annotated.pdf",
-   "annotation_passages_missed": 1,
+   "annotation_passages_missed": 0,
    "annotation_source_digest": "9db3678a9831f362f71f8df14c85f5b1860bcf303b41422e05e4da597aec58f8",
-   "bytes": 3827390,
+   "bytes": 3831204,
    "category": "free_to_read",
    "draft_snapshot": "2026-11-23T05:06:13.346310+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "fcf276891ca9f145aa4448e98be8d750182fd14da78d988e5d640012bed36dd4"
+   "sha256": "bffc0103b169917181c67619ff88b8b38f6387ff17de39e196817f0d77479e7e"
   },
   "@Cote2007": {
    "annotated": "pdf/C0151_Cote2007_annotated.pdf",

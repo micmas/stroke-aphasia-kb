@@ -144,6 +144,50 @@ def _normalize(s: str) -> str:
     return s.strip()
 
 
+def _exact_character_rects(page, quote: str):
+    """Locate a complete verbatim quote when PDF search cannot handle its glyphs.
+
+    Only whitespace is collapsed. Control characters, signs and numbers must
+    match exactly, and repeated matches remain unresolved. Geometry comes from
+    the matched characters, never from a nearby or shortened phrase.
+    """
+    text = []
+    locations = []
+    for bi, block in enumerate(page.get_text("rawdict")["blocks"]):
+        for li, line in enumerate(block.get("lines", [])):
+            for span in line["spans"]:
+                for char in span["chars"]:
+                    for value in char["c"]:
+                        text.append(value)
+                        locations.append(((bi, li), char["bbox"]))
+            text.append("\n")
+            locations.append(None)
+    raw = "".join(text)
+    normalized = []
+    offsets = []
+    for match in re.finditer(r"\s+|\S", raw):
+        normalized.append(" " if match.group().isspace() else match.group())
+        offsets.append(match.start())
+    haystack = "".join(normalized)
+    needle = re.sub(r"\s+", " ", quote).strip()
+    if not needle or haystack.count(needle) != 1:
+        return [], None
+    start = haystack.index(needle)
+    import pymupdf
+    lines = {}
+    for offset in offsets[start:start + len(needle)]:
+        location = locations[offset]
+        if location is None or raw[offset].isspace():
+            continue
+        key, bbox = location
+        rect = pymupdf.Rect(bbox)
+        if key in lines:
+            lines[key] |= rect
+        else:
+            lines[key] = rect
+    return list(lines.values()), "exact-character-geometry: full quote"
+
+
 def _find_quote_rects(page, quote: str):
     """Try several normalizations + fallbacks; return (rects, label) or
     ([], None) if nothing matched.
@@ -219,7 +263,7 @@ def _find_quote_rects(page, quote: str):
                 if rects:
                     return rects, f"fallback-{end}: {search_text[:60]}"
 
-    return [], None
+    return _exact_character_rects(page, raw)
 
 
 # ============================================================
