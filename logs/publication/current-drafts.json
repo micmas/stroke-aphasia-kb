@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-23T13:19:15.235600+00:00",
+  "snapshot_at": "2026-11-23T15:34:10.494350+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -2704,6 +2704,224 @@
       "source_sha256": "aaa18e607be77da5c4f146fc8118377e3d8e58ad2a2c96475b8ad84369fe634c",
       "paper": "Fridriksson2015",
       "candidate": "R010"
+    },
+    "drafts/regions/dorsal_frontoparietal_cluster__Fridriksson2018__R001.md": {
+      "source_sha256": "d14cd244ada1a9c74bc264bbc84fc0d36ece93f86b75da25b150cfae76f3caba",
+      "paper": "Fridriksson2018",
+      "candidate": "R001"
+    },
+    "drafts/regions/ventral_temporal_frontal_stream_cluster__Fridriksson2018__R002.md": {
+      "source_sha256": "50d9b14e631271377911bc6b37f4bf5aa4e3f27134f7e9daa4505b790f7d4277",
+      "paper": "Fridriksson2018",
+      "candidate": "R002"
+    },
+    "drafts/predictors/pca_vlsm_component_1__Fridriksson2018__R003.md": {
+      "source_sha256": "d02954c40e744e44758fb3691a2157fe8e399f1b3326a3d32f4633eae8a22e4b",
+      "paper": "Fridriksson2018",
+      "candidate": "R003"
+    },
+    "drafts/predictors/bdnf_val_val_atdcs_interaction__Fridriksson2018BDNF__R001.md": {
+      "source_sha256": "60c52a6f2c0dea55188d568ece7e70120f4bc38672e15295a39974e937c77aa1",
+      "paper": "Fridriksson2018BDNF",
+      "candidate": "R001"
+    },
+    "drafts/ingredients/bdnf_genotype__Fridriksson2018BDNF__R002.md": {
+      "source_sha256": "2a56742f6ae1dd0a1281511f8cd296b0adda76dc0bf04edfdb5266181941e150",
+      "paper": "Fridriksson2018BDNF",
+      "candidate": "R002"
+    },
+    "drafts/predictors/follow_up_time__Fridriksson2018BDNF__R004.md": {
+      "source_sha256": "11cf7bbd1d2a444988ceed677de714ca0ea6a71cb204a52bab6dd532d02cfb12",
+      "paper": "Fridriksson2018BDNF",
+      "candidate": "R004",
+      "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
+      "reason": "Source Results prose on PDF page 4 reports a main effect of time, but Table 2 on PDF page 5 gives time-of-testing F=2.5 and P=.08. The draft repeats the prose without flagging this internal conflict. Hold pending reconciliation of the source text and table; original outputs are preserved."
+    },
+    "drafts/predictors/tdcs_time_interaction__Fridriksson2018BDNF__R005.md": {
+      "source_sha256": "b4eba3fb1fbd795473c2ec050a2a870d97c2ecd467f8c357b3471923a23f18e1",
+      "paper": "Fridriksson2018BDNF",
+      "candidate": "R005"
+    },
+    "drafts/predictors/bdnf_tdcs_time_interaction__Fridriksson2018BDNF__R006.md": {
+      "source_sha256": "cc970d2e89a6781e343535958072aa8677aa83601fa331e61c50b4f32abf1027",
+      "paper": "Fridriksson2018BDNF",
+      "candidate": "R006"
+    },
+    "drafts/ingredients/atypical_bdnf_genotype__Fridriksson2018BDNF__R007.md": {
+      "source_sha256": "5df5aac6c1e03e3ffc4264ccb925a8fc1243dcf19a53116656434ba320a1c679",
+      "paper": "Fridriksson2018BDNF",
+      "candidate": "R007"
+    },
+    "drafts/ingredients/bdnf_genotype__Fridriksson2018BDNF__R008.md": {
+      "source_sha256": "ecba5396b3c61994fe5215be7849697067be5f25c71896a993c8831b4b8ee555",
+      "paper": "Fridriksson2018BDNF",
+      "candidate": "R008"
+    },
+    "drafts/predictors/bdnf_genotype_atdcs_interaction__Fridriksson2018BDNF__R010.md": {
+      "source_sha256": "07e487bf59afed9b5cdf76901d0654eb271340febb37be37d6077c7d18e57be6",
+      "paper": "Fridriksson2018BDNF",
+      "candidate": "R010"
+    },
+    "drafts/therapies/adjunctive_a_tdcs_speech_therapy__Fridriksson2018JAMA__R001.md": {
+      "source_sha256": "03ec45593712cf772e4efb8c5be0b881d8c3e42a7738f5a32dc8fc83c403cf63",
+      "paper": "Fridriksson2018JAMA",
+      "candidate": "R001"
+    },
+    "drafts/therapies/adjunctive_a_tdcs_speech_therapy__Fridriksson2018JAMA__R002.md": {
+      "source_sha256": "58f19e23d9783dc9bf0849d44a2e46c04d7e5a2a38e4369fa7452cd90abd80ac",
+      "paper": "Fridriksson2018JAMA",
+      "candidate": "R002"
+    },
+    "drafts/therapies/adjunctive_a_tdcs_naming__Fridriksson2018JAMA__R003.md": {
+      "source_sha256": "71040a780f7e0415ef204455b0892d0a395a04da2966c2818b27151657018ec2",
+      "paper": "Fridriksson2018JAMA",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
+      "reason": "Source PDF page 5 reports one-sided futility tests with H0: muA - muS >= 1.5 (P=.94 at week 4, .90 at week 24, .91 completers-only). The draft instead states absence of a statistically significant between-group difference without preserving the tested futility hypothesis. Hold for interpretation correction against the source; original outputs are preserved."
+    },
+    "drafts/therapies/adjunctive_a_tdcs_speech_therapy__Fridriksson2018JAMA__R004.md": {
+      "source_sha256": "a6905ec3d100d978b6541111d1e340f4b34a9cf99c72fdb8c1c17efc3a16434c",
+      "paper": "Fridriksson2018JAMA",
+      "candidate": "R004",
+      "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
+      "reason": "Source PDF page 5 reports one-sided futility tests with H0: muA - muS >= 1.5 (P=.94 at week 4, .90 at week 24, .91 completers-only). The draft instead states absence of a statistically significant between-group difference without preserving the tested futility hypothesis. Hold for interpretation correction against the source; original outputs are preserved."
+    },
+    "drafts/predictors/baseline_aphasia_severity__Fridriksson2018JAMA__R005.md": {
+      "source_sha256": "6c7cf7986b6290281a2113e339588f7e87294481ec96e5d03f2ca2f978646353",
+      "paper": "Fridriksson2018JAMA",
+      "candidate": "R005"
+    },
+    "drafts/therapies/adjunctive_a_tdcs_naming__Fridriksson2018JAMA__R006.md": {
+      "source_sha256": "f28476548ab38756886c1d0f087aa54e8650dfee20f32daec5618ff067b5d871",
+      "paper": "Fridriksson2018JAMA",
+      "candidate": "R006",
+      "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
+      "reason": "Source PDF page 5 reports one-sided futility tests with H0: muA - muS >= 1.5 (P=.94 at week 4, .90 at week 24, .91 completers-only). The draft instead states absence of a statistically significant between-group difference without preserving the tested futility hypothesis. Hold for interpretation correction against the source; original outputs are preserved."
+    },
+    "drafts/therapies/anodal_tdcs_safety__Fridriksson2018JAMA__R008.md": {
+      "source_sha256": "caf798ce906f3058a74605fb1417cefa68aaf97b9387b8e7410bbe87bbdffd79",
+      "paper": "Fridriksson2018JAMA",
+      "candidate": "R008"
+    },
+    "drafts/therapies/a_tdcs_safety__Fridriksson2018JAMA__R009.md": {
+      "source_sha256": "41017e7bf54c180a0ae13a8e0b49cc0af4cc8bb32b3e9030454c6cd157d67af7",
+      "paper": "Fridriksson2018JAMA",
+      "candidate": "R009"
+    },
+    "drafts/therapies/a_tdcs_erythema__Fridriksson2018JAMA__R010.md": {
+      "source_sha256": "5617df401ad286ba40dc2fa71d7aa8e6806dd3115c6d29134869d82f095c94ef",
+      "paper": "Fridriksson2018JAMA",
+      "candidate": "R010"
+    },
+    "drafts/predictors/aphasia_treatment_task_screening__Fridriksson2018JAMA__R012.md": {
+      "source_sha256": "52618f90a73f7eb94a88b60e1ecf0ff23e8135a66e6f81869a3d2c21420196b9",
+      "paper": "Fridriksson2018JAMA",
+      "candidate": "R012"
+    },
+    "drafts/predictors/ba44_ba45_speech_production_model__GajardoVidal2021__R001.md": {
+      "source_sha256": "e89a67eb158ff95eab52f9396e93c722af9a10eae6abf6959d9098870d60d831",
+      "paper": "GajardoVidal2021",
+      "candidate": "R001"
+    },
+    "drafts/predictors/left_frontal_regions_model_2__GajardoVidal2021__R002.md": {
+      "source_sha256": "da24686c50eb6835a698eebd7e26497e47bb6cc33f760b1b91bfeccc0b3ae2d9",
+      "paper": "GajardoVidal2021",
+      "candidate": "R002"
+    },
+    "drafts/predictors/ba44_quadratic_term__GajardoVidal2021__R003.md": {
+      "source_sha256": "b9d782ee670ca2482d13ff029082b7d49697173fa2b2a8bebf9dcc4014b152a8",
+      "paper": "GajardoVidal2021",
+      "candidate": "R003"
+    },
+    "drafts/predictors/ba44_aaf_interaction__GajardoVidal2021__R004.md": {
+      "source_sha256": "b18ffe990f06804c93b184e9688f13600422f245d4ac4b303aa966388c49564a",
+      "paper": "GajardoVidal2021",
+      "candidate": "R004"
+    },
+    "drafts/predictors/aaf_mediation_speech_production__GajardoVidal2021__R006.md": {
+      "source_sha256": "88db457e4790ae5b0a30739cb4dc202eee9c202710e7d404b5582196f2de8a5f",
+      "paper": "GajardoVidal2021",
+      "candidate": "R006"
+    },
+    "drafts/regions/ba44__GajardoVidal2021__R007.md": {
+      "source_sha256": "93f85d1556c96d63830687a76f5f65fde5825e2dbb4bd06b3a5345f4b965a4b8",
+      "paper": "GajardoVidal2021",
+      "candidate": "R007"
+    },
+    "drafts/regions/anterior_arcuate_fasciculus__GajardoVidal2021__R008.md": {
+      "source_sha256": "ccc961beda7b5241b08876a987324e3eff31eb240d910b6f2057f3695f4aec8a",
+      "paper": "GajardoVidal2021",
+      "candidate": "R008"
+    },
+    "drafts/regions/ba44_aaf_dissociation__GajardoVidal2021__R009.md": {
+      "source_sha256": "dacae289cbe8a62e105f0132d2d074216e631781fa257d1ffa81cc2b051339ac",
+      "paper": "GajardoVidal2021",
+      "candidate": "R009"
+    },
+    "drafts/regions/aaf_vs_ba44__GajardoVidal2021__R011.md": {
+      "source_sha256": "be02c130ca971c0c36efea5de665fead1107a0a770cca13142f1691a6c963bc5",
+      "paper": "GajardoVidal2021",
+      "candidate": "R011"
+    },
+    "drafts/regions/presma_dacc_activity__Geranmayeh2017__R001.md": {
+      "source_sha256": "8576a4b640906044a55a5eb819da23bf5550b6957cee83892ca85e550f78a502",
+      "paper": "Geranmayeh2017",
+      "candidate": "R001"
+    },
+    "drafts/regions/presma_dacc_activity__Geranmayeh2017__R003.md": {
+      "source_sha256": "1ca65585c14d1dd8e24d77f355853d1b6ea51886803144126063ab803054c3a6",
+      "paper": "Geranmayeh2017",
+      "candidate": "R003"
+    },
+    "drafts/predictors/presma_dacc_activity__Geranmayeh2017__R006.md": {
+      "source_sha256": "5ed1e27c1ee6310c937543f890d9af81aaabb0f20530ba26b252ad20adb67cfa",
+      "paper": "Geranmayeh2017",
+      "candidate": "R006"
+    },
+    "drafts/predictors/early_cognitive_score__Geranmayeh2017__R008.md": {
+      "source_sha256": "f1f9ed819c9a88ffe9818bd871fd9d7718aacd659e3212881c176821dc9621cb",
+      "paper": "Geranmayeh2017",
+      "candidate": "R008"
+    },
+    "drafts/predictors/early_language_measure__Geranmayeh2017__R009.md": {
+      "source_sha256": "2ca2a4a798c1bbfbfd15cc63798042309b9b664580b2ba5592ae2f5a964d0cef",
+      "paper": "Geranmayeh2017",
+      "candidate": "R009"
+    },
+    "drafts/predictors/early_decision_accuracy__Geranmayeh2017__R010.md": {
+      "source_sha256": "434ba34a938d94b769ae51d22e575145a425bb7ef505b3a28839cf5a545d63a6",
+      "paper": "Geranmayeh2017",
+      "candidate": "R010"
+    },
+    "drafts/regions/total_lesion_volume__Geranmayeh2017__R012.md": {
+      "source_sha256": "7cccd8d9b82450b7cb16d6e9584d8ba901f7553324ee66afbeff16a60c61b121",
+      "paper": "Geranmayeh2017",
+      "candidate": "R012"
+    },
+    "drafts/regions/left_lateralized_frontal_temporal_parietal_language_network__Geranmayeh2017__R013.md": {
+      "source_sha256": "163d3a0ad31a70aa2b0de1d44fbb73143cb8d673639a20a5e97ef691a73e1392",
+      "paper": "Geranmayeh2017",
+      "candidate": "R013"
+    },
+    "drafts/regions/cingular_opercular_network_cluster__Geranmayeh2017__R014.md": {
+      "source_sha256": "ddc42b0c84e733561751c812b33f34c4d35cb3db9e365085d724b9ab6cf48c4a",
+      "paper": "Geranmayeh2017",
+      "candidate": "R014"
+    },
+    "drafts/predictors/early_language_and_age_model__Geranmayeh2017__R018.md": {
+      "source_sha256": "734b5d892a7d86f9df3d7ac81d1201e6066e68df87a5877b53597bfe82448e18",
+      "paper": "Geranmayeh2017",
+      "candidate": "R018"
+    },
+    "drafts/predictors/early_language_and_age_predictor__Geranmayeh2017__R019.md": {
+      "source_sha256": "c96ee9c4b2db84ccd19df7ef428273d24382bc5d9b8adbc5789ff28137b7d2af",
+      "paper": "Geranmayeh2017",
+      "candidate": "R019"
+    },
+    "drafts/impairments/acute_pm_deficit__Gilbert2025__R001.md": {
+      "source_sha256": "9e211c4aaa47f8bb895306189a0d7dbb2532d43397b4bdc6268f52682038cc38",
+      "paper": "Gilbert2025",
+      "candidate": "R001"
     }
   }
 }
