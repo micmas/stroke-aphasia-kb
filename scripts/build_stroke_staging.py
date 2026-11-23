@@ -42,7 +42,8 @@ def build(exports=None, public=False, reuse_exports=False):
         dest=DEST/chapter;dest.mkdir(exist_ok=True)
         for path in (ROOT/'explorer').iterdir():
             if path.is_file():shutil.copy2(path,dest/path.name)
-        shutil.copy2(WEB/'chapter-empty.js',dest/'chapter-empty.js')
+        for name in ['chapter-empty.js', 'dysphagia-coverage.js']:
+            shutil.copy2(WEB/name,dest/name)
         shutil.copy2(DEST/'project-shell.js',dest/'project-shell.js')
         html=(dest/'index.html').read_text()
         html=html.replace('Stroke aphasia KB',f'{chapter.capitalize()} KB')
@@ -56,8 +57,8 @@ def build(exports=None, public=False, reuse_exports=False):
         app=(dest/'app.js').read_text()
         app="import {initEmptyChapter,renderChapterExtra} from './chapter-empty.js';\n"+app
         app=app.replace("'../export/", "'/aphasia/export/")
-        app=app.replace('function init() {',"function init() {\n  if(window.STROKE_CHAPTER==='dysphagia'){initEmptyChapter();return;}")
-        app=app.replace('function render() {',"function render() {\n  if(renderChapterExtra(window.STROKE_CHAPTER))return;")
+        app=app.replace('function init() {',"function init() {\n  if(window.STROKE_CHAPTER==='dysphagia'){initEmptyChapter({prismaDiagram});return;}")
+        app=app.replace('function render() {',"function render() {\n  if(renderChapterExtra(window.STROKE_CHAPTER,{prismaDiagram}))return;")
         app=app.replace('portalNav(state.index.kb.portal);','// Staging uses the chapter Review hub rather than a silent production link.')
         (dest/'app.js').write_text(app)
     export=DEST/'aphasia/export';export.mkdir(exist_ok=True)

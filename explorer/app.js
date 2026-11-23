@@ -846,7 +846,7 @@ const stageBadge = (stage) => h('span', { class: `badge badge-stage badge-stage-
 const kbBadge = (state) => h('span', { class: `badge badge-kb badge-kb-${String(state).replace(/\s+/g, '-')}`, text: KB_STATE_TEXT[state] || String(state || '').replace(/_/g, ' ') });
 
 /** The PRISMA 2020 flow as one SVG. Every box links to the candidates it counts. */
-function prismaDiagram(index) {
+function prismaDiagram(index, { identificationOnly = false } = {}) {
   const p = index.screening.prisma;
   if (!p) return null;
   const idn = p.identification; const db = p.screening; const ot = p.other; const inc = p.included;
@@ -869,6 +869,10 @@ function prismaDiagram(index) {
   });
   const contentHeight = (labels, w) => boxH + wrapLabels(labels, w).length * 16;
   const box = ({ x, y: yy, w, title, n, sub, link, cls = '', params = null, id = null, tip = null, height = boxH, breakdown = null }) => {
+    // Publish initial search totals without implying downstream decisions.
+    if (identificationOnly && title !== 'Records from databases') {
+      n = null; sub = null; link = null; params = null; breakdown = null;
+    }
     const subLines = Array.isArray(sub) ? wrapLabels(sub, w) : [];
     height = Math.max(height, boxH + subLines.length * 16);
     if (params && id) link = coverageHref({ ...params, box: id });
@@ -876,7 +880,7 @@ function prismaDiagram(index) {
     const g = s('g', { class: `pr-box ${cls}` });
     g.append(s('rect', { x, y: yy, width: w, height, rx: 6 }));
     g.append(text(x + 10, yy + 20, fit(title, w - 16, 5.5), 'pr-title'));
-    const line = text(x + 10, yy + 41, Number(n).toLocaleString(), 'pr-n');
+    const line = text(x + 10, yy + 41, n == null ? '' : Number(n).toLocaleString(), 'pr-n');
     if (sub && !Array.isArray(sub)) line.append(s('tspan', { class: 'pr-sub', dx: 6 }, fit(sub, w - 24 - 9 * String(n).length, 5.4)));
     g.append(line);
     if (Array.isArray(sub)) subLines.forEach((label, i) => g.append(text(x + 10, yy + 60 + i * 16, label, 'pr-sub')));
@@ -918,7 +922,7 @@ function prismaDiagram(index) {
   const qTip = Object.keys(byQuestion).length ? 'By question (search hits, before de-duplication):\n' + Object.entries(byQuestion).sort((a, b) => b[1] - a[1]).map(([q, v]) => `  ${q.replace(/_/g, ' ')}: ${v.toLocaleString()}`).join('\n') : null;
   nodes.push(box({ x: colL, y, w: main, title: 'Records from databases', n: idn.databases.records, sub: dbSub, link: coverageHref({ arm: 'databases' }), tip: qTip, height: identificationH }));
   const preprints = idn.preprintsSuperseded || 0;
-  const removedSub = [`Other duplicates: ${(idn.duplicatesRemoved - preprints).toLocaleString()}`, `Preprint → published: ${preprints.toLocaleString()}`, `Grey literature: ${(idn.removedByRule || 0).toLocaleString()}`];
+  const removedSub = identificationOnly ? [] : [`Other duplicates: ${(idn.duplicatesRemoved - preprints).toLocaleString()}`, `Preprint → published: ${preprints.toLocaleString()}`, `Grey literature: ${(idn.removedByRule || 0).toLocaleString()}`];
   nodes.push(box({ x: sideX(colL), y, w: side, title: 'Removed before screening', n: idn.duplicatesRemoved + (idn.removedByRule || 0), sub: removedSub, params: { stage: 'duplicate' }, id: 'removed', cls: 'pr-side pr-out', height: identificationH }));
   nodes.push(box({ x: colR, y, w: main + gapX + side, title: 'Records from other sources', n: idn.other.records, sub: otSub, height: identificationH, link: coverageHref({ arm: 'other' }) }));
   arrowH(colL + main, sideX(colL), y + boxH / 2);
@@ -1059,7 +1063,7 @@ const SEARCH_QUESTIONS = {
   q5_recruitment_meta: ['Which brain regions support language, according to imaging meta-analyses?',
     'Looks for language tasks, imaging and meta-analysis terms. This provides synthesis evidence about language networks, including work in people without stroke; individual healthy-volunteer studies do not enter through this search.'],
 };
-const DATABASE_NAMES = { pubmed: 'PubMed', scopus: 'Scopus', psycinfo: 'PsycINFO', openalex: 'OpenAlex' };
+const DATABASE_NAMES = { pubmed: 'PubMed', scopus: 'Scopus', psycinfo: 'PsycINFO', embase: 'Embase', cinahl: 'CINAHL', wos: 'Web of Science', central: 'CENTRAL', cdsr: 'Cochrane Reviews', openalex: 'OpenAlex' };
 function searchQuestions(index, route) {
   const searches = [...index.screening.searches.values()];
   const groups = new Map();
