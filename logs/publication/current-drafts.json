@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-23T11:34:10.398535+00:00",
+  "snapshot_at": "2026-11-23T13:19:15.235600+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -2439,6 +2439,271 @@
       "source_sha256": "7409f0d87e762629ab0edbda9d0393d8a49182ee466def76a2e887c7311a82f7",
       "paper": "Fang2025",
       "candidate": "R016"
+    },
+    "drafts/regions/lesion_size__Forkel2014__R001.md": {
+      "source_sha256": "b0ff299deb9a0bb183fd6b056f77ecbc743e2007224c09b3376333f412bee1b4",
+      "paper": "Forkel2014",
+      "candidate": "R001"
+    },
+    "drafts/regions/age__Forkel2014__R002.md": {
+      "source_sha256": "c1c5aca285dc9950bb6395819eee4b37472d1611c5e5626f1238ff7ddd6dd36a",
+      "paper": "Forkel2014",
+      "candidate": "R002"
+    },
+    "drafts/predictors/right_long_arcuate_volume__Forkel2014__R003.md": {
+      "source_sha256": "3c796e154f9a446f48caa18903a539e57454f5be0f741ed01819c2a13a446bde",
+      "paper": "Forkel2014",
+      "candidate": "R003"
+    },
+    "drafts/predictors/right_arcuate_long_segment_volume__Forkel2014__R004.md": {
+      "source_sha256": "8bf83cee01da7475137b6a72232aa57ea92112d57fd47ffa58a043325a68b365",
+      "paper": "Forkel2014",
+      "candidate": "R004"
+    },
+    "drafts/predictors/left_long_arcuate_volume__Forkel2014__R005.md": {
+      "source_sha256": "e6863d8fffa56355490085edc008b77d850f160c990c113f9d7d8c7f9c10c246",
+      "paper": "Forkel2014",
+      "candidate": "R005"
+    },
+    "drafts/predictors/left_arcuate_anterior_posterior_volume__Forkel2014__R006.md": {
+      "source_sha256": "a5d73b5a352fd52c4021f9f895567cb91001f81c5e4d91f9fc455ac6771cbfc8",
+      "paper": "Forkel2014",
+      "candidate": "R006"
+    },
+    "drafts/regions/lesion_size__Forkel2014__R007.md": {
+      "source_sha256": "e168c0572839b442d34a4609ed769fcc47e84a4524cab7d36273d08c5cc0b0ec",
+      "paper": "Forkel2014",
+      "candidate": "R007"
+    },
+    "drafts/regions/lesion_size__Forkel2014__R008.md": {
+      "source_sha256": "8fd6891bdbf691bdfba1bd782d351a2cf5a26089d5e5c1e2a1d759749b429e52",
+      "paper": "Forkel2014",
+      "candidate": "R008"
+    },
+    "drafts/predictors/arcuate_fasciculus_fa__Forkel2014__R010.md": {
+      "source_sha256": "b6ecd81cf878f1e8d90da69b7be9d60b0ac67434a9d826b35da3160b180e12c2",
+      "paper": "Forkel2014",
+      "candidate": "R010"
+    },
+    "drafts/regions/fluency_type__Forkel2014__R011.md": {
+      "source_sha256": "79fab2690d93568e2651c44f753f258ab6f8df635425acb53ba2910b410420a2",
+      "paper": "Forkel2014",
+      "candidate": "R011"
+    },
+    "drafts/regions/fluency_type__Forkel2014__R012.md": {
+      "source_sha256": "1e09c3d10ffcf3451dbf3313539ed06b47c8e1f80db1987511bea12e1c37c7a4",
+      "paper": "Forkel2014",
+      "candidate": "R012"
+    },
+    "drafts/ingredients/sex__Forkel2014__R013.md": {
+      "source_sha256": "2fddc32135f6bb5272576b447b8b5280ef43f76defeb2583180b5a85f6d6053b",
+      "paper": "Forkel2014",
+      "candidate": "R013"
+    },
+    "drafts/therapies/thrombolysis__Forkel2014__R014.md": {
+      "source_sha256": "53f8d1dc1670894e5c2f60a3a71b8d6db22d9ecda2fdd5c4cf4244fe38d0d6ea",
+      "paper": "Forkel2014",
+      "candidate": "R014"
+    },
+    "drafts/predictors/baseline_aphasia_severity__Forkel2014__R015.md": {
+      "source_sha256": "d248eec59c6ee6cd8137437349825248de1a77fae5a3f108f6390b935965b4a3",
+      "paper": "Forkel2014",
+      "candidate": "R015"
+    },
+    "drafts/predictors/right_long_segment_volume__Forkel2014__R016.md": {
+      "source_sha256": "b396e3bbd89e47d609672c5f119d9e6f485b379399a24c164621bdc2611c27e7",
+      "paper": "Forkel2014",
+      "candidate": "R016"
+    },
+    "drafts/predictors/age_sex_lesion_size_model__Forkel2014__R017.md": {
+      "source_sha256": "64f65e96304b3d9f5f7ff01c3ec447be4caf5227ab8a67ab76dbd708674c5f3c",
+      "paper": "Forkel2014",
+      "candidate": "R017"
+    },
+    "drafts/regions/left_supramarginal_gyrus_white_matter__Fridriksson2010__R001.md": {
+      "source_sha256": "0b99b4a54b1eb95ff1fce89c8f5c97e15d25e2c5288a18665e5176477efb258d",
+      "paper": "Fridriksson2010",
+      "candidate": "R001"
+    },
+    "drafts/regions/brocas_area__Fridriksson2010__R002.md": {
+      "source_sha256": "4d4bceb9995c3233e42c8e1c120d3935e9f5e140168d6dadf82f44872e234ad5",
+      "paper": "Fridriksson2010",
+      "candidate": "R002"
+    },
+    "drafts/predictors/left_supramarginal_gyrus_hypoperfusion__Fridriksson2010__R003.md": {
+      "source_sha256": "d6f3f9c7a34ecd113b5d151bf235e634b60dff39a2f9d09f15e6b6f2a8c6f2d0",
+      "paper": "Fridriksson2010",
+      "candidate": "R003"
+    },
+    "drafts/regions/tpj_hypoperfusion_repetition__Fridriksson2010__R004.md": {
+      "source_sha256": "d1134eaa6a7c7b9da409ff8ebcdf1f249547b07135e2881fb4aedebd23f02cf7",
+      "paper": "Fridriksson2010",
+      "candidate": "R004"
+    },
+    "drafts/regions/ventral_speech_pathway__Fridriksson2010__R005.md": {
+      "source_sha256": "0b1d60cc0ca0ac3dc4507f316290ff285a6422cf8abc330e004d73c1c1006ded",
+      "paper": "Fridriksson2010",
+      "candidate": "R005"
+    },
+    "drafts/therapies/cueing_hierarchy_anomia_treatment__Fridriksson2010Anomia__R001.md": {
+      "source_sha256": "d1d20e8ace017f147d52dc7ee3184a7c42502e1679803051ed532b796acb0e59",
+      "paper": "Fridriksson2010Anomia",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_hemisphere_activation_change__Fridriksson2010Anomia__R002.md": {
+      "source_sha256": "b1dfbddb937e5f57097030e42c05346eac2eb0649c645b075813f49bf0a12868",
+      "paper": "Fridriksson2010Anomia",
+      "candidate": "R002"
+    },
+    "drafts/regions/anterior_posterior_activation_correlation__Fridriksson2010Anomia__R003.md": {
+      "source_sha256": "c7e9b4bdc5be928c95486efa00011c689c59a740243031f469301447dc7782e1",
+      "paper": "Fridriksson2010Anomia",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_posterior_temporal_occipital_cluster__Fridriksson2010Anomia__R004.md": {
+      "source_sha256": "afe73bbc83cdecb1d2ed681647ec926a42ad0f683c5071be54c35ed123ff31f4",
+      "paper": "Fridriksson2010Anomia",
+      "candidate": "R004"
+    },
+    "drafts/therapies/cueing_hierarchy_comparison__Fridriksson2010Anomia__R005.md": {
+      "source_sha256": "6deacf5b2c95ef9c3a64096696a06c145879383c05a520c793518491d207a024",
+      "paper": "Fridriksson2010Anomia",
+      "candidate": "R005"
+    },
+    "drafts/predictors/asaf_speech_fluency_predictor__Fridriksson2013__R001.md": {
+      "source_sha256": "151547bbaeb65d3e5ffcabe1c4a30e977b23ac6a55d7a3569fdce9c98054db16",
+      "paper": "Fridriksson2013",
+      "candidate": "R001"
+    },
+    "drafts/predictors/asaf_uncinate_fluency_model__Fridriksson2013__R002.md": {
+      "source_sha256": "9657e9ecdc470af47581c18d3f62adc09d46482c7d1abc67a37792ecd4ed68fc",
+      "paper": "Fridriksson2013",
+      "candidate": "R002"
+    },
+    "drafts/predictors/asaf_fluency_predictor__Fridriksson2013__R003.md": {
+      "source_sha256": "7ee00895918d5c62f87bbb44e909bd0d2b4a9d34df22883298ea8237d230a1f7",
+      "paper": "Fridriksson2013",
+      "candidate": "R003"
+    },
+    "drafts/predictors/asaf_pars_opercularis_fluency_model__Fridriksson2013__R004.md": {
+      "source_sha256": "d2f4c81e9abdcd113c192d56358ffa7534bacb2d08987568766e1b9c0028c5dc",
+      "paper": "Fridriksson2013",
+      "candidate": "R004"
+    },
+    "drafts/predictors/speech_fluency_predictor_model_lexical_cofactor__Fridriksson2013__R005.md": {
+      "source_sha256": "0e55424128f1af1bab3aa3120bbb0406b8d1c77176745eafd3e7d6db5d4c907c",
+      "paper": "Fridriksson2013",
+      "candidate": "R005"
+    },
+    "drafts/regions/uncinate_fasciculus_fluency_predictor__Fridriksson2013__R006.md": {
+      "source_sha256": "11838bb0f3452e43ca9daa425cee2815b43f90e839d984c34192b996170ac626",
+      "paper": "Fridriksson2013",
+      "candidate": "R006"
+    },
+    "drafts/predictors/uncinate_asaf_fluency_model__Fridriksson2013__R007.md": {
+      "source_sha256": "bedae851246dd33de28f2ca4765b57b9f44dc136bc5c016150131c279f271c68",
+      "paper": "Fridriksson2013",
+      "candidate": "R007"
+    },
+    "drafts/predictors/asaf_fluency_predictor__Fridriksson2013__R008.md": {
+      "source_sha256": "aba15438b983af50447fadc6bc1743aaee6fa9815774bcfa05daec71560e8341",
+      "paper": "Fridriksson2013",
+      "candidate": "R008"
+    },
+    "drafts/predictors/ilf_auditory_word_picture_recognition_predictor__Fridriksson2013__R009.md": {
+      "source_sha256": "6edac5689e5cd5e9d1daf8f6455fc1104c0ccd1d574e203914129ab5c3584bd9",
+      "paper": "Fridriksson2013",
+      "candidate": "R009"
+    },
+    "drafts/predictors/auditory_word_picture_recognition_predictor__Fridriksson2013__R010.md": {
+      "source_sha256": "e5564d4466209737df1681b01015c4b76d1438df2700cab9031de1fb291a8ad0",
+      "paper": "Fridriksson2013",
+      "candidate": "R010"
+    },
+    "drafts/regions/lateral_precentral_gyrus__Fridriksson2013__R011.md": {
+      "source_sha256": "597da0f95cfe32665c940114efc4f1b35d2fe869b55e0006149fd03b6e4720b4",
+      "paper": "Fridriksson2013",
+      "candidate": "R011"
+    },
+    "drafts/predictors/matrix_reasoning_prediction_model__Fridriksson2013__R012.md": {
+      "source_sha256": "b5f36dd8b2f09108ed2d005bebefd8c69e1d2baf64af53188254850494d5b4d1",
+      "paper": "Fridriksson2013",
+      "candidate": "R012"
+    },
+    "drafts/regions/uncinate_fasciculus_temporal_pole_cluster__Fridriksson2013__R013.md": {
+      "source_sha256": "e97f341739bb275b5286b9b3079b212f120062cf05d7b2ee1d02610357aea54d",
+      "paper": "Fridriksson2013",
+      "candidate": "R013"
+    },
+    "drafts/regions/uncinate_fasciculus__Fridriksson2013__R014.md": {
+      "source_sha256": "c77fabd9939358641a2f96189d88f5f56bad51fba4e1e0e8d0125d96fdf39ff6",
+      "paper": "Fridriksson2013",
+      "candidate": "R014"
+    },
+    "drafts/regions/speech_fluency_cluster__Fridriksson2013__R015.md": {
+      "source_sha256": "522fba20acf3c713c01d885e47b2c58003ec96d7bd214d6443c570639bb2bee5",
+      "paper": "Fridriksson2013",
+      "candidate": "R015"
+    },
+    "drafts/regions/ilf_uf_cluster__Fridriksson2013__R017.md": {
+      "source_sha256": "1b3f367f4e53ae09106421135bdf8616bd8871885a859bc41ec24cdd8d535155",
+      "paper": "Fridriksson2013",
+      "candidate": "R017"
+    },
+    "drafts/predictors/whole_brain_vlsm_non_significant_factors__Fridriksson2013__R018.md": {
+      "source_sha256": "74ec10c7dc2b739ca3297d47b324c909ed2802a5577b570025b4cf25af03a6e7",
+      "paper": "Fridriksson2013",
+      "candidate": "R018"
+    },
+    "drafts/regions/brocas_area_cluster__Fridriksson2015__R001.md": {
+      "source_sha256": "ba36f3e66fe406567d266c3fee3bedeeea20e0b2b3c3e1f01fa6aec48864bd13",
+      "paper": "Fridriksson2015",
+      "candidate": "R001"
+    },
+    "drafts/regions/wernickes_area_cluster__Fridriksson2015__R002.md": {
+      "source_sha256": "186c526e58d522dce8febc2b1e649663e08f44cff121b1d9f7e8576f38a75e04",
+      "paper": "Fridriksson2015",
+      "candidate": "R002"
+    },
+    "drafts/predictors/bac_wac_damage_25_model__Fridriksson2015__R003.md": {
+      "source_sha256": "7444d770e3bfabb27b333d364016a98e837b4088fb0476c38d5c31426ecd200e",
+      "paper": "Fridriksson2015",
+      "candidate": "R003"
+    },
+    "drafts/predictors/bac_wac_50_percent_model__Fridriksson2015__R004.md": {
+      "source_sha256": "6f4f2f6d01fac27a3ce923f3ca27339786e7e93181e1ad45aae63929aa788ef0",
+      "paper": "Fridriksson2015",
+      "candidate": "R004"
+    },
+    "drafts/predictors/bac_wac_75_percent_model__Fridriksson2015__R005.md": {
+      "source_sha256": "122ccbc4f2bc94fd343856e1086349357ed47ef84733093de90821419d5fdab6",
+      "paper": "Fridriksson2015",
+      "candidate": "R005"
+    },
+    "drafts/predictors/lesion_size_brocas_predictor__Fridriksson2015__R006.md": {
+      "source_sha256": "da5adc046f10f2a7baf4426ba58a66bdf7469c54800be1acb3de7bb48bb8ca57",
+      "paper": "Fridriksson2015",
+      "candidate": "R006"
+    },
+    "drafts/predictors/bac_wac_prediction_model__Fridriksson2015__R007.md": {
+      "source_sha256": "3dc2e567ff664e5a67926f57e761f0df6389125793f88abcfbfd98543c1778b4",
+      "paper": "Fridriksson2015",
+      "candidate": "R007"
+    },
+    "drafts/predictors/bac_wac_interaction__Fridriksson2015__R008.md": {
+      "source_sha256": "4f8e35406fa736398fcf6d6905ec67b61af942582cc94f43e14a778fba80fd2b",
+      "paper": "Fridriksson2015",
+      "candidate": "R008"
+    },
+    "drafts/predictors/brocas_aphasia_prediction_model_v1__Fridriksson2015__R009.md": {
+      "source_sha256": "20df09bc4543ad5a0dd9e4965f7e7de3dd1217b11e5cf4e2fe3e449fc66ef2c0",
+      "paper": "Fridriksson2015",
+      "candidate": "R009"
+    },
+    "drafts/regions/wac_injury_volume__Fridriksson2015__R010.md": {
+      "source_sha256": "aaa18e607be77da5c4f146fc8118377e3d8e58ad2a2c96475b8ad84369fe634c",
+      "paper": "Fridriksson2015",
+      "candidate": "R010"
     }
   }
 }

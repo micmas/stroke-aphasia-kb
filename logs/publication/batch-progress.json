@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-23T11:34:10.398535+00:00",
+  "last_publication_snapshot": "2026-11-23T13:19:15.235600+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -52,7 +52,12 @@
     "Durfee2021",
     "Efstratiadou2018",
     "ElHachioui2013",
-    "Fang2025"
+    "Fang2025",
+    "Forkel2014",
+    "Fridriksson2010",
+    "Fridriksson2010Anomia",
+    "Fridriksson2013",
+    "Fridriksson2015"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
   "recovery_publication_ready_seen": false
