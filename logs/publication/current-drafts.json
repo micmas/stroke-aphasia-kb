@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-22T23:07:48.352291+00:00",
+  "snapshot_at": "2026-11-23T05:06:13.346310+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -1436,6 +1436,341 @@
       "source_sha256": "11ec743bba8e9d321c3457165374dfbdd1f547287fdb8f1c6e035dfe82260d42",
       "paper": "Brookshire2014",
       "candidate": "R008"
+    },
+    "drafts/ingredients/years_of_education__Brookshire2014__R010.md": {
+      "source_sha256": "ca16ec48bf2169ff046bb1a3ed4e83859a295b82de2933963d4d67c5a1023114",
+      "paper": "Brookshire2014",
+      "candidate": "R010"
+    },
+    "drafts/regions/midline_frontal_cortex_cluster__Brownsett2014__R002.md": {
+      "source_sha256": "bf92a40b2a07312e3a7c7cde887ba70d5b410158dbc685778e9f20f46cc88631",
+      "paper": "Brownsett2014",
+      "candidate": "R002"
+    },
+    "drafts/predictors/healthy_speech_intelligibility_contrast__Brownsett2014__R005.md": {
+      "source_sha256": "456ba89ccefd88fe9a750ff12a9992bad35158ec2627bd57a022cdfbbc66b278",
+      "paper": "Brownsett2014",
+      "candidate": "R005"
+    },
+    "drafts/therapies/vocoded_speech_training__Brownsett2014__R006.md": {
+      "source_sha256": "29f83e8f68c220eaab272aeeea71620422f56dc47441a1b53e48986e1d1164a8",
+      "paper": "Brownsett2014",
+      "candidate": "R006"
+    },
+    "drafts/therapies/healthy_training_normal_speech__Brownsett2014__R007.md": {
+      "source_sha256": "548a357c35709ca19aaba72c897f9b20fdd6a44402096a276bbabb03ccd8bc29",
+      "paper": "Brownsett2014",
+      "candidate": "R007"
+    },
+    "drafts/predictors/repetition_difficulty_simulation__Brownsett2014__R008.md": {
+      "source_sha256": "2db52c96a0d03cbbc47093343f1673ab92fb3d06510f7191091b9660eba39f1d",
+      "paper": "Brownsett2014",
+      "candidate": "R008"
+    },
+    "drafts/predictors/scanning_session_comparison__Brownsett2014__R009.md": {
+      "source_sha256": "65bd46a5256a058817d37f5a4cc6c08f4b463e58ce4a636fc19f0c916fb19c2e",
+      "paper": "Brownsett2014",
+      "candidate": "R009"
+    },
+    "drafts/regions/listen_repeat_activation_cluster__Brownsett2014__R010.md": {
+      "source_sha256": "a4d48fb9d68d6844663e991b5a243a7647460b525fd993e8105fdca79cab8c26",
+      "paper": "Brownsett2014",
+      "candidate": "R010"
+    },
+    "drafts/regions/listen_vs_repeat_activation__Brownsett2014__R011.md": {
+      "source_sha256": "9f1af6d3a024d4f99ba4d3ceeb8cdf4a140007a4b73a274f7609484fbe2cd265",
+      "paper": "Brownsett2014",
+      "candidate": "R011"
+    },
+    "drafts/regions/precuneus_session_effect__Brownsett2014__R012.md": {
+      "source_sha256": "a68012d730bfdd3a792bd43fbed6d8f2f11919c87fa0b0207580369eaf0fcf23",
+      "paper": "Brownsett2014",
+      "candidate": "R012"
+    },
+    "drafts/regions/dacc_sfg_session_effect__Brownsett2014__R013.md": {
+      "source_sha256": "67c7acb18eaada9bda80646018bd59cfcdb712fdc90c354e9e3f983bc7e10efe",
+      "paper": "Brownsett2014",
+      "candidate": "R013"
+    },
+    "drafts/regions/healthy_task_intelligibility_interaction_cluster__Brownsett2014__R014.md": {
+      "source_sha256": "e5ad6f2825742ecbe72063d4a4f2bd6a8d01e40ef76585d194ec8d3215c18b69",
+      "paper": "Brownsett2014",
+      "candidate": "R014"
+    },
+    "drafts/regions/dacc_sfg_cluster__Brownsett2014__R015.md": {
+      "source_sha256": "0fcf50cec25bcfbd469a3b2999dbfdb24ba35bb70cdcfd8ff601e9680bc89d49",
+      "paper": "Brownsett2014",
+      "candidate": "R015"
+    },
+    "drafts/predictors/listvoc_vs_listnorm_contrast__Brownsett2014__R016.md": {
+      "source_sha256": "71e75e0ac20f86d7f129bae56c6f0bc2aca360fb05700f1592fbea854a6e1c31",
+      "paper": "Brownsett2014",
+      "candidate": "R016"
+    },
+    "drafts/regions/dmn_clear_speech_activity__Brownsett2014__R019.md": {
+      "source_sha256": "19098ead045a35d63f11acb37ad6694d05aaf656051ecca2099bbff1fd1deb06",
+      "paper": "Brownsett2014",
+      "candidate": "R019"
+    },
+    "drafts/regions/salience_network__Brownsett2014__R020.md": {
+      "source_sha256": "ae4f0a514eb6d752f85a10d3f6528e175f6299fdc408daa45bf951d58ff98dda",
+      "paper": "Brownsett2014",
+      "candidate": "R020"
+    },
+    "drafts/regions/dacc_sfg_activation__Brownsett2014__R024.md": {
+      "source_sha256": "b81456a2d3d347d2ef62f4d5594dc55ed4c96b2f952be09a92254b3c1e63b7d6",
+      "paper": "Brownsett2014",
+      "candidate": "R024"
+    },
+    "drafts/predictors/picture_description_prediction_model__Brownsett2014__R025.md": {
+      "source_sha256": "8113ed085f3035c5743f4738e3e8e71474b8b073654cda68295e64fd1e07543d",
+      "paper": "Brownsett2014",
+      "candidate": "R025"
+    },
+    "drafts/predictors/dacc_sfg_activation__Brownsett2014__R026.md": {
+      "source_sha256": "eaaeb5870202e3ec7cb54e932e0273aa0ad4ece6bdf1dc6c9cd9e9ca0d7dd471",
+      "paper": "Brownsett2014",
+      "candidate": "R026"
+    },
+    "drafts/therapies/behavioural_therapy_auditory_discrimination__Brownsett2014__R027.md": {
+      "source_sha256": "1232b2dc2fbafe7f8d74af74281aa9fb444bb69ac13128661ba6c590fb583c87",
+      "paper": "Brownsett2014",
+      "candidate": "R027"
+    },
+    "drafts/therapies/behavioural_therapy_repetition__Brownsett2014__R028.md": {
+      "source_sha256": "d2bbc3db46cf8aaa2e2dc01a015b0887e99ac47da0c5b56e6285e993fab31803",
+      "paper": "Brownsett2014",
+      "candidate": "R028"
+    },
+    "drafts/predictors/phonological_working_memory_encoding_activation__Buchsbaum2011__R001.md": {
+      "source_sha256": "12615aef4117f90178390bc7d821d342c206d9e07fd904b4ebcc4b1c0812024a",
+      "paper": "Buchsbaum2011",
+      "candidate": "R001"
+    },
+    "drafts/predictors/phonological_working_memory_delay_activation__Buchsbaum2011__R002.md": {
+      "source_sha256": "0d42e7887a9850fa23a51d586e8b21706f250a39ec5fff3a4c0127daf8355425",
+      "paper": "Buchsbaum2011",
+      "candidate": "R002"
+    },
+    "drafts/regions/spt_cluster__Buchsbaum2011__R003.md": {
+      "source_sha256": "b13f68844362dd40e6fb51c08f84a0c348ae47e8c16463f0f73a58626fedcdf0",
+      "paper": "Buchsbaum2011",
+      "candidate": "R003"
+    },
+    "drafts/regions/area_spt_cluster__Buchsbaum2011__R004.md": {
+      "source_sha256": "e5bf1de9daca63cc92c33e955b4e66bf5bb6b4810ad30e8a6828c7c8e9e44d5c",
+      "paper": "Buchsbaum2011",
+      "candidate": "R004"
+    },
+    "drafts/regions/phonology_cluster__Butler2014__R001.md": {
+      "source_sha256": "3c89b3bb5a180e8dce3605cdb3595691cd93a8ca49b1aeccf50683e6f2514ed7",
+      "paper": "Butler2014",
+      "candidate": "R001"
+    },
+    "drafts/regions/semantic_factor_cluster__Butler2014__R002.md": {
+      "source_sha256": "ca8c034faaae2b438343bd4fa9b4691e1e419f9ff472037719c57e83938de6eb",
+      "paper": "Butler2014",
+      "candidate": "R002"
+    },
+    "drafts/predictors/executive_cognition_factor__Butler2014__R003.md": {
+      "source_sha256": "05e0fb7af243d6096725ba9237db0ad1f04022b9d4a2eb9c17e56958013c4eaf",
+      "paper": "Butler2014",
+      "candidate": "R003"
+    },
+    "drafts/predictors/non_word_minimal_pairs__Butler2014__R004.md": {
+      "source_sha256": "6cc875fde24cea9eb65ba53b1891d7b40132973244afbea1b4dc0a7b05a077c6",
+      "paper": "Butler2014",
+      "candidate": "R004"
+    },
+    "drafts/regions/synonym_judgement_cluster__Butler2014__R005.md": {
+      "source_sha256": "22508c32ba25bc4ef96b622ba38a8c40d79db7eef12bf091a89818142221e4bd",
+      "paper": "Butler2014",
+      "candidate": "R005"
+    },
+    "drafts/predictors/ravens_progressive_matrices__Butler2014__R006.md": {
+      "source_sha256": "028ed791220b2627b9ce78d519248975fc81a0a1b1059bc3a7513e17f12520ec",
+      "paper": "Butler2014",
+      "candidate": "R006"
+    },
+    "drafts/regions/delayed_non_word_repetition_cluster__Butler2014__R007.md": {
+      "source_sha256": "df2f88acdc56a0b50aa45ced803b193fe66a47eb47ee3d01fbf7cdd902fcd272",
+      "paper": "Butler2014",
+      "candidate": "R007"
+    },
+    "drafts/regions/spoken_word_to_picture_matching_cluster__Butler2014__R008.md": {
+      "source_sha256": "28f595fb551c5045e4a8d88edd90249dc9bf6453aa528862d834f5a9bc991bce",
+      "paper": "Butler2014",
+      "candidate": "R008"
+    },
+    "drafts/predictors/non_pca_selected_tests_lesion_volume_adjusted__Butler2014__R011.md": {
+      "source_sha256": "3e2301059a40dd8e8969d67a732fc37d18b4470150e118bc439f0736ff227a43",
+      "paper": "Butler2014",
+      "candidate": "R011"
+    },
+    "drafts/regions/temporal_roi_paraphasia__Casilio2025__R001.md": {
+      "source_sha256": "524af0fb08b31a62659f42569d15b4947dc5758afff002c1ba86610ab15b65df",
+      "paper": "Casilio2025",
+      "candidate": "R001"
+    },
+    "drafts/regions/paraphasia_roi_nulls__Casilio2025__R002.md": {
+      "source_sha256": "09c69e955d21e2ed5ec284386cf1a575ac46d0e20a71ad59261e90a709926d20",
+      "paper": "Casilio2025",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_posterior_temporoparietal_cluster__Casilio2025__R003.md": {
+      "source_sha256": "438b76c0ee541d7290645cf586ce5c54b8b6a9f5f979ba9e05d7349d48bdab82",
+      "paper": "Casilio2025",
+      "candidate": "R003"
+    },
+    "drafts/regions/frontoparietal_roi__Casilio2025__R004.md": {
+      "source_sha256": "10483e33cf3aa67a5d7da6983c5cb2349a3860f49241fb56517bc94e2cb006e8",
+      "paper": "Casilio2025",
+      "candidate": "R004"
+    },
+    "drafts/regions/prefrontal_other_roi_logopenia__Casilio2025__R005.md": {
+      "source_sha256": "fe51f7e69d4157843c92863e55ff6b7c5eccdf90e6d24efc0dbbfcc87bf2b1c7",
+      "paper": "Casilio2025",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_inferior_parietal_lobe_cluster__Casilio2025__R006.md": {
+      "source_sha256": "3bab7a7d7d48d626ee17576d541a88388c6eba570344d44909246f868eca7bf0",
+      "paper": "Casilio2025",
+      "candidate": "R006"
+    },
+    "drafts/regions/frontoparietal_roi__Casilio2025__R007.md": {
+      "source_sha256": "df68a9991ff6c630b319814904d94c8687c0beb1ea4bcec862d1712a5c0dbc70",
+      "paper": "Casilio2025",
+      "candidate": "R007"
+    },
+    "drafts/regions/agrammatism_null_roi_predictors__Casilio2025__R008.md": {
+      "source_sha256": "f7c5b55e669e6d556842db35100c5c90b97dc146dfee373d0098dae193b5458c",
+      "paper": "Casilio2025",
+      "candidate": "R008"
+    },
+    "drafts/regions/left_precentral_gyrus_agrammatism_cluster__Casilio2025__R009.md": {
+      "source_sha256": "49d73edcf8dd7e5bcd503d7d1f9f854fd62a02dbdb88310e0d1a3b76949111db",
+      "paper": "Casilio2025",
+      "candidate": "R009"
+    },
+    "drafts/regions/frontoparietal_roi__Casilio2025__R010.md": {
+      "source_sha256": "4f3e9bc59cca43afb318c3d76a5591c63f68f77ed3f9cb13b54e53d9efac2036",
+      "paper": "Casilio2025",
+      "candidate": "R010"
+    },
+    "drafts/regions/left_ventral_precentral_gyrus_cluster__Casilio2025__R012.md": {
+      "source_sha256": "c44a06f0314fdfe5ef5b6790a01d1c8314136f46c37e0b7dedd65547dfc49d6f",
+      "paper": "Casilio2025",
+      "candidate": "R012"
+    },
+    "drafts/predictors/aprocsa_multivariate_roi_model__Casilio2025__R013.md": {
+      "source_sha256": "abc732ef95265d77160e23062203c8a28303044365ce8690a3be9fbea26d363d",
+      "paper": "Casilio2025",
+      "candidate": "R013"
+    },
+    "drafts/regions/other_roi_cluster__Casilio2025__R014.md": {
+      "source_sha256": "8722820508f1b8e339cfe6b4df30d9a1943d67d866b0df62c00eb7fe0516f6bf",
+      "paper": "Casilio2025",
+      "candidate": "R014"
+    },
+    "drafts/regions/aprocsa_dimension_overlap__Casilio2025__R016.md": {
+      "source_sha256": "7b920fc330fcb4b2e1ff8f4ebcb26c9e5802e90527808106be0685dacbcc1785",
+      "paper": "Casilio2025",
+      "candidate": "R016"
+    },
+    "drafts/regions/aprocsa_multivariate_overlap__Casilio2025__R017.md": {
+      "source_sha256": "513d09b70df201c8aa4cf0f33ccabefa45444622a11f47dd9e5cbacb6fcd2127",
+      "paper": "Casilio2025",
+      "candidate": "R017"
+    },
+    "drafts/regions/paraphasia_logopenia_bias_cluster__Casilio2025__R018.md": {
+      "source_sha256": "557fac0f88b3b1a5dd0b6f7a6ed434f9844196ddb7032d7bc6b8f4b562d96c80",
+      "paper": "Casilio2025",
+      "candidate": "R018"
+    },
+    "drafts/regions/logopenia_agrammatism_bias_cluster__Casilio2025__R019.md": {
+      "source_sha256": "51827701bc6ab5a3f446c9a47564a9a21dfd13168f9d4c040d28eda550a873ee",
+      "paper": "Casilio2025",
+      "candidate": "R019"
+    },
+    "drafts/regions/agrammatism_motor_speech_bias_cluster__Casilio2025__R020.md": {
+      "source_sha256": "5fd50c6d23e3a8c7d0ff7f84a79920df1b4c215bfa6f5e2574d3a5be6b238b7d",
+      "paper": "Casilio2025",
+      "candidate": "R020"
+    },
+    "drafts/ingredients/aprocsa__Casilio2025__R021.md": {
+      "source_sha256": "f19da89a6bda1c58555ee84f1f1b720dbca8956376fe39292728bb4238573e1c",
+      "paper": "Casilio2025",
+      "candidate": "R021"
+    },
+    "drafts/predictors/aprocsa_interrater_agreement__Casilio2025__R022.md": {
+      "source_sha256": "89691916f4cdf8ff55466c89debafe78516b5144013d68dd2f30085986579e9e",
+      "paper": "Casilio2025",
+      "candidate": "R022"
+    },
+    "drafts/regions/ca_subtype__Coppens2002__R005.md": {
+      "source_sha256": "9d0cd543f03c45236f338b04848150f614d946baeb7fc6c7883799128baa3233",
+      "paper": "Coppens2002",
+      "candidate": "R005"
+    },
+    "drafts/regions/crossed_aphasia__Coppens2002__R008.md": {
+      "source_sha256": "fd304c9272a9781109dc2ae6400dfaf020f608879b7217fced2f1488b41f9ea0",
+      "paper": "Coppens2002",
+      "candidate": "R008"
+    },
+    "drafts/predictors/crossed_aphasia_constructional_praxis__Coppens2002__R009.md": {
+      "source_sha256": "388a456bb8b3965b6003b259e41c6048ec31d723e4b43c0ee8377872098163e9",
+      "paper": "Coppens2002",
+      "candidate": "R009"
+    },
+    "drafts/regions/motor_domain_factors__Corbetta2015__R001.md": {
+      "source_sha256": "45737bf645c485599a40ac6632b37eef1232f016134f51365529d99b3324c72c",
+      "paper": "Corbetta2015",
+      "candidate": "R001"
+    },
+    "drafts/impairments/language_deficit_factor__Corbetta2015__R002.md": {
+      "source_sha256": "6d876644c44ba84a106b672dc460816fd09764e35e8538c4f9d5dd59c2851da9",
+      "paper": "Corbetta2015",
+      "candidate": "R002"
+    },
+    "drafts/impairments/language_deficit_separation__Corbetta2015__R003.md": {
+      "source_sha256": "daad0966e2b51464f226e23e849dd4a1691ae5d666a753080a12bb67fbe16c03",
+      "paper": "Corbetta2015",
+      "candidate": "R003"
+    },
+    "drafts/regions/memory_domain_factors__Corbetta2015__R004.md": {
+      "source_sha256": "34293412767413fe68a6a970a521813fcb99bd648a8c6f4bc1c954d8e7986c12",
+      "paper": "Corbetta2015",
+      "candidate": "R004"
+    },
+    "drafts/regions/behavioral_impairment_uber_factors__Corbetta2015__R006.md": {
+      "source_sha256": "0738ae73631ce50141283ace495c7d9e9ab0bb123b7d0b04a960e846e5e36474",
+      "paper": "Corbetta2015",
+      "candidate": "R006"
+    },
+    "drafts/regions/lesion_hemisphere__Corbetta2015__R007.md": {
+      "source_sha256": "82333dd03ae49fb3b4e29b0f2a364c30cb922ee86c518d4b6f44be0eb71527e5",
+      "paper": "Corbetta2015",
+      "candidate": "R007"
+    },
+    "drafts/predictors/lesion_volume__Corbetta2015__R008.md": {
+      "source_sha256": "d8763711545e7d14d7464665521190ca753e2d562459e656298b4455a45bc4fc",
+      "paper": "Corbetta2015",
+      "candidate": "R008"
+    },
+    "drafts/predictors/lesion_location_behavioral_variance_model__Corbetta2015__R009.md": {
+      "source_sha256": "7c92eb1e414d7df2874889d65eda1eb35c3cddb68a7050fd94abbaad2254b545",
+      "paper": "Corbetta2015",
+      "candidate": "R009"
+    },
+    "drafts/regions/dorsal_frontal_white_matter_thalami_basal_ganglia_cluster__Corbetta2015__R011.md": {
+      "source_sha256": "8f2a6904019ce7ff388b61f5175f1d0fdaade6cd126ed6f7d16e4227f3bfcde6",
+      "paper": "Corbetta2015",
+      "candidate": "R011"
+    },
+    "drafts/predictors/white_matter_tract_damage_count__Corbetta2015__R012.md": {
+      "source_sha256": "5690e3dd909e3992df69765d8555930ee2454893a3c73c2973a9f43b576f1a3d",
+      "paper": "Corbetta2015",
+      "candidate": "R012"
     }
   }
 }
