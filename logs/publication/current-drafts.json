@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-23T15:34:10.494350+00:00",
+  "snapshot_at": "2026-11-23T17:34:05.140616+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -2922,6 +2922,236 @@
       "source_sha256": "9e211c4aaa47f8bb895306189a0d7dbb2532d43397b4bdc6268f52682038cc38",
       "paper": "Gilbert2025",
       "candidate": "R001"
+    },
+    "drafts/predictors/acute_pm_performance__Gilbert2025__R002.md": {
+      "source_sha256": "10ccd54bf55032372d8ea2d8f3fbbbe33f427181766d4d0753b75b6e017b8de1",
+      "paper": "Gilbert2025",
+      "candidate": "R002"
+    },
+    "drafts/predictors/event_based_pm_scores__Gilbert2025__R003.md": {
+      "source_sha256": "4b4deab4c71acb513d58bdd55453d8d7d6b4c160a11477b6c7f42f942785f3ab",
+      "paper": "Gilbert2025",
+      "candidate": "R003"
+    },
+    "drafts/predictors/acute_pm_performance__Gilbert2025__R005.md": {
+      "source_sha256": "09a2804b8d5e6acbced9b3c3a8a2c0eda01d34d9fd0524d5d8bce32b4bfb3233",
+      "paper": "Gilbert2025",
+      "candidate": "R005"
+    },
+    "drafts/predictors/acute_pm_performance__Gilbert2025__R006.md": {
+      "source_sha256": "e587e816526e7c4ecb92e68a9d70dad4b758e5487ae92ddabdb89b48440e1eea",
+      "paper": "Gilbert2025",
+      "candidate": "R006"
+    },
+    "drafts/regions/lesion_anatomy_pm__Gilbert2025__R007.md": {
+      "source_sha256": "67ca12ac5410cea4458f0958c7ba907f6f9b3b0e7abf596dd60bd33fa4036d15",
+      "paper": "Gilbert2025",
+      "candidate": "R007"
+    },
+    "drafts/predictors/acute_pm_performance__Gilbert2025__R008.md": {
+      "source_sha256": "5646b9a3bdfa957b618467106c3dda94d430294986775be30065ee4c5c0e99af",
+      "paper": "Gilbert2025",
+      "candidate": "R008"
+    },
+    "drafts/predictors/acute_pm_performance__Gilbert2025__R009.md": {
+      "source_sha256": "c745c107752c51ba5182eb3f508513d5783271d5417e58cae9f7e4b02634fe0e",
+      "paper": "Gilbert2025",
+      "candidate": "R009"
+    },
+    "drafts/regions/lesion_volume__Gilbert2025__R010.md": {
+      "source_sha256": "72562313bc2f428a6cf60a9d6573e08093d17084b16c9a6986485a4c6bf4a156",
+      "paper": "Gilbert2025",
+      "candidate": "R010"
+    },
+    "drafts/regions/lesion_laterality__Gilbert2025__R011.md": {
+      "source_sha256": "1f0ca86ed3e913454c9ff4a11c0fd638ced7ac9f9979e7939881d93013b2eead",
+      "paper": "Gilbert2025",
+      "candidate": "R011"
+    },
+    "drafts/predictors/nonlinguistic_cognitive_function__Gilmore2019__R001.md": {
+      "source_sha256": "a30287864fdcb58f8357348aa237edd45a850532b978474d9c24741035e1ae98",
+      "paper": "Gilmore2019",
+      "candidate": "R001"
+    },
+    "drafts/predictors/nonlinguistic_cognition_treatment_interaction__Gilmore2019__R002.md": {
+      "source_sha256": "061663d66112c3ac6b5565123d4e46a8ef057d727b7881dbe80edcb5b15d6229",
+      "paper": "Gilmore2019",
+      "candidate": "R002"
+    },
+    "drafts/predictors/short_term_memory_naming_outcome__Gilmore2019__R003.md": {
+      "source_sha256": "47a60d28b0a3e966bb6b9362e42198806bae8f45cb2319446dad9b96818402fe",
+      "paper": "Gilmore2019",
+      "candidate": "R003"
+    },
+    "drafts/predictors/nonlinguistic_cognitive_predictors_pmgm__Gilmore2019__R004.md": {
+      "source_sha256": "8de63e96e0f0d3eb95f71732f0e8cfc8661826d886467b08a5c5afb65f1f94a2",
+      "paper": "Gilmore2019",
+      "candidate": "R004"
+    },
+    "drafts/predictors/nonlinguistic_cognitive_predictors_naming_pmg__Gilmore2019__R005.md": {
+      "source_sha256": "789d7de308f6da9a5cc79b164c9d0fc50eef8d9621bc79cc98a08e11a74ce569",
+      "paper": "Gilmore2019",
+      "candidate": "R005"
+    },
+    "drafts/predictors/nonlinguistic_cognition_pmgm_predictor__Gilmore2019__R006.md": {
+      "source_sha256": "e8c2e1a3d4690837ef893cdae07d66bb82714aae15dda5f5b9de1258205c0301",
+      "paper": "Gilmore2019",
+      "candidate": "R006"
+    },
+    "drafts/therapies/high_intensity_aphasia_therapy__Godecke2021__R001.md": {
+      "source_sha256": "50461ce989293db3cdb19b3980b802769f8ff9d7c9670b7ec21f0d8fbc2c6c29",
+      "paper": "Godecke2021",
+      "candidate": "R001"
+    },
+    "drafts/therapies/high_intensity_aphasia_therapy__Godecke2021__R002.md": {
+      "source_sha256": "f6b0e6dbe75c3cd500692bc79c5a01c4a03164761ffdd3f1a197b66e54bf30a4",
+      "paper": "Godecke2021",
+      "candidate": "R002"
+    },
+    "drafts/therapies/high_intensity_aphasia_therapy__Godecke2021__R003.md": {
+      "source_sha256": "2100a9e2b67adcdb30cf59beeeb986fdc75b364f790de418226bcb69de453477",
+      "paper": "Godecke2021",
+      "candidate": "R003"
+    },
+    "drafts/therapies/high_intensity_aphasia_therapy__Godecke2021__R004.md": {
+      "source_sha256": "811290a2c16747d20b4128237d3efc843ded3f09e8e65bb0d032616c8072cb49",
+      "paper": "Godecke2021",
+      "candidate": "R004"
+    },
+    "drafts/therapies/high_intensity_aphasia_therapy__Godecke2021__R005.md": {
+      "source_sha256": "e1228e86084e027497467e2fa0a653843f2bb702e716e88239e6408be4067106",
+      "paper": "Godecke2021",
+      "candidate": "R005"
+    },
+    "drafts/therapies/high_intensity_aphasia_therapy__Godecke2021__R006.md": {
+      "source_sha256": "5edab8aad639e38111d84663434f3436701929783cc9e17d351981eb87055875",
+      "paper": "Godecke2021",
+      "candidate": "R006"
+    },
+    "drafts/therapies/verse_vs_uc_plus__Godecke2021__R007.md": {
+      "source_sha256": "da217b83e8466518c4b80b968e13e580481682b15917159359e34979f6022da0",
+      "paper": "Godecke2021",
+      "candidate": "R007"
+    },
+    "drafts/therapies/high_intensity_aphasia_therapy_timing__Godecke2021__R008.md": {
+      "source_sha256": "c87b09d9eb94bda4c6a0912dbc7e57a335987d30c228e33fe14eb80af9cc6359",
+      "paper": "Godecke2021",
+      "candidate": "R008"
+    },
+    "drafts/regions/lesion_size__Goldenberg1994__R001.md": {
+      "source_sha256": "6812edaf730b3f595f9531bf637f3566377013c3dbd101ff4a0b18ce3e7aca41",
+      "paper": "Goldenberg1994",
+      "candidate": "R001"
+    },
+    "drafts/regions/temporobasal_cluster__Goldenberg1994__R002.md": {
+      "source_sha256": "2cb76ffe62f566ac183b5923dba02446add23821acdbf1ee7603e909dbfd7087",
+      "paper": "Goldenberg1994",
+      "candidate": "R002"
+    },
+    "drafts/regions/temporobasal_cluster__Goldenberg1994__R003.md": {
+      "source_sha256": "748adce56adcd34e0cd5be10f2525ad5fed5e8a61d37797e8bf8863077196f71",
+      "paper": "Goldenberg1994",
+      "candidate": "R003"
+    },
+    "drafts/regions/wernickes_area__Goldenberg1994__R004.md": {
+      "source_sha256": "eb493b899f8c5afcc8cf934c251909bacb1b7a0d6fbfd6617b14ee33a114560a",
+      "paper": "Goldenberg1994",
+      "candidate": "R004"
+    },
+    "drafts/regions/temporal_regions_bordering_wernicke__Goldenberg1994__R005.md": {
+      "source_sha256": "0fd8c04c9325ce4ffc0bf0019202be17b69d9432567dfd9b78c2238bb6807fcc",
+      "paper": "Goldenberg1994",
+      "candidate": "R005"
+    },
+    "drafts/regions/inferior_parietal_cluster__Goldenberg1994__R006.md": {
+      "source_sha256": "56242b8596641fe40ce83d79561a99af7a20e2ad33b0c0b48ecb63f866dd0306",
+      "paper": "Goldenberg1994",
+      "candidate": "R006"
+    },
+    "drafts/regions/posterior_bottleneck_cluster__Griffis2017__R001.md": {
+      "source_sha256": "e4a14349dc21f1900fe8ffa19176354715a95ba24f5bec5c69153eb3e465875c",
+      "paper": "Griffis2017",
+      "candidate": "R001"
+    },
+    "drafts/regions/anterior_bottleneck_cluster__Griffis2017__R002.md": {
+      "source_sha256": "042d54bc78131e3bce23ab2d4986e55f780ce510c2d79223d7166ca92e70b9aa",
+      "paper": "Griffis2017",
+      "candidate": "R002"
+    },
+    "drafts/predictors/bottleneck_interaction_verbal_fluency__Griffis2017__R003.md": {
+      "source_sha256": "a1ff44e78e68bd832cb229b1e0d0994d3c28b144521d690ba5de1003f3e204d7",
+      "paper": "Griffis2017",
+      "candidate": "R003"
+    },
+    "drafts/predictors/bottleneck_lesion_status_verbal_fluency__Griffis2017__R004.md": {
+      "source_sha256": "9cbdcc2cffc6a979b124ce9759d89038eab36ed542b3d830082d476a9867383a",
+      "paper": "Griffis2017",
+      "candidate": "R004"
+    },
+    "drafts/regions/posterior_bottleneck_cluster__Griffis2017__R005.md": {
+      "source_sha256": "32c0d9771f3eccdecfe9c02e9be3de048d1c52efe21f90d4c129aaacb1f87ac7",
+      "paper": "Griffis2017",
+      "candidate": "R005"
+    },
+    "drafts/predictors/anterior_bottleneck_lesion_status__Griffis2017__R006.md": {
+      "source_sha256": "072f0696b0b2bf80cf0a8db2efda9bf45fc4b8afc2a45c2876ae9765e6e71980",
+      "paper": "Griffis2017",
+      "candidate": "R006"
+    },
+    "drafts/regions/posterior_bottleneck_cluster__Griffis2017__R007.md": {
+      "source_sha256": "e2bf12870d54c443b0c72c6f737c43e14b6c93adcbd3b617dba01b36f1da151c",
+      "paper": "Griffis2017",
+      "candidate": "R007"
+    },
+    "drafts/regions/posterior_bottleneck_cluster__Griffis2017__R008.md": {
+      "source_sha256": "987bf9aa3f84fa14e2886a2eb94c6df45ebafa3415185b620e09d825f73b6867",
+      "paper": "Griffis2017",
+      "candidate": "R008"
+    },
+    "drafts/regions/posterior_bottleneck_cluster__Griffis2017__R009.md": {
+      "source_sha256": "956b7ae6d80a09b5fe14e78c3dad7f7a18f56ff3b0136ea387ea3d620c08b544",
+      "paper": "Griffis2017",
+      "candidate": "R009"
+    },
+    "drafts/regions/posterior_bottleneck_cluster__Griffis2017__R010.md": {
+      "source_sha256": "8ea401cc58280ee98152cf76c08fde8cca2b7e380414c1c8799c7e068fab08af",
+      "paper": "Griffis2017",
+      "candidate": "R010"
+    },
+    "drafts/regions/posterior_bottleneck_cluster__Griffis2017__R011.md": {
+      "source_sha256": "9cea273ed7eac2fbf2fd92ee164eabd2e436f5ae3727caebd5dc44b2fdf28212",
+      "paper": "Griffis2017",
+      "candidate": "R011"
+    },
+    "drafts/regions/anterior_bottleneck_cluster__Griffis2017__R012.md": {
+      "source_sha256": "d5d60e3e67beb4d0877b7739569c5d378e6fc766dc38139d9ac2ae89c73edcd5",
+      "paper": "Griffis2017",
+      "candidate": "R012"
+    },
+    "drafts/regions/anterior_bottleneck_roi__Griffis2017__R013.md": {
+      "source_sha256": "b861872598ac1934155424989193baffa8ebaee672cce10c580361b99a1ccfce",
+      "paper": "Griffis2017",
+      "candidate": "R013"
+    },
+    "drafts/regions/left_psmg_ag_ifg_atl_pmtg_cluster__Griffis2017__R014.md": {
+      "source_sha256": "a2f078afa42d6e39ba3090e5218a9e033005274418d3c1e2aab84d466b255ecf",
+      "paper": "Griffis2017",
+      "candidate": "R014"
+    },
+    "drafts/impairments/speech_production_intercorrelation__Halai2017__R001.md": {
+      "source_sha256": "7023c32fa88eb91573863f621399a447eba6afcd8acef05ae808ef5286e04027",
+      "paper": "Halai2017",
+      "candidate": "R001"
+    },
+    "drafts/impairments/speech_production_intercorrelation__Halai2017__R002.md": {
+      "source_sha256": "15dd5afd57e9a0dc1a0952b9a02750e5d59f74aaeec9c6bc4dcceaff16964fc5",
+      "paper": "Halai2017",
+      "candidate": "R002"
+    },
+    "drafts/regions/token_measure_t__Halai2017__R003.md": {
+      "source_sha256": "f2a5ce0bc7498fdbaf99e0652ddcc5fec1b3dd4a3c5df012fc828d5ff9d6a5c6",
+      "paper": "Halai2017",
+      "candidate": "R003"
     }
   }
 }

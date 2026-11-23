@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-23T15:34:10.494350+00:00",
+  "last_publication_snapshot": "2026-11-23T17:34:05.140616+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -62,7 +62,12 @@
     "Fridriksson2018BDNF",
     "Fridriksson2018JAMA",
     "GajardoVidal2021",
-    "Geranmayeh2017"
+    "Geranmayeh2017",
+    "Gilbert2025",
+    "Gilmore2019",
+    "Godecke2021",
+    "Goldenberg1994",
+    "Griffis2017"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
   "recovery_publication_ready_seen": false
