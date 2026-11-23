@@ -7,7 +7,7 @@ def build():
  if dest.exists():shutil.rmtree(dest)
  dest.mkdir(parents=True)
  for path in (ROOT/'staging/dysphagia/web').iterdir():
-  text=path.read_text().replace(' · screening staging',' · screening').replace('Staging · ','').replace('staging workspace','Dysphagia review workspace').replace('staging branch','chapter').replace('dysphagia-staging:','dysphagia-production:')
+  text=path.read_text().replace(' · screening staging',' · screening').replace('Staging · ','').replace('Dysphagia staging workspace','Dysphagia review workspace').replace('staging workspace','Dysphagia review workspace').replace('staging branch','chapter').replace('dysphagia-staging:','dysphagia-production:')
   if path.name=='index.html':text=text.replace('<main>', '<p style="padding:0 24px"><a href="https://dysphagia-kb.app/">Dysphagia KB</a> · <a href="https://stroke-kb.app/">Stroke KB home</a></p><main>')
   (dest/path.name).write_text(text)
  for name in ['project-shell.js','project-shell.css']:
