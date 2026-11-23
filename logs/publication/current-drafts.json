@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-23T21:34:12.390125+00:00",
+  "snapshot_at": "2026-11-23T22:49:16.174793+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -3606,6 +3606,186 @@
       "source_sha256": "e757cc86a9ba0b92473bbb2eca9e814ed19c2a7b639605168577014eef788d07",
       "paper": "Hillis2002",
       "candidate": "R012"
+    },
+    "drafts/regions/left_insula__Hillis2004__R001.md": {
+      "source_sha256": "8620b0e07dc80e0f3d70b80343fc78398f78ad3cce1f97041a118f203cc88cbd",
+      "paper": "Hillis2004",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_anterior_insula__Hillis2004__R002.md": {
+      "source_sha256": "852fd496df3c8a488a708a060858ea057dfb83eb20cdfd0b862a8a17933db0cd",
+      "paper": "Hillis2004",
+      "candidate": "R002"
+    },
+    "drafts/regions/superior_tip_precentral_gyrus_insula__Hillis2004__R003.md": {
+      "source_sha256": "a1ed9ffc954eabfbabbbbfac1bd57884f115171f83060603c1e77fad44d79374",
+      "paper": "Hillis2004",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_insula__Hillis2004__R004.md": {
+      "source_sha256": "2fc9e030801104c3e37f1d2063678885e506320e4446d793e527c0e511a8cf6a",
+      "paper": "Hillis2004",
+      "candidate": "R004"
+    },
+    "drafts/regions/anterior_insula__Hillis2004__R005.md": {
+      "source_sha256": "b78cdf619c468ec538315bb1b53f3f5e79c8a4fdf90ccd4c9d5b89b6376ce64f",
+      "paper": "Hillis2004",
+      "candidate": "R005"
+    },
+    "drafts/regions/superior_tip_precentral_gyrus_insula__Hillis2004__R006.md": {
+      "source_sha256": "087165533aa429cd6c3b203bda8a8fbe0f2fcda8a629d89df00c6ef4adcd434c",
+      "paper": "Hillis2004",
+      "candidate": "R006"
+    },
+    "drafts/regions/brocas_area__Hillis2004__R007.md": {
+      "source_sha256": "4350b57559d3a1a002367a0c409ef19ab06e93e78b13a41c454be197c2d66c59",
+      "paper": "Hillis2004",
+      "candidate": "R007"
+    },
+    "drafts/regions/brocas_area__Hillis2004__R008.md": {
+      "source_sha256": "2d2eea25979f2b7ab57a833ed35582022c488e20db43a41d866751c2c187b3e2",
+      "paper": "Hillis2004",
+      "candidate": "R008"
+    },
+    "drafts/predictors/naming_improvement_reperfusion_model__Hillis2006__R001.md": {
+      "source_sha256": "c64777f2c90e3395f4895c8d849a41b3ce671c0b791fab7c72eaf19fe1381df0",
+      "paper": "Hillis2006",
+      "candidate": "R001"
+    },
+    "drafts/predictors/reperfusion_naming_model__Hillis2006__R002.md": {
+      "source_sha256": "e374f281102bac3d3a5f01091ee27bd3bde0f6699614588936010b96ca5fd6db",
+      "paper": "Hillis2006",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_ba37_reperfusion__Hillis2006__R003.md": {
+      "source_sha256": "072d02e745f50d5856eed43f25fd438dc6e55b196f9fdf6e90b267f60735f88c",
+      "paper": "Hillis2006",
+      "candidate": "R003"
+    },
+    "drafts/regions/ba22_reperfusion__Hillis2006__R004.md": {
+      "source_sha256": "c204690b6bdcc195ec2ea6b91cd72ad33071f2f1c79664512b531e21ca4d0c87",
+      "paper": "Hillis2006",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_ba37_reperfusion__Hillis2006__R005.md": {
+      "source_sha256": "897895f83277c8093567fa6665ed3ec679acd9431874f43f7b35e308c71f0f14",
+      "paper": "Hillis2006",
+      "candidate": "R005"
+    },
+    "drafts/predictors/overall_wm_disconnection__Hobden2024__R001.md": {
+      "source_sha256": "68a64c47960dfc451d545b3eefd19d4696e87590a573d837435f2e4c6ff0f318",
+      "paper": "Hobden2024",
+      "candidate": "R001"
+    },
+    "drafts/regions/medial_lemniscus__Hobden2024__R002.md": {
+      "source_sha256": "73b8ddc668f8dc9454bfadb64249e52f658126161bbea05ccd28a71f68179367",
+      "paper": "Hobden2024",
+      "candidate": "R002"
+    },
+    "drafts/regions/medial_lemniscus__Hobden2024__R003.md": {
+      "source_sha256": "f196c69fc0bbbe37e7b8b2cc501181ac2eea1c0074d6b3b6d6cfddd561f6a250",
+      "paper": "Hobden2024",
+      "candidate": "R003"
+    },
+    "drafts/predictors/wmh_presence__Hobden2024__R004.md": {
+      "source_sha256": "8001f9ee41d8ab675fcee7c46118986f67e449788958c6c8dc968e07594f0234",
+      "paper": "Hobden2024",
+      "candidate": "R004"
+    },
+    "drafts/predictors/medial_lemniscus_wmh_model__Hobden2024__R005.md": {
+      "source_sha256": "3a5e356d973c5014e6d0a9b120412d0ebeb4f32a90e3394cc01dfdda95fc069a",
+      "paper": "Hobden2024",
+      "candidate": "R005"
+    },
+    "drafts/regions/medial_lemniscus_wmh_interaction__Hobden2024__R006.md": {
+      "source_sha256": "4d23e90728b6e2b9bce4f83332ce17fdb3b4b82f98baee6f5736f2cbf4485ec7",
+      "paper": "Hobden2024",
+      "candidate": "R006"
+    },
+    "drafts/predictors/ocs_praxis_control_analysis__Hobden2024__R007.md": {
+      "source_sha256": "9e8f9bddf5a4d411b621e8e712a2c6821f68319976aa481aaacc8a190a8869a5",
+      "paper": "Hobden2024",
+      "candidate": "R007"
+    },
+    "drafts/regions/inferior_longitudinal_fasciculus__Hobden2024__R008.md": {
+      "source_sha256": "52bb0e377d8110fcd7a01d988cce77dd88d800966c58fc8f0f11bc57adcab66f",
+      "paper": "Hobden2024",
+      "candidate": "R008"
+    },
+    "drafts/predictors/demographic_predictor_set_speech_production__Hope2013__R001.md": {
+      "source_sha256": "ad381024d92a95815ecbb87d2189377cdb170923a009df421e89d310f73d4187",
+      "paper": "Hope2013",
+      "candidate": "R001"
+    },
+    "drafts/predictors/lesion_volume_demographics_model__Hope2013__R002.md": {
+      "source_sha256": "f2396e1bc652da1ef4338e39ea2885dfcd511ea6d3e57296dc4775f8b42af14c",
+      "paper": "Hope2013",
+      "candidate": "R002"
+    },
+    "drafts/predictors/lateralised_lesion_volume_model__Hope2013__R003.md": {
+      "source_sha256": "2256a0b92a2aa1061b33855c6e030b7f2f585264fe7667dea7ed7831fd7963aa",
+      "paper": "Hope2013",
+      "candidate": "R003"
+    },
+    "drafts/predictors/atlas_based_lesion_coding_model__Hope2013__R004.md": {
+      "source_sha256": "8f580aca16d54fc049e759a949c29868069254a59595651cc1e3b7c7a362b2b0",
+      "paper": "Hope2013",
+      "candidate": "R004"
+    },
+    "drafts/predictors/ard_selected_lesion_features_model__Hope2013__R005.md": {
+      "source_sha256": "290014a748f59b59f189dee9f970e75444bf98227b90fdb7a88dc037073332c1",
+      "paper": "Hope2013",
+      "candidate": "R005"
+    },
+    "drafts/predictors/speech_production_gpr_model__Hope2013__R006.md": {
+      "source_sha256": "1de7a82f05a5ca746f43cb9c4e50f777405129d6e992f6f1795da8cd0b101f6d",
+      "paper": "Hope2013",
+      "candidate": "R006"
+    },
+    "drafts/predictors/preferred_predictor_configuration__Hope2013__R007.md": {
+      "source_sha256": "d2e75da36db90bcdcff3c5210a80da6be70e630d14b06d1c395e1fe31a31a52c",
+      "paper": "Hope2013",
+      "candidate": "R007"
+    },
+    "drafts/predictors/preferred_predictor_configuration__Hope2013__R008.md": {
+      "source_sha256": "e36d5a67ec4577ad3c8244c534f9fdb72891be3b14654c8a28a4bd9d4dcd014e",
+      "paper": "Hope2013",
+      "candidate": "R008"
+    },
+    "drafts/predictors/speech_production_composite_predictor__Hope2013__R009.md": {
+      "source_sha256": "62281a96f271e3382cd8b4f9f6e309d6278af0bd2199ca47ca9a3afb4e44ee95",
+      "paper": "Hope2013",
+      "candidate": "R009"
+    },
+    "drafts/regions/arcuate_fasciculus_lesion_load__Hope2016__R001.md": {
+      "source_sha256": "79661e502c60b5f53765c5c52d482b1d9056cbbc30c84d6e0051cf4063b41c4e",
+      "paper": "Hope2016",
+      "candidate": "R001"
+    },
+    "drafts/regions/uncinate_fasciculus_lesion_load__Hope2016__R002.md": {
+      "source_sha256": "2356eb677dc6f3e7961f283eda7ba0e0142a367a212eaa968054e16c13de9620",
+      "paper": "Hope2016",
+      "candidate": "R002"
+    },
+    "drafts/regions/lesion_volume__Hope2016__R003.md": {
+      "source_sha256": "e92676248d0147f06bd578e97ce537f92bad0b11480384c6bf22bceee805c1ff",
+      "paper": "Hope2016",
+      "candidate": "R003"
+    },
+    "drafts/regions/tract_disconnection_arcuate_uncinate__Hope2016__R004.md": {
+      "source_sha256": "3ffe31cbbe3356f93ea9ba0a38ce5515109b298b5598f898a7f65d6bff246761",
+      "paper": "Hope2016",
+      "candidate": "R004"
+    },
+    "drafts/predictors/disconnection_model_fluency_naming__Hope2016__R006.md": {
+      "source_sha256": "32ddb03127df2d278d2c697ebf71b20cea2014184c771e597603b832fd3865e9",
+      "paper": "Hope2016",
+      "candidate": "R006"
+    },
+    "drafts/predictors/lesion_load_model_fluency_naming__Hope2016__R007.md": {
+      "source_sha256": "dd3ffefc83f04a33cb8764670cfe5b08d7f29c6af0cffd3a348ef0a56b88c80f",
+      "paper": "Hope2016",
+      "candidate": "R007"
     }
   }
 }

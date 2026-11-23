@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-23T21:34:12.390125+00:00",
+  "last_publication_snapshot": "2026-11-23T22:49:16.174793+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -77,7 +77,12 @@
     "Henseler2014",
     "Hickok2007",
     "Hillis2001",
-    "Hillis2002"
+    "Hillis2002",
+    "Hillis2004",
+    "Hillis2006",
+    "Hillis2007",
+    "Hobden2024",
+    "Hope2013"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
   "recovery_publication_ready_seen": false
