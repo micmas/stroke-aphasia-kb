@@ -79,3 +79,10 @@ body.calmar-report > .project-nav { padding: .7rem 0; margin-bottom: 1.5rem; }
 @media print {
   :root[data-theme] { --ink: #2b2b3a; --ink-2: #5a5a66; --surface: #fff; --panel: #f7f7f7; --grape: #52489c; --blue: #4062bb; --line: #ebebeb; --line-strong: #d6d6d6; color-scheme: light; }
 }
+
+/* Chapter links are grouped without changing the surrounding page layout. */
+.project-nav .project-menu { position: relative; }
+.project-nav .project-menu summary { cursor: pointer; white-space: nowrap; font: inherit; }
+.project-nav .project-menu-items { position: absolute; top: calc(100% + .5rem); left: 0; min-width: 170px; padding: .4rem; border: 1px solid var(--line-strong); border-radius: 6px; background: var(--panel); box-shadow: 0 4px 12px #0002; }
+.project-nav .project-menu-items a { display: block; padding: .5rem .7rem; white-space: nowrap; }
+.project-nav .project-menu-items a:hover { background: var(--surface); }
