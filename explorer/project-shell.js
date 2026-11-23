@@ -41,6 +41,7 @@
       if (new URL(url).hostname === location.hostname) a.setAttribute('aria-current', 'location');
       return a;
     };
+    nav.append(link('Stroke KB', 'https://stroke-kb.app/'), link('Dysphagia KB', 'https://dysphagia-kb.app/'));
     nav.append(link('Aphasia KB', 'https://aphasia-kb.app/', 'project-home'));
     const links = document.createElement('div'); links.className = 'project-links';
     links.append(link('Review portal', 'https://review.aphasia-kb.app/welcome/'), link('CALMaR examples', 'https://calmar.aphasia-kb.app/'), link('Open webapp ↗', 'https://webapps.neurodesk.org/calmar/'), link('Non-commercial use', 'https://aphasia-kb.app/licensing.html'));

@@ -573,6 +573,8 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
     (DIST / "public-pdfs.json").write_text(json.dumps({"built": manifest["built"], "files": allow}, indent=1), encoding="utf-8")
     print(f"  public-pdfs.json: {len(allow)} annotated PDF(s) the open cc/ path may serve")
     (DIST / "_headers").write_text("/*\n  X-Robots-Tag: noindex\n  Cache-Control: no-cache\n", encoding="utf-8")
+    from dysphagia_portal import attach
+    attach(DIST)
     return manifest
 
 

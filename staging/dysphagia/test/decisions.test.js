@@ -34,3 +34,10 @@ test('concurrent saves yield one winner and one audit event',async()=>{
  assert.deepEqual(results.map(r=>r.status).sort(),[200,409]);
  assert.equal(storage.db.prepare('SELECT COUNT(*) n FROM decision_events').get().n,1);storage.db.close();
 });
+test('production explicitly opts into the same durable Dysphagia decisions',async()=>{
+ const storage=database(),data={reviewer:{email:'test@example.org'}};
+ const response=await onRequest({request:new Request('https://preview/api/decisions',{method:'POST',body:JSON.stringify({sha:0,decisions:[d]})}),env:{GITHUB_BRANCH:BRANCH,SCREENING:storage},data});
+ assert.equal(response.status,200);
+ const production=await onRequest({request:new Request('https://review.aphasia-kb.app/api/dysphagia-decisions'),env:{GITHUB_BRANCH:'main',SCREENING_CHAPTER:'dysphagia',SCREENING:storage},data});
+ assert.equal(production.status,200);assert.equal((await production.json()).decisions[d.id].decision,'include');storage.db.close();
+});

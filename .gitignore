@@ -40,3 +40,10 @@ staging/dysphagia/dist/
 staging/dysphagia/.wrangler/
 .wrangler/
 staging/stroke/dist/
+deployment/public-site/dist/
+portal/.dysphagia-cache/
+
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

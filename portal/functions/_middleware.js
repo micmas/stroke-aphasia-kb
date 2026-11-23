@@ -56,7 +56,7 @@ export async function verifyAccessJwt(token, env) {
 export async function onRequest({ request, env, data, next }) {
   const url = new URL(request.url);
   const isApi = url.pathname.startsWith('/api/');
-  const isPrivatePdf = url.pathname.startsWith('/pdf/');
+  const isPrivatePdf = url.pathname.startsWith('/pdf/') || url.pathname.startsWith('/dysphagia/');
   if (!isApi && !isPrivatePdf) return next();          // the page, cc/* and everything static pass through
   const refuse = (msg) => (isApi
     ? new Response(JSON.stringify({ error: msg }), { status: 401, headers: { 'Content-Type': 'application/json' } })

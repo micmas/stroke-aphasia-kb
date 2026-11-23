@@ -11,7 +11,7 @@ export function validate(body) {
   return null;
 }
 export async function onRequest({request,env,data}) {
-  if (env.GITHUB_BRANCH !== BRANCH || !env.SCREENING) return Response.json({error:'Staging storage configuration mismatch.'},{status:503});
+  if (!(env.GITHUB_BRANCH === BRANCH || (env.GITHUB_BRANCH === 'main' && env.SCREENING_CHAPTER === 'dysphagia')) || !env.SCREENING) return Response.json({error:'Screening storage configuration mismatch.'},{status:503});
   const email=data.reviewer.email;
   try {
     const file=await env.SCREENING.prepare('SELECT * FROM reviewer_state WHERE reviewer = ?').bind(email).first();
