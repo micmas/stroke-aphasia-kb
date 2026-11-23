@@ -36,3 +36,15 @@ portal/.wrangler/
 portal/.uploads/
 .promotion.lock
 _sync_snapshot.tgz
+staging/dysphagia/dist/
+staging/dysphagia/.wrangler/
+.wrangler/
+staging/stroke/dist/
+deployment/public-site/dist/
+portal/.dysphagia-cache/
+
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
+deployment/dysphagia-review/dist/

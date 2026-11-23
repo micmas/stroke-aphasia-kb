@@ -1,0 +1,102 @@
+{
+  "chapter": "dysphagia",
+  "search_date": "2026-11-23",
+  "raw_records": 33621,
+  "unique_records": 15460,
+  "duplicates_collapsed": 18161,
+  "missing_abstracts": 2248,
+  "files": [
+    {
+      "database": "pubmed",
+      "file": "pubmed/dysphagia_pubmed_2026-11-23_batch01_4754.nbib",
+      "sha256": "c0fed9d875f85da9754e2765d3b3f1f52f1985ae1723477f007ec7db3cb9090d",
+      "records": 4754
+    },
+    {
+      "database": "scopus",
+      "file": "scopus/dysphagia_scopus_2026-11-23_batch01_8773.ris",
+      "sha256": "cef9eda43164268d285f1433451f56f547f8b5c5a6599841bc25bf733a9b2f48",
+      "records": 8773
+    },
+    {
+      "database": "psycinfo",
+      "file": "psycinfo/dysphagia_psycinfo_2026-11-23_batch01_525.ris",
+      "sha256": "ed5b3ad5953366410378b6867c72c784d0420959058902bf3918789994ac2557",
+      "records": 525
+    },
+    {
+      "database": "embase",
+      "file": "embase/dysphagia_embase_2026-11-23_batch01_9123.ris",
+      "sha256": "910e9818a11b240eacdbf6811e939f60f5cf5f0380143d8d5d9e6b097f60892a",
+      "records": 8683
+    },
+    {
+      "database": "cinahl",
+      "file": "cinahl/dysphagia_cinahl_2026-11-23_batch01_2057.ris",
+      "sha256": "0773107d0de59718aa30876b7acd3dcf2bdd3088f23c77f79f40bd6dd7f6a2bc",
+      "records": 2057
+    },
+    {
+      "database": "wos",
+      "file": "wos/dysphagia_wos_2026-11-23_batch01_1000.ris",
+      "sha256": "c211fbdec5392c110ab18961247f2e8de50f661ab6ba136f71fa4b87cbced8cc",
+      "records": 1000
+    },
+    {
+      "database": "wos",
+      "file": "wos/dysphagia_wos_2026-11-23_batch02_1000.ris",
+      "sha256": "ad8647c4170d847ff877d4f7ebb7e5ac3452eee0b350dfc35eebd2883056d545",
+      "records": 1000
+    },
+    {
+      "database": "wos",
+      "file": "wos/dysphagia_wos_2026-11-23_batch03_1000.ris",
+      "sha256": "c06cdaaffd24cacf8baee370e256f492f2b34791002e2e53fcee02e64b82538b",
+      "records": 1000
+    },
+    {
+      "database": "wos",
+      "file": "wos/dysphagia_wos_2026-11-23_batch04_1000.ris",
+      "sha256": "d27792d0d02b3b57cccec0bfff3758d41b7f7b9efd369ab1aeddf93591eb790a",
+      "records": 1000
+    },
+    {
+      "database": "wos",
+      "file": "wos/dysphagia_wos_2026-11-23_batch05_1000.ris",
+      "sha256": "d4d46da5782b736d71e497a7c5ecbb0d3dbdfffe18aaab91f7ca5ff2e80ac422",
+      "records": 1000
+    },
+    {
+      "database": "wos",
+      "file": "wos/dysphagia_wos_2026-11-23_batch06_1000.ris",
+      "sha256": "41397f67241a5a3a0ca3dc3774bc0ed7bb72d239d18b5262dbabe660267a7ad7",
+      "records": 1000
+    },
+    {
+      "database": "wos",
+      "file": "wos/dysphagia_wos_2026-11-23_batch07_820.ris",
+      "sha256": "c80c73bacedd3571423e95c763d0325e5230c5cc1de3bc639ca33c05c21930b6",
+      "records": 820
+    },
+    {
+      "database": "central",
+      "file": "central/dysphagia_cdsr_2026-11-23_batch01_1996.ris",
+      "sha256": "2d29ce98d9624770bf4f8f41faf68e4e2a86d9bc1d7e910f7eeefe3e0e071196",
+      "records": 1996
+    },
+    {
+      "database": "cdsr",
+      "file": "cdsr/dysphagia_cdsr_2026-11-23_batch01_13.ris",
+      "sha256": "203b59a94e86ea32187ea31905421b3e76e1fb41e3b2e8140a3bb65d2cfca749",
+      "records": 13
+    }
+  ],
+  "query_status": "User reports searches completed; exact executed queries and filters not independently verified.",
+  "deduplication": "Exact DOI/PMID, or normalized title + year + first author with no identifier conflict; ambiguous matches retained.",
+  "warnings": [
+    "dysphagia_embase_2026-11-23_batch01_9123.ris: filename says 9123 records; file contains 8683 records."
+  ],
+  "notes": [
+    "CENTRAL file has cdsr in filename; its folder and CN accession contents identify CENTRAL. Originals unchanged."
+  ]
+}

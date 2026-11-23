@@ -1,0 +1,33 @@
+name: stroke-kb-public
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'logs/portal/inbox/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: stroke-kb-public
+  cancel-in-progress: true
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: pip install pandas pyyaml
+      - run: npm ci
+        working-directory: portal
+      - name: Build public chapters without private screening data
+        run: python3 scripts/build_stroke_staging.py --public
+      - name: Publish Stroke KB and Dysphagia domains
+        run: portal/node_modules/.bin/wrangler deploy --config deployment/public-site/wrangler.toml
