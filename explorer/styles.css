@@ -425,3 +425,20 @@ a.chip:hover { border-color: var(--blue); text-decoration: none; }
 .search-counts th[scope="row"] { font-weight: 500; max-width: 46ch; white-space: normal; }
 .search-counts tfoot { font-weight: 700; border-top: 2px solid var(--line-strong); }
 .box-panel { scroll-margin-top: 7rem; }
+
+/* Progressive disclosure: result, study summary, then source evidence. */
+.finding .claim-link { color: var(--ink); text-decoration: none; }
+.finding .claim-link:hover { color: var(--grape); text-decoration: underline; }
+.finding .claim-link:focus-visible { outline: 2px solid var(--grape); outline-offset: 3px; }
+.finding .study-summary { border-top: 1px solid var(--line); margin-top: .8rem; padding-top: .65rem; }
+.finding .study-summary summary { font-weight: 600; font-size: .95rem; }
+.finding .study-summary dl { font-size: .95rem; gap: .45rem 1rem; margin: .8rem 0; }
+.finding .study-summary dd { max-width: 65ch; }
+.finding .evidence-link { display: inline-block; margin: .6rem 0 .2rem; }
+.finding .evidence-details { border-top: 1px solid var(--line); margin-top: 1.5rem; padding-top: .6rem; }
+.finding .evidence-details h4 { margin-top: 1.5rem; }
+.finding .finding-notes { white-space: pre-line; overflow-wrap: anywhere; }
+.finding .clinical-context { border-left: 3px solid var(--cyan); padding-left: 1rem; margin: 1.2rem 0; }
+.finding .clinical-context p { max-width: 70ch; }
+@media(max-width:820px) { .facets { position: static; max-height: 20rem; overflow: auto; } }
+@media(max-width:520px) { .finding dl { grid-template-columns: 1fr; } .finding dt { font-weight: 600; margin-top: .4rem; } }

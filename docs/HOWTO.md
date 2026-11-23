@@ -417,3 +417,47 @@ profile; older reviews can report `requires_visual_review`. These outputs are
 also unapproved. Do not mix profiles within a run or relabel earlier outputs as
 having passed the relationship workflow. New runs default to `relationships`; the explicit option above records the choice
 clearly. To resume an older analysis-profile batch, explicitly use `--profile analyses`.
+
+## Clinical interpretation in the explorer
+
+New core drafts receive a presentation-only interpretation aid from their saved
+exposure, outcome, method, qualifications and source references. It explains the
+role of the result, the kind of scan feature or patient/task information it could
+relate to, and limits on its use. It makes no new model call and does not change
+source findings, approval, evidence scores or the extraction run.
+
+These are rule-based, unreviewed reading aids, not new findings or patient-specific
+clinical recommendations. They distinguish lesion location, tissue measures,
+reference-template overlap, patient diffusion, network graph measures, functional
+imaging, complete prediction models and non-imaging factors. Missing atlas/metric
+information stays unresolved; a similar anatomical label is not an established
+cross-atlas match. Personal factors (age, sex and post-stroke timing) have their own explorer
+category. Other non-imaging factors are presented without anatomical meaning.
+These display categories preserve the original extraction metadata; they do not
+change an active run or create an atlas mapping.
+
+The explorer applies this layer when it loads new drafts. A local preview remains
+a fixed snapshot until refreshed; re-extraction is not required. Full source
+qualifications and review records remain on the finding page. Human review of the
+interpretation and its measurement compatibility is required before clinical use.
+
+
+## Reviewing the current draft release
+
+The explorer opens the current findings, including unapproved drafts. The
+approved-only export remains separate for software that requires approved
+evidence; it may be empty while the replacement findings await approval.
+The previous findings and their review history are preserved in the GitHub tag
+[archive/pre-core-drafts-2026-11-20](https://github.com/micmas/stroke-aphasia-kb/tree/archive/pre-core-drafts-2026-11-20).
+
+Use the review portal's Drafts page to check sources and submit decisions.
+Each decision is bound to the displayed draft version. Publishing another
+snapshot does not overwrite edits, restore rejected drafts, or repeat promoted
+findings. Held and failed candidates are not published.
+
+During an active local run, publish from a separate checkout. Copy only completed
+drafts with scripts/snapshot_checked_drafts.py --run-dir <source-check-output>
+--source-repo <conversion-output> --destination <publishing-checkout>, then
+regenerate the exports, check them and commit. The publication manifest records
+the source hashes; changed versions are reported for reconciliation rather than
+silently replacing a reviewed draft. This step does not start models.

@@ -15,13 +15,13 @@
 //   #/finding/<source>/<id>  one finding, permalinked
 // Every string from the KB is inserted as text, never as HTML.
 import {
-  buildIndex, FACETS, facetCounts, matches, matrixOf, provenanceCounts, yearOf,
+  buildIndex, FACETS, facetCounts, matches, matrixOf, provenanceCounts, yearOf, paperLabel,
   RELATIONSHIP_TEXT, DIRECTION_LABEL, REVIEW_LABEL,
   SCREENING_FACETS, STAGE_TEXT, KB_STATE_TEXT, ARM_TEXT,
 } from './kb-index.js';
 
 const KB_VERSIONS = { approved: '../export/stroke-aphasia-kb.json', drafts: '../export/stroke-aphasia-kb-drafts.json' };
-const DEFAULT_KB = KB_VERSIONS.approved;
+const DEFAULT_KB = KB_VERSIONS.drafts;
 const PAGE = 60;
 const state = { index: null, source: null, sourceLabel: '', shown: PAGE };
 
@@ -59,7 +59,7 @@ function href(path, params = {}) {
 }
 const entryHref = (id) => `#/entry/${esc(id)}`;
 const paperHref = (key) => `#/paper/${esc(String(key).replace(/^@/, ''))}`;
-const findingHref = (f) => `#/finding/${esc(f.source_id)}/${esc(f.id)}`;
+const findingHref = (f) => `#/finding/${esc(f.source_path || f.source_id)}/${esc(f.id)}`;
 
 function parseRoute() {
   const raw = location.hash.replace(/^#/, '') || '/';
@@ -207,7 +207,7 @@ function models(index) {
     h('p', { class: 'small', text: current.auditing }),
     h('div', { class: 'table-wrap' }, h('table', { class: 'models' },
       h('thead', {}, h('tr', {}, h('th', { text: 'Fresh-source validation paper' }), h('th', { text: 'Reference evidence groups located' }), h('th', { text: 'Both models: call time' }), h('th', { text: 'Qualification' }))),
-      h('tbody', {}, current.papers.map(p => h('tr', {}, h('td', { text: p.key }),
+      h('tbody', {}, current.papers.map(p => h('tr', {}, h('td', { text: paperLabel(p.key) }),
         h('td', { text: `${p.families_located} / ${p.reference_families}` }), h('td', { text: `About ${Math.round(p.paired_component_minutes)} min` }), h('td', { text: p.qualification })))))),
     h('p', { class: 'small', text: current.timing_note }), h('p', { class: 'small', text: current.coverage_note }),
     h('h3', { text: 'Review step' }), h('p', { text: current.review_status }),
@@ -217,7 +217,7 @@ function models(index) {
       h('div', { class: 'table-wrap' }, h('table', { class: 'models' },
         h('thead', {}, h('tr', {}, h('th', { text: 'Review paper' }), h('th', { text: 'Time' }), h('th', { text: 'Independent source audit' }))),
         h('tbody', {}, current.review_validation.papers.map(p => h('tr', {},
-          h('td', {}, h('a', { href: paperHref(p.key), text: p.key })), h('td', { text: `${p.seconds} sec` }), h('td', { text: p.result })))))),
+          h('td', {}, h('a', { href: paperHref(p.key), text: paperLabel(p.key) })), h('td', { text: `${p.seconds} sec` }), h('td', { text: p.result })))))),
       h('p', { class: 'notice', text: current.review_validation.decision }),
       h('ul', {}, current.review_validation.caveats.map(text => h('li', { text })))) : null,
     current.review_comparison ? h('div', {},
@@ -266,7 +266,7 @@ function models(index) {
     current ? h('p', { class: 'notice', text: 'The comparison below used the previous drafting method. Its scores cannot be compared directly with the source-evidence pilot above.' }) : h('div', { class: 'tiles' }, roles.map(([k, r]) => h('div', { class: 'tile' }, h('div', { class: 'label', text: ROLE_TEXT[k][0] }), h('div', { class: 'value model-tag', text: r.model || '—' }), h('div', { class: 'detail', text: ROLE_TEXT[k][1] })))),
     h('h2', { text: `${current ? 'Earlier method comparison' : 'Latest comparison'} · ${b.date}` }),
     h('p', { class: 'small' }, `${plural(ms.length, 'model')} each extracted the same ${plural((b.papers || []).length, 'paper')} the knowledge base already holds (`,
-      (b.papers || []).map((p, i) => [i ? ', ' : '', h('a', { href: paperHref(p.key), text: p.key }), ` — ${plural(p.findings || 0, 'finding')}`]),
+      (b.papers || []).map((p, i) => [i ? ', ' : '', h('a', { href: paperHref(p.key), text: paperLabel(p.key) }), ` — ${plural(p.findings || 0, 'finding')}`]),
       '), and each result was scored against those curated findings.'),
     b.reference && b.reference !== 'all'
       ? h('p', { class: 'small' }, `The reference is ${b.reference_text || 'the findings approved under the governance policy'}: `,
@@ -322,7 +322,7 @@ function provenance(m) {
     s?.checked ? h('p', { class: 'small muted', text: `Checked on ${s.checked} against the developer's model card and the Ollama library page.` }) : null);
 }
 
-function kindBadge(kind) { return h('span', { class: 'badge badge-kind', text: kind }); }
+function kindBadge(kind) { return h('span', { class: 'badge badge-kind', text: kind === 'personal_factor' ? 'personal factor' : kind }); }
 
 function reviewBadge(f) {
   const kind = f.review_kind || 'none';
@@ -335,7 +335,7 @@ function reviewBadge(f) {
 
 function strengthBadge(s) {
   const v = s || 'not reported';
-  return h('span', { class: `badge badge-strength-${v}`, text: `${v} evidence` });
+  return h('span', { class: `badge badge-strength-${v}`, text: v === 'not_assessed' ? 'evidence strength not yet assessed' : `${v} evidence` });
 }
 
 function entryLink(index, id) {
@@ -358,26 +358,34 @@ function kvList(obj, { skip = [] } = {}) {
 
 function findingCard(index, f, { route = true, open = false } = {}) {
   const paper = index.byPaper.get(f.citation) ? f.citation : null;
-  const meta = [];
-  const push = (node) => { if (meta.length) meta.push(h('span', { class: 'sep', text: '·' })); meta.push(node); };
-  push(h('a', { class: 'chip', href: paperHref(f.citation), text: f.citation }));
-  if (f.year) push(h('span', { text: String(f.year) }));
-  push(h('span', { text: RELATIONSHIP_TEXT[f.relationship] || f.relationship || 'relationship not stated' }));
-  push(h('span', { text: DIRECTION_LABEL[f.direction] || f.direction || '' }));
-  push(strengthBadge(f.strength));
-  push(h('span', { text: `${f.method.join(', ')}${f.design && f.design !== 'not reported' ? ` · ${f.design}` : ''}` }));
-  push(h('span', { text: `stage: ${f.stage.join('/')}` }));
-  if (f.therapy?.name) push(h('span', { class: 'badge badge-kind', title: f.therapy.id ? `therapy id ${f.therapy.id}${f.therapy.dose ? ` · ${f.therapy.dose}` : ''}` : (f.therapy.dose || ''), text: `therapy: ${f.therapy.name}` }));
-  else if (f.therapy_name === 'not recorded') push(h('span', { class: 'badge badge-warn', text: 'therapy not recorded' }));
-  if (f.evidence_quality) push(h('span', { text: f.evidence_quality }));
-  push(reviewBadge(f));
+  const meta = [h('a', { class: 'chip', href: paperHref(f.citation), text: paperLabel(f.citation) }),
+    strengthBadge(f.strength), h('span', { class: 'badge', text: f.source_status === 'approved' ? 'Approved finding' : 'Draft · awaiting review' })];
   const lic = index.kb.licences?.[f.citation];
-  if (lic) push(licenceBadge(lic));
   const pdfLink = annotatedPdfLink(index, f.citation, f.source_passages?.[0]?.page);
-  if (pdfLink) push(pdfLink);
-  if (f.design_cautions?.length) push(h('span', { class: 'badge badge-warn', title: f.design_cautions.join('; '), text: plural(f.design_cautions.length, 'design caution') }));
+  const displayValue = (value, field) => {
+    if ((f.flags || []).includes(`not_transcribed:${field}`)) return 'Not yet transcribed';
+    return value && !['not_reported', 'not reported', 'not_transcribed'].includes(String(value)) ? value : 'Not recorded';
+  };
+  const sample = f.sample || {};
+  const basics = kvList({
+    Participants: displayValue(sample.n || f.sample_n, 'sample.n'),
+    Population: displayValue(sample.population || f.population, 'sample.population'),
+    Timing: displayValue(sample.time_post_onset || f.time_post_onset, 'sample.time_post_onset'),
+    Outcome: index.name(f.target),
+    Method: f.method.join(', '),
+    'Study type': displayValue(f.evidence_quality || f.design, 'design'),
+  });
+  const context = f.presentation;
+  const interpretation = context ? h('section', { class: 'clinical-context' },
+    h('h4', { text: 'Relevance to scan interpretation' }),
+    h('p', { class: 'small muted', text: context.origin === 'rule_based_saved_evidence' ? 'Interpretation aid from saved extraction · not clinically reviewed' : 'Editorial interpretation · draft for review' }),
+    h('p', { text: context.relevance }),
+    context.feature ? h('p', {}, h('strong', { text: 'Recorded feature: ' }), context.feature) : null,
+    h('p', {}, h('strong', { text: 'Applies to: ' }), context.applies_to),
+    context.limits ? h('p', {}, h('strong', { text: 'Limits: ' }), context.limits) : null,
+    context.review_notes?.length ? h('ul', { class: 'context-review-notes' }, context.review_notes.map(note => h('li', { text: note }))) : null) : null;
 
-  const details = [];
+  const details = [h('h4', { text: 'Analysis context' }), kvList({ relationship: RELATIONSHIP_TEXT[f.relationship] || f.relationship, result: f.direction === 'no_effect' ? 'No association detected' : DIRECTION_LABEL[f.direction] || f.direction, method: f.method, study_design: f.design, therapy: f.therapy })];
   if (f.sample && Object.keys(f.sample).length) details.push(h('h4', { text: 'Sample' }), kvList(f.sample));
   else if (f.population || f.sample_n) details.push(h('h4', { text: 'Sample' }), kvList({ n: f.sample_n, population: f.population, time_post_onset: f.time_post_onset }));
   if (f.statistics && Object.keys(f.statistics).length) details.push(h('h4', { text: 'Reported statistics' }), kvList(f.statistics));
@@ -396,13 +404,28 @@ function findingCard(index, f, { route = true, open = false } = {}) {
           p.page !== undefined && p.page !== null ? ` · page ${p.page}` : '', p.section ? ` · ${p.section}` : '')));
     }
   }
-  const hasMore = details.length > 0;
+  if (f.notes) details.unshift(h('h4', { text: 'Measurement and interpretation qualifications' }), h('p', { class: 'finding-notes', text: f.notes }));
+  if (f.confounders_controlled?.length) details.push(h('h4', { text: 'Recorded adjustment variables' }), h('p', { text: f.confounders_controlled.join('; ') }));
+  if (f.imaging_details) details.push(h('h4', { text: 'Imaging details' }), kvList(f.imaging_details));
+  if (f.lesion_mapping) details.push(h('h4', { text: 'Lesion mapping' }), kvList(f.lesion_mapping));
+  details.push(h('h4', { text: 'Review and reuse' }), h('p', { class: 'meta' }, reviewBadge(f), lic ? licenceBadge(lic) : null, pdfLink));
+  if (f.source_check) {
+    const check = f.source_check;
+    details.push(h('p', { class: 'small', text: check.scope || 'Model source checking does not constitute human approval.' }));
+    if (check.core_review?.checks) details.push(h('details', {}, h('summary', { text: 'Independent model checks' }),
+      Object.entries(check.core_review.checks).map(([name, value]) => h('section', {}, h('h5', { text: name.replace(/_/g, ' ') }), h('p', { text: `${value.answer}: ${value.reason}` })))));
+    if (check.binding) details.push(h('details', {}, h('summary', { text: 'Processing provenance' }), kvList(check.binding)));
+  }
 
-  return h('article', { class: 'finding', id: `f-${f.source_id}-${f.id}` },
+
+  return h('article', { class: 'finding', id: `f-${esc(f.source_path || f.source_id)}-${f.id}` },
     route ? h('p', { class: 'route' }, entryLink(index, f.source_id), ' ', kindBadge(f.source_kind), ' → ', entryLink(index, f.target), ' ', kindBadge(f.target_kind)) : null,
-    h('p', { class: 'claim', text: String(f.claim || '').trim() }),
-    h('p', { class: 'meta' }, meta, h('a', { class: 'permalink', href: findingHref(f), text: `${f.id} · permalink` })),
-    hasMore ? h('details', { open: open || null }, h('summary', { text: 'Study context, statistics, limitations, review and source passages' }), details) : null,
+    h('p', { class: 'claim' }, open ? String(f.claim || '').trim() : h('a', { class: 'claim-link', href: findingHref(f), text: String(f.claim || '').trim() })),
+    h('p', { class: 'meta' }, meta),
+    open ? h('section', { class: 'study-summary' }, h('h3', { text: 'Study at a glance' }), basics, interpretation) :
+      h('details', { class: 'study-summary' }, h('summary', { text: 'Study at a glance' }), basics, interpretation,
+        h('a', { class: 'evidence-link', href: findingHref(f), text: 'Read full evidence and source passages' })),
+    open ? h('section', { class: 'evidence-details' }, h('h3', { text: 'Full evidence' }), details) : null,
     paper === null ? h('p', { class: 'small muted', text: 'Citation key not found in the bibliography.' }) : null);
 }
 
@@ -562,7 +585,7 @@ function matrix(index, route) {
     for (const f of cell) { rel[f.relationship] = (rel[f.relationship] || 0) + 1; str[f.strength] = (str[f.strength] || 0) + 1; }
     tooltip.replaceChildren(h('b', { text: `${index.name(r)} × ${index.name(c)}` }), h('br'),
       `${plural(cell.length, 'finding')} from ${plural(new Set(cell.map((f) => f.citation)).size, 'paper')}`, h('br'),
-      `strength: ${Object.entries(str).map(([k, n]) => `${k} ${n}`).join(', ')}`, h('br'),
+      `strength: ${Object.entries(str).map(([k, n]) => `${k === 'not_assessed' ? 'evidence strength not yet assessed' : k} ${n}`).join(', ')}`, h('br'),
       `relationship: ${Object.entries(rel).map(([k, n]) => `${k} ${n}`).join(', ')}`, h('br'),
       `approved by a person: ${prov.human}`);
     tooltip.classList.remove('hidden');
@@ -609,7 +632,7 @@ function papers(index) {
     table.replaceChildren(
       h('thead', {}, h('tr', {}, head('Key', 'key'), head('First author', 'author'), head('Year', 'year', true), head('Findings', 'n', true), head('Person-approved', 'human', true), h('th', { text: 'Entries' }), licences ? head('Licence', 'licence') : null, index.screening.present ? h('th', { text: 'Screening' }) : null)),
       h('tbody', {}, rows.map((p) => h('tr', {},
-        h('td', {}, h('a', { class: 'chip', href: paperHref(p.key), text: p.key })),
+        h('td', {}, h('a', { class: 'chip', href: paperHref(p.key), text: paperLabel(p.key) })),
         h('td', { text: p.author }), h('td', { class: 'num', text: p.year ? String(p.year) : '—' }),
         h('td', { class: 'num', text: String(p.n) }), h('td', { class: 'num', text: String(p.human) }),
         h('td', { class: 'small' }, p.entries.slice(0, 4).map((id, i) => [i ? ', ' : '', entryLink(index, id)]), p.entries.length > 4 ? ` +${p.entries.length - 4}` : ''),
@@ -654,7 +677,7 @@ function licencesView(index, route) {
     h('table', { class: 'paper-list' },
       h('thead', {}, h('tr', {}, ['Paper', 'Year', 'Licence', 'Version', 'Source', 'Findings', 'Links'].map((t) => h('th', { class: t === 'Year' || t === 'Findings' ? 'num' : '', text: t })))),
       h('tbody', {}, shown.map((r) => h('tr', {},
-        h('td', {}, h('a', { class: 'chip', href: paperHref(r.key), text: r.key })),
+        h('td', {}, h('a', { class: 'chip', href: paperHref(r.key), text: paperLabel(r.key) })),
         h('td', { class: 'num', text: r.year ? String(r.year) : '—' }),
         h('td', {}, r.rec ? licenceBadge(r.rec) : h('span', { class: 'muted small', text: 'not checked' }),
           r.rec?.label && !['cc', 'cc_manuscript'].includes(r.category) ? h('div', { class: 'small muted', text: r.rec.label }) : null),
@@ -675,9 +698,10 @@ function paper(index, key) {
   if (!rows.length && !text && !index.screening.byKey.has(k)) return h('p', { class: 'error', text: `No paper ${k} in this export.` });
   const prov = provenanceCounts(rows);
   return frag(
-    h('div', { class: 'page-head' }, h('h1', { text: k })),
+    h('div', { class: 'page-head' }, h('h1', { text: paperLabel(k) })),
     text ? h('p', { text }) : h('p', { class: 'muted', text: 'Not in the bibliography.' }),
-    p?.doi ? h('p', { class: 'small' }, 'DOI ', h('a', { href: `https://doi.org/${p.doi}`, rel: 'noopener', target: '_blank', text: p.doi }), (() => { const l = annotatedPdfLink(index, k); return l ? [' · ', l] : null; })()) : null,
+    p?.doi ? h('p', { class: 'small' }, 'DOI ', h('a', { href: `https://doi.org/${p.doi}`, rel: 'noopener', target: '_blank', text: p.doi })) : null,
+    (() => { const link = annotatedPdfLink(index, k); return link ? h('p', { class: 'paper-actions' }, link) : null; })(),
     (() => {
       const lic = index.kb.licences?.[k];
       if (!lic) return null;
@@ -751,9 +775,10 @@ function finding(index, source, id) {
   const f = index.byKey.get(`${source}/${id}`);
   if (!f) return h('p', { class: 'error', text: `No finding ${source}/${id} in this export.` });
   return frag(
-    h('div', { class: 'page-head' }, h('h1', { text: 'Finding' }), h('span', { class: 'muted small', text: `${f.source_id} · ${f.id}` })),
+    h('div', { class: 'page-head' }, h('h1', { text: 'Finding and evidence' }), h('span', { class: 'muted small', text: `${f.source_id} · ${f.id}` })),
+    h('p', {}, h('a', { href: '#/findings', text: 'Back to findings' })),
     findingCard(index, f, { open: true }),
-    h('p', { class: 'small' }, 'From the entry ', entryLink(index, f.source_id), ' · paper ', h('a', { href: paperHref(f.citation), text: f.citation })));
+    h('p', { class: 'small' }, 'From the entry ', entryLink(index, f.source_id), ' · paper ', h('a', { href: paperHref(f.citation), text: paperLabel(f.citation) })));
 }
 
 // ---------------------------------------------------------------------------
@@ -787,6 +812,8 @@ const LICENCE_TITLE = {
 /** Link to the annotated PDF: public for Creative-Commons papers (served by the review portal's
  *  open path), otherwise a pointer to the portal, which needs a sign-in. */
 function annotatedPdfLink(index, citation, page) {
+  const local = index.kb.localAnnotatedPdfs?.[citation];
+  if (local?.url?.startsWith('/pdfs/')) return h('a', { class: 'btn', href: `${local.url}${page ? `#page=${page}` : ''}`, target: '_blank', rel: 'noopener', text: 'Open annotated PDF', title: `Highlights from the local draft snapshot: ${local.snapshot || ''}` });
   const portal = index.kb.portal; const lic = index.kb.licences?.[citation];
   if (!portal?.url || !lic) return null;
   const key = String(citation || '').replace(/^@/, '');
@@ -1178,7 +1205,7 @@ function coverage(index, route) {
     h('thead', {}, h('tr', {}, h('th', { text: 'Evidence gap' }), h('th', { text: 'Kind' }), h('th', { text: 'Areas' }), h('th', { class: 'num', text: 'Searches' }), h('th', { class: 'num', text: 'Candidates' }), h('th', { class: 'num', text: 'Screened' }), h('th', { class: 'num', text: 'Included' }), h('th', { class: 'num', text: 'In the KB' }), h('th', { class: 'num', text: 'Findings' }))),
     h('tbody', {}, gapRows.map((g) => h('tr', {},
       h('td', {}, h('a', { href: coverageHref({ gap: g.id }), text: g.id.replace(/_/g, ' ') }), g.need ? h('div', { class: 'small muted gap-need', text: g.need }) : null,
-        g.suggested?.length ? h('div', { class: 'small' }, 'Suggested: ', g.suggested.map((k, i) => [i ? ', ' : '', index.kb.citations?.[k] || index.byPaper.has(k) ? h('a', { href: paperHref(k), text: k }) : h('span', { class: 'chip', text: k })])) : null),
+        g.suggested?.length ? h('div', { class: 'small' }, 'Suggested: ', g.suggested.map((k, i) => [i ? ', ' : '', index.kb.citations?.[k] || index.byPaper.has(k) ? h('a', { href: paperHref(k), text: paperLabel(k) }) : h('span', { class: 'chip', text: k })])) : null),
       h('td', {}, g.kind ? h('span', { class: `badge badge-gap-${g.kind}`, text: g.kind.replace(/_/g, ' ') }) : h('span', { class: 'muted', text: 'entry' })),
       h('td', { class: 'small' }, (g.areas || []).map((a, i) => [i ? ', ' : '', index.hasEntry(a) || index.byTarget.has(a) ? entryLink(index, a) : h('span', { title: a, text: index.mapping.units?.[a]?.name || a.replace(/_/g, ' ') })])),
       h('td', { class: 'num', text: String(g.searches || 0) }), h('td', { class: 'num', text: String(g.found || 0) }), h('td', { class: 'num', text: String(g.screened || 0) }),
@@ -1273,10 +1300,12 @@ function render() {
   for (const a of document.querySelectorAll('.nav a')) {
     if (a.getAttribute('href') === `#${current}`) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
   }
-  if (head === 'finding' || location.hash.includes('#f-')) { /* permalinks scroll via :target */ }
+  if (head === 'finding') window.scrollTo(0, 0);
+  else if (location.hash.includes('#f-')) { /* anchors scroll via :target */ }
   else if (head === 'coverage' && (route.params.has('box') || route.params.has('arm') || route.params.has('search'))) (document.getElementById('boxlist') || document.getElementById('candidates'))?.scrollIntoView({ block: 'start' });
   else window.scrollTo(0, 0);
-  document.title = `${head ? `${head[0].toUpperCase()}${head.slice(1)}${rest[0] ? ` · ${index.name(rest[0])}` : ''} · ` : ''}Stroke aphasia KB`;
+  const titleEntry = head === 'finding' ? index.byKey.get(`${rest[0]}/${rest[1]}`)?.source_id : rest[0];
+  document.title = `${head ? `${head[0].toUpperCase()}${head.slice(1)}${rest[0] ? ` · ${index.name(titleEntry || rest[0])}` : ''} · ` : ''}Stroke aphasia KB`;
 }
 
 function setSource(label, local) {
@@ -1342,10 +1371,10 @@ function init() {
   const kb = params.get('kb');
   const select = document.getElementById('kbVersion');
   if (kb && !KB_VERSIONS[kb]) select.closest('label').hidden = true;   // an explicit URL: no switch
-  else select.value = kb || 'approved';
+  else select.value = kb || 'drafts';
   select.addEventListener('change', () => {
     const next = new URLSearchParams(location.search);
-    if (select.value === 'approved') next.delete('kb'); else next.set('kb', select.value);
+    if (select.value === 'drafts') next.delete('kb'); else next.set('kb', select.value);
     const q = next.toString();
     location.search = q ? `?${q}` : '';   // reloads with the other export, keeps the #route
   });

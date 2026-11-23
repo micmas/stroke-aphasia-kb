@@ -1,0 +1,1837 @@
+{
+  "snapshot_at": "2026-11-23T06:19:01.902616+00:00",
+  "archive_tag": "archive/pre-core-drafts-2026-11-20",
+  "approved_by_snapshot": false,
+  "files": {
+    "drafts/regions/posterior_superior_temporal_lobe_ifg_pars_triangularis__Adezati2022__R001.md": {
+      "source_sha256": "2f737e8f2652f109f23448995915228db35d7e18af37424e5bba753ad09f45b7",
+      "paper": "Adezati2022",
+      "candidate": "R001"
+    },
+    "drafts/regions/sentence_comprehension_sccan_cluster__Adezati2022__R002.md": {
+      "source_sha256": "30b6125cd885e0280bc65f4a04579932058fcfa0cd7b0ee51719a56a59f30986",
+      "paper": "Adezati2022",
+      "candidate": "R002"
+    },
+    "drafts/predictors/overall_lesion_volume__Adezati2022__R003.md": {
+      "source_sha256": "29184e2b38815162121866cdbce246cf4d4e954d0f0d9b12fc764f18d6f0c9c6",
+      "paper": "Adezati2022",
+      "candidate": "R003"
+    },
+    "drafts/predictors/connectome_disruption_metrics__Adezati2022__R004.md": {
+      "source_sha256": "876c4ca2f16e664e8dc2a09ca4a728f1d301fcbb27f119e4c5003a8f8f66372c",
+      "paper": "Adezati2022",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_parietal_phonology_cluster__Akkad2023__R001.md": {
+      "source_sha256": "dfc9a77c90f427b5b216d7a39257e113cfca2f98ecab06b17185c85a4aeae0ea",
+      "paper": "Akkad2023",
+      "candidate": "R001"
+    },
+    "drafts/regions/semantic_factor_cluster__Akkad2023__R002.md": {
+      "source_sha256": "fbebdb502f353783d7e665b05cac70da66263e60d28cea31e473b6bb2c64cb5b",
+      "paper": "Akkad2023",
+      "candidate": "R002"
+    },
+    "drafts/regions/verbal_working_memory_cluster__Akkad2023__R003.md": {
+      "source_sha256": "2b7842552bac14320b96615490dc3ec7923a9bdf2c3c224897843c3d2fd5b705",
+      "paper": "Akkad2023",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_frontal_executive_cluster__Akkad2023__R004.md": {
+      "source_sha256": "80aa9d511eef09a47d858e3f12490d98f5eb5116ed125fd0feeae05bed848b49",
+      "paper": "Akkad2023",
+      "candidate": "R004"
+    },
+    "drafts/regions/brocas_area__Akkad2023__R005.md": {
+      "source_sha256": "c8c52ea818c6a61da7dc05a4e59786d181114a05fcc5087431011cdacd1c01a3",
+      "paper": "Akkad2023",
+      "candidate": "R005"
+    },
+    "drafts/regions/brocas_area_executive_function__Akkad2023__R006.md": {
+      "source_sha256": "29e73e1fc25ce6e983707e1a1620d434dbcf1e816d0ebc430ff529e3b94c882c",
+      "paper": "Akkad2023",
+      "candidate": "R006"
+    },
+    "drafts/regions/lifc_executive_cluster__Akkad2023__R007.md": {
+      "source_sha256": "fd36d35e547b07dafd670c1e5581dfb927a8dc8fb3091c23682725fdabc31840",
+      "paper": "Akkad2023",
+      "candidate": "R007"
+    },
+    "drafts/regions/age_under_55__Ali2021__R001.md": {
+      "source_sha256": "15fc3d37e7b94b9d1c52cfa63916688974c04a8551e3d33ba8f02cf915262823",
+      "paper": "Ali2021",
+      "candidate": "R001"
+    },
+    "drafts/predictors/enrollment_within_1_month_of_stroke__Ali2021__R002.md": {
+      "source_sha256": "ba4c3773e4120f165f2381ad86b300e135f40063c0f81799f4423ccb7a309e90",
+      "paper": "Ali2021",
+      "candidate": "R002"
+    },
+    "drafts/regions/sex__Ali2021__R003.md": {
+      "source_sha256": "cc851c50627e09d7baec7ff535df1bc279ec547e2d8ce6394c4ac0abce00e2fc",
+      "paper": "Ali2021",
+      "candidate": "R003"
+    },
+    "drafts/predictors/age_under_55_auditory_comprehension__Ali2021__R004.md": {
+      "source_sha256": "6242a39221eefb62a5d87aaa4f7dabb34803d4e5ca5a0f0fe168f5a51286d44f",
+      "paper": "Ali2021",
+      "candidate": "R004"
+    },
+    "drafts/predictors/enrollment_within_1_month_stroke__Ali2021__R005.md": {
+      "source_sha256": "4e0b36717cdd434c7488ca0730dc046d1d079f5ebdcc5e747939daef3b6cc9a1",
+      "paper": "Ali2021",
+      "candidate": "R005"
+    },
+    "drafts/predictors/age_under_55_naming_recovery__Ali2021__R006.md": {
+      "source_sha256": "fd07c29e44a8be715c14e3751c08c7308083ddb1615be004560e062b214f15b2",
+      "paper": "Ali2021",
+      "candidate": "R006"
+    },
+    "drafts/predictors/enrollment_within_1_month_stroke__Ali2021__R007.md": {
+      "source_sha256": "db1b268962ddd4ef5776e7c6fcca4f58b41a7cf71dc3fa8150dd0f90f45c0433",
+      "paper": "Ali2021",
+      "candidate": "R007"
+    },
+    "drafts/predictors/age_under_55_functional_communication__Ali2021__R008.md": {
+      "source_sha256": "2ac7f69efff0ac65762d268f23026d7c8c126f395124d7a260fe4721cbb098f4",
+      "paper": "Ali2021",
+      "candidate": "R008"
+    },
+    "drafts/predictors/enrollment_within_1_month_of_stroke__Ali2021__R009.md": {
+      "source_sha256": "1909b57bf72f57b56cdbce9be2e544b01c06248b69bbb0e45ae30a9e6cc86e87",
+      "paper": "Ali2021",
+      "candidate": "R009"
+    },
+    "drafts/regions/sex__Ali2021__R010.md": {
+      "source_sha256": "a3bbcc07da25354cf69eeaa40f86967b581bb335c3f598074d9bb64efc7ee167",
+      "paper": "Ali2021",
+      "candidate": "R010"
+    },
+    "drafts/predictors/language_domain_recovery_proportion__Ali2021__R011.md": {
+      "source_sha256": "5710ff3b1658a140c66668075b918785246aa021e2520b783f93853872eda824",
+      "paper": "Ali2021",
+      "candidate": "R011"
+    },
+    "drafts/predictors/language_domain_recovery_proportion__Ali2021__R012.md": {
+      "source_sha256": "0d058a74a68acf21c330fa40c85bb869846e7d8e376d848476ff9462faa8eea5",
+      "paper": "Ali2021",
+      "candidate": "R012"
+    },
+    "drafts/predictors/enrollment_within_1_month__Ali2021__R013.md": {
+      "source_sha256": "39e07fd33534417a055be1aac0fd18312dfa9c1d74ff4094f684e0f980687799",
+      "paper": "Ali2021",
+      "candidate": "R013"
+    },
+    "drafts/predictors/language_domain_recovery_proportion__Ali2021__R014.md": {
+      "source_sha256": "fa85a27766da6544bb596598bdbd401d8d362aef9e6e333e2b2c39be8a1e4848",
+      "paper": "Ali2021",
+      "candidate": "R014"
+    },
+    "drafts/predictors/age_and_chronicity__Ali2021__R015.md": {
+      "source_sha256": "78722fa88e10faea8696b912b4e65937b83c1fdb2b45a3e4062d678a08084ca7",
+      "paper": "Ali2021",
+      "candidate": "R015"
+    },
+    "drafts/regions/word_class_comprehension__Alyahya2018NounVerb__R001.md": {
+      "source_sha256": "7de3e8d8aa6dcc6d71fce9d62da14feacd90ed2515d63b81d23fa420dd3f8db7",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R001"
+    },
+    "drafts/impairments/noun_verb_naming_accuracy__Alyahya2018NounVerb__R002.md": {
+      "source_sha256": "8fa3882c7f5a35e728a3610df6a7f021b3d8395921d950e70995a40eed7d3066",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R002"
+    },
+    "drafts/regions/noun_verb_comprehension_accuracy__Alyahya2018NounVerb__R003.md": {
+      "source_sha256": "67dbc1475cfc526c0a24b9ae7f5f061417aa7b17844d0f8b0883d8531f2e05fa",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R003"
+    },
+    "drafts/impairments/noun_verb_naming_accuracy__Alyahya2018NounVerb__R004.md": {
+      "source_sha256": "2ce4c8e16289b6389eac55c2c46932c6c45b1aba6cda1b3a33090ff62f7497aa",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R004"
+    },
+    "drafts/regions/noun_verb_naming_error_type__Alyahya2018NounVerb__R006.md": {
+      "source_sha256": "1a5fc8cc67991b27c5b2922f7c71c0965194f0cad97e804d7bbee31d207265b0",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R006"
+    },
+    "drafts/predictors/aphasia_group_fluent_non_fluent__Alyahya2018NounVerb__R007.md": {
+      "source_sha256": "44d311aa03520cd2f12e330633e12b0a9c0d9f130445e05cc58c4eec1edf48f1",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R007"
+    },
+    "drafts/ingredients/word_class_effect__Alyahya2018NounVerb__R008.md": {
+      "source_sha256": "d720bd9de7b88071a773e165b0ad0b7f6de62d7abf947ac0e90dd26b06fdcdf0",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R008"
+    },
+    "drafts/impairments/noun_verb_naming_accuracy__Alyahya2018NounVerb__R009.md": {
+      "source_sha256": "cbaea96b5e3af9456faba0a209bcd93febfd7756d993e99edba7aec915192825",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R009"
+    },
+    "drafts/ingredients/word_imageability__Alyahya2018NounVerb__R010.md": {
+      "source_sha256": "fea5ce81accd258bf1db40c1fd2eb2e4c825a5cd3f19b84d7ee765a969be7953",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R010"
+    },
+    "drafts/predictors/imageability_aoa_comprehension_predictor__Alyahya2018NounVerb__R011.md": {
+      "source_sha256": "b89c83b92b521468a7a296bf2cdb54dc72423138eb949e2b2f7eff87ffe5b033",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R011"
+    },
+    "drafts/predictors/language_cognitive_pca_model__Alyahya2018NounVerb__R012.md": {
+      "source_sha256": "37e51e76c005cb76cd8c8b8713dfec9d4b02a8628f0fa3975a00343e82145f51",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R012"
+    },
+    "drafts/predictors/noun_verb_processing_pca__Alyahya2018NounVerb__R013.md": {
+      "source_sha256": "81e0a2a4ab940e5ef60a497e1ede0b4ee5689bc904f6d18a0829b50c30d1bb4c",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R013"
+    },
+    "drafts/regions/noun_verb_naming_overlap__Alyahya2018NounVerb__R014.md": {
+      "source_sha256": "084aef3778f9b5f3c6e91f78f4e6e8eb671478cf45b4bae1331a01366149def0",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R014"
+    },
+    "drafts/predictors/verb_naming_over_noun_naming__Alyahya2018NounVerb__R015.md": {
+      "source_sha256": "278b23a4306ef5aa689f62a66906ddb33672c939836c91c2ed25a8e99b3a9b74",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R015"
+    },
+    "drafts/regions/noun_verb_comprehension_network__Alyahya2018NounVerb__R016.md": {
+      "source_sha256": "b9dd332249e447e1b62dff960d619be9f47040c77ce1bab1cb7e8827c2cb016d",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R016"
+    },
+    "drafts/regions/verb_comprehension_cluster__Alyahya2018NounVerb__R017.md": {
+      "source_sha256": "05e766c7d9cb1ea44b535c72ad1432fb3786f9e80ed234bff3b004d42d8954df",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R017"
+    },
+    "drafts/regions/naming_vs_comprehension_cluster__Alyahya2018NounVerb__R018.md": {
+      "source_sha256": "af98b8f7ab68126fd99b179ddf7b8676d60ac184241420da3e9ef4da8c80a98d",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R018"
+    },
+    "drafts/predictors/pca_language_cognitive_factors__Alyahya2018NounVerb__R020.md": {
+      "source_sha256": "38e1f66ea3be0a93c104d6b05ce87e6e21be6a113c700a5f7f1b985e0bacc38b",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R020"
+    },
+    "drafts/predictors/lesion_volume_covariate_noun_verb_processing__Alyahya2018NounVerb__R021.md": {
+      "source_sha256": "d0fcb18bacd889bfd052b12daaadabd2248aa6bd45bd3287ac19f5fd1d52ea16",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R021"
+    },
+    "drafts/predictors/pca_language_factors__Alyahya2018NounVerb__R022.md": {
+      "source_sha256": "d2fc7cd29c88d44dfb8e26924be2cf91b8d1733eb4ec4a7bef41ed3bac238109",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R022"
+    },
+    "drafts/predictors/lesion_volume__Alyahya2018NounVerb__R023.md": {
+      "source_sha256": "22a1839bd0d2993e9f26bd202205281a29ccf6699b499db34250b901bf3f223e",
+      "paper": "Alyahya2018NounVerb",
+      "candidate": "R023"
+    },
+    "drafts/ingredients/discourse_genre__Alyahya2020__R001.md": {
+      "source_sha256": "b907a2897ac5d75c1204865ffd77254c206a5aecc3a266aedc24279089e5c08e",
+      "paper": "Alyahya2020",
+      "candidate": "R001"
+    },
+    "drafts/ingredients/discourse_genre__Alyahya2020__R002.md": {
+      "source_sha256": "c0fd0a1681871de4dee215454b47e5aa97214fcc6232381f94baae2e30094ff7",
+      "paper": "Alyahya2020",
+      "candidate": "R002"
+    },
+    "drafts/impairments/post_stroke_aphasia__Alyahya2020__R003.md": {
+      "source_sha256": "bf426a8cb2d9c0b5ede755d5294c226aff55dfac33b299b99f127ffa1f53cb27",
+      "paper": "Alyahya2020",
+      "candidate": "R003"
+    },
+    "drafts/impairments/post_stroke_aphasia__Alyahya2020__R004.md": {
+      "source_sha256": "e740f619aece708f89057b6fae613ed991dfaf75884c7b21533412a6df885047",
+      "paper": "Alyahya2020",
+      "candidate": "R004"
+    },
+    "drafts/regions/discourse_genre_interaction__Alyahya2020__R005.md": {
+      "source_sha256": "a0de59ab7ce9e646112a989e1657fdff181fc6257c2b443d5bdaaffeb162a617",
+      "paper": "Alyahya2020",
+      "candidate": "R005"
+    },
+    "drafts/regions/discourse_genre_lexical_diversity__Alyahya2020__R006.md": {
+      "source_sha256": "ace04edab94e78b155d8fe24fa7fdfb565f07924a084a2df0236def5583caac4",
+      "paper": "Alyahya2020",
+      "candidate": "R006"
+    },
+    "drafts/regions/fluent_vs_non_fluent_aphasia__Alyahya2020__R007.md": {
+      "source_sha256": "d68263aa53f0ca7cdced93cc2317dfe606e60244adc722906b14e93d7271c3d9",
+      "paper": "Alyahya2020",
+      "candidate": "R007"
+    },
+    "drafts/ingredients/discourse_genre_effect__Alyahya2020__R008.md": {
+      "source_sha256": "5f7a0ed8741c9b2d5634c1600319fbb6dbccfea33d0099083071afc69fb0d727",
+      "paper": "Alyahya2020",
+      "candidate": "R008"
+    },
+    "drafts/regions/fluent_vs_non_fluent_discourse_interaction__Alyahya2020__R009.md": {
+      "source_sha256": "3e04ac2687a3ad363e93e19ca80b5d77f95d1db232116f33189e23590bcf1a85",
+      "paper": "Alyahya2020",
+      "candidate": "R009"
+    },
+    "drafts/regions/discourse_genre_lexical_diversity__Alyahya2020__R010.md": {
+      "source_sha256": "62e483bcde21873da2b7e689c193082e584c795c19dff315ce68f3dda760d774",
+      "paper": "Alyahya2020",
+      "candidate": "R010"
+    },
+    "drafts/predictors/unified_pca_model__Alyahya2020__R012.md": {
+      "source_sha256": "643a39f8c06d96d248b76183bc79d8a521d38eefe67b2a1b7f321dc011916c13",
+      "paper": "Alyahya2020",
+      "candidate": "R012"
+    },
+    "drafts/regions/verbal_quantity_cluster__Alyahya2020__R013.md": {
+      "source_sha256": "9e92630df0b13706200ef348fb113e78b7bb7cb1a1c6f542a9e5d19b1ebc1114",
+      "paper": "Alyahya2020",
+      "candidate": "R013"
+    },
+    "drafts/regions/verbal_quality_cluster__Alyahya2020__R014.md": {
+      "source_sha256": "b3f1b4ce6fdf37d7cea474e4226ac197fe5f35cee113c4247df89ccd625778c6",
+      "paper": "Alyahya2020",
+      "candidate": "R014"
+    },
+    "drafts/regions/motor_speech_cluster__Alyahya2020__R015.md": {
+      "source_sha256": "094c1ac1cffae621dd0db090c58befd9f337216b044dffd3c251361803ce8acd",
+      "paper": "Alyahya2020",
+      "candidate": "R015"
+    },
+    "drafts/regions/phonological_recognition_semantic_processing_cluster__Alyahya2020__R016.md": {
+      "source_sha256": "ec7b5663e73153c09cf7fc1745a2828e97043c2f2076bbcf7ee444035b9e8914",
+      "paper": "Alyahya2020",
+      "candidate": "R016"
+    },
+    "drafts/regions/semantic_processing_cluster__Alyahya2020__R017.md": {
+      "source_sha256": "abd1b21c76d1c63cb4bf17c93f6ba07456f267493d4af5027c608169188d6861",
+      "paper": "Alyahya2020",
+      "candidate": "R017"
+    },
+    "drafts/regions/angular_gyrus_posterior_supramarginal_gyrus_posterior_arcuate_fasciculus_cluster__Alyahya2020__R018.md": {
+      "source_sha256": "4b13ad41a582bde4fc39ab83704c06b4dbee1efafe47eb9254cad535e26adef8",
+      "paper": "Alyahya2020",
+      "candidate": "R018"
+    },
+    "drafts/regions/phonological_production_cluster__Alyahya2020__R020.md": {
+      "source_sha256": "07b03420b12786adebba3586d7ed09f90026cc9b0bf95ed7f3cf66c845d4a286",
+      "paper": "Alyahya2020",
+      "candidate": "R020"
+    },
+    "drafts/regions/executive_function_cluster__Alyahya2020__R021.md": {
+      "source_sha256": "012bfb6cd67c3d1117d23be23bbf8651f23013c3949ae55a08895dd9475ad40a",
+      "paper": "Alyahya2020",
+      "candidate": "R021"
+    },
+    "drafts/regions/executive_function_cluster__Alyahya2020__R022.md": {
+      "source_sha256": "d5d1933eb2c7500741c7978ccd0c8c5956d823aec251bbd594bdc71ff0bd189b",
+      "paper": "Alyahya2020",
+      "candidate": "R022"
+    },
+    "drafts/predictors/verbal_quantity_motor_speech_model__Alyahya2020__R023.md": {
+      "source_sha256": "07ce49785e92450e27d9ee18632ae09c427c8f4b7fcdd844f74be2c7bf26e275",
+      "paper": "Alyahya2020",
+      "candidate": "R023"
+    },
+    "drafts/regions/letter_fluency_cluster__Baldo2006__R001.md": {
+      "source_sha256": "3e8d010f9f28629e61d514b45ac6897c7fd7b79c4df9352cb38837e67b15c1c1",
+      "paper": "Baldo2006",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_posterior_category_fluency_cluster__Baldo2006__R002.md": {
+      "source_sha256": "440d6ed3c2b0f35a20d52e85bedc7be45206e418970dc6ac5536cf4ddba4ba5e",
+      "paper": "Baldo2006",
+      "candidate": "R002"
+    },
+    "drafts/regions/letter_fluency_subtraction_cluster__Baldo2006__R003.md": {
+      "source_sha256": "a0386a4d22e2b06dd5fa0683787ac0fcfd6bcf16d36442cc0bf2a151b99c9ff0",
+      "paper": "Baldo2006",
+      "candidate": "R003"
+    },
+    "drafts/regions/category_fluency_cluster__Baldo2006__R004.md": {
+      "source_sha256": "ce6e7fa25c089bf956783d6da5122805e8a90c2d009ff9deecbf5806d6a09b38",
+      "paper": "Baldo2006",
+      "candidate": "R004"
+    },
+    "drafts/regions/posterior_regions_category_fluency_cluster__Baldo2006__R006.md": {
+      "source_sha256": "7e3625f47cf24afaa4f1012bc2615c2ca5d7f86d002fc4fa735add47d13fe394",
+      "paper": "Baldo2006",
+      "candidate": "R006"
+    },
+    "drafts/regions/supermarket_fluency_cluster__Baldo2006__R007.md": {
+      "source_sha256": "7c128d9eb168e517f4559c46bd1d04a0aadacebf7340c8135307d87830749a72",
+      "paper": "Baldo2006",
+      "candidate": "R007"
+    },
+    "drafts/regions/inferior_parietal_cortex__Baldo2006__R008.md": {
+      "source_sha256": "8fdbbe66cb9a22fcbff54591b30fcdc125338ba0a94d57a2ecfe2c0101e59110",
+      "paper": "Baldo2006",
+      "candidate": "R008"
+    },
+    "drafts/regions/insula_putamen_cluster__Baldo2006__R009.md": {
+      "source_sha256": "fb3e18c93be91e36927399baca9f02d1c003d031b78fe4a751e79cc2b85ed849",
+      "paper": "Baldo2006",
+      "candidate": "R009"
+    },
+    "drafts/regions/left_spgi__Baldo2011__R001.md": {
+      "source_sha256": "5ec89518aafb2dc8ab1cb6468c4df405adb5fd9a7d23925d2241619adcb32944",
+      "paper": "Baldo2011",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_spgi__Baldo2011__R002.md": {
+      "source_sha256": "449598341acc1e3c135f10d45af31c56ac4b00000d752a5f01f68004baaf1b42",
+      "paper": "Baldo2011",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_spgi__Baldo2011__R003.md": {
+      "source_sha256": "fa7cd41fae57cf65d72151ba6772d93588f48cc788780e0104af242577bd5145",
+      "paper": "Baldo2011",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_spgi__Baldo2011__R005.md": {
+      "source_sha256": "2db6dcafe9c2c8bc4fe31afa3c94be58a5473f8afff4054b5b0b936b1483eb05",
+      "paper": "Baldo2011",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_spgi__Baldo2011__R007.md": {
+      "source_sha256": "e69f36852cd6f31223d9115e3dab0311661fed14e8585f216415bf5dc49a0432",
+      "paper": "Baldo2011",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_spgi__Baldo2011__R008.md": {
+      "source_sha256": "c37a5945ccb8edee2e2239e164a0d4011abda3fcdbf454e2e788137dccc937b1",
+      "paper": "Baldo2011",
+      "candidate": "R008"
+    },
+    "drafts/regions/three_syllable_word_articulation__Baldo2011__R009.md": {
+      "source_sha256": "7dacf871279801a012b4c01f02efb9fad380752cc70d48b900d26bad456ec59a",
+      "paper": "Baldo2011",
+      "candidate": "R009"
+    },
+    "drafts/ingredients/articulatory_travel_complexity__Baldo2011__R011.md": {
+      "source_sha256": "e5851b3b66fefe09f0ddcecacdc6f9a4cd9da16f2d859a8e6be770a4de8d6cd5",
+      "paper": "Baldo2011",
+      "candidate": "R011"
+    },
+    "drafts/ingredients/initial_consonant_cluster_absence__Baldo2011__R014.md": {
+      "source_sha256": "7a31a63b36a081e467406eb1847d81c022419ddce28c7136ceab554618a0a3eb",
+      "paper": "Baldo2011",
+      "candidate": "R014"
+    },
+    "drafts/regions/left_naming_network_cluster__Baldo2013__R001.md": {
+      "source_sha256": "61f7cc461e222393914f06ae9b7d210422c3f9657380f444cb300eb9a685acd5",
+      "paper": "Baldo2013",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_mid_posterior_mtg_cluster__Baldo2013__R002.md": {
+      "source_sha256": "aa2db190e9bda76dc0453032689d08072fbaf61b5378e8cf52f0c3a782cdc0ce",
+      "paper": "Baldo2013",
+      "candidate": "R002"
+    },
+    "drafts/predictors/bnt_semantic_errors_vlsm__Baldo2013__R004.md": {
+      "source_sha256": "13c13db46e0a5cb4f0ba54961e10653a5fb3d8de1f876d5938cee03f99452406",
+      "paper": "Baldo2013",
+      "candidate": "R004"
+    },
+    "drafts/regions/aslant_tract__Basilakos2014__R002.md": {
+      "source_sha256": "dbd470d7bff478cadf59c16f803b1bafa80f0b60a0289de0ca473374f1a1be38",
+      "paper": "Basilakos2014",
+      "candidate": "R002"
+    },
+    "drafts/regions/asaf__Basilakos2014__R003.md": {
+      "source_sha256": "e72a65335789107d4b16dae56d48e6b5a70bd46eb21bcb941e2c0bbd61bc271e",
+      "paper": "Basilakos2014",
+      "candidate": "R003"
+    },
+    "drafts/regions/uncinate_fasciculus__Basilakos2014__R004.md": {
+      "source_sha256": "d7c56cdef48a0cf1a97cece994a20b99f46829d8e248957ce93eda42e7a5c6eb",
+      "paper": "Basilakos2014",
+      "candidate": "R004"
+    },
+    "drafts/regions/uncinate_ilf_overlap_cluster__Basilakos2014__R005.md": {
+      "source_sha256": "4db69fca7d8e87cd079d43fe6c8c367f5188db93d2ce0b62d1ceb90d5d1ec5d2",
+      "paper": "Basilakos2014",
+      "candidate": "R005"
+    },
+    "drafts/regions/ilf__Basilakos2014__R006.md": {
+      "source_sha256": "ba3120befe68784644ca00ec5c96d57e0fb5ec1067de2944c87109cc5996b85a",
+      "paper": "Basilakos2014",
+      "candidate": "R006"
+    },
+    "drafts/regions/asaf_aslant_overlap__Basilakos2014__R007.md": {
+      "source_sha256": "ace05d665fd8f08a511a83958f5579d153ee57be289830647d43ac9fb8a92b75",
+      "paper": "Basilakos2014",
+      "candidate": "R007"
+    },
+    "drafts/predictors/asaf_aslant_overlap_predictor__Basilakos2014__R009.md": {
+      "source_sha256": "90814e6636443f6a2d6996b2a796605d5bd49f2edbb8d457d2a468d9d75acc56",
+      "paper": "Basilakos2014",
+      "candidate": "R009"
+    },
+    "drafts/predictors/asaf_aslant_uncinate_model__Basilakos2014__R010.md": {
+      "source_sha256": "bd677adda459fe8eabe8718f1deab83a0e9521dca972ec326b70ef4281749aa2",
+      "paper": "Basilakos2014",
+      "candidate": "R010"
+    },
+    "drafts/predictors/remaining_tracts_fluency_model__Basilakos2014__R011.md": {
+      "source_sha256": "608effc7aa46970c7636249bb75105c3a6766c9cecc96ce091c28d7e80285c7a",
+      "paper": "Basilakos2014",
+      "candidate": "R011"
+    },
+    "drafts/regions/uncinate_fasciculus_semantic_processing__Basilakos2014__R012.md": {
+      "source_sha256": "f461b2b713ef8ea8382e22afa7252a72063cc481649b74399e2a0127b8cdfb31",
+      "paper": "Basilakos2014",
+      "candidate": "R012"
+    },
+    "drafts/regions/aslant_tract__Basilakos2014__R013.md": {
+      "source_sha256": "2cb5b99720c1009a95f1cbbd89692f65b5b2447c5a443c266adb73313bed09fe",
+      "paper": "Basilakos2014",
+      "candidate": "R013"
+    },
+    "drafts/regions/uncinate_ilf_overlap__Basilakos2014__R014.md": {
+      "source_sha256": "29929596fab23b0daf07f61ff13738a6c52bb0159f62d9d37bd51f7d6f22f74a",
+      "paper": "Basilakos2014",
+      "candidate": "R014"
+    },
+    "drafts/predictors/semantic_processing_roi_comparison__Basilakos2014__R015.md": {
+      "source_sha256": "aecdb57da5a384871e9f2c86802f897997580ba9066de37515df99e7dbd70cf4",
+      "paper": "Basilakos2014",
+      "candidate": "R015"
+    },
+    "drafts/predictors/uncinate_fasciculus_semantic_predictor__Basilakos2014__R016.md": {
+      "source_sha256": "2995af97ede145a1cfab9e4201b87faaaf4502af9f226612c797398335b66a53",
+      "paper": "Basilakos2014",
+      "candidate": "R016"
+    },
+    "drafts/predictors/semantic_processing_model_remaining_rois__Basilakos2014__R017.md": {
+      "source_sha256": "3c7b1508988c696d56779b794939564ae7460acca9e7ded24707b5a6f5b17f61",
+      "paper": "Basilakos2014",
+      "candidate": "R017"
+    },
+    "drafts/impairments/words_per_minute__Basilakos2014__R018.md": {
+      "source_sha256": "cf6436aad9b44f40a3546129dfdb2216b38665817c97546ffc8409ff8f064512",
+      "paper": "Basilakos2014",
+      "candidate": "R018"
+    },
+    "drafts/regions/aos_motor_somatosensory_cluster__Basilakos2015__R001.md": {
+      "source_sha256": "681d272262b877033027230e402153fa1d0d9c6f6476a710caa6a3e28ebfda7f",
+      "paper": "Basilakos2015",
+      "candidate": "R001"
+    },
+    "drafts/regions/aphasia_aos_production_cluster__Basilakos2015__R002.md": {
+      "source_sha256": "e43e60d27c9213cf3ee03926e0af1a0db6f16e91ed0c03b723e84d3f7a360827",
+      "paper": "Basilakos2015",
+      "candidate": "R002"
+    },
+    "drafts/regions/aos_aphasia_common_cluster__Basilakos2015__R003.md": {
+      "source_sha256": "3aa26657caafb0e2193e92803183c86462c0605eaf2f70052cd083770382e3dc",
+      "paper": "Basilakos2015",
+      "candidate": "R003"
+    },
+    "drafts/regions/insula__Basilakos2015__R004.md": {
+      "source_sha256": "ee7abd45590b3a0e735b28ba001e87619b3a17f172045d263b6333b7f6e6a1e5",
+      "paper": "Basilakos2015",
+      "candidate": "R004"
+    },
+    "drafts/regions/insula__Basilakos2015__R005.md": {
+      "source_sha256": "709eeb5faa1141675adae054e7ede135388cd216fc18efc1a5a036395f4626ad",
+      "paper": "Basilakos2015",
+      "candidate": "R005"
+    },
+    "drafts/regions/ifgpo__Basilakos2015__R006.md": {
+      "source_sha256": "484b902420be692015a5fd84fa3ef5e38aa77d71244d3ce4a83c99061749cf32",
+      "paper": "Basilakos2015",
+      "candidate": "R006"
+    },
+    "drafts/regions/ifgpo__Basilakos2015__R007.md": {
+      "source_sha256": "61086de1dc1745cd31f3ee20585004b833036821b1b077ee7bb6632c1d7cd776",
+      "paper": "Basilakos2015",
+      "candidate": "R007"
+    },
+    "drafts/predictors/leukoaraiosis_aq_change_model__Basilakos2019__R003.md": {
+      "source_sha256": "3f5465dba2e36fddae580467f247699f23061ad3adca46c20c99f38ef51f7659",
+      "paper": "Basilakos2019",
+      "candidate": "R003"
+    },
+    "drafts/predictors/leukoaraiosis_severity__Basilakos2019__R004.md": {
+      "source_sha256": "f6d6e5dcf649a590f904bd467a0f55320cbb97d30ce92937739daaab2efe20a4",
+      "paper": "Basilakos2019",
+      "candidate": "R004"
+    },
+    "drafts/predictors/leukoaraiosis_severity__Basilakos2019__R005.md": {
+      "source_sha256": "1bfa703cb62db48c479dd13310d97a9474b85da6ce7310dcbf804a97fec25782",
+      "paper": "Basilakos2019",
+      "candidate": "R005"
+    },
+    "drafts/predictors/leukoaraiosis_severity__Basilakos2019__R007.md": {
+      "source_sha256": "e34d97b67cf05aea482007d8f672f1b9222c425411c8daa616f48d4bd99b9b9a",
+      "paper": "Basilakos2019",
+      "candidate": "R007"
+    },
+    "drafts/regions/lesion_volume__Basilakos2019__R008.md": {
+      "source_sha256": "f0260b24e4bd11c40b9418e87d0859cae7b788ed49d633ea18c31ce90c4e82ef",
+      "paper": "Basilakos2019",
+      "candidate": "R008"
+    },
+    "drafts/regions/lesion_volume__Basilakos2019__R009.md": {
+      "source_sha256": "8a6d163c137f0e5ef328e83b31459ede6f13302a210d23a54265f8c64a71de7d",
+      "paper": "Basilakos2019",
+      "candidate": "R009"
+    },
+    "drafts/predictors/age_at_evaluation__Basilakos2019__R011.md": {
+      "source_sha256": "bdd3b86962c38e1cc967a8d1e0391dd340cdb244e0dd1aeb8e0e56a371f333d2",
+      "paper": "Basilakos2019",
+      "candidate": "R011"
+    },
+    "drafts/ingredients/butanedione_monoxime__Bates2003__R006.md": {
+      "source_sha256": "3d2c763abd5423bd37d4ca432ea92064a5c1e3863329dec6d202ca0b2867c826",
+      "paper": "Bates2003",
+      "candidate": "R006",
+      "publication_disposition": "withdrawn_wrong_article",
+      "reason": "Source passage P1-S1-C14 belongs to the preceding cochlear outer-hair-cell article on the shared journal page, not Bates2003 VLSM."
+    },
+    "drafts/ingredients/butanedione_monoxime__Bates2003__R007.md": {
+      "source_sha256": "ac742220cb0b85885394c1af7189d806532aabe544e5d5fbd99021d33bf875a8",
+      "paper": "Bates2003",
+      "candidate": "R007",
+      "publication_disposition": "withdrawn_wrong_article",
+      "reason": "Source passage P1-S1-C14 belongs to the preceding cochlear outer-hair-cell article on the shared journal page, not Bates2003 VLSM."
+    },
+    "drafts/regions/anterior_insula__Bates2003__R010.md": {
+      "source_sha256": "ce3271d31204101b48c9a9dc43fff8c356c4e92f15e6f9ecd2db2dbb3ad9a20c",
+      "paper": "Bates2003",
+      "candidate": "R010"
+    },
+    "drafts/regions/brocas_area__Bates2003__R011.md": {
+      "source_sha256": "b504320ef73df7bb9ffe56e96f248d964325158a43f5540a3fdc9f1f3c509fb2",
+      "paper": "Bates2003",
+      "candidate": "R011"
+    },
+    "drafts/regions/wernickes_area__Bates2003__R013.md": {
+      "source_sha256": "c5764078e67688b2cf351a5898c0fda85ff81a2fbce415716bba769b1f325430",
+      "paper": "Bates2003",
+      "candidate": "R013"
+    },
+    "drafts/predictors/fluency_comprehension_map_correlation__Bates2003__R014.md": {
+      "source_sha256": "bb333be053dc3559c1ef15334204355c8cc0701b3916922f7c881027e4217ecf",
+      "paper": "Bates2003",
+      "candidate": "R014"
+    },
+    "drafts/predictors/art_d7__Benghanem2019__R001.md": {
+      "source_sha256": "5f9af865628bd590baceb0f0edb2dd24c916bf78511465a10e24fa5c12d091c6",
+      "paper": "Benghanem2019",
+      "candidate": "R001"
+    },
+    "drafts/predictors/infarct_volume__Benghanem2019__R002.md": {
+      "source_sha256": "bf2467f632c0e46286e959ce7f24fc357eebea6bd50f4564c2d2ecbbc7ba58da",
+      "paper": "Benghanem2019",
+      "candidate": "R002"
+    },
+    "drafts/predictors/intersection_index__Benghanem2019__R003.md": {
+      "source_sha256": "9b41697fd3123cfbd86337871478441f85e59292edfbe101830033020bf953e4",
+      "paper": "Benghanem2019",
+      "candidate": "R003"
+    },
+    "drafts/predictors/combined_volume_intersection_index__Benghanem2019__R005.md": {
+      "source_sha256": "11b9037237ff6ecc2b3272098fb75592b83c1d403c6f878d2aa0be5a357e9ea4",
+      "paper": "Benghanem2019",
+      "candidate": "R005"
+    },
+    "drafts/predictors/art_d7_imaging_combined_model__Benghanem2019__R006.md": {
+      "source_sha256": "df9a30885359d6e0eedcafb748096c1863d8b75eee75c3b06fcd04968ab82be1",
+      "paper": "Benghanem2019",
+      "candidate": "R006"
+    },
+    "drafts/predictors/art_d7_combined_imaging_model__Benghanem2019__R007.md": {
+      "source_sha256": "e76e145bdccd21ad085a7b635feea376a8558131f78cba173894ec06ca7b9dcb",
+      "paper": "Benghanem2019",
+      "candidate": "R007"
+    },
+    "drafts/predictors/art_d7_imaging_interaction__Benghanem2019__R008.md": {
+      "source_sha256": "73ab2d505c38f7bbbb51b5f022caa6878ee6158de21cdd3e4106a1f474e754e0",
+      "paper": "Benghanem2019",
+      "candidate": "R008"
+    },
+    "drafts/predictors/combined_volume_intersection_index__Benghanem2019__R009.md": {
+      "source_sha256": "663eddd9ed352d64c59e8b537f86b1091ad54e34ce83336ebb3a0e134526c998",
+      "paper": "Benghanem2019",
+      "candidate": "R009"
+    },
+    "drafts/predictors/combined_volume_intersection_index__Benghanem2019__R010.md": {
+      "source_sha256": "85bb58666173158c5d3da625f054cd3aeb44b892774820b6216f1f70eba8f1b2",
+      "paper": "Benghanem2019",
+      "candidate": "R010"
+    },
+    "drafts/therapies/intention_treatment__Benjamin2014__R001.md": {
+      "source_sha256": "c8edf847a88b6288b0ec9757b1e222ed5801406615fe9822ce28d450c18ff0e4",
+      "paper": "Benjamin2014",
+      "candidate": "R001"
+    },
+    "drafts/predictors/control_treatment_lateral_frontal_laterality__Benjamin2014__R002.md": {
+      "source_sha256": "bfcff85bb537a7a3b3008deb1b530a915dbed04379558723bcebf19292f12c38",
+      "paper": "Benjamin2014",
+      "candidate": "R002"
+    },
+    "drafts/therapies/intention_treatment__Benjamin2014__R003.md": {
+      "source_sha256": "2260eb2a997a20fa47a9f2043448999893a12b66985a0d928c1317c8021b47a4",
+      "paper": "Benjamin2014",
+      "candidate": "R003"
+    },
+    "drafts/therapies/intention_treatment__Benjamin2014__R005.md": {
+      "source_sha256": "2c6044775f0c9ea88a846e6571a8caab0d158f2e1490317e93ea71ab03b5f3ef",
+      "paper": "Benjamin2014",
+      "candidate": "R005"
+    },
+    "drafts/therapies/control_treatment_aphasia__Benjamin2014__R006.md": {
+      "source_sha256": "6cdba72bc8032579160d99a9855c51ddd2c8812e25dac506bb512bf1f266b929",
+      "paper": "Benjamin2014",
+      "candidate": "R006"
+    },
+    "drafts/regions/posterior_perisylvian_rightward_shift__Benjamin2014__R007.md": {
+      "source_sha256": "5998f0d12dfdfca56f69593eff00c38158b9b900408f4a6fd881c46d1a340518",
+      "paper": "Benjamin2014",
+      "candidate": "R007"
+    },
+    "drafts/predictors/posterior_perisylvian_laterality_shift__Benjamin2014__R008.md": {
+      "source_sha256": "f96766aa5a067070e936058e9047dcf90549ecdd61cc46a2ae04ee2af854f9b8",
+      "paper": "Benjamin2014",
+      "candidate": "R008"
+    },
+    "drafts/predictors/frontal_laterality_shift__Benjamin2014__R009.md": {
+      "source_sha256": "969d2b6f61f99ca2093ee191671655aefdaeec4aadc483c07bc148ad302325a9",
+      "paper": "Benjamin2014",
+      "candidate": "R009"
+    },
+    "drafts/predictors/laterality_shift_picture_naming__Benjamin2014__R010.md": {
+      "source_sha256": "f17500737d035be04ff2e2eabcf60ef0ea38c806a0e32a8d5ba8e7c722b8a086",
+      "paper": "Benjamin2014",
+      "candidate": "R010"
+    },
+    "drafts/ingredients/therapy_intensity__Bhogal2003__R001.md": {
+      "source_sha256": "671ca100c9adf076a83a6c69ab8f3d11a6377c985a9a97d6b631b243af4ef9f0",
+      "paper": "Bhogal2003",
+      "candidate": "R001"
+    },
+    "drafts/ingredients/therapy_length_intensity_correlation__Bhogal2003__R002.md": {
+      "source_sha256": "e038eeaa425e838f4e054bc3ac3f0de0d9ed6370a7f754157ca26ef4627d945f",
+      "paper": "Bhogal2003",
+      "candidate": "R002"
+    },
+    "drafts/predictors/therapy_length_pica__Bhogal2003__R003.md": {
+      "source_sha256": "3e83f6d5126685034101b474b1af0fdce840a31967ff3b301b3dc09701a8661e",
+      "paper": "Bhogal2003",
+      "candidate": "R003"
+    },
+    "drafts/ingredients/total_therapy_hours__Bhogal2003__R005.md": {
+      "source_sha256": "d7f5ba8d9c8debd537dc306140abb379f63a0ffa02d45c98e6b770a8664d98f5",
+      "paper": "Bhogal2003",
+      "candidate": "R005"
+    },
+    "drafts/predictors/therapy_length_token_test__Bhogal2003__R006.md": {
+      "source_sha256": "582eb7f198ee64169d085016fad05f79614aeec53cd396c6759073a10585c98c",
+      "paper": "Bhogal2003",
+      "candidate": "R006"
+    },
+    "drafts/predictors/therapy_intensity_fcp__Bhogal2003__R008.md": {
+      "source_sha256": "be9e18168734c2d3e0db6321bad66e4abf84d933434c62b71a72542f0890f22e",
+      "paper": "Bhogal2003",
+      "candidate": "R008"
+    },
+    "drafts/regions/left_tool_concept_tract_cluster__Bi2015__R002.md": {
+      "source_sha256": "880639bae4b463ec1fc251b25d102e9212ddaf9c4b0dd5bcd54f3c97ee798926",
+      "paper": "Bi2015",
+      "candidate": "R002"
+    },
+    "drafts/regions/tool_use_concept_dissociation__Bi2015__R009.md": {
+      "source_sha256": "48b823fd3b85924f9a0aff3200dd9bbfd4b724aef45defdbecb511db6724353c",
+      "paper": "Bi2015",
+      "candidate": "R009"
+    },
+    "drafts/regions/tool_use_tracts__Bi2015__R010.md": {
+      "source_sha256": "e5a0a9b61e68fb8beea4c25f014037d6aa44a6d8a68a05d9bb06b1537dccc5ed",
+      "paper": "Bi2015",
+      "candidate": "R010"
+    },
+    "drafts/regions/lifg_lipl_tract__Bi2015__R011.md": {
+      "source_sha256": "1fe674492006a27098794abd7f4fce70bed3c19eac451309e1ec7c331bdd736e",
+      "paper": "Bi2015",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_insula_putamen_cluster__Bi2015__R012.md": {
+      "source_sha256": "fdeee0de56830c74d7b718057b96bf0267673b8327a62fdeb3151d0eac16ce98",
+      "paper": "Bi2015",
+      "candidate": "R012"
+    },
+    "drafts/regions/vfsm_tool_use_cluster__Bi2015__R013.md": {
+      "source_sha256": "5530e7530f20995f3329f95b7305de9ea1ba2b32341103c23a5973a47545ea5d",
+      "paper": "Bi2015",
+      "candidate": "R013"
+    },
+    "drafts/regions/tool_concept_vlsm_vfsm_cluster__Bi2015__R014.md": {
+      "source_sha256": "b24db7f53f052b4d0630f7cbd517454a15f9440dfff09f2704e5d13c15792a63",
+      "paper": "Bi2015",
+      "candidate": "R014"
+    },
+    "drafts/regions/atr_forceps_minor_cluster__Biesbroek2017__R017.md": {
+      "source_sha256": "93331671e517f4f19d43902868cfce872119a58faffa8daa57c7f15eef47acd4",
+      "paper": "Biesbroek2017",
+      "candidate": "R017"
+    },
+    "drafts/regions/atr_forceps_minor_slf_cluster__Biesbroek2017__R019.md": {
+      "source_sha256": "425a7d384d54163716c14d9f118d608efdd64ff41fec8b44c112de2a6d99b14b",
+      "paper": "Biesbroek2017",
+      "candidate": "R019"
+    },
+    "drafts/regions/forceps_minor_major_wmh__Biesbroek2017__R020.md": {
+      "source_sha256": "b55b14c2691bc9e4f5afa8f09c263bbb8aff89516f04730279055704bf9f43b5",
+      "paper": "Biesbroek2017",
+      "candidate": "R020"
+    },
+    "drafts/regions/wmh_atr_forceps_minor_volume__Biesbroek2017__R024.md": {
+      "source_sha256": "fa5be0ec05971ba376a68ee909fe562016abd23ab1431122b36200982868a370",
+      "paper": "Biesbroek2017",
+      "candidate": "R024"
+    },
+    "drafts/predictors/svm_multimodal_rehab_predictor__Billot2022__R001.md": {
+      "source_sha256": "32d95d0c506ac21d93e1ca86f52bcf782a1519f7f8247cf788c68b64c1612089",
+      "paper": "Billot2022",
+      "candidate": "R001"
+    },
+    "drafts/predictors/multimodal_svm_rehab_predictor__Billot2022__R002.md": {
+      "source_sha256": "c57c43e971d1079949aa41c30f8d1512a0aad060c6684935cda0643d8191c1ff",
+      "paper": "Billot2022",
+      "candidate": "R002"
+    },
+    "drafts/predictors/svm_optimal_rehab_predictor__Billot2022__R003.md": {
+      "source_sha256": "2cfe08f661e09aa9ad1dbeefbcc559a70fe4f697556183a2daba1b84f9b2d073",
+      "paper": "Billot2022",
+      "candidate": "R003"
+    },
+    "drafts/predictors/rs_fmri_connectivity_rf_model__Billot2022__R004.md": {
+      "source_sha256": "ff79ce847a7af5abee222b4b310484f9aec594130022b47aff3cf07bb13e77f8",
+      "paper": "Billot2022",
+      "candidate": "R004"
+    },
+    "drafts/predictors/rf_rehab_response_predictor__Billot2022__R005.md": {
+      "source_sha256": "d63f0b77358fac23544fe18e3fbf1ab111d93146376fae3b7c8ae33d2f29a5e4",
+      "paper": "Billot2022",
+      "candidate": "R005"
+    },
+    "drafts/predictors/svm_individual_feature_performance__Billot2022__R007.md": {
+      "source_sha256": "701d7148417117edca84378b9860ca8fcc212b001e24dd68f93699a6c82a2119",
+      "paper": "Billot2022",
+      "candidate": "R007"
+    },
+    "drafts/predictors/svm_vs_rf_treatment_response__Billot2022__R008.md": {
+      "source_sha256": "3ff08e9847eb58f08034248be19402ac0ce5ddcdde4b2132f4df2f8eb58021f7",
+      "paper": "Billot2022",
+      "candidate": "R008"
+    },
+    "drafts/predictors/rs_fmri_connectivity__Billot2022__R009.md": {
+      "source_sha256": "2fcdc782e64a76e1245aac29d2088f6735d452b1e72764e91b53c29e0d83bdcc",
+      "paper": "Billot2022",
+      "candidate": "R009"
+    },
+    "drafts/ingredients/sentence_type_complexity__Biondo2024__R001.md": {
+      "source_sha256": "dbac24a99efabd378910e9a220ded5a4c929016ca88d539f2c46499ebdcfed1f",
+      "paper": "Biondo2024",
+      "candidate": "R001"
+    },
+    "drafts/impairments/simple_sentence_comprehension__Biondo2024__R002.md": {
+      "source_sha256": "3a00f4dd4fc1f18904cdd987f892e22e0d37d9ec686b59e47fe16302fae8bd71",
+      "paper": "Biondo2024",
+      "candidate": "R002"
+    },
+    "drafts/impairments/passive_comprehension_accuracy__Biondo2024__R003.md": {
+      "source_sha256": "1516e411bb9b17365bc825c7ced3deab519439f6a17a6427edaead81f626dcb7",
+      "paper": "Biondo2024",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_mid_posterior_temporal_ipl_cluster__Biondo2024__R004.md": {
+      "source_sha256": "d19f1c922cc83d6f7191efd807027eaf3b6715d722aaa5387f4d9ac4e1088f94",
+      "paper": "Biondo2024",
+      "candidate": "R004"
+    },
+    "drafts/regions/inferior_temporal_lobe_simple_sentence_cluster__Biondo2024__R005.md": {
+      "source_sha256": "11de5f142ab97a31432c83ce3a40048018b4472eaf1d9ccfbe2a1d1ff0c5840e",
+      "paper": "Biondo2024",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_temporal_complex_sentence_cluster__Biondo2024__R006.md": {
+      "source_sha256": "f7c1252ffd73f2325e100c32c877fff234ef76d43bd183b8c2f9e5937d005547",
+      "paper": "Biondo2024",
+      "candidate": "R006"
+    },
+    "drafts/regions/angular_gyrus_passive_comprehension__Biondo2024__R007.md": {
+      "source_sha256": "1a0481579ac1d6b9c944a0986d91fbb880708fc9b046cd5066abf261bebe49c0",
+      "paper": "Biondo2024",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_sentence_comprehension_tract_disconnection__Biondo2024__R008.md": {
+      "source_sha256": "cdfbf34856985965ac5a84ff5fb0e65e7931b149a8dcfb8be7cf527f439a709d",
+      "paper": "Biondo2024",
+      "candidate": "R008"
+    },
+    "drafts/regions/left_slf_af_ccmdpoeror_disconnection__Biondo2024__R010.md": {
+      "source_sha256": "87003d9d698bbb311f84f0ca488e353a6cd08074f201e628b7fecf49ba25a32d",
+      "paper": "Biondo2024",
+      "candidate": "R010"
+    },
+    "drafts/predictors/passive_sentence_comprehension_disconnection__Biondo2024__R011.md": {
+      "source_sha256": "a33183718a11570744e7716b97798d4f04d26d4dccc124d64290724381b75339",
+      "paper": "Biondo2024",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_ifg_pars_orbitalis__Biondo2024__R013.md": {
+      "source_sha256": "46fefd45c9ef266a773f537b90a12e5d5f1a44af20b103e4a1654c532ae653f2",
+      "paper": "Biondo2024",
+      "candidate": "R013"
+    },
+    "drafts/regions/left_ifg_pars_triangularis__Biondo2024__R014.md": {
+      "source_sha256": "fd3b8f02abcd0cef8d63bfba1b0c19c29ad4905ad2608750cf2aa868edae4aac",
+      "paper": "Biondo2024",
+      "candidate": "R014"
+    },
+    "drafts/regions/left_ifg_pars_triangularis__Biondo2024__R015.md": {
+      "source_sha256": "bd2f0b59b1f80eb5d7641225965adbfff3c970d66ece5f25d8bd06f22d9ed171",
+      "paper": "Biondo2024",
+      "candidate": "R015"
+    },
+    "drafts/regions/right_ilf_fa_change__BlomSmink2020__R001.md": {
+      "source_sha256": "50548ea343c585a763a94062534d31a09e531a80b368eef0891fc9e614396234",
+      "paper": "BlomSmink2020",
+      "candidate": "R001"
+    },
+    "drafts/regions/other_language_tracts_fa_change__BlomSmink2020__R002.md": {
+      "source_sha256": "16e305a58bfac007dcd6e580fa6414cbf0239ed1cc95e534330b8efc13fd0a2d",
+      "paper": "BlomSmink2020",
+      "candidate": "R002"
+    },
+    "drafts/regions/ba_22_necrosis__Bonilha2014__R003.md": {
+      "source_sha256": "d1e88643ccf8905ce8d20ad6f6d6d6dd9911f589c6acf3e01806d1503f922dba",
+      "paper": "Bonilha2014",
+      "candidate": "R003"
+    },
+    "drafts/regions/ba_45_necrosis__Bonilha2014__R005.md": {
+      "source_sha256": "456efda62d72f63b481cfc4fa2ed56e288eec3cabfdc2b62990ad225156b13e8",
+      "paper": "Bonilha2014",
+      "candidate": "R005"
+    },
+    "drafts/predictors/overall_lesion_size__Bonilha2014__R007.md": {
+      "source_sha256": "e8868e44034e8f19f7bce02742066df761d5ae2b4e406fdb7d515730a34610e4",
+      "paper": "Bonilha2014",
+      "candidate": "R007"
+    },
+    "drafts/predictors/global_network_nsw__Bonilha2016__R002.md": {
+      "source_sha256": "725373c857dfa83ccbdfef96646b8341d8d310c3d166b94d3e1a4d4562e2b59f",
+      "paper": "Bonilha2016",
+      "candidate": "R002"
+    },
+    "drafts/predictors/nsw_left_temporal_bc_model__Bonilha2016__R003.md": {
+      "source_sha256": "422135e07c374889082ac7be67723dc0c988dcfe72b5b37bd30e07b9703ef735",
+      "paper": "Bonilha2016",
+      "candidate": "R003"
+    },
+    "drafts/regions/lesion_volume__Bonilha2016__R005.md": {
+      "source_sha256": "fd0158dd3188b531d8db0b7119e6aa3a4f0565c2c6520cdcf5ace28a8fbfcded",
+      "paper": "Bonilha2016",
+      "candidate": "R005"
+    },
+    "drafts/impairments/baseline_aphasia_severity__Bonilha2016__R006.md": {
+      "source_sha256": "0989ac0244e098e676d05f335cf1f45794c17313696d85969f8f13db9855d782",
+      "paper": "Bonilha2016",
+      "candidate": "R006"
+    },
+    "drafts/regions/right_hemisphere_nodal_bc__Bonilha2016__R010.md": {
+      "source_sha256": "a6275552a7ff7400ccdca16cd14942dd9318192daf62953badedf8912a019450",
+      "paper": "Bonilha2016",
+      "candidate": "R010"
+    },
+    "drafts/therapies/sfa_treatment__Boyle2004__R001.md": {
+      "source_sha256": "8112534d86b425066b270697b3787e260d951ed9182bc59a43b30e88c881966b",
+      "paper": "Boyle2004",
+      "candidate": "R001"
+    },
+    "drafts/therapies/sfa_treatment__Boyle2004__R003.md": {
+      "source_sha256": "210105c1ddd8de0334367192028b9c27154a62cfb176d880eb9323954d038474",
+      "paper": "Boyle2004",
+      "candidate": "R003"
+    },
+    "drafts/therapies/sfa_treatment__Boyle2004__R004.md": {
+      "source_sha256": "a3d4361a7677c200c2a0b643167218e214cdd78bdccb4ae9cb30b2c8df4e5754",
+      "paper": "Boyle2004",
+      "candidate": "R004"
+    },
+    "drafts/therapies/sfa_treatment_cius_p2__Boyle2004__R005.md": {
+      "source_sha256": "f35504149e1a27195ec1219255c72a9d23ac6012bf3a1737303f7c6b3443ff42",
+      "paper": "Boyle2004",
+      "candidate": "R005"
+    },
+    "drafts/therapies/sfa_treatment_discourse_efficiency__Boyle2004__R006.md": {
+      "source_sha256": "df41e4c9d6ff806d7861f9442b759ef3064a8eae74408336115f3de7218fdac5",
+      "paper": "Boyle2004",
+      "candidate": "R006"
+    },
+    "drafts/therapies/sfa_treatment_discourse_informativeness__Boyle2004__R007.md": {
+      "source_sha256": "e47e1f6a97e646eaa080a280eeee92e28ed4b0455d0b6f0784952ef8d5fe8aab",
+      "paper": "Boyle2004",
+      "candidate": "R007"
+    },
+    "drafts/therapies/sfa_treatment__Boyle2004__R008.md": {
+      "source_sha256": "fb59f88270347a0e50a0cf4bb1d006ae28b7be64379c477fb63e8a2cdf682049",
+      "paper": "Boyle2004",
+      "candidate": "R008"
+    },
+    "drafts/therapies/sfa_treatment_discourse_delays__Boyle2004__R009.md": {
+      "source_sha256": "a6f0cfe9a89de9a625c2f2f272d90a0f77a6781af812ceeabd18aac6a4248cc8",
+      "paper": "Boyle2004",
+      "candidate": "R009"
+    },
+    "drafts/therapies/sfa_treatment_discourse_behaviors_p2__Boyle2004__R010.md": {
+      "source_sha256": "e2795e6cbfb7e0ecb09f6fdd392c09e96b49162a08f5554a59c1baf7c8c4f4e7",
+      "paper": "Boyle2004",
+      "candidate": "R010"
+    },
+    "drafts/therapies/sfa_exemplar_count__Boyle2004__R011.md": {
+      "source_sha256": "b7399d32fcf315c2375173c79a70f8b37a75590e6f43c4b9c22df712619f5588",
+      "paper": "Boyle2004",
+      "candidate": "R011"
+    },
+    "drafts/predictors/semantic_category_access_generalization__Boyle2004__R012.md": {
+      "source_sha256": "e595c8c383a152883a90132d6a7bd9c7a454e065342738e66d95cf91338ed900",
+      "paper": "Boyle2004",
+      "candidate": "R012"
+    },
+    "drafts/predictors/slt_frequency_age_overall_language__Brady2022__R001.md": {
+      "source_sha256": "cecd8017004104cc1a8a185a4473660709a38cd327ecff75ee5f32285226a5f1",
+      "paper": "Brady2022",
+      "candidate": "R001"
+    },
+    "drafts/predictors/slt_frequency_auditory_comprehension__Brady2022__R002.md": {
+      "source_sha256": "625fadbb6d24afc6ce5cca89ba1b59893c4313f45c3a480590cc3b3b5d735309",
+      "paper": "Brady2022",
+      "candidate": "R002"
+    },
+    "drafts/predictors/slt_frequency_functional_communication__Brady2022__R003.md": {
+      "source_sha256": "1697cbfe9bd08125550b26de93cb65b2d3c2d33a92e708af640be06115dc5890",
+      "paper": "Brady2022",
+      "candidate": "R003"
+    },
+    "drafts/predictors/slt_intensity_working_age__Brady2022__R004.md": {
+      "source_sha256": "cd70b85b090396138a9e0ae5730d4e07cd1659a27edf8c782a10eafb2c5bcf17",
+      "paper": "Brady2022",
+      "candidate": "R004"
+    },
+    "drafts/predictors/slt_intensity_auditory_comprehension__Brady2022__R005.md": {
+      "source_sha256": "d6c2d4f4495306624a33bd95c13543a16a2ef69e10687abebf0194d9e0208fbb",
+      "paper": "Brady2022",
+      "candidate": "R005"
+    },
+    "drafts/predictors/slt_intensity_functional_communication__Brady2022__R006.md": {
+      "source_sha256": "c9610dfcaf0c2242d4ef116e9e68de5dc3eb6876cff6923b2cae39d774411275",
+      "paper": "Brady2022",
+      "candidate": "R006"
+    },
+    "drafts/predictors/slt_dosage_auditory_comprehension__Brady2022__R008.md": {
+      "source_sha256": "4af0959487aa3d9bcb064d7081549c5b8e7626c7d7ddbfebdf32534e5b68657a",
+      "paper": "Brady2022",
+      "candidate": "R008"
+    },
+    "drafts/predictors/slt_dosage_older_functional_communication__Brady2022__R009.md": {
+      "source_sha256": "28faa8ec3de20dc66b635aaa6afef71053114043b631447bcc76337ef7f77d03",
+      "paper": "Brady2022",
+      "candidate": "R009"
+    },
+    "drafts/predictors/slt_frequency_chronicity__Brady2022__R010.md": {
+      "source_sha256": "eb46b038569218290518163629265f3bf8b25f85ee6c089753e31439ebc269a3",
+      "paper": "Brady2022",
+      "candidate": "R010"
+    },
+    "drafts/predictors/slt_frequency_auditory_comprehension__Brady2022__R011.md": {
+      "source_sha256": "fdb1d3926054a2d43a139686c4500599561adb52350d12df19b6e16e88e8f566",
+      "paper": "Brady2022",
+      "candidate": "R011"
+    },
+    "drafts/predictors/slt_frequency_functional_communication__Brady2022__R012.md": {
+      "source_sha256": "e207f4ee63da074e04bd9d0487beeabe8f45807f6f418b0322c7fe4b25c7fbd3",
+      "paper": "Brady2022",
+      "candidate": "R012"
+    },
+    "drafts/predictors/slt_intensity_overall_language__Brady2022__R013.md": {
+      "source_sha256": "8c896270c4a9c3ac94bb1171d7647989210d15a502f813379fea2f9a2dfe86e6",
+      "paper": "Brady2022",
+      "candidate": "R013"
+    },
+    "drafts/predictors/slt_intensity_auditory_comprehension__Brady2022__R014.md": {
+      "source_sha256": "8ad963227e300345e67f5f4dbad4484d89d68d3c2093dcb5141e8376663aed1e",
+      "paper": "Brady2022",
+      "candidate": "R014"
+    },
+    "drafts/predictors/slt_intensity_functional_communication__Brady2022__R015.md": {
+      "source_sha256": "8e4fde9c88d26ddc8116ab491d75de5b56321d577b1a8dad78f5233b444aac37",
+      "paper": "Brady2022",
+      "candidate": "R015"
+    },
+    "drafts/predictors/slt_dosage_overall_language__Brady2022__R016.md": {
+      "source_sha256": "e7b6e4785ba7ca32bd5e2f754d92e5449118d55f02026846420293a6e361339a",
+      "paper": "Brady2022",
+      "candidate": "R016"
+    },
+    "drafts/predictors/slt_dosage_auditory_comprehension__Brady2022__R017.md": {
+      "source_sha256": "73268a333add5679eb46c69198f28e5d7eeb3dac168db47cf0887f381e7f5756",
+      "paper": "Brady2022",
+      "candidate": "R017"
+    },
+    "drafts/predictors/slt_dosage_functional_communication__Brady2022__R018.md": {
+      "source_sha256": "0147597da73b42099cf4c9a9ec4250ec58088308c54430338837d2d94f235588",
+      "paper": "Brady2022",
+      "candidate": "R018"
+    },
+    "drafts/predictors/slt_frequency_moderate_severe_aphasia__Brady2022__R019.md": {
+      "source_sha256": "48be8022419492ce2438ba78444eda3525e32cdcea523568bde88262a0f54fda",
+      "paper": "Brady2022",
+      "candidate": "R019"
+    },
+    "drafts/predictors/slt_frequency_moderate_severe_aphasia__Brady2022__R020.md": {
+      "source_sha256": "d848d12f0d0c2e9c02a0f9a3947f5672bfd98a9b0d9746f3808ffcf591d8f6f7",
+      "paper": "Brady2022",
+      "candidate": "R020"
+    },
+    "drafts/predictors/slt_frequency_moderate_severe_aphasia__Brady2022__R021.md": {
+      "source_sha256": "e15cb11ac94b00772d14ffff871f50abe7ee134ab9416320ccd38630455ee3d1",
+      "paper": "Brady2022",
+      "candidate": "R021"
+    },
+    "drafts/predictors/slt_intensity_overall_language__Brady2022__R022.md": {
+      "source_sha256": "657c5f51fc8f7f214d91e009060362a44f715e5c7187b4573e57b1d0e65bba0e",
+      "paper": "Brady2022",
+      "candidate": "R022"
+    },
+    "drafts/predictors/slt_intensity_moderate_severe__Brady2022__R023.md": {
+      "source_sha256": "00713b520593b8b7324d838bf6000770c200e2208a009faa2e82f40c94b41864",
+      "paper": "Brady2022",
+      "candidate": "R023"
+    },
+    "drafts/predictors/slt_intensity_mild_moderate_aphasia__Brady2022__R024.md": {
+      "source_sha256": "2f59dd5daae36fe4f158fff4daf1451f1cf2f944a5414c96bbc360ac05d955f3",
+      "paper": "Brady2022",
+      "candidate": "R024"
+    },
+    "drafts/predictors/slt_dosage_overall_language__Brady2022__R025.md": {
+      "source_sha256": "f252b03dc2a5c85de56420310e302a2c3ab79675a5691896d6f7bc7a86c8cab4",
+      "paper": "Brady2022",
+      "candidate": "R025"
+    },
+    "drafts/predictors/slt_dosage_auditory_comprehension__Brady2022__R026.md": {
+      "source_sha256": "93025d571262890fd9c24b67153e5fb7c50d56321c604012489b59b7ade78496",
+      "paper": "Brady2022",
+      "candidate": "R026"
+    },
+    "drafts/predictors/slt_dosage_functional_communication__Brady2022__R027.md": {
+      "source_sha256": "562ea1f6e852021e51d10cfe8cf9ac4488c6496b4a1a36aa383556d595c9742c",
+      "paper": "Brady2022",
+      "candidate": "R027"
+    },
+    "drafts/predictors/slt_frequency_sex__Brady2022__R028.md": {
+      "source_sha256": "01f5ff27798fd7a2c75dc91e4787ca0a7456af6d68db9d08f5ccd247125fc867",
+      "paper": "Brady2022",
+      "candidate": "R028"
+    },
+    "drafts/predictors/slt_frequency_auditory_comprehension_sex__Brady2022__R029.md": {
+      "source_sha256": "0ee418f5bb643caae190a0e20cdcac7f406b447d25ecdca07e36e7849f232648",
+      "paper": "Brady2022",
+      "candidate": "R029"
+    },
+    "drafts/predictors/slt_frequency_male__Brady2022__R030.md": {
+      "source_sha256": "4ebafc11fafcc7b63e00cbac9b003b39fa7624a3f5ae5e43a2ca627e4b5c101b",
+      "paper": "Brady2022",
+      "candidate": "R030"
+    },
+    "drafts/predictors/slt_intensity_sex_interaction__Brady2022__R031.md": {
+      "source_sha256": "28da8ecfb798e87973bbaa4e7278058c6319ce1eb02ca7611421178410382b0d",
+      "paper": "Brady2022",
+      "candidate": "R031"
+    },
+    "drafts/predictors/slt_intensity_auditory_comprehension__Brady2022__R032.md": {
+      "source_sha256": "a236566f841a6fe71ae6b6e5826b837d5715ba54afdc11d4c53f845a6973d5f1",
+      "paper": "Brady2022",
+      "candidate": "R032"
+    },
+    "drafts/predictors/slt_intensity_functional_communication_sex__Brady2022__R033.md": {
+      "source_sha256": "34f421b47f6e5730e9e5849b9b516a866722e89bd840bcaf15798ae9726287d9",
+      "paper": "Brady2022",
+      "candidate": "R033"
+    },
+    "drafts/predictors/slt_dosage_sex__Brady2022__R034.md": {
+      "source_sha256": "989f99b7dc3e03c8bf827fe7db7d98b3e0867388f72bc02e513ab4ef76591af2",
+      "paper": "Brady2022",
+      "candidate": "R034"
+    },
+    "drafts/predictors/slt_dosage_auditory_comprehension__Brady2022__R035.md": {
+      "source_sha256": "703284d72ad8a54baca8ccf1c246908bc03c4ccce94abf5b3a6c0140c11aa553",
+      "paper": "Brady2022",
+      "candidate": "R035"
+    },
+    "drafts/predictors/slt_dosage_functional_communication__Brady2022__R036.md": {
+      "source_sha256": "0d2230cf07331988d1a6bf1a1ce939f69994a3c5dd3751715b3a11e9d6eb5774",
+      "paper": "Brady2022",
+      "candidate": "R036"
+    },
+    "drafts/predictors/slt_dosage_20_50h__Brady2022Dosage__R001.md": {
+      "source_sha256": "7a0aaf236147b40ee42d2306616e7ea8e19ec1b220048ccc7c06aaabf0cfbce4",
+      "paper": "Brady2022Dosage",
+      "candidate": "R001"
+    },
+    "drafts/regions/slt_dosage_14_20h__Brady2022Dosage__R002.md": {
+      "source_sha256": "aacb92931e8d71fb278c802b064c4d7dc7c3b46c4e13466f5c1a9d2570570fb9",
+      "paper": "Brady2022Dosage",
+      "candidate": "R002"
+    },
+    "drafts/predictors/slt_dosage_20_50h__Brady2022Dosage__R003.md": {
+      "source_sha256": "8f902e1acfa7dc340d40c9a312b9de6da3b40467fb880b0e6229dcf0de9e9019",
+      "paper": "Brady2022Dosage",
+      "candidate": "R003"
+    },
+    "drafts/predictors/slt_dosage_50_plus_hours__Brady2022Dosage__R004.md": {
+      "source_sha256": "db5abac737f41de5c76ab00a1382f61e1cd67f8ae3149cd53c2453d5d7021b6e",
+      "paper": "Brady2022Dosage",
+      "candidate": "R004"
+    },
+    "drafts/predictors/slt_dosage_low__Brady2022Dosage__R005.md": {
+      "source_sha256": "4e6a1a24afe1a5aa562ade8129945a209fab95218cf5cfe940fc71345bcc6a58",
+      "paper": "Brady2022Dosage",
+      "candidate": "R005"
+    },
+    "drafts/predictors/slt_dosage_low__Brady2022Dosage__R006.md": {
+      "source_sha256": "2ba701bf81a390c9b6dca4896f4fa4eb8767406a13c6499d9c4655afa09f99dc",
+      "paper": "Brady2022Dosage",
+      "candidate": "R006"
+    },
+    "drafts/predictors/slt_intensity_low__Brady2022Dosage__R007.md": {
+      "source_sha256": "842108dc71165284816a78b14404f4dfe0e618d55b041d0ae7f60ed429fd801d",
+      "paper": "Brady2022Dosage",
+      "candidate": "R007"
+    },
+    "drafts/predictors/slt_intensity_overall_language__Brady2022Dosage__R008.md": {
+      "source_sha256": "4b543807b63ed1380a9bf6ca832eaf365b5ef89dad47cbaeef252a8d12b115e5",
+      "paper": "Brady2022Dosage",
+      "candidate": "R008"
+    },
+    "drafts/predictors/slt_intensity_low__Brady2022Dosage__R009.md": {
+      "source_sha256": "df2a10e2766ca97a45c60fb4d3913125ee8a2329601123a7367cd491bd604705",
+      "paper": "Brady2022Dosage",
+      "candidate": "R009"
+    },
+    "drafts/predictors/slt_intensity_functional_communication__Brady2022Dosage__R010.md": {
+      "source_sha256": "2631593e787672def0760cb3f6aa3be86ba261a9ad5ed5a7776f9d4f87f91952",
+      "paper": "Brady2022Dosage",
+      "candidate": "R010"
+    },
+    "drafts/ingredients/slt_intensity_9plus_weekly__Brady2022Dosage__R011.md": {
+      "source_sha256": "2c608d634a0d92cc9cc40cbed2ce420fd63eeb0f1f1363fce7695371fbca7e7c",
+      "paper": "Brady2022Dosage",
+      "candidate": "R011"
+    },
+    "drafts/predictors/slt_intensity_auditory_comprehension__Brady2022Dosage__R012.md": {
+      "source_sha256": "42a15c59f1f459cd750e5dac01f9a6fd62e688cf548da84664c3503bd347a391",
+      "paper": "Brady2022Dosage",
+      "candidate": "R012"
+    },
+    "drafts/therapies/slt_intensity_auditory_comprehension__Brady2022Dosage__R013.md": {
+      "source_sha256": "dd423af4431c06d94d2529d43ffe2a4cbe9c4392ff991f9ff6916cfa0caf8072",
+      "paper": "Brady2022Dosage",
+      "candidate": "R013"
+    },
+    "drafts/regions/slt_frequency_5_days_week__Brady2022Dosage__R014.md": {
+      "source_sha256": "7db1735d807b4f2eebec2798b85cb36d593e81b2d900d941ee547e7eeeb185ce",
+      "paper": "Brady2022Dosage",
+      "candidate": "R014"
+    },
+    "drafts/predictors/slt_frequency_overall_language__Brady2022Dosage__R015.md": {
+      "source_sha256": "0661563191eec7bdd40c54da726a8257678b1c4e929bcfc0a32957445890c86f",
+      "paper": "Brady2022Dosage",
+      "candidate": "R015"
+    },
+    "drafts/predictors/slt_frequency_functional_communication__Brady2022Dosage__R016.md": {
+      "source_sha256": "bc64103177ecc83eb8aa19858ea2c6e9469972986296b6d9e46be31ea6f204a3",
+      "paper": "Brady2022Dosage",
+      "candidate": "R016"
+    },
+    "drafts/regions/slt_frequency_5plus_days__Brady2022Dosage__R017.md": {
+      "source_sha256": "83692dd40b3206184b79159aeea6a14ec8f08b96056759011d302814f9396849",
+      "paper": "Brady2022Dosage",
+      "candidate": "R017"
+    },
+    "drafts/predictors/slt_frequency_auditory_comprehension__Brady2022Dosage__R018.md": {
+      "source_sha256": "36254214dc77102147fac93f86a0c7983b77a30e3a83ffc9a1e37860369c0a99",
+      "paper": "Brady2022Dosage",
+      "candidate": "R018"
+    },
+    "drafts/therapies/mixed_expressive_receptive_approach__Brady2022Dosage__R019.md": {
+      "source_sha256": "cb83e4d72a20f834eb09caa2cde7d4fccd976f9ff3daa3688195f9d8a13b5f67",
+      "paper": "Brady2022Dosage",
+      "candidate": "R019"
+    },
+    "drafts/therapies/word_finding_approach__Brady2022Dosage__R020.md": {
+      "source_sha256": "e0c0a88e89536c823d98d404103258d27bf4f2b35e6553108bb346bfb36984b2",
+      "paper": "Brady2022Dosage",
+      "candidate": "R020"
+    },
+    "drafts/therapies/semantic_phonological_recovery_slt__Brady2022Dosage__R021.md": {
+      "source_sha256": "6c313631e2e28f4535ab625a5f9aed873ec8b401886623e8d30eca114d1e8629",
+      "paper": "Brady2022Dosage",
+      "candidate": "R021"
+    },
+    "drafts/therapies/functional_pragmatic_slt__Brady2022Dosage__R022.md": {
+      "source_sha256": "c9b5dee4f70bdd1d607ceeab2bb15e79a92408f85d0198969f03e053bde1f127",
+      "paper": "Brady2022Dosage",
+      "candidate": "R022"
+    },
+    "drafts/ingredients/prescribed_home_practice__Brady2022Dosage__R023.md": {
+      "source_sha256": "25b50adf0f1d8a8d7cba33761289679fab9b45281fbf6de67e72428d1ee2c6c9",
+      "paper": "Brady2022Dosage",
+      "candidate": "R023"
+    },
+    "drafts/ingredients/home_practice_absence__Brady2022Dosage__R024.md": {
+      "source_sha256": "e7d1a2b0c0ccadeb219a9245b4c012b4a2633c07c2d22b6bc0ffeba5ab1ae3fa",
+      "paper": "Brady2022Dosage",
+      "candidate": "R024"
+    },
+    "drafts/therapies/functionally_tailored_slt__Brady2022Dosage__R025.md": {
+      "source_sha256": "eebc056c1419b3ae7b57f904b288f6208a0fd422e0ffdeeeffd64a4cc88246d3",
+      "paper": "Brady2022Dosage",
+      "candidate": "R025"
+    },
+    "drafts/therapies/functionally_tailored_slt__Brady2022Dosage__R026.md": {
+      "source_sha256": "53bd611cdf4cd875691e655cbdfc2c46b85182c9928cf317be39d98bd5f02369",
+      "paper": "Brady2022Dosage",
+      "candidate": "R026"
+    },
+    "drafts/therapies/slt_tailoring_difficulty__Brady2022Dosage__R027.md": {
+      "source_sha256": "e408deb73ddfecc27e71f3bb37e1beb9bdfb13bdceb7a31221daf792d08fd74b",
+      "paper": "Brady2022Dosage",
+      "candidate": "R027"
+    },
+    "drafts/predictors/slt_delivery_setting_provider__Brady2022Dosage__R028.md": {
+      "source_sha256": "9e52aebe02910ee1b1d5c46a10032acbcc255a3128ed257f0e83fe5b88152cfe",
+      "paper": "Brady2022Dosage",
+      "candidate": "R028"
+    },
+    "drafts/regions/left_uf_fa__Breier2008__R003.md": {
+      "source_sha256": "f39a7fa0cfb0fd3bd79e726604faee0768f7b520f6e47d8997b742c8fa91e2c5",
+      "paper": "Breier2008",
+      "candidate": "R003"
+    },
+    "drafts/predictors/left_af_fa__Breier2008__R004.md": {
+      "source_sha256": "dc7a8802e37324d71c7bb99b4c261c26055d1a67f90d192c03b20b834588551c",
+      "paper": "Breier2008",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_af_fa__Breier2008__R005.md": {
+      "source_sha256": "e75ac5d2881eb1aa72d2067ebd81c53c1ca17ac0fa9b4b3c3d3e8742f88fdd30",
+      "paper": "Breier2008",
+      "candidate": "R005"
+    },
+    "drafts/predictors/left_slf_fa__Breier2008__R006.md": {
+      "source_sha256": "fd2be7360673b93e05720cb67fdcfb26c466a305bff7bdb9fce52b8d1e84e941",
+      "paper": "Breier2008",
+      "candidate": "R006"
+    },
+    "drafts/regions/left_af_fa__Breier2008__R008.md": {
+      "source_sha256": "e23d7f92a7124b73cfbf0d4ef21e9bcbdd921863111061ede4fe1920aede4d11",
+      "paper": "Breier2008",
+      "candidate": "R008"
+    },
+    "drafts/predictors/right_hemisphere_homotopic_fa__Breier2008__R009.md": {
+      "source_sha256": "927087ce70cfd1e69d664b1a0330d81a9a12cef9d8851147780b1e53197c9b48",
+      "paper": "Breier2008",
+      "candidate": "R009"
+    },
+    "drafts/regions/left_hemisphere_fa_comparison__Breier2008__R011.md": {
+      "source_sha256": "a192d2dc24bf29106d1f4827ce2858fbfc030a113003fa513ad5cb03dfc6b2b9",
+      "paper": "Breier2008",
+      "candidate": "R011"
+    },
+    "drafts/predictors/acute_stroke_action_naming_lasso__Breining2022__R005.md": {
+      "source_sha256": "9e4f5dcbf1535ea944cfe01476e605a277bb4b97dfb6553ac87b06929b010a25",
+      "paper": "Breining2022",
+      "candidate": "R005"
+    },
+    "drafts/regions/ppa_vs_stroke_naming_substrates__Breining2022__R006.md": {
+      "source_sha256": "332bb582476f3ca7d9849c80d9659ff01be7081bfc3c483d1e61078fec7c9b6c",
+      "paper": "Breining2022",
+      "candidate": "R006"
+    },
+    "drafts/therapies/intensive_speech_language_therapy_3_weeks__Breitenstein2017__R001.md": {
+      "source_sha256": "6f47165a3c26b63395b4a19692051b876a7d62b6c4994402338a3c452b874e87",
+      "paper": "Breitenstein2017",
+      "candidate": "R001"
+    },
+    "drafts/therapies/treatment_deferral_3_weeks__Breitenstein2017__R002.md": {
+      "source_sha256": "302eed29309cb6207ebd22606d1c809b856dfa39cbc92a66210c64fdac510461",
+      "paper": "Breitenstein2017",
+      "candidate": "R002"
+    },
+    "drafts/therapies/extended_intensive_slt__Breitenstein2017__R005.md": {
+      "source_sha256": "c656c487286765376c10ad4f66304cf8cb069cec196b81874bad62dcd3629827",
+      "paper": "Breitenstein2017",
+      "candidate": "R005"
+    },
+    "drafts/therapies/intensive_speech_language_therapy_3_weeks__Breitenstein2017__R006.md": {
+      "source_sha256": "18e58afe86ac9b5ba80c6f6859c43c487782cf34b66b0ccad9da5a2d93a07c0f",
+      "paper": "Breitenstein2017",
+      "candidate": "R006"
+    },
+    "drafts/therapies/intensive_slt_3_weeks__Breitenstein2017__R007.md": {
+      "source_sha256": "bc32e2b719062a22bd42772d154b5d8ab329dae5b795ef5654aebaabe5f49034",
+      "paper": "Breitenstein2017",
+      "candidate": "R007"
+    },
+    "drafts/predictors/baseline_stroke_severity__Breitenstein2017__R009.md": {
+      "source_sha256": "80dce3dc2223a1134cd3cbb330066a17af25eccb2cd718f747ce792febcd458a",
+      "paper": "Breitenstein2017",
+      "candidate": "R009"
+    },
+    "drafts/therapies/intensive_speech_language_therapy_replication__Breitenstein2017__R011.md": {
+      "source_sha256": "f6f97270825108eabd7013d6745f63237ec5e5dd4fbcf89f6d14bcffc21fc634",
+      "paper": "Breitenstein2017",
+      "candidate": "R011"
+    },
+    "drafts/therapies/low_intensity_slt_deferral__Breitenstein2017__R012.md": {
+      "source_sha256": "497272edfb10087e1bf44a968e5d2db800ee4b26da50cb169c2b307254e6d139",
+      "paper": "Breitenstein2017",
+      "candidate": "R012"
+    },
+    "drafts/therapies/low_intensity_slt_followup__Breitenstein2017__R013.md": {
+      "source_sha256": "45d5d7f8ac320882627654ef9ad35b231c7343bdadc62eb7ed6088e81caa26fc",
+      "paper": "Breitenstein2017",
+      "candidate": "R013"
+    },
+    "drafts/impairments/sublexical_alexia__Brookshire2014__R004.md": {
+      "source_sha256": "f062db6a72807ef639aaaabd38e65bce2b90350497c77a213295e7f88a64ddbf",
+      "paper": "Brookshire2014",
+      "candidate": "R004"
+    },
+    "drafts/predictors/wab_aq_reading_performance__Brookshire2014__R006.md": {
+      "source_sha256": "4147d6827f0ab2f4adf143cc12f965aa695c9d5a054207cd20c3e2fe01c21fe5",
+      "paper": "Brookshire2014",
+      "candidate": "R006"
+    },
+    "drafts/predictors/wab_aq_lexical_reading_predictor__Brookshire2014__R007.md": {
+      "source_sha256": "2f7f057d01a2981abc12de679e63fe88b2cd9bf97f6b1d2247033d8141f9e5f7",
+      "paper": "Brookshire2014",
+      "candidate": "R007"
+    },
+    "drafts/predictors/wab_aq_sublexical_reading__Brookshire2014__R008.md": {
+      "source_sha256": "11ec743bba8e9d321c3457165374dfbdd1f547287fdb8f1c6e035dfe82260d42",
+      "paper": "Brookshire2014",
+      "candidate": "R008"
+    },
+    "drafts/ingredients/years_of_education__Brookshire2014__R010.md": {
+      "source_sha256": "ca16ec48bf2169ff046bb1a3ed4e83859a295b82de2933963d4d67c5a1023114",
+      "paper": "Brookshire2014",
+      "candidate": "R010"
+    },
+    "drafts/regions/midline_frontal_cortex_cluster__Brownsett2014__R002.md": {
+      "source_sha256": "bf92a40b2a07312e3a7c7cde887ba70d5b410158dbc685778e9f20f46cc88631",
+      "paper": "Brownsett2014",
+      "candidate": "R002"
+    },
+    "drafts/predictors/healthy_speech_intelligibility_contrast__Brownsett2014__R005.md": {
+      "source_sha256": "456ba89ccefd88fe9a750ff12a9992bad35158ec2627bd57a022cdfbbc66b278",
+      "paper": "Brownsett2014",
+      "candidate": "R005"
+    },
+    "drafts/therapies/vocoded_speech_training__Brownsett2014__R006.md": {
+      "source_sha256": "29f83e8f68c220eaab272aeeea71620422f56dc47441a1b53e48986e1d1164a8",
+      "paper": "Brownsett2014",
+      "candidate": "R006"
+    },
+    "drafts/therapies/healthy_training_normal_speech__Brownsett2014__R007.md": {
+      "source_sha256": "548a357c35709ca19aaba72c897f9b20fdd6a44402096a276bbabb03ccd8bc29",
+      "paper": "Brownsett2014",
+      "candidate": "R007"
+    },
+    "drafts/predictors/repetition_difficulty_simulation__Brownsett2014__R008.md": {
+      "source_sha256": "2db52c96a0d03cbbc47093343f1673ab92fb3d06510f7191091b9660eba39f1d",
+      "paper": "Brownsett2014",
+      "candidate": "R008"
+    },
+    "drafts/predictors/scanning_session_comparison__Brownsett2014__R009.md": {
+      "source_sha256": "65bd46a5256a058817d37f5a4cc6c08f4b463e58ce4a636fc19f0c916fb19c2e",
+      "paper": "Brownsett2014",
+      "candidate": "R009"
+    },
+    "drafts/regions/listen_repeat_activation_cluster__Brownsett2014__R010.md": {
+      "source_sha256": "a4d48fb9d68d6844663e991b5a243a7647460b525fd993e8105fdca79cab8c26",
+      "paper": "Brownsett2014",
+      "candidate": "R010"
+    },
+    "drafts/regions/listen_vs_repeat_activation__Brownsett2014__R011.md": {
+      "source_sha256": "9f1af6d3a024d4f99ba4d3ceeb8cdf4a140007a4b73a274f7609484fbe2cd265",
+      "paper": "Brownsett2014",
+      "candidate": "R011"
+    },
+    "drafts/regions/precuneus_session_effect__Brownsett2014__R012.md": {
+      "source_sha256": "a68012d730bfdd3a792bd43fbed6d8f2f11919c87fa0b0207580369eaf0fcf23",
+      "paper": "Brownsett2014",
+      "candidate": "R012"
+    },
+    "drafts/regions/dacc_sfg_session_effect__Brownsett2014__R013.md": {
+      "source_sha256": "67c7acb18eaada9bda80646018bd59cfcdb712fdc90c354e9e3f983bc7e10efe",
+      "paper": "Brownsett2014",
+      "candidate": "R013"
+    },
+    "drafts/regions/healthy_task_intelligibility_interaction_cluster__Brownsett2014__R014.md": {
+      "source_sha256": "e5ad6f2825742ecbe72063d4a4f2bd6a8d01e40ef76585d194ec8d3215c18b69",
+      "paper": "Brownsett2014",
+      "candidate": "R014"
+    },
+    "drafts/regions/dacc_sfg_cluster__Brownsett2014__R015.md": {
+      "source_sha256": "0fcf50cec25bcfbd469a3b2999dbfdb24ba35bb70cdcfd8ff601e9680bc89d49",
+      "paper": "Brownsett2014",
+      "candidate": "R015"
+    },
+    "drafts/predictors/listvoc_vs_listnorm_contrast__Brownsett2014__R016.md": {
+      "source_sha256": "71e75e0ac20f86d7f129bae56c6f0bc2aca360fb05700f1592fbea854a6e1c31",
+      "paper": "Brownsett2014",
+      "candidate": "R016"
+    },
+    "drafts/regions/dmn_clear_speech_activity__Brownsett2014__R019.md": {
+      "source_sha256": "19098ead045a35d63f11acb37ad6694d05aaf656051ecca2099bbff1fd1deb06",
+      "paper": "Brownsett2014",
+      "candidate": "R019"
+    },
+    "drafts/regions/salience_network__Brownsett2014__R020.md": {
+      "source_sha256": "ae4f0a514eb6d752f85a10d3f6528e175f6299fdc408daa45bf951d58ff98dda",
+      "paper": "Brownsett2014",
+      "candidate": "R020"
+    },
+    "drafts/regions/dacc_sfg_activation__Brownsett2014__R024.md": {
+      "source_sha256": "b81456a2d3d347d2ef62f4d5594dc55ed4c96b2f952be09a92254b3c1e63b7d6",
+      "paper": "Brownsett2014",
+      "candidate": "R024"
+    },
+    "drafts/predictors/picture_description_prediction_model__Brownsett2014__R025.md": {
+      "source_sha256": "8113ed085f3035c5743f4738e3e8e71474b8b073654cda68295e64fd1e07543d",
+      "paper": "Brownsett2014",
+      "candidate": "R025"
+    },
+    "drafts/predictors/dacc_sfg_activation__Brownsett2014__R026.md": {
+      "source_sha256": "eaaeb5870202e3ec7cb54e932e0273aa0ad4ece6bdf1dc6c9cd9e9ca0d7dd471",
+      "paper": "Brownsett2014",
+      "candidate": "R026"
+    },
+    "drafts/therapies/behavioural_therapy_auditory_discrimination__Brownsett2014__R027.md": {
+      "source_sha256": "1232b2dc2fbafe7f8d74af74281aa9fb444bb69ac13128661ba6c590fb583c87",
+      "paper": "Brownsett2014",
+      "candidate": "R027"
+    },
+    "drafts/therapies/behavioural_therapy_repetition__Brownsett2014__R028.md": {
+      "source_sha256": "d2bbc3db46cf8aaa2e2dc01a015b0887e99ac47da0c5b56e6285e993fab31803",
+      "paper": "Brownsett2014",
+      "candidate": "R028"
+    },
+    "drafts/predictors/phonological_working_memory_encoding_activation__Buchsbaum2011__R001.md": {
+      "source_sha256": "12615aef4117f90178390bc7d821d342c206d9e07fd904b4ebcc4b1c0812024a",
+      "paper": "Buchsbaum2011",
+      "candidate": "R001"
+    },
+    "drafts/predictors/phonological_working_memory_delay_activation__Buchsbaum2011__R002.md": {
+      "source_sha256": "0d42e7887a9850fa23a51d586e8b21706f250a39ec5fff3a4c0127daf8355425",
+      "paper": "Buchsbaum2011",
+      "candidate": "R002"
+    },
+    "drafts/regions/spt_cluster__Buchsbaum2011__R003.md": {
+      "source_sha256": "b13f68844362dd40e6fb51c08f84a0c348ae47e8c16463f0f73a58626fedcdf0",
+      "paper": "Buchsbaum2011",
+      "candidate": "R003"
+    },
+    "drafts/regions/area_spt_cluster__Buchsbaum2011__R004.md": {
+      "source_sha256": "e5bf1de9daca63cc92c33e955b4e66bf5bb6b4810ad30e8a6828c7c8e9e44d5c",
+      "paper": "Buchsbaum2011",
+      "candidate": "R004"
+    },
+    "drafts/regions/phonology_cluster__Butler2014__R001.md": {
+      "source_sha256": "3c89b3bb5a180e8dce3605cdb3595691cd93a8ca49b1aeccf50683e6f2514ed7",
+      "paper": "Butler2014",
+      "candidate": "R001"
+    },
+    "drafts/regions/semantic_factor_cluster__Butler2014__R002.md": {
+      "source_sha256": "ca8c034faaae2b438343bd4fa9b4691e1e419f9ff472037719c57e83938de6eb",
+      "paper": "Butler2014",
+      "candidate": "R002"
+    },
+    "drafts/predictors/executive_cognition_factor__Butler2014__R003.md": {
+      "source_sha256": "05e0fb7af243d6096725ba9237db0ad1f04022b9d4a2eb9c17e56958013c4eaf",
+      "paper": "Butler2014",
+      "candidate": "R003"
+    },
+    "drafts/predictors/non_word_minimal_pairs__Butler2014__R004.md": {
+      "source_sha256": "6cc875fde24cea9eb65ba53b1891d7b40132973244afbea1b4dc0a7b05a077c6",
+      "paper": "Butler2014",
+      "candidate": "R004"
+    },
+    "drafts/regions/synonym_judgement_cluster__Butler2014__R005.md": {
+      "source_sha256": "22508c32ba25bc4ef96b622ba38a8c40d79db7eef12bf091a89818142221e4bd",
+      "paper": "Butler2014",
+      "candidate": "R005"
+    },
+    "drafts/predictors/ravens_progressive_matrices__Butler2014__R006.md": {
+      "source_sha256": "028ed791220b2627b9ce78d519248975fc81a0a1b1059bc3a7513e17f12520ec",
+      "paper": "Butler2014",
+      "candidate": "R006"
+    },
+    "drafts/regions/delayed_non_word_repetition_cluster__Butler2014__R007.md": {
+      "source_sha256": "df2f88acdc56a0b50aa45ced803b193fe66a47eb47ee3d01fbf7cdd902fcd272",
+      "paper": "Butler2014",
+      "candidate": "R007"
+    },
+    "drafts/regions/spoken_word_to_picture_matching_cluster__Butler2014__R008.md": {
+      "source_sha256": "28f595fb551c5045e4a8d88edd90249dc9bf6453aa528862d834f5a9bc991bce",
+      "paper": "Butler2014",
+      "candidate": "R008"
+    },
+    "drafts/predictors/non_pca_selected_tests_lesion_volume_adjusted__Butler2014__R011.md": {
+      "source_sha256": "3e2301059a40dd8e8969d67a732fc37d18b4470150e118bc439f0736ff227a43",
+      "paper": "Butler2014",
+      "candidate": "R011"
+    },
+    "drafts/regions/temporal_roi_paraphasia__Casilio2025__R001.md": {
+      "source_sha256": "524af0fb08b31a62659f42569d15b4947dc5758afff002c1ba86610ab15b65df",
+      "paper": "Casilio2025",
+      "candidate": "R001"
+    },
+    "drafts/regions/paraphasia_roi_nulls__Casilio2025__R002.md": {
+      "source_sha256": "09c69e955d21e2ed5ec284386cf1a575ac46d0e20a71ad59261e90a709926d20",
+      "paper": "Casilio2025",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_posterior_temporoparietal_cluster__Casilio2025__R003.md": {
+      "source_sha256": "438b76c0ee541d7290645cf586ce5c54b8b6a9f5f979ba9e05d7349d48bdab82",
+      "paper": "Casilio2025",
+      "candidate": "R003"
+    },
+    "drafts/regions/frontoparietal_roi__Casilio2025__R004.md": {
+      "source_sha256": "10483e33cf3aa67a5d7da6983c5cb2349a3860f49241fb56517bc94e2cb006e8",
+      "paper": "Casilio2025",
+      "candidate": "R004"
+    },
+    "drafts/regions/prefrontal_other_roi_logopenia__Casilio2025__R005.md": {
+      "source_sha256": "fe51f7e69d4157843c92863e55ff6b7c5eccdf90e6d24efc0dbbfcc87bf2b1c7",
+      "paper": "Casilio2025",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_inferior_parietal_lobe_cluster__Casilio2025__R006.md": {
+      "source_sha256": "3bab7a7d7d48d626ee17576d541a88388c6eba570344d44909246f868eca7bf0",
+      "paper": "Casilio2025",
+      "candidate": "R006"
+    },
+    "drafts/regions/frontoparietal_roi__Casilio2025__R007.md": {
+      "source_sha256": "df68a9991ff6c630b319814904d94c8687c0beb1ea4bcec862d1712a5c0dbc70",
+      "paper": "Casilio2025",
+      "candidate": "R007"
+    },
+    "drafts/regions/agrammatism_null_roi_predictors__Casilio2025__R008.md": {
+      "source_sha256": "f7c5b55e669e6d556842db35100c5c90b97dc146dfee373d0098dae193b5458c",
+      "paper": "Casilio2025",
+      "candidate": "R008"
+    },
+    "drafts/regions/left_precentral_gyrus_agrammatism_cluster__Casilio2025__R009.md": {
+      "source_sha256": "49d73edcf8dd7e5bcd503d7d1f9f854fd62a02dbdb88310e0d1a3b76949111db",
+      "paper": "Casilio2025",
+      "candidate": "R009"
+    },
+    "drafts/regions/frontoparietal_roi__Casilio2025__R010.md": {
+      "source_sha256": "4f3e9bc59cca43afb318c3d76a5591c63f68f77ed3f9cb13b54e53d9efac2036",
+      "paper": "Casilio2025",
+      "candidate": "R010"
+    },
+    "drafts/regions/left_ventral_precentral_gyrus_cluster__Casilio2025__R012.md": {
+      "source_sha256": "c44a06f0314fdfe5ef5b6790a01d1c8314136f46c37e0b7dedd65547dfc49d6f",
+      "paper": "Casilio2025",
+      "candidate": "R012"
+    },
+    "drafts/predictors/aprocsa_multivariate_roi_model__Casilio2025__R013.md": {
+      "source_sha256": "abc732ef95265d77160e23062203c8a28303044365ce8690a3be9fbea26d363d",
+      "paper": "Casilio2025",
+      "candidate": "R013"
+    },
+    "drafts/regions/other_roi_cluster__Casilio2025__R014.md": {
+      "source_sha256": "8722820508f1b8e339cfe6b4df30d9a1943d67d866b0df62c00eb7fe0516f6bf",
+      "paper": "Casilio2025",
+      "candidate": "R014"
+    },
+    "drafts/regions/aprocsa_dimension_overlap__Casilio2025__R016.md": {
+      "source_sha256": "7b920fc330fcb4b2e1ff8f4ebcb26c9e5802e90527808106be0685dacbcc1785",
+      "paper": "Casilio2025",
+      "candidate": "R016"
+    },
+    "drafts/regions/aprocsa_multivariate_overlap__Casilio2025__R017.md": {
+      "source_sha256": "513d09b70df201c8aa4cf0f33ccabefa45444622a11f47dd9e5cbacb6fcd2127",
+      "paper": "Casilio2025",
+      "candidate": "R017"
+    },
+    "drafts/regions/paraphasia_logopenia_bias_cluster__Casilio2025__R018.md": {
+      "source_sha256": "557fac0f88b3b1a5dd0b6f7a6ed434f9844196ddb7032d7bc6b8f4b562d96c80",
+      "paper": "Casilio2025",
+      "candidate": "R018"
+    },
+    "drafts/regions/logopenia_agrammatism_bias_cluster__Casilio2025__R019.md": {
+      "source_sha256": "51827701bc6ab5a3f446c9a47564a9a21dfd13168f9d4c040d28eda550a873ee",
+      "paper": "Casilio2025",
+      "candidate": "R019"
+    },
+    "drafts/regions/agrammatism_motor_speech_bias_cluster__Casilio2025__R020.md": {
+      "source_sha256": "5fd50c6d23e3a8c7d0ff7f84a79920df1b4c215bfa6f5e2574d3a5be6b238b7d",
+      "paper": "Casilio2025",
+      "candidate": "R020"
+    },
+    "drafts/ingredients/aprocsa__Casilio2025__R021.md": {
+      "source_sha256": "f19da89a6bda1c58555ee84f1f1b720dbca8956376fe39292728bb4238573e1c",
+      "paper": "Casilio2025",
+      "candidate": "R021"
+    },
+    "drafts/predictors/aprocsa_interrater_agreement__Casilio2025__R022.md": {
+      "source_sha256": "89691916f4cdf8ff55466c89debafe78516b5144013d68dd2f30085986579e9e",
+      "paper": "Casilio2025",
+      "candidate": "R022"
+    },
+    "drafts/regions/ca_subtype__Coppens2002__R005.md": {
+      "source_sha256": "9d0cd543f03c45236f338b04848150f614d946baeb7fc6c7883799128baa3233",
+      "paper": "Coppens2002",
+      "candidate": "R005"
+    },
+    "drafts/regions/crossed_aphasia__Coppens2002__R008.md": {
+      "source_sha256": "fd304c9272a9781109dc2ae6400dfaf020f608879b7217fced2f1488b41f9ea0",
+      "paper": "Coppens2002",
+      "candidate": "R008"
+    },
+    "drafts/predictors/crossed_aphasia_constructional_praxis__Coppens2002__R009.md": {
+      "source_sha256": "388a456bb8b3965b6003b259e41c6048ec31d723e4b43c0ee8377872098163e9",
+      "paper": "Coppens2002",
+      "candidate": "R009"
+    },
+    "drafts/regions/motor_domain_factors__Corbetta2015__R001.md": {
+      "source_sha256": "45737bf645c485599a40ac6632b37eef1232f016134f51365529d99b3324c72c",
+      "paper": "Corbetta2015",
+      "candidate": "R001"
+    },
+    "drafts/impairments/language_deficit_factor__Corbetta2015__R002.md": {
+      "source_sha256": "6d876644c44ba84a106b672dc460816fd09764e35e8538c4f9d5dd59c2851da9",
+      "paper": "Corbetta2015",
+      "candidate": "R002"
+    },
+    "drafts/impairments/language_deficit_separation__Corbetta2015__R003.md": {
+      "source_sha256": "daad0966e2b51464f226e23e849dd4a1691ae5d666a753080a12bb67fbe16c03",
+      "paper": "Corbetta2015",
+      "candidate": "R003"
+    },
+    "drafts/regions/memory_domain_factors__Corbetta2015__R004.md": {
+      "source_sha256": "34293412767413fe68a6a970a521813fcb99bd648a8c6f4bc1c954d8e7986c12",
+      "paper": "Corbetta2015",
+      "candidate": "R004"
+    },
+    "drafts/regions/behavioral_impairment_uber_factors__Corbetta2015__R006.md": {
+      "source_sha256": "0738ae73631ce50141283ace495c7d9e9ab0bb123b7d0b04a960e846e5e36474",
+      "paper": "Corbetta2015",
+      "candidate": "R006"
+    },
+    "drafts/regions/lesion_hemisphere__Corbetta2015__R007.md": {
+      "source_sha256": "82333dd03ae49fb3b4e29b0f2a364c30cb922ee86c518d4b6f44be0eb71527e5",
+      "paper": "Corbetta2015",
+      "candidate": "R007"
+    },
+    "drafts/predictors/lesion_volume__Corbetta2015__R008.md": {
+      "source_sha256": "d8763711545e7d14d7464665521190ca753e2d562459e656298b4455a45bc4fc",
+      "paper": "Corbetta2015",
+      "candidate": "R008"
+    },
+    "drafts/predictors/lesion_location_behavioral_variance_model__Corbetta2015__R009.md": {
+      "source_sha256": "7c92eb1e414d7df2874889d65eda1eb35c3cddb68a7050fd94abbaad2254b545",
+      "paper": "Corbetta2015",
+      "candidate": "R009"
+    },
+    "drafts/regions/dorsal_frontal_white_matter_thalami_basal_ganglia_cluster__Corbetta2015__R011.md": {
+      "source_sha256": "8f2a6904019ce7ff388b61f5175f1d0fdaade6cd126ed6f7d16e4227f3bfcde6",
+      "paper": "Corbetta2015",
+      "candidate": "R011"
+    },
+    "drafts/predictors/white_matter_tract_damage_count__Corbetta2015__R012.md": {
+      "source_sha256": "5690e3dd909e3992df69765d8555930ee2454893a3c73c2973a9f43b576f1a3d",
+      "paper": "Corbetta2015",
+      "candidate": "R012"
+    },
+    "drafts/regions/cluster_1__Cote2007__R002.md": {
+      "source_sha256": "f0d4ead7fd1e2a5bef5ea9ce92c1272374b9389253938224fb4ba218eecd639b",
+      "paper": "Cote2007",
+      "candidate": "R002"
+    },
+    "drafts/regions/cluster_2__Cote2007__R003.md": {
+      "source_sha256": "ed5dd49a1b49e7f55efd9f22bab7685e3d5368255c0b94c8e2d53824cf49a18f",
+      "paper": "Cote2007",
+      "candidate": "R003"
+    },
+    "drafts/regions/outlier_cluster__Cote2007__R005.md": {
+      "source_sha256": "c5c487bdec1e742fac09754b3aab3cb8eba2db40ad376d88758e9535ca65203a",
+      "paper": "Cote2007",
+      "candidate": "R005"
+    },
+    "drafts/regions/rhd_lesion_site__Cote2007__R006.md": {
+      "source_sha256": "c18a9eda631583bc14784fa750910fcce97a2fc6e4829f8fa8304e72758880ad",
+      "paper": "Cote2007",
+      "candidate": "R006"
+    },
+    "drafts/predictors/age_education_communication_clusters__Cote2007__R007.md": {
+      "source_sha256": "1eacf80667cdf6feb0b86dad65718744b37da4ccb39b0effd5aee83685058b6c",
+      "paper": "Cote2007",
+      "candidate": "R007"
+    },
+    "drafts/regions/right_hemisphere_lesion__Cote2007__R008.md": {
+      "source_sha256": "5b4829d6402ec20a1923265dca76b0c4eb0fc18e3118b510c456a3530c489b7e",
+      "paper": "Cote2007",
+      "candidate": "R008"
+    },
+    "drafts/regions/subcortical_lesion_rh__Cote2007__R009.md": {
+      "source_sha256": "3d35e9aa8d701f047aa197ed4a80e982136824e3b6f92d2c255fbc49b7eb88d1",
+      "paper": "Cote2007",
+      "candidate": "R009"
+    },
+    "drafts/regions/frontal_inferior_thalamic_peduncle_nucleus_reticularis_centromedian_system__Crosson1999__R001.md": {
+      "source_sha256": "0079c76ace3ece8dc43dacbedc66cd87e7852ad91ca262146712c0aa83237d9e",
+      "paper": "Crosson1999",
+      "candidate": "R001",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Crosson1999 explicitly reviews four previously published cases, not a new primary lesion-mapping dataset. These drafts classify the study as case-study/LSM or VLSM; source design and method require reconciliation before publication. Original source-check outputs preserved."
+    },
+    "drafts/regions/frontal_inferior_thalamic_peduncle_nucleus_reticularis_centromedian_system__Crosson1999__R002.md": {
+      "source_sha256": "214d3fae3d7f149a3eb330d6bdda295423cea77a47b402b076943e4e707ccf5c",
+      "paper": "Crosson1999",
+      "candidate": "R002",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Crosson1999 explicitly reviews four previously published cases, not a new primary lesion-mapping dataset. These drafts classify the study as case-study/LSM or VLSM; source design and method require reconciliation before publication. Original source-check outputs preserved."
+    },
+    "drafts/regions/frontal_inferior_thalamic_peduncle_nucleus_reticularis_centromedian_system__Crosson1999__R003.md": {
+      "source_sha256": "62a9ffa663a42e026248f225dc9deecd5c2851d3eeeb7fdfb14027779953a851",
+      "paper": "Crosson1999",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Crosson1999 explicitly reviews four previously published cases, not a new primary lesion-mapping dataset. These drafts classify the study as case-study/LSM or VLSM; source design and method require reconciliation before publication. Original source-check outputs preserved."
+    },
+    "drafts/regions/left_ifg_triangular_part__DenOuden2019__R001.md": {
+      "source_sha256": "ec976d3176d75a0b551ec8bd54f926dc945d28bf022be985b0698397cdd3fff3",
+      "paper": "DenOuden2019",
+      "candidate": "R001"
+    }
+  }
+}
