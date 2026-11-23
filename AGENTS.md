@@ -24,3 +24,13 @@ back to https://aphasia-kb.app/ and to the CALMaR webapp on every HTML page.
 Use plain language, foreground human research responsibility, and keep source
 and review provenance available. Theme changes must be checked in light and dark
 mode and deployed to the explorer, portal and CALMaR notebook/demo site together.
+
+## Preserve the public layout
+
+The researcher has started showing the KB to other people. Preserve the established
+layout across Stroke KB, Aphasia KB, Dysphagia KB and their review pages unless the
+user explicitly requests a layout change. Keep navigation placement, page structure,
+section order, spacing, typography and the overall visual design consistent.
+Routine content updates, data refreshes and bug fixes must fit the existing layout;
+do not bundle redesigns or unsolicited visual cleanup with them. A request to fix a
+specific visual detail authorizes that detail only, not a broader layout change.
