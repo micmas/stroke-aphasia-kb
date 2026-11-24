@@ -356,6 +356,50 @@
      ]
     },
     {
+     "lesion_pct": 12.5,
+     "measured": true,
+     "region": "left_precentral_gyrus_of_the_insula",
+     "region_pct": 55.55555555555556,
+     "review": true,
+     "side": "left",
+     "units_hit": [
+      "insula"
+     ]
+    },
+    {
+     "lesion_pct": 12.5,
+     "measured": true,
+     "region": "left_insular_precentral_gyrus_cluster",
+     "region_pct": 55.55555555555556,
+     "review": true,
+     "side": "left",
+     "units_hit": [
+      "insula"
+     ]
+    },
+    {
+     "lesion_pct": 12.5,
+     "measured": true,
+     "region": "left_spgi",
+     "region_pct": 55.55555555555556,
+     "review": true,
+     "side": "left",
+     "units_hit": [
+      "insula"
+     ]
+    },
+    {
+     "lesion_pct": 12.5,
+     "measured": true,
+     "region": "superior_tip_precentral_gyrus_insula",
+     "region_pct": 55.55555555555556,
+     "review": true,
+     "side": "left",
+     "units_hit": [
+      "insula"
+     ]
+    },
+    {
      "lesion_pct": 3.0,
      "measured": true,
      "region": "left_superior_temporal_gyrus",
@@ -837,6 +881,17 @@
      "lesion_pct": 9.5,
      "measured": true,
      "region": "left_superior_longitudinal_fasciculus",
+     "region_pct": 95.0,
+     "review": false,
+     "side": "left",
+     "units_hit": [
+      "slf"
+     ]
+    },
+    {
+     "lesion_pct": 9.5,
+     "measured": true,
+     "region": "left_slf",
      "region_pct": 95.0,
      "review": false,
      "side": "left",
@@ -2132,6 +2187,42 @@
     {
      "lesion_pct": 0.0,
      "measured": true,
+     "region": "left_precentral_gyrus_of_the_insula",
+     "region_pct": null,
+     "review": true,
+     "side": "left",
+     "units_hit": []
+    },
+    {
+     "lesion_pct": 0.0,
+     "measured": true,
+     "region": "left_insular_precentral_gyrus_cluster",
+     "region_pct": null,
+     "review": true,
+     "side": "left",
+     "units_hit": []
+    },
+    {
+     "lesion_pct": 0.0,
+     "measured": true,
+     "region": "left_spgi",
+     "region_pct": null,
+     "review": true,
+     "side": "left",
+     "units_hit": []
+    },
+    {
+     "lesion_pct": 0.0,
+     "measured": true,
+     "region": "superior_tip_precentral_gyrus_insula",
+     "region_pct": null,
+     "review": true,
+     "side": "left",
+     "units_hit": []
+    },
+    {
+     "lesion_pct": 0.0,
+     "measured": true,
      "region": "left_superior_temporal_gyrus",
      "region_pct": null,
      "review": false,
@@ -2574,6 +2665,15 @@
      "lesion_pct": 0.0,
      "measured": false,
      "region": "left_superior_longitudinal_fasciculus",
+     "region_pct": null,
+     "review": false,
+     "side": "left",
+     "units_hit": []
+    },
+    {
+     "lesion_pct": 0.0,
+     "measured": false,
+     "region": "left_slf",
      "region_pct": null,
      "review": false,
      "side": "left",
@@ -3889,6 +3989,42 @@
     {
      "lesion_pct": 0.0,
      "measured": true,
+     "region": "left_precentral_gyrus_of_the_insula",
+     "region_pct": null,
+     "review": true,
+     "side": "left",
+     "units_hit": []
+    },
+    {
+     "lesion_pct": 0.0,
+     "measured": true,
+     "region": "left_insular_precentral_gyrus_cluster",
+     "region_pct": null,
+     "review": true,
+     "side": "left",
+     "units_hit": []
+    },
+    {
+     "lesion_pct": 0.0,
+     "measured": true,
+     "region": "left_spgi",
+     "region_pct": null,
+     "review": true,
+     "side": "left",
+     "units_hit": []
+    },
+    {
+     "lesion_pct": 0.0,
+     "measured": true,
+     "region": "superior_tip_precentral_gyrus_insula",
+     "region_pct": null,
+     "review": true,
+     "side": "left",
+     "units_hit": []
+    },
+    {
+     "lesion_pct": 0.0,
+     "measured": true,
      "region": "left_superior_temporal_gyrus",
      "region_pct": null,
      "review": false,
@@ -4331,6 +4467,15 @@
      "lesion_pct": 0.0,
      "measured": false,
      "region": "left_superior_longitudinal_fasciculus",
+     "region_pct": null,
+     "review": false,
+     "side": "left",
+     "units_hit": []
+    },
+    {
+     "lesion_pct": 0.0,
+     "measured": false,
+     "region": "left_slf",
      "region_pct": null,
      "review": false,
      "side": "left",
@@ -5451,6 +5596,17 @@
      "lesion_pct": 0.0,
      "measured": true,
      "region": "left_superior_longitudinal_fasciculus",
+     "region_pct": 62.0,
+     "review": false,
+     "side": "left",
+     "units_hit": [
+      "slf"
+     ]
+    },
+    {
+     "lesion_pct": 0.0,
+     "measured": true,
+     "region": "left_slf",
      "region_pct": 62.0,
      "review": false,
      "side": "left",

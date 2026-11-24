@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-24T00:37:18.956481+00:00",
+  "snapshot_at": "2026-11-24T02:25:19.791321+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -3976,6 +3976,196 @@
       "source_sha256": "d8cc03d8b4c8c54a91f2e9f35f77d999ffdf6082867e2e99c723fdb324cfcb2a",
       "paper": "Itabashi2015",
       "candidate": "R003"
+    },
+    "drafts/regions/pure_aos_vs_aos_aphasia_cluster__Itabashi2015__R004.md": {
+      "source_sha256": "aae3af17dbd04e128992cc59af04fb8395f0b57836e40bbfbee5fcc170ccffae",
+      "paper": "Itabashi2015",
+      "candidate": "R004"
+    },
+    "drafts/regions/aphasia_white_matter_integrity__Ivanova2016__R001.md": {
+      "source_sha256": "b91420e0bfd03f8963ec0ddaed68f91db076a44b2bdc16e8d8a19ed9f1125299",
+      "paper": "Ivanova2016",
+      "candidate": "R001"
+    },
+    "drafts/regions/aphasia_hemispheric_dti_asymmetry__Ivanova2016__R002.md": {
+      "source_sha256": "00e358d9cbbe74d969f548e7a9003a441f6551ca762da91df6c7aad60139e36a",
+      "paper": "Ivanova2016",
+      "candidate": "R002"
+    },
+    "drafts/regions/control_ilf_asymmetry__Ivanova2016__R003.md": {
+      "source_sha256": "919d975d84d8a81d5b85f1c0816e2e5fe8c1c132618442f2fe0ef4b9e4719b88",
+      "paper": "Ivanova2016",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_uf__Ivanova2016__R009.md": {
+      "source_sha256": "9cd9b676e8725709bf7c4024ea9e122491337ea200a14139e5fc509435ddfd01",
+      "paper": "Ivanova2016",
+      "candidate": "R009"
+    },
+    "drafts/regions/left_slf_non_af__Ivanova2016__R010.md": {
+      "source_sha256": "f6f1e2b6086c91e50605a6c8a58f1adc88dec712d9a0ed822c39f3aa00b0a826",
+      "paper": "Ivanova2016",
+      "candidate": "R010"
+    },
+    "drafts/regions/left_af_anterior__Ivanova2021__R002.md": {
+      "source_sha256": "43acbd2f1ebb4510e1a284ff6949eec7ba0fe281d8cdfcae280dcda566f372e3",
+      "paper": "Ivanova2021",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_af_temporal_pole_volume__Ivanova2021__R003.md": {
+      "source_sha256": "c144925cc68ae56a87d04b9ff3619aa454537da89ed7f903f187ae7e17072543",
+      "paper": "Ivanova2021",
+      "candidate": "R003"
+    },
+    "drafts/regions/af_temporal_pole_volume__Ivanova2021__R004.md": {
+      "source_sha256": "9d5f9e53256d717be93128c7fbea068313188c35714442921c53b7dffb9433c5",
+      "paper": "Ivanova2021",
+      "candidate": "R004"
+    },
+    "drafts/predictors/left_af_hmoa__Ivanova2021__R006.md": {
+      "source_sha256": "e472928e88f87fb7b24f2f584be781abde22ee459d077a71809d6a5270cfbea5",
+      "paper": "Ivanova2021",
+      "candidate": "R006"
+    },
+    "drafts/regions/af_temporal_pole_hmoa__Ivanova2021__R007.md": {
+      "source_sha256": "f82f146cfdffa5c1a2bdb42d5ef8d47693aa30f7bca3c5226c5f44e6209a3be6",
+      "paper": "Ivanova2021",
+      "candidate": "R007"
+    },
+    "drafts/regions/right_af_tracts__Ivanova2021__R008.md": {
+      "source_sha256": "7863fbffedc7f519aa5c9f27410e6128363bd6d00c60ee92189f390a29e04364",
+      "paper": "Ivanova2021",
+      "candidate": "R008"
+    },
+    "drafts/predictors/left_af_long_volume__Ivanova2021__R009.md": {
+      "source_sha256": "9a84b0c3c8eb0c15e289b44872edbf873ae67ca700c97a917d310f6fec1c825c",
+      "paper": "Ivanova2021",
+      "candidate": "R009"
+    },
+    "drafts/regions/left_af_posterior_hmoa__Ivanova2021__R010.md": {
+      "source_sha256": "bc2492912b40196e670be740dc613c4a6b25d0f809bb30c0de96669129892aa0",
+      "paper": "Ivanova2021",
+      "candidate": "R010"
+    },
+    "drafts/predictors/left_af_anterior_hmoa__Ivanova2021__R011.md": {
+      "source_sha256": "1558b745f9a333d1952a7ab87f00b874ba67b649d2ade1295069b911bbba5048",
+      "paper": "Ivanova2021",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_af_temporal_pole_volume__Ivanova2021__R012.md": {
+      "source_sha256": "d8b4b8f74602f5e9bf9e41dd120f7131a4d3f22a72847e1636be9e95b716b78d",
+      "paper": "Ivanova2021",
+      "candidate": "R012"
+    },
+    "drafts/regions/left_af_temporal_pole_hmoa__Ivanova2021__R013.md": {
+      "source_sha256": "7a8258ee0c072c2f511f1d6ad918de3c817444790d580f86d8728eefd853f26b",
+      "paper": "Ivanova2021",
+      "candidate": "R013"
+    },
+    "drafts/regions/healthy_control_auditory_speech_connectivity__Jiang2025__R001.md": {
+      "source_sha256": "872f78bd15785cc14f4ad9340e9b6862003a09ced47a57275196507f571a51da",
+      "paper": "Jiang2025",
+      "candidate": "R001"
+    },
+    "drafts/regions/lptl_to_lifg_connectivity__Jiang2025__R003.md": {
+      "source_sha256": "532a8b4f9149ac40f0dbe3e589cd221c202184415dd7f66af48418199d80d952",
+      "paper": "Jiang2025",
+      "candidate": "R003"
+    },
+    "drafts/regions/temporo_parietal_acute_connectivity__Jiang2025__R005.md": {
+      "source_sha256": "b02e7e57ffa123ecc302fda00df42878763bec1ca6617fef70c3190227d7bf97",
+      "paper": "Jiang2025",
+      "candidate": "R005"
+    },
+    "drafts/regions/temporo_parietal_subacute_connectivity__Jiang2025__R006.md": {
+      "source_sha256": "466945c74206d6e996cec3c69b7ad34498ebfc95e25c0532a9591a9c4bebad30",
+      "paper": "Jiang2025",
+      "candidate": "R006"
+    },
+    "drafts/regions/sma_dacc_to_ln_chronic_tp__Jiang2025__R007.md": {
+      "source_sha256": "658973ab53c04d066b7ba0e4a1ccb2b561d8343d2ee111dd9b114707882b32fb",
+      "paper": "Jiang2025",
+      "candidate": "R007"
+    },
+    "drafts/predictors/lifg_to_lptl_auditory_modulation__Jiang2025__R008.md": {
+      "source_sha256": "02d8c980c4e7833b5fa7a085bea68316bcb85b66a56fa3a707d262b09a8b55ce",
+      "paper": "Jiang2025",
+      "candidate": "R008"
+    },
+    "drafts/predictors/ldlpfc_to_lptl_modulation__Jiang2025__R009.md": {
+      "source_sha256": "09a489e73426b79107be2d1b402cd97fea98c01563693e4144228fdeef3286cb",
+      "paper": "Jiang2025",
+      "candidate": "R009"
+    },
+    "drafts/predictors/rdlpfc_to_lptl_modulation__Jiang2025__R010.md": {
+      "source_sha256": "61ec0a38664b18419b092ce35fc1201ba4bc3fc25ec43e2883a5ddb757e740d4",
+      "paper": "Jiang2025",
+      "candidate": "R010"
+    },
+    "drafts/predictors/ldlpfc_to_lifg_modulation__Jiang2025__R011.md": {
+      "source_sha256": "0796307fc0c5fda6053b41805ab1740478d44a14476baf10b416108987e77036",
+      "paper": "Jiang2025",
+      "candidate": "R011"
+    },
+    "drafts/predictors/sma_dacc_to_lptl_modulation__Jiang2025__R012.md": {
+      "source_sha256": "c2a04f9440bf425fd1f14b40dd158690dec7b9e40aef3bc2ac3bb6ca468e0a01",
+      "paper": "Jiang2025",
+      "candidate": "R012"
+    },
+    "drafts/predictors/rdlpfc_to_lptl_modulation__Jiang2025__R013.md": {
+      "source_sha256": "1ec95cee1e16bac50072543e32d785d143ff001e768630fef65f397bab1e140a",
+      "paper": "Jiang2025",
+      "candidate": "R013"
+    },
+    "drafts/predictors/rifg_to_lifg_modulation__Jiang2025__R014.md": {
+      "source_sha256": "91a2d8aa41ad037da1e7dcc1d45012544f631d33090c52574a6e451d81d9bf0f",
+      "paper": "Jiang2025",
+      "candidate": "R014"
+    },
+    "drafts/predictors/ldlpf_to_lifg_modulation_subacute__Jiang2025__R015.md": {
+      "source_sha256": "d99e41b35bbe00aa5089d78a7f4f53d70d03a169460196d2ab34e4203fba44e1",
+      "paper": "Jiang2025",
+      "candidate": "R015"
+    },
+    "drafts/predictors/rdlpfc_to_lptl_modulation_change__Jiang2025__R016.md": {
+      "source_sha256": "2e7f008fc481c735a156297cd2fabf49167ab0242f9042df01afb46a4dc5e374",
+      "paper": "Jiang2025",
+      "candidate": "R016"
+    },
+    "drafts/predictors/ldlpfc_to_lifg_modulation_change__Jiang2025__R017.md": {
+      "source_sha256": "f02748fc466aa1264390b2407c349a4827fbc8a14fa413b3887c002f17362995",
+      "paper": "Jiang2025",
+      "candidate": "R017"
+    },
+    "drafts/predictors/sma_dacc_to_lptl_modulation__Jiang2025__R018.md": {
+      "source_sha256": "0e299b3f1fe4a6caa385c12f0ef44d78a6147d09d632e51dbdf72f98e99e890a",
+      "paper": "Jiang2025",
+      "candidate": "R018"
+    },
+    "drafts/ingredients/cumulative_aphasia_treatment_hours__Johnson2019__R001.md": {
+      "source_sha256": "91b3b97af3bba90b1c2d2f082d13bcae4cd0e96fcb1773f9eb26fc32cdf24ea0",
+      "paper": "Johnson2019",
+      "candidate": "R001"
+    },
+    "drafts/regions/age_at_stroke__Johnson2019__R002.md": {
+      "source_sha256": "4814fb5a48bd74129fa52c3a325fe7c62d5c40e35a763577b94e38d9fc4593c6",
+      "paper": "Johnson2019",
+      "candidate": "R002"
+    },
+    "drafts/predictors/exercise_diabetes_interaction__Johnson2019__R003.md": {
+      "source_sha256": "d96e499965f283eb944dd2d15024ae8540cc634104b081b1537f5a22b5dadb1c",
+      "paper": "Johnson2019",
+      "candidate": "R003"
+    },
+    "drafts/predictors/age_at_stroke_diabetes_interaction__Johnson2019__R004.md": {
+      "source_sha256": "dfc718b91ce3dada4ad6e7efa9003c4f2eda7b3043f531be4bfb8b809ac7a18e",
+      "paper": "Johnson2019",
+      "candidate": "R004"
+    },
+    "drafts/predictors/mean_household_income__Johnson2019__R005.md": {
+      "source_sha256": "0ffb3f452287f355567f75049e8b6ca8516ee9b6e886330c6d841eea59df0f80",
+      "paper": "Johnson2019",
+      "candidate": "R005"
     }
   }
 }

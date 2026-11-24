@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-24T00:37:18.956481+00:00",
+  "last_publication_snapshot": "2026-11-24T02:25:19.791321+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -87,7 +87,12 @@
     "Hope2017",
     "Hope2018",
     "Hosomi2009",
-    "Hu2025"
+    "Hu2025",
+    "Itabashi2015",
+    "Ivanova2016",
+    "Ivanova2021",
+    "Jiang2025",
+    "Johnson2019"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
   "recovery_publication_ready_seen": false
