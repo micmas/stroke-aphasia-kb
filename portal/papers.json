@@ -1218,36 +1218,48 @@
   },
   "@Johnson2022": {
    "annotated": "pdf/C1249_Johnson2022_annotated.pdf",
-   "bytes": 1614238,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "34f0662ce587a2f8151f9fea804af133fc31d837994db0a42bdb4e3187c15baa",
+   "bytes": 1908691,
    "category": "unknown",
+   "draft_snapshot": "2026-11-24T05:15:26.475331+00:00",
    "label": null,
    "public": false,
-   "sha256": "585f4e5c314ef913dd9c8b147acbdb1237925fb04233f4789dc366b988b56c5e"
+   "sha256": "af742a7d79dcd283337b56b562b2f11679ee79eb5b663f38eff5aab180b85f1d"
   },
   "@Karnath2018": {
    "annotated": "pdf/C0116_Karnath2018_annotated.pdf",
-   "bytes": 1126882,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "1c338a44127b29d08ab177dde137f2f354e525b689c4c167d120551f02cfa02b",
+   "bytes": 1126699,
    "category": "free_to_read",
+   "draft_snapshot": "2026-11-24T05:15:26.475331+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "62693dbc00b0b4d25a4a3f66f49d2fe51067aa828ec10c9a448c5e0756336758"
+   "sha256": "644c9bae096aee170d9fc5a7ab0f8aab9e05f85d8e252cd69c204dd1f852ff56"
   },
   "@Kasdan2025": {
    "annotated": "cc/C0118_Kasdan2025_annotated.pdf",
-   "bytes": 1533136,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "a2272338a195a904c2fc1967117a46be148b0731c13c97e2df5b88f088546f78",
+   "bytes": 1765128,
    "category": "cc",
+   "draft_snapshot": "2026-11-24T05:15:26.475331+00:00",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "31846ea0754788c4bb4b313f8cf3b0453211c4464ff09bea8d80ead56230b69e"
+   "sha256": "b4cffdf87a6e82067ca267f5bf62f3598cc66a28f8c32a6ff4bc4ff1a283d7ac"
   },
   "@Keser2020": {
    "annotated": "pdf/C1754_Keser2020_annotated.pdf",
-   "bytes": 961532,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "a9272d894f65bee17143763b2045b243817e0517bdba02daed7afacdc190301b",
+   "bytes": 1125454,
    "category": "unknown",
+   "draft_snapshot": "2026-11-24T05:15:26.475331+00:00",
    "label": null,
    "public": false,
-   "sha256": "838ada4528ec779f2fb775649236a06fa7e992893c13b8efcbf60aadfe5da16d"
+   "sha256": "60c2c1d988df5e8182538a3b61b65e333a2f8d5c824330e91806f0ada3e29ee7"
   },
   "@Kristinsson2020": {
    "annotated": "pdf/C1916_Kristinsson2020_annotated.pdf",

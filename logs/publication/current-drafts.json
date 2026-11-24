@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-24T02:25:19.791321+00:00",
+  "snapshot_at": "2026-11-24T05:15:26.475331+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -4166,6 +4166,228 @@
       "source_sha256": "0ffb3f452287f355567f75049e8b6ca8516ee9b6e886330c6d841eea59df0f80",
       "paper": "Johnson2019",
       "candidate": "R005"
+    },
+    "drafts/regions/posterior_insula_slf_a__Johnson2022__R001.md": {
+      "source_sha256": "989aea929e9a7936ea756698a5aa6cd880b14846f5a3e6b2752bcbe8cbf4b8c9",
+      "paper": "Johnson2022",
+      "candidate": "R001"
+    },
+    "drafts/predictors/lesion_severity_model__Johnson2022__R002.md": {
+      "source_sha256": "5b8770fde9d8ef2442981e19adf3ce69620457f1a57c4d05a9c334d782e265b7",
+      "paper": "Johnson2022",
+      "candidate": "R002"
+    },
+    "drafts/predictors/demographic_model__Johnson2022__R003.md": {
+      "source_sha256": "d7f285c0a78ad84f50b67df833db7a897d7c72194087f938d0227fbd9603b381",
+      "paper": "Johnson2022",
+      "candidate": "R003"
+    },
+    "drafts/predictors/demographic_model__Johnson2022__R004.md": {
+      "source_sha256": "14e4ea3de420b0757044b14ad9304252034d638093b021a08ddcc1a9947b66d2",
+      "paper": "Johnson2022",
+      "candidate": "R004"
+    },
+    "drafts/predictors/fazekas_score__Johnson2022__R005.md": {
+      "source_sha256": "5416f8fb7902e3aa1b05fc1b2b138147f4718c6d38953b201ef705aed8a8f4e1",
+      "paper": "Johnson2022",
+      "candidate": "R005"
+    },
+    "drafts/predictors/health_model__Johnson2022__R006.md": {
+      "source_sha256": "b8be70fe797880a132f6761148699f18f2a2848a7757b9c98cdde4a6139c2625",
+      "paper": "Johnson2022",
+      "candidate": "R006"
+    },
+    "drafts/predictors/overall_model_aphasia_severity__Johnson2022__R007.md": {
+      "source_sha256": "139df9b2ac3b7cf596012417625b43377f7ebae351774d70ef98bc474848325a",
+      "paper": "Johnson2022",
+      "candidate": "R007"
+    },
+    "drafts/predictors/overall_model_aphasia_severity__Johnson2022__R008.md": {
+      "source_sha256": "79bc5fc15154b030956f21e33d54e13d72a06e6641b8a7c85eb6be29893ef700",
+      "paper": "Johnson2022",
+      "candidate": "R008"
+    },
+    "drafts/predictors/final_model_wab_aq__Johnson2022__R009.md": {
+      "source_sha256": "81f7d560322bab5b661264ff10820b0229fd10ce49f113a80e432321306135d1",
+      "paper": "Johnson2022",
+      "candidate": "R009"
+    },
+    "drafts/predictors/final_model_wab_aq__Johnson2022__R010.md": {
+      "source_sha256": "5282b848c02dca1a5a9bb64f65de890fc0c84e334f1c47e050191decde70bf2b",
+      "paper": "Johnson2022",
+      "candidate": "R010"
+    },
+    "drafts/predictors/final_model_aphasia_severity__Johnson2022__R011.md": {
+      "source_sha256": "e79f55555bdcf516238667f3abed91ea046e69f18ce7be5de6285bfaadca0a22",
+      "paper": "Johnson2022",
+      "candidate": "R011"
+    },
+    "drafts/predictors/wais_matrices_fazekas_correlation__Johnson2022__R012.md": {
+      "source_sha256": "8fc897d14cc323baa30da7b5be2a0cd46dc58808356accd5a5d52f5753bdb488",
+      "paper": "Johnson2022",
+      "candidate": "R012"
+    },
+    "drafts/ingredients/exercise_rate__Johnson2022__R013.md": {
+      "source_sha256": "6eec04aeb538a80d844a773b03ac9b63320eea95bd7b634c3169193bebd2f1d3",
+      "paper": "Johnson2022",
+      "candidate": "R013"
+    },
+    "drafts/predictors/multivariate_damage_pattern_neglect__Karnath2018__R009.md": {
+      "source_sha256": "d0e44ab83eace918aa894762f8ca67ecb467c7067d6deab438d68f71973fc131",
+      "paper": "Karnath2018",
+      "candidate": "R009",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Karnath2018 is a narrative review, not the primary cohort study. Page 7 explicitly attributes the spatial-neglect prediction result to Smith et al. (2013). This draft labels it cohort evidence under Karnath2018 and omits that primary-study attribution. Quarantine the publication copy pending source/design reconciliation; original model output is preserved."
+    },
+    "drafts/predictors/multivariate_lesion_behavior_mapping__Karnath2018__R011.md": {
+      "source_sha256": "bd58f4adaf907b09853e2b5da3f50c4c55cb1f4c88cfa147b6d074b6749223e1",
+      "paper": "Karnath2018",
+      "candidate": "R011"
+    },
+    "drafts/impairments/post_stroke_aphasia_tapping__Kasdan2025__R001.md": {
+      "source_sha256": "8af98be6afcf0589ae525b3e34d6be56ecbcc36e98449370fbbae3eb77a713a1",
+      "paper": "Kasdan2025",
+      "candidate": "R001"
+    },
+    "drafts/impairments/post_stroke_aphasia__Kasdan2025__R002.md": {
+      "source_sha256": "e8d42e2231284d009ae92c7f0f71b9aab2a7949dcb9fbf2b74dff078d7ddba2e",
+      "paper": "Kasdan2025",
+      "candidate": "R002"
+    },
+    "drafts/ingredients/musical_training_tapping__Kasdan2025__R003.md": {
+      "source_sha256": "e285c7b0ee3e51a9ab49b04c814a753d855ed9adc54f71d4dfbba1bd27129a89",
+      "paper": "Kasdan2025",
+      "candidate": "R003"
+    },
+    "drafts/ingredients/musical_training__Kasdan2025__R004.md": {
+      "source_sha256": "9b74ff3c5a32d8d9827eb64a941113f6227e3ea31e33ec4633203b0564a18768",
+      "paper": "Kasdan2025",
+      "candidate": "R004"
+    },
+    "drafts/regions/rhythm_production_perception_association__Kasdan2025__R005.md": {
+      "source_sha256": "d0100cf34b92249744f1064b16a05b801e03186e02f8ee5e9673830f66805e8c",
+      "paper": "Kasdan2025",
+      "candidate": "R005"
+    },
+    "drafts/regions/posterior_temporoparietal_tapping_cluster__Kasdan2025__R006.md": {
+      "source_sha256": "72f5d095b8e191b6ad3b8f06f5544ca8c8a5e28a4558ec7f0fc05beb91f6197c",
+      "paper": "Kasdan2025",
+      "candidate": "R006"
+    },
+    "drafts/regions/posterior_stg_af_smg_cluster__Kasdan2025__R007.md": {
+      "source_sha256": "5dee77a524ff67f3518ae56a3b0ce8576eeb68c4842d406b4a78753483038f1f",
+      "paper": "Kasdan2025",
+      "candidate": "R007"
+    },
+    "drafts/predictors/tapping_performance__Kasdan2025__R008.md": {
+      "source_sha256": "6cc23e84e50b46083ba406a359490b91b52b4c4c27605d8c470294719f94b2a1",
+      "paper": "Kasdan2025",
+      "candidate": "R008"
+    },
+    "drafts/predictors/beat_perception__Kasdan2025__R009.md": {
+      "source_sha256": "fb2901aac7745910bd601aaeeabd84786f2edf88fab8207d44741f56f6121778",
+      "paper": "Kasdan2025",
+      "candidate": "R009"
+    },
+    "drafts/predictors/tapping_performance__Kasdan2025__R010.md": {
+      "source_sha256": "523fad11a33f319fff74fa22db8eeca56e4cbca998d05082584e2cf8e39f9d3e",
+      "paper": "Kasdan2025",
+      "candidate": "R010"
+    },
+    "drafts/predictors/tapping_performance__Kasdan2025__R011.md": {
+      "source_sha256": "a9ad0755046320d5192ceba2708dd200e1ee1ce644f11a9c035ff5623eda3d38",
+      "paper": "Kasdan2025",
+      "candidate": "R011"
+    },
+    "drafts/predictors/limb_apraxia_tapping_association__Kasdan2025__R012.md": {
+      "source_sha256": "ddc347dafdca47e25471e0f725f384d0fb07a2512825c854b867aaf378abbca2",
+      "paper": "Kasdan2025",
+      "candidate": "R012"
+    },
+    "drafts/ingredients/overall_motor_strength__Kasdan2025__R013.md": {
+      "source_sha256": "1a84044ee1a90ac48edf3b87653959f18df8b552cc406e7de3b601558993ece7",
+      "paper": "Kasdan2025",
+      "candidate": "R013"
+    },
+    "drafts/regions/left_af_fa_acute_subacute__Keser2020__R002.md": {
+      "source_sha256": "e63ad030df02c119b1c0cf3e4e2b02f768b2d65b036b5fa7fa6c60e129701d40",
+      "paper": "Keser2020",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_af_fa_early_chronic__Keser2020__R006.md": {
+      "source_sha256": "380e58cf0461babb7837b650a7c865218340882858b1cdc9e9880c3a665a0b43",
+      "paper": "Keser2020",
+      "candidate": "R006"
+    },
+    "drafts/regions/left_af_rd__Keser2020__R009.md": {
+      "source_sha256": "14bf634ca6d6935a9b7251119e5edc5e082fcd6afde849e90f1d645af1c83dc0",
+      "paper": "Keser2020",
+      "candidate": "R009"
+    },
+    "drafts/regions/left_ifof__Keser2020__R010.md": {
+      "source_sha256": "bbc24459bbbc077de1819fe49dacb71ebfa824c056c26d33d18588a0087e677b",
+      "paper": "Keser2020",
+      "candidate": "R010"
+    },
+    "drafts/regions/left_ifof_rd__Keser2020__R011.md": {
+      "source_sha256": "a64f4c2d34d266d4eda242b5bea571eeaea2871fe4a506893db1db81a9b8749a",
+      "paper": "Keser2020",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_ilf_rd__Keser2020__R013.md": {
+      "source_sha256": "54b9508f2972ce17521ae9e5be36f5a86563a1ce03e8ee7136571d357da0803a",
+      "paper": "Keser2020",
+      "candidate": "R013"
+    },
+    "drafts/regions/left_af_personal_pronoun_cohesiveness__Keser2020__R014.md": {
+      "source_sha256": "6132ce9d305a5aa4d8a151d2a2a97c6a9da9f9b2ee14a379e52ed7892d779ab2",
+      "paper": "Keser2020",
+      "candidate": "R014"
+    },
+    "drafts/regions/left_af_rd__Keser2020__R015.md": {
+      "source_sha256": "dadfa04b7f92d4ba3769b6f3864f2324ffcde897ace5d9c7f7e6efc0dd858d74",
+      "paper": "Keser2020",
+      "candidate": "R015"
+    },
+    "drafts/regions/right_hemispheric_pathways__Keser2020__R016.md": {
+      "source_sha256": "c0a3bf57a578fe0d2dc81863201ba6be58aa84169a63fb2246dd4d913b0011df",
+      "paper": "Keser2020",
+      "candidate": "R016"
+    },
+    "drafts/predictors/rh_tfexcf_rd__Kourtidou2021__R005.md": {
+      "source_sha256": "d26541a464d14ff1155418a89052a9618484cfaa93c102ee35735374bcc5665d",
+      "paper": "Kourtidou2021",
+      "candidate": "R005"
+    },
+    "drafts/predictors/rh_tfexcf_rd__Kourtidou2021__R006.md": {
+      "source_sha256": "337f9b786c97c4669d68ca9d63f030d9d0d2e7022e7038e7605f06d39fbc981a",
+      "paper": "Kourtidou2021",
+      "candidate": "R006"
+    },
+    "drafts/predictors/rh_slf3_rd__Kourtidou2021__R007.md": {
+      "source_sha256": "6260414f8381e6261d34828d3fa4de720ccda329f5c80361fc9a59a21bef77fd",
+      "paper": "Kourtidou2021",
+      "candidate": "R007"
+    },
+    "drafts/regions/rh_slf3_rd__Kourtidou2021__R008.md": {
+      "source_sha256": "732a649da0214855dce1bac691931154a0cba55691d2d104f4545450558458d8",
+      "paper": "Kourtidou2021",
+      "candidate": "R008"
+    },
+    "drafts/regions/rh_slf3_fa__Kourtidou2021__R009.md": {
+      "source_sha256": "032044e9d3591dbd67976497586b5f62c4496e780a0db24066756efd413e4504",
+      "paper": "Kourtidou2021",
+      "candidate": "R009"
+    },
+    "drafts/predictors/rh_af_rd__Kourtidou2021__R010.md": {
+      "source_sha256": "4bc5b2c1a06a482224343183f076ee1b9e002c1301ff3928c21946ab63e0fbe5",
+      "paper": "Kourtidou2021",
+      "candidate": "R010"
+    },
+    "drafts/regions/aphasia_subgroup_comparison__Kourtidou2021__R011.md": {
+      "source_sha256": "e842b6829d17a5fe66271a6d5144887ce81cf1c2500b3e8d92ce2a015f1e2b38",
+      "paper": "Kourtidou2021",
+      "candidate": "R011"
     }
   }
 }
