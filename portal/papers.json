@@ -1647,43 +1647,58 @@
   },
   "@Pedersen1995": {
    "annotated": "pdf/C0133_Pedersen1995_annotated.pdf",
-   "bytes": 848421,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "23a372548fd2e7a55cafa6c7f0f2cbaa0157b5553d44c50dd9ca68bf69092670",
+   "bytes": 1218991,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-24T21:44:59.412115+00:00",
    "label": "publisher terms (onlinelibrary.wiley.com)",
    "public": false,
-   "sha256": "e767ee374ef224a68b1fc47261e3de56bcfc9804f324ce59a8abc7a9942dd8b6"
+   "sha256": "f3b49954f584d1b5ad94db3f3e540c3cb80dd68dd6b6c23cd9a6e531535dcb40"
   },
   "@Pedersen2004": {
    "annotated": "pdf/C0041_Pedersen2004_annotated.pdf",
-   "bytes": 133315,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "db9b2c0ba0c0f692ed5db3c9f9929d7249814b2795f2c6a2599a3670d39254d3",
+   "bytes": 327216,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-24T21:44:59.412115+00:00",
    "label": "publisher terms (karger.com)",
    "public": false,
-   "sha256": "54916db1c49b798e464429749ad20762c2ca5efd78ea2f426eb665b6f3fcdcfc"
+   "sha256": "4498d4c51b3752b5d7ca84333b3935e7ff0a252b1a921697bc17be867e1a8645"
   },
   "@Pflugshaupt2009": {
    "annotated": "pdf/C0109_Pflugshaupt2009_annotated.pdf",
-   "bytes": 730918,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "e9d151eee887791961425dfa50d28049085a2534d18341f0a42284fd8be08072",
+   "bytes": 1105002,
    "category": "free_to_read",
+   "draft_snapshot": "2026-11-24T21:44:59.412115+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "86451aafc962af2c7bbc514a825e71fce65536223027eda86eb4a3d693c4eb14"
+   "sha256": "7db2183206c71e93c602bcc8fdbbb8d32c6218fe7309b5857adafc0a406ceb73"
   },
   "@Pillay2017": {
    "annotated": "pdf/C2368_Pillay2017_annotated.pdf",
-   "bytes": 475316,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "6a11ad498c300fdd900faeadbcad14785205a9d9a4f8258077f2779ff2702ddc",
+   "bytes": 629520,
    "category": "free_to_read",
+   "draft_snapshot": "2026-11-24T21:44:59.412115+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "0cc26a98b3fd9c07dfcc197ec8d379fcb4d526ff3d88b8fbfa4f6c36daea55bc"
+   "sha256": "27aef5dcb5e3f3cbe66320a232d8dec347b748ea66c05c2aa527e0f741bdf829"
   },
   "@Plowman2012": {
    "annotated": "pdf/C0091_Plowman2012_annotated.pdf",
-   "bytes": 128213,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "d5397a76f3d7dbbb6047461875271988a48ed60632d95aba9981cf3b3a8d55e5",
+   "bytes": 144050,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-24T21:44:59.412115+00:00",
    "label": "publisher terms (onlinelibrary.wiley.com)",
    "public": false,
-   "sha256": "5e78024a889d7ca3ad8bf41700a38cc0cd247b491776afd6d1a7fe7348211bcb"
+   "sha256": "a3610d9721acfae896558b0073dc676ae8da9a3473ab6d675cd6e44bcd5ceeeb"
   },
   "@Pulvermuller2001": {
    "annotated": "pdf/C0023_Pulvermuller2001_annotated.pdf",

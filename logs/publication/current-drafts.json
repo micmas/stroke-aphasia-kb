@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-24T19:49:27.466386+00:00",
+  "snapshot_at": "2026-11-24T21:44:59.412115+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -6120,6 +6120,315 @@
       "source_sha256": "d51575fc74f70d06434b0750afb531cf1c87605a338b131df3be614f77183c80",
       "paper": "OsaGarcia2024",
       "candidate": "R022"
+    },
+    "drafts/predictors/aphasia_admission_determinants__Pedersen1995__R001.md": {
+      "source_sha256": "32652f277d7efbc69114ad42f1053b787cd440b1ff2cc4c4c3a8a41a87aaff21",
+      "paper": "Pedersen1995",
+      "candidate": "R001"
+    },
+    "drafts/predictors/aphasia_admission_determinants_model__Pedersen1995__R002.md": {
+      "source_sha256": "d8ca1588a36fe220912a12b7af14fb889bab54858890ae7aab8ea2ab169c8e90",
+      "paper": "Pedersen1995",
+      "candidate": "R002"
+    },
+    "drafts/predictors/ct_lesion_characteristics__Pedersen1995__R003.md": {
+      "source_sha256": "b107f2778c52d5174fd6bfb620e22164c8c650129871a675335c50411abc69d7",
+      "paper": "Pedersen1995",
+      "candidate": "R003"
+    },
+    "drafts/predictors/ct_aphasia_admission_model__Pedersen1995__R004.md": {
+      "source_sha256": "536571841c37b1ba66b6525bc13efc8f2a22b09072fc9329f023a1868f359c0b",
+      "paper": "Pedersen1995",
+      "candidate": "R004"
+    },
+    "drafts/predictors/sex_right_hemisphere_aphasia__Pedersen1995__R007.md": {
+      "source_sha256": "0fad59ee6c16ebde20207d8fc32e4fef1235990f33af7cac4ff53234984d8304",
+      "paper": "Pedersen1995",
+      "candidate": "R007"
+    },
+    "drafts/regions/sex__Pedersen1995__R008.md": {
+      "source_sha256": "79120b67203cf8017399abf678b0e16ed280ab4cb912129b6dad61abceb53a2a",
+      "paper": "Pedersen1995",
+      "candidate": "R008"
+    },
+    "drafts/regions/lesion_side_women__Pedersen1995__R009.md": {
+      "source_sha256": "878cd52ff2ad0f016e8700cf882f1b907e85baf634af0725bb77827280bdfd8c",
+      "paper": "Pedersen1995",
+      "candidate": "R009"
+    },
+    "drafts/predictors/initial_aphasia_severity__Pedersen1995__R011.md": {
+      "source_sha256": "0310dd0f2a46563f9d33fccdf7ebb897dbeabe6b5789bc0bbce8372f5d42b085",
+      "paper": "Pedersen1995",
+      "candidate": "R011"
+    },
+    "drafts/predictors/aphasia_recovery_predictors__Pedersen1995__R012.md": {
+      "source_sha256": "8899f2aece049c21a1e26aed3171d5dd0449d0b4d86ec028d04a457ccfba61da",
+      "paper": "Pedersen1995",
+      "candidate": "R012"
+    },
+    "drafts/predictors/aphasia_recovery_predictor_model__Pedersen1995__R013.md": {
+      "source_sha256": "f808ae02773eeefe5442085b1c8a90228a3c6569e661ed5fcd8c94d331924920",
+      "paper": "Pedersen1995",
+      "candidate": "R013"
+    },
+    "drafts/regions/lesion_side_aphasia_recovery__Pedersen1995__R015.md": {
+      "source_sha256": "f45dd8adf9dff4a4f60561798ff7c3b08890fb439d0a56f068765e6072aa57e8",
+      "paper": "Pedersen1995",
+      "candidate": "R015"
+    },
+    "drafts/ingredients/sex__Pedersen2004__R001.md": {
+      "source_sha256": "ce6e20f7c2fa9f04ec6719f56951bd82d351172f23e455734772f3b224412477",
+      "paper": "Pedersen2004",
+      "candidate": "R001"
+    },
+    "drafts/regions/age__Pedersen2004__R002.md": {
+      "source_sha256": "084ea0f51566292a13d15a02faaad49a8622449223911266ec7140d0773d80d7",
+      "paper": "Pedersen2004",
+      "candidate": "R002"
+    },
+    "drafts/regions/age__Pedersen2004__R003.md": {
+      "source_sha256": "e70c9dded48e2dda6794330a8d61622e38f6a52b911d922a854b34d3628c0d00",
+      "paper": "Pedersen2004",
+      "candidate": "R003"
+    },
+    "drafts/ingredients/sex__Pedersen2004__R004.md": {
+      "source_sha256": "09e5b512bb349614e16b62515a4024be3eb5cb167c15ad34db7ae6ff227042af",
+      "paper": "Pedersen2004",
+      "candidate": "R004"
+    },
+    "drafts/impairments/aphasia_fluency__Pedersen2004__R005.md": {
+      "source_sha256": "742bf4ba4e02e04c9468b8a0099c029d7b42875891b57212c056b0040123a83e",
+      "paper": "Pedersen2004",
+      "candidate": "R005"
+    },
+    "drafts/ingredients/sex__Pedersen2004__R006.md": {
+      "source_sha256": "98da1b52e9beb189887cf5b3a478eecc27d20fc93a13cbbae294752d80d8e0d7",
+      "paper": "Pedersen2004",
+      "candidate": "R006"
+    },
+    "drafts/regions/age__Pedersen2004__R007.md": {
+      "source_sha256": "5b25e8b81f7a7240fb68efbff0db3628d58ea74f6bcc6707f8f7522a60e85683",
+      "paper": "Pedersen2004",
+      "candidate": "R007"
+    },
+    "drafts/predictors/modified_sss__Pedersen2004__R008.md": {
+      "source_sha256": "fe295199ea49884f8b69514e2a671989887375afc023d02cd556fd27d164bc48",
+      "paper": "Pedersen2004",
+      "candidate": "R008"
+    },
+    "drafts/predictors/initial_aq_predictor_model__Pedersen2004__R009.md": {
+      "source_sha256": "b3f1b688d3abfb31ecdb122f20df57c55a6175a8b34ab6794313998a034196b7",
+      "paper": "Pedersen2004",
+      "candidate": "R009"
+    },
+    "drafts/predictors/initial_aphasia_severity__Pedersen2004__R010.md": {
+      "source_sha256": "12d8ab9988ef63f3d5feefc6001f1ac332390f6e6333e7b569d3ba3796d2b42d",
+      "paper": "Pedersen2004",
+      "candidate": "R010"
+    },
+    "drafts/predictors/aq_1yr_predictor_model__Pedersen2004__R011.md": {
+      "source_sha256": "244eea68778211589c941a6dbdb907ccc97c840da446932036c40196cdaa66bb",
+      "paper": "Pedersen2004",
+      "candidate": "R011"
+    },
+    "drafts/regions/age__Pedersen2004__R012.md": {
+      "source_sha256": "3ee8da39c9db1ab498a981d0befe1a6171b7ba9a41b61024548a68652d1ed699",
+      "paper": "Pedersen2004",
+      "candidate": "R012"
+    },
+    "drafts/ingredients/sex__Pedersen2004__R013.md": {
+      "source_sha256": "92b13d20a1315c5dcead3dfdb78884118aa2b953cad31ec2a91ad8e90674d2b2",
+      "paper": "Pedersen2004",
+      "candidate": "R013"
+    },
+    "drafts/regions/aphasia_fluency__Pedersen2004__R014.md": {
+      "source_sha256": "afe9ad627f6347ae19b8d38ce70a6ddf7d184f0f359e8a87f760557fbb23d845",
+      "paper": "Pedersen2004",
+      "candidate": "R014"
+    },
+    "drafts/ingredients/sex__Pedersen2004__R015.md": {
+      "source_sha256": "7b854503808fdb0ea7f5b8215169e00706117f2a165bfa2db84409a9cfb3cf0c",
+      "paper": "Pedersen2004",
+      "candidate": "R015"
+    },
+    "drafts/predictors/age_fluency_1yr__Pedersen2004__R016.md": {
+      "source_sha256": "5d4a8a947964bb439b5bcebd6c0c389ecf774da346084e39f137e6af198b53e6",
+      "paper": "Pedersen2004",
+      "candidate": "R016"
+    },
+    "drafts/predictors/age_fluency_predictor__Pedersen2004__R017.md": {
+      "source_sha256": "b67186f58ca7fbaca6be5527a3cf5c39ce486c43bb067f8d9e4626c667132842",
+      "paper": "Pedersen2004",
+      "candidate": "R017"
+    },
+    "drafts/ingredients/sex__Pedersen2004__R018.md": {
+      "source_sha256": "233e5577c9130ba2c71ff50279e7a27bf3f8cd4682e1334fd0008eb98d311b45",
+      "paper": "Pedersen2004",
+      "candidate": "R018"
+    },
+    "drafts/regions/aphasia_type__Pedersen2004__R020.md": {
+      "source_sha256": "177cc7bf9ab2fdbf3a0365b438542a36aa38978e6c02310be53d61dc2bedcc42",
+      "paper": "Pedersen2004",
+      "candidate": "R020"
+    },
+    "drafts/regions/sex__Pedersen2004__R021.md": {
+      "source_sha256": "cf1866f402fa1447ea5992544dc8868a7ec69b2ee1203e2912956e13b3dec45c",
+      "paper": "Pedersen2004",
+      "candidate": "R021"
+    },
+    "drafts/regions/age__Pedersen2004__R022.md": {
+      "source_sha256": "ac68b5ff4481708fed9dabbba766cac6933c324802971f74332c7133f9718491",
+      "paper": "Pedersen2004",
+      "candidate": "R022"
+    },
+    "drafts/predictors/age_fluency_predictor__Pedersen2004__R023.md": {
+      "source_sha256": "4e363bcbf6857f949f1aa0f6c62199fb1d9a12847e890ea5cd9859db50ab6467",
+      "paper": "Pedersen2004",
+      "candidate": "R023"
+    },
+    "drafts/predictors/study_setting_pre_stroke_dementia__Pendlebury2009__R001.md": {
+      "source_sha256": "aef3bfe21d4fc63bac4cfa1ba4995072f832c48bcd9e57c6e40ccf4fd357b19b",
+      "paper": "Pendlebury2009",
+      "candidate": "R001"
+    },
+    "drafts/predictors/time_post_stroke_after_first_year__Pendlebury2009__R003.md": {
+      "source_sha256": "a1cb922c815bfa5ca202aabea28d5a838b787d555e9f599c42d86280ae97834d",
+      "paper": "Pendlebury2009",
+      "candidate": "R003"
+    },
+    "drafts/predictors/stroke_characteristics_post_stroke_dementia__Pendlebury2009__R005.md": {
+      "source_sha256": "bd4f7a88a90f1256a092f37f6af0ef0f38ec3c0fae152436c8c42ba6e2194fe2",
+      "paper": "Pendlebury2009",
+      "candidate": "R005"
+    },
+    "drafts/predictors/post_stroke_dementia_multivariate_predictors__Pendlebury2009__R006.md": {
+      "source_sha256": "ee7e697f5f6951b79ee3c4c62520a947fab21abf65037a0b010fa138035c176f",
+      "paper": "Pendlebury2009",
+      "candidate": "R006"
+    },
+    "drafts/predictors/post_stroke_dementia_sensitivity_analysis__Pendlebury2009__R007.md": {
+      "source_sha256": "a5c136f1db119582f602346e5f0dd943f037362c43cedb1de42f97e6d2cc9516",
+      "paper": "Pendlebury2009",
+      "candidate": "R007",
+      "publication_disposition": "withdrawn_pending_source_statistics_review",
+      "publication_disposition_reason": "Publication scope check: source narrative p8 says silent infarcts were no longer significant in sensitivity analysis, but Table 5 p9 reports overall pooled silent-stroke OR 1.8 (95% CI 0.9\u20133.5), p=0.08. Claim of significant overall silent-infarct association requires reconciliation. Withheld pending source statistics review; original outputs preserved."
+    },
+    "drafts/predictors/post_stroke_dementia_prevalence_variance_model__Pendlebury2009__R009.md": {
+      "source_sha256": "72a2a9bc0c32184224a7bfa19503beffc11b255ba744d10285712753d995749b",
+      "paper": "Pendlebury2009",
+      "candidate": "R009"
+    },
+    "drafts/predictors/stroke_incident_dementia__Pendlebury2009__R010.md": {
+      "source_sha256": "866559236397927ae6c90e1eb0ca14750f2fafd4de89d58312fc68accc7e2cbe",
+      "paper": "Pendlebury2009",
+      "candidate": "R010"
+    },
+    "drafts/regions/pure_alexia_lesion_cluster__Pflugshaupt2009__R001.md": {
+      "source_sha256": "bedcab27c64f622a47e316c71147cd57908dd09e8ed9dbd4c960490ec7615c8c",
+      "paper": "Pflugshaupt2009",
+      "candidate": "R001"
+    },
+    "drafts/regions/vwfa_coordinate_cluster__Pflugshaupt2009__R002.md": {
+      "source_sha256": "f6e7db5bb6902ee0eb1673cede7a0f0c47bb8f4396dfaa9c4956363fa1d53371",
+      "paper": "Pflugshaupt2009",
+      "candidate": "R002"
+    },
+    "drafts/impairments/pure_alexia__Pflugshaupt2009__R003.md": {
+      "source_sha256": "ac3bca411ce9e4c0dac71a42315fa6eac9d60488e3ba8f1f121274a0e3c0654c",
+      "paper": "Pflugshaupt2009",
+      "candidate": "R003"
+    },
+    "drafts/impairments/pure_alexia_visuomotor_impairment__Pflugshaupt2009__R004.md": {
+      "source_sha256": "de4fb7c2e96b81209d45719fa4db7b7e6ce243f92ec1b0926f02035219b9a6ff",
+      "paper": "Pflugshaupt2009",
+      "candidate": "R004"
+    },
+    "drafts/impairments/pure_alexia_fixation_ratio__Pflugshaupt2009__R006.md": {
+      "source_sha256": "7c062f1847f24ecb0f0e66c73330180843b9eda199589869ad21d30338469b4b",
+      "paper": "Pflugshaupt2009",
+      "candidate": "R006"
+    },
+    "drafts/impairments/pure_alexia_word_length_effect__Pflugshaupt2009__R007.md": {
+      "source_sha256": "d716153d9b3ffc85d94d962656074e2e1a5ebd59555b6d6123538c3371b8dcb1",
+      "paper": "Pflugshaupt2009",
+      "candidate": "R007"
+    },
+    "drafts/regions/right_sided_visual_field_defect__Pflugshaupt2009__R008.md": {
+      "source_sha256": "53521e0e8c619fa993ca2372f4612730f00dfce9a7ec09622352b886c9985c68",
+      "paper": "Pflugshaupt2009",
+      "candidate": "R008"
+    },
+    "drafts/predictors/macular_sparing_rightward_saccades__Pflugshaupt2009__R009.md": {
+      "source_sha256": "cb589d8faf105e8e8c7b8b4db1ab5653c992fbfffe975b8b6ac8f824dac899dd",
+      "paper": "Pflugshaupt2009",
+      "candidate": "R009"
+    },
+    "drafts/regions/macular_sparing_hemianopic_dyslexia__Pflugshaupt2009__R010.md": {
+      "source_sha256": "02c862b11c211bda3dba09445aff40038cbc7b166d32eee158fec04845b7024f",
+      "paper": "Pflugshaupt2009",
+      "candidate": "R010"
+    },
+    "drafts/regions/adn_general_comprehension_cluster__Pillay2017__R001.md": {
+      "source_sha256": "f5ea947359619794b3155557cb43842a901694ba63c49d25779cbd599c7528e8",
+      "paper": "Pillay2017",
+      "candidate": "R001"
+    },
+    "drafts/regions/asc_general_comprehension_network__Pillay2017__R002.md": {
+      "source_sha256": "7467df713f3bcaef2bbc9590a16c80bd467c34a40ed6669e7af4d6367f214aa2",
+      "paper": "Pillay2017",
+      "candidate": "R002"
+    },
+    "drafts/regions/pn_impairment_cluster__Pillay2017__R003.md": {
+      "source_sha256": "191db06127b96c3b46466c1172546c16901135cfb1c6e6a049fdae1e8f2cc616",
+      "paper": "Pillay2017",
+      "candidate": "R003"
+    },
+    "drafts/regions/mtg_adn_cluster__Pillay2017__R004.md": {
+      "source_sha256": "f25a0c6c02edc19979f6eb1eab054442e1575237931f6e2afe59d23e32967016",
+      "paper": "Pillay2017",
+      "candidate": "R004"
+    },
+    "drafts/regions/frontal_smg_angular_gyrus_cluster__Pillay2017__R005.md": {
+      "source_sha256": "ead35e6d8c097c0d4a069f32da18bdc3f23e4431691763bb8d77370ff91b7a9d",
+      "paper": "Pillay2017",
+      "candidate": "R005"
+    },
+    "drafts/regions/posterior_mtg_lateral_occipital_cluster__Pillay2017__R006.md": {
+      "source_sha256": "33ec932bf78e013cf4907efcef5fdf26192bfb3926ec757161f9d3cbc42e83f8",
+      "paper": "Pillay2017",
+      "candidate": "R006"
+    },
+    "drafts/regions/posterior_superior_temporal_sulcus__Pillay2017__R007.md": {
+      "source_sha256": "dfd2169d361dfabf272f90de99a025a46a90ab25269d4fbf07d3c281eceb40c0",
+      "paper": "Pillay2017",
+      "candidate": "R007"
+    },
+    "drafts/regions/mtg_mid_posterior_cluster__Pillay2017__R008.md": {
+      "source_sha256": "e542690982b5ff46a6764513cfbec2bb8045040e4a9d21f9d441bd55480e4ca5",
+      "paper": "Pillay2017",
+      "candidate": "R008",
+      "publication_disposition": "withdrawn_pending_source_statistics_review",
+      "publication_disposition_reason": "Publication scope check: claim says overlapping ADN and ASC lesion associations survived control for both picture naming and lesion volume. Source PDF p3 states the ASC cluster did not survive cluster correction with both covariates; the surviving posterior MTG/lateral occipital cluster used PN alone. Withheld pending source statistics review; original outputs preserved."
+    },
+    "drafts/predictors/asc_performance__Pillay2017__R009.md": {
+      "source_sha256": "72643f84fd87edaeb717a072e92266215d7b29c2418e61948dc06f6c26c237d8",
+      "paper": "Pillay2017",
+      "candidate": "R009"
+    },
+    "drafts/predictors/picture_naming_performance__Pillay2017__R010.md": {
+      "source_sha256": "121af9c3a4a7cd266a28abcfd2724a2d7264edfaf5e5ce50c52434e981c82ffb",
+      "paper": "Pillay2017",
+      "candidate": "R010"
+    },
+    "drafts/predictors/patient_related_factors__Plowman2012__R001.md": {
+      "source_sha256": "e80285e3f2547bb65acfe41a008724c5be9c8aed8cf8652613d2f6425a65fcdc",
+      "paper": "Plowman2012",
+      "candidate": "R001"
+    },
+    "drafts/ingredients/intelligence__Plowman2012__R009.md": {
+      "source_sha256": "0d33ee409d44e78942cf58f44a18048be450644c87fc626a95c84485850050c3",
+      "paper": "Plowman2012",
+      "candidate": "R009"
     }
   }
 }
