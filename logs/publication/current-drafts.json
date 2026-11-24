@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-23T22:49:16.174793+00:00",
+  "snapshot_at": "2026-11-24T00:37:18.956481+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -3786,6 +3786,196 @@
       "source_sha256": "dd3ffefc83f04a33cb8764670cfe5b08d7f29c6af0cffd3a348ef0a56b88c80f",
       "paper": "Hope2016",
       "candidate": "R007"
+    },
+    "drafts/predictors/tract_disconnection_model__Hope2016__R008.md": {
+      "source_sha256": "d31c469d9b2bb2c2498909133e269bf28e5dc6f09b0f773fe9d2209fc84ec235",
+      "paper": "Hope2016",
+      "candidate": "R008"
+    },
+    "drafts/predictors/lesion_load_model__Hope2016__R009.md": {
+      "source_sha256": "7183afdecb348798caceffe569abe4671a1e0f5276b788883bef7f88ca87660f",
+      "paper": "Hope2016",
+      "candidate": "R009"
+    },
+    "drafts/predictors/disconnection_model_fluency_naming__Hope2016__R010.md": {
+      "source_sha256": "c00ed943103df0c8d351d6f3886e03320ad6e20618c98d8f801ee50291326483",
+      "paper": "Hope2016",
+      "candidate": "R010"
+    },
+    "drafts/regions/right_hemisphere_structural_change_cluster__Hope2017__R001.md": {
+      "source_sha256": "0745e39b1ddbdccc8e58031e118c5bcf02052c806bbd24dca228a016dbffbbbc",
+      "paper": "Hope2017",
+      "candidate": "R001"
+    },
+    "drafts/predictors/brain_change_rate_positive_cluster_predictor__Hope2017__R002.md": {
+      "source_sha256": "d62d3ddbca425867fafbb5631221b3dbff3123047e3fd286c71cfa00cbd36045",
+      "paper": "Hope2017",
+      "candidate": "R002"
+    },
+    "drafts/predictors/negative_only_cv_model_naming__Hope2017__R003.md": {
+      "source_sha256": "830e6ad2107bd3e4f457b262ec1b0f340cf7e1b51f4b7424837ef3057ccd02c8",
+      "paper": "Hope2017",
+      "candidate": "R003"
+    },
+    "drafts/predictors/behavioral_change_direction__Hope2017__R004.md": {
+      "source_sha256": "df2ced22599dea9b248b659c829ef8858681d6aa47dc5aafbc5e5edb28a2c1db",
+      "paper": "Hope2017",
+      "candidate": "R004"
+    },
+    "drafts/regions/rh_structural_plasticity_clusters__Hope2017__R005.md": {
+      "source_sha256": "4cc1936e3beaa1f93b4974e40a398484277536c3cf3976d7f63311fea5d3f71b",
+      "paper": "Hope2017",
+      "candidate": "R005"
+    },
+    "drafts/impairments/spoken_object_naming_change__Hope2017__R006.md": {
+      "source_sha256": "fdbb388e426fe8a1f7ed49f64263af7c83d6fa5b73ae3886551786d095eebcc2",
+      "paper": "Hope2017",
+      "candidate": "R006"
+    },
+    "drafts/impairments/spoken_object_naming_change__Hope2017__R007.md": {
+      "source_sha256": "a1127cc2e4bd1cac9dc01b7be832486356f75b7da04efb4383a6e01b80189d85",
+      "paper": "Hope2017",
+      "candidate": "R007"
+    },
+    "drafts/impairments/spoken_object_naming_change__Hope2017__R008.md": {
+      "source_sha256": "bbf60ca92ee180b2acfcef11882b93cb1c948683c332e3ca007fef96db875fdb",
+      "paper": "Hope2017",
+      "candidate": "R008"
+    },
+    "drafts/regions/right_middle_temporal_sulcus_cluster__Hope2017__R009.md": {
+      "source_sha256": "8ca860db6c58092369261e9cfb921cc2cdaae417d5dcf6ba1ff0befc5d50be3c",
+      "paper": "Hope2017",
+      "candidate": "R009"
+    },
+    "drafts/regions/right_middle_temporal_sulcus__Hope2017__R010.md": {
+      "source_sha256": "57d44a3bafedd8557ddc181b4dc1fe6cb1e036ad33e2d56776e9419febf5e4f6",
+      "paper": "Hope2017",
+      "candidate": "R010"
+    },
+    "drafts/regions/right_hemisphere_spoken_object_naming_cluster__Hope2017__R011.md": {
+      "source_sha256": "a0e558bc63cd30692f989d36ec0a36fe726dfa192f33c8da0178da089316ab7a",
+      "paper": "Hope2017",
+      "candidate": "R011"
+    },
+    "drafts/predictors/t1_grey_matter_density__Hope2017__R013.md": {
+      "source_sha256": "2b68f33839c1464385c3dcd83900190a49048595e7ab5c7450b867b68f3b3e1d",
+      "paper": "Hope2017",
+      "candidate": "R013"
+    },
+    "drafts/predictors/structural_connectivity_disruption_naming_predictor__Hope2018__R002.md": {
+      "source_sha256": "15a74332af6440eec737550b471df6a363d4496d6fcb3d96fe97c11f7bc52450",
+      "paper": "Hope2018",
+      "candidate": "R002"
+    },
+    "drafts/predictors/structural_connectivity_disruption_model__Hope2018__R003.md": {
+      "source_sha256": "5a6d3dbdd1f63e784645c131668f940fba7fe0572f92e72e51b54931b9b35a63",
+      "paper": "Hope2018",
+      "candidate": "R003"
+    },
+    "drafts/regions/lesion_load_connectivity_correlation__Hope2018__R004.md": {
+      "source_sha256": "ca095c941b77fb417b479f5c8008f067c33f86069e87f64b879508cc40459c74",
+      "paper": "Hope2018",
+      "candidate": "R004"
+    },
+    "drafts/predictors/lesion_load_restricted_connectivity_model__Hope2018__R005.md": {
+      "source_sha256": "66562ee7ff047e78734a34b42cd8a4cc47cc9daa5852f5a5847c21f2a10c5afc",
+      "paper": "Hope2018",
+      "candidate": "R005"
+    },
+    "drafts/predictors/naming_prediction_stacked_model__Hope2018__R006.md": {
+      "source_sha256": "9920064d845b0a74829ee086aa882f9835c848a9ec661abe6c36c51bb36e4e86",
+      "paper": "Hope2018",
+      "candidate": "R006"
+    },
+    "drafts/predictors/af_fiber_count_asymmetry_index__Hosomi2009__R003.md": {
+      "source_sha256": "89c989ea0295343e4675a2f94faa1df2442f7be1a857d6e201466635660c5de9",
+      "paper": "Hosomi2009",
+      "candidate": "R003"
+    },
+    "drafts/predictors/af_fiber_asymmetry_loss__Hosomi2009__R004.md": {
+      "source_sha256": "a2ec47f031c812cd477fb52c7056ef8b575a1b64fcd4a9a1b23c43b09f72ddb2",
+      "paper": "Hosomi2009",
+      "candidate": "R004"
+    },
+    "drafts/predictors/af_fa_asymmetry_index__Hosomi2009__R005.md": {
+      "source_sha256": "4a1c7c7765ec82450b8e189a99e114fe6d1c832d7c9a3d70d526425494dcbd09",
+      "paper": "Hosomi2009",
+      "candidate": "R005"
+    },
+    "drafts/predictors/aspects_dwi_score__Hosomi2009__R007.md": {
+      "source_sha256": "ef3a001ae9a313b58255af01766745e98c2e5e0520b6d737d94ad2366fab240a",
+      "paper": "Hosomi2009",
+      "candidate": "R007"
+    },
+    "drafts/predictors/svr_vs_rf_aphasia_prediction__Hu2025__R001.md": {
+      "source_sha256": "16716e4a0c795211e3aa6f2369dd72dc8f5a5194eb670b1e6069b302a176e48e",
+      "paper": "Hu2025",
+      "candidate": "R001"
+    },
+    "drafts/predictors/rsfmri_fc_predictor__Hu2025__R002.md": {
+      "source_sha256": "aa94b9235f7b7dedaaadc36c7bd9ca89298b5169e45809c746dc186c0957baad",
+      "paper": "Hu2025",
+      "candidate": "R002"
+    },
+    "drafts/predictors/structural_spared_tissue_svr__Hu2025__R003.md": {
+      "source_sha256": "078fc951dce36e0a794ee346f24959e151d177b25ba29516ee5bc1d201b35d07",
+      "paper": "Hu2025",
+      "candidate": "R003"
+    },
+    "drafts/predictors/rsfmri_fc_vs_psg_prediction__Hu2025__R004.md": {
+      "source_sha256": "f08450df04a6e0e159211fa7d1c5800f1164f4c17796b5dd4df5e1f588db2419",
+      "paper": "Hu2025",
+      "candidate": "R004"
+    },
+    "drafts/predictors/rsfmri_trans_dm_predictor__Hu2025__R005.md": {
+      "source_sha256": "408f88c2a5e4b2e3cf490f3429c1b243a97c0af6073ec273eb2c1b3af91db86a",
+      "paper": "Hu2025",
+      "candidate": "R005"
+    },
+    "drafts/predictors/svr_dm_psw_rsfmri_fc_model__Hu2025__R007.md": {
+      "source_sha256": "a2b3241a646b9e562ed1a10188f62804ae3e0442a5abffca8c051ce99c91b5f5",
+      "paper": "Hu2025",
+      "candidate": "R007"
+    },
+    "drafts/predictors/multimodal_svr_aphasia_severity__Hu2025__R008.md": {
+      "source_sha256": "8c82aabcb0c7597a5f63f0d3cfeee49b5c5cca88995b4f82a0ab318771c45f78",
+      "paper": "Hu2025",
+      "candidate": "R008"
+    },
+    "drafts/predictors/psg_left_language_area__Hu2025__R010.md": {
+      "source_sha256": "e9eb5c507980582ac7258ad399621e2541c79f31cac5bfbe042941a243a55dba",
+      "paper": "Hu2025",
+      "candidate": "R010"
+    },
+    "drafts/regions/psw_fronto_insular_arcuate_posterior__Hu2025__R011.md": {
+      "source_sha256": "11abb6036d8c04ba6447dae24f67fa14fa29240d8e1af0bde8c4002c5f6fbaa9",
+      "paper": "Hu2025",
+      "candidate": "R011"
+    },
+    "drafts/predictors/svr_fa_features__Hu2025__R012.md": {
+      "source_sha256": "3a184fcbf644326286c1f90a45d033e5839ac26c52943c442cd7621f16ab1708",
+      "paper": "Hu2025",
+      "candidate": "R012"
+    },
+    "drafts/predictors/rsfmri_fc_predictor__Hu2025__R013.md": {
+      "source_sha256": "bc1d25f3dde47f06a6ad777c1d2ea3596bbb76a0176ee39d9623f2b691c12a74",
+      "paper": "Hu2025",
+      "candidate": "R013"
+    },
+    "drafts/regions/left_precentral_gyrus_posterior_wall__Itabashi2015__R001.md": {
+      "source_sha256": "8f9834ae802f24e0fb2f90e9c6e162ac4e98761cd73f1195e67217115c0aa82b",
+      "paper": "Itabashi2015",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_precentral_gyrus_posterior_wall__Itabashi2015__R002.md": {
+      "source_sha256": "1e4a8539719e114ef7b51330de45d3c8566ee8889c7cb9f0cf97611bcd25effa",
+      "paper": "Itabashi2015",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_hemisphere_subcortical_precentral_cluster__Itabashi2015__R003.md": {
+      "source_sha256": "d8cc03d8b4c8c54a91f2e9f35f77d999ffdf6082867e2e99c723fdb324cfcb2a",
+      "paper": "Itabashi2015",
+      "candidate": "R003"
     }
   }
 }
