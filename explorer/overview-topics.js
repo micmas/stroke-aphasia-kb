@@ -1,7 +1,24 @@
-import {ANATOMY, FACTORS, ANATOMY_GROUPS} from './topic-categories.js';
+import {ANATOMY, ANATOMY_GROUPS} from './topic-categories.js';
 import {anatomicalGroup} from './evidence-groups.js';
 
+// Group navigation labels; retain doses, comparisons, safety outcomes and study IDs.
+export function therapyTopic(id, entry = {}) {
+  const name = `${id} ${entry.name || ''}`.toLowerCase().replace(/[_–-]/g, ' ');
+  if (/\bsfa\b|semantic feature analysis/.test(name)) return 'Semantic Feature Analysis';
+  if (/\btdcs\b|transcranial direct current stimulation/.test(name)) return 'Brain stimulation (tDCS)';
+  if (/cueing hierarchy|cueing hierarchies|word finding approach/.test(name)) return 'Word-finding and cueing approaches';
+  if (/intention treatment/.test(name)) return 'Intention treatment';
+  if (/treatment deferral|control treatment|verse.*uc plus/.test(name)) return 'Treatment comparisons and control conditions';
+  if (/intensiv|intensity/.test(name)) return 'Speech and language therapy intensity';
+  if (/functional.*pragmatic|functionally tailored/.test(name)) return 'Functional communication approaches';
+  if (/auditory discrimination|vocoded speech|healthy training/.test(name)) return 'Auditory and speech-perception training';
+  if (/thrombolysis/.test(name)) return 'Acute stroke treatment';
+  if (/slt tailoring|mixed expressive receptive|semantic phonological recovery|behavioural therapy repetition/.test(name)) return 'Targeted language therapy';
+  return entry.name || String(id).replaceAll('_', ' ');
+}
+
 export function overviewLabel(id, entry, finding) {
+  if (entry.category === 'Therapies') return therapyTopic(id, entry);
   if (entry.category === ANATOMY) {
     if (entry.subcategory === ANATOMY_GROUPS[1]) return 'White-matter regions and pathways';
     const broad = anatomicalGroup(finding, id)[0];

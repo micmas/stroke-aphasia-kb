@@ -472,7 +472,7 @@ function overview(index) {
   const regionEntries = Object.values(entries).filter((e) => e.bucket === 'regions');
   const reachable = regionEntries.filter((e) => index.mapping.regions[e.id]).length;
   const unreachable = regionEntries.filter((e) => !index.mapping.regions[e.id]);
-  const therapies = Object.values(entries).filter((e) => e.bucket === 'therapies').map((e) => ({ id: e.id, label: e.name, n: (index.bySource.get(e.id) || []).length + (index.byTarget.get(e.id) || []).length })).sort((a, b) => b.n - a.n);
+
 
   return h('div', { class: 'overview-page' },
     h('header', { class: 'editorial-hero' },
@@ -501,7 +501,7 @@ function overview(index) {
         h('section', {}, h('h2', { text: 'Language difficulties' }), barList(countBy('impairment'), { max: 12, link: x => entryHref(x.id) }))),
       h('p', { class: 'small muted', text: 'Bars count findings, not evidence quality. Select a topic to explore its detailed entries.' }),
       h('h2', { text: FACTORS }), topicList(FACTORS),
-      h('h2', { text: 'Therapies' }), barList(therapies, { link: x => entryHref(x.id) }),
+      h('h2', { text: 'Therapies' }), topicList('Therapies'),
       h('h2', { text: 'Atlas mapping' }), h('p', { text: `${reachable} of ${regionEntries.length} region entries can currently be matched to a lesion through the atlas mapping.` }),
       unreachable.length ? h('details', {}, h('summary', { text: 'Regions without a mapping' }), h('ul', {}, unreachable.map(e => h('li', {}, entryLink(index, e.id), index.unmappedReason(e.id) ? ` — ${index.unmappedReason(e.id)}` : '')))) : null),
     h('details', { class: 'editorial-details' }, h('summary', { text: 'Data version and reuse' }),

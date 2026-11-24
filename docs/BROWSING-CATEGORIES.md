@@ -25,3 +25,9 @@ listing every measurement and study variant. Topic pages expose the original
 entries and exact matching findings. Each finding is counted once per topic,
 even when both ends of a finding belong to that topic. This is navigation grouping,
 not a synthesis of effects or a merger of concept IDs.
+
+Therapy topics use the same overview-to-breakdown navigation. Variants of Semantic
+Feature Analysis and tDCS share their respective topics; intensity variants are
+grouped separately from named approaches. Safety, dose, follow-up and comparator
+entries remain distinct in the breakdown. Topic counts are not pooled treatment
+effects, and a safety finding is not evidence of efficacy.
