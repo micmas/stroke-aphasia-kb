@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-24T16:24:24.465978+00:00",
+  "last_publication_snapshot": "2026-11-24T18:11:22.242643+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -123,7 +123,12 @@
     "Meier2019",
     "Meinzer2010",
     "Mirman2015",
-    "MirmanThye2018"
+    "MirmanThye2018",
+    "Mohr2017",
+    "Moore2024",
+    "Munsch2016",
+    "NadeauCrosson1997",
+    "Naeser2005"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
   "recovery_publication_ready_seen": false

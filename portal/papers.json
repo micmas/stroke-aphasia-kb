@@ -1570,11 +1570,14 @@
   },
   "@Munsch2016": {
    "annotated": "pdf/C0141_Munsch2016_annotated.pdf",
-   "bytes": 1090263,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "bbadf2962a20bc66ae9ae36d153adca7810e9d5ae80f4f5e3176f3b1ac6021c6",
+   "bytes": 1390306,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-24T18:11:22.242643+00:00",
    "label": "no open copy known",
    "public": false,
-   "sha256": "aab31857adbbf1225406db6c6509f4845adbc845375d37179515e89f0851c899"
+   "sha256": "a175e9579112a74e4f336239a1f811172db929633d34377dd39e74af4744f925"
   },
   "@NadeauCrosson1997": {
    "annotated": "pdf/C0051_NadeauCrosson1997_annotated.pdf",
@@ -1586,11 +1589,14 @@
   },
   "@Naeser2005": {
    "annotated": "pdf/C0045_Naeser2005_annotated.pdf",
-   "bytes": 672383,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "d4b5fd4f877174edb0552091c938cf6012165c0a5f6bd7fbbf1645d16c767291",
+   "bytes": 780886,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-24T18:11:22.242643+00:00",
    "label": "publisher TDM licence (text mining only)",
    "public": false,
-   "sha256": "28494f55ef4464bbc1fc660637dc8c7160138aeae7abcf4b63c750942d05c1e1"
+   "sha256": "8245df61ea34fc61c675bb762ba85125f21cd4013e4761b7bc7da21df5369d47"
   },
   "@Nouwens2017": {
    "annotated": "cc/C0138_Nouwens2017_annotated.pdf",

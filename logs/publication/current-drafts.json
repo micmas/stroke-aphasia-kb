@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-24T16:24:24.465978+00:00",
+  "snapshot_at": "2026-11-24T18:11:22.242643+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -5678,6 +5678,238 @@
       "source_sha256": "80e0c769b6a0eba41ca1d51d18f3c6e912e6394b6c7fdfe1d6968cc919f595c1",
       "paper": "MirmanThye2018",
       "candidate": "R003"
+    },
+    "drafts/regions/picture_naming_network_cluster__Moore2024__R001.md": {
+      "source_sha256": "1c55c26eb0e0a15b2c4fae71aee0d1c7aea0ccc8ccd190e8c16b34aec866609e",
+      "paper": "Moore2024",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_temporo_parietal_disconnection_cluster__Moore2024__R002.md": {
+      "source_sha256": "22a4bc46d19655a079807c50b931279ea9f92f2c9c46db1f5f6e6163f317e82f",
+      "paper": "Moore2024",
+      "candidate": "R002"
+    },
+    "drafts/regions/sentence_reading_cluster__Moore2024__R003.md": {
+      "source_sha256": "6fe2bd06127a8f90ecfa6f39cb53ef1cc6131b702b6a47d28bbcff950bbfae28",
+      "paper": "Moore2024",
+      "candidate": "R003"
+    },
+    "drafts/regions/episodic_recognition_cluster__Moore2024__R004.md": {
+      "source_sha256": "5ea60683383be89f9021fa22d521c2253ffc7c57a5c3c7b1b707f54985dd7779",
+      "paper": "Moore2024",
+      "candidate": "R004"
+    },
+    "drafts/regions/orientation_disconnection_cluster__Moore2024__R005.md": {
+      "source_sha256": "621e67736005a5d1405a9fc9d5965a613893f91b5226ba4152e71cf176634d36",
+      "paper": "Moore2024",
+      "candidate": "R005"
+    },
+    "drafts/regions/verbal_recall_disconnection_cluster__Moore2024__R006.md": {
+      "source_sha256": "5ca54cec6d928c1c077e9756aa4b8427fbe47448ad5eef6ba65aea42b1e25f2c",
+      "paper": "Moore2024",
+      "candidate": "R006"
+    },
+    "drafts/regions/number_writing_disconnection_cluster__Moore2024__R007.md": {
+      "source_sha256": "c516b60697754a57fe8d63e2e696c9d8edeeaa7c014f4a8f8642486c15ed41e7",
+      "paper": "Moore2024",
+      "candidate": "R007"
+    },
+    "drafts/regions/calculation_disconnection_cluster__Moore2024__R008.md": {
+      "source_sha256": "4603efd06ab31576a486e9b47971dc6bdb85ea8065e0e1d22882572101007543",
+      "paper": "Moore2024",
+      "candidate": "R008"
+    },
+    "drafts/regions/ocs_cancellation_total_disconnection__Moore2024__R009.md": {
+      "source_sha256": "f353f0471834612b4f896b037a589ef5aee15dce94f9e23187ace6f539108fbe",
+      "paper": "Moore2024",
+      "candidate": "R009"
+    },
+    "drafts/regions/right_hemisphere_wide_network_cluster__Moore2024__R010.md": {
+      "source_sha256": "813002b666bc3063324a2468f705b737600c18f1710c62d1b36d25512e156efb",
+      "paper": "Moore2024",
+      "candidate": "R010"
+    },
+    "drafts/regions/right_temporoparietal_cluster__Moore2024__R011.md": {
+      "source_sha256": "08d53332833a85c09df3f98dcd54002492cbf4bdc94476172d997c1601f702c9",
+      "paper": "Moore2024",
+      "candidate": "R011"
+    },
+    "drafts/regions/right_egocentric_neglect_cluster__Moore2024__R012.md": {
+      "source_sha256": "a7feaf3cd1b718eeb6d8451a744e2500b5bf725282e51cde00935898e325a836",
+      "paper": "Moore2024",
+      "candidate": "R012"
+    },
+    "drafts/regions/visual_field_task_disconnection_cluster__Moore2024__R014.md": {
+      "source_sha256": "445446d70b280ef0663d329121fdb28ed72d9bd59d9116f046c62da714157fad",
+      "paper": "Moore2024",
+      "candidate": "R014"
+    },
+    "drafts/regions/praxis_disconnection_cluster__Moore2024__R015.md": {
+      "source_sha256": "b952c0c71ce7ed76e65facd0d4f2991f23420f65ecb1edeab4059a35f970414a",
+      "paper": "Moore2024",
+      "candidate": "R015"
+    },
+    "drafts/regions/network_edges_trail_making__Moore2024__R016.md": {
+      "source_sha256": "920f317363fcbc8e56191d2a96c1b2e4cd80d514e1a4b86eb9fde818b4fd829a",
+      "paper": "Moore2024",
+      "candidate": "R016"
+    },
+    "drafts/regions/left_anterior_temporal_cluster__Moore2024__R017.md": {
+      "source_sha256": "cca27c7dbc31c15b8ba2e014833500dfe9119dbc410fcf755162531bacc90145",
+      "paper": "Moore2024",
+      "candidate": "R017"
+    },
+    "drafts/regions/left_central_opercular_cluster__Moore2024__R018.md": {
+      "source_sha256": "8f2f962a4d11c0dd434310e4ce16231a9d4359428f0893117974c48b6489c2ad",
+      "paper": "Moore2024",
+      "candidate": "R018"
+    },
+    "drafts/predictors/ocs_semantics_sccan__Moore2024__R019.md": {
+      "source_sha256": "d643597bdd3afd120b70637d40452c18723561a9436b71be78a8dabef4ba5a7c",
+      "paper": "Moore2024",
+      "candidate": "R019"
+    },
+    "drafts/predictors/ocs_orientation_sccan__Moore2024__R020.md": {
+      "source_sha256": "4c73d325ca69ee458e50094f75320b62a43c0162f5da1005c1247151f4b4e91d",
+      "paper": "Moore2024",
+      "candidate": "R020"
+    },
+    "drafts/predictors/episodic_recognition_sccan_model__Moore2024__R021.md": {
+      "source_sha256": "a32c2d3af79b1aa51ad2f02717459eebf7c939b2dfee1ca32c0e63cdef5184bb",
+      "paper": "Moore2024",
+      "candidate": "R021"
+    },
+    "drafts/regions/verbal_recall_sccan_cluster__Moore2024__R022.md": {
+      "source_sha256": "7a7445a4326308b54de0ae87e4b0b4771c3c4aab027612951b353d6216997b3f",
+      "paper": "Moore2024",
+      "candidate": "R022"
+    },
+    "drafts/regions/number_writing_cluster__Moore2024__R023.md": {
+      "source_sha256": "ecbaf8c2234720c6b83ad61c07fdaa2de54c83ec13731139119b010f6eaf7bde",
+      "paper": "Moore2024",
+      "candidate": "R023"
+    },
+    "drafts/regions/calculation_impairment_cluster__Moore2024__R024.md": {
+      "source_sha256": "1d691c63cb3a212afc744e1e87e5470e356e3637a960c81ef17295ee4b96974f",
+      "paper": "Moore2024",
+      "candidate": "R024"
+    },
+    "drafts/regions/right_posterior_parietal_occipital_temporal_cluster__Moore2024__R025.md": {
+      "source_sha256": "5365ec07cf9542efb5f4a2ae26e53d99c5ecfdc072cc86501bf9f0a9b7412829",
+      "paper": "Moore2024",
+      "candidate": "R025"
+    },
+    "drafts/regions/right_temporo_parietal_occipital_cluster__Moore2024__R026.md": {
+      "source_sha256": "df07c10bf42e8bae870a51f4a9aa87515673e1a64b307c16ee58f116f793801b",
+      "paper": "Moore2024",
+      "candidate": "R026"
+    },
+    "drafts/predictors/sccan_neglect_voxel_model__Moore2024__R027.md": {
+      "source_sha256": "28823d44ec096afd1d45c44a72b8c8c77daae51746fb5e3273d9dd6e150ccfe7",
+      "paper": "Moore2024",
+      "candidate": "R027"
+    },
+    "drafts/regions/visual_field_cluster__Moore2024__R028.md": {
+      "source_sha256": "1702c5b6bbf5ea28ad7f1894b0317ac495e7651fccdc411cfff652878d3bfd72",
+      "paper": "Moore2024",
+      "candidate": "R028"
+    },
+    "drafts/predictors/ocs_gesture_imitation_sccan__Moore2024__R029.md": {
+      "source_sha256": "12314332855eb82b2acee4982fecbb5fa3ef224a9d99994ce1eb0b7be7e134b7",
+      "paper": "Moore2024",
+      "candidate": "R029"
+    },
+    "drafts/regions/trail_making_cluster__Moore2024__R030.md": {
+      "source_sha256": "4db85c299ed5de60473388afa6e8b0b94701fbd8378d62ead279bd781a92afc6",
+      "paper": "Moore2024",
+      "candidate": "R030"
+    },
+    "drafts/predictors/lesion_volume__Moore2024__R031.md": {
+      "source_sha256": "693ea5a55e29fdbb1f814e0b36d88385914043a6e140416e96e6cfbe98e27fbd",
+      "paper": "Moore2024",
+      "candidate": "R031"
+    },
+    "drafts/regions/age__Munsch2016__R002.md": {
+      "source_sha256": "aa0f69b1b9312f9cde72488ed28b33a506bfc7978ae927040e461a6861977476",
+      "paper": "Munsch2016",
+      "candidate": "R002"
+    },
+    "drafts/predictors/initial_nihss__Munsch2016__R003.md": {
+      "source_sha256": "2606167a847c49c3c0e943b559b44c10b6a6ce0190136759147708be1e3fc49c",
+      "paper": "Munsch2016",
+      "candidate": "R003"
+    },
+    "drafts/predictors/stroke_volume__Munsch2016__R004.md": {
+      "source_sha256": "a1eab79aed98c3dfa08ed96ac76354cd0f5ed3d10a60ea3e0eec3a9e359df0ca",
+      "paper": "Munsch2016",
+      "candidate": "R004"
+    },
+    "drafts/predictors/stroke_location_moca_predictor__Munsch2016__R005.md": {
+      "source_sha256": "bae315f1759316b8230124fb485a37236f74c7511ce3e47265b836cda5c0a2db",
+      "paper": "Munsch2016",
+      "candidate": "R005"
+    },
+    "drafts/predictors/baseline_nihss__Munsch2016__R006.md": {
+      "source_sha256": "5dab8aa3eb4e52620376e6895caca194915630459dbd86f9a9c3ec335137aca3",
+      "paper": "Munsch2016",
+      "candidate": "R006"
+    },
+    "drafts/regions/age__Munsch2016__R007.md": {
+      "source_sha256": "a3881190f9aa5d401d95173a12b6658568ab135804d248525e888b21eef10306",
+      "paper": "Munsch2016",
+      "candidate": "R007"
+    },
+    "drafts/predictors/baseline_nihss__Munsch2016__R009.md": {
+      "source_sha256": "3e7830f1575a8d3141b5d6f85706cf4b1238f85750d587e8c9ca63798ceb3a96",
+      "paper": "Munsch2016",
+      "candidate": "R009"
+    },
+    "drafts/predictors/stroke_location_moca_predictor__Munsch2016__R010.md": {
+      "source_sha256": "6a3b057fb963462cb0d8168601b5050f06a179dbf49d4e5416b2039cf819a35d",
+      "paper": "Munsch2016",
+      "candidate": "R010"
+    },
+    "drafts/predictors/stroke_location_mrs_predictor__Munsch2016__R011.md": {
+      "source_sha256": "0f679a1ccfff3718e6ac6b8b557c7f5f3d71d317e47e2d96db27ba99e964d91f",
+      "paper": "Munsch2016",
+      "candidate": "R011"
+    },
+    "drafts/predictors/stroke_location_cognitive_model__Munsch2016__R012.md": {
+      "source_sha256": "bdee8910fe26fab4307f978310a7cdf0c31451ed42a380d01a36b0e26f14df3a",
+      "paper": "Munsch2016",
+      "candidate": "R012"
+    },
+    "drafts/predictors/stroke_location_cognitive_predictor__Munsch2016__R016.md": {
+      "source_sha256": "677bea018b5e99f5b657df88b157363afb30f5ae950e89840997a39066f45d5c",
+      "paper": "Munsch2016",
+      "candidate": "R016"
+    },
+    "drafts/regions/frontal_itp_nr_cm_system__NadeauCrosson1997__R011.md": {
+      "source_sha256": "7ea1652d71f8345a8c459f8c0b1b892257596ce5d4101a7a09524f292b6da962",
+      "paper": "NadeauCrosson1997",
+      "candidate": "R011",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Nadeau and Crosson 1997 explicitly reviews the subcortical aphasia literature (PDF p1). The frontal-ITP-NR-CM conclusion on p24 synthesizes reported cases and four anatomical case descriptions (pp21-24), rather than a cohort lesion-symptom mapping study. This publication copy labels evidence_quality cohort and method LSM; withheld pending source-design review. Original outputs preserved."
+    },
+    "drafts/therapies/rtms_r_pars_triangularis__Naeser2005__R001.md": {
+      "source_sha256": "cc5976b244c932989d2fef65a5868926f7a12a4bd4eaff24f79c7fc299a6e655",
+      "paper": "Naeser2005",
+      "candidate": "R001"
+    },
+    "drafts/therapies/rtms_r_pars_triangularis__Naeser2005__R002.md": {
+      "source_sha256": "c881772be42afcaed47346c712f5deb0fe2797430e17fc3873e218e891d5d9f7",
+      "paper": "Naeser2005",
+      "candidate": "R002"
+    },
+    "drafts/therapies/rtms_r_pars_triangularis__Naeser2005__R003.md": {
+      "source_sha256": "a8ffeb08d4d58e84d4823824d59baa23f83c74b7b40d50f02000c6b091862f4e",
+      "paper": "Naeser2005",
+      "candidate": "R003"
+    },
+    "drafts/therapies/rtms_r_pars_triangularis_safety__Naeser2005__R004.md": {
+      "source_sha256": "02ea506d904e1c4fcd89fb49639e0f2ec1a025825471ffdad27422c65c9dd32b",
+      "paper": "Naeser2005",
+      "candidate": "R004"
     }
   }
 }
