@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-24T05:15:26.475331+00:00",
+  "snapshot_at": "2026-11-24T07:50:31.761892+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -4388,6 +4388,290 @@
       "source_sha256": "e842b6829d17a5fe66271a6d5144887ce81cf1c2500b3e8d92ce2a015f1e2b38",
       "paper": "Kourtidou2021",
       "candidate": "R011"
+    },
+    "drafts/predictors/sentence_processing_total_score_model__Kristinsson2020__R001.md": {
+      "source_sha256": "08664d3811e2dba9f3c910cea2b54b3b317b89e46edb6b806842d31998ccd805",
+      "paper": "Kristinsson2020",
+      "candidate": "R001"
+    },
+    "drafts/predictors/non_can_prediction_model__Kristinsson2020__R003.md": {
+      "source_sha256": "119dd80b585b927edd8b4ce2d552e7c253e343e4544cfbca8ec1eed91c4d83b7",
+      "paper": "Kristinsson2020",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Kristinsson2020 R003 identifies MTGpole as a predictor in the non-CAN model. The prose on PDF page 8 initially names MTGpole, but Table 4 on that page and Figure 3 on page 9 label the fifth predictor MTG (distinct predefined ROIs in Table 3). The draft repeats MTGpole without acknowledging this source discrepancy. Quarantine the publication copy pending anatomical source reconciliation and human review; preserve the original model output."
+    },
+    "drafts/predictors/non_can_residual_predictor_model__Kristinsson2020__R004.md": {
+      "source_sha256": "ea45f4a0ef32f715e1b602f76500773834aedda3223388f6db6e880d296068ab",
+      "paper": "Kristinsson2020",
+      "candidate": "R004"
+    },
+    "drafts/predictors/posterior_vs_frontal_model_total_score__Kristinsson2020__R005.md": {
+      "source_sha256": "129783c48f9fcfd7a649a739044319aa27f59d7507f8ff5259a43dea17f0870c",
+      "paper": "Kristinsson2020",
+      "candidate": "R005"
+    },
+    "drafts/predictors/posterior_vs_frontal_can_model__Kristinsson2020__R006.md": {
+      "source_sha256": "409af6469a148e82fe65eaec0025f4591ec692609b254572a294e18b14ffe3ed",
+      "paper": "Kristinsson2020",
+      "candidate": "R006"
+    },
+    "drafts/predictors/posterior_vs_frontal_non_can_model__Kristinsson2020__R007.md": {
+      "source_sha256": "1741aab21851f48d5c019e749ceb8c78980529a9aaab98944df029797ddd9d91",
+      "paper": "Kristinsson2020",
+      "candidate": "R007"
+    },
+    "drafts/predictors/posterior_vs_frontal_non_can_residual_model__Kristinsson2020__R008.md": {
+      "source_sha256": "1c60a4c11dc9cb3421cab2b98aaf1bfe7ad39aadb0a507e7ebe01a539bad9236",
+      "paper": "Kristinsson2020",
+      "candidate": "R008"
+    },
+    "drafts/predictors/logit_model_total_score_pmtg__Kristinsson2020__R009.md": {
+      "source_sha256": "e69b78bd4921243b0edc1bae59723d6307a5caf36947c8cfe9c795ac408b1231",
+      "paper": "Kristinsson2020",
+      "candidate": "R009"
+    },
+    "drafts/predictors/logit_model_can_accuracy__Kristinsson2020__R010.md": {
+      "source_sha256": "1830899e6f607197699fdb921f0878170ce95c427b6d52b73f79095398df74fb",
+      "paper": "Kristinsson2020",
+      "candidate": "R010"
+    },
+    "drafts/predictors/non_can_accuracy_predictor_model__Kristinsson2020__R011.md": {
+      "source_sha256": "c393d6378b53ec25c2a7f0dda64aa9c958a3b3905fdf8b355d3e5693100f51e5",
+      "paper": "Kristinsson2020",
+      "candidate": "R011"
+    },
+    "drafts/predictors/pmtg_noncan_residual_predictor__Kristinsson2020__R012.md": {
+      "source_sha256": "9e52579fdbf7acc3bd7a02cc39f7db6dfa3ced43a2537701950907e3e2f537ff",
+      "paper": "Kristinsson2020",
+      "candidate": "R012"
+    },
+    "drafts/predictors/non_can_residual_predictor_model__Kristinsson2020__R013.md": {
+      "source_sha256": "2b5b471c0c4876aa388d45fca51a6be98a095b201f87b6a26290c921f2750dc6",
+      "paper": "Kristinsson2020",
+      "candidate": "R013"
+    },
+    "drafts/regions/lesion_volume__Kristinsson2021__R001.md": {
+      "source_sha256": "3d50c2e0bfc96219082ef861de6ddb95a9fbd6149df54e19d2ccf2fa5464789e",
+      "paper": "Kristinsson2021",
+      "candidate": "R001"
+    },
+    "drafts/predictors/multimodal_imaging_features_wab_aq__Kristinsson2021__R003.md": {
+      "source_sha256": "44c614fbf8f0b04d82ed5ad13bfdd922b1475729f2a2762ae5e4e46b9443712a",
+      "paper": "Kristinsson2021",
+      "candidate": "R003"
+    },
+    "drafts/predictors/multimodal_imaging_features__Kristinsson2021__R004.md": {
+      "source_sha256": "2c409919058e7c72579d22feff17818da31fc182038abf1910d359e726da6d3e",
+      "paper": "Kristinsson2021",
+      "candidate": "R004"
+    },
+    "drafts/predictors/multimodal_neuroimaging_prediction_model__Kristinsson2021__R005.md": {
+      "source_sha256": "10389943d9997fdd8c7b5c12ffe19280b49cd6949b0edf25dac7f65f08b40569",
+      "paper": "Kristinsson2021",
+      "candidate": "R005"
+    },
+    "drafts/predictors/multimodal_imaging_predictor_wab_aq__Kristinsson2021__R006.md": {
+      "source_sha256": "bcf5b8f49d9656b6972586e0fe78197d61d13589e354d6d18da065bb6fe8fdc0",
+      "paper": "Kristinsson2021",
+      "candidate": "R006"
+    },
+    "drafts/predictors/multimodal_prediction_model_fluency_naming__Kristinsson2021__R009.md": {
+      "source_sha256": "691457146badc7e2ad4df0edfce11ee8dee0bd4314591092eeefe121b0385acc",
+      "paper": "Kristinsson2021",
+      "candidate": "R009",
+      "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
+      "publication_disposition_reason": "Kristinsson2021 R009 generalizes the two nonsignificant comparisons against the FA model to all single-modality and lesion-volume models. The sentence continues across PDF pages 11-12 with \"Naming compared to the FA modality\"; Table 7 shows Fluency and Naming comparisons against CBF, fMRI, lesion-load and lesion volume are significant, while only FA comparisons are nonsignificant (p=.1441 and .2949). Quarantine the publication copy pending correction and review; preserve the original model output."
+    },
+    "drafts/predictors/fmri_svr_wab_aq__Kristinsson2021__R010.md": {
+      "source_sha256": "533270decce1f8fab217e1f91c436ca6f1688289c6d22482b8ed4a7cb3da044f",
+      "paper": "Kristinsson2021",
+      "candidate": "R010"
+    },
+    "drafts/predictors/fa_lesion_load_single_modality_model__Kristinsson2021__R011.md": {
+      "source_sha256": "5c12f9a235880b3c1e9693eda0410961e17ec18e825f7d4bd054df8cff9f5859",
+      "paper": "Kristinsson2021",
+      "candidate": "R011"
+    },
+    "drafts/predictors/fa_naming_predictor__Kristinsson2021__R012.md": {
+      "source_sha256": "b86c7861df488e8fad51118bfb8e62461da1e3b4d302b8d2cb5c0d89728d234d",
+      "paper": "Kristinsson2021",
+      "candidate": "R012"
+    },
+    "drafts/predictors/lesion_load_fa_prediction_model__Kristinsson2021__R013.md": {
+      "source_sha256": "e1fe450a19ecd8cbcf2f221ce9001a47dc59d77bb3996d65fa7b681a6bc21c5f",
+      "paper": "Kristinsson2021",
+      "candidate": "R013"
+    },
+    "drafts/predictors/multimodal_plsr_wab_model__Kristinsson2025__R001.md": {
+      "source_sha256": "753f4d0940413306837f0e8fb44e4f6385c8cc83713e14b26a325ab98b3c73b5",
+      "paper": "Kristinsson2025",
+      "candidate": "R001"
+    },
+    "drafts/predictors/multimodal_plsr_model__Kristinsson2025__R002.md": {
+      "source_sha256": "5412832a2fb2dd6fce424d584452214a2e0ac1a7424b709237184634dbd52b42",
+      "paper": "Kristinsson2025",
+      "candidate": "R002"
+    },
+    "drafts/predictors/multimodal_plsr_lv1__Kristinsson2025__R003.md": {
+      "source_sha256": "728a6182c4b068abc948ac8ed92cd78a9c2eb439e2861708c3cfb7689ea493aa",
+      "paper": "Kristinsson2025",
+      "candidate": "R003"
+    },
+    "drafts/predictors/shared_lesion_characteristics_model__Kristinsson2025__R004.md": {
+      "source_sha256": "f997e3bc004ead64170f67ed0f8679247d23c7e8d4eec95c54dfeb0c6f1cea43",
+      "paper": "Kristinsson2025",
+      "candidate": "R004"
+    },
+    "drafts/predictors/shared_lesion_characteristics_model__Kristinsson2025__R005.md": {
+      "source_sha256": "2b12cfd61bf820bedb639896bfdd4f12cfc3708f5567bd5399c2a1868edf38fd",
+      "paper": "Kristinsson2025",
+      "candidate": "R005"
+    },
+    "drafts/regions/auditory_comprehension_unique_cluster__Kristinsson2025__R006.md": {
+      "source_sha256": "20edbeab06cb980300e93bb6213bb9cbb4048b851a70f94a1b177b1e8adaa160",
+      "paper": "Kristinsson2025",
+      "candidate": "R006"
+    },
+    "drafts/regions/naming_unique_cluster__Kristinsson2025__R007.md": {
+      "source_sha256": "c33f6fc1dba0514d4d412c03db4e8dc7db231e7bc78a9311f78a2642b0373830",
+      "paper": "Kristinsson2025",
+      "candidate": "R007"
+    },
+    "drafts/regions/repetition_unique_network__Kristinsson2025__R008.md": {
+      "source_sha256": "7b94769bb3dbfc2ed381b029eee4df40dcbbcb7ac17f21a2a39c6442033b263a",
+      "paper": "Kristinsson2025",
+      "candidate": "R008"
+    },
+    "drafts/regions/spontaneous_speech_unique_cluster__Kristinsson2025__R009.md": {
+      "source_sha256": "d86d20d33c1a728e72f399ce7ac2b90f73d2fd3245af78ab667963d1ce781035",
+      "paper": "Kristinsson2025",
+      "candidate": "R009"
+    },
+    "drafts/predictors/shared_lesion_model_wab_r__Kristinsson2025__R010.md": {
+      "source_sha256": "ba6dfa6cf3a1783adabd220abcf05defd6d4f32cb8bf8d3ba75e8b8197f268d4",
+      "paper": "Kristinsson2025",
+      "candidate": "R010"
+    },
+    "drafts/predictors/md_unique_regions_wab_r__Kristinsson2025__R011.md": {
+      "source_sha256": "6bb73767fc07bc6f4b8aac4bcf36f91cae275a0eef6781da28e7cb579b4d98dd",
+      "paper": "Kristinsson2025",
+      "candidate": "R011"
+    },
+    "drafts/predictors/spontaneous_speech_unique_md_predictor__Kristinsson2025__R013.md": {
+      "source_sha256": "20300f14d0782d3266f42d47a890ea870ce5876075e84a22bff08bad556c1857",
+      "paper": "Kristinsson2025",
+      "candidate": "R013"
+    },
+    "drafts/regions/posterior_temporoparietal_cluster__Kummerer2013__R001.md": {
+      "source_sha256": "e2a068d075c9a4c8d85b232b15ad98b2deaa5db84e75232cc5a25f722ab09fcc",
+      "paper": "Kummerer2013",
+      "candidate": "R001"
+    },
+    "drafts/regions/ventral_extreme_capsule_cluster__Kummerer2013__R002.md": {
+      "source_sha256": "9278923ad9307920a9126ac7dcb3d0b0eb748ef4e9c9f4ec2be4c6c44bf3e8f4",
+      "paper": "Kummerer2013",
+      "candidate": "R002"
+    },
+    "drafts/regions/dorsal_fibre_tract__Kummerer2013__R003.md": {
+      "source_sha256": "418e84f14e2e54f00c0c5fcc3ac6b388cd52880f048f453ca9873c62c47ac24d",
+      "paper": "Kummerer2013",
+      "candidate": "R003"
+    },
+    "drafts/regions/ventral_fibre_tract__Kummerer2013__R004.md": {
+      "source_sha256": "ad8e027b7e7873a15fe7f11f3898a8897a916a621c6199578ad75d88d83e5e54",
+      "paper": "Kummerer2013",
+      "candidate": "R004"
+    },
+    "drafts/regions/dorsal_association_tract_damage__Kummerer2013__R009.md": {
+      "source_sha256": "761940de04e0cf30abae97e9e099c304b7cf4b72edfc6f5c766990ac3b96026f",
+      "paper": "Kummerer2013",
+      "candidate": "R009"
+    },
+    "drafts/regions/ventral_association_tract_damage__Kummerer2013__R010.md": {
+      "source_sha256": "491d0d88169891f4c1a6c7d2bb225a24e163fb3b49d2e3786d3e59388dc503aa",
+      "paper": "Kummerer2013",
+      "candidate": "R010"
+    },
+    "drafts/predictors/lesion_volume__Kummerer2013__R011.md": {
+      "source_sha256": "117fed21d0c8835fb6a4b443a1a642fdd4938d4c6a21337693c989d26d286b28",
+      "paper": "Kummerer2013",
+      "candidate": "R011"
+    },
+    "drafts/predictors/aphasia_latent_factors_model__Lacey2017__R001.md": {
+      "source_sha256": "647a27195040703a4b1a6eda7ad4db002db7ed1fb03ce24fd5c901fe460ec4cc",
+      "paper": "Lacey2017",
+      "candidate": "R001"
+    },
+    "drafts/predictors/word_finding_fluency_factor__Lacey2017__R002.md": {
+      "source_sha256": "857f102bf15721b6554f6e823f4bbf8df7d4dfac1f7ab24925330b111f997ecf",
+      "paper": "Lacey2017",
+      "candidate": "R002"
+    },
+    "drafts/predictors/comprehension_factor__Lacey2017__R003.md": {
+      "source_sha256": "8411c07735133617fc146514c04772c74d0bdc0d39d1d9ae0ec657ba2a92ead0",
+      "paper": "Lacey2017",
+      "candidate": "R003"
+    },
+    "drafts/regions/phonology_working_memory_cluster__Lacey2017__R004.md": {
+      "source_sha256": "8e9a82fd13e1a08d3434dbf47db0df2cc29d18c4df7631abcdeea27beb52a48e",
+      "paper": "Lacey2017",
+      "candidate": "R004"
+    },
+    "drafts/regions/executive_function_cluster__Lacey2017__R005.md": {
+      "source_sha256": "25935dc63da32baa928396405642888bf1975598abfebec34085be29dfda2104",
+      "paper": "Lacey2017",
+      "candidate": "R005"
+    },
+    "drafts/predictors/naming_tasks_word_finding_factor__Lacey2017__R006.md": {
+      "source_sha256": "24b61ba2c764cdffeb4f8519bacdeae24513e0c60f3e25c9d9d56e002f9e4a82",
+      "paper": "Lacey2017",
+      "candidate": "R006"
+    },
+    "drafts/predictors/letter_fluency__Lacey2017__R007.md": {
+      "source_sha256": "6e5196b89545f4b01ee69c901b07271281c1eeea7af92b7dfa200e73fac5e536",
+      "paper": "Lacey2017",
+      "candidate": "R007"
+    },
+    "drafts/predictors/auditory_comprehension_word_level__Lacey2017__R008.md": {
+      "source_sha256": "786c10838204bf7324b185858aba0e4545c47ca097af4e3f8f08161f7bad98d3",
+      "paper": "Lacey2017",
+      "candidate": "R008"
+    },
+    "drafts/predictors/working_memory_auditory_comprehension_tests__Lacey2017__R009.md": {
+      "source_sha256": "5e636d872952b9cef249f57b5025fb3ea9943d5bc94544c3fdc4eebf696fff10",
+      "paper": "Lacey2017",
+      "candidate": "R009"
+    },
+    "drafts/predictors/bdae_embedded_sentences__Lacey2017__R010.md": {
+      "source_sha256": "72cce9362cbeea3e8e84be243b7298ababcd07c51c4060d5feb70178633c4ab1",
+      "paper": "Lacey2017",
+      "candidate": "R010"
+    },
+    "drafts/predictors/pyramids_and_palm_trees_test__Lacey2017__R011.md": {
+      "source_sha256": "6758d86230a4be7bdb14a325b185f35d2a89587708b13dfb5499fc29da22e4a1",
+      "paper": "Lacey2017",
+      "candidate": "R011"
+    },
+    "drafts/predictors/demographic_factors__Lacey2017__R012.md": {
+      "source_sha256": "874d48a74e244cb5eb215df6d1097b1c57c7e7848e2cbc7bcd5b1efad90954b1",
+      "paper": "Lacey2017",
+      "candidate": "R012"
+    },
+    "drafts/regions/word_finding_fluency_cluster__Lacey2017__R013.md": {
+      "source_sha256": "0b31869baf6312b2c03912607ddec455c57c5755c98a1982257adf9fbad37686",
+      "paper": "Lacey2017",
+      "candidate": "R013"
+    },
+    "drafts/regions/superior_temporal_cortex_anterior_heschl_gyrus__Lacey2017__R014.md": {
+      "source_sha256": "13b269e2dc0b5716eec286e403981e97e617d18c4b29f5d91d2de15a53e1c13e",
+      "paper": "Lacey2017",
+      "candidate": "R014"
+    },
+    "drafts/ingredients/atrial_fibrillation__Laska2001__R002.md": {
+      "source_sha256": "1574027b1096c714a2bfe1cd19cb6b882e4efdbfb76a29460d841ef6723432d2",
+      "paper": "Laska2001",
+      "candidate": "R002"
     }
   }
 }
