@@ -91,6 +91,7 @@ do not edit by hand. Rules and decisions: [README.md](README.md). ⚑ = judgemen
 | `left_inferior_longitudinal_fasciculus` | left | `ilf` | Same tract. |
 | `left_inferior_temporal_gyrus` | left | `itg` | Same structure. |
 | `left_insula` | left | `insula` | Same structure. |
+| ⚑ `left_insular_precentral_gyrus_cluster` | left | `insula` | Alias of left_precentral_gyrus_insula in Dronkers1996 (R001, R002); the source describes the same discrete region. Inherits the whole-insula approximation; does not localise the source cluster precisely. |
 | ⚑ `left_long_segment_arcuate_fasciculus` | left | `arcuate_fasciculus` | The long (direct fronto-temporal) segment is part of XTRACT's arcuate, which does not separate the segments. |
 | `left_middle_frontal_gyrus` | left | `middle_frontal_gyrus` | Same structure. |
 | `left_middle_longitudinal_fasciculus` | left | `middle_longitudinal_fasciculus` | XTRACT middle longitudinal fasciculus. |
@@ -113,10 +114,13 @@ do not edit by hand. Rules and decisions: [README.md](README.md). ⚑ = judgemen
 | `left_pre_central_gyrus` | left | `precentral_gyrus` | Spelling variant of left_precentral_gyrus. |
 | `left_precentral_gyrus` | left | `precentral_gyrus` | Same structure. |
 | ⚑ `left_precentral_gyrus_insula` | left | `insula` | The "precentral gyrus of the insula" (Dronkers 1996, apraxia of speech) is the superior precentral gyrus OF THE INSULA, not the motor precentral gyrus; the atlases do not subdivide the insula, so the whole insula is used. |
+| ⚑ `left_precentral_gyrus_of_the_insula` | left | `insula` | Alias of left_precentral_gyrus_insula in Dronkers1996 (R003); the same discrete insular region. Inherits the existing whole-insula approximation, not an exact cluster mask. |
 | `left_precuneus` | left | `precuneus` | Same structure. |
 | ⚑ `left_premotor_cortex` | left | `precentral_gyrus`, `supplementary_motor_area` | Premotor cortex (BA 6) has no atlas label; it spans the anterior precentral gyrus laterally and the supplementary motor area medially. |
 | `left_putamen` | left | `putamen` | Same structure. |
 | `left_rolandic_operculum` | left | `central_operculum` | The Rolandic operculum is HarvardOxford's central opercular cortex. |
+| `left_slf` | left | `slf` | Han2016 explicitly expands left SLF as left superior longitudinal fasciculus. Same anatomical tract as left_superior_longitudinal_fasciculus. The study used JHU at 25 percent probability; the reporting unit uses a 50 percent core, so this is an anatomical link, not an identical study mask or FA measurement. |
+| ⚑ `left_spgi` | left | `insula` | Baldo2011 names the left superior precentral gyrus of the insula (SPGI). Same anatomical referent as left_precentral_gyrus_insula; inherits the whole-insula approximation, not a representation of the study's significant voxels. |
 | `left_superior_frontal_gyrus` | left | `superior_frontal_gyrus` | Same structure. |
 | `left_superior_lateral_occipital_cortex` | left | `lateral_occipital_superior` | Same structure. |
 | `left_superior_longitudinal_fasciculus` | left | `slf` | Same tract. |
@@ -149,14 +153,18 @@ do not edit by hand. Rules and decisions: [README.md](README.md). ⚑ = judgemen
 | `right_pars_triangularis_ba45` | right | `ifg_pars_triangularis` | Same structure (right BA 45). |
 | ⚑ `right_posterior_perisylvian_cortex` | right | `stg_posterior`, `planum_temporale`, `smg_anterior`, `smg_posterior` | Posterior perisylvian cortex taken as the posterior superior temporal gyrus, planum temporale and supramarginal gyrus. |
 | `right_precentral_gyrus` | right | `precentral_gyrus` | Same structure, right hemisphere. |
+| ⚑ `superior_tip_precentral_gyrus_insula` | left | `insula` | Hillis2004 names the superior tip of the left precentral gyrus of the insula, explicitly referring to the previously reported apraxia region. Inherits the existing whole-insula approximation; the superior tip is not separately labelled. |
 
 ## Not mappable
 
 | Region | Reason |
 |---|---|
+| `anterior_bottleneck_cluster` | Study-defined convergence of white-matter tracts; the current atlases have no bottleneck label. Requires the source ROI mask or a separately reviewed spatial definition, not the union of whole tracts. |
+| `anterior_bottleneck_roi` | Study-defined anterior bottleneck ROI; the current atlases do not label the tract-convergence region. Requires the source ROI mask or a separately reviewed spatial definition. |
 | `left_anterior_prefrontal_bottleneck` | As left_frontal_white_matter_bottleneck. |
 | `left_extreme_capsule` | No atlas used here (JHU, XTRACT) labels the extreme capsule. It carries the inferior fronto-occipital and uncinate fasciculi, but those tracts are not the extreme-capsule fibre system itself, so it is not approximated. |
 | `left_frontal_white_matter_bottleneck` | A "bottleneck" is a region defined in its source paper by the convergence of several tracts, not an atlas structure. |
 | `left_perisylvian_network` | A network, not a single anatomical structure. |
 | `left_posterior_middle_temporal_white_matter` | White matter under the posterior middle temporal gyrus; no tract label. |
 | `left_posterior_temporal_bottleneck` | As left_frontal_white_matter_bottleneck. |
+| `posterior_bottleneck_cluster` | Study-defined posterior white-matter bottleneck; whole tract labels do not reproduce the convergence region. Requires the source ROI mask or a separately reviewed spatial definition. |

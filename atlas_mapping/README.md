@@ -2,6 +2,26 @@
 
 How CALMaR decides which knowledge-base (KB) findings apply to a participant's lesion.
 
+## Current coverage and pending work
+
+The historical counts below describe the October 2026 curated corpus, not the
+new core drafts. The explorer computes coverage from the selected export and
+distinguishes anatomical links, flagged approximations, documented atlas gaps,
+and entries awaiting assessment. Pending does not mean anatomically unmappable.
+A link is a way to retrieve literature, not verification that a patient scan
+reproduces the study’s ROI, threshold, modality or measurement.
+
+On 2026-11-24, five source-supported aliases were added: left SLF (Han2016) and
+four names for the left insular precentral region (Dronkers1996, Baldo2011,
+Hillis2004). The insular aliases retain the existing whole-insula approximation
+and its review flag. No new atlas geometry or scientific approval was added.
+Han2016 used a 25% JHU template; the existing reporting unit uses a 50% core.
+The link does not make those masks or FA measures equivalent.
+
+Bottleneck labels retain a documented gap: matching entire constituent tracts
+would not reproduce their convergence ROI. Remaining new clusters require source
+ROI definitions/masks, hemisphere and atlas provenance before mapping decisions.
+
 ## Why this exists
 
 A report needs to know which brain regions a lesion damages, and which KB findings concern those regions. The lesion is measured against brain atlases (one overlap table per atlas, from the reporting job). The KB names regions in its own words (`left_ifg_pars_opercularis`, `left_arcuate_fasciculus`, …).
@@ -18,11 +38,11 @@ Until October 2026 the report linked the two **by name**: an atlas label such as
 
 The mapping replaces the guessing with an explicit, reviewed table.
 
-| After (this mapping) | |
+| Historical curated corpus, 2026-10-21 | |
 |---|---|
 | Location-based findings naming a mapped region | 301 of 318 (95 %) |
 | Findings naming a region no atlas can represent | 17 (listed below, with the reason) |
-| Region names neither mapped nor explained | 0 (enforced by `tests/test_kb_atlas_mapping.py`) |
+| Region names neither mapped nor explained | 0 in that historical audit |
 
 Example, sub-M2030 ses-1454, manual mask: name matching reached 4 findings; the mapping (with JHU only) reached 80, including 17 white-matter findings (the left superior longitudinal fasciculus core is 96 % destroyed).
 
@@ -106,7 +126,7 @@ In reports, a damaged region whose findings come from two studies or fewer is ma
 
 ## Adding a paper with a new region name
 
-`tests/test_kb_atlas_mapping.py` fails, naming the region. Then:
+New draft names appear as awaiting mapping assessment in the explorer. Then:
 
 1. Add it to `kb_regions.yaml`: map it to existing units, add a unit to `units.yaml` (with the atlas label and the basis), or list it under `unmapped` with the reason. Mark judgement calls `review: true`.
 2. Run `python scripts/atlas_mapping.py --write-table --coverage` (checks the files, regenerates `MAPPING.md`, prints the coverage).

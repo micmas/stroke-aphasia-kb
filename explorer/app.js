@@ -1,4 +1,5 @@
 import { overviewTopics } from './overview-topics.js';
+import { atlasCoverage, mappingStatus } from './atlas-coverage.js';
 import { ANATOMY, FACTORS } from './topic-categories.js';
 import { groupedMatrix } from './evidence-groups.js';
 // Stroke aphasia KB explorer — views and routing.
@@ -469,9 +470,9 @@ function overview(index) {
   const topicList = category => barList(overviewTopics(index, category), {
     link: x => href('/topic', {category, topic:x.id}),
   });
-  const regionEntries = Object.values(entries).filter((e) => e.bucket === 'regions');
-  const reachable = regionEntries.filter((e) => index.mapping.regions[e.id]).length;
-  const unreachable = regionEntries.filter((e) => !index.mapping.regions[e.id]);
+  const atlas = atlasCoverage(index);
+  const reachable = atlas.counts.mapped + atlas.counts.approximation;
+  const unreachable = atlas.rows.filter(row => ['pending', 'atlas_gap'].includes(row.status));
 
 
   return h('div', { class: 'overview-page' },
@@ -502,8 +503,8 @@ function overview(index) {
       h('p', { class: 'small muted', text: 'Bars count findings, not evidence quality. Select a topic to explore its detailed entries.' }),
       h('h2', { text: FACTORS }), topicList(FACTORS),
       h('h2', { text: 'Therapies' }), topicList('Therapies'),
-      h('h2', { text: 'Atlas mapping' }), h('p', { text: `${reachable} of ${regionEntries.length} region entries can currently be matched to a lesion through the atlas mapping.` }),
-      unreachable.length ? h('details', {}, h('summary', { text: 'Regions without a mapping' }), h('ul', {}, unreachable.map(e => h('li', {}, entryLink(index, e.id), index.unmappedReason(e.id) ? ` — ${index.unmappedReason(e.id)}` : '')))) : null),
+      h('h2', { text: 'Atlas mapping' }), h('p', { text: `${reachable} of ${atlas.total} region entries have a curated anatomical link, including ${atlas.counts.approximation} approximations. ${atlas.counts.pending} await mapping assessment; ${atlas.counts.atlas_gap} have a documented atlas gap. Anatomical links help find relevant literature; they do not verify an exact match to the study’s imaging measure.` }),
+      unreachable.length ? h('details', {}, h('summary', { text: 'Regions without a mapping' }), h('ul', {}, unreachable.map(row => h('li', {}, entryLink(index, row.entry.id), ` — ${row.reason}`)))) : null),
     h('details', { class: 'editorial-details' }, h('summary', { text: 'Data version and reuse' }),
       h('p', { class: 'small', text: `KB ${v.commit || 'uncommitted'} · ${v.date || ''} · digest ${v.contentDigest || '?'} · exported ${v.exportedOn || '?'} · statuses: ${(v.statuses || []).join(', ')}` }),
       h('p', {}, 'The code, methods and review history are available in the ', h('a', { href: 'https://github.com/micmas/stroke-aphasia-kb', text: 'project repository' }), '.')));
@@ -760,7 +761,7 @@ function entry(index, id) {
     return [...m.entries()].sort((a, b) => b[1].length - a[1].length || index.name(a[0]).localeCompare(index.name(b[0])));
   };
   const mapped = index.mapping.regions[id];
-  const reason = index.unmappedReason(id);
+  const reason = mappingStatus(index, e || {id}).reason;
   const kv = {};
   if (e) {
     kv.category = e.category || e.bucket; if(e.subcategory) kv.subcategory = e.subcategory; if (e.kind) kv['entry kind'] = e.kind; if (e.status) kv.status = e.status;
