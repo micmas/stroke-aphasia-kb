@@ -2,8 +2,9 @@
 #
 # Every region name used by a finding (an entry in regions/, or a region named
 # as the target of an impairment finding) must appear here, either mapped or
-# listed under `unmapped` with the reason; tests/test_kb_atlas_mapping.py checks
-# this, so a new paper with a new region name cannot be silently ignored.
+# listed under `unmapped` with the reason. New draft names without a decision
+# remain pending assessment in the explorer; never infer a mapping from a name.
+# tests/test_kb_atlas_mapping.py validates units, labels and verified aliases.
 # Fields:
 #   units    one or more unit ids; the region counts as damaged when ANY of its
 #            units holds at least the report's minimum share of the lesion
@@ -128,6 +129,26 @@ regions:
     units: [insula]
     side: left
     basis: The "precentral gyrus of the insula" (Dronkers 1996, apraxia of speech) is the superior precentral gyrus OF THE INSULA, not the motor precentral gyrus; the atlases do not subdivide the insula, so the whole insula is used.
+    review: true
+  left_precentral_gyrus_of_the_insula:
+    units: [insula]
+    side: left
+    basis: Alias of left_precentral_gyrus_insula in Dronkers1996 (R003); the same discrete insular region. Inherits the existing whole-insula approximation, not an exact cluster mask.
+    review: true
+  left_insular_precentral_gyrus_cluster:
+    units: [insula]
+    side: left
+    basis: Alias of left_precentral_gyrus_insula in Dronkers1996 (R001, R002); the source describes the same discrete region. Inherits the whole-insula approximation; does not localise the source cluster precisely.
+    review: true
+  left_spgi:
+    units: [insula]
+    side: left
+    basis: Baldo2011 names the left superior precentral gyrus of the insula (SPGI). Same anatomical referent as left_precentral_gyrus_insula; inherits the whole-insula approximation, not a representation of the study's significant voxels.
+    review: true
+  superior_tip_precentral_gyrus_insula:
+    units: [insula]
+    side: left
+    basis: Hillis2004 names the superior tip of the left precentral gyrus of the insula, explicitly referring to the previously reported apraxia region. Inherits the existing whole-insula approximation; the superior tip is not separately labelled.
     review: true
 
   # ── Temporal ──────────────────────────────────────────────────────────────
@@ -352,6 +373,10 @@ regions:
     units: [slf]
     side: left
     basis: Same tract.
+  left_slf:
+    units: [slf]
+    side: left
+    basis: Han2016 explicitly expands left SLF as left superior longitudinal fasciculus. Same anatomical tract as left_superior_longitudinal_fasciculus. The study used JHU at 25 percent probability; the reporting unit uses a 50 percent core, so this is an anatomical link, not an identical study mask or FA measurement.
   right_arcuate_fasciculus:
     units: [arcuate_fasciculus]
     side: right
@@ -394,6 +419,9 @@ regions:
 # Region names that no atlas label can represent. Their findings cannot be
 # matched from lesion location; the report counts them as "not mappable".
 unmapped:
+  anterior_bottleneck_cluster: Study-defined convergence of white-matter tracts; the current atlases have no bottleneck label. Requires the source ROI mask or a separately reviewed spatial definition, not the union of whole tracts.
+  anterior_bottleneck_roi: Study-defined anterior bottleneck ROI; the current atlases do not label the tract-convergence region. Requires the source ROI mask or a separately reviewed spatial definition.
+  posterior_bottleneck_cluster: Study-defined posterior white-matter bottleneck; whole tract labels do not reproduce the convergence region. Requires the source ROI mask or a separately reviewed spatial definition.
   left_extreme_capsule: >-
     No atlas used here (JHU, XTRACT) labels the extreme capsule. It carries the inferior fronto-occipital and uncinate
     fasciculi, but those tracts are not the extreme-capsule fibre system itself, so it is not approximated.
