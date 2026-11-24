@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-24T07:50:31.761892+00:00",
+  "last_publication_snapshot": "2026-11-24T09:10:36.852576+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -102,7 +102,12 @@
     "Kristinsson2021",
     "Kristinsson2025",
     "Kummerer2013",
-    "Lacey2017"
+    "Lacey2017",
+    "Laska2001",
+    "Lazar2008",
+    "Lazar2010",
+    "Lee2018",
+    "Leff2009"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
   "recovery_publication_ready_seen": false

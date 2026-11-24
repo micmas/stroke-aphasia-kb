@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-24T07:50:31.761892+00:00",
+  "snapshot_at": "2026-11-24T09:10:36.852576+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -4671,6 +4671,186 @@
     "drafts/ingredients/atrial_fibrillation__Laska2001__R002.md": {
       "source_sha256": "1574027b1096c714a2bfe1cd19cb6b882e4efdbfb76a29460d841ef6723432d2",
       "paper": "Laska2001",
+      "candidate": "R002"
+    },
+    "drafts/predictors/initial_mild_aphasia__Laska2001__R003.md": {
+      "source_sha256": "bd34eb2c2921b1df6d9a9b0b7d4c75886148a35916ee99dd2a505edcb2fe0405",
+      "paper": "Laska2001",
+      "candidate": "R003"
+    },
+    "drafts/regions/age__Laska2001__R004.md": {
+      "source_sha256": "9f5ad817e578a870d4a0dba5e3a6c1086f5adf1fb43d0207e47dbbb1b04ecae3",
+      "paper": "Laska2001",
+      "candidate": "R004"
+    },
+    "drafts/predictors/initial_aphasia_severity__Laska2001__R005.md": {
+      "source_sha256": "ea1e1cc780b2685f5fd7d0eb3456302a5127947384c97f984393d3720acdaa9e",
+      "paper": "Laska2001",
+      "candidate": "R005"
+    },
+    "drafts/regions/fluent_aphasia__Laska2001__R006.md": {
+      "source_sha256": "ac6dde4c6ee6c211fae39b30a88b356150feb0a7c5f9303276adfaf72c75609d",
+      "paper": "Laska2001",
+      "candidate": "R006"
+    },
+    "drafts/predictors/lesion_volume_aphasia_severity__Laska2001__R008.md": {
+      "source_sha256": "f1dd2c32da9bb5d2c427f111b9305ba4a512418c461ab3097854ce8ba91c93f6",
+      "paper": "Laska2001",
+      "candidate": "R008"
+    },
+    "drafts/predictors/visible_lesion_ct__Laska2001__R009.md": {
+      "source_sha256": "097313b64ab98a2a4d7cf222baa381d4ee069d4fad166387424d6245e397afc7",
+      "paper": "Laska2001",
+      "candidate": "R009"
+    },
+    "drafts/regions/wernickes_aphasia__Laska2001__R010.md": {
+      "source_sha256": "77414cf797dd39290ed7632c09205895b6137441a25b9a2410fe26772dadfde2",
+      "paper": "Laska2001",
+      "candidate": "R010"
+    },
+    "drafts/predictors/age_gender_aphasia_evolution__Laska2001__R011.md": {
+      "source_sha256": "6cda6c099e918cadcd56cc31b7cefaf94f46d163fb6abfeab0535fc4d0577c99",
+      "paper": "Laska2001",
+      "candidate": "R011"
+    },
+    "drafts/predictors/initial_aphasia_severity_anet__Laska2001__R012.md": {
+      "source_sha256": "86808fecdb1ffbdcefe8ea2f7998f00ab2ad88bb09d37fa5ebcab17663c7841c",
+      "paper": "Laska2001",
+      "candidate": "R012"
+    },
+    "drafts/predictors/initial_language_syndrome_score__Lazar2008__R001.md": {
+      "source_sha256": "4e415f9abd8ced7c79c06d9895e25513c281be28ef7c73fddbb393040f19005c",
+      "paper": "Lazar2008",
+      "candidate": "R001"
+    },
+    "drafts/predictors/initial_language_syndrome_severity__Lazar2008__R002.md": {
+      "source_sha256": "45fd008b636314dbaf3c05a90dbc955b5edec03a5c67c4ebb819fe9ccffe9225",
+      "paper": "Lazar2008",
+      "candidate": "R002"
+    },
+    "drafts/predictors/lesion_age_education_null__Lazar2008__R003.md": {
+      "source_sha256": "7da78d4e3762c438dee951eb4c545ef8f4b2b5835808151d5a9c7dbaaad41e8b",
+      "paper": "Lazar2008",
+      "candidate": "R003"
+    },
+    "drafts/ingredients/education_level__Lazar2008__R004.md": {
+      "source_sha256": "f4ed465b9ae6cfbb8b90383437a9fa7eb540817ede268c2cf472fdc244d55458",
+      "paper": "Lazar2008",
+      "candidate": "R004"
+    },
+    "drafts/predictors/language_recovery_predictor_model_01__Lazar2008__R005.md": {
+      "source_sha256": "323a4907db24fab22c59b82639d150b78e2cb968d2897acf5e75bc938f005f65",
+      "paper": "Lazar2008",
+      "candidate": "R005"
+    },
+    "drafts/predictors/baseline_deficit_severity__Lazar2008__R006.md": {
+      "source_sha256": "09e0dc3320e27cfff4e84ecf7091111d26895f9d5f14aa791b54474f76ffdc81",
+      "paper": "Lazar2008",
+      "candidate": "R006"
+    },
+    "drafts/predictors/baseline_language_functioning__Lazar2008__R007.md": {
+      "source_sha256": "652f8ecd76ea29de030bb338958a4ffe50c7115f03d2778c99dc1a1407da6423",
+      "paper": "Lazar2008",
+      "candidate": "R007"
+    },
+    "drafts/predictors/baseline_language_functioning__Lazar2008__R008.md": {
+      "source_sha256": "db1e753ceb06ccf6994729ca14e680503e56eee554448c66cef1b9fc968ce4e4",
+      "paper": "Lazar2008",
+      "candidate": "R008"
+    },
+    "drafts/predictors/lesion_size__Lazar2008__R010.md": {
+      "source_sha256": "18f201d5512fba135ebbcb48fd700196c6c9f2468e5450930ae9fc0208628135",
+      "paper": "Lazar2008",
+      "candidate": "R010"
+    },
+    "drafts/predictors/age_education_language_recovery__Lazar2008__R011.md": {
+      "source_sha256": "af4e3107b977ec4a2fc5d4e421510215abf15e0c1ec51e4e25372faa6fdc8ac8",
+      "paper": "Lazar2008",
+      "candidate": "R011"
+    },
+    "drafts/regions/lesion_location__Lazar2008__R012.md": {
+      "source_sha256": "c231db3d8965fdc01406637fd14572e1b9c6fce86c7b507f5c827c6c2107cc2a",
+      "paper": "Lazar2008",
+      "candidate": "R012"
+    },
+    "drafts/predictors/aphasia_recovery_predictor_model__Lazar2010__R002.md": {
+      "source_sha256": "d49230312224742a36cccd9f4c848428ae2a40b44d0daf950b99672a58fb11bf",
+      "paper": "Lazar2010",
+      "candidate": "R002"
+    },
+    "drafts/predictors/wab_initial_severity__Lazar2010__R003.md": {
+      "source_sha256": "3a5e1599e79b5e750a1b292081f718275c23b1afb24986db5057bffe6b7410f5",
+      "paper": "Lazar2010",
+      "candidate": "R003"
+    },
+    "drafts/regions/lesion_volume__Lazar2010__R004.md": {
+      "source_sha256": "c933953fcfc53197b58584e8e83b7d41bde9b1a80b59905e5566482b3d6f35d7",
+      "paper": "Lazar2010",
+      "candidate": "R004"
+    },
+    "drafts/regions/age__Lazar2010__R005.md": {
+      "source_sha256": "07ab377d9892c2fe41a033943067d8fbca41e0c1664a6b5717fe1b18e48e2632",
+      "paper": "Lazar2010",
+      "candidate": "R005"
+    },
+    "drafts/predictors/wab_initial_severity__Lazar2010__R006.md": {
+      "source_sha256": "2f1cf701ff3043fb6c2e471136f02ac0a445d01d2a760ef4d2f07e6870cb5a13",
+      "paper": "Lazar2010",
+      "candidate": "R006"
+    },
+    "drafts/therapies/speech_language_therapy_receipt__Lazar2010__R009.md": {
+      "source_sha256": "f99197d0103be5080f2590711132ce66a766bea6567b40d1bec6fd7f1891eae7",
+      "paper": "Lazar2010",
+      "candidate": "R009"
+    },
+    "drafts/predictors/severe_aphasia_left_wm_volume__Lee2018__R001.md": {
+      "source_sha256": "659833828535793121eacc9386c02ab9bca6a256b8d54537fb3e435e4228426c",
+      "paper": "Lee2018",
+      "candidate": "R001"
+    },
+    "drafts/regions/right_slf_fa__Lee2018__R005.md": {
+      "source_sha256": "7f456f6d35ccc196cab385309649e956229011b6e056edf7ba5f73f681494470",
+      "paper": "Lee2018",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_perisylvian_subcortical_cluster__Leff2009__R001.md": {
+      "source_sha256": "86bdfac0bda0d141f00f3b88463165de0a360afcea4344d3758d7fef5414d133",
+      "paper": "Leff2009",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_posterior_stg_cluster__Leff2009__R002.md": {
+      "source_sha256": "27c99b34d586ef9900773d1be69d813d906f4bd9d67a278ea54147fab5cd9a81",
+      "paper": "Leff2009",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_pstg_s_cluster__Leff2009__R004.md": {
+      "source_sha256": "e01b7d559cef0c6b64cd4fe05dfee84e6ddf497284b82486dcaff51bb04be39e",
+      "paper": "Leff2009",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_pstg_s_cluster__Leff2009__R005.md": {
+      "source_sha256": "e2f1cfd53aedfeec60cfda0b33ff1b5ce7d7f13f8bbb48a40081543f0ed266ec",
+      "paper": "Leff2009",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_posterior_stg_sulcus_cluster__Leff2009__R006.md": {
+      "source_sha256": "6b14df4c78a019a49d508bceee81f65dc6eda0b20696ca00ba25bab6d7fed2c9",
+      "paper": "Leff2009",
+      "candidate": "R006"
+    },
+    "drafts/regions/left_posterior_stg_sulcus_cluster__Leff2009__R007.md": {
+      "source_sha256": "f04fe59335ee058c6f52490d5d269444d445938382a697b888fcac17ae50fdcb",
+      "paper": "Leff2009",
+      "candidate": "R007"
+    },
+    "drafts/therapies/phonological_components_analysis__Leonard2008__R001.md": {
+      "source_sha256": "e09e93ce1dee09d3e2d9fce4fd398c2c8e156079e0208020dde6bb20225a73b4",
+      "paper": "Leonard2008",
+      "candidate": "R001"
+    },
+    "drafts/therapies/phonological_components_analysis_treatment__Leonard2008__R002.md": {
+      "source_sha256": "56c115996ea43daa2d691b7a56762004456ad6bb727042d83abb857141161a8e",
+      "paper": "Leonard2008",
       "candidate": "R002"
     }
   }
