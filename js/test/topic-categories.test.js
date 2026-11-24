@@ -11,6 +11,7 @@ test('injury measures leave anatomical matrices without altering saved evidence 
 test('age, initial severity and volume share a parent with distinct subcategories',()=>{
  assert.equal(topicCategory('age',{},'predictor').subcategory,'Personal characteristics');
  assert.equal(topicCategory('initial_severity',{},'region').subcategory,'Clinical characteristics');
+ assert.equal(topicCategory('aphasia_severity',{bucket:'impairments'},'impairment').category,'Language difficulties');
  assert.equal(topicCategory('total_lesion_volume',{},'region').subcategory,'Lesion and imaging measures');
 });
 test('bottlenecks stay shared white-matter concepts and uncertain clusters are not guessed',()=>{

@@ -9,7 +9,7 @@ const distributed = new Set(['frontoparietal_roi','semantic_factor_cluster','per
 export function topicCategory(id, entry = {}, kind = '', presentation = null) {
   const name = String(id || '').toLowerCase();
   const personal = /^(age|sex|gender|education|handedness)(_|$)/.test(name);
-  const clinical = /^(initial_severity|baseline_severity|aphasia_severity|stroke_severity|time_post_onset|chronicity)(_|$)/.test(name);
+  const clinical = /^(initial_(?:aphasia_)?severity|baseline_(?:aphasia_)?severity|stroke_severity|time_post_onset|chronicity)(_|$)/.test(name);
   const measure = /^(?:(?:total|overall)_)?lesion_(?:volume|size)(_|$)/.test(name)
     || /(?:_lesion_load|_lesion_percentage|_injury_volume|_fa(?:_change)?|_md|_volume)$/.test(name);
   if (personal || clinical || measure || ['predictor','personal_factor'].includes(kind) || entry.bucket === 'predictors') {
