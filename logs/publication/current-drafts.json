@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-24T18:11:22.242643+00:00",
+  "snapshot_at": "2026-11-24T19:49:27.466386+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -5910,6 +5910,216 @@
       "source_sha256": "02ea506d904e1c4fcd89fb49639e0f2ec1a025825471ffdad27422c65c9dd32b",
       "paper": "Naeser2005",
       "candidate": "R004"
+    },
+    "drafts/therapies/early_intensive_clt__Nouwens2017__R002.md": {
+      "source_sha256": "8948f0bcdb5934a2e8bf06ffbb772d4e694224bdd956c9a1e1c3d7c1fac8dde5",
+      "paper": "Nouwens2017",
+      "candidate": "R002"
+    },
+    "drafts/therapies/early_intensive_clt__Nouwens2017__R004.md": {
+      "source_sha256": "9bc19358b5c0aeeff030d4148b6603d76adf1c2597dd44610260ad3f2e672644",
+      "paper": "Nouwens2017",
+      "candidate": "R004"
+    },
+    "drafts/therapies/early_intensive_clt__Nouwens2017__R005.md": {
+      "source_sha256": "a07502f11ace96ec8fca545b46596a4d7f2b1d56d5099916f2f37fb8f4204387",
+      "paper": "Nouwens2017",
+      "candidate": "R005"
+    },
+    "drafts/therapies/early_intensive_clt__Nouwens2017__R006.md": {
+      "source_sha256": "387942e8c7a57a37c53ec190d99b47b4c1c3ee948a2d2208455d0ac5a7b5e165",
+      "paper": "Nouwens2017",
+      "candidate": "R006"
+    },
+    "drafts/predictors/baseline_aphasia_severity_and_barthel_index__Nouwens2017__R008.md": {
+      "source_sha256": "10107daeafba8b355d3098befbb935f03c94e9da3b18719c063d4d2e79adbfb8",
+      "paper": "Nouwens2017",
+      "candidate": "R008"
+    },
+    "drafts/regions/broca_area_ischemia__Ochfeld2010__R001.md": {
+      "source_sha256": "4b4d6904cb44f9daf621f3062c4f744a5a36112958783dfb1cad9714da34a7bb",
+      "paper": "Ochfeld2010",
+      "candidate": "R001"
+    },
+    "drafts/regions/broca_area_total_ischemia__Ochfeld2010__R002.md": {
+      "source_sha256": "4d148d568d5b14221a4f7d52b4b90a2584a5a8def18fd4ef5df0ab8df21d9957",
+      "paper": "Ochfeld2010",
+      "candidate": "R002"
+    },
+    "drafts/regions/broca_area_partial_ischemia__Ochfeld2010__R003.md": {
+      "source_sha256": "babff2e341e3593efb3712eb147b8ff13623c5d379e0c3750de07aaed5ece818",
+      "paper": "Ochfeld2010",
+      "candidate": "R003"
+    },
+    "drafts/regions/broca_area_all_ischemia__Ochfeld2010__R004.md": {
+      "source_sha256": "a292644cca6674a1ed7455a54e60cf124cced12cc68d46502e93b02f48c14536",
+      "paper": "Ochfeld2010",
+      "candidate": "R004"
+    },
+    "drafts/regions/broca_area_hypoperfusion__Ochfeld2010__R005.md": {
+      "source_sha256": "85080ccf8462c61cc75b7cd61a8e449437be33fd70cd573926e1a6de915db5e8",
+      "paper": "Ochfeld2010",
+      "candidate": "R005"
+    },
+    "drafts/regions/broca_wernicke_infarct__Ochfeld2010__R007.md": {
+      "source_sha256": "5ddbd6441fa1385a97e54ebfb70a6b92fde4a0fa187bd1a9d404dad1b20299b2",
+      "paper": "Ochfeld2010",
+      "candidate": "R007"
+    },
+    "drafts/regions/arcuate_fascicle_lesion__Oeckel2021__R002.md": {
+      "source_sha256": "fca0056e7e9c7fc1089ab0f0d4ef7258cfbe94ed961787375b4f079556c8cf10",
+      "paper": "Oeckel2021",
+      "candidate": "R002"
+    },
+    "drafts/regions/ecf_lesion_gt_15_percent__Oeckel2021__R003.md": {
+      "source_sha256": "80bbfb04325e5c2a1bc7568bd8d435beb0d9971d185ac25541cfb6697636d617",
+      "paper": "Oeckel2021",
+      "candidate": "R003"
+    },
+    "drafts/regions/ecf_lesion_15_30_percent__Oeckel2021__R004.md": {
+      "source_sha256": "6103e551317d0a3bcb9ae3e16ebc1c88db6cb106bdb817bbc3ac284b3cfeb56a",
+      "paper": "Oeckel2021",
+      "candidate": "R004"
+    },
+    "drafts/regions/ecf_lesion_gt30__Oeckel2021__R005.md": {
+      "source_sha256": "10f2d6459e18b5610b8af3634e3fcb25c3453830055b00acfe129b3c9d5561f4",
+      "paper": "Oeckel2021",
+      "candidate": "R005"
+    },
+    "drafts/ingredients/female_gender__Oeckel2021__R007.md": {
+      "source_sha256": "b4f74ae4d57d54740ef03227f58aec31bdf0f43f2ae2b8783dce1695b8f481c8",
+      "paper": "Oeckel2021",
+      "candidate": "R007"
+    },
+    "drafts/predictors/stroke_volume__Oeckel2021__R009.md": {
+      "source_sha256": "bb2220bd810ed3d235b9059fc481cd77d2d09690af1a76b04b9c821ce1a0b113",
+      "paper": "Oeckel2021",
+      "candidate": "R009",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Oeckel 2021 describes a prospective observational stroke cohort and multivariable logistic regression (PDF pp3,5,7), not a randomized clinical trial. This publication copy labels the method clinical_RCT. Withheld pending source-design review; original outputs preserved."
+    },
+    "drafts/impairments/early_language_improvement__OsaGarcia2020__R001.md": {
+      "source_sha256": "0cd959b267b97f7fe8b65f077c7dfded1ad4d018072895c13157cdba297a36e1",
+      "paper": "OsaGarcia2020",
+      "candidate": "R001"
+    },
+    "drafts/impairments/early_language_improvement__OsaGarcia2020__R002.md": {
+      "source_sha256": "c50429d5407364ad30bccb8ecc3f655678adcee743a93205b9144f166672db68",
+      "paper": "OsaGarcia2020",
+      "candidate": "R002"
+    },
+    "drafts/predictors/right_arcuate_fasciculus_fa__OsaGarcia2020__R004.md": {
+      "source_sha256": "d139c0c3b869b6b143b8d127a407b84f91c00c6f6b58f33b3d1661367a8ede48",
+      "paper": "OsaGarcia2020",
+      "candidate": "R004"
+    },
+    "drafts/predictors/initial_aphasia_severity_lesion_metrics__OsaGarcia2020__R005.md": {
+      "source_sha256": "ab0e3466db0e4f57d450512bac546e837eab5a20e9b233ea9174e7d11deb2c30",
+      "paper": "OsaGarcia2020",
+      "candidate": "R005"
+    },
+    "drafts/predictors/lesion_characteristics_univariate__OsaGarcia2020__R006.md": {
+      "source_sha256": "1a1fc715002cfdf8893bd68cb677b80c355a5b72ee28b7b9db7afc30dbd663ed",
+      "paper": "OsaGarcia2020",
+      "candidate": "R006"
+    },
+    "drafts/predictors/initial_aphasia_severity__OsaGarcia2020__R007.md": {
+      "source_sha256": "29584fa0b55f3d9e2d40d3db6a755aea8599c1064420e7706e74e54a29880d1a",
+      "paper": "OsaGarcia2020",
+      "candidate": "R007"
+    },
+    "drafts/regions/lesion_size__OsaGarcia2020__R009.md": {
+      "source_sha256": "89864aa296cd4654c9cda0a60d7667f8fe72522b49cc41ed8de7462fd2e209ed",
+      "paper": "OsaGarcia2020",
+      "candidate": "R009",
+      "publication_disposition": "withdrawn_pending_source_statistics_review",
+      "publication_disposition_reason": "The claim says adding lesion size significantly increased explained variance after age and initial severity. PDF p5 reports the overall model F test and R-squared increase, not a significant incremental-change test; Table 3 (p7) gives a nonsignificant lesion-size coefficient in the full model (p=.240). Withheld pending verification of the incremental-significance claim; original outputs preserved."
+    },
+    "drafts/predictors/right_af_fa__OsaGarcia2020__R010.md": {
+      "source_sha256": "2ae6b26467c8d9862fd44921d8332ec6ca0dd342e77672a96abb96806490b26e",
+      "paper": "OsaGarcia2020",
+      "candidate": "R010"
+    },
+    "drafts/regions/right_arcuate_fasciculus_fa__OsaGarcia2020__R014.md": {
+      "source_sha256": "7e275934f8f955e7ff854687f1510de124d51bd6e72b4612297975cf643c3a6d",
+      "paper": "OsaGarcia2020",
+      "candidate": "R014"
+    },
+    "drafts/predictors/left_arcuate_fasciculus_ad_predictor__OsaGarcia2024__R001.md": {
+      "source_sha256": "7ba3d46a22b2937aad3815d951831eafcb7d4b6d37bfe6dcda232980d43e83ab",
+      "paper": "OsaGarcia2024",
+      "candidate": "R001"
+    },
+    "drafts/predictors/left_arcuate_fasciculus_ad__OsaGarcia2024__R002.md": {
+      "source_sha256": "ad44f83f73cfe9708cc2f53712f6a9cf20f4c4f18505682e50a06c83f1b64215",
+      "paper": "OsaGarcia2024",
+      "candidate": "R002"
+    },
+    "drafts/predictors/l_ifof_ad_subacute_recovery__OsaGarcia2024__R003.md": {
+      "source_sha256": "e25fa36d9c4ef3330ec34b7f6b1aa74d9c9c3416ba2e7ede3de36d311c412a83",
+      "paper": "OsaGarcia2024",
+      "candidate": "R003"
+    },
+    "drafts/predictors/ifof_axial_diffusivity_chronic_change__OsaGarcia2024__R004.md": {
+      "source_sha256": "c111ed70671ffaf513e9c0f3e0e2b5476130ba992d33964b37cea680f2be47f6",
+      "paper": "OsaGarcia2024",
+      "candidate": "R004"
+    },
+    "drafts/predictors/l_uf_fa__OsaGarcia2024__R007.md": {
+      "source_sha256": "f8b0709190c094a521f39169042ba37b9b633ab6ff979760d6f2a4ef41bc6dc2",
+      "paper": "OsaGarcia2024",
+      "candidate": "R007"
+    },
+    "drafts/therapies/r_tpa_administration__OsaGarcia2024__R009.md": {
+      "source_sha256": "44f6342f983f9d06534c3837c1b4e902bd1b3682f3481c0cb690422777ac89a6",
+      "paper": "OsaGarcia2024",
+      "candidate": "R009",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Osa Garcia 2024 explicitly follows observational cohort standards (PDF p2); r-tPA receipt is an observed characteristic in 13 of 24 participants (pp3-5), not randomized treatment allocation. This publication copy labels the method clinical_RCT. Withheld pending source-design review; original outputs preserved."
+    },
+    "drafts/therapies/r_tpa__OsaGarcia2024__R010.md": {
+      "source_sha256": "55c1895661d35c89caf34f4186635a6a57bfcdf0e552e9e89ecad836b6353f47",
+      "paper": "OsaGarcia2024",
+      "candidate": "R010",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Osa Garcia 2024 explicitly follows observational cohort standards (PDF p2); r-tPA receipt is an observed characteristic in 13 of 24 participants (pp3-5), not randomized treatment allocation. This publication copy labels the method clinical_RCT. Withheld pending source-design review; original outputs preserved."
+    },
+    "drafts/predictors/l_ifof_ad__OsaGarcia2024__R011.md": {
+      "source_sha256": "f8854985759784d8c80cc750e7a80df562231c3f4349d1e0720809eb3d11d57e",
+      "paper": "OsaGarcia2024",
+      "candidate": "R011"
+    },
+    "drafts/predictors/lesion_size__OsaGarcia2024__R012.md": {
+      "source_sha256": "16228e850153399f0703ea572c2b3749a1bc3a86433b591394f048d318dd4b12",
+      "paper": "OsaGarcia2024",
+      "candidate": "R012"
+    },
+    "drafts/predictors/language_baseline_cs1__OsaGarcia2024__R015.md": {
+      "source_sha256": "8cccd4b10d9c4de738475ab2801017cad255dace1c8b25472d8413f1d0c089ae",
+      "paper": "OsaGarcia2024",
+      "candidate": "R015"
+    },
+    "drafts/predictors/lesion_size__OsaGarcia2024__R016.md": {
+      "source_sha256": "120049573db1bbf9a43fc83232303d335c42a057b4156365d2f6f0b61cf73bb7",
+      "paper": "OsaGarcia2024",
+      "candidate": "R016",
+      "publication_disposition": "withdrawn_pending_source_statistics_review",
+      "publication_disposition_reason": "The claim identifies lesion size as the most robust predictor in the complete relative overall change model. PDF p5 prose conflicts with Table 3 (p7): lesion size is listed for the nested model, while CS1 is the only listed significant predictor in the complete model. Withheld pending resolution of the prose/table model distinction; original outputs preserved."
+    },
+    "drafts/predictors/language_baseline_cs1__OsaGarcia2024__R017.md": {
+      "source_sha256": "9e3f3f6399be22cb3f17bbe4b0b2066fccf6aa22782c1b7d9e09b98ddd3e1d33",
+      "paper": "OsaGarcia2024",
+      "candidate": "R017"
+    },
+    "drafts/predictors/l_uf_md__OsaGarcia2024__R021.md": {
+      "source_sha256": "4e5d9c96308514890873770d71f82424f934a1183ee4d567fe179faf432d5c26",
+      "paper": "OsaGarcia2024",
+      "candidate": "R021"
+    },
+    "drafts/predictors/relative_overall_change_prediction_diffusion__OsaGarcia2024__R022.md": {
+      "source_sha256": "d51575fc74f70d06434b0750afb531cf1c87605a338b131df3be614f77183c80",
+      "paper": "OsaGarcia2024",
+      "candidate": "R022"
     }
   }
 }

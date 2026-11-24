@@ -1600,38 +1600,50 @@
   },
   "@Nouwens2017": {
    "annotated": "cc/C0138_Nouwens2017_annotated.pdf",
-   "bytes": 529955,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "eb293d6dfeafe629c2a3efd3197a656b776ac970234a9aa99812e6ec29e65859",
+   "bytes": 712990,
    "category": "cc",
+   "draft_snapshot": "2026-11-24T19:49:27.466386+00:00",
    "label": "CC BY-NC 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "c293bcb643628b72210d5970032659008701ecee73f32c2d0d343c992ded1bed"
+   "sha256": "c24aaf3b75767d93d25a90607121e8f629200ebc3b1e760ea424f5258f3ce7f0"
   },
   "@Ochfeld2010": {
    "annotated": "pdf/C0128_Ochfeld2010_annotated.pdf",
-   "bytes": 752039,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "30523efa3df596c08d181a785ae1d84a869a73a906f4337910afa4596eb69526",
+   "bytes": 797387,
    "category": "free_to_read",
+   "draft_snapshot": "2026-11-24T19:49:27.466386+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "3f4796a35ae052382c71fe028df7028c8a4b162906bdfdc8ee1b683fd8ffb186"
+   "sha256": "81c620fe2be447bfa92e77f7363693dee515024c5e7f06e4bb445322930d0aec"
   },
   "@Oeckel2021": {
    "annotated": "cc/C0125_Oeckel2021_annotated.pdf",
-   "bytes": 934850,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "feb7c43e596bc13beb6baa0782fc56c0566847adbadc38a8b597cd77d8a06227",
+   "bytes": 905390,
    "category": "cc",
+   "draft_snapshot": "2026-11-24T19:49:27.466386+00:00",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "74e5fc80735f73272d9674ac70001cbab87d4d22ec122a27c3036529edaa04e9"
+   "sha256": "5a16b4ff7b81c61f0591ceb20b4e394cbee35d6392f62d7628719edd4c7af464"
   },
   "@OsaGarcia2020": {
    "annotated": "cc/C1829_OsaGarcia2020_annotated.pdf",
-   "bytes": 401534,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "31c5a52745bc74a3e9594b9d4d35d52e27b920f59068b54f99019d84ab590c3b",
+   "bytes": 749305,
    "category": "cc",
+   "draft_snapshot": "2026-11-24T19:49:27.466386+00:00",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "3153122c23857c65c74dd933e60de93354827a945e5d7fee685eb2532a798cba"
+   "sha256": "8ec61897283f4e31597bbf0d32f7ec9d2bd5bdde7aff84f4989ffe724b94f815"
   },
   "@Pedersen1995": {
    "annotated": "pdf/C0133_Pedersen1995_annotated.pdf",
