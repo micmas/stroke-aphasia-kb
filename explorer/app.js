@@ -1,3 +1,4 @@
+import { ANATOMY, FACTORS, ANATOMY_GROUPS, FACTOR_GROUPS } from './topic-categories.js';
 import { groupedMatrix } from './evidence-groups.js';
 // Stroke aphasia KB explorer — views and routing.
 //
@@ -323,7 +324,7 @@ function provenance(m) {
     s?.checked ? h('p', { class: 'small muted', text: `Checked on ${s.checked} against the developer's model card and the Ollama library page.` }) : null);
 }
 
-function kindBadge(kind) { return h('span', { class: 'badge badge-kind', text: kind === 'personal_factor' ? 'personal factor' : kind }); }
+function kindBadge(kind) { return h('span', { class: 'badge badge-kind', text: ['personal_factor','predictor'].includes(kind) ? FACTORS : kind === 'region' ? ANATOMY : kind }); }
 
 function reviewBadge(f) {
   const kind = f.review_kind || 'none';
@@ -464,6 +465,18 @@ function overview(index) {
     }
     return [...m.entries()].map(([id, n]) => ({ id, n, label: index.name(id), alt: !index.hasEntry(id) })).sort((a, b) => b.n - a.n || a.label.localeCompare(b.label));
   };
+  const topicList = (category, groups) => groups.map(group => {
+    const ids = new Map();
+    for (const f of findings) {
+      const concepts = new Set([f.source_id, f.target]);
+      for (const id of concepts) {
+        const e = entries[id];
+        if (e?.category === category && e.subcategory === group) ids.set(id, (ids.get(id) || 0) + 1);
+      }
+    }
+    const rows = [...ids].map(([id,n]) => ({id,n,label:index.name(id)})).sort((a,b)=>b.n-a.n || a.label.localeCompare(b.label));
+    return rows.length ? h('section', {}, h('h3', {text:group}), barList(rows, {max:12,link:x=>entryHref(x.id)})) : null;
+  });
   const regionEntries = Object.values(entries).filter((e) => e.bucket === 'regions');
   const reachable = regionEntries.filter((e) => index.mapping.regions[e.id]).length;
   const unreachable = regionEntries.filter((e) => !index.mapping.regions[e.id]);
@@ -492,9 +505,10 @@ function overview(index) {
     h('details', { class: 'editorial-details' }, h('summary', { text: 'Explore coverage and atlas mapping' }),
       h('p', {}, h('a', { href: '#/coverage', text: 'Search methods, screening decisions and evidence gaps →' })),
       h('div', { class: 'grid-2' },
-        h('section', {}, h('h2', { text: 'Brain regions' }), barList(countBy('region'), { max: 12, link: x => entryHref(x.id) })),
+        h('section', {}, h('h2', { text: ANATOMY }), topicList(ANATOMY, ANATOMY_GROUPS)),
         h('section', {}, h('h2', { text: 'Language difficulties' }), barList(countBy('impairment'), { max: 12, link: x => entryHref(x.id) }))),
       h('p', { class: 'small muted', text: 'Bars count findings, not evidence quality. Grey bars refer to topics without a dedicated entry yet.' }),
+      h('h2', { text: FACTORS }), topicList(FACTORS, FACTOR_GROUPS),
       h('h2', { text: 'Therapies' }), barList(therapies, { link: x => entryHref(x.id) }),
       h('h2', { text: 'Atlas mapping' }), h('p', { text: `${reachable} of ${regionEntries.length} region entries can currently be matched to a lesion through the atlas mapping.` }),
       unreachable.length ? h('details', {}, h('summary', { text: 'Regions without a mapping' }), h('ul', {}, unreachable.map(e => h('li', {}, entryLink(index, e.id), index.unmappedReason(e.id) ? ` — ${index.unmappedReason(e.id)}` : '')))) : null),
@@ -530,7 +544,7 @@ function browse(index, route) {
     const selected = new Set(filters[facet.key] || []);
     const many = values.length > 12;
     const shown = many ? values.filter((v, i) => i < 10 || selected.has(v)) : values;
-    return h('details', { class: 'facet', open: selected.size || ['source_kind', 'relationship', 'strength', 'review_kind'].includes(facet.key) ? '' : null },
+    return h('details', { class: 'facet', open: selected.size || ['category', 'subcategory', 'relationship', 'strength', 'review_kind'].includes(facet.key) ? '' : null },
       h('summary', { text: `${facet.label}${selected.size ? ` (${selected.size})` : ''}` }),
       shown.map((v) => h('label', { class: m.get(v) ? '' : 'zero' },
         h('input', { type: 'checkbox', checked: selected.has(v) ? '' : null, onchange: () => toggle(facet.key, v) }),
@@ -577,7 +591,7 @@ function matrix(index, route) {
   const keep = (id) => (grouped || !onlyEntries || index.hasEntry(id)) && (!find || name(id).toLowerCase().includes(find) || id.toLowerCase().includes(find));
   const rows = m.rows.filter((r) => keep(r) && m.rowTotals.get(r) >= min);
   const cols = m.cols.filter((c) => keep(c) && m.colTotals.get(c) >= min);
-  const kinds = { 'region-impairment': ['Region', 'Impairment'], 'therapy-impairment': ['Therapy', 'Impairment'], 'predictor-outcome': ['Predictor', 'Outcome'], 'region-region': ['Region', 'Region (network / tract)'] };
+  const kinds = { 'region-impairment': ['Region', 'Impairment'], 'therapy-impairment': ['Therapy', 'Impairment'], 'predictor-outcome': [FACTORS, 'Outcome'], 'region-region': ['Region', 'Region (network / tract)'] };
   const [rowLabel, colLabel] = kinds[kind] || ['Entry', 'Target'];
   const cls = (n) => (n >= 8 ? 'c6' : n >= 5 ? 'c5' : n >= 4 ? 'c4' : n === 3 ? 'c3' : n === 2 ? 'c2' : n === 1 ? 'c1' : '');
   const go = (params) => { location.hash = href('/matrix', { kind, min, level, entries: onlyEntries ? '1' : '', find, ...params }); };
@@ -742,7 +756,7 @@ function entry(index, id) {
   const reason = index.unmappedReason(id);
   const kv = {};
   if (e) {
-    kv.bucket = e.bucket; if (e.kind) kv['entry kind'] = e.kind; if (e.status) kv.status = e.status;
+    kv.category = e.category || e.bucket; if(e.subcategory) kv.subcategory = e.subcategory; if (e.kind) kv['entry kind'] = e.kind; if (e.status) kv.status = e.status;
     if (e.reviewer) kv.reviewer = String(e.reviewer); if (e.review_tier) kv['review tier'] = e.review_tier;
     if (e.rtss_category) kv['RTSS category'] = e.rtss_category;
   }
