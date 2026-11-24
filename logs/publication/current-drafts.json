@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-24T14:20:29.564657+00:00",
+  "snapshot_at": "2026-11-24T16:24:24.465978+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -5413,6 +5413,271 @@
       "source_sha256": "51f173007ed048af081e3e58559adf3a6591a3347f3da5ad11e70ee6dce5bd64",
       "paper": "Matchin2024",
       "candidate": "R002"
+    },
+    "drafts/regions/occipital_temporal_disconnection__Matchin2024__R004.md": {
+      "source_sha256": "17e21d3cafd322b9b4b4080f76d5a387b6a1e81ff66cbac5630ff6dc12292cf1",
+      "paper": "Matchin2024",
+      "candidate": "R004"
+    },
+    "drafts/impairments/talsa_triplets__Matchin2024__R008.md": {
+      "source_sha256": "f38540c2a10bec4b6d4b7a28ae302d0924a7d5ade4104cca57c947b306aee983",
+      "paper": "Matchin2024",
+      "candidate": "R008"
+    },
+    "drafts/regions/palpa_rhymejudge_wab_audwordrec_null__Matchin2024__R010.md": {
+      "source_sha256": "973d8c831c4483903418ad47acc82c9735105783ad19bc9412daa6918c6cafbb",
+      "paper": "Matchin2024",
+      "candidate": "R010"
+    },
+    "drafts/predictors/ilf_posterior_awf__McKinnon2018__R001.md": {
+      "source_sha256": "b517a4658e16dd60e009fdaaef1839df5d67bb30f31f83f7075e862c5e06a8d9",
+      "paper": "McKinnon2018",
+      "candidate": "R001"
+    },
+    "drafts/regions/ilf_semantic_paraphasia_fa__McKinnon2018__R002.md": {
+      "source_sha256": "dbb510f1d1dc1a16a5ddafe35f8c12c2732bd3bb797ff63ae674136898ee4360",
+      "paper": "McKinnon2018",
+      "candidate": "R002"
+    },
+    "drafts/predictors/slf_awf_semantic_paraphasias__McKinnon2018__R003.md": {
+      "source_sha256": "8f01e1faf1862a9208e4de8fa336fec325d1f391f5ccb973d1eb929c64136085",
+      "paper": "McKinnon2018",
+      "candidate": "R003"
+    },
+    "drafts/regions/slf_posterior_awf__McKinnon2018__R004.md": {
+      "source_sha256": "79e5afa278503e3f1687600aa5449f38434e82c229ca86a4c1d5762cb469d7e6",
+      "paper": "McKinnon2018",
+      "candidate": "R004"
+    },
+    "drafts/regions/ilf_diffusion_metrics__McKinnon2018__R006.md": {
+      "source_sha256": "f1c11725190bf8a08a0e4364470a25c866403a800e86ae11cc758801061e886f",
+      "paper": "McKinnon2018",
+      "candidate": "R006"
+    },
+    "drafts/regions/ilf_lesion_burden__McKinnon2018__R007.md": {
+      "source_sha256": "2fa7a4a3677a8bb618afd9a2851e75297de7436f971a143c40d7364c409559e2",
+      "paper": "McKinnon2018",
+      "candidate": "R007"
+    },
+    "drafts/predictors/ilf_segment_1_awf__McKinnon2018__R008.md": {
+      "source_sha256": "3a434a641a8bcbd8e215b02950b932c1237901b11dc8e60bfb90392cd44eff85",
+      "paper": "McKinnon2018",
+      "candidate": "R008"
+    },
+    "drafts/predictors/slf_segment_1_awf__McKinnon2018__R009.md": {
+      "source_sha256": "9d759cb6aac15265b0a370419b2ecc4f178b948c46dfda101dfe88fe5f824043",
+      "paper": "McKinnon2018",
+      "candidate": "R009"
+    },
+    "drafts/regions/infra_sylvian_gray_matter__McKinnon2018__R010.md": {
+      "source_sha256": "b5fc0f889c698435a8d1e18e7047924955179d776ccc592a7b8d05bed977e37a",
+      "paper": "McKinnon2018",
+      "candidate": "R010"
+    },
+    "drafts/regions/supra_sylvian_gray_matter__McKinnon2018__R013.md": {
+      "source_sha256": "5c5f8f1dac5f5588b73348dfd40028ca7f0a01788e6e88b19a72e702cd897c47",
+      "paper": "McKinnon2018",
+      "candidate": "R013"
+    },
+    "drafts/regions/smg_necrosis__McKinnon2018__R014.md": {
+      "source_sha256": "1ddf86b826be07fdc62c4d62db614a42dfc536959f22318a519bb77d2b625b15",
+      "paper": "McKinnon2018",
+      "candidate": "R014"
+    },
+    "drafts/regions/gm_only_lesion_classification__Meier2019__R001.md": {
+      "source_sha256": "de05ee8e9b3cf5cb8fe084109495fe957beed7ecefe584e78d7bb668ee754401",
+      "paper": "Meier2019",
+      "candidate": "R001"
+    },
+    "drafts/regions/combined_gm_wm_cluster__Meier2019__R002.md": {
+      "source_sha256": "b5552ac00ea89b22360ef830f69ee37cc049917c02b9c945951d2639a7a3439b",
+      "paper": "Meier2019",
+      "candidate": "R002"
+    },
+    "drafts/regions/gm_only_lesion_cluster__Meier2019__R003.md": {
+      "source_sha256": "f81fa01c2bec980afee5e9f7fcc076b0c9534f0d0e6082715ae0c0409bf10a69",
+      "paper": "Meier2019",
+      "candidate": "R003"
+    },
+    "drafts/regions/gm_wm_cluster_naming_predictor__Meier2019__R004.md": {
+      "source_sha256": "9c24ab5196789827b67b6f5abbe3f0c92fa74efebf66d711ccb181473c1cb919",
+      "paper": "Meier2019",
+      "candidate": "R004"
+    },
+    "drafts/regions/gm_only_cluster_pmg__Meier2019__R005.md": {
+      "source_sha256": "88c2c25195f72afc6f34988c2068fac2f171811b493309f2b8417e5bd2db5d31",
+      "paper": "Meier2019",
+      "candidate": "R005"
+    },
+    "drafts/regions/gm_wm_cluster_naming_outcome__Meier2019__R006.md": {
+      "source_sha256": "c00a0b8b14f60a13348da3f74dfbbda886619f252f64d8ec5660d6e61bae648b",
+      "paper": "Meier2019",
+      "candidate": "R006"
+    },
+    "drafts/predictors/lh_structural_metrics__Meier2019__R007.md": {
+      "source_sha256": "c9582e03a8b9b1b64c527bae687c7dcdcf2a8eaa3b2b2345f674fc03fb4fca6c",
+      "paper": "Meier2019",
+      "candidate": "R007"
+    },
+    "drafts/predictors/structural_integrity_metrics_aq__Meier2019__R008.md": {
+      "source_sha256": "ce5b1d3c2d1163428d3fe97d83052efc5aff24c3cd75f7988bafcb2fe935de3e",
+      "paper": "Meier2019",
+      "candidate": "R008"
+    },
+    "drafts/predictors/gm_only_clustering_model__Meier2019__R012.md": {
+      "source_sha256": "42fcccf4e40c9e55c0cfa6f459785e586688edc6aa4efceead33f9d9d2edc2f4",
+      "paper": "Meier2019",
+      "candidate": "R012"
+    },
+    "drafts/predictors/gm_wm_clustering_model__Meier2019__R013.md": {
+      "source_sha256": "6089d2303a8b5288c627c996170df985c694c8f3d3ca5875e0c7d09cfa03dbf4",
+      "paper": "Meier2019",
+      "candidate": "R013"
+    },
+    "drafts/predictors/gm_wm_cluster_model__Meier2019__R014.md": {
+      "source_sha256": "7dba0a2f3479501b2b31dcf52e36a058a070abb6e6ed4c8afbd692a6a7effd03",
+      "paper": "Meier2019",
+      "candidate": "R014"
+    },
+    "drafts/regions/mca_occlusion_proximity__Meinzer2010__R001.md": {
+      "source_sha256": "9cabb3521723cde005dc9e2347caceb821c8e25058f4f348d27c741ac7cba23a",
+      "paper": "Meinzer2010",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_hippocampus_volume__Meinzer2010__R002.md": {
+      "source_sha256": "fccfc71228f3fff745abbd393657d7c3712d09d6d79dd2277605991e02a4809d",
+      "paper": "Meinzer2010",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_hippocampus_surrounding_wm_integrity__Meinzer2010__R003.md": {
+      "source_sha256": "5f0b089bd91797271c9f12c76ace47a5def20f49a2efea90159eaf8b13f34a41",
+      "paper": "Meinzer2010",
+      "candidate": "R003"
+    },
+    "drafts/predictors/hippocampal_integrity_untr_o__Meinzer2010__R004.md": {
+      "source_sha256": "5c28a28a56bdbcd7ea86cd4bd83f124f8c241f78a4fad83e7950bc4d00ecf760",
+      "paper": "Meinzer2010",
+      "candidate": "R004"
+    },
+    "drafts/regions/lesion_size__Meinzer2010__R005.md": {
+      "source_sha256": "29d5b9bae1e36dbf1d200fe1dd9642e47eb49453a644e1d5d102e1cb48abc40e",
+      "paper": "Meinzer2010",
+      "candidate": "R005"
+    },
+    "drafts/predictors/overall_left_hemisphere_fa__Meinzer2010__R006.md": {
+      "source_sha256": "43a10b2bf649442343720b8396c026635d4cdb871701f71328aebe27ab65d1e7",
+      "paper": "Meinzer2010",
+      "candidate": "R006"
+    },
+    "drafts/regions/occipital_lobe_fa__Meinzer2010__R007.md": {
+      "source_sha256": "c5d55f1d0d78416d479df2f835344764f4544a49e56f9388c11713f75e990593",
+      "paper": "Meinzer2010",
+      "candidate": "R007"
+    },
+    "drafts/ingredients/training_motivation__Meinzer2010__R008.md": {
+      "source_sha256": "63db4bf7043bdb8dca98f93f691b965a475ad5eaf19deecae77fd82ba12f5889",
+      "paper": "Meinzer2010",
+      "candidate": "R008"
+    },
+    "drafts/predictors/aphasia_duration__Meinzer2010__R009.md": {
+      "source_sha256": "69eb84477c179d053cc2adf38dc67909e2ad50e121b3fe5731549d67ed3ce843",
+      "paper": "Meinzer2010",
+      "candidate": "R009"
+    },
+    "drafts/impairments/speech_apraxia_severity__Meinzer2010__R010.md": {
+      "source_sha256": "28b52f8951c3ab06e34fda1819eb937e90673e5495f2fcd7dbdc2d42eb7e930b",
+      "paper": "Meinzer2010",
+      "candidate": "R010"
+    },
+    "drafts/ingredients/education__Meinzer2010__R011.md": {
+      "source_sha256": "9f0b0eb3ec90d03e9ab012835cc9fe25c334edb350cf86e85bfbac912e39bf7e",
+      "paper": "Meinzer2010",
+      "candidate": "R011"
+    },
+    "drafts/predictors/anomia_subtype__Meinzer2010__R012.md": {
+      "source_sha256": "7417a3b0f670e0bafc714c5a299bcb87a4c2c3da3604da5d7f30cdcb5bfab42f",
+      "paper": "Meinzer2010",
+      "candidate": "R012"
+    },
+    "drafts/regions/left_hippocampus_volume__Meinzer2010__R013.md": {
+      "source_sha256": "f4f031c7c014c2448998c2d1cad7a509354fe7fc74bd90f26bcab5df4d237d33",
+      "paper": "Meinzer2010",
+      "candidate": "R013"
+    },
+    "drafts/regions/mca_infarct_proximity__Meinzer2010__R014.md": {
+      "source_sha256": "b7cf1d0ab3a7ca277871c36536b25a34a739f1804d13fbf0a2a737c105044f0b",
+      "paper": "Meinzer2010",
+      "candidate": "R014"
+    },
+    "drafts/regions/mca_infarct_proximity_hippocampal_wm__Meinzer2010__R015.md": {
+      "source_sha256": "6980cf202ec2999b49ec1f6fec9f906ad2d083a4e3da83b364a5df7ec275261b",
+      "paper": "Meinzer2010",
+      "candidate": "R015"
+    },
+    "drafts/predictors/lesion_size__Meinzer2010__R016.md": {
+      "source_sha256": "85b59cf1983fa536adc366e3e901c330a5e87bcb696f7aa1574fcd5cef24a6bc",
+      "paper": "Meinzer2010",
+      "candidate": "R016"
+    },
+    "drafts/regions/left_atl__Mirman2015__R001.md": {
+      "source_sha256": "7de4427868a52ad26ed248caf1aa34e035ebe48638eb5d474fa88977e830d030",
+      "paper": "Mirman2015",
+      "candidate": "R001"
+    },
+    "drafts/regions/white_matter_medial_insula_lateral_basal_ganglia__Mirman2015__R002.md": {
+      "source_sha256": "88ba4dbe85078cc34bc3d6e2ecaef736d1a6659657bae384a49c6763089ec02b",
+      "paper": "Mirman2015",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_atl__Mirman2015__R003.md": {
+      "source_sha256": "1157a1f934f806537a51d2e2d70e1cf67d84ec75e0e66931e766d58d7af45dbc",
+      "paper": "Mirman2015",
+      "candidate": "R003"
+    },
+    "drafts/regions/speech_production_cluster__Mirman2015__R004.md": {
+      "source_sha256": "35a045e6a490eb04baadcecc161f0d0271b727b70160e6af4146f40f4a7e2337",
+      "paper": "Mirman2015",
+      "candidate": "R004"
+    },
+    "drafts/regions/speech_recognition_cluster__Mirman2015__R005.md": {
+      "source_sha256": "b2a870541d2b7e284b24f91ed26a21e9f7a316839157ab1da2b119d9376b2ba8",
+      "paper": "Mirman2015",
+      "candidate": "R005"
+    },
+    "drafts/regions/lesion_volume__Mirman2015__R006.md": {
+      "source_sha256": "11e2acb097e892b6b84023e6c0ac089063972dd23cdc538ba03ffae7f2c73b4c",
+      "paper": "Mirman2015",
+      "candidate": "R006"
+    },
+    "drafts/regions/lesion_volume__Mirman2015__R007.md": {
+      "source_sha256": "c1caa5cb10a6cd2b0986d3555724fdc45c0cbd11f418add8b2e825a664d255e0",
+      "paper": "Mirman2015",
+      "candidate": "R007"
+    },
+    "drafts/regions/lesion_volume__Mirman2015__R008.md": {
+      "source_sha256": "3b5814930ac9139acd1e947d4b5fb07f8c55c7f66a05dd11658da6b5f409b34e",
+      "paper": "Mirman2015",
+      "candidate": "R008"
+    },
+    "drafts/regions/lesion_volume_speech_recognition__Mirman2015__R009.md": {
+      "source_sha256": "18503487b72bfd4e1cc4014bc8247696e0ffaa7edb830fc1a9fc7e43d3c1ffa9",
+      "paper": "Mirman2015",
+      "candidate": "R009"
+    },
+    "drafts/regions/phonological_production_dorsal_pathway__MirmanThye2018__R001.md": {
+      "source_sha256": "03e208e61343ae0d5fa89630ed37bc2480924b46116778822cf2d997ad9a5213",
+      "paper": "MirmanThye2018",
+      "candidate": "R001"
+    },
+    "drafts/regions/ventral_phonological_pathway_cluster__MirmanThye2018__R002.md": {
+      "source_sha256": "3a78e5f93e06a2ce605172a746c797436eea3f01fd06567fb695256b9a5ff2e7",
+      "paper": "MirmanThye2018",
+      "candidate": "R002"
+    },
+    "drafts/regions/superior_temporal_sulcus_cluster__MirmanThye2018__R003.md": {
+      "source_sha256": "80e0c769b6a0eba41ca1d51d18f3c6e912e6394b6c7fdfe1d6968cc919f595c1",
+      "paper": "MirmanThye2018",
+      "candidate": "R003"
     }
   }
 }
