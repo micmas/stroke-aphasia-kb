@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-24T12:31:33.951501+00:00",
+  "last_publication_snapshot": "2026-11-24T14:20:29.564657+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -112,7 +112,12 @@
     "Li2017",
     "Lo2019",
     "Lukic2017",
-    "Lukic2021"
+    "Lukic2021",
+    "Maher2006",
+    "Marchina2011",
+    "MartinezMolina2022",
+    "MassonTrottier2021",
+    "Matchin2020"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
   "recovery_publication_ready_seen": false

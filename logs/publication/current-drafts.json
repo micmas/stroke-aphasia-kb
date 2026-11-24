@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-24T12:31:33.951501+00:00",
+  "snapshot_at": "2026-11-24T14:20:29.564657+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -5099,6 +5099,320 @@
       "source_sha256": "19f8461d23cc7396c3bf34e19ed956f0d8a66d8554e93bb0b0db0259d94507c1",
       "paper": "Lukic2021",
       "candidate": "R011"
+    },
+    "drafts/therapies/cilt_vs_pace_wab_aq__Maher2006__R001.md": {
+      "source_sha256": "6540dd5ebdec0e18b22fac85c51d4533301c72cea21ff5972925716f55ebc9e5",
+      "paper": "Maher2006",
+      "candidate": "R001"
+    },
+    "drafts/therapies/cilt_vs_pace_bnt__Maher2006__R002.md": {
+      "source_sha256": "426aaf521bd8547bb38d4523d2a3768ab794613b437f4d6c340bf8dd22c583c5",
+      "paper": "Maher2006",
+      "candidate": "R002"
+    },
+    "drafts/therapies/cilt_therapy__Maher2006__R004.md": {
+      "source_sha256": "bdaa357c9d89366a5ca14d3f126ce6ea3f8447f2f67b2f53010922312e7debe6",
+      "paper": "Maher2006",
+      "candidate": "R004",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+    },
+    "drafts/therapies/cilt_bnt__Maher2006__R005.md": {
+      "source_sha256": "a9343eb57e4c8b304c34bda3e3bf18f3327c073a1a1572f66b3ae6f8083fa973",
+      "paper": "Maher2006",
+      "candidate": "R005",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+    },
+    "drafts/therapies/cilt_ant__Maher2006__R006.md": {
+      "source_sha256": "c36889fb7b988cacb7a0a8e4d72a5178fca7a540224ae7bdfddf10ac94157aaa",
+      "paper": "Maher2006",
+      "candidate": "R006",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+    },
+    "drafts/therapies/pace_therapy__Maher2006__R007.md": {
+      "source_sha256": "4310c3baf3531984c4e804a6cd20ce642c9b8be3e995519b024a7da9268a664d",
+      "paper": "Maher2006",
+      "candidate": "R007",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+    },
+    "drafts/therapies/pace_therapy__Maher2006__R008.md": {
+      "source_sha256": "3b99a67cb8d3ef7048cbd4cd89992f8391045336870b2d5188ea5e65584dad33",
+      "paper": "Maher2006",
+      "candidate": "R008",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+    },
+    "drafts/therapies/cilt_vs_pace_narrative__Maher2006__R009.md": {
+      "source_sha256": "0e925b993a9251cfc325ad049fc0833316f7fb0f363ead4f7b75724b09bd1f45",
+      "paper": "Maher2006",
+      "candidate": "R009"
+    },
+    "drafts/therapies/cilt_vs_pace_narrative_output__Maher2006__R010.md": {
+      "source_sha256": "563ee53921f87d8e392ecb3c6c58aef7678d940f822cc5a15e5053f97cbca56e",
+      "paper": "Maher2006",
+      "candidate": "R010"
+    },
+    "drafts/therapies/cilt_pace_comparison__Maher2006__R011.md": {
+      "source_sha256": "4ae9ed75a5fa994b9261540f2a4683578bce5ca700d01a224017563a4ed57e12",
+      "paper": "Maher2006",
+      "candidate": "R011",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+    },
+    "drafts/regions/arcuate_fasciculus_lesion_load__Marchina2011__R001.md": {
+      "source_sha256": "a7fe2eca27ac102024b7cbe2468b93bc7f68bc6e637e4936b19cc376f8209e3e",
+      "paper": "Marchina2011",
+      "candidate": "R001"
+    },
+    "drafts/regions/extreme_capsule_lesion_load__Marchina2011__R002.md": {
+      "source_sha256": "04651528b0cdd1938c3c4f613b47fd745ee796a01bb8373bc0c1a722f50343f5",
+      "paper": "Marchina2011",
+      "candidate": "R002"
+    },
+    "drafts/regions/uncinate_fasciculus_lesion_load__Marchina2011__R003.md": {
+      "source_sha256": "6a563784f1c784fc8a80b41157d3500875d9983dd88e987f4f6aa3671c465b6e",
+      "paper": "Marchina2011",
+      "candidate": "R003"
+    },
+    "drafts/predictors/overall_lesion_size__Marchina2011__R004.md": {
+      "source_sha256": "a5b1a4ab25a02c6672683a06ca454aeb4627bc4278801ee475bebada05ba5497",
+      "paper": "Marchina2011",
+      "candidate": "R004"
+    },
+    "drafts/regions/af_lesion_load__Marchina2011__R005.md": {
+      "source_sha256": "990a8fa285e80e78cc0ce07e35fbe20c0513f49b4c64ef8c7c51f9cbaa6f5b77",
+      "paper": "Marchina2011",
+      "candidate": "R005"
+    },
+    "drafts/regions/extreme_capsule_lesion_load__Marchina2011__R006.md": {
+      "source_sha256": "b9245a7a49577885200ca90714afc35b67d453b1c82320c2425ca696ab6bd574",
+      "paper": "Marchina2011",
+      "candidate": "R006"
+    },
+    "drafts/regions/uncinate_fasciculus_lesion_load__Marchina2011__R007.md": {
+      "source_sha256": "a2e22bc84c98716443ed048d5fa252bee0748353905a0222b2e1e473f37b124b",
+      "paper": "Marchina2011",
+      "candidate": "R007"
+    },
+    "drafts/regions/overall_lesion_size__Marchina2011__R008.md": {
+      "source_sha256": "cc35e580e77a006edd10b43a8e1acb66f037ada5c92f81245a840a8289290e19",
+      "paper": "Marchina2011",
+      "candidate": "R008"
+    },
+    "drafts/regions/af_lesion_load__Marchina2011__R009.md": {
+      "source_sha256": "8d6c7cf6ad7adfba571a49da01cf5897d3c6da89786def7d7758b0420043d460",
+      "paper": "Marchina2011",
+      "candidate": "R009"
+    },
+    "drafts/regions/extreme_capsule_lesion_load__Marchina2011__R010.md": {
+      "source_sha256": "df308e69fab5a15520fba1255e986823ffa7802f15c89b51691c09e62e131b62",
+      "paper": "Marchina2011",
+      "candidate": "R010"
+    },
+    "drafts/regions/uncinate_fasciculus_lesion_load__Marchina2011__R011.md": {
+      "source_sha256": "2a18ec2e69bdf6fe3132b6f553808ab8a57cd30f921915c40354c9b31ecd8b9c",
+      "paper": "Marchina2011",
+      "candidate": "R011"
+    },
+    "drafts/predictors/overall_lesion_size__Marchina2011__R012.md": {
+      "source_sha256": "cd064c9661c47fb7f8d59886a03c003061e8e8cacb05127651b31694cf49204e",
+      "paper": "Marchina2011",
+      "candidate": "R012"
+    },
+    "drafts/regions/af_lesion_load_naming__Marchina2011__R013.md": {
+      "source_sha256": "76e4b4d20f23c6cde8dc322399979cedd52f9b634ba00d80446917e595de46ab",
+      "paper": "Marchina2011",
+      "candidate": "R013"
+    },
+    "drafts/regions/uncinate_fasciculus_lesion_load__Marchina2011__R014.md": {
+      "source_sha256": "2da318dfcbf3f434fa3a178cc86afc5b68ee8e515c8cc5a5050a3b8154da7a49",
+      "paper": "Marchina2011",
+      "candidate": "R014"
+    },
+    "drafts/regions/extreme_capsule_lesion_load__Marchina2011__R015.md": {
+      "source_sha256": "3457387f8f5f711ee763a797397dbe8d0ccb7991a3fb0f9f5f26f3bb70185025",
+      "paper": "Marchina2011",
+      "candidate": "R015"
+    },
+    "drafts/predictors/overall_lesion_size__Marchina2011__R016.md": {
+      "source_sha256": "c9ff4499d84b02d4faa68ae6279830bff69dc6615022c82d8256a4cbd0113920",
+      "paper": "Marchina2011",
+      "candidate": "R016"
+    },
+    "drafts/predictors/speech_rate_prediction_model__Marchina2011__R017.md": {
+      "source_sha256": "8238e0f89c9528eb5791862a087562a1efad6478be98948e8fa44a4549ef4054",
+      "paper": "Marchina2011",
+      "candidate": "R017"
+    },
+    "drafts/predictors/af_emc_uf_lesion_load_model_cius__Marchina2011__R018.md": {
+      "source_sha256": "91a8f523fe5d3f3bd91b91f9ea0b66cb265bb0908b5a54652536f0900e10cb2a",
+      "paper": "Marchina2011",
+      "candidate": "R018",
+      "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
+      "publication_disposition_reason": "Marchina2011 PDF p3 reports AF significance within a four-variable regression, not an AF-only model. The claim adds unsupported wording \"when used alone in the model\". Publication copy withheld pending review; original outputs preserved."
+    },
+    "drafts/predictors/af_lesion_load_speech_efficiency__Marchina2011__R019.md": {
+      "source_sha256": "3e6bbe90612025c6b27a7953b4638a64e0c0abddb5acf3c1fe9e58841f48ce72",
+      "paper": "Marchina2011",
+      "candidate": "R019"
+    },
+    "drafts/regions/af_lesion_load_naming__Marchina2011__R020.md": {
+      "source_sha256": "c975a34d7fb8452b3727730b8a807c89fb36f62470e3a806a94c042bfc734333",
+      "paper": "Marchina2011",
+      "candidate": "R020"
+    },
+    "drafts/regions/left_frontal_temporal_insula_cluster__MartinezMolina2022__R001.md": {
+      "source_sha256": "22b93afac2a5f132089695c139ad84c70be5b30d4b9427e8ebf34cd2c494f2fa",
+      "paper": "MartinezMolina2022",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_temporal_singing_cluster__MartinezMolina2022__R002.md": {
+      "source_sha256": "6dd62a4774874e6a14e769df88a4104c369a99179d9f0637b6b57b23f05a913e",
+      "paper": "MartinezMolina2022",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_frontal_temporal_cued_repetition_cluster__MartinezMolina2022__R003.md": {
+      "source_sha256": "dbf3f67c51dced2c2a234031a5fe521ded48bdf26500b4760de186e5dff48e06",
+      "paper": "MartinezMolina2022",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_mfg_singing_repetition__MartinezMolina2022__R004.md": {
+      "source_sha256": "7c15051c5b701d5604722c382ee495d29e3e259256baf6529b1ff46cf571f00f",
+      "paper": "MartinezMolina2022",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_tpo_stg_damage__MartinezMolina2022__R005.md": {
+      "source_sha256": "84fadf42d2ba7e910ca82ec084a70b4c72c1e45217a1bdbeb068ec6aa2ecf309",
+      "paper": "MartinezMolina2022",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_mfg_gmv__MartinezMolina2022__R006.md": {
+      "source_sha256": "c7bd351d3569571e869767393f57206f5de48ee82d1a8983ded83818aaaa9042",
+      "paper": "MartinezMolina2022",
+      "candidate": "R006"
+    },
+    "drafts/regions/left_stg_gmv__MartinezMolina2022__R007.md": {
+      "source_sha256": "cb50e53ff5c7fdee20877449319894b40df34c31459682eecfb35ea8c7389a77",
+      "paper": "MartinezMolina2022",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_post_central_gyrus__MartinezMolina2022__R008.md": {
+      "source_sha256": "91c18848e396e1e97ac7b260d6ff24a47ae980b2e0072d9d581803811b9e0cae",
+      "paper": "MartinezMolina2022",
+      "candidate": "R008"
+    },
+    "drafts/regions/left_stg_gmv__MartinezMolina2022__R009.md": {
+      "source_sha256": "c06e7847165cb558d72b0e40762d65c97e6fa9e95a5122a424401d58016f8fbd",
+      "paper": "MartinezMolina2022",
+      "candidate": "R009"
+    },
+    "drafts/regions/left_mtg_gmv__MartinezMolina2022__R010.md": {
+      "source_sha256": "cab655277b84fc637988a910fca329b74f40ab1a91c340d7be9d590867a79120",
+      "paper": "MartinezMolina2022",
+      "candidate": "R010"
+    },
+    "drafts/therapies/fr_pca_therapy__MassonTrottier2021__R001.md": {
+      "source_sha256": "2af7bb5a954c3bf435ac2bed2961a482e41adcd386e0d2fa90d5ff169028cd47",
+      "paper": "MassonTrottier2021",
+      "candidate": "R001"
+    },
+    "drafts/therapies/fr_pca_rsfc_changes__MassonTrottier2021__R002.md": {
+      "source_sha256": "1e312b4c18dd6e51b5679faf5101c02de53b85e8c41fa829a3ec87b2a87e899d",
+      "paper": "MassonTrottier2021",
+      "candidate": "R002"
+    },
+    "drafts/predictors/initial_aphasia_severity__MassonTrottier2021__R003.md": {
+      "source_sha256": "847bffa7a68d4bc1dfc33ef9ff07f4211e14a0683778714589e65437784cdaf5",
+      "paper": "MassonTrottier2021",
+      "candidate": "R003"
+    },
+    "drafts/predictors/rsfc_change_naming_improvement__MassonTrottier2021__R004.md": {
+      "source_sha256": "4d0b0bca2fc27b9712137e746f7ed06715e010bc07ea26ef7fa0d40209fe6ade",
+      "paper": "MassonTrottier2021",
+      "candidate": "R004"
+    },
+    "drafts/regions/brocas_area__Matchin2020__R001.md": {
+      "source_sha256": "d841f16598b2ba46577d9ae9d52c1fc2a8305aaf1c3e50eff9cca6bcac56230c",
+      "paper": "Matchin2020",
+      "candidate": "R001"
+    },
+    "drafts/regions/brocas_area__Matchin2020__R002.md": {
+      "source_sha256": "e7955d21a16aa8043d463b5e41843918e0a29779aea447d96118d63d0acf903b",
+      "paper": "Matchin2020",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_pstg_mtg__Matchin2020__R003.md": {
+      "source_sha256": "8171e60709744a10d258580351419df3b8282c43ed1304b3cf8020bde98d3e83",
+      "paper": "Matchin2020",
+      "candidate": "R003"
+    },
+    "drafts/regions/agrammatism_frontal_cluster__Matchin2020__R009.md": {
+      "source_sha256": "55f93b346ced4bf80403f70f56030ba059be603338b502f7efe234ef2fd6ddbf",
+      "paper": "Matchin2020",
+      "candidate": "R009"
+    },
+    "drafts/regions/left_ventral_precentral_gyrus__Matchin2020__R010.md": {
+      "source_sha256": "715737560684cd1d5ef0bc38635d49a16f8edc67cb5dfef83ee1fc38858ebdde",
+      "paper": "Matchin2020",
+      "candidate": "R010"
+    },
+    "drafts/regions/left_posterior_temporal_inferior_parietal_cluster__Matchin2020__R011.md": {
+      "source_sha256": "9f991e310c5a9f14200392668019cdcdb8dfda13c2195c5a7db453db99e10cf2",
+      "paper": "Matchin2020",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_ventral_precentral_gyrus__Matchin2020__R013.md": {
+      "source_sha256": "0291c53d378bc566dd4d2cb11b364c264202508ce34a2ae005b38fdf51a8284e",
+      "paper": "Matchin2020",
+      "candidate": "R013"
+    },
+    "drafts/regions/left_posterior_temporal_inferior_parietal_cluster__Matchin2020__R014.md": {
+      "source_sha256": "ab6170466e8d4b703ed2bb246d6df4a18f08ce7cfd0454cc03d5793afb506f11",
+      "paper": "Matchin2020",
+      "candidate": "R014"
+    },
+    "drafts/regions/reduced_wpm_cluster__Matchin2020__R015.md": {
+      "source_sha256": "4b9fa99eea3d9fed1bfb7ac86e79f5c5c6fbd43671ae3778c8018581c3136d7c",
+      "paper": "Matchin2020",
+      "candidate": "R015"
+    },
+    "drafts/regions/left_precentral_gyrus_ifg_cluster__Matchin2020__R016.md": {
+      "source_sha256": "69c13ba0bccb224fc8abcf29b0201e734937ab66f6bc84382f3b017ebd80797f",
+      "paper": "Matchin2020",
+      "candidate": "R016"
+    },
+    "drafts/regions/left_inferior_precentral_gyrus__Matchin2020__R017.md": {
+      "source_sha256": "7831c2f4f203bbf8e560960dba25a380f795b649aa831c0af3c4585d6fcdf199",
+      "paper": "Matchin2020",
+      "candidate": "R017"
+    },
+    "drafts/regions/left_inferior_middle_frontal_gyrus_cluster__Matchin2020__R018.md": {
+      "source_sha256": "b5b467d1384e6eabf4c3769f31c3b9b265061cbe3b0900908ba2b7fe44c5b4fa",
+      "paper": "Matchin2020",
+      "candidate": "R018"
+    },
+    "drafts/regions/left_atl__Matchin2020__R019.md": {
+      "source_sha256": "665e34225e848b65c70905c0c0acd13bc36f889e6b509a8d25b864c23a3ceb26",
+      "paper": "Matchin2020",
+      "candidate": "R019"
+    },
+    "drafts/regions/left_atl__Matchin2020__R020.md": {
+      "source_sha256": "91965f1cbc2bc2761be58ccff8fd205fe7e49addacdc9825694c8ff92da855c6",
+      "paper": "Matchin2020",
+      "candidate": "R020"
+    },
+    "drafts/regions/wm_load_parietal_cluster__Matchin2024__R001.md": {
+      "source_sha256": "a1d613fbf696c4abb3b100313ac3dc13b49fded5cdec5137fea9a5d74a7de358",
+      "paper": "Matchin2024",
+      "candidate": "R001"
+    },
+    "drafts/regions/superior_middle_temporal_gyri_cluster__Matchin2024__R002.md": {
+      "source_sha256": "51f173007ed048af081e3e58559adf3a6591a3347f3da5ad11e70ee6dce5bd64",
+      "paper": "Matchin2024",
+      "candidate": "R002"
     }
   }
 }
