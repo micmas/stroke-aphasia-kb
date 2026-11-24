@@ -1,4 +1,5 @@
-import { ANATOMY, FACTORS, ANATOMY_GROUPS, FACTOR_GROUPS } from './topic-categories.js';
+import { overviewTopics } from './overview-topics.js';
+import { ANATOMY, FACTORS } from './topic-categories.js';
 import { groupedMatrix } from './evidence-groups.js';
 // Stroke aphasia KB explorer — views and routing.
 //
@@ -465,17 +466,8 @@ function overview(index) {
     }
     return [...m.entries()].map(([id, n]) => ({ id, n, label: index.name(id), alt: !index.hasEntry(id) })).sort((a, b) => b.n - a.n || a.label.localeCompare(b.label));
   };
-  const topicList = (category, groups) => groups.map(group => {
-    const ids = new Map();
-    for (const f of findings) {
-      const concepts = new Set([f.source_id, f.target]);
-      for (const id of concepts) {
-        const e = entries[id];
-        if (e?.category === category && e.subcategory === group) ids.set(id, (ids.get(id) || 0) + 1);
-      }
-    }
-    const rows = [...ids].map(([id,n]) => ({id,n,label:index.name(id)})).sort((a,b)=>b.n-a.n || a.label.localeCompare(b.label));
-    return rows.length ? h('section', {}, h('h3', {text:group}), barList(rows, {max:12,link:x=>entryHref(x.id)})) : null;
+  const topicList = category => barList(overviewTopics(index, category), {
+    link: x => href('/topic', {category, topic:x.id}),
   });
   const regionEntries = Object.values(entries).filter((e) => e.bucket === 'regions');
   const reachable = regionEntries.filter((e) => index.mapping.regions[e.id]).length;
@@ -505,10 +497,10 @@ function overview(index) {
     h('details', { class: 'editorial-details' }, h('summary', { text: 'Explore coverage and atlas mapping' }),
       h('p', {}, h('a', { href: '#/coverage', text: 'Search methods, screening decisions and evidence gaps →' })),
       h('div', { class: 'grid-2' },
-        h('section', {}, h('h2', { text: ANATOMY }), topicList(ANATOMY, ANATOMY_GROUPS)),
+        h('section', {}, h('h2', { text: ANATOMY }), topicList(ANATOMY)),
         h('section', {}, h('h2', { text: 'Language difficulties' }), barList(countBy('impairment'), { max: 12, link: x => entryHref(x.id) }))),
-      h('p', { class: 'small muted', text: 'Bars count findings, not evidence quality. Grey bars refer to topics without a dedicated entry yet.' }),
-      h('h2', { text: FACTORS }), topicList(FACTORS, FACTOR_GROUPS),
+      h('p', { class: 'small muted', text: 'Bars count findings, not evidence quality. Select a topic to explore its detailed entries.' }),
+      h('h2', { text: FACTORS }), topicList(FACTORS),
       h('h2', { text: 'Therapies' }), barList(therapies, { link: x => entryHref(x.id) }),
       h('h2', { text: 'Atlas mapping' }), h('p', { text: `${reachable} of ${regionEntries.length} region entries can currently be matched to a lesion through the atlas mapping.` }),
       unreachable.length ? h('details', {}, h('summary', { text: 'Regions without a mapping' }), h('ul', {}, unreachable.map(e => h('li', {}, entryLink(index, e.id), index.unmappedReason(e.id) ? ` — ${index.unmappedReason(e.id)}` : '')))) : null),
@@ -516,6 +508,21 @@ function overview(index) {
       h('p', { class: 'small', text: `KB ${v.commit || 'uncommitted'} · ${v.date || ''} · digest ${v.contentDigest || '?'} · exported ${v.exportedOn || '?'} · statuses: ${(v.statuses || []).join(', ')}` }),
       h('p', {}, 'The code, methods and review history are available in the ', h('a', { href: 'https://github.com/micmas/stroke-aphasia-kb', text: 'project repository' }), '.')));
 
+}
+
+function topicOverview(index, route) {
+  const category = route.params.get('category');
+  const topic = overviewTopics(index, category).find(t => t.id === route.params.get('topic'));
+  if (!topic) return h('p', {text:'This topic has no findings in the selected evidence version.'});
+  return h('div', {},
+    h('p', {}, h('a', {href:'#/',text:'← Overview'})),
+    h('h1', {text:topic.label}),
+    h('p', {class:'muted',text:`${category} · ${plural(topic.n, 'finding')} · ${plural(topic.entries.length, 'entry', 'entries')}`}),
+    h('p', {text:'Explore the breakdown below. Entries retain their study-specific definitions and measurements; grouping them here does not combine their results.'}),
+    ...topic.entries.map(e => h('section', {},
+      h('h2', {}, entryLink(index,e.id)),
+      h('p', {text:plural(e.n,'finding')}),
+      h('a', {href:href('/findings',{key:[...e.keys]}),text:'Explore these findings →'}))));
 }
 
 function browse(index, route) {
@@ -554,7 +561,7 @@ function browse(index, route) {
   });
 
   const active = Object.entries(filters).filter(([k]) => k !== 'key').flatMap(([k, vs]) => vs.map((v) => h('button', { type: 'button', onclick: () => toggle(k, v), text: `${FACETS.find((f) => f.key === k)?.label || k}: ${FACETS.find((f) => f.key === k)?.link ? index.name(v) : (FACETS.find((f) => f.key === k)?.labels?.[v] || v)} ×` })));
-  if (filters.key?.length) active.push(h('button', { type: 'button', onclick: () => go({ ...filters, key: [] }), text: `Matrix selection: ${filters.key.length} findings ×` }));
+  if (filters.key?.length) active.push(h('button', { type: 'button', onclick: () => go({ ...filters, key: [] }), text: `Selected findings: ${filters.key.length} findings ×` }));
   if (query) active.push(h('button', { type: 'button', onclick: () => go(filters, { q: '' }), text: `search: ${query} ×` }));
   if (active.length) active.push(h('button', { type: 'button', onclick: () => { location.hash = '#/findings'; }, text: 'clear all' }));
 
@@ -1307,6 +1314,7 @@ function render() {
   let view; let current = '/';
   try {
     if (!head) view = overview(index);
+    else if (head === 'topic') { view = topicOverview(index, route); current = '/'; }
     else if (head === 'findings') { view = browse(index, route); current = '/findings'; }
     else if (head === 'matrix') { view = matrix(index, route); current = '/matrix'; }
     else if (head === 'papers') { view = papers(index); current = '/papers'; }

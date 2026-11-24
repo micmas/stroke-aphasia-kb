@@ -19,3 +19,9 @@ Study-defined clusters remain intact and are not split into invented effects.
 
 Keep these presentation changes separate from the active source-check batch.
 Expand anatomical classifications only with adequate source definitions.
+
+The first-page lists use broad, clickable topics (for example Age), rather than
+listing every measurement and study variant. Topic pages expose the original
+entries and exact matching findings. Each finding is counted once per topic,
+even when both ends of a finding belong to that topic. This is navigation grouping,
+not a synthesis of effects or a merger of concept IDs.
