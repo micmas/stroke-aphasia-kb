@@ -6,7 +6,7 @@ export function overviewLabel(id, entry, finding) {
     if (entry.subcategory === ANATOMY_GROUPS[1]) return 'White-matter regions and pathways';
     const broad = anatomicalGroup(finding, id)[0];
     if (broad === 'White matter') return 'White-matter regions and pathways';
-    if (broad === 'Subcortical structures') return 'Subcortical grey matter';
+    if (['Subcortical structures','Subcortical grey matter'].includes(broad)) return 'Subcortical regions';
     if (['Multi-region anatomy','Distributed functional networks','Cross-region map comparisons'].includes(broad)) return 'Mixed or distributed regions';
     return broad === 'Anatomy awaiting classification' ? 'Other brain regions' : broad;
   }
