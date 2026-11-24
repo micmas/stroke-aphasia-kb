@@ -1387,39 +1387,48 @@
   "@Leonard2008": {
    "annotated": "pdf/C0079_Leonard2008_annotated.pdf",
    "annotation_passages_missed": 0,
-   "annotation_source_digest": "34a9f21155221e05d9840de7af09354ceaaed1f7aacf05f0f66e64d76557ab20",
-   "bytes": 585462,
+   "annotation_source_digest": "e6d94c12e4f1f3146a31e10bdf1be07c36225e7ac3cb9d8c1896cf0f94912761",
+   "bytes": 608403,
    "category": "rights_reserved",
-   "draft_snapshot": "2026-11-24T09:10:36.852576+00:00",
+   "draft_snapshot": "2026-11-24T12:31:33.951501+00:00",
    "label": "no open copy known",
    "public": false,
-   "sha256": "1d057a050f3b4c2532a215cee287ff96c93e5632cc9959821acea6b53666c719"
+   "sha256": "d78a43942a35b1b1f00d349a58001058eaae217babcf4da14b2c3a42107969de"
   },
   "@Li2017": {
    "annotated": "pdf/C0124_Li2017_annotated.pdf",
-   "bytes": 1427641,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "e78ab97abe1bf121317c5abe104a912956fc07e6d50b724de4c3bdc816925cb1",
+   "bytes": 1533674,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-24T12:31:33.951501+00:00",
    "label": "publisher TDM licence (text mining only)",
    "public": false,
-   "sha256": "2f0a5eed7f4de8fa90dd68cad44c5e3085995c005b1c2c2d5e4cb1b16ac3e29f"
+   "sha256": "367d6a3db7c76548cd0c3714883f4c3cef2e2e397d7e93c0ccff402e6387d38d"
   },
   "@Lo2019": {
    "annotated": "cc/C0163_Lo2019_annotated.pdf",
-   "bytes": 1697732,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "b5c7d8e35b4c4e023afc88272ff195e3c0eac7da84f131bceea9f57d0f6cba0e",
+   "bytes": 2045342,
    "category": "cc",
+   "draft_snapshot": "2026-11-24T12:31:33.951501+00:00",
    "label": "CC BY-NC-ND",
    "public": true,
    "public_basis": "cc",
-   "sha256": "8127462d72a37b84a2004c0e551775d0c298728e814ff18e34f8182c4dbecb54"
+   "sha256": "3a2605647adfc3ed8f0823f48a9882163e561419493eb3bb80a50128ac967848"
   },
   "@Lukic2021": {
    "annotated": "cc/C1728_Lukic2021_annotated.pdf",
-   "bytes": 1904754,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "2c6e2fee16c9b505471c4b2a178c493b8ca1ef713d8074de77b84a5af451cda5",
+   "bytes": 4247790,
    "category": "cc",
+   "draft_snapshot": "2026-11-24T12:31:33.951501+00:00",
    "label": "CC BY-NC-ND 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "f5f42199603baf3c7a27d591525ffb356536d64a8084b7dcfdef90f139916fac"
+   "sha256": "ac2b9255b4693ea20857535328446c4925533c1bb979fe0838e0e6f9472a63a3"
   },
   "@Maher2006": {
    "annotated": "pdf/C0036_Maher2006_annotated.pdf",

@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-24T09:10:36.852576+00:00",
+  "snapshot_at": "2026-11-24T12:31:33.951501+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -4852,6 +4852,253 @@
       "source_sha256": "56c115996ea43daa2d691b7a56762004456ad6bb727042d83abb857141161a8e",
       "paper": "Leonard2008",
       "candidate": "R002"
+    },
+    "drafts/therapies/pca_treatment__Leonard2008__R003.md": {
+      "source_sha256": "1a72e3affb7cdf28ea34ec0f54a98b80f23fadb0cab90cd4eab308f23573d003",
+      "paper": "Leonard2008",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Publication scope/design check: the draft labels PCA generalisation treatment evidence as method=clinical_RCT, but Leonard et al. (2008), PDF page 2, explicitly describes a single-subject multiple-baseline across-behaviours design with 10 participants; PDF pages 12-13 and 18 report within-participant pre/post generalisation, not a randomized controlled trial. Hold this publication copy pending design reconciliation; preserve the original source-run output. No human scientific approval conferred."
+    },
+    "drafts/predictors/palpa_53_word_repetition__Leonard2008__R006.md": {
+      "source_sha256": "48365d2fe2e83cde175fdb03eed64a983759e9eb22e912b882dd30a058284538",
+      "paper": "Leonard2008",
+      "candidate": "R006"
+    },
+    "drafts/predictors/pre_treatment_semantic_deficit__Leonard2008__R007.md": {
+      "source_sha256": "5af3758134930b57c5c746c04259bad580bcbae7b81de442945d7ea38b3475dd",
+      "paper": "Leonard2008",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_semantic_fluency_tract_cluster__Li2017__R001.md": {
+      "source_sha256": "ac4c6f437d73ab91da8874c84e7992681d890a8103b3eed24d9308bb8c98ecf2",
+      "paper": "Li2017",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_atr__Li2017__R002.md": {
+      "source_sha256": "b9b6b439ac6eaa825337c3fd3475c5f682bfc4c62e3ed74aad406b810092cd4d",
+      "paper": "Li2017",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_phonological_fluency_tracts__Li2017__R004.md": {
+      "source_sha256": "0533bc4a2447398515013a7c53dc2eb4d3c1a23f6465a947fb4b11233b3ab231",
+      "paper": "Li2017",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_uf_lesion__Li2017__R005.md": {
+      "source_sha256": "c05753473ac4f1dec0af421cfa12b88cd48a5c45d22c290b9240d50bd43f6a18",
+      "paper": "Li2017",
+      "candidate": "R005"
+    },
+    "drafts/regions/right_corticospinal_tract__Li2017__R007.md": {
+      "source_sha256": "b49091bdac075bfb646ced19e9f45ba6923385cd7b07f8d0e242f1893b274180",
+      "paper": "Li2017",
+      "candidate": "R007"
+    },
+    "drafts/regions/right_fat_cluster__Li2017__R008.md": {
+      "source_sha256": "3777ae0e7cd0d9b5fc73f53940577ad3c691d476c12fead6f8bb4a13a0fa3a85",
+      "paper": "Li2017",
+      "candidate": "R008"
+    },
+    "drafts/impairments/poststroke_cognitive_impairment_prevalence__Lo2019__R001.md": {
+      "source_sha256": "1c26fa0991af04ce29bee569b6f3f7b3d4f4baa3f2fe2c38a9a7fc53e9a4db4e",
+      "paper": "Lo2019",
+      "candidate": "R001"
+    },
+    "drafts/ingredients/diabetes_mellitus__Lo2019__R002.md": {
+      "source_sha256": "707efa09f74736c4e45674cd808a7db7d93337ccae8a8d1467187dbee3e2ab98",
+      "paper": "Lo2019",
+      "candidate": "R002"
+    },
+    "drafts/ingredients/history_of_stroke__Lo2019__R003.md": {
+      "source_sha256": "92023d433c504b7ec3901e8847a7fb1bf079c5ac1b0e5d9e97f6fc790b6e8b94",
+      "paper": "Lo2019",
+      "candidate": "R003"
+    },
+    "drafts/ingredients/hypertension__Lo2019__R004.md": {
+      "source_sha256": "26df17130532c6baf593714ed52831fa3095e24cd6861d0b07c6e47b66a45d83",
+      "paper": "Lo2019",
+      "candidate": "R004"
+    },
+    "drafts/ingredients/atrial_fibrillation__Lo2019__R005.md": {
+      "source_sha256": "8f4b8dc5102017ad9211b652755adf7f492d070ff54c3ff9b9eb338859d981c5",
+      "paper": "Lo2019",
+      "candidate": "R005"
+    },
+    "drafts/ingredients/smoking__Lo2019__R006.md": {
+      "source_sha256": "766e39b7d623f5cd04bdbbf3f8b72a75f0c0f92121ed0a762035b9c7c4826b00",
+      "paper": "Lo2019",
+      "candidate": "R006"
+    },
+    "drafts/ingredients/smoking__Lo2019__R007.md": {
+      "source_sha256": "ebbcbb5668b22c0e6024e68a0fe7c1f773d15a99cc6ba6423be14168adac8977",
+      "paper": "Lo2019",
+      "candidate": "R007"
+    },
+    "drafts/ingredients/congestive_heart_failure__Lo2019__R008.md": {
+      "source_sha256": "b03e779c69607a987d7a6cb4493657868c4892316e4758ec6961f3a06ec02c7b",
+      "paper": "Lo2019",
+      "candidate": "R008"
+    },
+    "drafts/ingredients/congestive_heart_failure__Lo2019__R009.md": {
+      "source_sha256": "d62370f975ee184ac329fcb3e796558e9e93b62334ad26a63392b7118609c4ed",
+      "paper": "Lo2019",
+      "candidate": "R009"
+    },
+    "drafts/ingredients/angina_mi_history__Lo2019__R010.md": {
+      "source_sha256": "7af4db61c9468a2c80897f7554732f77bf17d6d28dfdca58e7731b7099313921",
+      "paper": "Lo2019",
+      "candidate": "R010"
+    },
+    "drafts/regions/small_vessel_disease_etiology__Lo2019__R011.md": {
+      "source_sha256": "a9bc67f08f0630c27e431aae933d4b42bb15e8f8d998967e7d9cc934719c1f6d",
+      "paper": "Lo2019",
+      "candidate": "R011"
+    },
+    "drafts/regions/cardioembolic_stroke__Lo2019__R012.md": {
+      "source_sha256": "85cf183e104a008514fecc681c624d5d3b74e918d048dd90f8fdcb573b793758",
+      "paper": "Lo2019",
+      "candidate": "R012"
+    },
+    "drafts/regions/left_hemisphere_stroke__Lo2019__R013.md": {
+      "source_sha256": "f1ff0c2475b1e1a4810487f3fb330b3f186f5956751ccc3d4de4f392a4518451",
+      "paper": "Lo2019",
+      "candidate": "R013"
+    },
+    "drafts/regions/right_hemisphere_stroke__Lo2019__R014.md": {
+      "source_sha256": "a8befe472b37efbd1cdfa2db1385f53193be32f542f0cdc93a5f4798145712b7",
+      "paper": "Lo2019",
+      "candidate": "R014"
+    },
+    "drafts/regions/ethnoracial_group__Lo2019__R015.md": {
+      "source_sha256": "ed3ef6bb08907d9a28b3e930f1a36c4645def3ceb1e6a08634d06975206689e5",
+      "paper": "Lo2019",
+      "candidate": "R015"
+    },
+    "drafts/predictors/ethnoracial_group__Lo2019__R016.md": {
+      "source_sha256": "30b37e946450bb0a4cf9ff01ee110da12f92cbadd78fb7481e86ae48d9443f70",
+      "paper": "Lo2019",
+      "candidate": "R016"
+    },
+    "drafts/ingredients/atrial_fibrillation__Lo2019__R022.md": {
+      "source_sha256": "c4c8ca131c54061e44bad1393250097735195e2a4bd373b8e90e6353d3cec3eb",
+      "paper": "Lo2019",
+      "candidate": "R022"
+    },
+    "drafts/regions/stroke_subtype_global_cognition__Lo2019__R023.md": {
+      "source_sha256": "4ee3f2b38990d7e77694815528db0da0c08ca0147cfe2374cf0ad79096295322",
+      "paper": "Lo2019",
+      "candidate": "R023"
+    },
+    "drafts/regions/right_sma_gm_volume__Lukic2017__R001.md": {
+      "source_sha256": "6662b6ea148beacf8e82c1b470c706a0a9fe09ab93767ef8c3d358a039c0c1e4",
+      "paper": "Lukic2017",
+      "candidate": "R001"
+    },
+    "drafts/regions/right_sma_gm_volume__Lukic2017__R002.md": {
+      "source_sha256": "474fc535f2af819444d946df1ba09665689f2f30879cecd969ceb70a0d93e80a",
+      "paper": "Lukic2017",
+      "candidate": "R002"
+    },
+    "drafts/regions/right_sma_gm_volume__Lukic2017__R003.md": {
+      "source_sha256": "217c27af222d9a2fadfa89784bfd9cebfd3d51904fa8dfd6bede6e70391d0f30",
+      "paper": "Lukic2017",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_semantic_association_cluster__Lukic2017__R005.md": {
+      "source_sha256": "58d13011a1a1d162756a6e8cfa9bc239068948708458db1041ce33bd062c4e44",
+      "paper": "Lukic2017",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_mtg_stg_lesions__Lukic2017__R006.md": {
+      "source_sha256": "8a64afd8b7b660564d85f7b37d5eb41d9ead5347ccf7b5234633dcc93ac48070",
+      "paper": "Lukic2017",
+      "candidate": "R006"
+    },
+    "drafts/predictors/lh_lesion_production__Lukic2017__R007.md": {
+      "source_sha256": "573f75b1a80878b74508770e04db5daf1b1a8abd6e09640266bdc1ac878b410e",
+      "paper": "Lukic2017",
+      "candidate": "R007"
+    },
+    "drafts/regions/rh_mtg_insula_gm_volume__Lukic2017__R008.md": {
+      "source_sha256": "57204522a35b0b3b4741047b2cfc9145604ae630b503626becf9343396c1cdd5",
+      "paper": "Lukic2017",
+      "candidate": "R008"
+    },
+    "drafts/regions/rh_sma_insula_gm_volume__Lukic2017__R009.md": {
+      "source_sha256": "9a87cdf3ea822d2971e922548200a5a01a004ee6b82e1cc33b1da28940256c1b",
+      "paper": "Lukic2017",
+      "candidate": "R009"
+    },
+    "drafts/regions/rh_oral_reading_gm_cluster__Lukic2017__R010.md": {
+      "source_sha256": "d77d423c0f2a4982a28536ed416c2d09fbc4854d3bb669210003ae81466d7aed",
+      "paper": "Lukic2017",
+      "candidate": "R010"
+    },
+    "drafts/regions/right_hippocampus_postcentral_gm_volume__Lukic2017__R011.md": {
+      "source_sha256": "56721de31e3625b0b551b1f186e6533052806fe866dfff4dc24a39ad1a2832ba",
+      "paper": "Lukic2017",
+      "candidate": "R011"
+    },
+    "drafts/regions/right_sma_gm_volume__Lukic2017__R012.md": {
+      "source_sha256": "dee47298535be62a664f7b15d3087f9f406b8e4ee28f144af0317aa84d2426d1",
+      "paper": "Lukic2017",
+      "candidate": "R012"
+    },
+    "drafts/predictors/rh_gm_volume_comprehension_null__Lukic2017__R013.md": {
+      "source_sha256": "c58b3e84ecdd46c1307a32f7e2d857ac140ed59bbd024a3ccf03f48fbd58a725",
+      "paper": "Lukic2017",
+      "candidate": "R013"
+    },
+    "drafts/regions/left_temporal_sentence_cluster__Lukic2021__R001.md": {
+      "source_sha256": "86c3c17451845d5e8a56878abb9d37ecb79b485472124fc23e21d7b4d7d06ccb",
+      "paper": "Lukic2021",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_hemisphere_sentence_comprehension_network__Lukic2021__R002.md": {
+      "source_sha256": "80a997c7ace2c4bca05f1c8349dcaab1dc7de071c56afc3d1d9457e8d182209e",
+      "paper": "Lukic2021",
+      "candidate": "R002"
+    },
+    "drafts/regions/anterior_temporal_production_cluster__Lukic2021__R003.md": {
+      "source_sha256": "8c01150a6a65029392d50a057f90be2d42dc37b6216bad5c82c2c0fd37d866aa",
+      "paper": "Lukic2021",
+      "candidate": "R003"
+    },
+    "drafts/regions/posterior_temporo_parietal_cluster__Lukic2021__R004.md": {
+      "source_sha256": "87aad057bd64a540fdc1ac3b189894305154d9073155fda73474cfbb5a3d49c2",
+      "paper": "Lukic2021",
+      "candidate": "R004"
+    },
+    "drafts/regions/pstg_noncanonical_cluster__Lukic2021__R005.md": {
+      "source_sha256": "2655c02c9a7cc2bafdff10fe8f788ddc0ebfd8c6365a1b6b69c3f124a310cc23",
+      "paper": "Lukic2021",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_pstg_noncanonical_comprehension__Lukic2021__R006.md": {
+      "source_sha256": "b5b2629e3497bcd15d8406547634126b4fd53579da04641078069055438d281d",
+      "paper": "Lukic2021",
+      "candidate": "R006"
+    },
+    "drafts/regions/left_ifg__Lukic2021__R008.md": {
+      "source_sha256": "2505e9245ae56fad31d0b79e31d4cb616d8d660d6f03d160cbfe2264aeb7f716",
+      "paper": "Lukic2021",
+      "candidate": "R008"
+    },
+    "drafts/impairments/sentence_production_vs_comprehension__Lukic2021__R009.md": {
+      "source_sha256": "2096e418b8ec3a1ca9d641001f917992f79ca1155e5a11eb27fee722b4105d2b",
+      "paper": "Lukic2021",
+      "candidate": "R009"
+    },
+    "drafts/impairments/noncanonical_sentence_processing__Lukic2021__R010.md": {
+      "source_sha256": "19515c1519e0028128c351b2dc0745d242154982db39099c00f69368d74c8ca5",
+      "paper": "Lukic2021",
+      "candidate": "R010"
+    },
+    "drafts/impairments/verb_production_vs_comprehension__Lukic2021__R011.md": {
+      "source_sha256": "19f8461d23cc7396c3bf34e19ed956f0d8a66d8554e93bb0b0db0259d94507c1",
+      "paper": "Lukic2021",
+      "candidate": "R011"
     }
   }
 }
