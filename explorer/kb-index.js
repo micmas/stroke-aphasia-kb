@@ -1,3 +1,4 @@
+import { topicCategory, ANATOMY, FACTORS } from './topic-categories.js';
 import { clinicalContext } from './clinical-context.js';
 // Indexes the exported knowledge base (scripts/export_webapp.py → stroke-aphasia-kb.json)
 // for exploration: lookups by entry, by paper, by (region, impairment) pair, and
@@ -33,7 +34,8 @@ export const REVIEW_LABEL = {
 };
 
 export const FACETS = [
-  { key: 'source_kind', label: 'Entry type', order: ['region', 'impairment', 'therapy', 'personal_factor', 'predictor'], labels: { personal_factor: 'Personal factors' } },
+  { key: 'category', label: 'Category', order: [ANATOMY, FACTORS, 'Language difficulties', 'Therapies'] },
+  { key: 'subcategory', label: 'Subcategory', order: null },
   { key: 'target_kind', label: 'Target type', order: ['impairment', 'region', 'therapy', 'predictor', 'prognosis'] },
   { key: 'relationship', label: 'Relationship', order: ['causal', 'correlational', 'recruitment', 'responder', 'treatment_response', 'synthesis'] },
   { key: 'strength', label: 'Strength', order: ['strong', 'moderate', 'weak', 'not_assessed'], labels: { not_assessed: 'evidence strength not yet assessed' } },
@@ -101,10 +103,17 @@ export function buildIndex(kb) {
   const findings = (kb.findings || []).map((f, i) => {
     const stages = findingStages(f);
     const presentation = f.presentation || clinicalContext(f, kb);
-    const sourceKind = presentation?.category === 'Personal or timing factor' ? 'personal_factor'
+    let sourceKind = presentation?.category === 'Personal or timing factor' ? 'personal_factor'
       : presentation?.match_status === 'no_direct_imaging_match' && f.source_kind === 'region' ? 'predictor' : f.source_kind;
+    const topic = topicCategory(f.source_id, entries[f.source_id], sourceKind, presentation);
+    if (topic.category === FACTORS && sourceKind === 'region') sourceKind = 'predictor';
+    const targetTopic = topicCategory(f.target, entries[f.target], f.target_kind);
+    const targetKind = targetTopic.category === FACTORS && f.target_kind === 'region' ? 'predictor' : f.target_kind;
     return {
       ...f,
+      ...topic,
+      target_kind: targetKind,
+      recorded_target_kind: f.target_kind,
       presentation,
       source_kind: sourceKind,
       recorded_source_kind: f.source_kind,
@@ -119,7 +128,7 @@ export function buildIndex(kb) {
       therapy_name: f.therapy && f.therapy.name ? String(f.therapy.name) : (['treatment_response', 'responder'].includes(f.relationship) || f.target_kind === 'therapy' ? 'not recorded' : 'not applicable'),
       year: yearOf(f.citation, kb.citations?.[f.citation]),
       page: pagesOf(f),
-      pair: pairOf({ ...f, source_kind: sourceKind }),
+      pair: pairOf({ ...f, source_kind: sourceKind, target_kind: targetKind }),
       text: [f.claim, f.population, f.time_post_onset, ...(f.source_passages || []).map((p) => p.quote), f.source_id, f.target, f.citation, paperLabel(f.citation), f.therapy?.name, f.therapy?.id,
         labelFor(kb, f.source_id), labelFor(kb, f.target), ...(f.flags || []), ...(f.author_limitations || [])]
         .filter(Boolean).join(' \n ').toLowerCase(),
@@ -141,6 +150,11 @@ export function buildIndex(kb) {
       const kind = rows[0].source_kind;
       entries[id] = { ...entries[id], bucket: kind === 'personal_factor' ? 'personal_factors' : 'predictors' };
     }
+  }
+
+  for (const [id, e] of Object.entries(entries)) {
+    const topic = topicCategory(id, e, e.bucket === 'personal_factors' ? 'personal_factor' : BUCKET_KIND[e.bucket]);
+    entries[id] = {...e, ...topic, ...(topic.category === FACTORS && e.bucket === 'regions' ? {bucket:'predictors'} : {})};
   }
 
   // Keep old permalinks only when the entry/finding pair is unambiguous.
