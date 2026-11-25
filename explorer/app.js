@@ -2,6 +2,7 @@ import { overviewTopics } from './overview-topics.js';
 import { atlasCoverage, mappingStatus } from './atlas-coverage.js';
 import { ANATOMY, FACTORS } from './topic-categories.js';
 import { groupedMatrix } from './evidence-groups.js';
+import { loadExportText } from './load-export.js';
 // Stroke aphasia KB explorer — views and routing.
 //
 // A static page: it loads export/stroke-aphasia-kb.json (approved findings), or
@@ -1359,9 +1360,7 @@ async function load(url) {
   const main = document.getElementById('main');
   main.replaceChildren(h('p', { class: 'loading', text: 'Loading the knowledge base…' }));
   try {
-    const res = await fetch(url, { cache: 'no-cache' });
-    if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
-    const kb = await res.json();
+    const kb = JSON.parse(await loadExportText(url, { cache: 'no-cache' }));
     use(kb, url.replace(/^.*\//, ''), false);
   } catch (err) {
     main.replaceChildren(h('div', { class: 'error' }, h('p', {}, h('b', { text: 'The knowledge-base export could not be loaded.' })),

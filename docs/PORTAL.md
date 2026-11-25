@@ -196,6 +196,16 @@ of a paper awaiting full-text screening is uploaded to the private
 `pdf/` path so signed-in reviewers can read it.
 
 **The PDFs live in a bucket, not in git and not in the deployment.**
+
+Large knowledge-base exports are packaged only in deployment copies by
+`scripts/package_export.py`. Above 20 MiB, the JSON URL contains a
+`_kb_json_parts: 1` manifest pointing to content-addressed UTF-8 parts, each at
+most 4 MiB. `explorer/load-export.js` reconstructs the exact original text and
+checks its byte count and SHA-256 before the explorer or portal uses it. Review
+bindings still hash the original export, and the repository's `export/*.json`
+files remain ordinary complete JSON for downloads and other consumers. Clients
+fetching a deployed JSON URL directly must support the manifest format. The
+Pages, public-site and portal builds all apply the same packaging step.
 `publish_portal.py --sync`, on the maintainer's machine, mirrors the
 annotated PDFs into a private R2 bucket (`cc/`, `pdf/`) and writes
 `portal/papers.json`, an index of names, licences and checksums that is

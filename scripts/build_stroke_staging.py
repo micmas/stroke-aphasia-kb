@@ -8,6 +8,7 @@ import shutil
 import subprocess
 import sys
 from build_dysphagia_staging import build as build_screening
+from package_export import package_export
 ROOT=Path(__file__).resolve().parents[1]
 DEST=ROOT/'staging/stroke/dist'
 WEB=ROOT/'staging/stroke/web'
@@ -65,6 +66,7 @@ def build(exports=None, public=False, reuse_exports=False):
     for name,statuses in [('stroke-aphasia-kb.json','approved'),('stroke-aphasia-kb-drafts.json','approved,in_review,draft')]:
         if reuse_exports: shutil.copy2(ROOT/'export'/name,export/name)
         else: subprocess.run([sys.executable,str(ROOT/'scripts/export_webapp.py'),'--include',statuses,'--out',str(export/name)],cwd=ROOT,check=True)
+        package_export(export/name)
     shutil.copy2(ROOT/'export/model-benchmark.json',export/'model-benchmark.json')
     # No data export is created for Dysphagia. Its evidence sections cannot load Aphasia data.
     (DEST/'_headers').write_text('/*\n  Cache-Control: no-store\n  X-Robots-Tag: noindex, nofollow\n')

@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-25T15:49:36.021027+00:00",
+  "snapshot_at": "2026-11-25T17:53:41.563585+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -8530,6 +8530,238 @@
       "source_sha256": "e9d5911bae987c307e05fb22b29e270cb68a8cd2ce1cbe02c262ce637c3104ff",
       "paper": "Wallentin2018",
       "candidate": "R010"
+    },
+    "drafts/regions/psci_strategic_regions__Weaver2021__R001.md": {
+      "source_sha256": "47f3a9eadaee21d1f8fb4f042ce7c99f9fbde31389e6c6dd7657c219def9534b",
+      "paper": "Weaver2021",
+      "candidate": "R001"
+    },
+    "drafts/regions/right_occipital_brainstem_cerebellum_cluster__Weaver2021__R002.md": {
+      "source_sha256": "92226b0eac21836a807b78c8b35f37fbb7773cf2c6fbb4f23c28fa3a29b2c6a2",
+      "paper": "Weaver2021",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_thalamus__Weaver2021__R003.md": {
+      "source_sha256": "4d6231c2acf20c54e74b31c1dae2efb4958772c27b5de9c92d09a81e35af7881",
+      "paper": "Weaver2021",
+      "candidate": "R003"
+    },
+    "drafts/regions/infratentorial_locations__Weaver2021__R004.md": {
+      "source_sha256": "1379b3bf2baf0bf474cd0109d344e08af103c948ca2665a4341f984455fd19ce",
+      "paper": "Weaver2021",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_hemisphere_infarcts__Weaver2021__R005.md": {
+      "source_sha256": "5030d49b10eed8dbd85c0d55d9a58e9fba7ce1c3e3e2d2c26f74859065f96d1d",
+      "paper": "Weaver2021",
+      "candidate": "R005",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 10\u201311 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication."
+    },
+    "drafts/regions/right_parietal_lobe__Weaver2021__R006.md": {
+      "source_sha256": "4192c71da64d098953b94a391a59caf9b7b7b173fc6f4b7e8c12b6625f838c10",
+      "paper": "Weaver2021",
+      "candidate": "R006",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 10\u201311 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication."
+    },
+    "drafts/regions/processing_speed_infarct_locations__Weaver2021__R007.md": {
+      "source_sha256": "97fdc696cd146819701099df3175d22547c569a3d6d4288f9de8d6bda89cf047",
+      "paper": "Weaver2021",
+      "candidate": "R007",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 10\u201311 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication."
+    },
+    "drafts/predictors/location_impact_score__Weaver2021__R008.md": {
+      "source_sha256": "8df8ed85339f6a075292eadcc69440019f436fb7ab77ea423ee750485cad8bc5",
+      "paper": "Weaver2021",
+      "candidate": "R008"
+    },
+    "drafts/predictors/location_impact_score__Weaver2021__R009.md": {
+      "source_sha256": "46d754f08c4d7781133f45427e09b0bc5282204620e78928aea60c3fe8908892",
+      "paper": "Weaver2021",
+      "candidate": "R009"
+    },
+    "drafts/predictors/location_impact_score__Weaver2021__R010.md": {
+      "source_sha256": "8233884e1b00cb3a61bd4379bf83962d983a64bf150c31ffb270975dc124e570",
+      "paper": "Weaver2021",
+      "candidate": "R010"
+    },
+    "drafts/predictors/location_impact_score__Weaver2021__R011.md": {
+      "source_sha256": "8d18bed4cfbaea851f0f1c5efa302d93c4da845b0d3e8f3aea7f5f76c7f157ef",
+      "paper": "Weaver2021",
+      "candidate": "R011"
+    },
+    "drafts/predictors/location_impact_score_model__Weaver2021__R012.md": {
+      "source_sha256": "b49e5d8aa3a1a412d81ce42efe1bce5123b272065263b65d587a8e185d89fb9d",
+      "paper": "Weaver2021",
+      "candidate": "R012"
+    },
+    "drafts/predictors/left_lesion_size_baseline_model__White2024__R001.md": {
+      "source_sha256": "83610950dd4f5295442ca1a511fe4abe98eda17c3660c813b8047e5a2babff88",
+      "paper": "White2024",
+      "candidate": "R001"
+    },
+    "drafts/predictors/baseline_logistic_regression_aphasia__White2024__R002.md": {
+      "source_sha256": "3bdaa598be483034cc3af7e102397506a7adf7c950f179d518ea00ff5ba97bd8",
+      "paper": "White2024",
+      "candidate": "R002",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "The baseline prediction model uses MRI-derived left lesion volume plus clinical measures, but method=behavioral_only. Reconcile the imaging/analysis-method provenance; see source Methods and baseline-model Results."
+    },
+    "drafts/predictors/baseline_logistic_regression_spoken_description__White2024__R003.md": {
+      "source_sha256": "13cdfa73c9e2fdfcdbdd2e689644ae6ab3ef2b50472dcd182499e7c13e264041",
+      "paper": "White2024",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "The baseline prediction model uses MRI-derived left lesion volume plus clinical measures, but method=behavioral_only. Reconcile the imaging/analysis-method provenance; see source Methods and baseline-model Results."
+    },
+    "drafts/predictors/hybrid_roi_resnet_18__White2024__R004.md": {
+      "source_sha256": "e780f313dc75574fe47f889171ed51a4173bea4ffecb8a386d4c8027e740f19a",
+      "paper": "White2024",
+      "candidate": "R004"
+    },
+    "drafts/predictors/stitched_mri_model__White2024__R007.md": {
+      "source_sha256": "b2c2c2657fa3d316f52f1a5d14b474349eb3c7cb4201f769129b491685d4f502",
+      "paper": "White2024",
+      "candidate": "R007"
+    },
+    "drafts/predictors/hybrid_roi_model__White2024__R008.md": {
+      "source_sha256": "0461b66ce49d682b7958084336e19ac777e4ddc65358b7af28014d772c7d1003",
+      "paper": "White2024",
+      "candidate": "R008"
+    },
+    "drafts/predictors/left_lesion_size__White2024__R010.md": {
+      "source_sha256": "7fe7bde5b2154806a637acf1fdef75b2832b8f30ba50e1f93a9193dd721a44c3",
+      "paper": "White2024",
+      "candidate": "R010"
+    },
+    "drafts/predictors/resnet_depth__White2024__R011.md": {
+      "source_sha256": "9e8db703f0f89ecfa60b25978febfdb2c1cf07d70853582f4bae3ad4811c681e",
+      "paper": "White2024",
+      "candidate": "R011"
+    },
+    "drafts/predictors/imagenet_pretraining_weights__White2024__R013.md": {
+      "source_sha256": "0621c81ad521b07678233499902572ff91586baaebd668e78319bea277c161a2",
+      "paper": "White2024",
+      "candidate": "R013"
+    },
+    "drafts/regions/occipital_lobe_damage__Willis2025__R001.md": {
+      "source_sha256": "27fc4e18506c658c39d3bb5d61e4a7fd66e9e6591713dd7e4e9454644bb4f4f7",
+      "paper": "Willis2025",
+      "candidate": "R001"
+    },
+    "drafts/regions/v1_damage_extent__Willis2025__R002.md": {
+      "source_sha256": "5b5919559a31eb20b41b6cf999330f1bd942b9170f45114e375d0cada85e92ab",
+      "paper": "Willis2025",
+      "candidate": "R002",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context."
+    },
+    "drafts/regions/v4_damage__Willis2025__R003.md": {
+      "source_sha256": "1eaa6d329261542fa56ac46c14e09345c0439676c3f0741824420e6c7bf8319c",
+      "paper": "Willis2025",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context."
+    },
+    "drafts/regions/hmt_v5_damage__Willis2025__R004.md": {
+      "source_sha256": "76deadc1a1a0caec0a2f953c43ad632c1e51f498d1513053f5dbdccbd23debf8",
+      "paper": "Willis2025",
+      "candidate": "R004",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context."
+    },
+    "drafts/regions/hmt_v5_cluster__Willis2025__R005.md": {
+      "source_sha256": "20a6aff6ad4c24be5c4ddb8eb6c444125103e431d03975536e9d3e052d84eb1e",
+      "paper": "Willis2025",
+      "candidate": "R005",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context."
+    },
+    "drafts/regions/ifgop_ag_connection_type__Wilmskoetter2021__R001.md": {
+      "source_sha256": "4629490af6383b32788feb1c733d62a9d37b6e45e1e2bbb878bb2a0c6a24c42e",
+      "paper": "Wilmskoetter2021",
+      "candidate": "R001"
+    },
+    "drafts/therapies/a_tdcs_naming_recovery__Wilmskoetter2021__R003.md": {
+      "source_sha256": "c349b5d7c58cf92ee1430b61b2fc012adc33b1a93c9694e694855ef3bfa0ba7a",
+      "paper": "Wilmskoetter2021",
+      "candidate": "R003"
+    },
+    "drafts/predictors/ifgop_mtg_connection_treatment_interaction__Wilmskoetter2021__R004.md": {
+      "source_sha256": "123479513e66eda01e92424bedbc1fa029af57fa5002e91ac00d67d2cf3f45ac",
+      "paper": "Wilmskoetter2021",
+      "candidate": "R004"
+    },
+    "drafts/predictors/ifgop_mtg_connection_tdcs_interaction__Wilmskoetter2021__R005.md": {
+      "source_sha256": "f0ca4274cf0bb4224b1420016ed51078c2c3f5faab5358df25a8089502d6d288",
+      "paper": "Wilmskoetter2021",
+      "candidate": "R005"
+    },
+    "drafts/regions/ifgop_mtg_indirect_atdcs__Wilmskoetter2021__R006.md": {
+      "source_sha256": "16054c10fe9c3c2e1665db2d9a8fb862ad03c474822e230906e83123376c5172",
+      "paper": "Wilmskoetter2021",
+      "candidate": "R006"
+    },
+    "drafts/regions/ifgop_mtg_connection_type__Wilmskoetter2021__R007.md": {
+      "source_sha256": "c9e53941276520949ef501435b86553d92fcd44390ac029b88f246b07b68383e",
+      "paper": "Wilmskoetter2021",
+      "candidate": "R007"
+    },
+    "drafts/predictors/ag_mtg_indirect_steps__Wilmskoetter2021__R009.md": {
+      "source_sha256": "b171ad7d8835a8f50718a6d90383ba273982810d5161b66a810e05574949e5b9",
+      "paper": "Wilmskoetter2021",
+      "candidate": "R009",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 4\u20136 restricts the AG\u2013MTG indirect-step analysis to 32 participants with indirect connections; sample.n=69 describes the full study. Reconcile the analysis-specific denominator."
+    },
+    "drafts/regions/indirect_connection_steps_ifgop_ag_mtg__Wilmskoetter2021__R010.md": {
+      "source_sha256": "be22c1afd1afe2870c3ddb9abfba99190f5e1fe16a00931bae59e68c3e89c59e",
+      "paper": "Wilmskoetter2021",
+      "candidate": "R010",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 4\u20136 restricts indirect-step analyses to 46 participants for each IFGop\u2013AG and IFGop\u2013MTG pair; sample.n=69 describes the full study. Reconcile the analysis-specific denominators."
+    },
+    "drafts/regions/roi_lesion_volume_connection_type__Wilmskoetter2021__R011.md": {
+      "source_sha256": "229fbf0df477dbed31c9568f9884d3b5310a65f022bdcc8d6fb21554d09f9508",
+      "paper": "Wilmskoetter2021",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_slf_arcuate_fa__Wilson2011__R001.md": {
+      "source_sha256": "a085f13c8d8d5d1d4a6f73ed49216d0a6fb524fecda733400a5cc46543f28773",
+      "paper": "Wilson2011",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_ecfs__Wilson2011__R002.md": {
+      "source_sha256": "4a9f50ce880f54b3a67b105e9c04a163268ab2f0e69342df80d617ab3c9d7f8b",
+      "paper": "Wilson2011",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_uncinate_fasciculus__Wilson2011__R003.md": {
+      "source_sha256": "b93f302e842ef2cbf3ad5b760728d50e7353ae0ef75e612c74f2e4a97fe58a3d",
+      "paper": "Wilson2011",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_slf_arcuate_fa__Wilson2011__R004.md": {
+      "source_sha256": "e50c5cc70bd54752c332a81119dad5c889259b3f372934433a259696705f2708",
+      "paper": "Wilson2011",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_ifg_gray_matter__Wilson2011__R006.md": {
+      "source_sha256": "6ef94d7b188a2d3c12f7cc2a99604d9c5016efda25f02252ed14d5d487d0a820",
+      "paper": "Wilson2011",
+      "candidate": "R006"
+    },
+    "drafts/regions/left_slf_arcuate_fa__Wilson2011__R007.md": {
+      "source_sha256": "fa551fdcdc35c4857c4e3c27e5ca85978adbe03680dc503c28b753aae043ce98",
+      "paper": "Wilson2011",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_slf_arcuate_fa__Wilson2011__R009.md": {
+      "source_sha256": "48ed8a07ea024ecb50c949774877e377f202040620c5547f5c4b5dd357fd610d",
+      "paper": "Wilson2011",
+      "candidate": "R009"
     }
   }
 }

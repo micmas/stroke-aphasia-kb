@@ -1,0 +1,16 @@
+{
+  "checked_at": "2026-11-25T18:07:26.541Z",
+  "original_export_bytes": 26645351,
+  "original_export_sha256": "9fca90f01dd6660de1f10a743dde631580050b6d3976913b75904bbf3f4e09f4",
+  "findings": 1633,
+  "portal_bindings": 1633,
+  "portal_same_build": true,
+  "public_site_exact_export": true,
+  "largest_portal_asset_bytes": 4475238,
+  "largest_public_site_asset_bytes": 4194304,
+  "tests": {
+    "root": 38,
+    "portal": 51
+  },
+  "repository_exports": "Unsplit; deployment copies only are packaged. No finding or provenance fields removed."
+}

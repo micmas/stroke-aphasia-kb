@@ -31,6 +31,7 @@ import { applyState } from './apply-state.js';
 import { carryOver, sameBuild } from './review-state.js';
 import { selectDrafts, measurementLabel } from './draft-queue.js';
 import { rankPapers, REVIEW_TOPICS } from './review-priority.js';
+import { loadExportText } from './load-export.js';
 
 const state = { me: null, manifest: null, kb: null, bindings: {}, bindingProblem: '', screening: null, screeningIndex: [], mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
 const MAX_UPLOAD = 60 * 1024 * 1024;
@@ -1095,7 +1096,7 @@ async function init() {
   try {
     const fresh = { cache: 'no-store' };
     const [me, manifest, kbText, bindings] = await Promise.all([api('me'), fetch('manifest.json', fresh).then((r) => r.json()),
-      fetch('export/stroke-aphasia-kb-drafts.json', fresh).then((r) => r.text()),
+      loadExportText('export/stroke-aphasia-kb-drafts.json', fresh),
       fetch('drafts.json', fresh).then((r) => (r.ok ? r.json() : null)).catch(() => null)]);
     const kb = JSON.parse(kbText);
     const kbSha = await sha256Hex(kbText).catch(() => '');

@@ -493,6 +493,7 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
         if f.is_file():
             shutil.copy2(f, DIST / f.name)
     shutil.copy2(ROOT / "explorer" / "styles.css", DIST / "explorer-styles.css")
+    shutil.copy2(ROOT / "explorer" / "load-export.js", DIST / "load-export.js")
     # The welcome page (web/welcome/): the one part of the portal that is open without a
     # sign-in. It may only load what sits under /welcome/, so it gets its own copy of the styles.
     if (DIST / "welcome").is_dir():
@@ -573,6 +574,10 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
     (DIST / "public-pdfs.json").write_text(json.dumps({"built": manifest["built"], "files": allow}, indent=1), encoding="utf-8")
     print(f"  public-pdfs.json: {len(allow)} annotated PDF(s) the open cc/ path may serve")
     (DIST / "_headers").write_text("/*\n  X-Robots-Tag: noindex\n  Cache-Control: no-cache\n", encoding="utf-8")
+    # Bindings above are computed from the original bytes before packaging.
+    from package_export import package_export
+    for path in (DIST / "export").glob("stroke-aphasia-kb*.json"):
+        package_export(path)
     return manifest
 
 

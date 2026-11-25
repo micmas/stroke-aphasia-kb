@@ -1,0 +1,170 @@
+{
+  "checked_at": "2026-11-25T17:58:11.669788+00:00",
+  "publication_snapshot": "2026-11-25T17:53:41.563585+00:00",
+  "scope": "Paper identity, claim/population scope and study-design provenance only; no human scientific approval.",
+  "snapshot_additions": 42,
+  "publishable_additions": 31,
+  "papers": [
+    "Weaver2021",
+    "White2024",
+    "Willis2025",
+    "Wilmskoetter2021",
+    "Wilson2011"
+  ],
+  "identity_check": "All 42 new claims/populations inspected against their source PDFs. No adjacent-article contamination found. Eleven method/sample-denominator inconsistencies held; originals preserved.",
+  "quarantined": [
+    {
+      "path": "drafts/predictors/ag_mtg_indirect_steps__Wilmskoetter2021__R009.md",
+      "paper": "Wilmskoetter2021",
+      "candidate": "R009",
+      "reason": "Source PDF pp. 4\u20136 restricts the AG\u2013MTG indirect-step analysis to 32 participants with indirect connections; sample.n=69 describes the full study. Reconcile the analysis-specific denominator.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/ag_mtg_indirect_steps__Wilmskoetter2021__R009.md",
+      "sha256": "b171ad7d8835a8f50718a6d90383ba273982810d5161b66a810e05574949e5b9"
+    },
+    {
+      "path": "drafts/predictors/baseline_logistic_regression_aphasia__White2024__R002.md",
+      "paper": "White2024",
+      "candidate": "R002",
+      "reason": "The baseline prediction model uses MRI-derived left lesion volume plus clinical measures, but method=behavioral_only. Reconcile the imaging/analysis-method provenance; see source Methods and baseline-model Results.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/baseline_logistic_regression_aphasia__White2024__R002.md",
+      "sha256": "3bdaa598be483034cc3af7e102397506a7adf7c950f179d518ea00ff5ba97bd8"
+    },
+    {
+      "path": "drafts/predictors/baseline_logistic_regression_spoken_description__White2024__R003.md",
+      "paper": "White2024",
+      "candidate": "R003",
+      "reason": "The baseline prediction model uses MRI-derived left lesion volume plus clinical measures, but method=behavioral_only. Reconcile the imaging/analysis-method provenance; see source Methods and baseline-model Results.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/baseline_logistic_regression_spoken_description__White2024__R003.md",
+      "sha256": "13cdfa73c9e2fdfcdbdd2e689644ae6ab3ef2b50472dcd182499e7c13e264041"
+    },
+    {
+      "path": "drafts/regions/hmt_v5_cluster__Willis2025__R005.md",
+      "paper": "Willis2025",
+      "candidate": "R005",
+      "reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/hmt_v5_cluster__Willis2025__R005.md",
+      "sha256": "20a6aff6ad4c24be5c4ddb8eb6c444125103e431d03975536e9d3e052d84eb1e"
+    },
+    {
+      "path": "drafts/regions/hmt_v5_damage__Willis2025__R004.md",
+      "paper": "Willis2025",
+      "candidate": "R004",
+      "reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/hmt_v5_damage__Willis2025__R004.md",
+      "sha256": "76deadc1a1a0caec0a2f953c43ad632c1e51f498d1513053f5dbdccbd23debf8"
+    },
+    {
+      "path": "drafts/regions/indirect_connection_steps_ifgop_ag_mtg__Wilmskoetter2021__R010.md",
+      "paper": "Wilmskoetter2021",
+      "candidate": "R010",
+      "reason": "Source PDF pp. 4\u20136 restricts indirect-step analyses to 46 participants for each IFGop\u2013AG and IFGop\u2013MTG pair; sample.n=69 describes the full study. Reconcile the analysis-specific denominators.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/indirect_connection_steps_ifgop_ag_mtg__Wilmskoetter2021__R010.md",
+      "sha256": "be22c1afd1afe2870c3ddb9abfba99190f5e1fe16a00931bae59e68c3e89c59e"
+    },
+    {
+      "path": "drafts/regions/left_hemisphere_infarcts__Weaver2021__R005.md",
+      "paper": "Weaver2021",
+      "candidate": "R005",
+      "reason": "Source PDF pp. 10\u201311 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_hemisphere_infarcts__Weaver2021__R005.md",
+      "sha256": "5030d49b10eed8dbd85c0d55d9a58e9fba7ce1c3e3e2d2c26f74859065f96d1d"
+    },
+    {
+      "path": "drafts/regions/processing_speed_infarct_locations__Weaver2021__R007.md",
+      "paper": "Weaver2021",
+      "candidate": "R007",
+      "reason": "Source PDF pp. 10\u201311 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/processing_speed_infarct_locations__Weaver2021__R007.md",
+      "sha256": "97fdc696cd146819701099df3175d22547c569a3d6d4288f9de8d6bda89cf047"
+    },
+    {
+      "path": "drafts/regions/right_parietal_lobe__Weaver2021__R006.md",
+      "paper": "Weaver2021",
+      "candidate": "R006",
+      "reason": "Source PDF pp. 10\u201311 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/right_parietal_lobe__Weaver2021__R006.md",
+      "sha256": "4192c71da64d098953b94a391a59caf9b7b7b173fc6f4b7e8c12b6625f838c10"
+    },
+    {
+      "path": "drafts/regions/v1_damage_extent__Willis2025__R002.md",
+      "paper": "Willis2025",
+      "candidate": "R002",
+      "reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/v1_damage_extent__Willis2025__R002.md",
+      "sha256": "5b5919559a31eb20b41b6cf999330f1bd942b9170f45114e375d0cada85e92ab"
+    },
+    {
+      "path": "drafts/regions/v4_damage__Willis2025__R003.md",
+      "paper": "Willis2025",
+      "candidate": "R003",
+      "reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/v4_damage__Willis2025__R003.md",
+      "sha256": "1eaa6d329261542fa56ac46c14e09345c0439676c3f0741824420e6c7bf8319c"
+    }
+  ],
+  "published_paths": [
+    "drafts/predictors/hybrid_roi_model__White2024__R008.md",
+    "drafts/predictors/hybrid_roi_resnet_18__White2024__R004.md",
+    "drafts/predictors/ifgop_mtg_connection_tdcs_interaction__Wilmskoetter2021__R005.md",
+    "drafts/predictors/ifgop_mtg_connection_treatment_interaction__Wilmskoetter2021__R004.md",
+    "drafts/predictors/imagenet_pretraining_weights__White2024__R013.md",
+    "drafts/predictors/left_lesion_size__White2024__R010.md",
+    "drafts/predictors/left_lesion_size_baseline_model__White2024__R001.md",
+    "drafts/predictors/location_impact_score__Weaver2021__R008.md",
+    "drafts/predictors/location_impact_score__Weaver2021__R009.md",
+    "drafts/predictors/location_impact_score__Weaver2021__R010.md",
+    "drafts/predictors/location_impact_score__Weaver2021__R011.md",
+    "drafts/predictors/location_impact_score_model__Weaver2021__R012.md",
+    "drafts/predictors/resnet_depth__White2024__R011.md",
+    "drafts/predictors/stitched_mri_model__White2024__R007.md",
+    "drafts/regions/ifgop_ag_connection_type__Wilmskoetter2021__R001.md",
+    "drafts/regions/ifgop_mtg_connection_type__Wilmskoetter2021__R007.md",
+    "drafts/regions/ifgop_mtg_indirect_atdcs__Wilmskoetter2021__R006.md",
+    "drafts/regions/infratentorial_locations__Weaver2021__R004.md",
+    "drafts/regions/left_ecfs__Wilson2011__R002.md",
+    "drafts/regions/left_ifg_gray_matter__Wilson2011__R006.md",
+    "drafts/regions/left_slf_arcuate_fa__Wilson2011__R001.md",
+    "drafts/regions/left_slf_arcuate_fa__Wilson2011__R004.md",
+    "drafts/regions/left_slf_arcuate_fa__Wilson2011__R007.md",
+    "drafts/regions/left_slf_arcuate_fa__Wilson2011__R009.md",
+    "drafts/regions/left_thalamus__Weaver2021__R003.md",
+    "drafts/regions/left_uncinate_fasciculus__Wilson2011__R003.md",
+    "drafts/regions/occipital_lobe_damage__Willis2025__R001.md",
+    "drafts/regions/psci_strategic_regions__Weaver2021__R001.md",
+    "drafts/regions/right_occipital_brainstem_cerebellum_cluster__Weaver2021__R002.md",
+    "drafts/regions/roi_lesion_volume_connection_type__Wilmskoetter2021__R011.md",
+    "drafts/therapies/a_tdcs_naming_recovery__Wilmskoetter2021__R003.md"
+  ],
+  "source_papers": [
+    {
+      "paper": "Weaver2021",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0164_Weaver2021.pdf",
+      "sha256": "6f87e4b48eb6114330f6e209da5c17f72fd7dc5ad859f256944904caf77028c3",
+      "identity_scope": "Named paper and claim/population checked against source. PPA in Wilson2011, mixed stroke/tumour visual-field loss in Willis2025, and pooled post-stroke cognition in Weaver2021 retained explicitly as context; no scientific approval."
+    },
+    {
+      "paper": "White2024",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0019_White2024.pdf",
+      "sha256": "82b56601293feaff545666004f3d9c8e1209957096f708ceed1f3a4cb55cb853",
+      "identity_scope": "Named paper and claim/population checked against source. PPA in Wilson2011, mixed stroke/tumour visual-field loss in Willis2025, and pooled post-stroke cognition in Weaver2021 retained explicitly as context; no scientific approval."
+    },
+    {
+      "paper": "Willis2025",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C22221_Willis2025.pdf",
+      "sha256": "db3cb557db05560d6d0e1d137a713d95cfd0d640ed0694702e891099389d6835",
+      "identity_scope": "Named paper and claim/population checked against source. PPA in Wilson2011, mixed stroke/tumour visual-field loss in Willis2025, and pooled post-stroke cognition in Weaver2021 retained explicitly as context; no scientific approval."
+    },
+    {
+      "paper": "Wilmskoetter2021",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C1596_Wilmskoetter2021.pdf",
+      "sha256": "0b1cc78748f5f745c2e71127f56abbd32d3406925ae47b768f87f28ab874378a",
+      "identity_scope": "Named paper and claim/population checked against source. PPA in Wilson2011, mixed stroke/tumour visual-field loss in Willis2025, and pooled post-stroke cognition in Weaver2021 retained explicitly as context; no scientific approval."
+    },
+    {
+      "paper": "Wilson2011",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C12473_Wilson2011.pdf",
+      "sha256": "fde000e1fc86d9993dac4c418d93e4566c4c0521ed6bb3c80efba23a81a521ca",
+      "identity_scope": "Named paper and claim/population checked against source. PPA in Wilson2011, mixed stroke/tumour visual-field loss in Willis2025, and pooled post-stroke cognition in Weaver2021 retained explicitly as context; no scientific approval."
+    }
+  ]
+}

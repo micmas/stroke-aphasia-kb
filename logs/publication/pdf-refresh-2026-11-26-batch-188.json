@@ -1,0 +1,103 @@
+{
+  "checked_at": "2026-11-25T18:04:26.802083+00:00",
+  "publication_snapshot": "2026-11-25T17:53:41.563585+00:00",
+  "policy": "Only papers with remaining published findings refreshed; PDF access categories and withdrawal ledger preserved.",
+  "report": {
+    "Desjardins2026": {
+      "status": "missing_pdf_index"
+    },
+    "Gilbert2025": {
+      "status": "missing_pdf_index"
+    },
+    "Goldenberg1994": {
+      "status": "missing_pdf_index"
+    },
+    "Hillis2002": {
+      "status": "missing_pdf_index"
+    },
+    "Hobden2024": {
+      "status": "missing_pdf_index"
+    },
+    "Hope2016": {
+      "status": "missing_pdf_index"
+    },
+    "Kourtidou2021": {
+      "status": "missing_pdf_index"
+    },
+    "Lukic2017": {
+      "status": "missing_pdf_index"
+    },
+    "Matchin2024": {
+      "status": "missing_pdf_index"
+    },
+    "Moore2024": {
+      "status": "missing_pdf_index"
+    },
+    "OsaGarcia2024": {
+      "status": "missing_pdf_index"
+    },
+    "Pendlebury2009": {
+      "status": "missing_pdf_index"
+    },
+    "Schellekens2026": {
+      "status": "missing_pdf_index"
+    },
+    "Sewell2025": {
+      "status": "missing_pdf_index"
+    },
+    "Sihvonen2023": {
+      "status": "missing_pdf_index"
+    },
+    "Tang2022": {
+      "status": "missing_pdf_index"
+    },
+    "Thurston2026": {
+      "status": "missing_pdf_index"
+    },
+    "Thye2021": {
+      "status": "missing_pdf_index"
+    },
+    "Walker2011": {
+      "status": "missing_pdf_index"
+    },
+    "Weaver2021": {
+      "status": "missing_pdf_index"
+    },
+    "White2024": {
+      "status": "uploaded",
+      "placed": 50,
+      "missed": 0
+    },
+    "Willis2025": {
+      "status": "missing_pdf_index"
+    },
+    "Wilmskoetter2021": {
+      "status": "uploaded",
+      "placed": 82,
+      "missed": 0
+    },
+    "Wilson2011": {
+      "status": "missing_pdf_index"
+    }
+  },
+  "changed_papers": {
+    "@White2024": [
+      "annotation_passages_missed",
+      "annotation_source_digest",
+      "bytes",
+      "draft_snapshot",
+      "sha256"
+    ],
+    "@Wilmskoetter2021": [
+      "annotation_passages_missed",
+      "annotation_source_digest",
+      "bytes",
+      "draft_snapshot",
+      "sha256"
+    ]
+  },
+  "uploaded": 2,
+  "highlights_placed": 132,
+  "unmatched_highlights": 0,
+  "missing_pdf_index": 22
+}
