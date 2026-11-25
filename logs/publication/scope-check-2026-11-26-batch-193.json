@@ -1,0 +1,222 @@
+{
+  "checked_at": "2026-11-25T20:23:05.218404+00:00",
+  "publication_snapshot": "2026-11-25T20:19:47.673122+00:00",
+  "scope": "Paper identity, claim/population scope and study-design provenance only; no human scientific approval.",
+  "snapshot_additions": 80,
+  "publishable_additions": 67,
+  "papers": [
+    "Wilson2019",
+    "Woollams2018",
+    "Wright2018",
+    "Xing2016",
+    "Xing2017"
+  ],
+  "identity_check": "All 80 new claims/populations inspected against their source PDFs. No adjacent-article contamination found. Thirteen method/map-identity/claim-scope issues held; originals preserved. Baseline retirement obligations checked; no preserved review material for these retired paper records, and no retired path restored.",
+  "quarantined": [
+    {
+      "path": "drafts/predictors/estimated_atrophy__Wright2018__R008.md",
+      "paper": "Wright2018",
+      "candidate": "R008",
+      "reason": "Source PDF pp. 2\u20134 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/estimated_atrophy__Wright2018__R008.md",
+      "sha256": "77d0baffb561907c00bf9b69ca472a5664e5036eca355fe6a64c16b13a685341"
+    },
+    {
+      "path": "drafts/predictors/naming_outcome_predictor_model__Wright2018__R010.md",
+      "paper": "Wright2018",
+      "candidate": "R010",
+      "reason": "Source PDF pp. 2\u20134 describes a cross-sectional observational study of 42 stroke survivors and logistic regression, not a randomized clinical trial. method=clinical_RCT misrepresents the study design; reconcile method provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/naming_outcome_predictor_model__Wright2018__R010.md",
+      "sha256": "03119b13e302074789c9eb0d22ddfa436da8c095cc568c9b19362b49169de41d"
+    },
+    {
+      "path": "drafts/predictors/race_atrophy_naming_outcome__Wright2018__R006.md",
+      "paper": "Wright2018",
+      "candidate": "R006",
+      "reason": "Source PDF pp. 2\u20134 describes a cross-sectional observational study of 42 stroke survivors and logistic regression, not a randomized clinical trial. method=clinical_RCT misrepresents the study design; reconcile method provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/race_atrophy_naming_outcome__Wright2018__R006.md",
+      "sha256": "c11ceeb2dd8317c3471d4271022a2f0a455ea5542251d5364a2ce549f817746c"
+    },
+    {
+      "path": "drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R004.md",
+      "paper": "Wright2018",
+      "candidate": "R004",
+      "reason": "Source PDF pp. 2\u20134 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R004.md",
+      "sha256": "37965ba67614dc7d947b1d087b4e6e9fb6cd1f1d857812a5f0a8d04ad42a8608"
+    },
+    {
+      "path": "drafts/predictors/rh_leukoaraiosis_word_fluency__Wright2018__R005.md",
+      "paper": "Wright2018",
+      "candidate": "R005",
+      "reason": "Source PDF pp. 2\u20134 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/rh_leukoaraiosis_word_fluency__Wright2018__R005.md",
+      "sha256": "899ccb26dd6d0c3b425a37282e8b51e0f01067657b03b565215ee22f76fef897"
+    },
+    {
+      "path": "drafts/regions/concrete_abstract_reading_semantics_overlap__Woollams2018__R029.md",
+      "paper": "Woollams2018",
+      "candidate": "R029",
+      "reason": "The listed anterior/inferior regions shared by concrete and abstract reading belong to the phonology overlap described on source PDF p. 11, not the semantics overlap described on pp. 11\u201312. The claim substitutes semantic for phonological processing; reconcile the map identity before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/concrete_abstract_reading_semantics_overlap__Woollams2018__R029.md",
+      "sha256": "1135c5d824361957dbca408b5ce97678ca1f252669995eacaf8ed7ac557ac1d2"
+    },
+    {
+      "path": "drafts/regions/left_ifof__Xing2017__R005.md",
+      "paper": "Xing2017",
+      "candidate": "R005",
+      "reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_ifof__Xing2017__R005.md",
+      "sha256": "ff4a3bb7b0e9e26673d05797714e5e8923a6cdd7942c1048c60b72f354d6a8da"
+    },
+    {
+      "path": "drafts/regions/left_ilf__Xing2017__R006.md",
+      "paper": "Xing2017",
+      "candidate": "R006",
+      "reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_ilf__Xing2017__R006.md",
+      "sha256": "616b4706ed58b5920ffb70ae507f8dbc81332fb472756ae9eddca47f53ae6f9a"
+    },
+    {
+      "path": "drafts/regions/left_posterior_temporal_cluster__Xing2017__R002.md",
+      "paper": "Xing2017",
+      "candidate": "R002",
+      "reason": "Source PDF pp. 3\u20134 describes TBSS of diffusion-tensor metrics in spared white matter, not voxel-based morphometry. Reconcile method=VBM with the actual DTI/TBSS analysis.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_posterior_temporal_cluster__Xing2017__R002.md",
+      "sha256": "536d5438354cc4d516905a1fe988c900847a4417cb8945792e12be97eff7b979"
+    },
+    {
+      "path": "drafts/regions/left_uncinate_fasciculus__Xing2017__R007.md",
+      "paper": "Xing2017",
+      "candidate": "R007",
+      "reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_uncinate_fasciculus__Xing2017__R007.md",
+      "sha256": "eb5db11eaa6c2f0e921280018f3504d2bdd89d78b88a05534e6195475f536ad0"
+    },
+    {
+      "path": "drafts/regions/left_uncinate_fasciculus__Xing2017__R008.md",
+      "paper": "Xing2017",
+      "candidate": "R008",
+      "reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_uncinate_fasciculus__Xing2017__R008.md",
+      "sha256": "5722cb3e9e1f22f2a44799e6671250d929294a81a4d325bd18a353b6a86c44be"
+    },
+    {
+      "path": "drafts/regions/nonword_concrete_reading_overlap__Woollams2018__R020.md",
+      "paper": "Woollams2018",
+      "candidate": "R020",
+      "reason": "Source PDF p. 11 first identifies a core reading network shared by all three stimulus types. The subsequent absence concerns additional pair-specific overlap for nonwords and concrete words. The standalone claim omits this qualification and implies no shared regions at all; clarify its scope before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/nonword_concrete_reading_overlap__Woollams2018__R020.md",
+      "sha256": "2c20bcef78c4b88adb75a553627585a34a5edfae4881c86b90d276e7037441f3"
+    },
+    {
+      "path": "drafts/regions/right_hemisphere_spontaneous_speech_cluster__Xing2016__R019.md",
+      "paper": "Xing2016",
+      "candidate": "R019",
+      "reason": "Source PDF p. 8 reports a non-significant patient/control difference only for the spontaneous-speech-related right-hemisphere cluster; AQ, repetition and naming clusters differ significantly. The standalone claim generalizes the null to right-hemisphere clusters. Specify the spontaneous-speech cluster in the claim before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/right_hemisphere_spontaneous_speech_cluster__Xing2016__R019.md",
+      "sha256": "6a21c68bfe0d3749899f44d6619d22747eb79424798688d6de40c024c54f1922"
+    }
+  ],
+  "published_paths": [
+    "drafts/ingredients/speech_fluency__Woollams2018__R033.md",
+    "drafts/ingredients/speech_fluency__Woollams2018__R034.md",
+    "drafts/ingredients/speech_fluency__Woollams2018__R035.md",
+    "drafts/predictors/adaptive_phonological_encoding_paradigms__Wilson2019__R004.md",
+    "drafts/predictors/adaptive_rhyme_judgment_paradigm__Wilson2019__R005.md",
+    "drafts/predictors/adaptive_semantic_matching_paradigm__Wilson2019__R002.md",
+    "drafts/predictors/adaptive_semantic_matching_paradigm__Wilson2019__R003.md",
+    "drafts/predictors/cognitive_factor__Woollams2018__R007.md",
+    "drafts/predictors/language_mapping_paradigms_reliability_validity__Wilson2019__R001.md",
+    "drafts/predictors/pcad__Xing2016__R002.md",
+    "drafts/predictors/pcad__Xing2016__R010.md",
+    "drafts/predictors/phonology_factor__Woollams2018__R001.md",
+    "drafts/predictors/phonology_factor__Woollams2018__R002.md",
+    "drafts/predictors/phonology_factor__Woollams2018__R003.md",
+    "drafts/predictors/phonology_factor__Woollams2018__R008.md",
+    "drafts/predictors/phonology_factor__Woollams2018__R009.md",
+    "drafts/predictors/race__Wright2018__R007.md",
+    "drafts/predictors/rh_gmv_language_predictor__Xing2016__R011.md",
+    "drafts/predictors/rh_leukoaraiosis_severe__Wright2018__R002.md",
+    "drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R001.md",
+    "drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R003.md",
+    "drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R009.md",
+    "drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R011.md",
+    "drafts/predictors/right_hemisphere_gmv_aphasia_predictor__Xing2016__R013.md",
+    "drafts/predictors/right_hemisphere_gmv_auditory_verbal_comprehension__Xing2016__R009.md",
+    "drafts/predictors/semantics_factor__Woollams2018__R004.md",
+    "drafts/predictors/semantics_factor__Woollams2018__R005.md",
+    "drafts/predictors/semantics_factor__Woollams2018__R006.md",
+    "drafts/predictors/semantics_factor__Woollams2018__R010.md",
+    "drafts/predictors/semantics_factor__Woollams2018__R011.md",
+    "drafts/predictors/speech_fluency__Woollams2018__R031.md",
+    "drafts/predictors/speech_fluency_nonword_reading__Woollams2018__R032.md",
+    "drafts/regions/abstract_concrete_reading_cluster__Woollams2018__R019.md",
+    "drafts/regions/abstract_word_reading_cluster__Woollams2018__R015.md",
+    "drafts/regions/abstract_word_reading_cluster__Woollams2018__R022.md",
+    "drafts/regions/abstract_word_reading_cluster__Woollams2018__R025.md",
+    "drafts/regions/abstract_word_reading_semantics_overlap__Woollams2018__R028.md",
+    "drafts/regions/af_ilf_lesion_burden__Xing2017__R004.md",
+    "drafts/regions/atypical_language_activation_cluster__Wilson2019__R006.md",
+    "drafts/regions/cerebellar_aq_cluster__Xing2016__R017.md",
+    "drafts/regions/cerebellar_cluster_aphasia__Xing2016__R023.md",
+    "drafts/regions/cerebellum_lobules_iv_v_cluster__Xing2016__R008.md",
+    "drafts/regions/concrete_abstract_reading_phonology_overlap__Woollams2018__R026.md",
+    "drafts/regions/concrete_word_reading_cluster__Woollams2018__R014.md",
+    "drafts/regions/concrete_word_reading_cluster__Woollams2018__R023.md",
+    "drafts/regions/core_reading_network_cluster__Woollams2018__R017.md",
+    "drafts/regions/gender__Xing2016__R012.md",
+    "drafts/regions/left_atl_semantics_cluster__Woollams2018__R013.md",
+    "drafts/regions/left_cerebellum_lobules_iv_vi__Xing2016__R004.md",
+    "drafts/regions/nonword_abstract_reading_cluster__Woollams2018__R018.md",
+    "drafts/regions/nonword_reading_cluster__Woollams2018__R016.md",
+    "drafts/regions/nonword_reading_cluster__Woollams2018__R021.md",
+    "drafts/regions/nonword_reading_phonology_overlap__Woollams2018__R024.md",
+    "drafts/regions/nonword_reading_semantics_overlap__Woollams2018__R027.md",
+    "drafts/regions/phonology_cluster__Woollams2018__R012.md",
+    "drafts/regions/rh_language_clusters__Xing2016__R016.md",
+    "drafts/regions/rh_language_clusters__Xing2016__R021.md",
+    "drafts/regions/right_hemisphere_gmv_cluster__Xing2016__R014.md",
+    "drafts/regions/right_hemisphere_spontaneous_speech_cluster__Xing2016__R022.md",
+    "drafts/regions/right_pstg_cluster__Xing2016__R007.md",
+    "drafts/regions/right_temporoparietal_cluster__Xing2016__R003.md",
+    "drafts/regions/right_temporoparietal_cluster_repetition__Xing2016__R005.md",
+    "drafts/regions/right_temporoparietal_naming_cluster__Xing2016__R006.md",
+    "drafts/regions/speech_fluency_cluster__Woollams2018__R030.md",
+    "drafts/regions/spontaneous_speech_cerebellar_cluster__Xing2016__R018.md",
+    "drafts/regions/spontaneous_speech_rh_cluster__Xing2016__R015.md",
+    "drafts/regions/uncinate_fasciculus_lesion_load__Xing2017__R003.md"
+  ],
+  "source_papers": [
+    {
+      "paper": "Wilson2019",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0104_Wilson2019.pdf",
+      "sha256": "64a85a4f2681f70fc59d5da1b107376747efc8981528915272ec6635f0035f9e",
+      "identity_scope": "Review article reporting the authors\u2019 earlier language-mapping studies: 5 healthy older adults, 16 aphasic/14 healthy semantic participants, 16 healthy phonological participants, and an illustrative single chronic stroke case. Cohorts distinguished; review summaries are not independent replications or evidence of causal recovery."
+    },
+    {
+      "paper": "Woollams2018",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C2117_Woollams2018.pdf",
+      "sha256": "fc0401355b3c6086f7230cbb31af68ebc26633b6a812c3fa3e7e981132bfd730",
+      "identity_scope": "43 chronic stroke patients, at least 12 months post-stroke; behavioural PCA/reading correlations and continuous-tissue VBCM maps. Source pp. 3, 6, 8\u201314 inspected, including shared core versus pair-specific maps. Main mapping did not adjust for lesion volume."
+    },
+    {
+      "paper": "Wright2018",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C2127_Wright2018.pdf",
+      "sha256": "44181aa9e7d17350c10f110fa7a6bc511170a3d011ab874f556aa91e16a32b10",
+      "identity_scope": "42 adults with single left-hemisphere ischemic stroke and aphasia; observational cross-sectional outcomes at 3\u2013157 months, MRI at 1\u20134 weeks. Source pp. 2\u20134 inspected; WAB object naming and category fluency remain distinct. No randomized treatment comparison."
+    },
+    {
+      "paper": "Xing2016",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0123_Xing2016.pdf",
+      "sha256": "7db0863e5d5bef817a8f0d54d8947cf574866ebc338f60c812bc5710a2ba6e57",
+      "identity_scope": "32 chronic left-stroke survivors with aphasia, 30 healthy controls and supplementary comparison with 10 non-aphasic stroke survivors. Source pp. 3, 5\u20136, 8\u20139 inspected; SVR-LSM lesion burden, VBM regional volumes, and cluster-specific group contrasts distinguished. Hierarchical volume models refer to outcomes with identified clusters, not a positive auditory-comprehension volume finding."
+    },
+    {
+      "paper": "Xing2017",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C2356_Xing2017.pdf",
+      "sha256": "820ed5ec7c771ad0988c848ea6743d010885b6864be048780c48d1078c7717b5",
+      "identity_scope": "40 chronic left-stroke survivors with history of aphasia; reference tract templates reconstructed in 27 healthy older adults. Source pp. 2\u20134 inspected. Direct lesion-burden associations distinguished from DTI integrity associations; sentence scores adjusted for word comprehension. Retired baseline drafts were not restored."
+    }
+  ]
+}

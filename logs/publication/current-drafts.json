@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-25T17:53:41.563585+00:00",
+  "snapshot_at": "2026-11-25T20:19:47.673122+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -8762,6 +8762,432 @@
       "source_sha256": "48ed8a07ea024ecb50c949774877e377f202040620c5547f5c4b5dd357fd610d",
       "paper": "Wilson2011",
       "candidate": "R009"
+    },
+    "drafts/predictors/language_mapping_paradigms_reliability_validity__Wilson2019__R001.md": {
+      "source_sha256": "e3f5c72eec9cd64366829d6e7aa75c8d49e8e0a2e6a3870b8c94f3e49ff16840",
+      "paper": "Wilson2019",
+      "candidate": "R001"
+    },
+    "drafts/predictors/adaptive_semantic_matching_paradigm__Wilson2019__R002.md": {
+      "source_sha256": "94dbec19c10b93523a868b31896805ff12c25dbe32e9f98588e82660175c0088",
+      "paper": "Wilson2019",
+      "candidate": "R002"
+    },
+    "drafts/predictors/adaptive_semantic_matching_paradigm__Wilson2019__R003.md": {
+      "source_sha256": "27b381a3fa972f9b738c1c354b3c870b613f6fb87251071facd934409a852e00",
+      "paper": "Wilson2019",
+      "candidate": "R003"
+    },
+    "drafts/predictors/adaptive_phonological_encoding_paradigms__Wilson2019__R004.md": {
+      "source_sha256": "b9df5738346c8655d12db7a956d6b947f700c6e60f228c1d364c71a89e3fab02",
+      "paper": "Wilson2019",
+      "candidate": "R004"
+    },
+    "drafts/predictors/adaptive_rhyme_judgment_paradigm__Wilson2019__R005.md": {
+      "source_sha256": "1fc191ca9ff4be4925244c2df41bbdc492866164c4ebd9c7219cb0e03f7a24d8",
+      "paper": "Wilson2019",
+      "candidate": "R005"
+    },
+    "drafts/regions/atypical_language_activation_cluster__Wilson2019__R006.md": {
+      "source_sha256": "3e57d228fef8f84bad08d0a42252bdf3fc70fe4cdeb05673144038185c30d4b1",
+      "paper": "Wilson2019",
+      "candidate": "R006"
+    },
+    "drafts/predictors/phonology_factor__Woollams2018__R001.md": {
+      "source_sha256": "30f43f85f65518e792ed6099841f4b24ea40f26a75bb9396fc90d8f05eced3e2",
+      "paper": "Woollams2018",
+      "candidate": "R001"
+    },
+    "drafts/predictors/phonology_factor__Woollams2018__R002.md": {
+      "source_sha256": "3e4c47a94b29f6c80282914da296d35156b846b0e9cafed29aa6a2961925f9dc",
+      "paper": "Woollams2018",
+      "candidate": "R002"
+    },
+    "drafts/predictors/phonology_factor__Woollams2018__R003.md": {
+      "source_sha256": "a03706201aece09eacc2169ff0cc3b9ff7a4c9f3dbb598e7369b9b5742d1682a",
+      "paper": "Woollams2018",
+      "candidate": "R003"
+    },
+    "drafts/predictors/semantics_factor__Woollams2018__R004.md": {
+      "source_sha256": "ac199a96622079af6b549e45733b410cf07a198643816b98a5d0b673063dcc64",
+      "paper": "Woollams2018",
+      "candidate": "R004"
+    },
+    "drafts/predictors/semantics_factor__Woollams2018__R005.md": {
+      "source_sha256": "fbcbe5df90c4737c4d994ad06d8ae277ea41e02d1aa8bb83cb584c3cac74b6dc",
+      "paper": "Woollams2018",
+      "candidate": "R005"
+    },
+    "drafts/predictors/semantics_factor__Woollams2018__R006.md": {
+      "source_sha256": "0e0c4f7a7de4032e434dbc8886211051fffcf909bd9ee16e63addabad2b47dc2",
+      "paper": "Woollams2018",
+      "candidate": "R006"
+    },
+    "drafts/predictors/cognitive_factor__Woollams2018__R007.md": {
+      "source_sha256": "bf8f898744895ba6577aa7ba42d4b1dbe63458951f5bb97486fe0df9723de395",
+      "paper": "Woollams2018",
+      "candidate": "R007"
+    },
+    "drafts/predictors/phonology_factor__Woollams2018__R008.md": {
+      "source_sha256": "5ddd5ade145701410a65a8b2e8ca343e1e7271f9bad62c39a96526f41c18d233",
+      "paper": "Woollams2018",
+      "candidate": "R008"
+    },
+    "drafts/predictors/phonology_factor__Woollams2018__R009.md": {
+      "source_sha256": "046e7401c97131b8d008cfe2beafb535037e2e254e8fc1868e5604699f70e3b4",
+      "paper": "Woollams2018",
+      "candidate": "R009"
+    },
+    "drafts/predictors/semantics_factor__Woollams2018__R010.md": {
+      "source_sha256": "8877bf89b52bf7a852c13e3ea83061fffc2ed901991253357fbe353bb8affa71",
+      "paper": "Woollams2018",
+      "candidate": "R010"
+    },
+    "drafts/predictors/semantics_factor__Woollams2018__R011.md": {
+      "source_sha256": "551332f95576174d74db0a3112439e48075905679a1b1fe76891bef32ecf2a3d",
+      "paper": "Woollams2018",
+      "candidate": "R011"
+    },
+    "drafts/regions/phonology_cluster__Woollams2018__R012.md": {
+      "source_sha256": "f247c18e26d197fd9601a1a1bff4a804cb82fdf5f8f9b7e44be856c013e95c5c",
+      "paper": "Woollams2018",
+      "candidate": "R012"
+    },
+    "drafts/regions/left_atl_semantics_cluster__Woollams2018__R013.md": {
+      "source_sha256": "6fdfabb7677fcf98301c718c5de9e892a59ad12750321e42b3c4722a5c5576c7",
+      "paper": "Woollams2018",
+      "candidate": "R013"
+    },
+    "drafts/regions/concrete_word_reading_cluster__Woollams2018__R014.md": {
+      "source_sha256": "69c85d29c73de96255dd9a9389d70e05f1b7f5c5a8932e377e4637ce8b5a284f",
+      "paper": "Woollams2018",
+      "candidate": "R014"
+    },
+    "drafts/regions/abstract_word_reading_cluster__Woollams2018__R015.md": {
+      "source_sha256": "cf9c654bf7990328e698169cda7b465b3011374ecdce3a2576d9d4606e7b3e98",
+      "paper": "Woollams2018",
+      "candidate": "R015"
+    },
+    "drafts/regions/nonword_reading_cluster__Woollams2018__R016.md": {
+      "source_sha256": "d50b449dbd66bb2b718ee210bbd0ba3c1a50d22913295844faf8c4ed44688cf8",
+      "paper": "Woollams2018",
+      "candidate": "R016"
+    },
+    "drafts/regions/core_reading_network_cluster__Woollams2018__R017.md": {
+      "source_sha256": "eff4c0b7efb4416cc3f93a49ad8f45cec1e0c7936b23ea1747274736d7e41a5c",
+      "paper": "Woollams2018",
+      "candidate": "R017"
+    },
+    "drafts/regions/nonword_abstract_reading_cluster__Woollams2018__R018.md": {
+      "source_sha256": "06ae07077b9d2b551bb083f133105398d33a2bbd35d4e71b09666f5ffdac7946",
+      "paper": "Woollams2018",
+      "candidate": "R018"
+    },
+    "drafts/regions/abstract_concrete_reading_cluster__Woollams2018__R019.md": {
+      "source_sha256": "d81577aa8723f9e203e290f82ec05230a0cc0a521852db38eabae1349a367957",
+      "paper": "Woollams2018",
+      "candidate": "R019"
+    },
+    "drafts/regions/nonword_concrete_reading_overlap__Woollams2018__R020.md": {
+      "source_sha256": "2c20bcef78c4b88adb75a553627585a34a5edfae4881c86b90d276e7037441f3",
+      "paper": "Woollams2018",
+      "candidate": "R020",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF p. 11 first identifies a core reading network shared by all three stimulus types. The subsequent absence concerns additional pair-specific overlap for nonwords and concrete words. The standalone claim omits this qualification and implies no shared regions at all; clarify its scope before publication."
+    },
+    "drafts/regions/nonword_reading_cluster__Woollams2018__R021.md": {
+      "source_sha256": "f830e5bc78b263f1cd82c4b944cb1bf26950bcfba233658f680384e62b0ed871",
+      "paper": "Woollams2018",
+      "candidate": "R021"
+    },
+    "drafts/regions/abstract_word_reading_cluster__Woollams2018__R022.md": {
+      "source_sha256": "162418ba6cf5e80bb14e6a83a243d92d77d2eb6810759f8b1ea8f050725500a8",
+      "paper": "Woollams2018",
+      "candidate": "R022"
+    },
+    "drafts/regions/concrete_word_reading_cluster__Woollams2018__R023.md": {
+      "source_sha256": "e124e92f89bc37753175203892267a93c07f142b1b36dd5f0fc963b09ce05102",
+      "paper": "Woollams2018",
+      "candidate": "R023"
+    },
+    "drafts/regions/nonword_reading_phonology_overlap__Woollams2018__R024.md": {
+      "source_sha256": "d491b39eb0bbd338899f80c966885bee4f8b3fb7f30e88dd5d65978f8a6ef785",
+      "paper": "Woollams2018",
+      "candidate": "R024"
+    },
+    "drafts/regions/abstract_word_reading_cluster__Woollams2018__R025.md": {
+      "source_sha256": "49d53419f06da22e102003c20cb1f8a20b808058ad80e506dd2cc6f5ddc206c9",
+      "paper": "Woollams2018",
+      "candidate": "R025"
+    },
+    "drafts/regions/concrete_abstract_reading_phonology_overlap__Woollams2018__R026.md": {
+      "source_sha256": "6242fe791b413b5ddb77b5f6fadd30bd36ca2fb54236b40c2de81ef1ce32723c",
+      "paper": "Woollams2018",
+      "candidate": "R026"
+    },
+    "drafts/regions/nonword_reading_semantics_overlap__Woollams2018__R027.md": {
+      "source_sha256": "92feeb0ba7311b6881fc1e3fe997b6a5bc0f02cce390bc7f6fe8dace5ea36893",
+      "paper": "Woollams2018",
+      "candidate": "R027"
+    },
+    "drafts/regions/abstract_word_reading_semantics_overlap__Woollams2018__R028.md": {
+      "source_sha256": "f6c3b406e726a6febdbafb29a30f1d316a8fa73f5251c1917e74cbedbe53bbe3",
+      "paper": "Woollams2018",
+      "candidate": "R028"
+    },
+    "drafts/regions/concrete_abstract_reading_semantics_overlap__Woollams2018__R029.md": {
+      "source_sha256": "1135c5d824361957dbca408b5ce97678ca1f252669995eacaf8ed7ac557ac1d2",
+      "paper": "Woollams2018",
+      "candidate": "R029",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "The listed anterior/inferior regions shared by concrete and abstract reading belong to the phonology overlap described on source PDF p. 11, not the semantics overlap described on pp. 11\u201312. The claim substitutes semantic for phonological processing; reconcile the map identity before publication."
+    },
+    "drafts/regions/speech_fluency_cluster__Woollams2018__R030.md": {
+      "source_sha256": "5ab9f02cec2f9a397f64eec3764f5f2c9baad7aeb9dd37d3f9b90c6be35cf319",
+      "paper": "Woollams2018",
+      "candidate": "R030"
+    },
+    "drafts/predictors/speech_fluency__Woollams2018__R031.md": {
+      "source_sha256": "a722e8fbac4fc814aa902bcff96bb33dc2f8e3694a1a3a194f4598bb651892fc",
+      "paper": "Woollams2018",
+      "candidate": "R031"
+    },
+    "drafts/predictors/speech_fluency_nonword_reading__Woollams2018__R032.md": {
+      "source_sha256": "cd81e876d44ffba37fdae92b74717248d18bf235c0eb02e231341619270667ec",
+      "paper": "Woollams2018",
+      "candidate": "R032"
+    },
+    "drafts/ingredients/speech_fluency__Woollams2018__R033.md": {
+      "source_sha256": "c2086777d4b168b1f02a5a98b655a50ef856c127e401f8eb9bce21f64d1e043d",
+      "paper": "Woollams2018",
+      "candidate": "R033"
+    },
+    "drafts/ingredients/speech_fluency__Woollams2018__R034.md": {
+      "source_sha256": "c3fa0a223a7d94bcb0f6bba1297011cf237bebc6a9d66d8ea51954687df69817",
+      "paper": "Woollams2018",
+      "candidate": "R034"
+    },
+    "drafts/ingredients/speech_fluency__Woollams2018__R035.md": {
+      "source_sha256": "9b4df9f42123d94dc7535d1df00edfaa56297703ec1dd839b43e62b06abeabc9",
+      "paper": "Woollams2018",
+      "candidate": "R035"
+    },
+    "drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R001.md": {
+      "source_sha256": "9e99abd1a241dbf095ac6c38bf8e66fa24492dde7dc62c819d627ace3c3af0ad",
+      "paper": "Wright2018",
+      "candidate": "R001"
+    },
+    "drafts/predictors/rh_leukoaraiosis_severe__Wright2018__R002.md": {
+      "source_sha256": "a429c79d4777cb0462dc4f270222f84a5a1bb83da8ce8b1173116dba7e613da8",
+      "paper": "Wright2018",
+      "candidate": "R002"
+    },
+    "drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R003.md": {
+      "source_sha256": "028f2a6a5c9d50c6516ff3202e8325aad294499c09a3dfe0f7b57afe35dff463",
+      "paper": "Wright2018",
+      "candidate": "R003"
+    },
+    "drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R004.md": {
+      "source_sha256": "37965ba67614dc7d947b1d087b4e6e9fb6cd1f1d857812a5f0a8d04ad42a8608",
+      "paper": "Wright2018",
+      "candidate": "R004",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 2\u20134 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication."
+    },
+    "drafts/predictors/rh_leukoaraiosis_word_fluency__Wright2018__R005.md": {
+      "source_sha256": "899ccb26dd6d0c3b425a37282e8b51e0f01067657b03b565215ee22f76fef897",
+      "paper": "Wright2018",
+      "candidate": "R005",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 2\u20134 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication."
+    },
+    "drafts/predictors/race_atrophy_naming_outcome__Wright2018__R006.md": {
+      "source_sha256": "c11ceeb2dd8317c3471d4271022a2f0a455ea5542251d5364a2ce549f817746c",
+      "paper": "Wright2018",
+      "candidate": "R006",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 2\u20134 describes a cross-sectional observational study of 42 stroke survivors and logistic regression, not a randomized clinical trial. method=clinical_RCT misrepresents the study design; reconcile method provenance before publication."
+    },
+    "drafts/predictors/race__Wright2018__R007.md": {
+      "source_sha256": "206ff85fd0d8f9c754dd216fba483d87805df349ed60c6f9136bec4612349e12",
+      "paper": "Wright2018",
+      "candidate": "R007"
+    },
+    "drafts/predictors/estimated_atrophy__Wright2018__R008.md": {
+      "source_sha256": "77d0baffb561907c00bf9b69ca472a5664e5036eca355fe6a64c16b13a685341",
+      "paper": "Wright2018",
+      "candidate": "R008",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 2\u20134 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication."
+    },
+    "drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R009.md": {
+      "source_sha256": "d6e76df9aeedc840467c39a7200dc4b80b9623af3967a317b6bc7612485294cc",
+      "paper": "Wright2018",
+      "candidate": "R009"
+    },
+    "drafts/predictors/naming_outcome_predictor_model__Wright2018__R010.md": {
+      "source_sha256": "03119b13e302074789c9eb0d22ddfa436da8c095cc568c9b19362b49169de41d",
+      "paper": "Wright2018",
+      "candidate": "R010",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 2\u20134 describes a cross-sectional observational study of 42 stroke survivors and logistic regression, not a randomized clinical trial. method=clinical_RCT misrepresents the study design; reconcile method provenance before publication."
+    },
+    "drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R011.md": {
+      "source_sha256": "a26ddf9551420e4491deab2f7592d27ec6c1930bc80d5729f3a43770e330c174",
+      "paper": "Wright2018",
+      "candidate": "R011"
+    },
+    "drafts/predictors/pcad__Xing2016__R002.md": {
+      "source_sha256": "763584dbe23d39047b3ffaa89524c1e527d58a1b3a5f631eda3b32b423b3665a",
+      "paper": "Xing2016",
+      "candidate": "R002"
+    },
+    "drafts/regions/right_temporoparietal_cluster__Xing2016__R003.md": {
+      "source_sha256": "3118c067e379eca6c04bd2c0430faf3d02faa538441da64612ebacafc81e9d15",
+      "paper": "Xing2016",
+      "candidate": "R003"
+    },
+    "drafts/regions/left_cerebellum_lobules_iv_vi__Xing2016__R004.md": {
+      "source_sha256": "01ff36eb0fef4eabac276bb6e79d1c85316e739b6bc6023cc9ff15a83f19164e",
+      "paper": "Xing2016",
+      "candidate": "R004"
+    },
+    "drafts/regions/right_temporoparietal_cluster_repetition__Xing2016__R005.md": {
+      "source_sha256": "7f727f027535b0aec2e426b1c1ac56e3d539d656f8d38101ca4ae134d3492780",
+      "paper": "Xing2016",
+      "candidate": "R005"
+    },
+    "drafts/regions/right_temporoparietal_naming_cluster__Xing2016__R006.md": {
+      "source_sha256": "ab009e596134abbbcaee32540be5a4e08ef1873594147ab78c1e9286398f3365",
+      "paper": "Xing2016",
+      "candidate": "R006"
+    },
+    "drafts/regions/right_pstg_cluster__Xing2016__R007.md": {
+      "source_sha256": "9b314f576a430ca67d2b45aad2014ba540344c8fd8f6fd6c3a59f3cc99cdc993",
+      "paper": "Xing2016",
+      "candidate": "R007"
+    },
+    "drafts/regions/cerebellum_lobules_iv_v_cluster__Xing2016__R008.md": {
+      "source_sha256": "224ff4e5a4d793ddbadd0c14425eef1f02c718f77e94df23b76439e489549791",
+      "paper": "Xing2016",
+      "candidate": "R008"
+    },
+    "drafts/predictors/right_hemisphere_gmv_auditory_verbal_comprehension__Xing2016__R009.md": {
+      "source_sha256": "b85dcca659744c637ace0a440903bed81e70e2cf562261bf383d2f4ba19e1520",
+      "paper": "Xing2016",
+      "candidate": "R009"
+    },
+    "drafts/predictors/pcad__Xing2016__R010.md": {
+      "source_sha256": "fe288565783cfc61f7bbef75b68366a0a513511e437c4271ab13aa3060a8c675",
+      "paper": "Xing2016",
+      "candidate": "R010"
+    },
+    "drafts/predictors/rh_gmv_language_predictor__Xing2016__R011.md": {
+      "source_sha256": "d1ba6af32ecc2d6e1cc163bafde0f18ebc2468408627504c2f630bf2bd3da1cb",
+      "paper": "Xing2016",
+      "candidate": "R011"
+    },
+    "drafts/regions/gender__Xing2016__R012.md": {
+      "source_sha256": "f35eded28457f3b7300b299e2097030844cddc7f2af87f321d655795a4fc799a",
+      "paper": "Xing2016",
+      "candidate": "R012"
+    },
+    "drafts/predictors/right_hemisphere_gmv_aphasia_predictor__Xing2016__R013.md": {
+      "source_sha256": "cb0b7ab55ed729ef8e545621cbaa590b1825c9912e458d450d869fdca601a337",
+      "paper": "Xing2016",
+      "candidate": "R013"
+    },
+    "drafts/regions/right_hemisphere_gmv_cluster__Xing2016__R014.md": {
+      "source_sha256": "62e4b8c93d920f28d4abf23a59dd0ef110e3b295336c1945b1dda9bfaed0a1ce",
+      "paper": "Xing2016",
+      "candidate": "R014"
+    },
+    "drafts/regions/spontaneous_speech_rh_cluster__Xing2016__R015.md": {
+      "source_sha256": "b78f65d55a30124290c24686fa16bc83e9c9a2d0ba650fdb05e5f09452be7b9e",
+      "paper": "Xing2016",
+      "candidate": "R015"
+    },
+    "drafts/regions/rh_language_clusters__Xing2016__R016.md": {
+      "source_sha256": "21b80292c664bbb87c2a5cafc9e5631556c31253f789d55acec45596673ce5a6",
+      "paper": "Xing2016",
+      "candidate": "R016"
+    },
+    "drafts/regions/cerebellar_aq_cluster__Xing2016__R017.md": {
+      "source_sha256": "100deabf55d037f5449e3b58aff923a5f46a3ea96789aa24d7c28c718a071c86",
+      "paper": "Xing2016",
+      "candidate": "R017"
+    },
+    "drafts/regions/spontaneous_speech_cerebellar_cluster__Xing2016__R018.md": {
+      "source_sha256": "5154a5113b30706c26222a41e9148b9346b2ed528e275b210ffd58cbb15bba69",
+      "paper": "Xing2016",
+      "candidate": "R018"
+    },
+    "drafts/regions/right_hemisphere_spontaneous_speech_cluster__Xing2016__R019.md": {
+      "source_sha256": "6a21c68bfe0d3749899f44d6619d22747eb79424798688d6de40c024c54f1922",
+      "paper": "Xing2016",
+      "candidate": "R019",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF p. 8 reports a non-significant patient/control difference only for the spontaneous-speech-related right-hemisphere cluster; AQ, repetition and naming clusters differ significantly. The standalone claim generalizes the null to right-hemisphere clusters. Specify the spontaneous-speech cluster in the claim before publication."
+    },
+    "drafts/regions/rh_language_clusters__Xing2016__R021.md": {
+      "source_sha256": "57d58bdaccd9651ed010582170e24c270117d294e58d9d315a17a3553edcf3a9",
+      "paper": "Xing2016",
+      "candidate": "R021"
+    },
+    "drafts/regions/right_hemisphere_spontaneous_speech_cluster__Xing2016__R022.md": {
+      "source_sha256": "7a621335f3e38e2cccbe7a279a1102de4447fb78779d9958a044daa60125ef71",
+      "paper": "Xing2016",
+      "candidate": "R022"
+    },
+    "drafts/regions/cerebellar_cluster_aphasia__Xing2016__R023.md": {
+      "source_sha256": "e3f2e3aa5e7bbb3b70e3f02b97fb9ad45a2e251ec51e74cd562a149247f64f5e",
+      "paper": "Xing2016",
+      "candidate": "R023"
+    },
+    "drafts/regions/left_posterior_temporal_cluster__Xing2017__R002.md": {
+      "source_sha256": "536d5438354cc4d516905a1fe988c900847a4417cb8945792e12be97eff7b979",
+      "paper": "Xing2017",
+      "candidate": "R002",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 3\u20134 describes TBSS of diffusion-tensor metrics in spared white matter, not voxel-based morphometry. Reconcile method=VBM with the actual DTI/TBSS analysis."
+    },
+    "drafts/regions/uncinate_fasciculus_lesion_load__Xing2017__R003.md": {
+      "source_sha256": "d52fda3c1e94448d06adc6dd9b4c2c4ef2a6c4dcb17689cec7acf96fcebfef4a",
+      "paper": "Xing2017",
+      "candidate": "R003"
+    },
+    "drafts/regions/af_ilf_lesion_burden__Xing2017__R004.md": {
+      "source_sha256": "19b3939ec8626e929b9d059e80906ade161fd2bc4cf2149c14464521edd65e3a",
+      "paper": "Xing2017",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_ifof__Xing2017__R005.md": {
+      "source_sha256": "ff4a3bb7b0e9e26673d05797714e5e8923a6cdd7942c1048c60b72f354d6a8da",
+      "paper": "Xing2017",
+      "candidate": "R005",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
+    },
+    "drafts/regions/left_ilf__Xing2017__R006.md": {
+      "source_sha256": "616b4706ed58b5920ffb70ae507f8dbc81332fb472756ae9eddca47f53ae6f9a",
+      "paper": "Xing2017",
+      "candidate": "R006",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
+    },
+    "drafts/regions/left_uncinate_fasciculus__Xing2017__R007.md": {
+      "source_sha256": "eb5db11eaa6c2f0e921280018f3504d2bdd89d78b88a05534e6195475f536ad0",
+      "paper": "Xing2017",
+      "candidate": "R007",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
+    },
+    "drafts/regions/left_uncinate_fasciculus__Xing2017__R008.md": {
+      "source_sha256": "5722cb3e9e1f22f2a44799e6671250d929294a81a4d325bd18a353b6a86c44be",
+      "paper": "Xing2017",
+      "candidate": "R008",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
     }
   }
 }

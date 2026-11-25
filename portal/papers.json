@@ -2160,11 +2160,14 @@
   },
   "@Wilson2019": {
    "annotated": "pdf/C0104_Wilson2019_annotated.pdf",
-   "bytes": 3642354,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "055a574d59218dc8cbe943c086c6fbb48b00efa7e42b7a7d88f8c44d55981e96",
+   "bytes": 3781436,
    "category": "free_to_read",
+   "draft_snapshot": "2026-11-25T20:19:47.673122+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "10baa5299eff146e75ecb32afd8e86bba4f4b4bcae89f90219f588771bad10a8"
+   "sha256": "8b3152637fbe973b7601ffcf3bf9939d0be0598c9d08867a8cca2389a3cef903"
   },
   "@Wilson2021": {
    "annotated": "cc/C0061_Wilson2021_annotated.pdf",
@@ -2193,37 +2196,49 @@
   },
   "@Woollams2018": {
    "annotated": "cc/C2117_Woollams2018_annotated.pdf",
-   "bytes": 6434706,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "31599c5e7bacab684927a9d9b830c61ecb3a3324ef22fa93bb5b16ad38b2c83e",
+   "bytes": 8400205,
    "category": "cc",
+   "draft_snapshot": "2026-11-25T20:19:47.673122+00:00",
    "label": "CC BY",
    "public": true,
    "public_basis": "cc",
-   "sha256": "07de10045c1190285105df5383ed7a66448cb00888c5163b501ca624e50f528d"
+   "sha256": "a497e57b56fb010fb157374caba7ce6b38b7544b88f718b68044c63c22f7b894"
   },
   "@Wright2018": {
    "annotated": "pdf/C2127_Wright2018_annotated.pdf",
-   "bytes": 144218,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "e927336769df20f602c688d478cc01934061b5d9306d64ee9656c465e4b414b6",
+   "bytes": 405704,
    "category": "free_to_read",
+   "draft_snapshot": "2026-11-25T20:19:47.673122+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "616635361bac74825787c7dae2899007876b41ca070b28ef5cf1887b7da2512b"
+   "sha256": "143fd6271d949ffd99dbaebb3660e7d16febbf50d0c75db5566bd04752b7f913"
   },
   "@Xing2016": {
    "annotated": "pdf/C0123_Xing2016_annotated.pdf",
-   "bytes": 1475293,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "bf8fab28254887284c4d2451c2d43ee8369b924538aef2851520835d4d7aa108",
+   "bytes": 1968379,
    "category": "free_to_read",
+   "draft_snapshot": "2026-11-25T20:19:47.673122+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "024344fd42d17cde12540b6e4621b43854b784e809fde20c53273148a6e5d70e"
+   "sha256": "f552219b26cd07e0d8e0059ed930276e24a1d063e45dbf81de875b416ebd6393"
   },
   "@Xing2017": {
    "annotated": "cc/C2356_Xing2017_annotated.pdf",
-   "bytes": 3102738,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "9502f2d5bdbd2309924b5317dbc023ee2e7d6fac82900826c49beec98a996c37",
+   "bytes": 2464748,
    "category": "cc",
+   "draft_snapshot": "2026-11-25T20:19:47.673122+00:00",
    "label": "CC BY",
    "public": true,
    "public_basis": "cc",
-   "sha256": "0dbe0f5f4edb93fe07e7a2e04cafb7dc1220045412216a32eb4188fb5a8db0d3"
+   "sha256": "57cac5917bd03c87fdc35e2a547c907eb3239f67c456c16548e730f62faccd88"
   },
   "@Yang2017": {
    "annotated": "pdf/C2467_Yang2017_annotated.pdf",
