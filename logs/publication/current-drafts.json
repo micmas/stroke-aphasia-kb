@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-25T12:58:51.054319+00:00",
+  "snapshot_at": "2026-11-25T14:39:53.656360+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -8213,6 +8213,144 @@
       "source_sha256": "2e021d8ce7f9c3f2e2ed093e64acd1f96e2d9ceab6f02fc442cdfd9a4269cfa9",
       "paper": "Tang2022",
       "candidate": "R017"
+    },
+    "drafts/regions/cnn_saliency_cluster__Teghipco2024__R015.md": {
+      "source_sha256": "784804c0436dbc1349e45838d4a16fd71c1c7b1f825b717475b29a1437427631",
+      "paper": "Teghipco2024",
+      "candidate": "R015"
+    },
+    "drafts/regions/cnn_saliency_cluster__Teghipco2024__R016.md": {
+      "source_sha256": "400887c213e23180d5344de040832b4ec33b5043a8cd2f3eaeb0eba5c04924c6",
+      "paper": "Teghipco2024",
+      "candidate": "R016"
+    },
+    "drafts/therapies/inhibitory_r_pifg_slt__Thiel2013__R001.md": {
+      "source_sha256": "eb98db0df39eb3ae9648de9956f2b68b84166e977b760275303dc4584fb42ea1",
+      "paper": "Thiel2013",
+      "candidate": "R001"
+    },
+    "drafts/therapies/inhibitory_rtms_right_pifg_slt__Thiel2013__R002.md": {
+      "source_sha256": "7867a45ddad8f0a120edf51adbbe6ce256e641c93c649edc27aae595ad29255a",
+      "paper": "Thiel2013",
+      "candidate": "R002"
+    },
+    "drafts/predictors/rtms_pifg_avi_change__Thiel2013__R003.md": {
+      "source_sha256": "eb901a9912f1b983bcfa95b41a7bf12bfbe47a26ad5af1f88556e4c61e485ef8",
+      "paper": "Thiel2013",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp. 1-3 measures activation volume index change using O-15-water PET during verb generation. The draft method=behavioral_only misidentifies the imaging-derived predictor. Reconcile method provenance before publication."
+    },
+    "drafts/predictors/activation_volume_index_change__Thiel2013__R004.md": {
+      "source_sha256": "d949b5df7d2f62fca9f3196c30c456bbbee336f42d1a1ce23009189b5470fae8",
+      "paper": "Thiel2013",
+      "candidate": "R004",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp. 1-3 measures activation volume index change using O-15-water PET, not fMRI. The draft method=fMRI_activation conflicts with the source modality. Reconcile method provenance before publication."
+    },
+    "drafts/therapies/inhibitory_1hz_rtms_right_pifg_slt__Thiel2013__R005.md": {
+      "source_sha256": "187e6e674fbef96cbad69d6faa06a49c135b8d2516d991836cf1bb833d4b35fe",
+      "paper": "Thiel2013",
+      "candidate": "R005"
+    },
+    "drafts/therapies/object_cleft_training__Thompson2003__R003.md": {
+      "source_sha256": "e6427dcc43022eb618ea2b0d4bf07fa39582da7430ae5596d0bbd7924a420528",
+      "paper": "Thompson2003",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp. 8-9 reports lack of object-relative generalization during object-cleft training for Participants 2 and 4 (n=2); Participants 1 and 3 received complex object-relative training first. The draft assigns the whole-study sample.n=4 to this subgroup claim. Reconcile analysed subgroup versus overall cohort before publication."
+    },
+    "drafts/therapies/complexity_training_order__Thompson2003__R008.md": {
+      "source_sha256": "0b4395c852e20f6518d53ffdc140442b6abe27f0ad26ed34d5e536e6a5cbd064",
+      "paper": "Thompson2003",
+      "candidate": "R008"
+    },
+    "drafts/regions/time_since_stroke__Thurston2026__R001.md": {
+      "source_sha256": "8eef481ed4c9b3ab585e426982f1d34aa563399d07ddf598713822746e20a6a6",
+      "paper": "Thurston2026",
+      "candidate": "R001",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF p. 2 explicitly excludes samples with aphasia or other communication impairments, and p. 6 warns that results may not generalize to aphasia. This draft population omits that material exclusion. Reconcile population scope before publication; R002/R003 retain the exclusion."
+    },
+    "drafts/regions/time_since_stroke__Thurston2026__R002.md": {
+      "source_sha256": "6f42afc957f4e7b5023451353291507a79ecb3564e3280bcf834c16574015ef7",
+      "paper": "Thurston2026",
+      "candidate": "R002"
+    },
+    "drafts/predictors/time_since_stroke_12_months__Thurston2026__R003.md": {
+      "source_sha256": "5ec1674affeff578028756bdc430df469c8f8629c6351a3aff942e77638a3f56",
+      "paper": "Thurston2026",
+      "candidate": "R003"
+    },
+    "drafts/regions/mca_territory_cluster__Thye2018__R001.md": {
+      "source_sha256": "d83dd5bbd2a64b0ebd67c72f8e90f6de9088b0a78137cbd99164632f43d1fc53",
+      "paper": "Thye2018",
+      "candidate": "R001"
+    },
+    "drafts/regions/mca_territory_aphasia_severity_cluster__Thye2018__R002.md": {
+      "source_sha256": "58b047b2cb425a8b5a4882f10279438330beee838e14f3bf18329311675f5d66",
+      "paper": "Thye2018",
+      "candidate": "R002"
+    },
+    "drafts/regions/semantic_deficit_cluster__Thye2018__R003.md": {
+      "source_sha256": "c38ab9b0c89e26188608185562237510105afe04e7a7af97aed11eb872383013",
+      "paper": "Thye2018",
+      "candidate": "R003"
+    },
+    "drafts/regions/speech_production_cluster__Thye2018__R004.md": {
+      "source_sha256": "859b28c9a9dd2a1b571d385c4bbbbd2891dd45f51f5fa6c3fa1f9db56d05d4da",
+      "paper": "Thye2018",
+      "candidate": "R004"
+    },
+    "drafts/regions/heschls_gyrus_cluster__Thye2018__R005.md": {
+      "source_sha256": "9c2b2e8784f081fb3fe323523b95a096b081aab2e4f627120a26a4f774f9d2db",
+      "paper": "Thye2018",
+      "candidate": "R005"
+    },
+    "drafts/regions/lesion_size__Thye2018__R007.md": {
+      "source_sha256": "585718a8240a8cbcb023a82eddfb03b3a740c1758b33545abdfc4cd0132648a5",
+      "paper": "Thye2018",
+      "candidate": "R007"
+    },
+    "drafts/predictors/template_lesion_load__Thye2018__R008.md": {
+      "source_sha256": "b0011571211cce1e249f90b4ce298430b21b77f185a05649ad858832d12cde09",
+      "paper": "Thye2018",
+      "candidate": "R008"
+    },
+    "drafts/regions/sccan_semantics_template_load__Thye2018__R009.md": {
+      "source_sha256": "ef4d005915ca9498741ad6c3d816ffda20ee77406e1f9afb8c03aab34d0a4034",
+      "paper": "Thye2018",
+      "candidate": "R009"
+    },
+    "drafts/predictors/template_lesion_load__Thye2018__R010.md": {
+      "source_sha256": "901722b0525617251d323cf4383f7054d9a6d92c699e41aed8f6084411d53f2e",
+      "paper": "Thye2018",
+      "candidate": "R010"
+    },
+    "drafts/predictors/template_lesion_load__Thye2018__R011.md": {
+      "source_sha256": "85996dae082b9eb1bb0c33b6245994df32f76bb53a5d9089a07bfcd1118e5fec",
+      "paper": "Thye2018",
+      "candidate": "R011"
+    },
+    "drafts/predictors/lesion_size_location_model__Thye2018__R012.md": {
+      "source_sha256": "9ca1e577d3af9b8b98df7b854fd7ba0274f0ce41cfc524c6478236d991c5156c",
+      "paper": "Thye2018",
+      "candidate": "R012"
+    },
+    "drafts/predictors/lesion_size_location_model_general_language__Thye2018__R013.md": {
+      "source_sha256": "019fa7e50e6ad950e85c92b499e19d51212ea551665c0d56b3a440914001b763",
+      "paper": "Thye2018",
+      "candidate": "R013"
+    },
+    "drafts/predictors/lesion_location_speech_production_recognition__Thye2018__R014.md": {
+      "source_sha256": "76ff52766cf1f18f2a65a1a6e3542746f7861c07ad2da40a6068f15ea26d1e87",
+      "paper": "Thye2018",
+      "candidate": "R014"
+    },
+    "drafts/predictors/lesion_location_general_language__Thye2018__R015.md": {
+      "source_sha256": "14516de1d9da452aba1a6ade6b4435231ad753fa013b43396239b7c2eb15198e",
+      "paper": "Thye2018",
+      "candidate": "R015"
     }
   }
 }

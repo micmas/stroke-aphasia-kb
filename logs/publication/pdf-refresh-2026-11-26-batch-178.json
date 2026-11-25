@@ -1,0 +1,78 @@
+{
+  "checked_at": "2026-11-25T14:51:14.280540+00:00",
+  "publication_snapshot": "2026-11-25T14:39:53.656360+00:00",
+  "policy": "Only papers with remaining published findings refreshed; PDF access categories and withdrawal ledger preserved.",
+  "report": {
+    "Desjardins2026": {
+      "status": "missing_pdf_index"
+    },
+    "Gilbert2025": {
+      "status": "missing_pdf_index"
+    },
+    "Goldenberg1994": {
+      "status": "missing_pdf_index"
+    },
+    "Hillis2002": {
+      "status": "missing_pdf_index"
+    },
+    "Hobden2024": {
+      "status": "missing_pdf_index"
+    },
+    "Hope2016": {
+      "status": "missing_pdf_index"
+    },
+    "Kourtidou2021": {
+      "status": "missing_pdf_index"
+    },
+    "Lukic2017": {
+      "status": "missing_pdf_index"
+    },
+    "Matchin2024": {
+      "status": "missing_pdf_index"
+    },
+    "Moore2024": {
+      "status": "missing_pdf_index"
+    },
+    "OsaGarcia2024": {
+      "status": "missing_pdf_index"
+    },
+    "Pendlebury2009": {
+      "status": "missing_pdf_index"
+    },
+    "Schellekens2026": {
+      "status": "missing_pdf_index"
+    },
+    "Sewell2025": {
+      "status": "missing_pdf_index"
+    },
+    "Sihvonen2023": {
+      "status": "missing_pdf_index"
+    },
+    "Tang2022": {
+      "status": "missing_pdf_index"
+    },
+    "Teghipco2024": {
+      "status": "uploaded",
+      "placed": 19,
+      "missed": 0
+    },
+    "Thiel2013": {
+      "status": "uploaded",
+      "placed": 26,
+      "missed": 0
+    },
+    "Thompson2003": {
+      "status": "uploaded",
+      "placed": 4,
+      "missed": 0
+    },
+    "Thurston2026": {
+      "status": "missing_pdf_index"
+    },
+    "Thye2018": {
+      "status": "uploaded",
+      "placed": 99,
+      "missed": 0
+    }
+  }
+}

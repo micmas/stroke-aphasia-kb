@@ -2060,37 +2060,49 @@
   },
   "@Teghipco2024": {
    "annotated": "cc/C0018_Teghipco2024_annotated.pdf",
-   "bytes": 11998441,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "67d4fa49b1ab18a7ef95eac5389aac122981f018e709394c4b1469ed58063be3",
+   "bytes": 12072323,
    "category": "cc",
+   "draft_snapshot": "2026-11-25T14:39:53.656360+00:00",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "f878c04f7b431cee4cbfd0d451cfe5ba892ee127ab6d5dee0059b1454a916cb6"
+   "sha256": "ec1233041b500a32d0b593895aa17b2c3d3e7fb9294e3a36a9ba0b24ed4daefb"
   },
   "@Thiel2013": {
    "annotated": "pdf/C0084_Thiel2013_annotated.pdf",
-   "bytes": 1285819,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "80a370e75850951d70381f5c88ebf86ab5067b8a35e8bb992d96e1da6870834c",
+   "bytes": 1395930,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-25T14:39:53.656360+00:00",
    "label": "no open copy known",
    "public": false,
-   "sha256": "cb05e63d14b2702e46f08c4c953d2c29ca67351ea7f94325868ff07fdd236307"
+   "sha256": "834d1224877748429f12608be909e1182ef2aca6516c6217ed3a4e384f4d42a1"
   },
   "@Thompson2003": {
    "annotated": "pdf/C0081_Thompson2003_annotated.pdf",
-   "bytes": 19058940,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "0a41cee54166fa516f035e86a7329ac0061e07e85b435344f441c07553294ca9",
+   "bytes": 19054063,
    "category": "free_to_read",
+   "draft_snapshot": "2026-11-25T14:39:53.656360+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "7aa05dda6d298694e4ce8d3d403ebc3c11af2301e031a274778bff7f2c77ff55"
+   "sha256": "dee5106ddcadce006c344da5bd9ab1df6a0df960abcefafe0e106bbe5d04cefb"
   },
   "@Thye2018": {
    "annotated": "cc/C0071_Thye2018_annotated.pdf",
-   "bytes": 2735895,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "d5528a150e9725293fffd642f011af3e6c4b8597cfe1d30ab7ab90905b474b47",
+   "bytes": 3059499,
    "category": "cc",
+   "draft_snapshot": "2026-11-25T14:39:53.656360+00:00",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "37e00ac55e4c966d5dbd0faca0d30b2e72c8f36e1afb6c5f6ab67f077b30e6b8"
+   "sha256": "6c96734b51bbee4d2423f21cea468a129ce7ba73261f462f2298838ba2efb885"
   },
   "@Turkeltaub2011": {
    "annotated": "pdf/C0095_Turkeltaub2011_annotated.pdf",

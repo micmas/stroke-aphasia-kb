@@ -1,0 +1,105 @@
+{
+  "checked_at": "2026-11-25T14:44:07.061492+00:00",
+  "publication_snapshot": "2026-11-25T14:39:53.656360+00:00",
+  "scope": "Paper identity, claim/population scope and study-design provenance only; no human scientific approval.",
+  "snapshot_additions": 26,
+  "publishable_additions": 22,
+  "papers": [
+    "Teghipco2024",
+    "Thiel2013",
+    "Thompson2003",
+    "Thurston2026",
+    "Thye2018"
+  ],
+  "identity_check": "Every new claim and population inspected against its named source PDF. No adjacent-article contamination found. Four method/subgroup/population provenance issues held; originals preserved.",
+  "quarantined": [
+    {
+      "path": "drafts/predictors/activation_volume_index_change__Thiel2013__R004.md",
+      "paper": "Thiel2013",
+      "candidate": "R004",
+      "reason": "PDF pp. 1-3 measures activation volume index change using O-15-water PET, not fMRI. The draft method=fMRI_activation conflicts with the source modality. Reconcile method provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/activation_volume_index_change__Thiel2013__R004.md",
+      "sha256": "d949b5df7d2f62fca9f3196c30c456bbbee336f42d1a1ce23009189b5470fae8"
+    },
+    {
+      "path": "drafts/predictors/rtms_pifg_avi_change__Thiel2013__R003.md",
+      "paper": "Thiel2013",
+      "candidate": "R003",
+      "reason": "PDF pp. 1-3 measures activation volume index change using O-15-water PET during verb generation. The draft method=behavioral_only misidentifies the imaging-derived predictor. Reconcile method provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/rtms_pifg_avi_change__Thiel2013__R003.md",
+      "sha256": "eb901a9912f1b983bcfa95b41a7bf12bfbe47a26ad5af1f88556e4c61e485ef8"
+    },
+    {
+      "path": "drafts/regions/time_since_stroke__Thurston2026__R001.md",
+      "paper": "Thurston2026",
+      "candidate": "R001",
+      "reason": "PDF p. 2 explicitly excludes samples with aphasia or other communication impairments, and p. 6 warns that results may not generalize to aphasia. This draft population omits that material exclusion. Reconcile population scope before publication; R002/R003 retain the exclusion.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/time_since_stroke__Thurston2026__R001.md",
+      "sha256": "8eef481ed4c9b3ab585e426982f1d34aa563399d07ddf598713822746e20a6a6"
+    },
+    {
+      "path": "drafts/therapies/object_cleft_training__Thompson2003__R003.md",
+      "paper": "Thompson2003",
+      "candidate": "R003",
+      "reason": "PDF pp. 8-9 reports lack of object-relative generalization during object-cleft training for Participants 2 and 4 (n=2); Participants 1 and 3 received complex object-relative training first. The draft assigns the whole-study sample.n=4 to this subgroup claim. Reconcile analysed subgroup versus overall cohort before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/therapies/object_cleft_training__Thompson2003__R003.md",
+      "sha256": "e6427dcc43022eb618ea2b0d4bf07fa39582da7430ae5596d0bbd7924a420528"
+    }
+  ],
+  "published_paths": [
+    "drafts/predictors/lesion_location_general_language__Thye2018__R015.md",
+    "drafts/predictors/lesion_location_speech_production_recognition__Thye2018__R014.md",
+    "drafts/predictors/lesion_size_location_model__Thye2018__R012.md",
+    "drafts/predictors/lesion_size_location_model_general_language__Thye2018__R013.md",
+    "drafts/predictors/template_lesion_load__Thye2018__R008.md",
+    "drafts/predictors/template_lesion_load__Thye2018__R010.md",
+    "drafts/predictors/template_lesion_load__Thye2018__R011.md",
+    "drafts/predictors/time_since_stroke_12_months__Thurston2026__R003.md",
+    "drafts/regions/cnn_saliency_cluster__Teghipco2024__R015.md",
+    "drafts/regions/cnn_saliency_cluster__Teghipco2024__R016.md",
+    "drafts/regions/heschls_gyrus_cluster__Thye2018__R005.md",
+    "drafts/regions/lesion_size__Thye2018__R007.md",
+    "drafts/regions/mca_territory_aphasia_severity_cluster__Thye2018__R002.md",
+    "drafts/regions/mca_territory_cluster__Thye2018__R001.md",
+    "drafts/regions/sccan_semantics_template_load__Thye2018__R009.md",
+    "drafts/regions/semantic_deficit_cluster__Thye2018__R003.md",
+    "drafts/regions/speech_production_cluster__Thye2018__R004.md",
+    "drafts/regions/time_since_stroke__Thurston2026__R002.md",
+    "drafts/therapies/complexity_training_order__Thompson2003__R008.md",
+    "drafts/therapies/inhibitory_1hz_rtms_right_pifg_slt__Thiel2013__R005.md",
+    "drafts/therapies/inhibitory_r_pifg_slt__Thiel2013__R001.md",
+    "drafts/therapies/inhibitory_rtms_right_pifg_slt__Thiel2013__R002.md"
+  ],
+  "source_papers": [
+    {
+      "paper": "Teghipco2024",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0018_Teghipco2024.pdf",
+      "sha256": "68f566e52924f65d6d4df2e0ebeb371b036a1588ed2e049de3bacdd06a582486",
+      "identity_scope": "Chronic left-stroke CNN morphometry saliency clusters and functional decoding; no adjacent article. Abstract N=231 versus Methods 213 discrepancy is not resolved here; draft n remains not_reported. Cross-sectional associations remain unapproved."
+    },
+    {
+      "paper": "Thiel2013",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0084_Thiel2013.pdf",
+      "sha256": "d2b19385a834c6473946693ead6093e429d1854bc63e127583eda76f4625d4e5",
+      "identity_scope": "Randomized sham-controlled rTMS plus SLT; 30 recruited, 24 analysed (13 treatment, 11 sham). Three treatment findings retained. Two PET predictor modality mismatches held."
+    },
+    {
+      "paper": "Thompson2003",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0081_Thompson2003.pdf",
+      "sha256": "2a2d9be43ae21651d18035a60374c8dc5e7fb10a9d2ab5ca8b4cf27c2dd2fe3a",
+      "identity_scope": "Four chronic Broca/agrammatism participants in single-subject TUF experiment. Complex-first session comparison spans all four. Object-cleft-only subgroup claim held for sample reconciliation."
+    },
+    {
+      "paper": "Thurston2026",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C16575_Thurston2026.pdf",
+      "sha256": "86eb7eedc3f32fc039330154e0a35491360523286fbf799a14293f92964fe93a",
+      "identity_scope": "Longitudinal meta-analysis of 41 studies/6979 adult stroke patients; aphasia and communication impairment excluded. Retained R002/R003 explicitly preserve exclusion and sensitivity-only result; full model null retained in notes. R001 missing exclusion held."
+    },
+    {
+      "paper": "Thye2018",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0071_Thye2018.pdf",
+      "sha256": "aba317a56678ed522e11955ab8e7b5a38d2c49dd5a090732dda241ae142204c9",
+      "identity_scope": "128 left-stroke aphasia participants, 75 MRI/53 CT; imaging >6 months, inclusion >=1 month. SCCAN and VLSM lesion templates, not patient diffusion connectivity. Claims checked against Results 3.2, 4.2 and discussion of behavior-side lesion-size control. No adjacent-article contamination."
+    }
+  ]
+}
