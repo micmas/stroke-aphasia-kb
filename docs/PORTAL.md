@@ -2,19 +2,25 @@
 
 ## Start with one finding
 
-Choose **Drafts** to see ten papers at a time, then open a paper to review its
-findings (25 per page). The default order puts primary stroke–language
-lesion/structural mapping and recovery/outcome prediction first, followed by
-broader mapping/prediction studies, studies whose population needs an applicability
-check, other language/treatment evidence, and broader supporting outcomes.
-Reasons are shown beside each paper. This is a suggestion from recorded metadata,
-not a judgement of study quality, certainty or approval readiness. Papers are
-alphabetical within groups; **Paper A–Z** restores alphabetical order. Missing PDFs
-remain visible, and neither duplicates nor positive/null results affect priority.
+Choose **Drafts**, then choose what you want to review: lesion–behaviour mapping,
+recovery/prediction, treatment/rehabilitation, language/communication, other
+cognitive functions, or brain networks/methods. Topics can overlap. **Browse all
+papers** retains every paper, including those whose topic is unclear.
 
-Search by paper, title, behaviour or assessment. Filters separate unclear outcome
-definitions, missing measurement details and high extractor confidence. Confidence
-does not affect the suggested paper order or establish readiness for approval.
+Within a topic, papers whose titles directly match it and whose recorded
+population is stroke come first, followed by matching findings in broader papers.
+Mixed/non-stroke samples and unknown populations remain available with an
+applicability note. Reasons appear beside each paper; ties are alphabetical.
+This is metadata-based relevance, not citation impact, scientific importance,
+evidence quality or approval readiness. Sample size, extractor confidence,
+positive/null results and duplicated findings do not raise priority. **Paper A–Z**
+restores alphabetical order.
+
+The queue shows ten papers at a time. Open a paper to review its findings (25 per
+page); all its findings remain available even when it spans several topics.
+**Change topic** returns to the topic chooser. Search by paper, title, behaviour
+or assessment; filters separate unclear outcome definitions, missing measurements
+and high extractor confidence. Missing PDFs remain visible.
 
 Each draft follows three steps: read the finding and outcome, check the passages
 against the PDF, then choose agree, disagree or unsure. A partial review is useful.

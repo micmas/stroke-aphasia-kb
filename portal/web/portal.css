@@ -126,3 +126,10 @@ tr.dropping td { background: color-mix(in oklab, var(--grape) 9%, transparent); 
 .ft-missing { border: 2px dashed var(--line-strong); border-radius: 8px; background: var(--surface); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .err-text { color: #f97066; } }
 :root[data-theme="dark"] .err-text { color: #f97066; }
+
+/* Topic selection reuses the portal palette and type scale. */
+.review-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: .8rem; margin: 1rem 0; }
+.review-topic { display: flex; flex-direction: column; gap: .5rem; padding: 1rem; text-align: left; font: inherit; color: var(--ink); background: var(--panel); border: 1px solid var(--line-strong); border-radius: 6px; cursor: pointer; }
+.review-topic:hover { border-color: var(--grape); }
+.review-topic:focus-visible { outline: 2px solid var(--grape); outline-offset: 3px; }
+.review-topic > span { font-size: .9rem; }
