@@ -1,0 +1,75 @@
+{
+  "checked_at": "2026-11-25T13:08:05.381572+00:00",
+  "publication_snapshot": "2026-11-25T12:58:51.054319+00:00",
+  "policy": "Only papers with remaining published findings refreshed; PDF access categories and withdrawal ledger preserved.",
+  "report": {
+    "Desjardins2026": {
+      "status": "missing_pdf_index"
+    },
+    "Gilbert2025": {
+      "status": "missing_pdf_index"
+    },
+    "Goldenberg1994": {
+      "status": "missing_pdf_index"
+    },
+    "Hillis2002": {
+      "status": "missing_pdf_index"
+    },
+    "Hobden2024": {
+      "status": "missing_pdf_index"
+    },
+    "Hope2016": {
+      "status": "missing_pdf_index"
+    },
+    "Kourtidou2021": {
+      "status": "missing_pdf_index"
+    },
+    "Lukic2017": {
+      "status": "missing_pdf_index"
+    },
+    "Matchin2024": {
+      "status": "missing_pdf_index"
+    },
+    "Moore2024": {
+      "status": "missing_pdf_index"
+    },
+    "OsaGarcia2024": {
+      "status": "missing_pdf_index"
+    },
+    "Pendlebury2009": {
+      "status": "missing_pdf_index"
+    },
+    "Schellekens2026": {
+      "status": "missing_pdf_index"
+    },
+    "Sewell2025": {
+      "status": "missing_pdf_index"
+    },
+    "Sihvonen2023": {
+      "status": "missing_pdf_index"
+    },
+    "Stahl2011": {
+      "status": "uploaded",
+      "placed": 64,
+      "missed": 0
+    },
+    "Stahl2013": {
+      "status": "uploaded",
+      "placed": 18,
+      "missed": 0
+    },
+    "Stefaniak2022": {
+      "status": "uploaded",
+      "placed": 75,
+      "missed": 0
+    },
+    "Stockbridge2024": {
+      "status": "uploaded",
+      "placed": 7,
+      "missed": 0
+    },
+    "Tang2022": {
+      "status": "missing_pdf_index"
+    }
+  }
+}

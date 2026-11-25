@@ -2005,38 +2005,50 @@
   },
   "@Stahl2011": {
    "annotated": "cc/C3212_Stahl2011_annotated.pdf",
-   "bytes": 406926,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "3f39a87c8e26f585acebb932baf7e15e088177de4a8da6908edc9f50ecc5c175",
+   "bytes": 582027,
    "category": "cc",
+   "draft_snapshot": "2026-11-25T12:58:51.054319+00:00",
    "label": "CC BY-NC",
    "public": true,
    "public_basis": "cc",
-   "sha256": "9a7c34d0f050cf8fc77575442dc180837a3c7e5d2a88c737b50797a8750a7fe8"
+   "sha256": "2524974619bb99a0754edcd4840e56293b750a18a03ee7420e0affec5cc302b8"
   },
   "@Stahl2013": {
    "annotated": "cc/C0037_Stahl2013_annotated.pdf",
-   "bytes": 1710366,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "f3324b4a586ed8fa0747d0fdd3a31120bfe5f9649e578bf05e647eadcdad3078",
+   "bytes": 1793600,
    "category": "cc",
+   "draft_snapshot": "2026-11-25T12:58:51.054319+00:00",
    "label": "CC BY",
    "public": true,
    "public_basis": "cc",
-   "sha256": "3f24421526d6a99bcf50f5b9e793f1daf8c29e7620ee20f038f956205aa95f3f"
+   "sha256": "0cf2a03fa4f13a99346222bae6f9995834b807ff413d1a663ad1227f1f45182c"
   },
   "@Stefaniak2022": {
    "annotated": "cc/C0016_Stefaniak2022_annotated.pdf",
-   "bytes": 1253257,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "bfb0c9aa5c38daa94f5550d68c9bd2f1f89a2df5ef804a66df7edcbd62922b7f",
+   "bytes": 1595372,
    "category": "cc",
+   "draft_snapshot": "2026-11-25T12:58:51.054319+00:00",
    "label": "CC BY 4.0",
    "public": true,
    "public_basis": "cc",
-   "sha256": "db876e20a6f73975ae9da2d27ed71583ed623e58907c6a352c1d19bc940af774"
+   "sha256": "9e31cbd8eac0d4388d28eaeddef9ae20092129605db9c4f22b684cff712f91fb"
   },
   "@Stockbridge2024": {
    "annotated": "pdf/C0832_Stockbridge2024_annotated.pdf",
-   "bytes": 1352915,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "38f8e330a8f8cfefe55bc27e6e88edd1f08b87f1e358ffe7fa5aee08b281fae8",
+   "bytes": 1372743,
    "category": "unknown",
+   "draft_snapshot": "2026-11-25T12:58:51.054319+00:00",
    "label": null,
    "public": false,
-   "sha256": "0fd591dc0cf5ec7b84877e6f50b41e9fe301f0075616fa5a164cae6194b8ea3e"
+   "sha256": "f1a0fd1b6e9578dedba07b1b6c984c125539a043f7c82047b4173fd600aed8ca"
   },
   "@Stockert2020": {
    "annotated": "pdf/C0096_Stockert2020_annotated.pdf",

@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-25T11:03:03.848436+00:00",
+  "snapshot_at": "2026-11-25T12:58:51.054319+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -8015,6 +8015,204 @@
       "candidate": "R001",
       "publication_disposition": "withdrawn_pending_source_design_review",
       "publication_disposition_reason": "PDF pp. 1, 3\u20136 and 8 describe experimental singing/rhythmic-speech task conditions and immediate articulatory performance in 17 participants, rather than longitudinal therapy efficacy. The draft is categorized as a therapy with relationship=treatment_response. Reconcile immediate task facilitation versus treatment outcome before publication."
+    },
+    "drafts/predictors/fundamental_frequency_variability__Stahl2011__R002.md": {
+      "source_sha256": "52b28d05fa2aa06c9428ba8696070903a3f0fb177f639131983e51c19c120f31",
+      "paper": "Stahl2011",
+      "candidate": "R002"
+    },
+    "drafts/predictors/rhythmic_speech_articulatory_quality__Stahl2011__R004.md": {
+      "source_sha256": "2877fe9f4a24e367e137605ca27f52a11f0138eeb6efa5b66cb227fc4a7a9a66",
+      "paper": "Stahl2011",
+      "candidate": "R004"
+    },
+    "drafts/regions/basal_ganglia__Stahl2011__R005.md": {
+      "source_sha256": "b8289136ae69085758322c385c378501f304fbf0c36265be9ce0ace0d42b8379",
+      "paper": "Stahl2011",
+      "candidate": "R005"
+    },
+    "drafts/ingredients/lyric_type__Stahl2011__R006.md": {
+      "source_sha256": "14216e5c98a49621163dbc24e8986751318790ff9f413a209c3fefd8dce18857",
+      "paper": "Stahl2011",
+      "candidate": "R006"
+    },
+    "drafts/predictors/age_lyric_memory_interaction__Stahl2011__R007.md": {
+      "source_sha256": "3fdd21f9301e408764dfd053fb9415a26747c7c5b2a95aea04852c604a66bd46",
+      "paper": "Stahl2011",
+      "candidate": "R007"
+    },
+    "drafts/ingredients/formulaic_lyrics__Stahl2011__R008.md": {
+      "source_sha256": "8b3cb2a0eaca6adb1e75d8f014c79e714a8f801dfb8f1741507327dbf29540e7",
+      "paper": "Stahl2011",
+      "candidate": "R008"
+    },
+    "drafts/ingredients/rhythmic_percussion_interference__Stahl2011__R009.md": {
+      "source_sha256": "292756eaa8dc42879ac54c8b988903847ad4779967959ba3e27ab7587402787b",
+      "paper": "Stahl2011",
+      "candidate": "R009"
+    },
+    "drafts/therapies/singing_or_rhythmic_therapy__Stahl2013__R001.md": {
+      "source_sha256": "d617252fc94e76eeb03285b6b9b078c37c3a2e95729a552c422ac0c35b975137",
+      "paper": "Stahl2013",
+      "candidate": "R001",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication."
+    },
+    "drafts/therapies/standard_speech_therapy__Stahl2013__R002.md": {
+      "source_sha256": "6ffca5133311e33abde3e5b9aa66813b50d96189a36d2a1f11b10d44ac36012d",
+      "paper": "Stahl2013",
+      "candidate": "R002",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication."
+    },
+    "drafts/therapies/standard_speech_therapy__Stahl2013__R003.md": {
+      "source_sha256": "642e7c1a9e3e23e52854219e9c11d6252ed43a6ebcb79939bfc1491013433935",
+      "paper": "Stahl2013",
+      "candidate": "R003"
+    },
+    "drafts/therapies/singing_or_rhythmic_therapy__Stahl2013__R004.md": {
+      "source_sha256": "5538a684a3c7758f477de8b041ca57d7911198d5fd0d21d208e558a58e1eba2e",
+      "paper": "Stahl2013",
+      "candidate": "R004",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication."
+    },
+    "drafts/therapies/singing_therapy_prosody__Stahl2013__R006.md": {
+      "source_sha256": "4015362633f9d5442ed2a93ad7aba8b1be4a51d87605e4c9b48b11db97ace938",
+      "paper": "Stahl2013",
+      "candidate": "R006",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp. 8-9 restricts both post-hoc voice/prosody analyses to the singing and rhythmic therapy groups (five participants each; n=10), but this record assigns sample.n=15 from the whole three-group study. Reconcile the analysed subgroup versus overall cohort before publication."
+    },
+    "drafts/impairments/vocal_frequency_variability__Stahl2013__R007.md": {
+      "source_sha256": "251299c9185e2af50ccaba91b1f980d3079a360d45d02a1f6d6f62ed02b982cb",
+      "paper": "Stahl2013",
+      "candidate": "R007"
+    },
+    "drafts/predictors/t1_language_profile__Stefaniak2022__R001.md": {
+      "source_sha256": "e797e3aa9a8c39b0119b26647a96c4d6359258c4e8a221762be3d8ee14fb61bd",
+      "paper": "Stefaniak2022",
+      "candidate": "R001"
+    },
+    "drafts/predictors/aphasia_recovery_multidimensionality__Stefaniak2022__R002.md": {
+      "source_sha256": "ac333026af6bc510fbd1765e8938bc80db9c4e0460b245681381a7573ea35799",
+      "paper": "Stefaniak2022",
+      "candidate": "R002"
+    },
+    "drafts/predictors/pc1_change__Stefaniak2022__R003.md": {
+      "source_sha256": "860def602a3a9cef80a6bcaf6dc76a61eae9a8a6ac4291470a2c32fdf6ffdb82",
+      "paper": "Stefaniak2022",
+      "candidate": "R003"
+    },
+    "drafts/regions/right_posterior_supramarginal_gyrus_cluster__Stefaniak2022__R004.md": {
+      "source_sha256": "600f3777863fc85e94982bcdf27ff9f1e97b5fd025a176164e01bbe004f528c7",
+      "paper": "Stefaniak2022",
+      "candidate": "R004"
+    },
+    "drafts/predictors/t1_activation_nulls__Stefaniak2022__R005.md": {
+      "source_sha256": "7ddbaf3c6e92ee432013d2d6f8a2080bb2b6e441ac1131387ce5ba795a7a1dbf",
+      "paper": "Stefaniak2022",
+      "candidate": "R005"
+    },
+    "drafts/regions/fluency_recovery_activation_clusters__Stefaniak2022__R006.md": {
+      "source_sha256": "a4388d754bcb989c6551f97a916a5851c2e729f4c2deac7049e5f7dbf157cbd3",
+      "paper": "Stefaniak2022",
+      "candidate": "R006"
+    },
+    "drafts/regions/fluency_recovery_activation_cluster__Stefaniak2022__R007.md": {
+      "source_sha256": "be2ed1846c06aa5a8c1a8085f23aec5ff6a291fc1761835da508e9f3ab25ef16",
+      "paper": "Stefaniak2022",
+      "candidate": "R007"
+    },
+    "drafts/regions/semantic_executive_recovery_cluster__Stefaniak2022__R008.md": {
+      "source_sha256": "e5bfa9e723eb8e314e9ce42d48f339eb710e81552f7c4781c2b84d3b58a92acb",
+      "paper": "Stefaniak2022",
+      "candidate": "R008"
+    },
+    "drafts/regions/vm_pfc_cluster__Stefaniak2022__R010.md": {
+      "source_sha256": "8db1f8c0e52db875a00f1692ee5295b1f63b74c0c3c3f4d9e3fef3cf778738dc",
+      "paper": "Stefaniak2022",
+      "candidate": "R010"
+    },
+    "drafts/predictors/t2_activation_null__Stefaniak2022__R011.md": {
+      "source_sha256": "979ed67469c9f8529239b87df79edfc8d0cde5fe6f3c6c9f4ff46f296b61ad77",
+      "paper": "Stefaniak2022",
+      "candidate": "R011"
+    },
+    "drafts/regions/speech_activation_group_effect__Stefaniak2022__R012.md": {
+      "source_sha256": "3f6d170470ec3ef896cab2a33cab9fe998da4b6c3c4f61b323a98c764cf352ed",
+      "paper": "Stefaniak2022",
+      "candidate": "R012"
+    },
+    "drafts/predictors/days_since_stroke__Stockbridge2024__R011.md": {
+      "source_sha256": "b329670f9cb5f1491f781211eab767030d700eab7445e4bb3a0327dad6c4e7ba",
+      "paper": "Stockbridge2024",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_inferior_parietal_posterior_superior_temporal_cluster__Tang2022__R001.md": {
+      "source_sha256": "44800d6ef25b95df32e22b3a673e875e25dff8ae8e2643d06073c6db7d9350ed",
+      "paper": "Tang2022",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_medial_lateral_orbitofrontal_gyrus__Tang2022__R002.md": {
+      "source_sha256": "2649dc63d6b22c204ca6f0a79dac62fcaa50f11a5ac693f2f58b210f9dfe8806",
+      "paper": "Tang2022",
+      "candidate": "R002"
+    },
+    "drafts/regions/right_orbitofrontal_pars_orbitalis_triangularis_cluster__Tang2022__R004.md": {
+      "source_sha256": "022760da2aed91128676fdcd62255289722183852dea2508a2c5e03b52d3d066",
+      "paper": "Tang2022",
+      "candidate": "R004"
+    },
+    "drafts/predictors/lesion_size__Tang2022__R005.md": {
+      "source_sha256": "8b67aa0ed835f75afadbeb7a6899975509d654feaf3e96000129a8380a33ef5d",
+      "paper": "Tang2022",
+      "candidate": "R005"
+    },
+    "drafts/regions/left_hemisphere_cortical_thickness_clusters__Tang2022__R006.md": {
+      "source_sha256": "314603b2038de8c8c36f99a0f84f7d4f3475580bf3ee398e075b8775b4f32587",
+      "paper": "Tang2022",
+      "candidate": "R006"
+    },
+    "drafts/regions/right_hemisphere_naming_cluster__Tang2022__R007.md": {
+      "source_sha256": "8a010d7a11333a4a619ae9d605a504909a88c227914afe630bd911275a73fd63",
+      "paper": "Tang2022",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_hemisphere_language_cortical_clusters__Tang2022__R008.md": {
+      "source_sha256": "6ed3920352a5c01ff09f9691c162d1fcfb0562d49c4cb0653fdad0b08a893e5b",
+      "paper": "Tang2022",
+      "candidate": "R008"
+    },
+    "drafts/regions/left_naming_cortical_cluster__Tang2022__R009.md": {
+      "source_sha256": "ad5af5d537a4b547fc0c18d7228881bfb3ec92a7f9dcfecec363b463d32105eb",
+      "paper": "Tang2022",
+      "candidate": "R009"
+    },
+    "drafts/regions/right_hemisphere_naming_cluster__Tang2022__R010.md": {
+      "source_sha256": "3a9f4cfe3ee01bccd55317e8d62cee584dffa62acd3b99c82a0b935c3b60a946",
+      "paper": "Tang2022",
+      "candidate": "R010"
+    },
+    "drafts/predictors/left_hemisphere_tract_fa__Tang2022__R011.md": {
+      "source_sha256": "6560859913863a3fe19f431dd91e8f509d4ff584c1064f9a2b5c3490324521c2",
+      "paper": "Tang2022",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_hemisphere_lesion_cortical_tracts__Tang2022__R013.md": {
+      "source_sha256": "61dc2bb3673e5fb01db758c3b94689078a007b722ad6b553bf095879b2c8061c",
+      "paper": "Tang2022",
+      "candidate": "R013"
+    },
+    "drafts/regions/right_cuneus_cluster__Tang2022__R014.md": {
+      "source_sha256": "9817bee05e16e04f7f4c4c278ef0130d053da4db8ec55ff968054712144f6e43",
+      "paper": "Tang2022",
+      "candidate": "R014"
+    },
+    "drafts/regions/left_subcortical_region__Tang2022__R017.md": {
+      "source_sha256": "2e021d8ce7f9c3f2e2ed093e64acd1f96e2d9ceab6f02fc442cdfd9a4269cfa9",
+      "paper": "Tang2022",
+      "candidate": "R017"
     }
   }
 }

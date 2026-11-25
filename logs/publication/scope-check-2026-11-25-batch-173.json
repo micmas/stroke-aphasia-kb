@@ -1,0 +1,117 @@
+{
+  "checked_at": "2026-11-25T13:01:34.249964+00:00",
+  "publication_snapshot": "2026-11-25T12:58:51.054319+00:00",
+  "scope": "Paper identity, claim/population scope and study-design provenance only; no human scientific approval.",
+  "snapshot_additions": 38,
+  "publishable_additions": 34,
+  "papers": [
+    "Stahl2011",
+    "Stahl2013",
+    "Stefaniak2022",
+    "Stockbridge2024",
+    "Tang2022"
+  ],
+  "identity_check": "Every new claim and population inspected against its named source PDF. No adjacent-article contamination found. Four design/subgroup provenance issues held; originals preserved.",
+  "quarantined": [
+    {
+      "path": "drafts/therapies/singing_or_rhythmic_therapy__Stahl2013__R001.md",
+      "paper": "Stahl2013",
+      "candidate": "R001",
+      "reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/therapies/singing_or_rhythmic_therapy__Stahl2013__R001.md",
+      "sha256": "d617252fc94e76eeb03285b6b9b078c37c3a2e95729a552c422ac0c35b975137"
+    },
+    {
+      "path": "drafts/therapies/singing_or_rhythmic_therapy__Stahl2013__R004.md",
+      "paper": "Stahl2013",
+      "candidate": "R004",
+      "reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/therapies/singing_or_rhythmic_therapy__Stahl2013__R004.md",
+      "sha256": "5538a684a3c7758f477de8b041ca57d7911198d5fd0d21d208e558a58e1eba2e"
+    },
+    {
+      "path": "drafts/therapies/singing_therapy_prosody__Stahl2013__R006.md",
+      "paper": "Stahl2013",
+      "candidate": "R006",
+      "reason": "PDF pp. 8-9 restricts both post-hoc voice/prosody analyses to the singing and rhythmic therapy groups (five participants each; n=10), but this record assigns sample.n=15 from the whole three-group study. Reconcile the analysed subgroup versus overall cohort before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/therapies/singing_therapy_prosody__Stahl2013__R006.md",
+      "sha256": "4015362633f9d5442ed2a93ad7aba8b1be4a51d87605e4c9b48b11db97ace938"
+    },
+    {
+      "path": "drafts/therapies/standard_speech_therapy__Stahl2013__R002.md",
+      "paper": "Stahl2013",
+      "candidate": "R002",
+      "reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/therapies/standard_speech_therapy__Stahl2013__R002.md",
+      "sha256": "6ffca5133311e33abde3e5b9aa66813b50d96189a36d2a1f11b10d44ac36012d"
+    }
+  ],
+  "published_paths": [
+    "drafts/impairments/vocal_frequency_variability__Stahl2013__R007.md",
+    "drafts/ingredients/formulaic_lyrics__Stahl2011__R008.md",
+    "drafts/ingredients/lyric_type__Stahl2011__R006.md",
+    "drafts/ingredients/rhythmic_percussion_interference__Stahl2011__R009.md",
+    "drafts/predictors/age_lyric_memory_interaction__Stahl2011__R007.md",
+    "drafts/predictors/aphasia_recovery_multidimensionality__Stefaniak2022__R002.md",
+    "drafts/predictors/days_since_stroke__Stockbridge2024__R011.md",
+    "drafts/predictors/fundamental_frequency_variability__Stahl2011__R002.md",
+    "drafts/predictors/left_hemisphere_tract_fa__Tang2022__R011.md",
+    "drafts/predictors/lesion_size__Tang2022__R005.md",
+    "drafts/predictors/pc1_change__Stefaniak2022__R003.md",
+    "drafts/predictors/rhythmic_speech_articulatory_quality__Stahl2011__R004.md",
+    "drafts/predictors/t1_activation_nulls__Stefaniak2022__R005.md",
+    "drafts/predictors/t1_language_profile__Stefaniak2022__R001.md",
+    "drafts/predictors/t2_activation_null__Stefaniak2022__R011.md",
+    "drafts/regions/basal_ganglia__Stahl2011__R005.md",
+    "drafts/regions/fluency_recovery_activation_cluster__Stefaniak2022__R007.md",
+    "drafts/regions/fluency_recovery_activation_clusters__Stefaniak2022__R006.md",
+    "drafts/regions/left_hemisphere_cortical_thickness_clusters__Tang2022__R006.md",
+    "drafts/regions/left_hemisphere_language_cortical_clusters__Tang2022__R008.md",
+    "drafts/regions/left_hemisphere_lesion_cortical_tracts__Tang2022__R013.md",
+    "drafts/regions/left_inferior_parietal_posterior_superior_temporal_cluster__Tang2022__R001.md",
+    "drafts/regions/left_medial_lateral_orbitofrontal_gyrus__Tang2022__R002.md",
+    "drafts/regions/left_naming_cortical_cluster__Tang2022__R009.md",
+    "drafts/regions/left_subcortical_region__Tang2022__R017.md",
+    "drafts/regions/right_cuneus_cluster__Tang2022__R014.md",
+    "drafts/regions/right_hemisphere_naming_cluster__Tang2022__R007.md",
+    "drafts/regions/right_hemisphere_naming_cluster__Tang2022__R010.md",
+    "drafts/regions/right_orbitofrontal_pars_orbitalis_triangularis_cluster__Tang2022__R004.md",
+    "drafts/regions/right_posterior_supramarginal_gyrus_cluster__Stefaniak2022__R004.md",
+    "drafts/regions/semantic_executive_recovery_cluster__Stefaniak2022__R008.md",
+    "drafts/regions/speech_activation_group_effect__Stefaniak2022__R012.md",
+    "drafts/regions/vm_pfc_cluster__Stefaniak2022__R010.md",
+    "drafts/therapies/standard_speech_therapy__Stahl2013__R003.md"
+  ],
+  "source_papers": [
+    {
+      "paper": "Stahl2011",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C3212_Stahl2011.pdf",
+      "sha256": "020a22d9e9fa4d0d283e0db1e2f5ae3aebe88032dfd66415bd2f8c057d157267",
+      "identity_scope": "Brain 134:3083-3093, DOI 10.1093/brain/awr240. Experimental melody/rhythm/lyric task study, n=17 nonfluent aphasic stroke participants, including a four-person percussion-control comparison. Seven additions match immediate performance, frequency-variance null, basal-ganglia/rhythm interaction and age/lyric effects on PDF pp. 7-10. Previously held R001 remains excluded; no therapy-efficacy promotion."
+    },
+    {
+      "paper": "Stahl2013",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0037_Stahl2013.pdf",
+      "sha256": "4d6f39b654a42bd162658c3b70546f73bc72f8bd249ee1d0d9a12468af0db177",
+      "identity_scope": "Frontiers in Human Neuroscience 7:35, DOI 10.3389/fnhum.2013.00035. Fifteen chronic nonfluent aphasic stroke participants in three systematically matched groups of five; six-week treatment. Retained R003 matches non-formulaic production change and R007 the n=10 voice-variance comparison, PDF pp. 6, 8-9. Three clinical_RCT records and one whole-cohort/subgroup count mismatch held."
+    },
+    {
+      "paper": "Stefaniak2022",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0016_Stefaniak2022.pdf",
+      "sha256": "ed4b49737344893abdc3f801c15ea80ecddedf6a181ab82902bf1790bc944aa8",
+      "identity_scope": "Brain 145:1354-1367, DOI 10.1093/brain/awab377. Twenty-seven recruited, 26 included with full language tests, left-hemisphere infarct/mild-moderate aphasia; 2-week/4-month longitudinal PCA and fMRI, 22 repeated-scan controls. Eleven additions match PDF pp. 3, 5-8. R001/R002 use abstract shorthand uncorrelated; their existing notes/source passages preserve the significant negative fluency-phonology change correlation, also separately represented by R003. This qualification remains necessary for human review; no claim editing or scientific approval."
+    },
+    {
+      "paper": "Stockbridge2024",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0832_Stockbridge2024.pdf",
+      "sha256": "5ffb60c16f560d9d52bd2b772024bf2985f76f4f04f85576b777eca63b55d9b0",
+      "identity_scope": "Brain Structure and Function 229:2207-2217, DOI 10.1007/s00429-024-02826-z. Twenty-two DTI participants from a 58-person subacute aphasia intervention trial. R011 matches the current long-term discourse-efficiency model null for days since stroke on PDF p. 6, with 5/20-week outcome definition on p. 4. Overall imaging cohort distinguished from available-case regressions."
+    },
+    {
+      "paper": "Tang2022",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C1231_Tang2022.pdf",
+      "sha256": "570fbc62b7fa0a1625963c4cd4bc8916ca2db0115cd1aae08677e2b0e5facb7b",
+      "identity_scope": "Frontiers in Neuroscience 16:853169, DOI 10.3389/fnins.2022.853169. Thirty-two chronic left-subcortical stroke participants with history of aphasia and 30 healthy controls; six stroke participants recovered by assessment. Thirteen additions match current cortical thickness/language, tract FA, perfusion subgroup and SVR-LSM-null results, PDF pp. 2-7. Within-patient associations, patient/control contrasts and imaging-to-imaging results remain distinct; source metadata/construct review flags retained."
+    }
+  ]
+}
