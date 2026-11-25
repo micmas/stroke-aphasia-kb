@@ -571,7 +571,9 @@ def main(argv=None):
         data = export(root, include)
         path = Path(args.out)
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(json.dumps(data, ensure_ascii=False, indent=args.indent, sort_keys=True) + "\n", encoding="utf-8")
+        separators = (",", ":") if args.indent is None else None
+        path.write_text(json.dumps(data, ensure_ascii=False, indent=args.indent,
+                                   separators=separators, sort_keys=True) + "\n", encoding="utf-8")
         v = data["version"]
         print(f"{path}: {len(data['findings'])} findings, {len(data['entries'])} entries, "
               f"{len(data['citations'])} citations, {path.stat().st_size / 1024:.0f} KB "
