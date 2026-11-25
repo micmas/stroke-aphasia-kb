@@ -1,0 +1,71 @@
+{
+  "publication_snapshot": "2026-11-25T11:03:03.848436+00:00",
+  "scope": "In-memory wrapper limits the helper loop to papers with published findings. Helper source and withdrawal ledger unchanged. Existing PDF access categories preserved.",
+  "report": {
+    "Desjardins2026": {
+      "status": "missing_pdf_index"
+    },
+    "Gilbert2025": {
+      "status": "missing_pdf_index"
+    },
+    "Goldenberg1994": {
+      "status": "missing_pdf_index"
+    },
+    "Hillis2002": {
+      "status": "missing_pdf_index"
+    },
+    "Hobden2024": {
+      "status": "missing_pdf_index"
+    },
+    "Hope2016": {
+      "status": "missing_pdf_index"
+    },
+    "Kourtidou2021": {
+      "status": "missing_pdf_index"
+    },
+    "Lukic2017": {
+      "status": "missing_pdf_index"
+    },
+    "Matchin2024": {
+      "status": "missing_pdf_index"
+    },
+    "Moore2024": {
+      "status": "missing_pdf_index"
+    },
+    "OsaGarcia2024": {
+      "status": "missing_pdf_index"
+    },
+    "Pendlebury2009": {
+      "status": "missing_pdf_index"
+    },
+    "Schellekens2026": {
+      "status": "missing_pdf_index"
+    },
+    "Sewell2025": {
+      "status": "missing_pdf_index"
+    },
+    "Siegel2016": {
+      "status": "uploaded",
+      "placed": 86,
+      "missed": 0
+    },
+    "Sihvonen2023": {
+      "status": "missing_pdf_index"
+    },
+    "SkipperKallal2017": {
+      "status": "uploaded",
+      "placed": 109,
+      "missed": 0
+    },
+    "SkipperKallal2017Functional": {
+      "status": "uploaded",
+      "placed": 102,
+      "missed": 0
+    },
+    "Soliman2023": {
+      "status": "uploaded",
+      "placed": 28,
+      "missed": 0
+    }
+  }
+}

@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-25T09:07:42.731266+00:00",
+  "snapshot_at": "2026-11-25T11:03:03.848436+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -7786,6 +7786,235 @@
       "source_sha256": "078a0a8b69bc0279faaf8b58d4400534d192cb983f3b7f766e410208cca701c3",
       "paper": "Siegel2016",
       "candidate": "R002"
+    },
+    "drafts/predictors/fc_vs_lesion_topography_attention_language__Siegel2016__R003.md": {
+      "source_sha256": "f0ebbb6f78d42636ca87b7425e3a3691d5f745e2dabf7d8bc31cbf4b0f500c8a",
+      "paper": "Siegel2016",
+      "candidate": "R003"
+    },
+    "drafts/regions/homotopic_fc__Siegel2016__R004.md": {
+      "source_sha256": "72d57288b1220dc1a5b64b201864a94ecffd0b297b6fec9c24a8908744d03469",
+      "paper": "Siegel2016",
+      "candidate": "R004"
+    },
+    "drafts/regions/within_network_intrahemispheric_connectivity__Siegel2016__R005.md": {
+      "source_sha256": "36adae3ee1d8a6c0a27a618576e5c98416c5fae449db0b829ca3bfea2545f233",
+      "paper": "Siegel2016",
+      "candidate": "R005"
+    },
+    "drafts/predictors/ipsilesional_dan_dmn_fc__Siegel2016__R006.md": {
+      "source_sha256": "4031e335fa8a483c0c9bb675a4f0ca28ba35e158d3f58ceb55813eb23ed7ee78",
+      "paper": "Siegel2016",
+      "candidate": "R006"
+    },
+    "drafts/regions/fc_deficit_weights__Siegel2016__R009.md": {
+      "source_sha256": "44788b77e92466d76c2fb50a16926129c1a8877dd2fd84d7407aa932107f642b",
+      "paper": "Siegel2016",
+      "candidate": "R009"
+    },
+    "drafts/predictors/mtl_fc_model__Siegel2016__R011.md": {
+      "source_sha256": "576c6a84ee9451cd54d2e1b8cdd01c472eae6560d506fe6b61e466ae712b5b5d",
+      "paper": "Siegel2016",
+      "candidate": "R011"
+    },
+    "drafts/predictors/interhemispheric_fc_shared_deficit_predictor__Siegel2016__R012.md": {
+      "source_sha256": "2c2d2d6f792ebb62878035413171d0651f4675da60ac2641926b6e854053c4fa",
+      "paper": "Siegel2016",
+      "candidate": "R012"
+    },
+    "drafts/regions/general_network_dysfunction__Siegel2016__R013.md": {
+      "source_sha256": "03ebafa36450ecf7a196d4e0dad5e206530a0e853a40c3aed812857b70a11299",
+      "paper": "Siegel2016",
+      "candidate": "R013"
+    },
+    "drafts/regions/interhemispheric_communication_loss__Siegel2016__R014.md": {
+      "source_sha256": "0e9ce3c0f017d1633580d489eb619d5355768d255dd1cd2192ff1495500b8c1f",
+      "paper": "Siegel2016",
+      "candidate": "R014"
+    },
+    "drafts/predictors/rh_structural_connectivity_early_subacute__Sihvonen2023__R001.md": {
+      "source_sha256": "ff548c55a0445f9e9c46b15e2f6caf9c41986b57852b2b213fc7b38d9723e15b",
+      "paper": "Sihvonen2023",
+      "candidate": "R001"
+    },
+    "drafts/regions/rh_structural_connectivity_production__Sihvonen2023__R002.md": {
+      "source_sha256": "8bfb328064c30463c972c1301d01e4b311c7b357fd51da0ced6859972161a702",
+      "paper": "Sihvonen2023",
+      "candidate": "R002"
+    },
+    "drafts/regions/rh_structural_connectivity_comprehension_recovery__Sihvonen2023__R003.md": {
+      "source_sha256": "591edca685c098da96c9532cc4e4b0873a100b9f5ff8002a3a9cb9f2dcc4b6cb",
+      "paper": "Sihvonen2023",
+      "candidate": "R003"
+    },
+    "drafts/regions/rh_structural_connectivity_production_recovery__Sihvonen2023__R004.md": {
+      "source_sha256": "7d71777f3e497215dfce9cd908563c9647ff61f50d730b839bead938da5b8193",
+      "paper": "Sihvonen2023",
+      "candidate": "R004"
+    },
+    "drafts/regions/corpus_callosum_lesion_load__Sihvonen2023__R006.md": {
+      "source_sha256": "1d9b5081fd10d5bbb8ac0edfef0d814302fdfbae3844dbe0ddf4309a7427a762",
+      "paper": "Sihvonen2023",
+      "candidate": "R006"
+    },
+    "drafts/therapies/word_retrieval_treatment__Sihvonen2023__R007.md": {
+      "source_sha256": "95b022341cf41472065049d5f18f0191dd4488472f6a68327e275d7c6f7aed44",
+      "paper": "Sihvonen2023",
+      "candidate": "R007",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF p. 1 identifies a longitudinal observational study; p. 4 describes a comparison of eight word-retrieval-treatment participants with usual care to check a potential confound. The draft labels method=clinical_RCT, although no randomized trial is established by this source. Reconcile observational comparison versus randomized-trial provenance before publication."
+    },
+    "drafts/predictors/lesion_size__SkipperKallal2017__R001.md": {
+      "source_sha256": "7672c1206b37bb03f34ddf57af90484479f9f5222762f775cadbae10f72fe882",
+      "paper": "SkipperKallal2017",
+      "candidate": "R001"
+    },
+    "drafts/regions/left_ifg_lesion__SkipperKallal2017__R002.md": {
+      "source_sha256": "9e54edcb5cc0849de0a4766dc6caa296872d0c2bd47fc98867ff30de34e0d2d4",
+      "paper": "SkipperKallal2017",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_motor_cortex_lesion__SkipperKallal2017__R003.md": {
+      "source_sha256": "5e3eff88a3b22036d7cdce0d00d9f1e4359e607ed6e5351c79f4fa8ed960c0f4",
+      "paper": "SkipperKallal2017",
+      "candidate": "R003"
+    },
+    "drafts/predictors/right_motor_activity__SkipperKallal2017__R004.md": {
+      "source_sha256": "8edd2b5aa9807a7e2c41de6cd8c0d08810cd52316b1bb52d17b9b8cd80d701e0",
+      "paper": "SkipperKallal2017",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_naming_network_rois__SkipperKallal2017__R006.md": {
+      "source_sha256": "b19c3d55b32dd541cf1fc8b52ab2697ba2d6cde487643e112454275ecd6aa513",
+      "paper": "SkipperKallal2017",
+      "candidate": "R006"
+    },
+    "drafts/regions/left_ips_lesion__SkipperKallal2017__R007.md": {
+      "source_sha256": "827056df69f6448a384ea5326b44fac3c84ba313ae334dead48d14f321cbbe9c",
+      "paper": "SkipperKallal2017",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_insula_lesion__SkipperKallal2017__R008.md": {
+      "source_sha256": "6dfd77458ad7cecd6a2ea18fc7099fd047070ff8827e920c09132832d10d2f6e",
+      "paper": "SkipperKallal2017",
+      "candidate": "R008"
+    },
+    "drafts/regions/left_dorsal_pop__SkipperKallal2017__R009.md": {
+      "source_sha256": "def8c2fbb04b21135b664304aefe2a8915e92cfe66f38e8d647f6a655df56669",
+      "paper": "SkipperKallal2017",
+      "candidate": "R009"
+    },
+    "drafts/regions/right_dorsal_ptr_activity__SkipperKallal2017__R010.md": {
+      "source_sha256": "6c4b78eb465b3c4ce20c60ff4f62ab165dc234b0e2a5aaa17cb79155d4d92507",
+      "paper": "SkipperKallal2017",
+      "candidate": "R010"
+    },
+    "drafts/regions/left_sts_lesion__SkipperKallal2017__R011.md": {
+      "source_sha256": "b122079a8f800214e83d62cad40d4a7ed948828073ef92a728c8e34d3fc46122",
+      "paper": "SkipperKallal2017",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_insula__SkipperKallal2017__R012.md": {
+      "source_sha256": "2b9f6701bec0c612ef15bcc6621037a2d9d9d4544096258735af7373fc9e538c",
+      "paper": "SkipperKallal2017",
+      "candidate": "R012"
+    },
+    "drafts/regions/left_motor_cortex_lesion__SkipperKallal2017__R013.md": {
+      "source_sha256": "2ac4276e69345dd3db031b9cd0cf3c355cf0b20b2d23500928c5a078a8e14a8e",
+      "paper": "SkipperKallal2017",
+      "candidate": "R013"
+    },
+    "drafts/regions/left_hemisphere_critical_naming_areas__SkipperKallal2017Functional__R001.md": {
+      "source_sha256": "90b8efe662cef15f52ac2fdd65b7e7229e634aba60a913672a7508c7f43fb692",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R001"
+    },
+    "drafts/predictors/pcad__SkipperKallal2017Functional__R002.md": {
+      "source_sha256": "1174092a862430c06f18041664256bdafb034aebbb4a13e69a1298fd1ea848f3",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R002"
+    },
+    "drafts/regions/time_since_stroke__SkipperKallal2017Functional__R003.md": {
+      "source_sha256": "8e5f1583b080bd8ca110a44a005f9455f816a8dd1d00f9eaf167c5a026bb8e66",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R003"
+    },
+    "drafts/predictors/pnt_performance_predictor_model__SkipperKallal2017Functional__R004.md": {
+      "source_sha256": "0e4c40b54268e80685dac9906dd93b56877a0d38d56a3ef8922b8aa1e9b2cf89",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R004"
+    },
+    "drafts/regions/left_dpop__SkipperKallal2017Functional__R005.md": {
+      "source_sha256": "1e15484a7f6b45c7a3d43cdc0079b41b49a0bc70dfcf759622046ad08da5bc34",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R005"
+    },
+    "drafts/regions/right_sts_activation__SkipperKallal2017Functional__R006.md": {
+      "source_sha256": "02980e3f12f7d9df7e540a2ca19b95ebf4609228688181fdd03cc70fe9a73595",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R006"
+    },
+    "drafts/regions/right_ventral_motor_cortex_activation__SkipperKallal2017Functional__R007.md": {
+      "source_sha256": "8958d273e53ed0301257ebbb9351ec3fe151226249853ea47aed3cdb8c3cb226",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_tp_cluster__SkipperKallal2017Functional__R008.md": {
+      "source_sha256": "4ff6deb57c671d6ec0dff11a0ffb911e86827fd15f6cda9c4eb7eaf1ffeda1d9",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R008"
+    },
+    "drafts/regions/left_frontal_pole_overt_activity__SkipperKallal2017Functional__R009.md": {
+      "source_sha256": "3edfff8b630a70e71af34f9993701716d23bb9c7a5f72acdc91cccee01a840eb",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R009"
+    },
+    "drafts/regions/right_post_central_gyrus_activation__SkipperKallal2017Functional__R010.md": {
+      "source_sha256": "6e579864143c421713d257798d20065422fa6eda38482240ab8f28f004c58db6",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R010"
+    },
+    "drafts/regions/right_sts_activation__SkipperKallal2017Functional__R011.md": {
+      "source_sha256": "9fa4d50c1139938481672c919c3915de9bc167796dc7136b6406f88f9703d493",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R011"
+    },
+    "drafts/predictors/naming_success_activity_diff__SkipperKallal2017Functional__R012.md": {
+      "source_sha256": "465fbaeeb57d013919a721cb037ae6a73939c3ddfcd3ab3421e3c0af53c1feca",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R012"
+    },
+    "drafts/regions/left_dpop_lesion__SkipperKallal2017Functional__R013.md": {
+      "source_sha256": "d059e0af8bdb67ddaab732801219a3117507ca960f412305b164d864672f9e1f",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R013"
+    },
+    "drafts/predictors/left_dpop_activation_predictor__SkipperKallal2017Functional__R015.md": {
+      "source_sha256": "672540f38fd24f0dda36f9a6b2452541f4d9b4a7fe007576b726ebe99c2ab720",
+      "paper": "SkipperKallal2017Functional",
+      "candidate": "R015"
+    },
+    "drafts/regions/left_language_tracts__Soliman2023__R001.md": {
+      "source_sha256": "91d87ef008d93bcee4ab355843845dfd0e72113536a0c589f3e5e0a1dcaa806a",
+      "paper": "Soliman2023",
+      "candidate": "R001"
+    },
+    "drafts/predictors/right_af_md__Soliman2023__R004.md": {
+      "source_sha256": "3d834547d163c9b5a34bb55cee2c57898749912e723b710833be11e59ddc1163",
+      "paper": "Soliman2023",
+      "candidate": "R004"
+    },
+    "drafts/regions/fat_diffusion_aphasia__Soliman2023__R005.md": {
+      "source_sha256": "68b66ae1a0244c553b086f118986dde0084ead9772a4fff0ca8f380abec0ac2b",
+      "paper": "Soliman2023",
+      "candidate": "R005"
+    },
+    "drafts/therapies/melodic_intoning__Stahl2011__R001.md": {
+      "source_sha256": "7af5056871e454cb2dd3eac9254e0823f68f60ac8cbbe77e3be5d5e0b61ababc",
+      "paper": "Stahl2011",
+      "candidate": "R001",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp. 1, 3\u20136 and 8 describe experimental singing/rhythmic-speech task conditions and immediate articulatory performance in 17 participants, rather than longitudinal therapy efficacy. The draft is categorized as a therapy with relationship=treatment_response. Reconcile immediate task facilitation versus treatment outcome before publication."
     }
   }
 }

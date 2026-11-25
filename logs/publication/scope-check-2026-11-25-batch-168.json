@@ -1,0 +1,117 @@
+{
+  "checked_at": "2026-11-25T11:06:03.850728+00:00",
+  "publication_snapshot": "2026-11-25T11:03:03.848436+00:00",
+  "scope": "Paper identity, claim/population scope and study-design provenance only; no human scientific approval.",
+  "snapshot_additions": 45,
+  "publishable_additions": 43,
+  "papers": [
+    "Siegel2016",
+    "Sihvonen2023",
+    "SkipperKallal2017",
+    "SkipperKallal2017Functional",
+    "Soliman2023"
+  ],
+  "partial_paper": "Stahl2011 was still running at capture. Its single completed candidate was captured but held; the paper is absent from the 168-paper checkpoint.",
+  "identity_check": "Every new claim and population inspected against its named source PDF. No adjacent-article contamination found. Two study-design categorization issues held; original source records preserved.",
+  "quarantined": [
+    {
+      "path": "drafts/therapies/word_retrieval_treatment__Sihvonen2023__R007.md",
+      "paper": "Sihvonen2023",
+      "candidate": "R007",
+      "reason": "PDF p. 1 identifies a longitudinal observational study; p. 4 describes a comparison of eight word-retrieval-treatment participants with usual care to check a potential confound. The draft labels method=clinical_RCT, although no randomized trial is established by this source. Reconcile observational comparison versus randomized-trial provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/therapies/word_retrieval_treatment__Sihvonen2023__R007.md",
+      "sha256": "95b022341cf41472065049d5f18f0191dd4488472f6a68327e275d7c6f7aed44"
+    },
+    {
+      "path": "drafts/therapies/melodic_intoning__Stahl2011__R001.md",
+      "paper": "Stahl2011",
+      "candidate": "R001",
+      "reason": "PDF pp. 1, 3\u20136 and 8 describe experimental singing/rhythmic-speech task conditions and immediate articulatory performance in 17 participants, rather than longitudinal therapy efficacy. The draft is categorized as a therapy with relationship=treatment_response. Reconcile immediate task facilitation versus treatment outcome before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/therapies/melodic_intoning__Stahl2011__R001.md",
+      "sha256": "7af5056871e454cb2dd3eac9254e0823f68f60ac8cbbe77e3be5d5e0b61ababc"
+    }
+  ],
+  "published_paths": [
+    "drafts/predictors/fc_vs_lesion_topography_attention_language__Siegel2016__R003.md",
+    "drafts/predictors/interhemispheric_fc_shared_deficit_predictor__Siegel2016__R012.md",
+    "drafts/predictors/ipsilesional_dan_dmn_fc__Siegel2016__R006.md",
+    "drafts/predictors/left_dpop_activation_predictor__SkipperKallal2017Functional__R015.md",
+    "drafts/predictors/lesion_size__SkipperKallal2017__R001.md",
+    "drafts/predictors/mtl_fc_model__Siegel2016__R011.md",
+    "drafts/predictors/naming_success_activity_diff__SkipperKallal2017Functional__R012.md",
+    "drafts/predictors/pcad__SkipperKallal2017Functional__R002.md",
+    "drafts/predictors/pnt_performance_predictor_model__SkipperKallal2017Functional__R004.md",
+    "drafts/predictors/rh_structural_connectivity_early_subacute__Sihvonen2023__R001.md",
+    "drafts/predictors/right_af_md__Soliman2023__R004.md",
+    "drafts/predictors/right_motor_activity__SkipperKallal2017__R004.md",
+    "drafts/regions/corpus_callosum_lesion_load__Sihvonen2023__R006.md",
+    "drafts/regions/fat_diffusion_aphasia__Soliman2023__R005.md",
+    "drafts/regions/fc_deficit_weights__Siegel2016__R009.md",
+    "drafts/regions/general_network_dysfunction__Siegel2016__R013.md",
+    "drafts/regions/homotopic_fc__Siegel2016__R004.md",
+    "drafts/regions/interhemispheric_communication_loss__Siegel2016__R014.md",
+    "drafts/regions/left_dorsal_pop__SkipperKallal2017__R009.md",
+    "drafts/regions/left_dpop__SkipperKallal2017Functional__R005.md",
+    "drafts/regions/left_dpop_lesion__SkipperKallal2017Functional__R013.md",
+    "drafts/regions/left_frontal_pole_overt_activity__SkipperKallal2017Functional__R009.md",
+    "drafts/regions/left_hemisphere_critical_naming_areas__SkipperKallal2017Functional__R001.md",
+    "drafts/regions/left_ifg_lesion__SkipperKallal2017__R002.md",
+    "drafts/regions/left_insula__SkipperKallal2017__R012.md",
+    "drafts/regions/left_insula_lesion__SkipperKallal2017__R008.md",
+    "drafts/regions/left_ips_lesion__SkipperKallal2017__R007.md",
+    "drafts/regions/left_language_tracts__Soliman2023__R001.md",
+    "drafts/regions/left_motor_cortex_lesion__SkipperKallal2017__R003.md",
+    "drafts/regions/left_motor_cortex_lesion__SkipperKallal2017__R013.md",
+    "drafts/regions/left_naming_network_rois__SkipperKallal2017__R006.md",
+    "drafts/regions/left_sts_lesion__SkipperKallal2017__R011.md",
+    "drafts/regions/left_tp_cluster__SkipperKallal2017Functional__R008.md",
+    "drafts/regions/rh_structural_connectivity_comprehension_recovery__Sihvonen2023__R003.md",
+    "drafts/regions/rh_structural_connectivity_production__Sihvonen2023__R002.md",
+    "drafts/regions/rh_structural_connectivity_production_recovery__Sihvonen2023__R004.md",
+    "drafts/regions/right_dorsal_ptr_activity__SkipperKallal2017__R010.md",
+    "drafts/regions/right_post_central_gyrus_activation__SkipperKallal2017Functional__R010.md",
+    "drafts/regions/right_sts_activation__SkipperKallal2017Functional__R006.md",
+    "drafts/regions/right_sts_activation__SkipperKallal2017Functional__R011.md",
+    "drafts/regions/right_ventral_motor_cortex_activation__SkipperKallal2017Functional__R007.md",
+    "drafts/regions/time_since_stroke__SkipperKallal2017Functional__R003.md",
+    "drafts/regions/within_network_intrahemispheric_connectivity__Siegel2016__R005.md"
+  ],
+  "source_papers": [
+    {
+      "paper": "Siegel2016",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0140_Siegel2016.pdf",
+      "sha256": "b9a9d5290e8b6ac7489832fb901432c527993087a2dd7ae98af2566b99ecfbb9",
+      "identity_scope": "Primary cohort of first symptomatic stroke at 1\u20132 weeks: 132 recruited, 100 retained after imaging exclusions. Nine added claims match the current FC/lesion prediction, interhemispheric and intrahemispheric results, and multitask analysis on PDF pp. 1\u20136. The overall cohort n=100 is distinguished in the source from domain-specific available-case counts."
+    },
+    {
+      "paper": "Sihvonen2023",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C1104_Sihvonen2023.pdf",
+      "sha256": "aaab897ab9d07b2387431d61d6c66a900eb8ca34b6ae3b988c48bf1c3611063f",
+      "identity_scope": "Longitudinal observational connectometry study, n=22 early subacute (2\u20136 weeks), n=15 chronic follow-up (>6 months). Five retained claims match QA-comprehension/production and corpus-callosum lesion-load results on PDF pp. 4\u20135. The clinical_RCT-labeled treatment comparison R007 is held."
+    },
+    {
+      "paper": "SkipperKallal2017",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0150_SkipperKallal2017.pdf",
+      "sha256": "3a184b9634a52bfe71b5444f40fc423e8f052d0850fafc5e5e5863be59c159f2",
+      "identity_scope": "Neural Plasticity article 8740353, Right Hemisphere Remapping of Naming Functions Depends on Lesion Size and Location in Poststroke Aphasia. Primary chronic cohort: 49 recruited, 39 retained. Twelve claims match lesion-size, ROI remapping and naming analyses, especially PDF pp. 3\u20135 and 9. Distinguished from the separate Human Brain Mapping article by the same authors."
+    },
+    {
+      "paper": "SkipperKallal2017Functional",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C2385_SkipperKallal2017Functional.pdf",
+      "sha256": "2cb249a2f6c1b648f3691226b39497d143f0e58358be6b55cad4e4d2f17df453",
+      "identity_scope": "Human Brain Mapping 38:2051\u20132066, DOI 10.1002/hbm.23504. Primary chronic cohort: 46 recruited, 32 retained; n=24 successful/unsuccessful naming subset. Fourteen claims match PCAD, hierarchical regressions, activity and lesion-site results on PDF pp. 6\u201311. Not treated as an independent replication of the same-authors Neural Plasticity cohort."
+    },
+    {
+      "paper": "Soliman2023",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C1186_Soliman2023.pdf",
+      "sha256": "37264b297e95b9dc7a53d1234db05b4103bf0cab0f8f90e84d82c7a162c4afe4",
+      "identity_scope": "Primary CSD tractography study of 17 subacute left-ischaemic-stroke participants with aphasia and 10 controls, native Arabic speakers, mean MRI timing 3.07 weeks. Three claims match current diffusion/HSS associations and the FAT null on PDF pp. 3 and 6."
+    },
+    {
+      "paper": "Stahl2011",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C3212_Stahl2011.pdf",
+      "sha256": "020a22d9e9fa4d0d283e0db1e2f5ae3aebe88032dfd66415bd2f8c057d157267",
+      "identity_scope": "Experimental melody/rhythm/lyrics study of 17 nonfluent aphasic participants. The sole captured record is held because its treatment-response categorization does not distinguish immediate task performance from therapy efficacy."
+    }
+  ]
+}
