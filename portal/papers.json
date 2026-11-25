@@ -1747,38 +1747,47 @@
   "@Raymer": {
    "annotated": "pdf/C0039_Raymer_annotated.pdf",
    "annotation_passages_missed": 0,
-   "annotation_source_digest": "8c6a4e214868808db7bdb9da673a8973f65be9d3e8efe7fa065f1ad9307b7694",
-   "bytes": 202454,
+   "annotation_source_digest": "6368b8768f1a322caba073c2ba6fdca3e88cf096dc43b71c45688e36c0e67713",
+   "bytes": 321618,
    "category": "rights_reserved",
-   "draft_snapshot": "2026-11-25T00:23:09.379524+00:00",
+   "draft_snapshot": "2026-11-25T02:17:05.877253+00:00",
    "label": "no open copy known",
    "public": false,
-   "sha256": "ea08dc44836d48e060d4dc8d2dd97c6e5a1504ce9253eeca99b9aaa01985cba1"
+   "sha256": "2189b2138c11c45c1a21029e23652f361db11a4c7dfb853b539788bc7d9f0350"
   },
   "@Robson2014": {
    "annotated": "cc/C0042_Robson2014_annotated.pdf",
-   "bytes": 914642,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "6f6381ee08783f75a64d1e4ff92374d64555be5f436033ea0859694d8afb2eb9",
+   "bytes": 1280537,
    "category": "cc",
+   "draft_snapshot": "2026-11-25T02:17:05.877253+00:00",
    "label": "CC BY",
    "public": true,
    "public_basis": "cc",
-   "sha256": "3fd37c0c33f4869586ce637b6f457ca1527630f779e8b2e4ea71d77068c38184"
+   "sha256": "3c7f33815fd1f76a83abf18f3e67581a2674bd187f492236e50a9fbd88e4f497"
   },
   "@Robson2019": {
    "annotated": "pdf/C0011_Robson2019_annotated.pdf",
-   "bytes": 519411,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "12656f6e50c1271085ef90168c4c319d35a08fbc1b08965a4ce2de212df03f7a",
+   "bytes": 988311,
    "category": "free_to_read",
+   "draft_snapshot": "2026-11-25T02:17:05.877253+00:00",
    "label": "other oa",
    "public": false,
-   "sha256": "a4d6cf58487b01c3d2c162118951e4a1e0ae8b57ec7218507a155c363cde1e38"
+   "sha256": "82dd586812b76944dd287518da1ce9fc4d0aec7dfc7757f75db27c24d2896cd7"
   },
   "@Rodrigues2014": {
    "annotated": "pdf/C0147_Rodrigues2014_annotated.pdf",
-   "bytes": 219401,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "b4371f7a3aa311b81183ee2994bfc8419384bb3d80fcaf102b1f107dd36e518f",
+   "bytes": 305881,
    "category": "rights_reserved",
+   "draft_snapshot": "2026-11-25T02:17:05.877253+00:00",
    "label": "no open copy known",
    "public": false,
-   "sha256": "86e9424cf59dcf0d8103382c916840b54424ad920e0b50fb704f74ecc9bd1ab6"
+   "sha256": "9037665bf660f9d4211e970fe349159b93513a1efdeac06da67f2de85aa7f2b5"
   },
   "@Rogalsky2018": {
    "annotated": "pdf/C0073_Rogalsky2018_annotated.pdf",

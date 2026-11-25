@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-25T00:23:09.379524+00:00",
+  "snapshot_at": "2026-11-25T02:17:05.877253+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -6785,6 +6785,310 @@
       "source_sha256": "0e885452bd64835137b4338760a3c7fc0460fb0a677ef51614fa1344ffcf178e",
       "paper": "Raymer",
       "candidate": "R006"
+    },
+    "drafts/therapies/cilt__Raymer__R008.md": {
+      "source_sha256": "e3ba84449fafcafe1b67f4540da5b861ea4391fb56b2677933bb7fcf29c75085",
+      "paper": "Raymer",
+      "candidate": "R008"
+    },
+    "drafts/therapies/constraint_induced_language_therapy__Raymer__R009.md": {
+      "source_sha256": "7f7113161de6592022d24256e631141759f34a4f6ddd58516ed85256a79d0b13",
+      "paper": "Raymer",
+      "candidate": "R009"
+    },
+    "drafts/therapies/cilt__Raymer__R011.md": {
+      "source_sha256": "2588bc1050a8aac02433445e8665648ab20e6e5e3d5635171d29f683da45d7e2",
+      "paper": "Raymer",
+      "candidate": "R011"
+    },
+    "drafts/therapies/cilt__Raymer__R012.md": {
+      "source_sha256": "a35dfb0369088068502c4bdb40a2abc6b66f56c948467cd8c16d176d2f1e5940",
+      "paper": "Raymer",
+      "candidate": "R012"
+    },
+    "drafts/therapies/cilt__Raymer__R014.md": {
+      "source_sha256": "26baeae4bbf211a9a9d3cebd7e6114ef5e8db31b1391e6a492708bc39d91010f",
+      "paper": "Raymer",
+      "candidate": "R014"
+    },
+    "drafts/therapies/cilt__Raymer__R016.md": {
+      "source_sha256": "ae13290ab314de690cc1bb93f2b5bf2d16578c0369b0bfaee0d69bb6104e5a8d",
+      "paper": "Raymer",
+      "candidate": "R016"
+    },
+    "drafts/therapies/cilt__Raymer__R017.md": {
+      "source_sha256": "756e21bde16fa9220f15073565d92ebc7ae69e3f0179e617e82d5a0f7656e476",
+      "paper": "Raymer",
+      "candidate": "R017"
+    },
+    "drafts/therapies/cilt__Raymer__R018.md": {
+      "source_sha256": "7d56078a8c581b54a8a233e7a289a068e94dabb021ed871c95b3cf9a27664432",
+      "paper": "Raymer",
+      "candidate": "R018"
+    },
+    "drafts/therapies/cilt__Raymer__R019.md": {
+      "source_sha256": "bb3b431da6115e2dcfa8abb545518236ff67cfb640dbb26a94442deb6bc8c2a9",
+      "paper": "Raymer",
+      "candidate": "R019"
+    },
+    "drafts/reviews/speech_language_disorder_representation__Riley2021__R001.md": {
+      "source_sha256": "2f12870df3ad38fcd2fd1637503cc764f1f5789e5faadd119c9e203a1647ac34",
+      "paper": "Riley2021",
+      "candidate": "R001",
+      "publication_disposition": "withdrawn_pending_publication_schema_review",
+      "publication_disposition_reason": "Publication schema limitation: this is a review-level finding about representation of speech-language disorders in fatigue research, stored as kind=review in drafts/reviews. The current KnowledgeBase loader does not load the reviews bucket, so it cannot appear exactly once in the public findings export. Withheld pending schema/editorial review rather than relabelled as clinical evidence. Original source output preserved."
+    },
+    "drafts/regions/ventral_anterior_temporal_lobes_cluster__Robson2014__R001.md": {
+      "source_sha256": "23bb8655aaf9e2b1202b69e7d8e2dd3e64c6106cf4fa1d62d8dcff21a8a84c12",
+      "paper": "Robson2014",
+      "candidate": "R001"
+    },
+    "drafts/regions/anterior_temporal_lobe_cluster__Robson2014__R002.md": {
+      "source_sha256": "66bcc3cea45987dd9df8b20c0e15782b335be5f3725d5783eb0ed4845d355f19",
+      "paper": "Robson2014",
+      "candidate": "R002"
+    },
+    "drafts/regions/right_anterior_superior_temporal_lobe__Robson2014__R003.md": {
+      "source_sha256": "9587be0a710cab183c4ee817af36dd6168731bd76d012ec03fd11e576a20afe1",
+      "paper": "Robson2014",
+      "candidate": "R003"
+    },
+    "drafts/regions/wernickes_aphasia__Robson2014__R004.md": {
+      "source_sha256": "78f0952834682793d498c1b852d8d887fe7c357131669b45f752f2a7a2412998",
+      "paper": "Robson2014",
+      "candidate": "R004"
+    },
+    "drafts/regions/ventral_temporal_lobes__Robson2014__R005.md": {
+      "source_sha256": "e9243550a0237087d1e16ebcf5d4e80fd7c9e8b9623e2f208f7f247523a34089",
+      "paper": "Robson2014",
+      "candidate": "R005"
+    },
+    "drafts/regions/picture_judgement_activation_cluster__Robson2014__R006.md": {
+      "source_sha256": "22d3ad8e3f137095cd844cc31f0902c9a25a0b7701278aa9ba8b2d8da124d83c",
+      "paper": "Robson2014",
+      "candidate": "R006"
+    },
+    "drafts/regions/medial_frontal_cortex_cluster__Robson2014__R007.md": {
+      "source_sha256": "db993443d4729a4d5d7ef45eb1db49a71b65bc95ba7e0726fc55044633a9d8de",
+      "paper": "Robson2014",
+      "candidate": "R007"
+    },
+    "drafts/regions/written_word_semantic_activation_wernicke__Robson2014__R008.md": {
+      "source_sha256": "fc660586730ca8b1c8f3cf963f7d81444dcc86cb580a286fc644cda0f59b148d",
+      "paper": "Robson2014",
+      "candidate": "R008"
+    },
+    "drafts/regions/wernicke_aphasia_written_word_activation__Robson2014__R009.md": {
+      "source_sha256": "8c99a171f9a441a58bca940285cc34a417147907be72252f1a2c24b6c75c15ec",
+      "paper": "Robson2014",
+      "candidate": "R009",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Source contrast mismatch: Robson2014 PDF pp. 6-7 describes left inferior angular, left inferior frontal and bilateral medial frontal peaks within the Wernicke aphasia group for words versus dual baseline (Table 5, p. 8), not significantly greater activation than controls. The separate group contrast is described on p. 7 and Table 7 (p. 9). Withheld pending human source review; original source output preserved."
+    },
+    "drafts/regions/wernickes_aphasia_ventral_middle_temporal_activation__Robson2014__R010.md": {
+      "source_sha256": "5e80505aadc16004e7d3430ef03b616b2f77dd8645c73a271f361255ddc2b502",
+      "paper": "Robson2014",
+      "candidate": "R010"
+    },
+    "drafts/regions/right_superior_temporal_sulcus_cluster__Robson2014__R011.md": {
+      "source_sha256": "31e1da0c9f6687cab1060155f7f97f69361a3f800a5a7a9c5ee21ec3812a2094",
+      "paper": "Robson2014",
+      "candidate": "R011"
+    },
+    "drafts/regions/right_posterior_cingulate_cluster__Robson2014__R012.md": {
+      "source_sha256": "fbc510b408cd30c25c76a7c58cce47791fb9521c6addcebd93d6b1945aac1ec1",
+      "paper": "Robson2014",
+      "candidate": "R012"
+    },
+    "drafts/regions/written_word_activation_cluster__Robson2014__R014.md": {
+      "source_sha256": "82b362f72da9cba2b800de4116a2c21f697b58e470e8cb73ed32d853b0d4274d",
+      "paper": "Robson2014",
+      "candidate": "R014"
+    },
+    "drafts/regions/left_anterior_fusiform_gyrus__Robson2014__R015.md": {
+      "source_sha256": "7e46aaac294155d2f6592f9152ed2d4d608914fd5521b8fb56aaa55c05c19d3b",
+      "paper": "Robson2014",
+      "candidate": "R015"
+    },
+    "drafts/regions/left_anterior_superior_temporal_gyri_sulci__Robson2014__R016.md": {
+      "source_sha256": "ce8e34c35b330df098c2b7baafde3831fb2d7fac3bb6715431da28a87552d8c3",
+      "paper": "Robson2014",
+      "candidate": "R016"
+    },
+    "drafts/regions/wernicke_aphasia_semantic_activation_cluster__Robson2014__R017.md": {
+      "source_sha256": "1314e014a4320a2f4621daba3e79a950e59dde47cde8b5736ddca5ff857a2952",
+      "paper": "Robson2014",
+      "candidate": "R017"
+    },
+    "drafts/regions/right_anterior_superior_temporal_gyrus_sulcus__Robson2014__R018.md": {
+      "source_sha256": "000a34dfe1f2521b61139983dea189b6861a8691c2ffb5b7366060b32570201c",
+      "paper": "Robson2014",
+      "candidate": "R018"
+    },
+    "drafts/regions/right_ventral_occipital_temporal_lobe__Robson2014__R019.md": {
+      "source_sha256": "e2bb1f10388ba071da35399b131fb5869af03ec4fbf4d31a65209476be920a27",
+      "paper": "Robson2014",
+      "candidate": "R019"
+    },
+    "drafts/regions/right_temporal_pole_cluster__Robson2014__R020.md": {
+      "source_sha256": "b21d42e96e7e7ee9dd2845701872eebb116a104afa0cf2e1e925e22a7e14b522",
+      "paper": "Robson2014",
+      "candidate": "R020"
+    },
+    "drafts/regions/anterior_temporal_semantic_network__Robson2014__R021.md": {
+      "source_sha256": "c7f55a39ddfc6a29d52e24c07a64c15c61508841f0c530e9569b87aed3da6423",
+      "paper": "Robson2014",
+      "candidate": "R021"
+    },
+    "drafts/regions/right_anterior_superior_temporal_gyrus_sulcus__Robson2014__R022.md": {
+      "source_sha256": "8e53460cf1d27290f4efb8f041b8910bccffb6e54dfefe70d8e59111115e55ba",
+      "paper": "Robson2014",
+      "candidate": "R022"
+    },
+    "drafts/regions/wernicke_aphasia_semantic_activation__Robson2014__R023.md": {
+      "source_sha256": "bd077c3480007568446392c2980c2bd3994299ae214527a13769475eaa2b7bf9",
+      "paper": "Robson2014",
+      "candidate": "R023"
+    },
+    "drafts/regions/right_anterior_sts_stg_cluster__Robson2014__R025.md": {
+      "source_sha256": "5040e2cabb832125f9f093a8262565abf05346e72720b3aec5764dbd1983b908",
+      "paper": "Robson2014",
+      "candidate": "R025"
+    },
+    "drafts/regions/right_anterior_superior_temporal_gyrus_sulcus__Robson2014__R026.md": {
+      "source_sha256": "83e9aa4b2fec03c8375d3e4fd566cf93abd9b8866ddcfc3d4e8ed796800f3433",
+      "paper": "Robson2014",
+      "candidate": "R026"
+    },
+    "drafts/predictors/written_word_semantic_judgement_reorganization__Robson2014__R027.md": {
+      "source_sha256": "e72fb76ea0b74e8e45ee36b4cd69ebc0db56d0ed5fed0f918dc0db76a4c71f4b",
+      "paper": "Robson2014",
+      "candidate": "R027"
+    },
+    "drafts/impairments/slow_auditory_temporal_processing__Robson2019__R002.md": {
+      "source_sha256": "cbe0c29f7b5d810729246a8cad5ce2d66a5c801c251ebc2d0ba7771352259e78",
+      "paper": "Robson2019",
+      "candidate": "R002"
+    },
+    "drafts/impairments/phonological_short_term_memory__Robson2019__R003.md": {
+      "source_sha256": "bad0789c39bb65d1ebaee3769d0ea01428724edab14e6a2d031d5c60fc6a8725",
+      "paper": "Robson2019",
+      "candidate": "R003"
+    },
+    "drafts/impairments/semantic_processing__Robson2019__R004.md": {
+      "source_sha256": "fbad4edff0508b7e98256966f531a3313ab20e43cfa571577f9a273adcbb96d5",
+      "paper": "Robson2019",
+      "candidate": "R004"
+    },
+    "drafts/impairments/rapid_auditory_phonological_processing__Robson2019__R005.md": {
+      "source_sha256": "096b50e3928f2b6ee0efad56a1f360e164d910f3a7d6b4775ba360baf5fe6ef0",
+      "paper": "Robson2019",
+      "candidate": "R005"
+    },
+    "drafts/predictors/rapid_auditory_temporal_processing__Robson2019__R007.md": {
+      "source_sha256": "b19fb98e778612decfb0fb599760b515c4229e3cb11278dbc54a7604eefcf644",
+      "paper": "Robson2019",
+      "candidate": "R007"
+    },
+    "drafts/ingredients/nonverbal_reasoning__Robson2019__R008.md": {
+      "source_sha256": "d5cfc166a9cd1306400d3aef4cdff787ad136d349ea2581cd1d422ce09d54209",
+      "paper": "Robson2019",
+      "candidate": "R008"
+    },
+    "drafts/ingredients/rapid_auditory_temporal_processing__Robson2019__R009.md": {
+      "source_sha256": "e0b38d96fcc3129cf09356716e27cc6c692b5071a3aaf0d0168c9b8aeedce9fb",
+      "paper": "Robson2019",
+      "candidate": "R009"
+    },
+    "drafts/predictors/neuropsychological_profile_2_5mpo__Robson2019__R010.md": {
+      "source_sha256": "fcb6aca08e4f4f4a84263213a4c241cd88d19832e394a6cd5c1ab806616440c7",
+      "paper": "Robson2019",
+      "candidate": "R010"
+    },
+    "drafts/predictors/comprehension_score_2_5mpo__Robson2019__R011.md": {
+      "source_sha256": "9c65f9f46c0de32b3e6b81bcce08ffb987023400f34d16ce534c648054408241",
+      "paper": "Robson2019",
+      "candidate": "R011"
+    },
+    "drafts/predictors/age_hearing_lesion_volume__Robson2019__R012.md": {
+      "source_sha256": "9d3a4cdfe98b1714ab6ff8e699bbbe9888fda1ad830226e553549027708d588b",
+      "paper": "Robson2019",
+      "candidate": "R012"
+    },
+    "drafts/predictors/rapid_auditory_temporal_processing_40hz_fm__Robson2019__R013.md": {
+      "source_sha256": "2a992647cc91f1cf834b301bd4621fca7110420124fe0ca06337c051b60665bb",
+      "paper": "Robson2019",
+      "candidate": "R013"
+    },
+    "drafts/predictors/phonological_short_term_memory_2_5mpo__Robson2019__R014.md": {
+      "source_sha256": "00b7230a3168332dd2301cd5ed5215519bc2591bd845935eca1a2a8fd4ab3b36",
+      "paper": "Robson2019",
+      "candidate": "R014"
+    },
+    "drafts/predictors/word_phonological_processing_5mpo__Robson2019__R015.md": {
+      "source_sha256": "d49fef87c6491e629fd4053ee80d25e9f748fe7fe8c05b87286f70cf861b013e",
+      "paper": "Robson2019",
+      "candidate": "R015"
+    },
+    "drafts/predictors/nonword_phonological_processing_5mpo__Robson2019__R016.md": {
+      "source_sha256": "74c2223b9f594384d8e5f1309e9efcc69369e593a61b9f1f50adbe0c56818289",
+      "paper": "Robson2019",
+      "candidate": "R016"
+    },
+    "drafts/predictors/neuropsychological_profile_2_5mpo__Robson2019__R017.md": {
+      "source_sha256": "57efd2c5e4e9694697c13a28ea9a80c886ca3d0c8122ee1d270cb7c57c88d9d2",
+      "paper": "Robson2019",
+      "candidate": "R017"
+    },
+    "drafts/predictors/slow_auditory_semantic_processing__Robson2019__R018.md": {
+      "source_sha256": "e3de7946d5c96b1f1e1e2f985a2ba73ee98ee2026e28f9d66d70945dfd2fc4d7",
+      "paper": "Robson2019",
+      "candidate": "R018"
+    },
+    "drafts/impairments/recurring_utterances__Rodrigues2014__R001.md": {
+      "source_sha256": "b400103bf355a03d7aaff969a7cf9f459b4fdd43d9bc55910f061fdad7207efe",
+      "paper": "Rodrigues2014",
+      "candidate": "R001"
+    },
+    "drafts/impairments/global_aphasia_ru_prevalence__Rodrigues2014__R002.md": {
+      "source_sha256": "f2cc5b1aec503a5310d3f6352a0bd909341e25eb72236ebd2aaa122127244ae8",
+      "paper": "Rodrigues2014",
+      "candidate": "R002"
+    },
+    "drafts/impairments/recurring_utterances__Rodrigues2014__R003.md": {
+      "source_sha256": "87e94615054950933b00fc58ef113926da0d2bf62f0ce1a9c15c7f1fecd1cf3d",
+      "paper": "Rodrigues2014",
+      "candidate": "R003"
+    },
+    "drafts/impairments/recurring_utterances__Rodrigues2014__R004.md": {
+      "source_sha256": "3fb7481ab7578a109fa29860aebef0ab40674d6f8dccc05dc0c55a6b042471ba",
+      "paper": "Rodrigues2014",
+      "candidate": "R004"
+    },
+    "drafts/ingredients/recurring_utterances__Rodrigues2014__R005.md": {
+      "source_sha256": "2bb0387c82566c0aca617d3f9bf3cc4c1a2fcc39d6b140fd2a7a6d7e1025196b",
+      "paper": "Rodrigues2014",
+      "candidate": "R005"
+    },
+    "drafts/ingredients/recurring_utterances__Rodrigues2014__R006.md": {
+      "source_sha256": "d36f3f1bb5fcf6f6ecfd0ad8eb62469963073b44182cf6ed35db613806e94b49",
+      "paper": "Rodrigues2014",
+      "candidate": "R006"
+    },
+    "drafts/ingredients/absence_of_rus__Rodrigues2014__R007.md": {
+      "source_sha256": "4b1d95c96fa98266420abc001332511d120b7c0658c679666a4842f880b1a4cb",
+      "paper": "Rodrigues2014",
+      "candidate": "R007"
+    },
+    "drafts/ingredients/recurring_utterances__Rodrigues2014__R008.md": {
+      "source_sha256": "6638e5283637d8abacfa1e08768c68ed46ff0c106917a0761194f6eff5a42e19",
+      "paper": "Rodrigues2014",
+      "candidate": "R008"
+    },
+    "drafts/ingredients/recurring_utterances__Rodrigues2014__R009.md": {
+      "source_sha256": "045771ce2ce59e0510980bb996890cfc11cd2a2f9120239d163d71b1361bd762",
+      "paper": "Rodrigues2014",
+      "candidate": "R009"
     }
   }
 }

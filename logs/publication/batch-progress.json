@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-25T00:23:09.379524+00:00",
+  "last_publication_snapshot": "2026-11-25T02:17:05.877253+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -143,7 +143,12 @@
     "Pulvermuller2001",
     "Radanovic2017",
     "Ramsey2017",
-    "Rapcsak2009"
+    "Rapcsak2009",
+    "Raymer",
+    "Riley2021",
+    "Robson2014",
+    "Robson2019",
+    "Rodrigues2014"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
   "recovery_publication_ready_seen": false
