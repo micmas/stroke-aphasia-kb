@@ -13,10 +13,26 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Aachen Aphasia Test
+      subtest: Token Test
+    metric: Change from baseline expressed on the meta-analysis anchor scale
+    definition_source:
+      citation: '@Brady2022'
+      page: 4
+      quote: "All remaining \nmeasures of that outcome (minority measures) were trans-\nformed to match\
+        \ the anchor measure’s range and format, \nthus retaining the clinical relevance of the anchor meas-\n\
+        ures’ change score.19 Anchor measures comprised the \nWestern aphasia battery-aphasia quotient (WAB-AQ)22\
+        \ for \noverall-language ability; the Aachen Aphasia test-token test \n(AAT-TT) scored positively\
+        \ for auditory comprehension;23 \nand the Aachen Aphasia test-spontaneous speech commu-\nnication\
+        \ (AAT-SSC) rating domain score for functional \ncommunication.23\nSLT interventions targeting language\
+        \ recovery were cat-\negorized by regimen (frequency, intensity, and dosage; \nSupplemental Material\
+        \ A)."
+      basis: Published source passage
+    note: 'Measurement metadata identified from source evidence; finding remains unapproved. Harmonized
+      anchor scale: contributing studies may have used other instruments. Not a claim that every participant
+      received this test.'
   target: auditory_comprehension
   target_kind: impairment
   claim: In participants with moderate-severe aphasia, the greatest auditory comprehension

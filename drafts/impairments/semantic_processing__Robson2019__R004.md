@@ -13,10 +13,20 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Camel and Cactus Test
+      subtest: 32-item picture semantic association
+    metric: Semantic association accuracy
+    definition_source:
+      citation: '@Robson2019'
+      page: 5
+      quote: "Semantic and Cognitive Processing\nSemantic processing was measured using the 32-item ver-\n\
+        sion of the Camel and Cactus semantic association test.41 \nEach trial consisted of this paper-based\
+        \ assessment and \npresents a picture probe stimulus at the top of the page and \n4 interrelated\
+        \ picture stimuli below (1 target, 3 distracter)."
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: semantic_processing
   target_kind: impairment
   claim: significant improvements over time were found in semantic processing

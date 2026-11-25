@@ -13,10 +13,23 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery–Revised
+      subtest: Aphasia Quotient
+    metric: Residual AQ after accounting for lesion volume and damage to critical regions
+    definition_source:
+      citation: '@Johnson2022'
+      page: 3
+      quote: "Inclusion criteria for this analysis were deﬁned prior to\ndata analysis and were as follows:\
+        \ availability of aphasia\nseverity\nscores\nas\nindicated\nby\na\nWestern\nAphasia\nBatteryeRevised\
+        \ (Kertesz, 2007) (WAB-R) Aphasia Quotient\n(WAB-AQ), structural neuroimaging data obtained within\
+        \ 6\nmonths of language testing (M ¼ 6.0 ± 19.4 days; range ¼ 0e163\ndays), 21e85 years old, pre-morbidly\
+        \ right-handed, and in the\nchronic stage of recovery (\x026 months post-onset) following a\nleft\
+        \ hemisphere stroke (M ¼ 38.5 ± 45.9; range ¼ 6e212)."
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved. Residualized
+      study outcome, not raw AQ.
   target: aphasia_severity_residuals
   target_kind: impairment
   claim: The Health Model, specifically the total Fazekas score, was associated with

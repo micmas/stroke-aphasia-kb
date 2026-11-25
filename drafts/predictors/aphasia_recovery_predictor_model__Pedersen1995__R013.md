@@ -13,10 +13,19 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Scandinavian Stroke Scale
+      subtest: Aphasia item
+    metric: Aphasia item score; admission, discharge, change or time-to-best score as stated in claim
+    definition_source:
+      citation: '@Pedersen1995'
+      page: 1
+      quote: "Assessment of aphasia was done at admission, weekly \nduring the hospital stay, and at a 6-month\
+        \ follow-up using the aphasia score of the Scandinavian Stroke Scale."
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved. The paper states
+      that this item rates spoken language and does not assess auditory comprehension.
   target: aphasia_score_at_discharge
   target_kind: prognosis
   claim: Aphasia score on admission and neurological severity on admission were the

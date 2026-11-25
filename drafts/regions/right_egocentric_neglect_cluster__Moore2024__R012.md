@@ -13,10 +13,55 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Oxford Cognitive Screen
+      subtest: Hearts cancellation — right egocentric neglect
+    metric: Subtest performance standardized to 0–1; impairment thresholds and domain contrasts retained
+      in claim
+    definition_source:
+      citation: '@Moore2024'
+      page: 3
+      quote: 'Cognitive status was assessed using the Oxford Cognitive Screen (OCS; Demeyere et al., 2015).
+        The OCS is a short, stroke-specific cognitive screen designed for use in acute stroke settings.
+        It yields 16 distinct measures summarising cognitive impairments across commonly impacted cognitive
+        domains: executive function, language, memory, number processing, praxis, and visuospatial attention
+        (Demeyere et al., 2015, 2016). This measure is designed to be inclusive for patients with common
+        stroke-related impairments including aphasia, visuospatial neglect, primary visual impairments (e.g.
+        hemianopia), and primary motor impairments (e.g. hemiplegia) (Demeyere et al., 2015, 2016). The
+        OCS executive function domain is assessed using a modified (shape-based) trail making task. The
+        OCS language domain consists of a picture naming task (images of four objects/animals), a semantics
+        task (follow verbally presented instructions), and a sentence reading task. The OCS memory domain
+        includes a delayed recall of the previously read sentence (verbal recall task), an incidental multiple-choice
+        recall of stimuli and tasks completed earlier in the OCS (episodic recognition task), and 4 items
+        assessing the participant’s orientation in time and location (orientation task). The OCS numerical
+        processing domain in- cludes a number tasks in which participants are asked to write three verbally
+        presented numbers (in digits) and a calculation task where participants are asked to solve four
+        simple addition and subtraction equations. The OCS Praxis domain consists of a gesture and hand-
+        position imitation task. Finally, the OCS visuospatial attention domain consists of the hearts cancellation
+        task which yields a total score (number of targets identified) as well as egocentric neglect and
+        allo- centric neglect scores. Detailed descriptions of OCS subtests and administration procedures
+        are reported elsewhere (Demeyere et al., 2015, 2016). Previous research has demonstrated that impairments
+        are correlated across some OCS domains (Milosevich et al., 2024). For example, found that domain-level
+        impairments in numeric processing and memory were highly correlated (Rtet = 0.69), whereas those
+        between attention and praxis were not (Rtet = 0.08). Such patterns are expected because spe- cific
+        profiles of post-stroke cognitive impairment may be due to non-random variations in stroke location
+        (Corbetta et al., 2018) and pre-morbid cognitive status (e.g. MCI, cognitive decline) (Deary et
+        al., 2009). Despite domain-level correlations, several large-scale validation studies have provided
+        strong evidence that individual OCS subtests are effectively able to tap their respective functions
+        of interest with minimal interference from co-morbid impairments (Bormann et al., 2024; Demeyere
+        et al., 2015; Kong et al., 2016). The OCS has been validated in large and representative stroke
+        samples (Bisogno et al., 2023; Bormann et al., 2024; Demeyere et al., 2015; Huygelier et al., 2020;
+        Robotham et al., 2020) and provides sufficient cognitive detail to link common post-stroke cognitive
+        impairments to distinct patterns of lesion damage (Moore and Demeyere, 2022). Where relevant, all
+        binary impairment classifications were made based on standard impairment thresholds. To ensure consistency
+        across scores, patient scores were standardised as proportion correct and ranged between 0 (worst
+        possible score) and 1 (best possible score) for each measure.'
+      basis: Main paper methods checked directly
+      source_pdf: C0780_Moore2024.pdf
+      source_pdf_sha256: 542ac5068971063205e71ce3fe31837632b69db85aab01392152622eaee5e8c6
+    note: Measurement metadata identified from source evidence; finding remains unapproved. Distinct subtests;
+      not an overall OCS total score.
   target: right_egocentric_neglect
   target_kind: impairment
   claim: Right Egocentric Neglect was associated with damage to 43 network edges,

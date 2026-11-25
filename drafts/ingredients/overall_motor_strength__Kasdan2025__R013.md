@@ -13,10 +13,21 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Rhythm production tasks
+      subtest: Tapping to metronome and music beat
+    metric: 'Composite: mean vector length and vector angle across three isochronous and six music stimuli'
+    definition_source:
+      citation: '@Kasdan2025'
+      page: 9
+      quote: 'A tapping composite score for each partic-
+
+        ipant was then computed, which was the average of vector length and vector angle across nine
+
+        stimuli (3 isochronous, 6 music).'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: tapping_performance
   target_kind: impairment
   claim: overall motor strength was not related to tapping performance

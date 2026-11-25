@@ -5,7 +5,7 @@
 .queue-controls input, .queue-controls select { font: inherit; padding: .55rem; background: var(--surface); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 4px; }
 .queue-controls input { flex: 1; min-width: 220px; }
 .queue-scroll { overflow-x: auto; }
-.draft-queue td:first-child { white-space: normal; min-width: 240px; max-width: 580px; }
+.queue.draft-queue td:first-child { white-space: normal; min-width: 240px; max-width: 580px; }
 .draft-queue td { vertical-align: top; }
 .outcome-summary { display: grid; grid-template-columns: minmax(100px, 30%) 1fr; gap: .4rem .8rem; padding: .75rem; background: var(--panel); border-radius: 5px; font-size: .9rem; }
 .outcome-summary dt { color: var(--ink-2); }

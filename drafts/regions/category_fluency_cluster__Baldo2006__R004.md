@@ -13,10 +13,27 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Study verbal fluency tasks
+      subtest: 'Category fluency: fruits, animals, supermarket items'
+    metric: Correct non-repeated items; 90 seconds per cue
+    definition_source:
+      citation: '@Baldo2006'
+      page: 2
+      quote: In the letter fluency task, patients were first asked to name words that began with the letter
+        F. The examiner recorded the patients’ responses for 90 s. (The 90-s procedure was chosen rather
+        than a 60-s procedure to be comparable to another study by our group.) Patients were subsequently
+        asked to generate words beginning with the letters A and then S. Following letter fluency, patients
+        were given 90 s to generate items belonging to the semantic cat- egories fruits, animals, and supermarket
+        items, in that order. The order of the fluency conditions was fixed and was con- sistent across
+        all patients. In both letter and category flu- ency conditions, patients were told to avoid repetitions.
+        Performance for both fluency tasks was computed as the number of correct items generated in response
+        to all three cues. Items were scored as correct if they belonged to the category and were not repetitions.
+      basis: Main paper methods checked directly
+      source_pdf: C0001_Baldo2006.pdf
+      source_pdf_sha256: 924b0b7f66aba42402f55f1c4c2a48266c4a82e3358b0247380131ac1ebc7bed
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: category_fluency
   target_kind: impairment
   claim: Category fluency (relative to letter fluency) was associated with more posterior

@@ -13,10 +13,20 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Pyramids and Palm Trees Test
+    metric: Nonverbal semantic processing performance
+    definition_source:
+      citation: '@Basilakos2014'
+      page: 2
+      quote: 'The Pyramids and Palm
+
+        Trees Test (Howard and Patterson, 1992) served as a non-verbal
+
+        measuretoevaluatesemanticprocessing.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: semantic_processing
   target_kind: impairment
   claim: In a stepwise regression model for semantic processing, none of the remaining

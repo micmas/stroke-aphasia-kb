@@ -13,10 +13,24 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Study-specific treatment probes
+      subtest: Treatment-specific probes pooled across three sites
+    metric: Responder classification at 25 percentage points change in accuracy
+    definition_source:
+      citation: '@Billot2022'
+      page: 3
+      quote: First, responsiveness to reha- bilitation was determined by calculating the change in accu-
+        racy percentage on the treatment probes. Participants were classified into responders (n=33) and
+        nonresponders (n=22) based on a cutoff of 25 percentage points change in accuracy (Figure 3 and
+        Supplemental Material).
+      basis: Main paper methods checked directly
+      source_pdf: C0093_Billot2022.pdf
+      source_pdf_sha256: 1e6a0688da54c3f918aa2181f40dcf54da1a145eed8cdfd86117aa81323b1297
+    note: Measurement metadata identified from source evidence; finding remains unapproved. Probe content
+      differs by treatment/site; the baseline WAB-R AQ is a predictor, not the response outcome. Supplement
+      needed for item-level protocols.
   target: rehabilitation_responsiveness
   target_kind: prognosis
   claim: The best prediction performance for responsiveness to rehabilitation in chronic

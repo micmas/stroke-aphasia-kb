@@ -13,10 +13,18 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Beat Alignment Test
+    metric: Beat-based rhythm perception performance
+    definition_source:
+      citation: '@Kasdan2025'
+      page: 5
+      quote: 'We used the Beat Alignment Test (BAT) as a measure of beat-based
+
+        rhythm perception.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: beat_perception
   target_kind: impairment
   claim: Individuals with chronic post-stroke aphasia performed significantly below

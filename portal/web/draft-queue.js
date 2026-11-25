@@ -1,12 +1,13 @@
 // Queue selection is a convenience for reviewers, never an approval decision.
-export function selectDrafts(drafts, { query = '', filter = 'all', page = 0, pageSize = 25 } = {}) {
+export function selectDrafts(drafts, { query = '', filter = 'all', page = 0, pageSize = 25, paper = '', citations = {} } = {}) {
   const q = query.trim().toLowerCase();
   const matches = drafts.filter(d => {
+    if (paper && d.citation !== paper) return false;
     if (filter === 'target' && !d.findings.some(f => f.target_audit?.status === 'needs_source_review')) return false;
     if (filter === 'measurement' && !d.findings.some(f => f.outcome_measurement?.status !== 'identified')) return false;
     if (filter === 'high' && !d.findings.some(f => f.confidence === 'high')) return false;
     if (!q) return true;
-    const text = [d.citation, d.entry, ...d.findings.flatMap(f => [f.target, f.claim, ...(f.outcome_measurement?.instruments || []).map(x => x.name)])].join(' ').replace(/_/g, ' ').toLowerCase();
+    const text = [d.citation, citations[d.citation], d.entry, ...d.findings.flatMap(f => [f.target, f.claim, ...(f.outcome_measurement?.instruments || []).map(x => x.name)])].join(' ').replace(/_/g, ' ').toLowerCase();
     return q.split(/\s+/).every(word => text.includes(word));
   });
   const pages = Math.max(1, Math.ceil(matches.length / pageSize));

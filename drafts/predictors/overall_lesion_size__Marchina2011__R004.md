@@ -13,10 +13,31 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Connected speech analysis
+      subtest: Conversational interview, picture and procedure descriptions
+    metric: Words per minute
+    definition_source:
+      citation: '@Marchina2011'
+      page: 2
+      quote: 'Spontaneous speech was elicited using conversational interviews8 regarding biographical data,
+        medical history, daily activities, de- scriptions of complex pictures (eg, the Cookie Theft picture
+        from the Boston Diagnostic Aphasia Examination), and descriptions of simple routine procedures (eg,
+        “Explain how you would make a peanut butter sandwich, cook a favorite dish, work on a hobby, do
+        a simple repair”). Videotapes of patient assessments were transcribed, timed, and scored by blinded
+        coders with backgrounds in communication disorders and speech language pathology. Because there
+        is no standard definition for fluency14–16 and, as a result, no widely accepted means of assessing
+        spontaneous speech, we chose to evaluate speech production by using 3 measures of functional relevance:
+        WPM (rate of speech), percent CIUs of total words uttered (informativeness), and CIUs per minute
+        (overall efficiency of speech). To be counted as CIUs, words had to be intelligible in context as
+        well as accurate, relevant, and informative with respect to the stimulus; meaningless utterances,
+        exclamations, inappropriate information, and perseverations were counted as words but not as CIUs.16
+        Intraobserver reliability'
+      basis: Main paper methods checked directly
+      source_pdf: C0003_Marchina2011.pdf
+      source_pdf_sha256: 8b6527f9452aea5cfab9ee7cf8399f0fa97aadfd6d2095a12039ffceac8770fa
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: words_per_minute
   target_kind: impairment
   claim: When used in a regression model with lesion loads of the arcuate fasciculus,

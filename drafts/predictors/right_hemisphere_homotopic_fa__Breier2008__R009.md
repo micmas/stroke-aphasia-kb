@@ -13,10 +13,31 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery
+      subtest: Repetition, comprehension and naming indices
+    metric: Study language-function indices; subdomain contrasts retained in claim
+    definition_source:
+      citation: '@Breier2008'
+      page: 2
+      quote: 'For this reason, the presence or
+
+        absence of WM abnormalities on MR imaging was used as covariates in
+
+        theanalysespresentedbelow.Alloftheparticipantswereatleast1month
+
+        poststroke onset (mean, 22 months; SD, 24 months; range, 1–72
+
+        months).Meanagewas58years(SD,11years;range,38–77years).Allof
+
+        the participants were given the Western Aphasia Battery (WAB),17 and
+
+        the composite indices (aphasia quotient [AQ]) for repetition, compre-
+
+        hension, and naming were extracted.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: language_function
   target_kind: impairment
   claim: Repetition of analyses using FA values for the homotopic structures within

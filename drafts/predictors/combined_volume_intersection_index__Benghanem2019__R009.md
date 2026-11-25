@@ -13,10 +13,17 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Aphasia Handicap Score
+    metric: Three-month outcome; good outcome = 0–2
+    definition_source:
+      citation: '@Benghanem2019'
+      page: 1
+      quote: Good outcome at 3-months was defined by an Aphasia Handicap Score of 0–2.
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved. The day-7 Aphasia
+      Rapid Test is a predictor, not this outcome measure.
   target: good_outcome_3m
   target_kind: prognosis
   claim: In the subgroup of patients with an Aphasia Rapid Test score at day 7 (ART

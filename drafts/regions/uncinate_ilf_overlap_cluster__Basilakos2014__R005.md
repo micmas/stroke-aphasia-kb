@@ -13,10 +13,23 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery–Revised
+      subtest: Speech fluency rating from picture description
+    metric: Clinician-rated speech fluency
+    definition_source:
+      citation: '@Basilakos2014'
+      page: 2
+      quote: 'To assess speech ﬂuency, as rated on the WAB-R speech
+
+        ﬂuency subtest, patients completed a verbal picture description
+
+        task, and the clinician assigned a ﬂuency score that best described
+
+        each patient’s speech production.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: speech_fluency
   target_kind: impairment
   claim: The integrity of the uncinate/ILF overlap region was correlated with speech

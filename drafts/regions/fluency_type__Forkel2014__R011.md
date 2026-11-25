@@ -13,10 +13,19 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery–Revised
+      subtest: Aphasia Quotient
+    metric: Aphasia Quotient (0–100); baseline/follow-up comparison retained in claim
+    definition_source:
+      citation: '@Forkel2014'
+      page: 3
+      quote: 'WAB-R provides a global measure of aphasia severity, the aphasia quo-
+
+        tient (AQ), which ranges from 0 to 100.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: aphasia_severity
   target_kind: impairment
   claim: At baseline, the fluent group presented with less severe aphasia (as estimated

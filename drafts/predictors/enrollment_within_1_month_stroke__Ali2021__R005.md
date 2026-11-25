@@ -13,10 +13,22 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Aachen Aphasia Test
+      subtest: Token Test
+    metric: Change from baseline expressed on the meta-analysis anchor scale
+    definition_source:
+      citation: '@Ali2021'
+      page: 1
+      quote: "METHODS: Individual participant data meta-analysis of systematically sourced aphasia datasets\
+        \ described overall-language \nability using the Western Aphasia Battery Aphasia-Quotient; auditory\
+        \ comprehension by Aachen Aphasia Test (AAT) Token \nTest; naming by Boston Naming Test and functional-communication\
+        \ by AAT Spontaneous-Speech Communication subscale."
+      basis: Published source passage
+    note: 'Measurement metadata identified from source evidence; finding remains unapproved. Harmonized
+      anchor scale: contributing studies may have used other instruments. Not a claim that every participant
+      received this test.'
   target: auditory_comprehension
   target_kind: impairment
   claim: enrollment within 1 month of stroke was associated with more correct responses

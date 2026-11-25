@@ -13,10 +13,18 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Philadelphia Naming Test
+    metric: Semantic paraphasias as percentage of attempted responses; averaged over two sessions
+    definition_source:
+      citation: '@McKinnon2018'
+      page: 3
+      quote: "The PNT results from both sessions were \naveraged, and semantic and phonemic paraphasias\
+        \ were expressed as a percentage of naming attempts excluding \nthe number of no responses since\
+        \ we were interested in semantic and phonemic paraphasias when naming was \nattempted."
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: semantic_paraphasias
   target_kind: impairment
   claim: ILF lesion burden was associated with the percentage of semantic paraphasias

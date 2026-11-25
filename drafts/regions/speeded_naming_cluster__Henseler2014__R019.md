@@ -13,10 +13,27 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Study picture-naming battery
+      subtest: Time-critical naming (RAPID)
+    metric: Speeded naming performance
+    definition_source:
+      citation: '@Henseler2014'
+      page: 4
+      quote: In contradistinction to the syndrome-oriented approach of the AAT, we included a number of
+        language tests focussing on more specific aspects of language dysfunction (for details see Table
+        1 and Supplementary material). These tests were completed in smaller sub- groups of the sample studied.
+        The choice of the different tests was guided by clinical judgement and served patholinguistic differentiation
+        mostly in patients with mild impairment. There are tests targeting the semantic differentiation
+        of nouns and verbs (‘Semdiff nouns’, ‘Semdiff verbs’, in-house tests), a synonym judgement test
+        (LeMo subtest 25), tests for picture naming (a large naming battery, including a number of different
+        categories, tested in a normal and a time-critical condition), and tests for word fluency (Regensburger
+        Wortflu ̈ ssigkeits Test, RWT).
+      basis: Main paper methods checked directly
+      source_pdf: C0066_Henseler2014.pdf
+      source_pdf_sha256: 2ab275d0f2cac9a302deb7e4615b84e288bff989d5a46b17468f75286daac4b9
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: speeded_naming_impairment
   target_kind: impairment
   claim: Speeded naming significantly depended on the integrity of the left posterior

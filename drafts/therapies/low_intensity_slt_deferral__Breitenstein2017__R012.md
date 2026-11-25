@@ -13,10 +13,22 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Amsterdam-Nijmegen Everyday Language Test
+      subtest: A-scale
+    metric: Effectiveness of verbal communication in ten everyday situations
+    definition_source:
+      citation: '@Breitenstein2017'
+      page: 4
+      quote: "Outcomes\nThe centrally assessed primary outcome measure was \neffectiveness of verbal communication\
+        \ in ten everyday \nlife situations, assessed using the two parallel versions \nof the Amsterdam-Nijmegen\
+        \ Everyday Language Test \n(ANELT) A-scale.23 We randomly selected which of the \ntwo ANELT versions\
+        \ was to be given to a patient at their \nfirst assessment; versions were then alternated across\
+        \ \nsubsequent assessments in an individual patient (eg, if a \npatient had four assessments and\
+        \ started with version I, \nthe sequence would have been: I, II, I, II)."
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: verbal_communication
   target_kind: impairment
   claim: Verbal communication did not improve during the 3-week treatment deferral

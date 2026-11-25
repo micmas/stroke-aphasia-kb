@@ -13,10 +13,31 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Apraxia Battery for Adults, Second Edition
+      subtest: 'Subtest 1: diadochokinetic rate'
+    - name: Wechsler Adult Intelligence Scale
+      subtest: Matrix Reasoning
+    metric: Separate motor speech agility and reasoning outcomes
+    definition_source:
+      citation: '@Fridriksson2013'
+      page: 3
+      quote: 'This subtest in-
+
+        cludes 60 items and relies on matching single spoken words to objects,
+
+        pictures, and body parts; (ii) motor speech agility was measured as
+
+        patients’ diadochokinetic rate (subtest 1 on the Apraxia Battery for
+
+        Adults, 2nd Edition); and (iii) an aspect of executive functioning was
+
+        measured using the Matrix Reasoning subtest from the Wechsler Adult
+
+        Intelligence Scale.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: diadochokinetic_rate_and_matrix_reasoning
   target_kind: impairment
   claim: whole brain analyses for diadochokinetic rate and Matrix Reasoning test scores

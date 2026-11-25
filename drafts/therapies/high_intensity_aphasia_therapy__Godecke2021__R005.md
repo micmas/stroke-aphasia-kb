@@ -13,10 +13,43 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery–Revised
+      subtest: Aphasia Quotient
+    metric: Percent of maximal potential recovery achieved; assessment time retained in claim
+    definition_source:
+      citation: '@Godecke2021'
+      page: 4
+      quote: 'Our primary outcome was improve-
+
+        ment in communication at 12 weeks after stroke, mea-
+
+        sured by the WAB-R AQ which is a sensitive, valid and
+
+        reliable measure of aphasia performance with a stand-
+
+        ard error of measurement of 3 points.27 Improvement
+
+        was assessed using the percent of maximal potential
+
+        recovery achieved (%MPR).28 The %MPR represents
+
+        a percentage score of the maximum potential change
+
+        (i.e. the endpoint score minus the baseline score) allow-
+
+        ing for direct meaningful comparison of amount of pos-
+
+        sible improvement on the WAB-R AQ for people with
+
+        varied
+
+        aphasia
+
+        severity.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: communication_recovery
   target_kind: prognosis
   claim: High intensity aphasia therapy (combined UC-Plus and VERSE) showed no statistically

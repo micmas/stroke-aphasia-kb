@@ -13,10 +13,29 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Boston Naming Test
+      subtest: Untimed, study-specific cue scoring
+    metric: 1 unassisted; 0.5 with semantic/phonemic cue; 0.25 correct written choice
+    definition_source:
+      citation: '@Marchina2011'
+      page: 2
+      quote: 'In addition to assessing spontaneous speech, we also evaluated
+
+        each patient’s naming ability using an untimed version of the Boston
+
+        Naming Test.20 Patients were given a full point (1.0) for items they
+
+        could name unassisted, 0.5 points for items named with help of a
+
+        semantic or phonemic cue, and 0.25 points for items they could
+
+        identify by choosing the correct written word (from a set of 4 words
+
+        presented in conjunction with the picture stimulus).'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: naming_ability
   target_kind: impairment
   claim: Arcuate fasciculus lesion load significantly predicted Boston Naming Test

@@ -2,10 +2,19 @@
 
 ## Start with one finding
 
-Choose **Drafts**, then search by paper, behaviour or assessment. The queue shows
-25 drafts at a time. Filters separate unclear outcome definitions, missing
-measurement details and high extractor confidence. Confidence is a sorting aid,
-not evidence that a draft is ready for approval.
+Choose **Drafts** to see ten papers at a time, then open a paper to review its
+findings (25 per page). The default order puts primary stroke–language
+lesion/structural mapping and recovery/outcome prediction first, followed by
+broader mapping/prediction studies, studies whose population needs an applicability
+check, other language/treatment evidence, and broader supporting outcomes.
+Reasons are shown beside each paper. This is a suggestion from recorded metadata,
+not a judgement of study quality, certainty or approval readiness. Papers are
+alphabetical within groups; **Paper A–Z** restores alphabetical order. Missing PDFs
+remain visible, and neither duplicates nor positive/null results affect priority.
+
+Search by paper, title, behaviour or assessment. Filters separate unclear outcome
+definitions, missing measurement details and high extractor confidence. Confidence
+does not affect the suggested paper order or establish readiness for approval.
 
 Each draft follows three steps: read the finding and outcome, check the passages
 against the PDF, then choose agree, disagree or unsure. A partial review is useful.
@@ -19,6 +28,14 @@ The 2026-11-25 target audit is metadata triage of the published drafts. Unclear
 composites, clinical endpoints and imaging/method findings require source review;
 they are not automatically renamed as behaviours. A named measurement is not a
 verification of its version, scoring or scientific interpretation.
+The second measurement pass is recorded in
+`logs/publication/measurement-verification-2026-11-25.json`: 360 previously
+unresolved fields in 30 papers now have source-supported instruments/tasks and
+metrics. Each definition links to a cited PDF page; the draft view exposes it under
+**Measurement source**. Harmonized meta-analysis anchor scales, study-specific
+composites and predictor assessments are distinguished explicitly. The captured
+1,395-finding export has 877 unresolved measurement fields after this pass; later
+publication batches may add more. No claims, targets or approval states changed.
 
 ## Where human decisions enter the process
 

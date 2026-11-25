@@ -30,6 +30,7 @@ import { orderScreeningPapers, mergePendingPapers, pendingScreenReceipts } from 
 import { applyState } from './apply-state.js';
 import { carryOver, sameBuild } from './review-state.js';
 import { selectDrafts, measurementLabel } from './draft-queue.js';
+import { rankPapers } from './review-priority.js';
 
 const state = { me: null, manifest: null, kb: null, bindings: {}, bindingProblem: '', screening: null, screeningIndex: [], mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
 const MAX_UPLOAD = 60 * 1024 * 1024;
@@ -173,7 +174,7 @@ function home() {
     h('p', { class: 'lead', text: 'Start with one finding. You can send a partial review and return later.' }),
     h('section', { class: 'review-start' }, h('h2', { text: 'Review a finding in three steps' }),
       h('ol', {}, h('li', { text: 'Read the finding, behaviour and measurement.' }), h('li', { text: 'Open its highlighted passages and check them against the paper.' }), h('li', { text: 'Choose agree, disagree or unsure, then send your review.' })),
-      h('a', { class: 'btn btn-primary', href: '#/drafts', text: 'Choose a finding to review' }),
+      h('a', { class: 'btn btn-primary', href: '#/drafts', text: 'Choose a paper to review' }),
       h('p', { class: 'small muted', text: 'Unsure is useful. You do not need to resolve the whole paper to contribute.' })),
     h('p', { class: 'small muted', text: `Signed in as ${state.me.email}. Your decisions are recorded under this address.` }),
     h('details', { class: 'editorial-details' }, h('summary', { text: 'When will my decisions appear?' }),
@@ -309,37 +310,57 @@ function requestsPanel() {
 
 function draftsList() {
   const drafts = draftsIndex(state.kb);
-  const prefs = state.queue || (state.queue = { query: '', filter: 'all', page: 0 });
+  const prefs = state.queue || (state.queue = { query: '', filter: 'all', page: 0, paper: '', order: 'priority' });
   const results = h('div');
   const search = h('input', { type: 'search', value: prefs.query, placeholder: 'Search paper, behaviour or test…', 'aria-label': 'Search drafts', oninput: e => { prefs.query = e.target.value; prefs.page = 0; update(); } });
   const filter = h('select', { 'aria-label': 'Filter draft queue', onchange: e => { prefs.filter = e.target.value; prefs.page = 0; update(); } },
     [['all', 'All drafts'], ['target', 'Outcome definition needs attention'], ['measurement', 'Measurement needs checking'], ['high', 'High extractor confidence']].map(([v, t]) => h('option', { value: v, selected: prefs.filter === v ? '' : null, text: t })));
+  const order = h('select', { 'aria-label': 'Paper order', onchange: e => { prefs.order = e.target.value; prefs.page = 0; update(); } },
+    [['priority', 'Review priority'], ['az', 'Paper A–Z']].map(([v, t]) => h('option', { value: v, selected: (prefs.order || 'priority') === v ? '' : null, text: t })));
+  function openPaper(citation) { prefs.paper = citation; prefs.page = 0; update(); }
   function update() {
-    const selected = selectDrafts(drafts, prefs);
+    const ranked = rankPapers(drafts, state.kb.citations, prefs.order);
+    const matching = selectDrafts(drafts, { ...prefs, citations: state.kb.citations, page: 0, pageSize: Math.max(1, drafts.length) }).items;
+    const paths = new Set(matching.map(d => d.path));
+    const papers = ranked.map(p => ({ ...p, matching: p.drafts.filter(d => paths.has(d.path)) })).filter(p => p.matching.length);
+    const selected = prefs.paper ? selectDrafts(matching, { page: prefs.page }) : {
+      total: papers.length, pages: Math.max(1, Math.ceil(papers.length / 10)),
+      page: Math.min(Math.max(0, prefs.page), Math.max(0, Math.ceil(papers.length / 10) - 1)),
+    };
     prefs.page = selected.page;
-    const rows = selected.items.map(d => {
+    const rows = prefs.paper ? selected.items.map(d => {
       const f = d.findings[0];
       const who = reviewedBy(d.path);
       const needsTarget = d.findings.some(x => x.target_audit?.status === 'needs_source_review');
       return h('tr', {},
         h('td', {}, h('a', { href: draftHref(d.path), text: entryName(f.target) }), h('div', { class: 'small muted', text: entryName(d.entry) }), h('div', { class: 'small', text: String(f.claim || '').slice(0, 180) + (String(f.claim || '').length > 180 ? '…' : '') })),
-        h('td', { text: d.citation }),
         h('td', { class: 'small', text: measurementLabel(f) }),
         h('td', { class: 'small', text: who.length ? `Review sent by ${[...new Set(who)].join(', ')}` : needsTarget ? 'Clarify outcome first' : 'Awaiting review' }),
-        h('td', {}, h('a', { class: 'btn', href: draftHref(d.path), text: d.findings.length > 1 ? `Review ${d.findings.length} findings` : 'Review' })));
+        h('td', {}, h('a', { class: 'btn', href: draftHref(d.path), text: 'Review' })));
+    }) : papers.slice(selected.page * 10, (selected.page + 1) * 10).map(p => {
+      const sent = p.drafts.filter(d => reviewedBy(d.path).length).length;
+      return h('tr', {},
+        h('td', {}, h('button', { class: 'btn', text: p.citation.replace(/^@/, ''), onclick: () => openPaper(p.citation) }), h('div', { class: 'small', text: state.kb.citations?.[p.citation] || p.citation })),
+        h('td', {}, h('strong', { text: p.priority.label }), h('div', { class: 'small muted', text: p.priority.reason })),
+        h('td', { class: 'small', text: `${p.matching.length} matching drafts${sent ? ` · ${sent} with a review sent` : ''}` }),
+        h('td', { class: 'small' }, paperPdf(p.citation) ? h('a', { href: paperPdf(p.citation).annotated, target: '_blank', rel: 'noopener', text: 'Annotated PDF' }) : 'Annotated PDF not yet available'),
+        h('td', {}, h('button', { class: 'btn', text: 'Review paper', 'aria-label': `Review ${p.citation.replace(/^@/, '')}`, onclick: () => openPaper(p.citation) })));
     });
+    const headers = prefs.paper ? ['Behaviour / finding', 'Measurement', 'Review status', ''] : ['Paper', 'Suggested priority', 'Drafts', 'Source', ''];
     results.replaceChildren(
-      h('p', { class: 'small muted', role: 'status', text: `${selected.total} matching drafts · page ${selected.page + 1} of ${selected.pages}` }),
-      prefs.filter === 'high' ? h('p', { class: 'notice', text: 'Confidence comes from the extractor. These findings still need source review; this filter does not establish eligibility for approval.' }) : h('span'),
-      selected.total ? h('div', { class: 'queue-scroll' }, h('table', { class: 'queue draft-queue' }, h('thead', {}, h('tr', {}, ...['Behaviour / finding', 'Paper', 'Measurement', 'Review status', ''].map(text => h('th', { text })))), h('tbody', {}, rows))) : h('p', { text: 'No matching drafts. Try a broader search or another filter.' }),
+      prefs.paper ? h('div', {}, h('button', { class: 'btn', text: '← All papers', onclick: () => openPaper('') }), h('h2', { text: prefs.paper.replace(/^@/, '') }), h('p', { class: 'small', text: state.kb.citations?.[prefs.paper] || '' })) : h('span'),
+      h('p', { class: 'small muted', role: 'status', text: `${selected.total} matching ${prefs.paper ? 'drafts' : 'papers'} · ${matching.length} drafts · page ${selected.page + 1} of ${selected.pages}` }),
+      prefs.filter === 'high' ? h('p', { class: 'notice', text: 'Extractor confidence does not establish eligibility for approval.' }) : h('span'),
+      selected.total ? h('div', { class: 'queue-scroll' }, h('table', { class: 'queue draft-queue' }, h('thead', {}, h('tr', {}, headers.map(text => h('th', { text })))), h('tbody', {}, rows))) : h('p', { text: 'No matching drafts. Try a broader search or another filter.' }),
       h('div', { class: 'queue-controls' },
-        h('button', { class: 'btn', disabled: selected.page === 0, text: 'Previous 25', onclick: () => { prefs.page--; update(); } }),
-        h('button', { class: 'btn', disabled: selected.page + 1 === selected.pages, text: 'Next 25', onclick: () => { prefs.page++; update(); } })));
+        h('button', { class: 'btn', disabled: selected.page === 0, text: 'Previous', onclick: () => { prefs.page--; update(); } }),
+        h('button', { class: 'btn', disabled: selected.page + 1 === selected.pages, text: 'Next', onclick: () => { prefs.page++; update(); } })));
   }
   update();
-  return frag(h('div', { class: 'page-head' }, h('h1', { text: 'Choose a finding to review' })),
-    h('p', { text: 'Pick a paper or behaviour you know. Review one draft at a time; unfinished checks stay open for another reviewer.' }),
-    h('div', { class: 'queue-controls' }, search, filter), results);
+  return frag(h('div', { class: 'page-head' }, h('h1', { text: 'Choose a paper to review' })),
+    h('p', { text: 'Start with lesion–behaviour mapping and recovery prediction. Open a paper, then review one finding at a time.' }),
+    h('p', { class: 'small muted', text: 'Suggested order uses recorded study topics and populations. Priority is not evidence quality or approval readiness. Papers are alphabetical within each group; all remain available.' }),
+    h('div', { class: 'queue-controls' }, search, filter, order), results);
 }
 
 // ---- one draft beside its PDF ----
@@ -425,6 +446,11 @@ function findingCard(d, f, r, save, pdf) {
       h('dt', { text: f.target_audit?.category === 'non_behaviour_or_methodological' ? 'Recorded endpoint' : 'Behaviour / outcome' }), h('dd', { text: entryName(fr.edits.target ?? f.target) }),
       h('dt', { text: 'Measured using' }), h('dd', { text: measurementLabel({ outcome_measurement: measure }) }),
       measure.metric ? frag(h('dt', { text: 'Score / task detail' }), h('dd', { text: measure.metric })) : null),
+    measure.definition_source?.quote ? h('details', {},
+      h('summary', { text: `Measurement source · page ${measure.definition_source.page || '?'}` }),
+      h('p', { class: 'small', text: measure.definition_source.quote }),
+      measure.note ? h('p', { class: 'small muted', text: measure.note }) : null,
+      pdf && measure.definition_source.page ? h('button', { class: 'btn', text: 'Show measurement in paper', onclick: () => goToPage(Number(measure.definition_source.page), measure.definition_source.quote) }) : null) : null,
     f.target_audit?.status === 'needs_source_review' ? h('p', { class: 'notice', text: 'Clarify the outcome definition before approval. This audit could not establish a specific behavioural target from the recorded label.' }) : null,
     f.sample ? h('p', { class: 'small', text: `Participants: ${[f.sample.n ? `n = ${f.sample.n}` : '', f.sample.population, f.sample.time_post_onset, f.sample.phase].filter(v => v && !['not_reported', 'not_transcribed'].includes(String(v))).join(' · ')}` }) : null,
     h('details', { class: 'finding-edit', open: Object.keys(fr.edits).length ? '' : null }, h('summary', { text: 'Correct the finding or its measurement' }),
@@ -818,8 +844,10 @@ function anyPaperUpload() {
 
 function pdfsView() {
   const m = state.manifest || {};
-  const papers = Object.entries(m.papers || {}).sort((a, b) => a[0].localeCompare(b[0]));
   const drafts = draftsIndex(state.kb);
+  const ranked = rankPapers(drafts, state.kb.citations);
+  const positions = new Map(ranked.map((p, i) => [p.citation, i]));
+  const papers = Object.entries(m.papers || {}).sort((a, b) => (positions.get(a[0]) ?? Infinity) - (positions.get(b[0]) ?? Infinity) || a[0].localeCompare(b[0]));
   const draftsBy = new Map();
   for (const d of drafts) (draftsBy.get(d.citation) || draftsBy.set(d.citation, []).get(d.citation)).push(d);
   const approvedBy = new Map();
@@ -832,7 +860,7 @@ function pdfsView() {
       h('td', { class: 'small', text: (state.kb.citations?.[cit] || '').slice(0, 160) }),
       h('td', {}, h('span', { class: `badge ${p.public ? 'badge-human' : 'badge-kind'}`, title: p.label || p.category, text: p.public ? 'public (CC)' : 'private' })),
       h('td', { class: 'num', text: String(approvedBy.get(cit) || 0) }),
-      h('td', {}, ds.length ? ds.map((d, i) => [i ? ', ' : '', h('a', { href: draftHref(d.path), text: entryName(d.entry) })]) : h('span', { class: 'muted small', text: '—' })),
+      h('td', {}, ds.length ? h('a', { href: '#/drafts', text: `Review ${ds.length} drafts`, onclick: () => { state.queue = { query: '', filter: 'all', page: 0, paper: cit, order: 'priority' }; } }) : h('span', { class: 'muted small', text: '—' })),
       h('td', { class: 'small muted', text: `${Math.round((p.bytes || 0) / 1024)} KB` }));
   };
   const table = h('table', { class: 'queue' }, h('thead', {}, h('tr', {}, h('th', { text: 'Paper' }), h('th', { text: 'Citation' }), h('th', { text: 'Access' }), h('th', { class: 'num', text: 'Approved findings' }), h('th', { text: 'Drafts to review' }), h('th', { text: 'Size' }))), h('tbody', {}, papers.map(row)));
@@ -857,7 +885,7 @@ function pdfsView() {
     h('p', { class: 'small', text: `Included at title/abstract, waiting for a full-text decision, and nobody has the PDF yet${nUp ? ` (${nUp} uploaded, with the maintainer)` : ''}. If you can get one — through your library, the authors, or a repository copy — drag the PDF onto the paper's row (or choose the file and press Upload); it goes to the maintainer's papers folder, never to the public site. The full-text decision for a paper can only be made once its PDF exists.` }),
     missing.length ? missingTable : h('p', { class: 'notice', text: 'Every paper awaiting a full-text decision has its PDF.' }),
     h('h2', { text: `Annotated PDFs (${papers.length})` }),
-    h('p', { class: 'small', text: 'Every paper whose annotated PDF this build of the portal holds. The highlights in each PDF are the passages the KB cites from it, coloured by what they support. Public copies are papers under a Creative Commons licence; the private ones are for signed-in reviewers only and must not be passed on.' }),
+    h('p', { class: 'small', text: 'Papers with drafts follow the suggested review priority. Every annotated PDF remains available. The highlights in each PDF are the passages the KB cites from it, coloured by what they support. Public copies are papers under a Creative Commons licence; the private ones are for signed-in reviewers only and must not be passed on.' }),
     h('div', { class: 'matrix-controls' }, filter),
     papers.length ? table : h('p', { class: 'notice', text: 'No annotated PDFs in this build.' }),
     h('h2', { text: `Uploads waiting for the maintainer (${ups.length})` }),

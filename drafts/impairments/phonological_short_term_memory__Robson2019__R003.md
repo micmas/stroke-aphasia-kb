@@ -13,10 +13,19 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Wechsler Memory Scale–Revised
+      subtest: Immediate forward digit span recall
+    metric: Total correct, maximum 14
+    definition_source:
+      citation: '@Robson2019'
+      page: 5
+      quote: "Phonological short-term memory was measured using \nimmediate forward digit span recall from\
+        \ the Wechsler \nMemory Scale—Revised.40 Each correct response was \ngiven a score of 1, with a\
+        \ maximum score of 2 for each \nspan length (maximum score 14)."
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: phonological_short_term_memory
   target_kind: impairment
   claim: Phonological short-term memory significantly improved between all three post-stroke

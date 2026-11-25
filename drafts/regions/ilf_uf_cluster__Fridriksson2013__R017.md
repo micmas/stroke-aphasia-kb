@@ -13,10 +13,21 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery
+      subtest: Auditory word-picture matching
+    metric: 60-item matching of single spoken words to objects, pictures and body parts
+    definition_source:
+      citation: '@Fridriksson2013'
+      page: 3
+      quote: 'Three other factors of interest were also included in the data analyses:
+
+        (i) rudimentary lexical processing was measured as performance on the
+
+        auditory word-picture matching subtest of the WAB.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: auditory_word_picture_matching
   target_kind: impairment
   claim: Impaired auditory word-picture matching was associated with involvement of

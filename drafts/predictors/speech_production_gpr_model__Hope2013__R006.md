@@ -13,10 +13,26 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Comprehensive Aphasia Test
+      subtest: Word repetition, sentence repetition, object naming and picture description
+    metric: Study-specific composite T score; change and prediction definitions remain in claim
+    definition_source:
+      citation: '@Hope2013'
+      page: 2
+      quote: Our ‘speech production score’ was constructed by combining scores from word and sentence repetition
+        tasks (with heard stimuli), an object naming task (using visually presented pictures), and a picture
+        descrip- tion task (using pictures of events, requiring sentential utterances in re- sponse). After
+        aligning the scores in these 4 dimensions to make their impairment thresholds equal (adding constants
+        to three of the four se- ries of scores), the actual speech production score for a given patient
+        was calculated as the mean of each subject's (i) minimum T score in the tasks involving visual stimuli
+        and (ii) minimum T score in the tasks involving aural stimuli — the intention being to track impairments
+        that cut across the two modalities.
+      basis: Main paper methods checked directly
+      source_pdf: C0088_Hope2013.pdf
+      source_pdf_sha256: a48c35b7451ad08b6d510255208ab948deb5a6a6d76ad93eea27445b207a4a31
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: speech_production_score
   target_kind: prognosis
   claim: A combination of time post-stroke and lesion damage can accurately predict

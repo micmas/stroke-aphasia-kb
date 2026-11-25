@@ -13,10 +13,27 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: LeMo
+      subtest: 'Subtest 25: synonym judgement'
+    metric: Synonym judgement performance
+    definition_source:
+      citation: '@Henseler2014'
+      page: 4
+      quote: 'There are tests targeting the
+
+        semantic differentiation of nouns and verbs (‘Semdiff nouns’, ‘Semdiff
+
+        verbs’, in-house tests), a synonym judgement test (LeMo subtest 25),
+
+        tests for picture naming (a large naming battery, including a number of
+
+        different categories, tested in a normal and a time-critical condition),
+
+        and tests for word ﬂuency (Regensburger Wortﬂu¨ ssigkeits Test, RWT).'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: synonym_judgment_impairment
   target_kind: impairment
   claim: Lesions in the orbital part of the inferior frontal gyrus correlated with

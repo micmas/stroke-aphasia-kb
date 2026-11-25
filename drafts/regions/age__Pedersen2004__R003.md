@@ -13,10 +13,24 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery
+      subtest: Danish adaptation — fluency
+    metric: Fluency assessment/classification; phase retained in claim
+    definition_source:
+      citation: '@Pedersen2004'
+      page: 2
+      quote: The patients were assessed with the first part of the Western Aphasia Battery (WAB) [18], which
+        was translated and adapted to Danish for the present study by two of the authors [19]. This part
+        of WAB assesses fluency and information content of speech, naming, comprehension and repetition.
+        It is sufficient to determine the type of aphasia according to the Boston classification, and it
+        yields a mea- sure of severity of aphasia, the Aphasia Quotient (AQ), ranging from 0 to 100, with
+        scores above 93.8 being considered normal (nonaphas- ic).
+      basis: Main paper methods checked directly
+      source_pdf: C0041_Pedersen2004.pdf
+      source_pdf_sha256: 311b40a71103ce1439583f5bffe66383352c822bdbd0483bb85302e6bc7c24a0
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: aphasia_fluency
   target_kind: impairment
   claim: There was no significant age difference between patients with non-fluent

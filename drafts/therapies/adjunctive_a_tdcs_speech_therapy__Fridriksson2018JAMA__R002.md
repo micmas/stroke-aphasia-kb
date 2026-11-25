@@ -13,10 +13,26 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Naming 80
+      subtest: Trained treatment items
+    - name: Philadelphia Naming Test
+    metric: Change in correctly named common objects at one week posttreatment
+    definition_source:
+      citation: '@Fridriksson2018JAMA'
+      page: 3
+      quote: 'Outcomes
+
+        The primary end point was the change in the number of cor-
+
+        rectly named common objects at 1 week posttreatment, mea-
+
+        sured using a portion (Naming 80) of the trained items from
+
+        the treatment plus the PNT.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: correct_naming_of_common_objects
   target_kind: impairment
   claim: In a futility design, there was no evidence that further study of adjunctive

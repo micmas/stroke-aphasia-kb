@@ -13,10 +13,35 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Aachen Aphasia Test
+      subtest: ALLOC syndrome classification
+    metric: Graded syndrome probabilities, not a single behavioural task
+    definition_source:
+      citation: '@Henseler2014'
+      page: 3
+      quote: 'The primary language measure was the AAT (Huber et al., 1984), the standard diagnostic battery
+        for chronic aphasia in Germany. The AAT is a multi- dimensional diagnostic tool allowing for syndrome
+        classification (Albert et al., 1981) and reliable assessment of all clinically relevant language
+        modalities. Specifically it comprises a rating of spontaneous speech along six dimensions in a semi-standardized
+        interview, four fully standardized tests and the Token Test. In detail spontaneous speech is scored
+        for (i) communicative abilities; (ii) articulation and prosody; (iii) phonematic structure; (iv)
+        semantic structure; (v) syntac- tic structure; and (vi) speech automatisms. The standardized tests
+        include: (i) speech repetition (phonemes, 1-syllabic words, compound words, foreign words, sentences);
+        (ii) written language (writing, com- bining words, reading); (iii) picture naming (simple objects,
+        colours, compound words, situations); and (iv) language comprehension (audi- tory words, auditory
+        sentences, reading words, reading sentences). The Token Test (Orgass et al., 1973) is included as
+        a complex measure of overall auditory language comprehension and is typically used to classify overall
+        aphasia severity. Apart from the comprehensive cover- age of patholinguistic levels the AAT has
+        a special feature in that it allocates patients to one of four major syndromes (Broca, Wernicke,
+        global and amnestic) with a probability in per cent. This syndromatic classifier based on a non-parametric
+        discriminant analysis procedure (Habbema et al., 1974) renders the likelihood of the respective
+        syn- drome (e.g. a patient may be classified 90% Broca, 10% amnestic).'
+      basis: Main paper methods checked directly
+      source_pdf: C0066_Henseler2014.pdf
+      source_pdf_sha256: 2ab275d0f2cac9a302deb7e4615b84e288bff989d5a46b17468f75286daac4b9
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: brocas_aphasia_syndrome
   target_kind: impairment
   claim: Broca's aphasia syndrome correlated with lesions in the left inferior frontal

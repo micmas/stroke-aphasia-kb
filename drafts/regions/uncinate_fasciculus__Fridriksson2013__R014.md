@@ -13,10 +13,39 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery
+      subtest: Auditory comprehension
+    metric: Auditory comprehension subscore
+    definition_source:
+      citation: '@Fridriksson2013'
+      page: 7
+      quote: 'A linear regression analysis that
+
+        only included patients with Broca’s or global aphasia revealed
+
+        that damage to the uncinate fasciculus is the single best predictor
+
+        of
+
+        the
+
+        auditory
+
+        comprehension
+
+        subscore
+
+        on
+
+        the
+
+        WAB,
+
+        F(1,25) = 11.98, P = 0.002, R2 = 0.324.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: auditory_comprehension
   target_kind: impairment
   claim: Damage to the uncinate fasciculus is the single best predictor of the auditory

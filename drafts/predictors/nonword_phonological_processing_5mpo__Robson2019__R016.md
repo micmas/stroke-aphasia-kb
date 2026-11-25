@@ -13,10 +13,22 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Boston Diagnostic Aphasia Examination
+      subtest: 'Auditory comprehension: single words, phrases and complex ideational material'
+    - name: In-house spoken word–picture matching task
+      subtest: 48 items, six distracters
+    metric: Study composite derived by unrotated principal component analysis; phase and change retained
+      in claim
+    definition_source:
+      citation: '@Robson2019'
+      page: 3
+      quote: "These assessments were the \nBDAE auditory comprehension subtests (single word, \nphrases,\
+        \ and complex ideational material), and an in-house \n6 distracter single spoken-word picture matching\
+        \ (sWPM) \nassessment consisting of 48 items of varying familiarity and \n"
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: language_comprehension
   target_kind: impairment
   claim: Nonword phonological processing at 5 MPO was marginally significantly associated

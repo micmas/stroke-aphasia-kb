@@ -29,7 +29,11 @@ there is no standardised test. `identified` means a measure is recorded, **not**
 that the finding has been approved. Use an empty list and `needs_source_review`
 when uncertain. Optional `metric` and `note` are strings. Preserve raw/change/
 residual scoring, subtests, task conditions and timing; never collapse these into
-an unqualified test total. Do not copy a predictor assessment into this block.
+an unqualified test total. Do not copy a predictor assessment into this block. Optional `definition_source`
+records `citation`, PDF `page`, and a supporting `quote`; source-check basis and PDF
+hash may also be retained. An agent metadata check is not human approval. For a
+meta-analysis, identify an anchor scale as harmonized; do not imply every included
+study administered it.
 
 `target_audit` is dated metadata triage, not approval provenance. It retains the
 original target and distinguishes `construct_separated`,

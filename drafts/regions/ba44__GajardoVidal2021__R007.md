@@ -13,10 +13,19 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Comprehensive Aphasia Test
+      subtest: Spoken picture description
+    metric: Spoken picture description score; subcomponent contrasts and covariates retained in claim
+    definition_source:
+      citation: '@GajardoVidal2021'
+      page: 1
+      quote: 'Spoken picture description scores from the Comprehensive
+
+        Aphasia Test were used as the outcome measure.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: speech_production_abilities
   target_kind: impairment
   claim: Damage to BA44 does not contribute to long-term speech production outcome

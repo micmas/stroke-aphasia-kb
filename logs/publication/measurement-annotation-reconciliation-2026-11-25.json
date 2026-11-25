@@ -1,0 +1,153 @@
+{
+  "date": "2026-11-25",
+  "basis": "Only outcome_measurement metadata changed. All finding identities, claims, targets, source passages and draft statuses are identical. Annotation inputs, PDF objects/hashes and access categories are unchanged. Advance metadata fingerprints to avoid regenerating unchanged highlights. Withdrawal ledger untouched.",
+  "findings": 1395,
+  "measurement_fields_resolved": 360,
+  "unresolved_measurements": 877,
+  "updated_paper_fingerprints": [
+    {
+      "citation": "@Ali2021",
+      "before": "b6349e9d2455c4c1c3f73f650c6622da8d659ab4560f63f94143e29bef53057a",
+      "after": "edf18d72ecd7530d94b744962935d8637f2f8cfeafe8564d54195388c55a1f30"
+    },
+    {
+      "citation": "@Baldo2006",
+      "before": "87bc8a46e810916a26e682c7662675c63382a1f069dd57054bf31a7dcec4965c",
+      "after": "d4fd5e2d5c44f956fcea2f74e0ff928100ddc651cc70060a3bb1abc27364a3f6"
+    },
+    {
+      "citation": "@Baldo2011",
+      "before": "6d14483acf8f805d4b1462f2a3fececd72d66a23e461b0f01a179ceb463a8ca2",
+      "after": "77eec176d5e129b401cf2fa2bc2336d69550b32d076f8d212fa0d34385d407fb"
+    },
+    {
+      "citation": "@Baldo2013",
+      "before": "f632ced94c40f7730789e11fe650c27eef29ba8cf081dfb42ec41c2b2bad24f5",
+      "after": "86d15cee36825948fd2702c52b8300ad552e8a1de00d5e75db39bedb61a613e4"
+    },
+    {
+      "citation": "@Basilakos2014",
+      "before": "5890183a5585afd6da0c10851d757d257fd87ca93ac30c77668dd5bf13e826f7",
+      "after": "974e6c4ae6c6c98fd2486ac1a78c8a48c455808d9ed4fa96c918fdfe35b56559"
+    },
+    {
+      "citation": "@Benghanem2019",
+      "before": "2edd1fbb4dbf2f394afd7d9d87d4a282615d62c54f46fb485321703cd7c0292f",
+      "after": "41e241850c322d9773dba5089d81a7c33d8041b4e6852a184ba7e388ac1afe7f"
+    },
+    {
+      "citation": "@Billot2022",
+      "before": "28ee2ac24eba94ac3abf5e7b2b20f5269aa40dfd2295232e8968e5fdb2a36b5e",
+      "after": "da4d40843ed9239103ba0bf2247b0a50a78123ddefbe2a0fd2d113ad9cc3f268"
+    },
+    {
+      "citation": "@Bonilha2016",
+      "before": "3e305fdbc38c01f58759d9c9cb02f58fabe6ddf75c360b60731e0298f0c94b6a",
+      "after": "d2412a12818268cf6edcbeaa4bde202b1dd42db5ce8626d0db0ace1b986dfb69"
+    },
+    {
+      "citation": "@Brady2022",
+      "before": "a3fc9d7f85e30e7884ce948252853e942ef7b6ba9cb1c571d0b66abf0976150a",
+      "after": "4831eefabde857e9058564b18604687c1ab3ebd846fbddf134afc0695cc239ef"
+    },
+    {
+      "citation": "@Brady2022Dosage",
+      "before": "db3218bc06bb54061789f1c0ee1117e0c7ebe887ba9c1a316923c56b5cb09d71",
+      "after": "4d4b67b1a4d94be90233b7e2c8bdc665d3cd35d1269f00894dd3666e76702663"
+    },
+    {
+      "citation": "@Breier2008",
+      "before": "227b1bb8252bc6e4f27f9ec4da806bd748ea7a580bbe1a891e85373a53311aff",
+      "after": "3eb234059c32fd7b5f76be99984f5ea640ea9d90268b599c059cbc9c7f934d40"
+    },
+    {
+      "citation": "@Breitenstein2017",
+      "before": "436dcdad6cac5a0930a6966af8a79cb7707a9c3ab843b38ee76a537b11189720",
+      "after": "79514dfd33f794e5fece5c4bd14339d921fc54cf6992ec7c8524c3e6656963bd"
+    },
+    {
+      "citation": "@Forkel2014",
+      "before": "bc5c7ded37e0a4124b7073584c3e4b1f83e4dac68d23bc3499dcf6cf88116df9",
+      "after": "c0ea56cfaf58b25c5c2b6cc7c0f36464a1c3dfee6c5914a19f324ae7254b8cf0"
+    },
+    {
+      "citation": "@Fridriksson2013",
+      "before": "6119ebb1a93e69d010dc032e102abca067ad09cd8abb82c4f0c0ddd73babc3c3",
+      "after": "96fa8714d0b8a65e1233ce15cdbbb14bdc4fdf25575de7ee0c0d160224786917"
+    },
+    {
+      "citation": "@Fridriksson2015",
+      "before": "6adf7327f81b3850a047764e6852b50fa964bac49cdae364c9b38acb8b667ea5",
+      "after": "1d999a0a9a518965b6dac0b98914478237d92772201980915240e2c4b68118e0"
+    },
+    {
+      "citation": "@Fridriksson2018JAMA",
+      "before": "5e9f562f1fabe3d7294ed47cc61fafabe594df93ef175cf23f33f684fe35cd10",
+      "after": "80d2db685693ac4c077dc5f5b587a24f9e8f274a1b9c2d288f739b045fbefb7a"
+    },
+    {
+      "citation": "@GajardoVidal2021",
+      "before": "403aa8883381e69672c48b1d872f9ef3aaa8b87e6d513f4a0684c0be776caff9",
+      "after": "10a063fd4dbbcae85d07d71f724c1f15e9cc6ff0915315827c46ba85d56664e9"
+    },
+    {
+      "citation": "@Godecke2021",
+      "before": "c8183bb88c7799b23a6040ea9f36ad0f8dbcdf9563ad52a1a107f1035cd138e1",
+      "after": "74b19e9ed81aa3d49a99b20a4f5f1d7b54432ca1c99031cfbe29df948feebfd9"
+    },
+    {
+      "citation": "@Henseler2014",
+      "before": "501ed424c7c128ef49feea7fbf8ff895d8fbecccbd29f79b863e58dc943a6bea",
+      "after": "1c03d229f5d32119908eec49befbcdfd480c19faf5ab9f1986b92999ea1ce61b"
+    },
+    {
+      "citation": "@Hope2013",
+      "before": "81b8dff05ce9bd74867a2f02345e415d3671eeb3fd243cc394567bd3ea164b5c",
+      "after": "b58794ba11d1d1159105811aa7711b4af0d545ae3b840e34755f71d91b6a608b"
+    },
+    {
+      "citation": "@Johnson2022",
+      "before": "2e626d03ead923fca525366e8da075b9c672b111035a62973592599848b474fc",
+      "after": "d383698e953294472a58c29c62077821b438683d6350ac11e79e136887de816e"
+    },
+    {
+      "citation": "@Kasdan2025",
+      "before": "d5fedc009738bc2eb3a269e44d1493d95e10eba67eb038e1caf53ed1b8b3b045",
+      "after": "6d7f6d9c2c4cb1836235a1be84a5cf45f5952a0c3ec3d43714d58052318c885c"
+    },
+    {
+      "citation": "@Lazar2008",
+      "before": "464172eda4189023264c45d588a51a3e61a6573c6433289469d95050ddc5f61f",
+      "after": "47fac94b7c82575ffe0cf85e13aa6bd80092402137420100a9c743d2fa8b5738"
+    },
+    {
+      "citation": "@Marchina2011",
+      "before": "96c65a4ab8fac0a34e294825444e3d1c8b1792911d049ee8a8bb15fa895f3ca3",
+      "after": "80c672f0e2e4592bf8077d90a31798e9d09c37d25030659ae90907105b0e1380"
+    },
+    {
+      "citation": "@McKinnon2018",
+      "before": "86a334781139694eb89560733c7f8e3d7c98a09a045180548ad06befc1d41b00",
+      "after": "20d83355be46f341d21a8034cc6db1c9805be895336acdce8764172c3a72d117"
+    },
+    {
+      "citation": "@Pedersen1995",
+      "before": "a9bf0c70aac5c762a438e58d7fe7d5badb13578f6117f381c37ef79b45ed6eeb",
+      "after": "11f643d7078daaac28c1703b046defbe76796cfcc61fd593736c65b04ba7fd22"
+    },
+    {
+      "citation": "@Pedersen2004",
+      "before": "0192105bfab1b24ed8e116f1fee520cc43696fa6a2dcb0fe526711d1a98919f5",
+      "after": "d81c736541544b275391f0547ac305978f897122118a1c40cba6c988d4c2bbb7"
+    },
+    {
+      "citation": "@Robson2019",
+      "before": "8507825d5eec768b71cab6a57cbaa4d35d671d2005bf59df1b913be94ae36765",
+      "after": "5726aa8bb871a96bbc0f9d714172a818e36ef50b8a6b5515e75f5201387733ed"
+    }
+  ],
+  "papers_without_existing_pdf_index": [
+    "@Hope2016",
+    "@Moore2024"
+  ]
+}

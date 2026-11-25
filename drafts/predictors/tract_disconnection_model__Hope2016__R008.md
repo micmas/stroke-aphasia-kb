@@ -13,10 +13,26 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Comprehensive Aphasia Test
+      subtest: Category/letter fluency and object/action naming
+    metric: Separate CAT fluency and naming T scores
+    definition_source:
+      citation: '@Hope2016'
+      page: 2
+      quote: 'Following the emphasis, in Marchina et al. (2011), on fluency and naming skills, our analysis
+        focuses on T-scores assigned in the fluency and naming portions of the CAT. The fluency tests summarise
+        scores on two sub-tests. In the first test, patients are asked to name as many animals as they can
+        in one minute (i.e. a test of category fluency), and in the second test, patients are asked to say
+        as many words as they can beginning with the letter ‘S’ in one minute (i.e. a test of letter fluency):
+        scores are based on the number of correct utterances given. There are also two sub-tests in the
+        naming assessment: in the first, patients must name each of 24 line drawings (pictures) of common
+        ob- jects, and in the second, they name 5 pictures depicting common actions (e.g. ‘eating’).'
+      basis: Main paper methods checked directly
+      source_pdf: C5206_Hope2016.pdf
+      source_pdf_sha256: 958d8a86be14388bc200ab86e3f946d0fca7e82b3d3240be9a3e00369cbd5848
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: fluency_and_naming_scores
   target_kind: impairment
   claim: The tract disconnection model explains significantly more unique variance

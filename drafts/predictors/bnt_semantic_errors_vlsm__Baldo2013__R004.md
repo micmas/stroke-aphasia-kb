@@ -13,10 +13,22 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Boston Naming Test
+    metric: Semantic naming errors
+    definition_source:
+      citation: '@Baldo2013'
+      page: 7
+      quote: 'For comparison, we ran a VLSM analysis
+
+        of semantic errors on the BNT in a subset of the current
+
+        patient sample (n ¼ 85), but no signiﬁcant voxels emerged with
+
+        our strict, permutation-based correction method.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: semantic_errors
   target_kind: impairment
   claim: No significant voxels emerged when analyzing the anatomic correlates of semantic

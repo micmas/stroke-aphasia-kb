@@ -13,10 +13,21 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Quick Aphasia Battery
+      subtest: Overall summary score
+    metric: Overall aphasia severity
+    definition_source:
+      citation: '@Kasdan2025'
+      page: 6
+      quote: 'Speech/language evaluation
+
+        The Quick Aphasia Battery (QAB) is a reliable and multidimensional assessment of language
+
+        function that takes approximately 20 minutes to administer (Wilson et al., 2018, 2023).'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: overall_aphasia_severity
   target_kind: impairment
   claim: Tapping performance correlated with overall aphasia severity.

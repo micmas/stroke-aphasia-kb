@@ -13,10 +13,45 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Experimental word-repetition articulation task
+      subtest: 48 low-frequency words, repeated five times each
+    metric: 0/1 apraxic-error score per word; syllable, consonant-cluster and articulatory-travel conditions
+      retained in claim
+    definition_source:
+      citation: '@Baldo2011'
+      page: 3
+      quote: 'In a separate testing session, patients were administered an experimental test of articulation
+        by two different licensed speech pathologists who were blind to the lesion analysis data. This test
+        required patients to repeat an auditorily-pre- sented word five times in succession. For example,
+        the examiner would say spaghetti, and the patient was asked to repeat the word five times. There
+        were 48 words in total (see Table 1 for stimuli), and they varied on three dimensions: number of
+        syllables, initial consonant cluster, and degree of travel. We chose to look at these three aspects
+        of articulation, because they were suggested to be critical factors in a previous study on AOS (Ogar
+        et al., 2006). The stimuli were all low frequency nouns (KuceraeFrancis count < 34), with word frequency
+        matched across the three condition comparisons (i.e., low- vs high-travel, initial cluster vs no
+        initial cluster, and 1-syllable vs 3-syllable words; all ps < .05). Data regarding other variables
+        such as familiarity and age of acquisition were not available for all stimuli due to the use of
+        low frequency words. Half of the stimuli were 1-syllable words, and the other half were 3-syllable
+        words. Half of the words began with a consonant cluster (e.g., drill ), and the other half did not
+        (e.g., zeal ). Half of the words had a low degree of travel (i.e., the consonants were in a similar
+        place of articulation, e.g., nicety), and the other half, a high degree of travel (e.g., tobacco).
+        The low-travel condition consisted of words ranging between zero travel (e.g., sanity) and one place
+        transition (e.g., flattery), while the high-travel condition included words with one, two (e.g.,
+        tobacco), and three place transitions (e.g., spaghetti). The degree of travel was based on the number
+        of movements only; we did not factor in the “distance” (i.e., /pa/ to /ta/ was considered the same
+        as /pa/ to /ka/). The test was videotaped, and the speech pathologist scored any apraxic errors
+        in the patient’s performance. Patients received a score of 0 or 1 for each stimulus word (i.e.,
+        trial of 5 repetitions). If there were no errors on the 5 repetitions, it was scored as 0, and if
+        there were 1 or more errors on the 5 repe- titions, it was scored as 1 (i.e., whether the patient
+        made 1 or 5 errors on the 5 repetitions, it was scored as a single error). Other errors such as
+        those due to dysarthria or perseveration were not scored as errors.'
+      basis: Main paper methods checked directly
+      source_pdf: C0111_Baldo2011.pdf
+      source_pdf_sha256: 30de9cfab53deb282fe5a6eb5ca2ac07738f7163fa8a9bcacb15f5ce2b3e8cc4
+    note: Measurement metadata identified from source evidence; finding remains unapproved. Not the screening
+      Motor Speech Evaluation score.
   target: articulation_of_1_syllable_words
   target_kind: impairment
   claim: The left superior precentral gyrus of the insula (SPGI) showed minimal involvement

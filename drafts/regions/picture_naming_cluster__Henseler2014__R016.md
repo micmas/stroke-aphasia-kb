@@ -13,10 +13,25 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Study picture-naming battery
+      subtest: 170-item confrontation naming; category-specific comparisons in claim
+    metric: Naming performance
+    definition_source:
+      citation: '@Henseler2014'
+      page: 6
+      quote: 'As opposed to the rather unspeciﬁc results when using the AAT
+
+        picture-naming subtest, a large picture naming battery (170 items)
+
+        suggests that integrity of the left orbital inferior frontal gyrus
+
+        (Brodmann area 47) and the posterior middle temporal gyrus are
+
+        most critical for naming (Fig. 7).'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: picture_naming_impairment
   target_kind: impairment
   claim: Integrity of the left middle temporal gyrus, the left anterior temporal lobe,

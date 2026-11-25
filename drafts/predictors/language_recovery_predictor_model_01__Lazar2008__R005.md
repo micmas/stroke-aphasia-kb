@@ -13,10 +13,77 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Study language composite (BDAE/WAB)
+      subtest: Comprehension, repetition and naming
+    metric: Study-specific 0–30 combined domain score; baseline, 90-day and change definitions retained
+    definition_source:
+      citation: '@Lazar2008'
+      page: 1
+      quote: 'Measures
+
+        The
+
+        aphasia
+
+        battery
+
+        consisted
+
+        of
+
+        three
+
+        test
+
+        domains: Comprehension, repetition and naming.
+
+        For comprehension, patients were given either the
+
+        dictated
+
+        commands
+
+        subtest
+
+        from
+
+        the
+
+        Boston
+
+        Diagnostic Aphasia Examination15 (BDAE) or the
+
+        Sequential Commands subtest from the Western
+
+        Aphasia Battery16 (WAB).
+
+        Naming was assessed via
+
+        the
+
+        Object
+
+        Naming
+
+        subtest
+
+        from
+
+        the
+
+        WAB.
+
+        Repetition was tested with either the low and
+
+        high probability phrases from the BDAE, or with
+
+        the Repetition subtest from the WAB.'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved. Comprehension
+      and repetition could use either BDAE or WAB tasks; naming used WAB. Do not label this as a standard
+      WAB Aphasia Quotient.
   target: language_functioning_90_day
   target_kind: prognosis
   claim: A multiple regression model combining lesion size, age, and initial syndrome

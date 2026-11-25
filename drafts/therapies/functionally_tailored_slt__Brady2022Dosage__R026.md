@@ -13,10 +13,32 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Aachen Aphasia Test
+      subtest: Token Test
+    metric: Change from baseline expressed on the meta-analysis anchor scale
+    definition_source:
+      citation: '@Brady2022Dosage'
+      page: 3
+      quote: "We confirmed baseline and subse-\nquent time point data extraction and sought unreported data\
+        \ \nfrom the primary researchers where possible.9a,18\nFor each language outcome, we identified\
+        \ the outcome mea-\nsurement most frequently used by included data sets (anchor \nmeasure) and transformed\
+        \ the remainder (minority measures) \nto match the anchor’s range and format, thus retaining a clini-\n\
+        cally meaningful change from baseline score as a measure of \neffect size.18 Anchor measure overall\
+        \ language scores were \nrepresented by the Western Aphasia Battery–Aphasia Quotient \n(WAB-AQ),\
+        \ auditory comprehension was represented by \nthe Aachen Aphasia Test–Token Test (AAT-TT), naming\
+        \ by the \nBoston Naming Test, and functional communication by the \nAachen Aphasia Test–Spontaneous\
+        \ Speech Communication \n(AAT-SSC) rating score.21\nData on SLT interventions were categorized by\
+        \ regimen (fre-\nquency, intensity, duration, and dosage), content (home practice, \ntheoretical\
+        \ approach, language target, individualized tailoring by \nfunctional relevance, or difficulty level),\
+        \ delivery (face to face, \ncomputer supported, or self-managed), setting (in/outpatient), \nand\
+        \ provider (professional/nonprofessional).18,21 We cross-\nchecked data with primary research teams\
+        \ and available docu-\nmentation."
+      basis: Published source passage
+    note: 'Measurement metadata identified from source evidence; finding remains unapproved. Harmonized
+      anchor scale: contributing studies may have used other instruments. Not a claim that every participant
+      received this test.'
   target: auditory_comprehension
   target_kind: impairment
   claim: Auditory comprehension gains were only observed for functionally tailored

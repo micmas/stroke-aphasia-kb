@@ -13,10 +13,19 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Philadelphia Naming Test
+    metric: New correctly named items divided by (175 minus baseline correct items)
+    definition_source:
+      citation: '@Bonilha2016'
+      page: 5
+      quote: "Treatment-related improvement in naming was defined \nbased on the difference between pre-\
+        \ and posttreatment per-\nformance on the PNT, adjusted based on the potential for \nrecovery, as\
+        \ follows: the number of new items correctly \nnamed on the PNT was divided by the total number\
+        \ of items \nin the PNT [175] minus the number of correctly named \nitems at baseline."
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: naming_improvement
   target_kind: prognosis
   claim: Higher global network normalized small worldness (NSW) is associated with

@@ -13,10 +13,21 @@ findings:
     audited_on: '2026-11-25'
     scope: Published metadata and linked excerpts; no new model pass or human approval
   outcome_measurement:
-    status: needs_source_review
-    instruments: []
-    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
-      or a paper-wide test list.
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery
+      subtest: Aphasia classification
+    metric: Broca's aphasia classification
+    definition_source:
+      citation: '@Fridriksson2015'
+      page: 2
+      quote: 'Aphasia
+
+        types were classiﬁed according to the Western Aphasia Battery (WAB;
+
+        Kertesz 1982).'
+      basis: Published source passage
+    note: Measurement metadata identified from source evidence; finding remains unapproved.
   target: brocas_aphasia
   target_kind: impairment
   claim: A combined logistic regression model using proportional injury to the Broca's
