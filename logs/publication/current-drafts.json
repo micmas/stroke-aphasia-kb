@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-24T21:44:59.412115+00:00",
+  "snapshot_at": "2026-11-25T00:23:09.379524+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -6429,6 +6429,362 @@
       "source_sha256": "0d33ee409d44e78942cf58f44a18048be450644c87fc626a95c84485850050c3",
       "paper": "Plowman2012",
       "candidate": "R009"
+    },
+    "drafts/regions/anterior_inferior_temporal_lobe_cluster__Plowman2012__R015.md": {
+      "source_sha256": "72752929ec5f7c8d46e4fab485e94497084e8891948d544d10372a2c1980df48",
+      "paper": "Plowman2012",
+      "candidate": "R015"
+    },
+    "drafts/regions/frontal_isthmus_periventricular_wm_cluster__Plowman2012__R017.md": {
+      "source_sha256": "997ac4f96080c3e008227a84672fde20dbc06bd0ac8385c527f9cf3af410b573",
+      "paper": "Plowman2012",
+      "candidate": "R017"
+    },
+    "drafts/therapies/melodic_intonation_therapy__Plowman2012__R019.md": {
+      "source_sha256": "c289eaecb076ab633d2edf8cfd3d3d85adbd2027819b75c81056676ad55b2696",
+      "paper": "Plowman2012",
+      "candidate": "R019",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Publication scope check: Plowman2012 is a narrative review. The six-person DTI/MIT result on PDF p4 is explicitly attributed to Schlaug et al. (2009), reference 59, rather than a primary cohort conducted by Plowman. The draft labels this as cohort evidence under Plowman2012. Withheld pending source-design/provenance review; original outputs preserved."
+    },
+    "drafts/predictors/patient_related_variables__Plowman2012__R020.md": {
+      "source_sha256": "0fa4912b88f7040c411e39e128c12e0bef5bcefd14f444efbe98a900336a0a0c",
+      "paper": "Plowman2012",
+      "candidate": "R020"
+    },
+    "drafts/therapies/ci_aphasia_therapy__Pulvermuller2001__R001.md": {
+      "source_sha256": "b8da4ff2d94b0c358b14da139a863390284836bfc4d7913d938ff2c6d8b73034",
+      "paper": "Pulvermuller2001",
+      "candidate": "R001"
+    },
+    "drafts/therapies/ci_aphasia_therapy__Pulvermuller2001__R002.md": {
+      "source_sha256": "69e89a055bdb3a3022a02160e6405bde259f522faa5f72787fca4be13c9f78da",
+      "paper": "Pulvermuller2001",
+      "candidate": "R002"
+    },
+    "drafts/therapies/ci_aphasia_therapy__Pulvermuller2001__R003.md": {
+      "source_sha256": "ddf241b2c21c95b552103d6ac97b7df857c286094e7dd47d12bda2d413924125",
+      "paper": "Pulvermuller2001",
+      "candidate": "R003"
+    },
+    "drafts/therapies/conventional_aphasia_therapy__Pulvermuller2001__R004.md": {
+      "source_sha256": "75cde647525ec54586139da5b3c5db35897261cd54037659a038f1120def2a8e",
+      "paper": "Pulvermuller2001",
+      "candidate": "R004"
+    },
+    "drafts/therapies/ci_aphasia_therapy__Pulvermuller2001__R005.md": {
+      "source_sha256": "3ab80daaea2aaea646af31a0f3fdae6b9980ca22e99283b475c82fc3849a1cd7",
+      "paper": "Pulvermuller2001",
+      "candidate": "R005"
+    },
+    "drafts/therapies/conventional_aphasia_therapy__Pulvermuller2001__R006.md": {
+      "source_sha256": "7f2bc6839a3d77bfc52156b3f6d54c37113ac9f7ae6147afb5a8c77c18f3a5fb",
+      "paper": "Pulvermuller2001",
+      "candidate": "R006"
+    },
+    "drafts/therapies/ci_aphasia_therapy__Pulvermuller2001__R007.md": {
+      "source_sha256": "bd8e52f195804f9cc74d1f4017719f0020972acfbe965e21a34aeb3f74034453",
+      "paper": "Pulvermuller2001",
+      "candidate": "R007"
+    },
+    "drafts/therapies/conventional_aphasia_therapy__Pulvermuller2001__R008.md": {
+      "source_sha256": "c84d16b86ce91b124cf2e8847e10ad1d9e425a20846407a288c36e1254f06c27",
+      "paper": "Pulvermuller2001",
+      "candidate": "R008"
+    },
+    "drafts/therapies/ci_aphasia_therapy__Pulvermuller2001__R009.md": {
+      "source_sha256": "6faf805c90f8dee1964b354352a2a06586d937a289f4208dcbfa5e6585580898",
+      "paper": "Pulvermuller2001",
+      "candidate": "R009"
+    },
+    "drafts/regions/lentiform_nucleus__Radanovic2017__R001.md": {
+      "source_sha256": "02c7e1f35d4dc4687d43b2ca3597ed06b258bc111efe2282f5aac62fe5e682d5",
+      "paper": "Radanovic2017",
+      "candidate": "R001"
+    },
+    "drafts/regions/striatum_dysarthria__Radanovic2017__R003.md": {
+      "source_sha256": "6d729091230605604b0cab7a343d4eb3c9d44e581a7df946e09aedc5e8154180",
+      "paper": "Radanovic2017",
+      "candidate": "R003"
+    },
+    "drafts/regions/caudate_nucleus__Radanovic2017__R005.md": {
+      "source_sha256": "f4aee87be60933f1649abd99890a422c5e314eab66f016db05e7a159bb03f9be",
+      "paper": "Radanovic2017",
+      "candidate": "R005"
+    },
+    "drafts/regions/globus_pallidus_striatum_acute_null__Radanovic2017__R006.md": {
+      "source_sha256": "7a0073f361766b9c4842ad909d53476cca2fb63202923bc4805814cd7c64829b",
+      "paper": "Radanovic2017",
+      "candidate": "R006"
+    },
+    "drafts/regions/putamen_dysarthria_chronic__Radanovic2017__R007.md": {
+      "source_sha256": "37bb102e013f0949c3b07583eee23f4ca362f3046be4c356555e3c672039db48",
+      "paper": "Radanovic2017",
+      "candidate": "R007"
+    },
+    "drafts/regions/internal_capsule__Radanovic2017__R008.md": {
+      "source_sha256": "70a078c52784dd683034262ea69950c4b2586cac0fbb5fa7f4ec952aeae307ec",
+      "paper": "Radanovic2017",
+      "candidate": "R008"
+    },
+    "drafts/regions/right_hemisphere_bg_lesions__Radanovic2017__R009.md": {
+      "source_sha256": "6c3a1e5c35cfe1e29f1312ef9778b055e9bec2621f2733f053f989da23c2256e",
+      "paper": "Radanovic2017",
+      "candidate": "R009"
+    },
+    "drafts/predictors/cortical_hypoperfusion__Radanovic2017__R012.md": {
+      "source_sha256": "4964a9ca8904bfa438f798dc9de57056fdefdca50637d45e3ade803917665e51",
+      "paper": "Radanovic2017",
+      "candidate": "R012",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Publication scope check: the language-disturbance/neglect association on PDF p11 is explicitly attributed to Perani et al. (1987) in the narrative discussion, not to the review authors\u2019 pooled lesion-site analysis. The draft labels this association as a meta-analysis result under Radanovic2017. Withheld pending source-design/provenance review; original outputs preserved."
+    },
+    "drafts/regions/behavioural_impairment_cluster__Ramsey2017__R001.md": {
+      "source_sha256": "9dbce25c3bcd3415b24797d404394dfc84627d8d50657935b77606ad51826c4a",
+      "paper": "Ramsey2017",
+      "candidate": "R001"
+    },
+    "drafts/predictors/stroke_recovery_time_course__Ramsey2017__R002.md": {
+      "source_sha256": "4db9c4941183bd52c09380c3aa06c5f57466aaaabac0630981c193ab543381a4",
+      "paper": "Ramsey2017",
+      "candidate": "R002"
+    },
+    "drafts/regions/slf_ii_iii__Ramsey2017__R003.md": {
+      "source_sha256": "8df105ba757506d0ab5b6348bb6ef3858b08d45a9f95070ba4eb83fba00f1e68",
+      "paper": "Ramsey2017",
+      "candidate": "R003"
+    },
+    "drafts/regions/posterior_arcuate_fasciculus__Ramsey2017__R004.md": {
+      "source_sha256": "8dcb0ff24b76f628eaea3d34a24109d1fbd8fa64a984f7a4ef11becba77c3492",
+      "paper": "Ramsey2017",
+      "candidate": "R004"
+    },
+    "drafts/regions/corticospinal_tract__Ramsey2017__R005.md": {
+      "source_sha256": "16d0d06d33140b7398451853161172195f3838e36a3620037b9b031bd7a6f116",
+      "paper": "Ramsey2017",
+      "candidate": "R005"
+    },
+    "drafts/ingredients/education_level__Ramsey2017__R006.md": {
+      "source_sha256": "68172b019e7f9fb0dac2fad1a1c15de91561405dffbacdbea230b7ed776a11de",
+      "paper": "Ramsey2017",
+      "candidate": "R006"
+    },
+    "drafts/predictors/multiple_deficits__Ramsey2017__R007.md": {
+      "source_sha256": "ef4b4611fdf01cbbc81585ebde2193925d7d6e4fa452b8ec7e3c734101e5aaa9",
+      "paper": "Ramsey2017",
+      "candidate": "R007"
+    },
+    "drafts/regions/behavioural_variance_clusters__Ramsey2017__R008.md": {
+      "source_sha256": "bd50a47efccd764f49d959719e44d265a81ea80b6b3c2f94b579b4c9f715fc88",
+      "paper": "Ramsey2017",
+      "candidate": "R008"
+    },
+    "drafts/predictors/acute_impairment_severity__Ramsey2017__R011.md": {
+      "source_sha256": "83818101f15ecd9ee9cee7b27dec28669b2302d1362f068733f27a17cbb26e77",
+      "paper": "Ramsey2017",
+      "candidate": "R011"
+    },
+    "drafts/predictors/behavioural_domain_recovery_ratio__Ramsey2017__R012.md": {
+      "source_sha256": "8fd37bbacfc8d3867475ee309bed163e9d187d7f32e01e4ffb05e672db7c93d1",
+      "paper": "Ramsey2017",
+      "candidate": "R012"
+    },
+    "drafts/predictors/behavioural_domain_recovery_ratio__Ramsey2017__R013.md": {
+      "source_sha256": "012055c1ea9c0cfe6757cce711c46503adfaa5e2b37efbcb0975a500443201a1",
+      "paper": "Ramsey2017",
+      "candidate": "R013"
+    },
+    "drafts/impairments/motor_domain_recovery__Ramsey2017__R014.md": {
+      "source_sha256": "67ebf757336151f40459fed804191dce2942b64d7aaa98824816856a1984f30a",
+      "paper": "Ramsey2017",
+      "candidate": "R014"
+    },
+    "drafts/predictors/recovery_time_course__Ramsey2017__R015.md": {
+      "source_sha256": "6f21a5bce2c58ed2951517258081f8e080cedf70e45a884e56a1a927aa5c1080",
+      "paper": "Ramsey2017",
+      "candidate": "R015"
+    },
+    "drafts/predictors/sub_acute_behavioural_score__Ramsey2017__R016.md": {
+      "source_sha256": "0414215e019c21e8e934e8435fd617e3eedbb1ee29774433ef22ae7b53d8f8d0",
+      "paper": "Ramsey2017",
+      "candidate": "R016"
+    },
+    "drafts/predictors/chronic_language_prediction_model__Ramsey2017__R017.md": {
+      "source_sha256": "3c05e050750e352b36824bba77535fbb463c4c342ad59cfb2e473d09a13e346e",
+      "paper": "Ramsey2017",
+      "candidate": "R017"
+    },
+    "drafts/predictors/age_and_therapy_hours__Ramsey2017__R019.md": {
+      "source_sha256": "375fc021ef851e0ecdeca442578a24468babd7eba90599651bcca421d54ea2aa",
+      "paper": "Ramsey2017",
+      "candidate": "R019"
+    },
+    "drafts/predictors/number_of_deficits__Ramsey2017__R020.md": {
+      "source_sha256": "bfe4eb794852ebd0e4c86ec9d17338af3032582e2c6dc5203faf0d16718ba74f",
+      "paper": "Ramsey2017",
+      "candidate": "R020"
+    },
+    "drafts/predictors/number_of_deficits__Ramsey2017__R021.md": {
+      "source_sha256": "74f03a5503c5a8816abb9c80813a51671a4ca1813954b73fab23fe64191da42e",
+      "paper": "Ramsey2017",
+      "candidate": "R021"
+    },
+    "drafts/predictors/number_of_deficits__Ramsey2017__R022.md": {
+      "source_sha256": "d0f188e360a303898d0769d1962e5268adb65933ccd5703655700ecfd3f80927",
+      "paper": "Ramsey2017",
+      "candidate": "R022"
+    },
+    "drafts/predictors/number_of_deficits__Ramsey2017__R023.md": {
+      "source_sha256": "cb8372ee83cc95f667e02d8d83058492114653060c83ed1a2b1ce4de6e2274d0",
+      "paper": "Ramsey2017",
+      "candidate": "R023"
+    },
+    "drafts/predictors/sub_acute_attention_score__Ramsey2017__R024.md": {
+      "source_sha256": "69cbe1dd02e6800863b7a8062ebdfb0fb16f419f549f1bec21f22df6539a4c7b",
+      "paper": "Ramsey2017",
+      "candidate": "R024"
+    },
+    "drafts/predictors/sub_acute_inter_domain_deficit__Ramsey2017__R025.md": {
+      "source_sha256": "210a1d67bfa2a6381aa515f4c101353f2747d1c2daa38c2be7be6c4b39bbd5c0",
+      "paper": "Ramsey2017",
+      "candidate": "R025"
+    },
+    "drafts/predictors/lesion_topography_language_predictor__Ramsey2017__R026.md": {
+      "source_sha256": "3b7cea7a86db395ce7e171f3724337407bc07b1289e3310c19bfe729dc32e8ea",
+      "paper": "Ramsey2017",
+      "candidate": "R026"
+    },
+    "drafts/regions/left_temporo_parietal_occipital_white_matter_subcortical_lesions__Ramsey2017__R027.md": {
+      "source_sha256": "20579210f248087aeaf0de4dd718db586f49bd18d6e98f3522965919694bcf59",
+      "paper": "Ramsey2017",
+      "candidate": "R027"
+    },
+    "drafts/regions/arcuate_fasciculus_slf2_ilf_cluster__Ramsey2017__R028.md": {
+      "source_sha256": "2f87bfb67269af4b9e21d524f197fec29aabe8ad69f9af7398d7159ad6a075f9",
+      "paper": "Ramsey2017",
+      "candidate": "R028"
+    },
+    "drafts/predictors/flipped_lesion_components__Ramsey2017__R029.md": {
+      "source_sha256": "9fa5c36455158084a751ded8d87e0a3ff1f01c9e5ad205e151708704addebd15",
+      "paper": "Ramsey2017",
+      "candidate": "R029"
+    },
+    "drafts/regions/dorsal_corticospinal_tract_damage__Ramsey2017__R030.md": {
+      "source_sha256": "ea2f1e7a4f77cd4a4e7f1dce44dfba98fc7030ae03236a2df621ef30d3ff247f",
+      "paper": "Ramsey2017",
+      "candidate": "R030"
+    },
+    "drafts/regions/cortical_motor_sensory_isolated_damage__Ramsey2017__R031.md": {
+      "source_sha256": "8b7df45bd40a83c8b706f9f4a25e876ba7bcdeb5344ee3e5f78a2b40906b19be",
+      "paper": "Ramsey2017",
+      "candidate": "R031"
+    },
+    "drafts/predictors/attention_recovery_topography_model__Ramsey2017__R032.md": {
+      "source_sha256": "5ddae60b837672b3f6a04c5f5fb29b1ed76f2d4356aa0109fb51d8bf010bfef9",
+      "paper": "Ramsey2017",
+      "candidate": "R032"
+    },
+    "drafts/regions/attention_white_matter_cluster__Ramsey2017__R033.md": {
+      "source_sha256": "37caab985e3e0547d080c6483904d9f79d2e085d089084af07a5fd5de1973986",
+      "paper": "Ramsey2017",
+      "candidate": "R033"
+    },
+    "drafts/predictors/lesion_topography_memory_prediction__Ramsey2017__R034.md": {
+      "source_sha256": "618be6a5f3a77b0e398fb1517f57b0b64bd641bf75e4a68ccf4fdc4d1cb9a994",
+      "paper": "Ramsey2017",
+      "candidate": "R034"
+    },
+    "drafts/predictors/white_matter_damage__Ramsey2017__R035.md": {
+      "source_sha256": "4c174881cfd133681266fc0d305963e6fca17cfc7bf0ce7591f4f38db8b2f434",
+      "paper": "Ramsey2017",
+      "candidate": "R035"
+    },
+    "drafts/regions/age__Ramsey2017__R036.md": {
+      "source_sha256": "5829b900f176ea09f74988678414d0e57ca898b6c8b0ed2fb3d1c22c66682ace",
+      "paper": "Ramsey2017",
+      "candidate": "R036"
+    },
+    "drafts/impairments/perisylvian_reading_lexicality_effect__Rapcsak2009__R001.md": {
+      "source_sha256": "ed6f2407fe7e584ae9d50527f596aa27ebc146146b4dc385f6254a098968be0b",
+      "paper": "Rapcsak2009",
+      "candidate": "R001"
+    },
+    "drafts/impairments/perisylvian_spelling_lexicality__Rapcsak2009__R002.md": {
+      "source_sha256": "fb53bbdb5449964112687b706e41d987fb9a9ab21b34dda5a90d2403ad69748e",
+      "paper": "Rapcsak2009",
+      "candidate": "R002"
+    },
+    "drafts/predictors/lexicality_vs_regularity_effect__Rapcsak2009__R003.md": {
+      "source_sha256": "7df3b95205fa90bc0e72c6444ce1e693eef3ed0d4c9500a2e4168f8c13df1e7c",
+      "paper": "Rapcsak2009",
+      "candidate": "R003"
+    },
+    "drafts/predictors/oral_repetition_lexicality_effect__Rapcsak2009__R004.md": {
+      "source_sha256": "a708eb9225536e5468f565813871f05fffa5d7312962ca4af590ee5a23900af1",
+      "paper": "Rapcsak2009",
+      "candidate": "R004"
+    },
+    "drafts/predictors/phonological_composite_score__Rapcsak2009__R005.md": {
+      "source_sha256": "51bf53750b73cc99f89fa400571307a3c4fba8d9199ff602c93a0774fc3e5a7e",
+      "paper": "Rapcsak2009",
+      "candidate": "R005"
+    },
+    "drafts/predictors/phonological_composite_score__Rapcsak2009__R006.md": {
+      "source_sha256": "196b7b9d17ca1fbbb0febc3370360b9f468599730bddfe0539722137439b4017",
+      "paper": "Rapcsak2009",
+      "candidate": "R006"
+    },
+    "drafts/regions/perisylvian_roi_damage__Rapcsak2009__R010.md": {
+      "source_sha256": "fe9e7a5ab6d7b0a6a95bce998da12ccf69a5b5e37d34d839c27d3c759678780a",
+      "paper": "Rapcsak2009",
+      "candidate": "R010"
+    },
+    "drafts/regions/anterior_perisylvian_reading_lexicality_cluster__Rapcsak2009__R011.md": {
+      "source_sha256": "37cd226a49bd296bcf337d54613a7b50e5e7f966c4a94d5f7a021885edce30c7",
+      "paper": "Rapcsak2009",
+      "candidate": "R011"
+    },
+    "drafts/regions/perisylvian_roi_spelling_lexicality__Rapcsak2009__R012.md": {
+      "source_sha256": "fcb52e895711735cfeda2bf09e79c353fc0a8c21234bd7f6f6cfc1912dc5b6de",
+      "paper": "Rapcsak2009",
+      "candidate": "R012"
+    },
+    "drafts/predictors/perisylvian_roi_count__Rapcsak2009__R013.md": {
+      "source_sha256": "4af462216f86e624df2b47d4b605cd3bdc70e1a6c8439e89e98ff0bfa3c879b4",
+      "paper": "Rapcsak2009",
+      "candidate": "R013"
+    },
+    "drafts/regions/extrasylvian_extension__Rapcsak2009__R014.md": {
+      "source_sha256": "ab45e7f4ea1f27478a2ac886d519484c60a9147d8755dfc318e037b6ca3e3702",
+      "paper": "Rapcsak2009",
+      "candidate": "R014"
+    },
+    "drafts/therapies/constraint_induced_language_therapy__Raymer__R001.md": {
+      "source_sha256": "826aa82538625fba7719df40458b9cbc049072f5b338cedd861bb1454592b9a1",
+      "paper": "Raymer",
+      "candidate": "R001"
+    },
+    "drafts/therapies/constraint_induced_language_therapy__Raymer__R002.md": {
+      "source_sha256": "a48e18a39d58f39f251e1780b2e05cd08b2cf3b15bdefe7d0151fea7d9d93b75",
+      "paper": "Raymer",
+      "candidate": "R002"
+    },
+    "drafts/therapies/cilt__Raymer__R003.md": {
+      "source_sha256": "c3af0a5ef6bbf0c45cdcf50e908beffcf615ab5036a884dd6c375a2c121ba706",
+      "paper": "Raymer",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Publication scope check: Raymer and Roitsch appraise six systematic reviews, rather than conduct a new treatment meta-analysis (PDF p1). The positive trained-naming synthesis on p4 is explicitly attributed to Pierce et al. (2019). This record uses meta-analysis evidence quality under Raymer without distinguishing the secondary review from the original synthesis. Withheld pending source-design/provenance review; original outputs preserved."
+    },
+    "drafts/therapies/cilt__Raymer__R004.md": {
+      "source_sha256": "73ca9cbcc7edfc7559608daf222c9381d63c43fe81ce08d74e20886679d9e251",
+      "paper": "Raymer",
+      "candidate": "R004"
+    },
+    "drafts/therapies/cilt__Raymer__R006.md": {
+      "source_sha256": "0e885452bd64835137b4338760a3c7fc0460fb0a677ef51614fa1344ffcf178e",
+      "paper": "Raymer",
+      "candidate": "R006"
     }
   }
 }
