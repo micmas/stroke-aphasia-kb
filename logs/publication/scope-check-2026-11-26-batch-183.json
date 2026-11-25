@@ -1,0 +1,96 @@
+{
+  "checked_at": "2026-11-25T15:50:55.578888+00:00",
+  "publication_snapshot": "2026-11-25T15:49:36.021027+00:00",
+  "scope": "Paper identity, claim/population scope and study-design provenance only; no human scientific approval.",
+  "snapshot_additions": 35,
+  "publishable_additions": 33,
+  "papers": [
+    "Thye2021",
+    "Turkeltaub2011",
+    "Walker2011",
+    "Wallentin2018"
+  ],
+  "zero_yield_completed_papers": [
+    "Watila2015"
+  ],
+  "identity_check": "Every new claim and population inspected against its named source PDF. No adjacent-article contamination found. Two analysis/sample-unit provenance issues held; originals preserved.",
+  "quarantined": [
+    {
+      "path": "drafts/regions/fluency_network_cluster__Thye2021__R009.md",
+      "paper": "Thye2021",
+      "candidate": "R009",
+      "reason": "PDF pp. 3 and 5 describes mass-univariate VLSM and multivariate SCCAN; this record notes SCCAN but labels method=RLSM (region-based lesion-symptom mapping). Reconcile analysis-method provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/fluency_network_cluster__Thye2021__R009.md",
+      "sha256": "859f3d95987a5dcb71b01406ccd8a3eb3e48f47102bf71d75741ce17584f97fe"
+    },
+    {
+      "path": "drafts/regions/sex__Wallentin2018__R004.md",
+      "paper": "Wallentin2018",
+      "candidate": "R004",
+      "reason": "PDF pp. 6-7 describes a post-hoc weighted analysis of six studies with sex-stratified age information, not a six-participant sample. The draft sample.n=6 conflates studies with patients and method=behavioral_only obscures the pooled-study analysis. Reconcile sample unit and analysis provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/sex__Wallentin2018__R004.md",
+      "sha256": "36e6ef41f2391aef89add76a7f68620706324329f9c91a440c098d2fdb175596"
+    }
+  ],
+  "published_paths": [
+    "drafts/predictors/age_severity_interaction__Wallentin2018__R009.md",
+    "drafts/predictors/ba21_semplus_sensitivity__Walker2011__R006.md",
+    "drafts/predictors/sex_age_interaction__Wallentin2018__R010.md",
+    "drafts/predictors/stroke_severity_hemiplegia__Wallentin2018__R008.md",
+    "drafts/predictors/svr_lsm_fluency__Thye2021__R008.md",
+    "drafts/regions/age__Wallentin2018__R007.md",
+    "drafts/regions/anterior_insula_cluster__Turkeltaub2011__R011.md",
+    "drafts/regions/anterior_white_matter_cluster__Thye2021__R001.md",
+    "drafts/regions/aphasia_language_activation_cluster__Turkeltaub2011__R002.md",
+    "drafts/regions/atl_cluster__Walker2011__R003.md",
+    "drafts/regions/atl_cluster__Walker2011__R004.md",
+    "drafts/regions/atl_cluster__Walker2011__R005.md",
+    "drafts/regions/atl_semantic_error_cluster__Walker2011__R001.md",
+    "drafts/regions/left_inferior_frontal_lesion__Turkeltaub2011__R003.md",
+    "drafts/regions/left_porb_cluster__Turkeltaub2011__R012.md",
+    "drafts/regions/letter_fluency_sccan_network__Thye2021__R005.md",
+    "drafts/regions/letter_fluency_sccan_network__Thye2021__R006.md",
+    "drafts/regions/letter_fluency_vlsm_cluster__Thye2021__R004.md",
+    "drafts/regions/lh_language_motor_network_control__Turkeltaub2011__R001.md",
+    "drafts/regions/lh_middle_frontal_gyrus_cluster__Turkeltaub2011__R006.md",
+    "drafts/regions/lh_new_nodes_cluster__Turkeltaub2011__R005.md",
+    "drafts/regions/rh_aphasia_clusters__Turkeltaub2011__R007.md",
+    "drafts/regions/right_dorsal_pop_cluster__Turkeltaub2011__R013.md",
+    "drafts/regions/right_ifg_homologous_cluster__Turkeltaub2011__R009.md",
+    "drafts/regions/right_ptr__Turkeltaub2011__R014.md",
+    "drafts/regions/right_ptr_if_lesion_cluster__Turkeltaub2011__R010.md",
+    "drafts/regions/right_ventral_pop_cluster__Turkeltaub2011__R008.md",
+    "drafts/regions/semantic_fluency_residuals__Thye2021__R007.md",
+    "drafts/regions/semantic_fluency_sccan_cluster__Thye2021__R003.md",
+    "drafts/regions/semantic_fluency_sccan_network__Thye2021__R002.md",
+    "drafts/regions/sex__Wallentin2018__R006.md",
+    "drafts/regions/spared_lh_language_nodes__Turkeltaub2011__R004.md",
+    "drafts/regions/wernickes_area__Walker2011__R007.md"
+  ],
+  "source_papers": [
+    {
+      "paper": "Thye2021",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C1802_Thye2021.pdf",
+      "sha256": "ad68c8b2ad667f4743d4ee38abf3d4398ed15769af423e150ab1d1a9d6761109",
+      "identity_scope": "55 participants with aphasia after a single left stroke; mean 39.80 months. Semantic Fluency Test and COWAT, VLSM, SCCAN and post-hoc SVR-LSM. Claims checked against Methods pp. 2-3 and Results p. 5. R009 held for incompatible RLSM label."
+    },
+    {
+      "paper": "Turkeltaub2011",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0095_Turkeltaub2011.pdf",
+      "sha256": "0a7ff23965c385032a7073cbb350bcf119ae89a7d2c9a1a1a0d93dab6ee0fb7e",
+      "identity_scope": "ALE meta-analysis of 12 studies (105 chronic aphasic patients, 129 healthy controls); inferior-frontal lesion subgroups 65/40 with acknowledged classification approximation. Healthy-control R001 remains explicitly healthy; other claims concern aphasic network recruitment and functional homology. Results pp. 2-4 and discussion pp. 6-7 support named clusters, not direct intervention efficacy."
+    },
+    {
+      "paper": "Walker2011",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0031_Walker2011.pdf",
+      "sha256": "d95039d49e60c7e416291ea53fddd868225c2b1786b91dcd74f40737a9f8cecc",
+      "identity_scope": "Reanalysis of 64 left-stroke participants with current or initial aphasia, same cohort as Schwartz2009; mean 68 months, 59/64 >=6 months. Broad SemPlus naming errors, NVcomp and lesion-volume controls, BA21/BA22 sensitivity analyses checked against Methods pp. 3-4 and Results/discussion pp. 6-10. No adjacent article or substituted cohort."
+    },
+    {
+      "paper": "Wallentin2018",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0055_Wallentin2018.pdf",
+      "sha256": "2c0b802069cc237e3ab36fcd34c6dc316671c92e44194a26f1b5cf1e6814ec96",
+      "identity_scope": "Separate literature meta-analysis and US HCUP/NIS state/year summary-data analysis (2011-2014; 1,967,038 stroke records). Retained R006-R010 are database analyses; age and hemiplegia are aggregate/proxy covariates, not individual follow-up predictions. Interaction is uncorrected p<.05. R004 pooled six-study analysis held for sample-unit/method provenance."
+    }
+  ]
+}

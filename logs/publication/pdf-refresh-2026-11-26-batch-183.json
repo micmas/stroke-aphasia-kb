@@ -1,0 +1,74 @@
+{
+  "checked_at": "2026-11-25T15:57:56.558996+00:00",
+  "publication_snapshot": "2026-11-25T15:49:36.021027+00:00",
+  "policy": "Only papers with remaining published findings refreshed; PDF access categories and withdrawal ledger preserved.",
+  "report": {
+    "Desjardins2026": {
+      "status": "missing_pdf_index"
+    },
+    "Gilbert2025": {
+      "status": "missing_pdf_index"
+    },
+    "Goldenberg1994": {
+      "status": "missing_pdf_index"
+    },
+    "Hillis2002": {
+      "status": "missing_pdf_index"
+    },
+    "Hobden2024": {
+      "status": "missing_pdf_index"
+    },
+    "Hope2016": {
+      "status": "missing_pdf_index"
+    },
+    "Kourtidou2021": {
+      "status": "missing_pdf_index"
+    },
+    "Lukic2017": {
+      "status": "missing_pdf_index"
+    },
+    "Matchin2024": {
+      "status": "missing_pdf_index"
+    },
+    "Moore2024": {
+      "status": "missing_pdf_index"
+    },
+    "OsaGarcia2024": {
+      "status": "missing_pdf_index"
+    },
+    "Pendlebury2009": {
+      "status": "missing_pdf_index"
+    },
+    "Schellekens2026": {
+      "status": "missing_pdf_index"
+    },
+    "Sewell2025": {
+      "status": "missing_pdf_index"
+    },
+    "Sihvonen2023": {
+      "status": "missing_pdf_index"
+    },
+    "Tang2022": {
+      "status": "missing_pdf_index"
+    },
+    "Thurston2026": {
+      "status": "missing_pdf_index"
+    },
+    "Thye2021": {
+      "status": "missing_pdf_index"
+    },
+    "Turkeltaub2011": {
+      "status": "uploaded",
+      "placed": 86,
+      "missed": 0
+    },
+    "Walker2011": {
+      "status": "missing_pdf_index"
+    },
+    "Wallentin2018": {
+      "status": "uploaded",
+      "placed": 38,
+      "missed": 0
+    }
+  }
+}

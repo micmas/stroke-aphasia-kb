@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-25T14:39:53.656360+00:00",
+  "last_publication_snapshot": "2026-11-25T15:49:36.021027+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -180,7 +180,12 @@
     "Thiel2013",
     "Thompson2003",
     "Thurston2026",
-    "Thye2018"
+    "Thye2018",
+    "Thye2021",
+    "Turkeltaub2011",
+    "Walker2011",
+    "Wallentin2018",
+    "Watila2015"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
   "recovery_publication_ready_seen": false

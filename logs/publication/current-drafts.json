@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-25T14:39:53.656360+00:00",
+  "snapshot_at": "2026-11-25T15:49:36.021027+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -8351,6 +8351,185 @@
       "source_sha256": "14516de1d9da452aba1a6ade6b4435231ad753fa013b43396239b7c2eb15198e",
       "paper": "Thye2018",
       "candidate": "R015"
+    },
+    "drafts/regions/anterior_white_matter_cluster__Thye2021__R001.md": {
+      "source_sha256": "2f54d98c3332e2a60e92a8effa52b7715f765020a057f33d6db2203ae3fad268",
+      "paper": "Thye2021",
+      "candidate": "R001"
+    },
+    "drafts/regions/semantic_fluency_sccan_network__Thye2021__R002.md": {
+      "source_sha256": "9c6a3a88180b1aad1d277a47539d685d2fc50d67af42dc73f5339f60310f4019",
+      "paper": "Thye2021",
+      "candidate": "R002"
+    },
+    "drafts/regions/semantic_fluency_sccan_cluster__Thye2021__R003.md": {
+      "source_sha256": "cf08a8ec007e0988719c17e25cc6de5ad41b9fe7db6d162d4e4a519cf5037799",
+      "paper": "Thye2021",
+      "candidate": "R003"
+    },
+    "drafts/regions/letter_fluency_vlsm_cluster__Thye2021__R004.md": {
+      "source_sha256": "a58ed0a4ba6c551d7c19f2b8db27cbfeb008c95614dd16e9ddd52703544b8a7e",
+      "paper": "Thye2021",
+      "candidate": "R004"
+    },
+    "drafts/regions/letter_fluency_sccan_network__Thye2021__R005.md": {
+      "source_sha256": "a7300f5cc6437ed0fd8d14d37e2ca9af0f99f1e0ecc370e584035f964710c1c4",
+      "paper": "Thye2021",
+      "candidate": "R005"
+    },
+    "drafts/regions/letter_fluency_sccan_network__Thye2021__R006.md": {
+      "source_sha256": "31e722394c258baf47700b56bd49d5b327d324537269c800d54144a5a93b188d",
+      "paper": "Thye2021",
+      "candidate": "R006"
+    },
+    "drafts/regions/semantic_fluency_residuals__Thye2021__R007.md": {
+      "source_sha256": "296942956b5f968a20b0aa1710042a82ede88240cfd0e01bec210b06d5cbf9d2",
+      "paper": "Thye2021",
+      "candidate": "R007"
+    },
+    "drafts/predictors/svr_lsm_fluency__Thye2021__R008.md": {
+      "source_sha256": "8acec25060effd92462ec9caa331b53a980d03eee2aa4db0e7e7cb9ceff04b62",
+      "paper": "Thye2021",
+      "candidate": "R008"
+    },
+    "drafts/regions/fluency_network_cluster__Thye2021__R009.md": {
+      "source_sha256": "859f3d95987a5dcb71b01406ccd8a3eb3e48f47102bf71d75741ce17584f97fe",
+      "paper": "Thye2021",
+      "candidate": "R009",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp. 3 and 5 describes mass-univariate VLSM and multivariate SCCAN; this record notes SCCAN but labels method=RLSM (region-based lesion-symptom mapping). Reconcile analysis-method provenance before publication."
+    },
+    "drafts/regions/lh_language_motor_network_control__Turkeltaub2011__R001.md": {
+      "source_sha256": "69fad834552938af177e5f0760633fc76a6c2d57f3ba332cbf74587ead414b74",
+      "paper": "Turkeltaub2011",
+      "candidate": "R001"
+    },
+    "drafts/regions/aphasia_language_activation_cluster__Turkeltaub2011__R002.md": {
+      "source_sha256": "0278cae2dabd5b59aaca122125eda6d4a8d01c566d244b78368cc1b9af6ee786",
+      "paper": "Turkeltaub2011",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_inferior_frontal_lesion__Turkeltaub2011__R003.md": {
+      "source_sha256": "ff8b43e5606431836fa3be1c89ef5823bfdc6e81262d1716b714bd4c22a39bca",
+      "paper": "Turkeltaub2011",
+      "candidate": "R003"
+    },
+    "drafts/regions/spared_lh_language_nodes__Turkeltaub2011__R004.md": {
+      "source_sha256": "5c731bf75f2e424a267cfa0d1070a713f3c67a2bc6aeb7e014e6733956e4bea7",
+      "paper": "Turkeltaub2011",
+      "candidate": "R004"
+    },
+    "drafts/regions/lh_new_nodes_cluster__Turkeltaub2011__R005.md": {
+      "source_sha256": "a4f64acb2ad44be1436847a26e891e44a1b21cff23f0b867d9c65f028133d435",
+      "paper": "Turkeltaub2011",
+      "candidate": "R005"
+    },
+    "drafts/regions/lh_middle_frontal_gyrus_cluster__Turkeltaub2011__R006.md": {
+      "source_sha256": "302a9dd5fcc0fea4c6bd7b867d6dbccba6ea43ccce05962100983431228f1c74",
+      "paper": "Turkeltaub2011",
+      "candidate": "R006"
+    },
+    "drafts/regions/rh_aphasia_clusters__Turkeltaub2011__R007.md": {
+      "source_sha256": "dcc5b45e1aa112148c2bfdf6f2de2e96617d6ad892da32b4975b81217b414617",
+      "paper": "Turkeltaub2011",
+      "candidate": "R007"
+    },
+    "drafts/regions/right_ventral_pop_cluster__Turkeltaub2011__R008.md": {
+      "source_sha256": "e62cf618ec6d832195ce16975df97334bea55268c7088f67d5f4eafb4f13328e",
+      "paper": "Turkeltaub2011",
+      "candidate": "R008"
+    },
+    "drafts/regions/right_ifg_homologous_cluster__Turkeltaub2011__R009.md": {
+      "source_sha256": "1a39df119cb3ed668cb68ad14a65223b3986cbaa2e656eec36fd9030769b1503",
+      "paper": "Turkeltaub2011",
+      "candidate": "R009"
+    },
+    "drafts/regions/right_ptr_if_lesion_cluster__Turkeltaub2011__R010.md": {
+      "source_sha256": "d434fbe1cdc66d5a44062c628f764cdacf6baba86d44d1a176c823e1807e8800",
+      "paper": "Turkeltaub2011",
+      "candidate": "R010"
+    },
+    "drafts/regions/anterior_insula_cluster__Turkeltaub2011__R011.md": {
+      "source_sha256": "2f936780effb6c68830ef3a639cf0ca4b9901bc0068444645fb470c55e15768c",
+      "paper": "Turkeltaub2011",
+      "candidate": "R011"
+    },
+    "drafts/regions/left_porb_cluster__Turkeltaub2011__R012.md": {
+      "source_sha256": "5aeaf1ee3d7263b352044127ea8ccc42a1d540fa5e085606bc1f333ccece7b99",
+      "paper": "Turkeltaub2011",
+      "candidate": "R012"
+    },
+    "drafts/regions/right_dorsal_pop_cluster__Turkeltaub2011__R013.md": {
+      "source_sha256": "33e2cbe2ed7f8aba6d08104d7ff87f371d58db77e067053e685b28c364a2c657",
+      "paper": "Turkeltaub2011",
+      "candidate": "R013"
+    },
+    "drafts/regions/right_ptr__Turkeltaub2011__R014.md": {
+      "source_sha256": "a3bb3f59058e257116469ac93e58640c345e411d26c084d3d555ddbb28887abd",
+      "paper": "Turkeltaub2011",
+      "candidate": "R014"
+    },
+    "drafts/regions/atl_semantic_error_cluster__Walker2011__R001.md": {
+      "source_sha256": "3bee12dae1cd7546483a8d2afd48d67dc44a644f4f0163fef69e8d39b35fe746",
+      "paper": "Walker2011",
+      "candidate": "R001"
+    },
+    "drafts/regions/atl_cluster__Walker2011__R003.md": {
+      "source_sha256": "f3d739c41ec869ee2b9f5a15cc8d2ec256b16c1a9a196fd92928b0f8025fd38b",
+      "paper": "Walker2011",
+      "candidate": "R003"
+    },
+    "drafts/regions/atl_cluster__Walker2011__R004.md": {
+      "source_sha256": "4c94d45b55036c03212e8df84efc9d69caed3bd875ea28fffe97960b944ec2e5",
+      "paper": "Walker2011",
+      "candidate": "R004"
+    },
+    "drafts/regions/atl_cluster__Walker2011__R005.md": {
+      "source_sha256": "accc73410ff8a0698c5c0e9dd349cd43ebc6e4ec8cc168942e8245549fd1facd",
+      "paper": "Walker2011",
+      "candidate": "R005"
+    },
+    "drafts/predictors/ba21_semplus_sensitivity__Walker2011__R006.md": {
+      "source_sha256": "4e3370826cd0d2be00042343194d5dfa9ba786185108c31b7bab07f43b62243f",
+      "paper": "Walker2011",
+      "candidate": "R006"
+    },
+    "drafts/regions/wernickes_area__Walker2011__R007.md": {
+      "source_sha256": "58153c39bb030ae374d1e8555c566504c5114e09acec2874648b036a19ed6a2d",
+      "paper": "Walker2011",
+      "candidate": "R007"
+    },
+    "drafts/regions/sex__Wallentin2018__R004.md": {
+      "source_sha256": "36e6ef41f2391aef89add76a7f68620706324329f9c91a440c098d2fdb175596",
+      "paper": "Wallentin2018",
+      "candidate": "R004",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp. 6-7 describes a post-hoc weighted analysis of six studies with sex-stratified age information, not a six-participant sample. The draft sample.n=6 conflates studies with patients and method=behavioral_only obscures the pooled-study analysis. Reconcile sample unit and analysis provenance before publication."
+    },
+    "drafts/regions/sex__Wallentin2018__R006.md": {
+      "source_sha256": "84571644a9bc3c54530108d256aa73b28c621a1544bd0929e81dc56985bc7d78",
+      "paper": "Wallentin2018",
+      "candidate": "R006"
+    },
+    "drafts/regions/age__Wallentin2018__R007.md": {
+      "source_sha256": "b645200ca558970d5a18de28978e2a0f4f1fc5c5332165b92f84308b66f04c97",
+      "paper": "Wallentin2018",
+      "candidate": "R007"
+    },
+    "drafts/predictors/stroke_severity_hemiplegia__Wallentin2018__R008.md": {
+      "source_sha256": "0f303c1b5bf42931ffcc1966e35ec4b363a41a87b062f42341ced5f4dd33d31c",
+      "paper": "Wallentin2018",
+      "candidate": "R008"
+    },
+    "drafts/predictors/age_severity_interaction__Wallentin2018__R009.md": {
+      "source_sha256": "519df4c70f7dc63acb9cb65dfdd2ac7577a1b153f4198a392c62765c81256d48",
+      "paper": "Wallentin2018",
+      "candidate": "R009"
+    },
+    "drafts/predictors/sex_age_interaction__Wallentin2018__R010.md": {
+      "source_sha256": "e9d5911bae987c307e05fb22b29e270cb68a8cd2ce1cbe02c262ce637c3104ff",
+      "paper": "Wallentin2018",
+      "candidate": "R010"
     }
   }
 }
