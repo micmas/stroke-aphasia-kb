@@ -1,0 +1,267 @@
+{
+  "checked_at": "2026-11-25T05:35:19.379080+00:00",
+  "snapshot": "2026-11-25T05:32:15.814807+00:00",
+  "scope": "Every new claim/population inspected against the cited paper identity and methods. No human scientific approval. Publication-copy target/measurement metadata added; original source outputs preserved.",
+  "added": 49,
+  "quarantined": [
+    "drafts/ingredients/diabetes__Rost2022__R013.md",
+    "drafts/therapies/actovegin__Rost2022__R041.md",
+    "drafts/therapies/multidomain_intervention_cognitive_prevention__Rost2022__R039.md",
+    "drafts/therapies/rivastigmine__Rost2022__R042.md"
+  ],
+  "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved.",
+  "papers": [
+    "Rogalsky2018",
+    "Ross2008",
+    "Rosso2015",
+    "Saur2006",
+    "Schellekens2026"
+  ],
+  "records": [
+    {
+      "path": "drafts/impairments/spontaneous_affective_prosody_production__Ross2008__R001.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/predictors/acute_phase_language_activation__Saur2006__R008.md",
+      "target_status": "needs_source_review",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/predictors/affective_prosodic_repetition_group_comparison__Ross2008__R002.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/predictors/chronic_phase_language_activation__Saur2006__R003.md",
+      "target_status": "needs_source_review",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/predictors/chronic_stage_activation_comparison__Saur2006__R010.md",
+      "target_status": "needs_source_review",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/predictors/chronic_vs_acute_activation__Saur2006__R006.md",
+      "target_status": "needs_source_review",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/predictors/cognitive_neglect_aprosodia_rbd__Ross2008__R015.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/predictors/early_relative_improvement_lrs__Saur2006__R017.md",
+      "target_status": "needs_source_review",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/predictors/infarct_volume__Rosso2015__R004.md",
+      "target_status": "construct_separated",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/predictors/infarct_volume__Rosso2015__R007.md",
+      "target_status": "construct_separated",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/predictors/language_activation_dynamics__Saur2006__R007.md",
+      "target_status": "needs_source_review",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/predictors/lbd_vs_rbd_affective_prosodic_comprehension__Ross2008__R005.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/predictors/lbd_vs_rbd_repetition_pattern__Ross2008__R003.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/predictors/lesion_location_volume_adjusted__Schellekens2026__R010.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/predictors/lesion_volume_correction_lesymap__Schellekens2026__R013.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/predictors/lrs_activation_correlation_subacute_chronic__Saur2006__R016.md",
+      "target_status": "needs_source_review",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/predictors/rbd_vs_lbd_affective_comprehension__Ross2008__R004.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/predictors/wab_aphasia_quotient__Ross2008__R014.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/aphasia_severity_white_matter_cluster__Rosso2015__R003.md",
+      "target_status": "construct_separated",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/atl_agrammatic_comprehension__Rogalsky2018__R002.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/attention_working_memory_cluster__Schellekens2026__R007.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/regions/brocas_area__Rogalsky2018__R001.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/critical_white_matter_cluster__Rosso2015__R008.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/deep_right_frontal_white_matter_right_thalamus_cluster__Schellekens2026__R004.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/regions/deep_structures_rbd__Ross2008__R006.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/episodic_memory_cluster__Schellekens2026__R002.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/regions/executive_functioning_cluster__Schellekens2026__R005.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/regions/inferior_frontal_cluster__Rogalsky2018__R008.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/lbd_comprehension_prosody__Ross2008__R013.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/lbd_mid_white_matter__Ross2008__R012.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/lbd_spontaneous_prosody_cluster__Ross2008__R011.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/left_fronto_temporo_parietal_cluster__Schellekens2026__R009.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/regions/left_parietal_white_matter_right_cerebellum_language_cluster__Schellekens2026__R008.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/regions/major_vcd_lesion_cluster__Schellekens2026__R001.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/regions/noncanonical_sentence_network__Rogalsky2018__R005.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/posterior_stg_agrammatic_cluster__Rogalsky2018__R004.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/processing_speed_cluster__Schellekens2026__R003.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/regions/right_broca_homologue__Saur2006__R005.md",
+      "target_status": "needs_source_review",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/regions/right_frontal_operculum__Ross2008__R007.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/right_frontal_operculum_cluster__Ross2008__R010.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/right_ifg_early_upregulation_cluster__Saur2006__R004.md",
+      "target_status": "needs_source_review",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/regions/right_insular_cortex_sma_cluster__Saur2006__R012.md",
+      "target_status": "needs_source_review",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/regions/right_temporal_operculum__Ross2008__R008.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/sentence_comprehension_cluster__Rogalsky2018__R006.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/subacute_language_network_cluster__Saur2006__R002.md",
+      "target_status": "needs_source_review",
+      "measurement_status": "needs_source_review"
+    },
+    {
+      "path": "drafts/regions/temporal_operculum_or_anterior_putamen_thalamus__Ross2008__R009.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/temporoparietal_junction_white_matter_cluster__Rosso2015__R001.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/temporoparietal_white_matter_cluster__Rosso2015__R002.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "identified"
+    },
+    {
+      "path": "drafts/regions/visual_neglect_cluster_right__Schellekens2026__R006.md",
+      "target_status": "behaviour_label_present",
+      "measurement_status": "needs_source_review"
+    }
+  ]
+}

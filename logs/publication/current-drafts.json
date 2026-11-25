@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-25T02:17:05.877253+00:00",
+  "snapshot_at": "2026-11-25T05:32:15.814807+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -7089,6 +7089,279 @@
       "source_sha256": "045771ce2ce59e0510980bb996890cfc11cd2a2f9120239d163d71b1361bd762",
       "paper": "Rodrigues2014",
       "candidate": "R009"
+    },
+    "drafts/regions/brocas_area__Rogalsky2018__R001.md": {
+      "source_sha256": "0d195a5fe8f6d6ff9aea7da8ac955bdc931b57f549948caa32eb61ead3746506",
+      "paper": "Rogalsky2018",
+      "candidate": "R001"
+    },
+    "drafts/regions/atl_agrammatic_comprehension__Rogalsky2018__R002.md": {
+      "source_sha256": "ec7823f5b82d8cf4afaf1ea8434590f4d113ca0639d8750ef741898f9719cce3",
+      "paper": "Rogalsky2018",
+      "candidate": "R002"
+    },
+    "drafts/regions/posterior_stg_agrammatic_cluster__Rogalsky2018__R004.md": {
+      "source_sha256": "3198486ae72a427fe4e6de1f2f19d2126c5eaab200d031e7e6180ae16e5505b8",
+      "paper": "Rogalsky2018",
+      "candidate": "R004"
+    },
+    "drafts/regions/noncanonical_sentence_network__Rogalsky2018__R005.md": {
+      "source_sha256": "1a1c9f7ae3f7fbb0154485184fa5d841e0b3131c9823064f3d0176de34d19e9c",
+      "paper": "Rogalsky2018",
+      "candidate": "R005"
+    },
+    "drafts/regions/sentence_comprehension_cluster__Rogalsky2018__R006.md": {
+      "source_sha256": "4d1568da28bde574d874ec38601baacf171faaa646c698517529a06d07c2bf21",
+      "paper": "Rogalsky2018",
+      "candidate": "R006"
+    },
+    "drafts/regions/inferior_frontal_cluster__Rogalsky2018__R008.md": {
+      "source_sha256": "1f135233ecf46d9071b7d7c72573854c8ecbde302fb95b8647258c890e669459",
+      "paper": "Rogalsky2018",
+      "candidate": "R008"
+    },
+    "drafts/impairments/spontaneous_affective_prosody_production__Ross2008__R001.md": {
+      "source_sha256": "34a196ae8320ef2b454a6eb8495871a30c5ef18a4da73caa6294e74decd241b2",
+      "paper": "Ross2008",
+      "candidate": "R001"
+    },
+    "drafts/predictors/affective_prosodic_repetition_group_comparison__Ross2008__R002.md": {
+      "source_sha256": "a0e28eb2370731548031e128aacbf151c5f941e7860df38a5a4aa511db8eaa0b",
+      "paper": "Ross2008",
+      "candidate": "R002"
+    },
+    "drafts/predictors/lbd_vs_rbd_repetition_pattern__Ross2008__R003.md": {
+      "source_sha256": "1a852031eb20b0636311560d94ad433d8b9a387ac38576ade9be337c86be5709",
+      "paper": "Ross2008",
+      "candidate": "R003"
+    },
+    "drafts/predictors/rbd_vs_lbd_affective_comprehension__Ross2008__R004.md": {
+      "source_sha256": "b39d1c00186b8af9fad6d48437eec0014e6ea1504789c901a3daca78d1c01663",
+      "paper": "Ross2008",
+      "candidate": "R004"
+    },
+    "drafts/predictors/lbd_vs_rbd_affective_prosodic_comprehension__Ross2008__R005.md": {
+      "source_sha256": "45a6f82aaf75dad2d2f4fc908607bf761aec2f289a3fe732ae797ee749789cdd",
+      "paper": "Ross2008",
+      "candidate": "R005"
+    },
+    "drafts/regions/deep_structures_rbd__Ross2008__R006.md": {
+      "source_sha256": "4102ebf8e8692f8124f87382417980573523d6603113ccefcf338f99f164a8db",
+      "paper": "Ross2008",
+      "candidate": "R006"
+    },
+    "drafts/regions/right_frontal_operculum__Ross2008__R007.md": {
+      "source_sha256": "d9ff25d9a084f31af2e77bcebe373004cf9a9a2f98d28d950fccc7e1fa7a826a",
+      "paper": "Ross2008",
+      "candidate": "R007"
+    },
+    "drafts/regions/right_temporal_operculum__Ross2008__R008.md": {
+      "source_sha256": "7505831047fe0bb77bcbe141fe522c6f05679771f20094eb880bf029becd60a3",
+      "paper": "Ross2008",
+      "candidate": "R008"
+    },
+    "drafts/regions/temporal_operculum_or_anterior_putamen_thalamus__Ross2008__R009.md": {
+      "source_sha256": "35fbe19f6c72c7f19625b49a13b52b610b27a072ec271a3f490c9b2324a200d1",
+      "paper": "Ross2008",
+      "candidate": "R009"
+    },
+    "drafts/regions/right_frontal_operculum_cluster__Ross2008__R010.md": {
+      "source_sha256": "55ac2510fbc5f3b8d1d3330ee5df0826534ccd85d7b3e5cc94eff86a229ca5bd",
+      "paper": "Ross2008",
+      "candidate": "R010"
+    },
+    "drafts/regions/lbd_spontaneous_prosody_cluster__Ross2008__R011.md": {
+      "source_sha256": "3b8dd1bd9013f52d42e9b31d9beb7c04a5b87f0d7483aa6d0998885a35962a73",
+      "paper": "Ross2008",
+      "candidate": "R011"
+    },
+    "drafts/regions/lbd_mid_white_matter__Ross2008__R012.md": {
+      "source_sha256": "15b44af63ba3994a389921369d09186f46153fa61640b5420ebe4c55f63c5f68",
+      "paper": "Ross2008",
+      "candidate": "R012"
+    },
+    "drafts/regions/lbd_comprehension_prosody__Ross2008__R013.md": {
+      "source_sha256": "b186790111fa922bccda46d04067daa1387519a5836d68f0fc35e2fcb9b48e72",
+      "paper": "Ross2008",
+      "candidate": "R013"
+    },
+    "drafts/predictors/wab_aphasia_quotient__Ross2008__R014.md": {
+      "source_sha256": "e271fdf5dae651a2a3caa0c7aa10bc3295ee2646b28999402b3266990c8ca556",
+      "paper": "Ross2008",
+      "candidate": "R014"
+    },
+    "drafts/predictors/cognitive_neglect_aprosodia_rbd__Ross2008__R015.md": {
+      "source_sha256": "cc4732ffe670e86d4776607220fb5f3cfc28a428e48e194df9fdd04161b73289",
+      "paper": "Ross2008",
+      "candidate": "R015"
+    },
+    "drafts/regions/temporoparietal_junction_white_matter_cluster__Rosso2015__R001.md": {
+      "source_sha256": "22bce69c047ea2b4641ea52adbd48df9c02d513df6261b94951e3699efa2b6d4",
+      "paper": "Rosso2015",
+      "candidate": "R001"
+    },
+    "drafts/regions/temporoparietal_white_matter_cluster__Rosso2015__R002.md": {
+      "source_sha256": "bd038ccf1a418ffde902b9ff6ebc8a2667947061ef79016c27fe22f46f3c2f30",
+      "paper": "Rosso2015",
+      "candidate": "R002"
+    },
+    "drafts/regions/aphasia_severity_white_matter_cluster__Rosso2015__R003.md": {
+      "source_sha256": "a4df13e48f840bfb52323f49282aadcd5a7a1218588b7afcb5fac049c2703eeb",
+      "paper": "Rosso2015",
+      "candidate": "R003"
+    },
+    "drafts/predictors/infarct_volume__Rosso2015__R004.md": {
+      "source_sha256": "70cfd47a9db709151276a079ff9c2b5211a6359561c006405c891de3b30fdecb",
+      "paper": "Rosso2015",
+      "candidate": "R004"
+    },
+    "drafts/predictors/infarct_volume__Rosso2015__R007.md": {
+      "source_sha256": "a4c8f58ffbefd3221c14a8fb174347d2155347b8fe1b56229c527e6577b8f710",
+      "paper": "Rosso2015",
+      "candidate": "R007"
+    },
+    "drafts/regions/critical_white_matter_cluster__Rosso2015__R008.md": {
+      "source_sha256": "3e6ce14b55158650a8a8a6dd9842123dfc2cbf0469c2fe72aa38276f75ccdc10",
+      "paper": "Rosso2015",
+      "candidate": "R008"
+    },
+    "drafts/ingredients/diabetes__Rost2022__R013.md": {
+      "source_sha256": "4888523238c6455fa0f2d11dc90aaa02f69a7d74ccd1dbf14a34b98572ec8f3c",
+      "paper": "Rost2022",
+      "candidate": "R013",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved."
+    },
+    "drafts/therapies/multidomain_intervention_cognitive_prevention__Rost2022__R039.md": {
+      "source_sha256": "6b9e7a7fa971b740fbdfa4b820d3762c6aa3fb1569b43bcd4f7caca7c75e8f53",
+      "paper": "Rost2022",
+      "candidate": "R039",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved."
+    },
+    "drafts/therapies/actovegin__Rost2022__R041.md": {
+      "source_sha256": "521c75b5ce20b1e9ade48dc64cadcef2637da66cb1aba2c250da1595c299739d",
+      "paper": "Rost2022",
+      "candidate": "R041",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved."
+    },
+    "drafts/therapies/rivastigmine__Rost2022__R042.md": {
+      "source_sha256": "d20942da96299200a81482c83e41ac3a70b3b04d243b52941e069afbdbffea4b",
+      "paper": "Rost2022",
+      "candidate": "R042",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved."
+    },
+    "drafts/regions/subacute_language_network_cluster__Saur2006__R002.md": {
+      "source_sha256": "15720edafe5939d52e3d4cb47f874d6829e7182b3357ae26c1337ada6d0894cb",
+      "paper": "Saur2006",
+      "candidate": "R002"
+    },
+    "drafts/predictors/chronic_phase_language_activation__Saur2006__R003.md": {
+      "source_sha256": "e251ad44ed884b31e3be66773d7a27e97e39badbedf0c0b7ddb7efead6e9452e",
+      "paper": "Saur2006",
+      "candidate": "R003"
+    },
+    "drafts/regions/right_ifg_early_upregulation_cluster__Saur2006__R004.md": {
+      "source_sha256": "d9a9da2ee4498b0fa2a54f0c7391d50dae04cb9f2e9417c69ab318773b3b930d",
+      "paper": "Saur2006",
+      "candidate": "R004"
+    },
+    "drafts/regions/right_broca_homologue__Saur2006__R005.md": {
+      "source_sha256": "0947406444fce1dd9d0c3e920da1b83ac71edd7b6a0d403dcc527cc840054721",
+      "paper": "Saur2006",
+      "candidate": "R005"
+    },
+    "drafts/predictors/chronic_vs_acute_activation__Saur2006__R006.md": {
+      "source_sha256": "a181b66b112c605af133883b06ad83c5582a9bde9bd4fa6fba02327aff478de0",
+      "paper": "Saur2006",
+      "candidate": "R006"
+    },
+    "drafts/predictors/language_activation_dynamics__Saur2006__R007.md": {
+      "source_sha256": "b0a75c8c5cc16f064463a7a42dfb32626c883d5e9591088d3ffbd29cf6e6641e",
+      "paper": "Saur2006",
+      "candidate": "R007"
+    },
+    "drafts/predictors/acute_phase_language_activation__Saur2006__R008.md": {
+      "source_sha256": "c2d1f8a28c9eb14d94729cfb59878106b0fbbc4738635e6dd46fada91d4a5611",
+      "paper": "Saur2006",
+      "candidate": "R008"
+    },
+    "drafts/predictors/chronic_stage_activation_comparison__Saur2006__R010.md": {
+      "source_sha256": "a07ff9685bc318d4cc98bf9a7c30aa984be63abc51036f49ecb1af63e97e8636",
+      "paper": "Saur2006",
+      "candidate": "R010"
+    },
+    "drafts/regions/right_insular_cortex_sma_cluster__Saur2006__R012.md": {
+      "source_sha256": "02661e217bec911167e49375b57272cd49f1a464acf75a3408ae84f50570592f",
+      "paper": "Saur2006",
+      "candidate": "R012"
+    },
+    "drafts/predictors/lrs_activation_correlation_subacute_chronic__Saur2006__R016.md": {
+      "source_sha256": "429a8ada222209f516cc69d1d895d34436ccb31e58c7d2995d2b10db2a194bcf",
+      "paper": "Saur2006",
+      "candidate": "R016"
+    },
+    "drafts/predictors/early_relative_improvement_lrs__Saur2006__R017.md": {
+      "source_sha256": "b20365c421b013cd462d369a1bf65996c7c56aef3735c4465c31460a78d23702",
+      "paper": "Saur2006",
+      "candidate": "R017"
+    },
+    "drafts/regions/major_vcd_lesion_cluster__Schellekens2026__R001.md": {
+      "source_sha256": "c1b1d87266c54ef54e9b03722eb9edfdd24e62f5911b3f67bbfe08657ceb823a",
+      "paper": "Schellekens2026",
+      "candidate": "R001"
+    },
+    "drafts/regions/episodic_memory_cluster__Schellekens2026__R002.md": {
+      "source_sha256": "a60ac531e12785aa1b8bd0facb7f00fe455f5adc9a4cfb8ebf94d0477a863396",
+      "paper": "Schellekens2026",
+      "candidate": "R002"
+    },
+    "drafts/regions/processing_speed_cluster__Schellekens2026__R003.md": {
+      "source_sha256": "92a00bcc66a5313e758d937d9637c893f9669873a5754ab0028bc5d7c7c2a00d",
+      "paper": "Schellekens2026",
+      "candidate": "R003"
+    },
+    "drafts/regions/deep_right_frontal_white_matter_right_thalamus_cluster__Schellekens2026__R004.md": {
+      "source_sha256": "bb10002ffb39a009299ab5d78d162afdf3e154360b554ba0edb64b55bb3fb636",
+      "paper": "Schellekens2026",
+      "candidate": "R004"
+    },
+    "drafts/regions/executive_functioning_cluster__Schellekens2026__R005.md": {
+      "source_sha256": "4872a59a281f050e43e3e48348155384169c6ee509daf1ee5571e2e7937eb65c",
+      "paper": "Schellekens2026",
+      "candidate": "R005"
+    },
+    "drafts/regions/visual_neglect_cluster_right__Schellekens2026__R006.md": {
+      "source_sha256": "dba92c1e9f10ddb911a3863d3497a6818087795c9221d827c655d199e974b9c9",
+      "paper": "Schellekens2026",
+      "candidate": "R006"
+    },
+    "drafts/regions/attention_working_memory_cluster__Schellekens2026__R007.md": {
+      "source_sha256": "2899f8b8a7c426e4d7bc190396648b7a138d84425f378f1dfc2b0515c8183026",
+      "paper": "Schellekens2026",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_parietal_white_matter_right_cerebellum_language_cluster__Schellekens2026__R008.md": {
+      "source_sha256": "51538730ae1e8da63496cee4f3810cd444e27fe02143983b1761c7bfb37843b6",
+      "paper": "Schellekens2026",
+      "candidate": "R008"
+    },
+    "drafts/regions/left_fronto_temporo_parietal_cluster__Schellekens2026__R009.md": {
+      "source_sha256": "783686ffea4191165975ffffbe1bf722a4b29c8ac414e202df494b7a47285ed5",
+      "paper": "Schellekens2026",
+      "candidate": "R009"
+    },
+    "drafts/predictors/lesion_location_volume_adjusted__Schellekens2026__R010.md": {
+      "source_sha256": "0b5fb4d26167cfa7646d27e9e91cfb61e84836e38abeea48123192aa4793e283",
+      "paper": "Schellekens2026",
+      "candidate": "R010"
+    },
+    "drafts/predictors/lesion_volume_correction_lesymap__Schellekens2026__R013.md": {
+      "source_sha256": "908efe0d1e4b2fe3ca6d3dfd7c93e3ac3f320fc2ecfe8624826ac474adb1940d",
+      "paper": "Schellekens2026",
+      "candidate": "R013"
     }
   }
 }

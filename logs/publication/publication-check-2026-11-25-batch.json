@@ -1,0 +1,86 @@
+{
+  "checked_at": "2026-11-25T05:40:06.337518+00:00",
+  "snapshot": "2026-11-25T05:32:15.814807+00:00",
+  "captured_completed_main_papers": 153,
+  "new_completed_main_papers": [
+    "Rogalsky2018",
+    "Ross2008",
+    "Rosso2015",
+    "Rost2022",
+    "Saur2006",
+    "Saur2008",
+    "Schellekens2026"
+  ],
+  "added_findings": 49,
+  "total_findings": 1395,
+  "total_papers": 141,
+  "approved": 0,
+  "new_withheld": 4,
+  "annotation_refresh": {
+    "Desjardins2026": {
+      "status": "missing_pdf_index"
+    },
+    "Gilbert2025": {
+      "status": "missing_pdf_index"
+    },
+    "Goldenberg1994": {
+      "status": "missing_pdf_index"
+    },
+    "Hillis2002": {
+      "status": "missing_pdf_index"
+    },
+    "Hobden2024": {
+      "status": "missing_pdf_index"
+    },
+    "Hope2016": {
+      "status": "missing_pdf_index"
+    },
+    "Kourtidou2021": {
+      "status": "missing_pdf_index"
+    },
+    "Lukic2017": {
+      "status": "missing_pdf_index"
+    },
+    "Matchin2024": {
+      "status": "missing_pdf_index"
+    },
+    "Moore2024": {
+      "status": "missing_pdf_index"
+    },
+    "OsaGarcia2024": {
+      "status": "missing_pdf_index"
+    },
+    "Pendlebury2009": {
+      "status": "missing_pdf_index"
+    },
+    "Rogalsky2018": {
+      "status": "uploaded",
+      "placed": 44,
+      "missed": 0
+    },
+    "Ross2008": {
+      "status": "uploaded",
+      "placed": 104,
+      "missed": 0
+    },
+    "Rosso2015": {
+      "status": "uploaded",
+      "placed": 44,
+      "missed": 0
+    },
+    "Saur2006": {
+      "status": "uploaded",
+      "placed": 81,
+      "missed": 0
+    },
+    "Schellekens2026": {
+      "status": "missing_pdf_index"
+    }
+  },
+  "existing_unmatched_highlights": {
+    "@Bi2015": 7,
+    "@Baldo2011": 2,
+    "@Alyahya2020": 2
+  },
+  "pdf_access_categories_preserved": true
+}

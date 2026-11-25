@@ -1,0 +1,627 @@
+{
+  "basis": "All annotation inputs (draft path, finding ID, citation and source passages) match the pre-target-audit export exactly. The prior full-file fingerprint matches the published PDF index. Only the file fingerprint is advanced; PDF object, bytes, hash, access category and withdrawal ledger are unchanged.",
+  "previous_content_commit": "f067e963377c124cd192a5f96bb1664a92223830",
+  "verified_unchanged_annotations": [
+    {
+      "paper": "@Adezati2022",
+      "previous_digest": "fce8c2abb6f24e6fc33294a3a43cf984f5fea465f5f301d26d74008ca3fca60f",
+      "current_digest": "ec5def65bc06385077b5c8043c6c1995385c60a76f6b83c931b1914142ebebfb"
+    },
+    {
+      "paper": "@Akkad2023",
+      "previous_digest": "a8ae5f0ce4064954ef95f17cde3c5dad7f4386352b48671b7d41f6e9fd004a11",
+      "current_digest": "58036c2aeba26af4f3b1953584d66ae1ded8cb003ae605d1502869b9f7a8b571"
+    },
+    {
+      "paper": "@Ali2021",
+      "previous_digest": "fbd0cf8616e1c3c131d4ac38b401eb8f6626834ae34a81e5f8bde84ab87659c4",
+      "current_digest": "b6349e9d2455c4c1c3f73f650c6622da8d659ab4560f63f94143e29bef53057a"
+    },
+    {
+      "paper": "@Alyahya2018NounVerb",
+      "previous_digest": "2bf1e9a8b80238ab218ce7dda4234f29ed4e18ffd85f718dd68800f516d3dcc5",
+      "current_digest": "06a1b34eba86121fb484efd86bdbee9cf881459212067e3ed82831597106f33c"
+    },
+    {
+      "paper": "@Alyahya2020",
+      "previous_digest": "335d3171e6f4d49b7dd5ae32da4ddffc6e16b6bbd24c3ad277af2c2f251c6f0b",
+      "current_digest": "c7f954e08ca3e211ee0696ff6a3ec472c00c3b21d0b71580eea55a01862bd615"
+    },
+    {
+      "paper": "@Baldo2006",
+      "previous_digest": "85a37f240cd61999c3c49a7d2199e32403a03c1b6192e2f05200a7be13169709",
+      "current_digest": "87bc8a46e810916a26e682c7662675c63382a1f069dd57054bf31a7dcec4965c"
+    },
+    {
+      "paper": "@Baldo2011",
+      "previous_digest": "ec7a0c097f8bb12a287a778074965be9e32f5855a6197b2be024143954b57acc",
+      "current_digest": "6d14483acf8f805d4b1462f2a3fececd72d66a23e461b0f01a179ceb463a8ca2"
+    },
+    {
+      "paper": "@Baldo2013",
+      "previous_digest": "e6043b5a441dec9ac6eee52197f661d538305f7850d524d632c99f9ae2f94677",
+      "current_digest": "f632ced94c40f7730789e11fe650c27eef29ba8cf081dfb42ec41c2b2bad24f5"
+    },
+    {
+      "paper": "@Basilakos2014",
+      "previous_digest": "16b19961c1b684d7ad28ce3082d841fa7d4ade758228300de296568d25cbc732",
+      "current_digest": "5890183a5585afd6da0c10851d757d257fd87ca93ac30c77668dd5bf13e826f7"
+    },
+    {
+      "paper": "@Basilakos2015",
+      "previous_digest": "c7caace9df8c8857bcdab1a9fe08d2eec8b9f8c2cd28f0282d05a522bd93c7bb",
+      "current_digest": "087dff776ab09003d1d69a1eb37498413e71eadcc385c58dba4cdf5bfa023bcd"
+    },
+    {
+      "paper": "@Basilakos2019",
+      "previous_digest": "c844d83db288e1974121e688f7ace0f917bec2390b1d0dcdbb210fa78afd9b23",
+      "current_digest": "1edd46e3307fa3e3a90067b6092921d16840c9375482f14b42d7e404a273e9a6"
+    },
+    {
+      "paper": "@Bates2003",
+      "previous_digest": "b21b1924c06c9a154d8fb5d86f85f3ff86e33768e7d58569d2fdfb537e5219a6",
+      "current_digest": "cbf4d59ce541adfd318d648228373001f9650b9180ac32fe34605f3ac44e4200"
+    },
+    {
+      "paper": "@Benghanem2019",
+      "previous_digest": "4261b80756be10e9fc83e3070a6dbbb1cd303bd0a83e74b7c956ef32bb0edad2",
+      "current_digest": "2edd1fbb4dbf2f394afd7d9d87d4a282615d62c54f46fb485321703cd7c0292f"
+    },
+    {
+      "paper": "@Benjamin2014",
+      "previous_digest": "913a98e776c4f14f94301d3c285e2a67901e922587e680cb8c87a9d5dced4b92",
+      "current_digest": "f06527453b4b7f7f8b601606eda8c297bdcfde37a444c473716b1d965cf51c64"
+    },
+    {
+      "paper": "@Bhogal2003",
+      "previous_digest": "bdfd5ff0e6f6bef27ec69e73f5c09407f24de79210de40a03a9a889d342e6b1d",
+      "current_digest": "9bc8eb89273ee50d00541e7a66754ca80b42524cef42cb56ac633c90842c1bc3"
+    },
+    {
+      "paper": "@Bi2015",
+      "previous_digest": "ccdec095106546fb331911b55bae3eec2f124cb96ae0223979beb38928662a19",
+      "current_digest": "8634d14719dc7d28e8ff8d418efbf15763aeb7667d978328f715c11eeadd7865"
+    },
+    {
+      "paper": "@Biesbroek2017",
+      "previous_digest": "ed00034afe46c1ba21b55fef8d0b0940164ebb004d48235f698e15f405427c3d",
+      "current_digest": "e74070ff9fb75dc8916f47280941c7b90e71893b6baf1a9d166fc53f8928b33d"
+    },
+    {
+      "paper": "@Billot2022",
+      "previous_digest": "50b684fee44ece92a2686b0356eec9a070be920c374cde3c18e54eea92e0dc90",
+      "current_digest": "28ee2ac24eba94ac3abf5e7b2b20f5269aa40dfd2295232e8968e5fdb2a36b5e"
+    },
+    {
+      "paper": "@Biondo2024",
+      "previous_digest": "7f6f485797aa4f673452d59f64cafd9cada7af4b5eb234ac9453fa92a95f0fce",
+      "current_digest": "43514c3be3eb82f17fb148b1c6b89f8adc828092e2ef291e635379f2b71c9e21"
+    },
+    {
+      "paper": "@BlomSmink2020",
+      "previous_digest": "05f7ac4dba476bf2691a753df34e05befea2d32e0070a55c471c21a480721c89",
+      "current_digest": "d2cda406c796df0b3ca96f0dfe5726d7da4d29159dae9af615fe9278f6c9bac7"
+    },
+    {
+      "paper": "@Bonilha2014",
+      "previous_digest": "eb5318f133279719e96ed96ba6715a18df86aa4b890cdab6b481bb9ba4d5f647",
+      "current_digest": "cdf2938c75cee6635e5e2f8f6d9b703820e90731daec0378727b4e1b57e4542b"
+    },
+    {
+      "paper": "@Bonilha2016",
+      "previous_digest": "1a7e6f88b43541191fbdadec5c7ab947f62faf6dffff486a9732cec8b0640064",
+      "current_digest": "3e305fdbc38c01f58759d9c9cb02f58fabe6ddf75c360b60731e0298f0c94b6a"
+    },
+    {
+      "paper": "@Boyle2004",
+      "previous_digest": "4fecc62bfe52fcdd55663e9a30a574f9b4662b6309f6dc21b50bfdae44087e12",
+      "current_digest": "fd008c1b0d65a85a8ba58bffeff031735e39f8abf15ed31a901fc59c48704935"
+    },
+    {
+      "paper": "@Brady2022",
+      "previous_digest": "65309d00dd5db13ba74148915d3e898b0badff29b0c05b03a35c7825b871a252",
+      "current_digest": "a3fc9d7f85e30e7884ce948252853e942ef7b6ba9cb1c571d0b66abf0976150a"
+    },
+    {
+      "paper": "@Brady2022Dosage",
+      "previous_digest": "7ee77d7194c235c677a40600346d1216beb22094da4fe3a1c61610a88d182923",
+      "current_digest": "db3218bc06bb54061789f1c0ee1117e0c7ebe887ba9c1a316923c56b5cb09d71"
+    },
+    {
+      "paper": "@Breier2008",
+      "previous_digest": "cf50be67b7914f01082c7cf56155d0677357056ab73a893a5ce446ab34dc5f1d",
+      "current_digest": "227b1bb8252bc6e4f27f9ec4da806bd748ea7a580bbe1a891e85373a53311aff"
+    },
+    {
+      "paper": "@Breining2022",
+      "previous_digest": "41e101834698e2bc17cd1bd396f9baefa17716fc486953967a87c892b3db9bf2",
+      "current_digest": "321072a221babb1ecdce989c36da9abeb6d6d3c487561cfe3e3d040c6da4ab2d"
+    },
+    {
+      "paper": "@Breitenstein2017",
+      "previous_digest": "bb6f862f28858a77f8a525d718c0cf2b25f63b24c2a87311c577b138e4d7c07a",
+      "current_digest": "436dcdad6cac5a0930a6966af8a79cb7707a9c3ab843b38ee76a537b11189720"
+    },
+    {
+      "paper": "@Brookshire2014",
+      "previous_digest": "970f38036f1570e8e1842ea931bea1a77dd77081000633778ac5eb9c8593781e",
+      "current_digest": "96c8082859ef4fbcdf35edccb8cf994f1e1f85e364dcff5687a4e4d16d6bef2f"
+    },
+    {
+      "paper": "@Brownsett2014",
+      "previous_digest": "52b96a9c023f9123f32d3bd5128ab04f0a365bb00dcadc8bf715a8fe89e47de6",
+      "current_digest": "a46aa2738e5bda96150fc79da88ac397354e0edcb07916f08dcfce85b50a966f"
+    },
+    {
+      "paper": "@Buchsbaum2011",
+      "previous_digest": "52b13cdebb8d3cfa5f704e70a7096c7cd1b2abc93ea373055ec3a54733596329",
+      "current_digest": "45d20656b8f5740172e85631231bd1428585659b8cb8a2faeec5b1de0859153f"
+    },
+    {
+      "paper": "@Butler2014",
+      "previous_digest": "c0e57ad87827815648fae4731469134fedeadaa0c4ae46771a975558fdcd4720",
+      "current_digest": "7d39815e6b435918b50c1ac5434cf5eb8ad5bffb84315975a5e7cfc6b383d275"
+    },
+    {
+      "paper": "@Casilio2025",
+      "previous_digest": "c1f1557549f24949c53901db2e4c2f0763ca05883e41fb1a88b29e339e4085f5",
+      "current_digest": "c89a3cef1644695329f1f7ff008f6f24b6e05411e5343bd6a6a34186866528a1"
+    },
+    {
+      "paper": "@Coppens2002",
+      "previous_digest": "1ee8b350c5843fa1c78e7c201d4ba4351f4e71f154c4e98b97f413974d950bb0",
+      "current_digest": "aeba245b4255880c366ac4af162f33c47e042931aa91e258a6667c69738fb873"
+    },
+    {
+      "paper": "@Corbetta2015",
+      "previous_digest": "9db3678a9831f362f71f8df14c85f5b1860bcf303b41422e05e4da597aec58f8",
+      "current_digest": "cc78567adf3ed52e230efbb05e1b00059edec29e14f9ffe566ae23744cd2104e"
+    },
+    {
+      "paper": "@Cote2007",
+      "previous_digest": "7c3d694a54f202759ef9c2e37d2c4e6fd743cfbac9397154431c50e2349775bc",
+      "current_digest": "14b05fa5903458f8f17473d2872a62d2b7a0a86d8fcc696e9e424fdbc054c051"
+    },
+    {
+      "paper": "@DenOuden2019",
+      "previous_digest": "62b8a6676e1b6534bada9a03d887a4ff08c5c470c34beba30e8e664acee6d7fb",
+      "current_digest": "77ecba7dbce7fbbb5f8ba6f7ecc29df20802f910b14e980d630dcc395dd6b3ae"
+    },
+    {
+      "paper": "@Ding2023",
+      "previous_digest": "634f5f0d6d09bba7c109d08ade728acb6b33aaef08179457ab2c0cf3a14743f4",
+      "current_digest": "2b75620d84fe1b135c4dbb2ce4f24ac05b3043b02aca3198b8283ecb16b1bca5"
+    },
+    {
+      "paper": "@Dresang2022",
+      "previous_digest": "28f7cd857a2e1108ea96bd3af4aa6e86611698c85674b9aacf8756aa91389def",
+      "current_digest": "26112764fda800e055b4ca46e554dbe1a57d7c551831f98ea11b531ccb653691"
+    },
+    {
+      "paper": "@Dronkers1996",
+      "previous_digest": "5debc3fc6c0226745e36f4e07063510fe976132b7adf66dabc3ce963e30db2f8",
+      "current_digest": "ef254205437b2906e1b65a838f440ce831f17947be11159d54ec5a6f67bf24c5"
+    },
+    {
+      "paper": "@Dronkers2004",
+      "previous_digest": "9dfe24ded2b93729d8db6e9a2f0d20f696efe98b02687bca7d3407d411ba6416",
+      "current_digest": "6afce23c8eee7cea7a4ee27da10225463c8728366761721100a8a88b845d3e72"
+    },
+    {
+      "paper": "@Efstratiadou2018",
+      "previous_digest": "6184d0968ef29050a13b6a12e5ce99280dd92854101b555436ede193fd8fa05b",
+      "current_digest": "bcfaa5de53747a4cc0dcfe88af60c18cb0c19341f2648b93eda7360ca3d59f88"
+    },
+    {
+      "paper": "@ElHachioui2013",
+      "previous_digest": "fb89c8b6feef472e7302e8042d61b87eb8ff53cca7f182ec241a56453124577c",
+      "current_digest": "63d6b9086089226cda12ebdee001d35302671103ce2ccf0c10d11386405efda5"
+    },
+    {
+      "paper": "@Fang2025",
+      "previous_digest": "40a793fd6b7e6e2e6a271c3b5ff9f32bfd63aa338aa7de94259d6b0bbbd5e9bf",
+      "current_digest": "2dea837291969af9c8a3065fefc9fde8ab1195138a57a0feeb8477ab1cef2cf4"
+    },
+    {
+      "paper": "@Forkel2014",
+      "previous_digest": "e39b9b094cbcf2216ab4c25ea98e24e5b5e8b20ff17f98a4626bf202649405c3",
+      "current_digest": "bc5c7ded37e0a4124b7073584c3e4b1f83e4dac68d23bc3499dcf6cf88116df9"
+    },
+    {
+      "paper": "@Fridriksson2010",
+      "previous_digest": "3a316dcfbfa4cfd9beab79a63b905887eb64b1423c2a6301d53433bb7bd11bcf",
+      "current_digest": "e597dfbe4c1c5c0eaa71fea2ee58c77b0c3d362134853b80568e0a3d4dc3f4a2"
+    },
+    {
+      "paper": "@Fridriksson2010Anomia",
+      "previous_digest": "041d6bf8bc53841d762ef31ae48adf86981580f0a25588c3f20c9ec6c610f029",
+      "current_digest": "e617e5797ab29745b7ebef8d9c44ff3e3647950f572305b7e94e14b6d8037ec0"
+    },
+    {
+      "paper": "@Fridriksson2013",
+      "previous_digest": "931e1982875e14ff5acb981c79ad56b2853b2805da4a1fa3475acf03cc0c8330",
+      "current_digest": "6119ebb1a93e69d010dc032e102abca067ad09cd8abb82c4f0c0ddd73babc3c3"
+    },
+    {
+      "paper": "@Fridriksson2015",
+      "previous_digest": "957c38e06e5c64ac39d3d63261dec926f0181b1f2b40625a6e38c39dbee1cf93",
+      "current_digest": "6adf7327f81b3850a047764e6852b50fa964bac49cdae364c9b38acb8b667ea5"
+    },
+    {
+      "paper": "@Fridriksson2018",
+      "previous_digest": "b47a926ff382d3c476b79abde9b0135f8ddbefc95458cff3244bceadae298850",
+      "current_digest": "0ffdf2340b8bbdecbc80c0628e8365cc8a6e508b4c503315ae634def00b8e062"
+    },
+    {
+      "paper": "@Fridriksson2018BDNF",
+      "previous_digest": "e8f6ee7de887a02512a209108352b5ac24f4c5e4ce289e2c4e69ecd1939aaf3b",
+      "current_digest": "25e60e6e1eca8b71c71a7556944b1ed5f54c154b04e9541a8e7c90b0a03dbccf"
+    },
+    {
+      "paper": "@Fridriksson2018JAMA",
+      "previous_digest": "8fd7e8f2bfe5cbf8995d2489d4f0def21317fbd39cc9ff71f7f75d0bf52b0cb3",
+      "current_digest": "5e9f562f1fabe3d7294ed47cc61fafabe594df93ef175cf23f33f684fe35cd10"
+    },
+    {
+      "paper": "@GajardoVidal2021",
+      "previous_digest": "718a6426b10313b4bc275d2c6ae0d0b448e361e56e8f23665ac63eefa480124b",
+      "current_digest": "403aa8883381e69672c48b1d872f9ef3aaa8b87e6d513f4a0684c0be776caff9"
+    },
+    {
+      "paper": "@Geranmayeh2017",
+      "previous_digest": "f59057bca155a5206ec439d733221c7cd553c9710abba298984af2b9acbfeb14",
+      "current_digest": "d64265a92e59f909d7f47928ae6686e671b48cb1dc4ad3ffe85741c6100dabd4"
+    },
+    {
+      "paper": "@Gilmore2019",
+      "previous_digest": "35832f1c5b78707130cf847715284eed1ccbe5abcd6fe8cae87c608346b735b8",
+      "current_digest": "6720d6267a67614d86031e057a5c7d343dea126f2084581042f36c544681bfc3"
+    },
+    {
+      "paper": "@Godecke2021",
+      "previous_digest": "65e9965174d38630f0f444a0c735cab5293bb30f3d801cb2d5e341ea96e23192",
+      "current_digest": "c8183bb88c7799b23a6040ea9f36ad0f8dbcdf9563ad52a1a107f1035cd138e1"
+    },
+    {
+      "paper": "@Griffis2017",
+      "previous_digest": "5c0088d2ebaaf0f03117c291949c534d7d9d8f5ab0b7d7cd2c28f1c855ea80a2",
+      "current_digest": "07dff0174dbe45261baaa572b825c9250132ada30141262ef2fbe2a2a4069aae"
+    },
+    {
+      "paper": "@Halai2017",
+      "previous_digest": "11682cad623b0ff661e90097e058a5dbe90cb1fa6144cfc8946c925c53d67a68",
+      "current_digest": "111196695a401ffe4628259673d4ba4dfd430a9f54d807434be1dee66a79fe3c"
+    },
+    {
+      "paper": "@Halai2018",
+      "previous_digest": "8d29985183a31f0566d83df7aabdf7aa168eb957fb8643f8f4d4ecc6748329c6",
+      "current_digest": "41081e56f9dda8fc4e6244eae9bf105c047ffb50da40bd78d317871744aabe9b"
+    },
+    {
+      "paper": "@Haldin2026",
+      "previous_digest": "22f7cd230a855423f87d223ac02ca05ca24aecbb54f755a325ea4c4baebab8b1",
+      "current_digest": "97c4c7a96dfe11e2a245fa253a25afeca9f65ac5cf5d2a4bad2c4d8904acfabb"
+    },
+    {
+      "paper": "@Han2013",
+      "previous_digest": "0b907580fb6bcfe1df4326ceffd4fa3f3ae658ccf25641cd9eecbbc74e76b418",
+      "current_digest": "a52ab95f2adef050df509d18d9672825cfe6e7a7987a597e2a5e4268cd39e015"
+    },
+    {
+      "paper": "@Han2016",
+      "previous_digest": "8be2d35a9e1f03ce5e4dd29adce5879d6e0afab5ac39b29d7552eae43627971a",
+      "current_digest": "aacf45bd92a1e9d4150ac518d082db99775771d325d1ad0de91011ad46b509ca"
+    },
+    {
+      "paper": "@Harvey2022",
+      "previous_digest": "84a76a9f7e39749ba8ea64b37c2f9a9d1a2e42a1f2fb46cfbf2caeb6f8bf7247",
+      "current_digest": "780524c9fd1a2f4be2a61d251fd037fa5f7f7991b03dc2466ef5e700a21a9280"
+    },
+    {
+      "paper": "@Henseler2014",
+      "previous_digest": "97406c0c3e2a8868424754ad2fba6865760aa3d463292aa7e179922a952c9c71",
+      "current_digest": "501ed424c7c128ef49feea7fbf8ff895d8fbecccbd29f79b863e58dc943a6bea"
+    },
+    {
+      "paper": "@Hillis2001",
+      "previous_digest": "84b9f40ec52012b544414a5d3e8f2ede6b9ca57e4208a6b46072205c8af51196",
+      "current_digest": "3c282bd5a6faa319a64a6bac1251e1d794e81e6adce66e4cf2961ee859bb13bd"
+    },
+    {
+      "paper": "@Hillis2004",
+      "previous_digest": "421a24ab18dbdcb275ab9316bb29097d0e19d5f95cfbd7e75eca8199b4afc739",
+      "current_digest": "8ef211bf284df94dd5b59feb797b28b836014841a4882e276a4d392100fe16db"
+    },
+    {
+      "paper": "@Hillis2006",
+      "previous_digest": "0d3ec7cf44cae1ca5bd4a11347d2602ea6bef0659c7b3f309818fcc54f4c763b",
+      "current_digest": "662004f5e049bf641ffe7df3c7e2dc0832da08c101863432c3454b28857106b3"
+    },
+    {
+      "paper": "@Hope2013",
+      "previous_digest": "1972ebb4788731391ff97139215b49d928e5b73f3a101e87d9c507c9d406af6e",
+      "current_digest": "81b8dff05ce9bd74867a2f02345e415d3671eeb3fd243cc394567bd3ea164b5c"
+    },
+    {
+      "paper": "@Hope2017",
+      "previous_digest": "aeae4143a7027d37a1b998106a692d5a59dcfb6b27bf44a0c82f60115e6591ad",
+      "current_digest": "a83465414ca43df6591f65b047e0a6f02a76485d6eaae1099bdba62de60054e2"
+    },
+    {
+      "paper": "@Hope2018",
+      "previous_digest": "164ae3fc8519fdcd57cb20235759d7e9ff43b7805a1490b8fa1bbb7fa1485c84",
+      "current_digest": "58ac29d6a0edc866daea09e9f38631fe6fa31cec321d5ee127780cc3f9673e0c"
+    },
+    {
+      "paper": "@Hosomi2009",
+      "previous_digest": "b62c336ed744783d751fe76b89426b68e2276167319acaa5f89393e1619c910a",
+      "current_digest": "d868ef73ee1fcf49a642f951fa80f9db9cbe5bbf470bf8d1e5ad98a67a7ef882"
+    },
+    {
+      "paper": "@Hu2025",
+      "previous_digest": "82e34d8e5807493b2dc50f70f898044f8c48120cba75d4173ea1f4c2aed2d415",
+      "current_digest": "4b8e61465fbf73c0c2fd45412ba9e1e03e5a2fc3bd18d7e1a8078597f4dc3323"
+    },
+    {
+      "paper": "@Itabashi2015",
+      "previous_digest": "144e654e4fbd44cb8e53fdae1023b0bf4ca479ca6d3c9452fea1ea051754f2e4",
+      "current_digest": "66bfcfbd8148c85129d85d05dcee5d53d9ece742168686a1382484c0788ee4c3"
+    },
+    {
+      "paper": "@Ivanova2016",
+      "previous_digest": "5ace81a3638ae11cbd65ebcb8aa7512122c7068c8914c13b3decf73b5008c2e6",
+      "current_digest": "6cdd39b2bdad65c3ef6b25ab961dc7070016907750cbf5325fae9c3ca3a526c6"
+    },
+    {
+      "paper": "@Ivanova2021",
+      "previous_digest": "f40deca6c9ca28c0a980b85abc6a2eff07b4e1b3f264251ef3784f6bcfbe83d6",
+      "current_digest": "9d472b630fb2334e4d9fb3fb4595a0951d7d6cf8f1b5f86eac99a4b2f5e519ab"
+    },
+    {
+      "paper": "@Jiang2025",
+      "previous_digest": "27e52024dd1d4e860319f7729b55b5b45fa3b97194d1c40c0f237ef8af136eba",
+      "current_digest": "b60a5b636d3eaec72155afd63c93f789ec605148113da8e1fba2e6576ecf4884"
+    },
+    {
+      "paper": "@Johnson2019",
+      "previous_digest": "0bb695d73a944b6d35698487dbbed0d4a5def62984ed9034aaa1e21c14797502",
+      "current_digest": "f8852590856c544cdc0de5532f6151afbf6acf462ae7c06ed5b24a21e145b04c"
+    },
+    {
+      "paper": "@Johnson2022",
+      "previous_digest": "34f0662ce587a2f8151f9fea804af133fc31d837994db0a42bdb4e3187c15baa",
+      "current_digest": "2e626d03ead923fca525366e8da075b9c672b111035a62973592599848b474fc"
+    },
+    {
+      "paper": "@Karnath2018",
+      "previous_digest": "1c338a44127b29d08ab177dde137f2f354e525b689c4c167d120551f02cfa02b",
+      "current_digest": "a6134b8b26c126977ad56b930432937198efc632d31c3bb780a2906598f91bc5"
+    },
+    {
+      "paper": "@Kasdan2025",
+      "previous_digest": "a2272338a195a904c2fc1967117a46be148b0731c13c97e2df5b88f088546f78",
+      "current_digest": "d5fedc009738bc2eb3a269e44d1493d95e10eba67eb038e1caf53ed1b8b3b045"
+    },
+    {
+      "paper": "@Keser2020",
+      "previous_digest": "a9272d894f65bee17143763b2045b243817e0517bdba02daed7afacdc190301b",
+      "current_digest": "ec3a0d5dfa3147745331adb264fefbb962cba9db6f5b96101ac491174ded2ec1"
+    },
+    {
+      "paper": "@Kristinsson2020",
+      "previous_digest": "b4add413936359146c4e74e0a3846cfcdd25a1228e29d287e4d82592f788eabc",
+      "current_digest": "30e9fe73c0f86c8871c687f317f3af4f4a0988e29e5c71e75426a9ac0382af44"
+    },
+    {
+      "paper": "@Kristinsson2021",
+      "previous_digest": "1a053ae5e8e45dbaa8b45895db4b8831514ae153fb83556737535dbb505c997c",
+      "current_digest": "05be49fe944c3702d438823e38f46c7414cd849db27eb310a119ae27e6e608bf"
+    },
+    {
+      "paper": "@Kristinsson2025",
+      "previous_digest": "927f7c464a0ea1977943437fa70004d91f7ddd62212dc5be0160265245a5fa9f",
+      "current_digest": "d3960093a98f9ed08309b524240880ed6a3770b6f64169602c42a4b9954e5659"
+    },
+    {
+      "paper": "@Kummerer2013",
+      "previous_digest": "3e3c66baa6ca2b6485ff75954bfdc8d0a3d20f36a6db1f8715c293ccf31243af",
+      "current_digest": "e4f92c9ea260efde8705dd249c2d935d230fa21d186959913a8429f78ad1b559"
+    },
+    {
+      "paper": "@Lacey2017",
+      "previous_digest": "e79eea0e740f218f2d85fd6155584f8f6e70ab2e0769b6ec40cf16cd597f8fe1",
+      "current_digest": "a4354ad87dbee06f164a2cd6b8bccb40bfe670639c1d0c066b268328520b2bfd"
+    },
+    {
+      "paper": "@Laska2001",
+      "previous_digest": "d934725cf4f640a8e7097957d22d094aa03f9f0315574dbb1f47e4d0d10dd06e",
+      "current_digest": "58bbadabd9085cd0d2e7439f14f0dfbd99f022935160f6c627f1fafa07758fb3"
+    },
+    {
+      "paper": "@Lazar2008",
+      "previous_digest": "4ea25533f88d0d67494a44888313c0a25bc46a145aa3e970c2c1166868a06fa9",
+      "current_digest": "464172eda4189023264c45d588a51a3e61a6573c6433289469d95050ddc5f61f"
+    },
+    {
+      "paper": "@Lazar2010",
+      "previous_digest": "7810af16963792fc47079a5f413eee4e499cbdf94ba646bf54238e4bf0abc104",
+      "current_digest": "3053422c77563a69df8b9284ba5c2bece22e99d84ea22d088a1c292dfb08e3bc"
+    },
+    {
+      "paper": "@Lee2018",
+      "previous_digest": "e963144ce4f4e283d6d3e9080bef37591085df2aab9a8f58cb04325745f4ac08",
+      "current_digest": "2e1710ada27804e0074e4c51146245b35400ce0f5140dbfe54fb69b581434095"
+    },
+    {
+      "paper": "@Leff2009",
+      "previous_digest": "aa64b3112793d9673b1def5a92e426b4805d76add0716a0b87711c6473de9ee7",
+      "current_digest": "ed2984b726099393d5d51a62a7172a5901fdb0e81e37bcac13db9259558abf63"
+    },
+    {
+      "paper": "@Leonard2008",
+      "previous_digest": "e6d94c12e4f1f3146a31e10bdf1be07c36225e7ac3cb9d8c1896cf0f94912761",
+      "current_digest": "36b23c797dab6243b831e064094126866d84f03e60dacfaad2a8d0d876fd2bfe"
+    },
+    {
+      "paper": "@Li2017",
+      "previous_digest": "e78ab97abe1bf121317c5abe104a912956fc07e6d50b724de4c3bdc816925cb1",
+      "current_digest": "26594adbd1bd070b2b9b881937543f7d744e67cda24573b520e8c2a87ac6a359"
+    },
+    {
+      "paper": "@Lo2019",
+      "previous_digest": "b5c7d8e35b4c4e023afc88272ff195e3c0eac7da84f131bceea9f57d0f6cba0e",
+      "current_digest": "5f51423efb436bd72938f650f9f83ec50a8d668e2844207cb55421528620a319"
+    },
+    {
+      "paper": "@Lukic2021",
+      "previous_digest": "2c6e2fee16c9b505471c4b2a178c493b8ca1ef713d8074de77b84a5af451cda5",
+      "current_digest": "064fab42747bb69fb17966244fc60f2bd9a9344c1824dc1952a665578a35f4b4"
+    },
+    {
+      "paper": "@Maher2006",
+      "previous_digest": "40730142fd03d116c9a3f6c52b368255d70d44c4b9730fde78be9cc532b41bbc",
+      "current_digest": "cac8ee7c87da89caae8d27b6cfc9d73d280e41a05a82a1d8c67ce6cd8015d1eb"
+    },
+    {
+      "paper": "@Marchina2011",
+      "previous_digest": "a99a38b7b89d0556833c7c6221a4764fc14d29a5235e54abc9e2aacdbfdae658",
+      "current_digest": "96c65a4ab8fac0a34e294825444e3d1c8b1792911d049ee8a8bb15fa895f3ca3"
+    },
+    {
+      "paper": "@MartinezMolina2022",
+      "previous_digest": "5a2a7f9b5adbfa0ac27829ea547a524a4eb7d6621a1301c868ee0d6385b98e05",
+      "current_digest": "18a01f934185a175c897f447624891c192a3d8e49518c2a8c7926fe47d057a37"
+    },
+    {
+      "paper": "@MassonTrottier2021",
+      "previous_digest": "363f76e0a82a34a5928ca687e206813ad22e7a0a1cca7ab08937f898cb17da8a",
+      "current_digest": "17684d6a7f5c262a0e7f5f878c254555107892e232338d977225ff8e640f8255"
+    },
+    {
+      "paper": "@Matchin2020",
+      "previous_digest": "50eaa8415254248d7509af77745dfc2fe4bd9f066027577589b4c6fad0c73d8d",
+      "current_digest": "0a24d3c2d353ec7fa09ba5dd72278dc5eaaf92da1b8354cb4a50be3f2cddc24a"
+    },
+    {
+      "paper": "@McKinnon2018",
+      "previous_digest": "441c47fec36ce902aa430532217e4bd8d4ade524b7b0144e9e79e1ca89a84a02",
+      "current_digest": "86a334781139694eb89560733c7f8e3d7c98a09a045180548ad06befc1d41b00"
+    },
+    {
+      "paper": "@Meier2019",
+      "previous_digest": "92111a9d6761b9cdb3769232e206c72508d3486aff232294a3bf1fb0e0c50133",
+      "current_digest": "614aec174f2bb85abe69e077fb5fd7c7a414dfeafd2c5fa9c72996f06a0e26fc"
+    },
+    {
+      "paper": "@Meinzer2010",
+      "previous_digest": "ede90c4c18d67aa4d5d6b8b9963108f51ec94b8ec9e84a1e813ef2726920f232",
+      "current_digest": "b73a1a92c5ce369baebf62877967fde9e6d0eadbc5622450322849bd61597936"
+    },
+    {
+      "paper": "@Mirman2015",
+      "previous_digest": "90c83702a2cf8c4ed2b8bf6d8110fe333d5c59d6359c04edf665551fecc3a0d8",
+      "current_digest": "86c884d4672609e512eeb4a7d73211aa8652da1736cd8b9f2f8b719b45a5c11b"
+    },
+    {
+      "paper": "@MirmanThye2018",
+      "previous_digest": "cd35140158a865916ab2d820c1cc73c74cb0df92f22e5e2e371ab8d565749606",
+      "current_digest": "771ed69c91a9fbe8af5d49e697aafa9631b11dfc0766e7d3028787bbf96a498d"
+    },
+    {
+      "paper": "@Munsch2016",
+      "previous_digest": "bbadf2962a20bc66ae9ae36d153adca7810e9d5ae80f4f5e3176f3b1ac6021c6",
+      "current_digest": "894e51e5142252761721a925fe40d34bc261989f25023a5c21d9ed2b287fe2b0"
+    },
+    {
+      "paper": "@Naeser2005",
+      "previous_digest": "d4b5fd4f877174edb0552091c938cf6012165c0a5f6bd7fbbf1645d16c767291",
+      "current_digest": "b98c78d4ebb1ca556b0d68ed4962d10fd2647ea8eb800ef1110d82c49b7fb28c"
+    },
+    {
+      "paper": "@Nouwens2017",
+      "previous_digest": "eb293d6dfeafe629c2a3efd3197a656b776ac970234a9aa99812e6ec29e65859",
+      "current_digest": "448caab6a8cfe46d131669dde39657df155d8034aed35bf974e9136ac02f336f"
+    },
+    {
+      "paper": "@Ochfeld2010",
+      "previous_digest": "30523efa3df596c08d181a785ae1d84a869a73a906f4337910afa4596eb69526",
+      "current_digest": "6e5ddc0f77ae7337ca31424dd339caa9f63ff70f2d1de0341ce902c6514cea7a"
+    },
+    {
+      "paper": "@Oeckel2021",
+      "previous_digest": "feb7c43e596bc13beb6baa0782fc56c0566847adbadc38a8b597cd77d8a06227",
+      "current_digest": "be433403066fc34e363edcbb74602d244a21b510097ae9d17111d1716465edf8"
+    },
+    {
+      "paper": "@OsaGarcia2020",
+      "previous_digest": "31c5a52745bc74a3e9594b9d4d35d52e27b920f59068b54f99019d84ab590c3b",
+      "current_digest": "20fbcea09b834d3d7f0cbef72c42329132a9d5b63fea77c9c4ff52b87e8915aa"
+    },
+    {
+      "paper": "@Pedersen1995",
+      "previous_digest": "23a372548fd2e7a55cafa6c7f0f2cbaa0157b5553d44c50dd9ca68bf69092670",
+      "current_digest": "a9bf0c70aac5c762a438e58d7fe7d5badb13578f6117f381c37ef79b45ed6eeb"
+    },
+    {
+      "paper": "@Pedersen2004",
+      "previous_digest": "db9b2c0ba0c0f692ed5db3c9f9929d7249814b2795f2c6a2599a3670d39254d3",
+      "current_digest": "0192105bfab1b24ed8e116f1fee520cc43696fa6a2dcb0fe526711d1a98919f5"
+    },
+    {
+      "paper": "@Pflugshaupt2009",
+      "previous_digest": "e9d151eee887791961425dfa50d28049085a2534d18341f0a42284fd8be08072",
+      "current_digest": "868798eed42801e12234e36ff39a12d98bb67ad503c568f6fd676b361fdee0ff"
+    },
+    {
+      "paper": "@Pillay2017",
+      "previous_digest": "6a11ad498c300fdd900faeadbcad14785205a9d9a4f8258077f2779ff2702ddc",
+      "current_digest": "55e1bcebd4688622105bc0635d0ffa4e64e568d6ab0f4f4b84c18093721224fc"
+    },
+    {
+      "paper": "@Plowman2012",
+      "previous_digest": "f70d76f4e28c0b68d5898194bbb084320edf4a2e822aa21c0035512e5b271f25",
+      "current_digest": "9b15f4fce88d05e0ff694be6ec859085503efdb00f4a5aee1cf0e33ac5314c83"
+    },
+    {
+      "paper": "@Pulvermuller2001",
+      "previous_digest": "bcb786e691ade0432304bc9751e9413e72ae5fdb4f1f93657c4a0e733bad6ec5",
+      "current_digest": "cd658636dee4e6d7f47f9385a0afe90b9cb38f38d9190bac5ea184771c4e3ee6"
+    },
+    {
+      "paper": "@Radanovic2017",
+      "previous_digest": "690207ce5ed5fada5a64ba07fd52a3b5ded5d010ff67ae53110816e00b387683",
+      "current_digest": "48e27ebf0fd2fa38af0c49c0bdc5ee06b7176213744c83ac00e7424a4b46bb59"
+    },
+    {
+      "paper": "@Ramsey2017",
+      "previous_digest": "acb6671c21db8e962babb235a6bf7e8d5ae6aaf4bc188a95fd98d4861aece826",
+      "current_digest": "0747a7de87dc30277d5a9fdaabad69b3747b71aeaa3843027a5ff64a792d0b3a"
+    },
+    {
+      "paper": "@Rapcsak2009",
+      "previous_digest": "de7dc2db07974c8e5791e36e93079467a5f7932b3c462f067084cc205e577bbb",
+      "current_digest": "b619b7ff0d718abcec92791dea1c181e187c6cf327ac5f7959f02c05a98d3e9e"
+    },
+    {
+      "paper": "@Raymer",
+      "previous_digest": "6368b8768f1a322caba073c2ba6fdca3e88cf096dc43b71c45688e36c0e67713",
+      "current_digest": "5d3cacdb200dc426e812c228ac0ebbf2e7caf337832cf75906a67eb4f03e56aa"
+    },
+    {
+      "paper": "@Robson2014",
+      "previous_digest": "6f6381ee08783f75a64d1e4ff92374d64555be5f436033ea0859694d8afb2eb9",
+      "current_digest": "8766e19c219ab620183d8a80cdf4f36ed6be9218617d57b7b6ae7ad15f5210a4"
+    },
+    {
+      "paper": "@Robson2019",
+      "previous_digest": "12656f6e50c1271085ef90168c4c319d35a08fbc1b08965a4ce2de212df03f7a",
+      "current_digest": "8507825d5eec768b71cab6a57cbaa4d35d671d2005bf59df1b913be94ae36765"
+    },
+    {
+      "paper": "@Rodrigues2014",
+      "previous_digest": "b4371f7a3aa311b81183ee2994bfc8419384bb3d80fcaf102b1f107dd36e518f",
+      "current_digest": "c02af8c0ddc4af3929920118ee561bbda888dc1fd1ce3f683574ceba87871abc"
+    }
+  ],
+  "unmatched_left_for_helper": []
+}
