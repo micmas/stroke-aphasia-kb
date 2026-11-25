@@ -2242,35 +2242,47 @@
   },
   "@Yang2017": {
    "annotated": "pdf/C2467_Yang2017_annotated.pdf",
-   "bytes": 800703,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "bf5e3865e1249fa27c4f05d342aeff3a77ec214c7a81eed6681c3b62c64a40c6",
+   "bytes": 808064,
    "category": "unknown",
+   "draft_snapshot": "2026-11-25T22:01:00.408564+00:00",
    "label": null,
    "public": false,
-   "sha256": "b012cdbdee1d354069aa27ce2dfe0dfc5035fcd75d77375a0f6ce32ff38945a7"
+   "sha256": "b43b2828eb735357a5e62f75e18eb0848f90a9ceecb280466dd1d4a5e915fccf"
   },
   "@Yourganov2015Predicting": {
    "annotated": "pdf/C0006_Yourganov2015Predicting_annotated.pdf",
-   "bytes": 1814739,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "89d3dbe84333d7f6b6febe0955810b5fd71307faeabcae6b1c49c54f5065d7b3",
+   "bytes": 1896089,
    "category": "free_to_read",
+   "draft_snapshot": "2026-11-25T22:01:00.408564+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "db346ae0867c44533cd2ad1056a7fc0725a8b562c2c06b7420c9c8e318b37fd6"
+   "sha256": "fa55cc17c7f2d6e26da6b28d2ac93902539737527b7309cecb7075a1f675dcc2"
   },
   "@Yourganov2016": {
    "annotated": "pdf/C0112_Yourganov2016_annotated.pdf",
-   "bytes": 3050576,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "7d5b24504c019d965b0945d90d74313b32729ba0cd86dfed2236b1f7699e8617",
+   "bytes": 3521975,
    "category": "free_to_read",
+   "draft_snapshot": "2026-11-25T22:01:00.408564+00:00",
    "label": "free to read",
    "public": false,
-   "sha256": "7c07af60ffa39da0f707fcc182f25134f787feea0a883851dde052222adba540"
+   "sha256": "115a52a9db5f49e75a3cfcce774d01ce7ec1df50d170999d205ef732904f655a"
   },
   "@Yu2022": {
    "annotated": "pdf/C1255_Yu2022_annotated.pdf",
-   "bytes": 3378532,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "6b1d87df7220cfdcd4aa772e0850f362d89118c794929fa9aa57aa499c3bc6ac",
+   "bytes": 3482563,
    "category": "unknown",
+   "draft_snapshot": "2026-11-25T22:01:00.408564+00:00",
    "label": null,
    "public": false,
-   "sha256": "22bcad060ee0b4b52c0f9be065ffc95129fce91d0d79aaff3d7a1372b0e599ac"
+   "sha256": "48b9d197b4bfd8cba2b4b32088f3df04788d2d4b973dbd41ed38687402092906"
   },
   "@Yu2024": {
    "annotated": "pdf/C0797_Yu2024_annotated.pdf",

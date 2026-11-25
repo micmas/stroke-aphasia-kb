@@ -1,0 +1,174 @@
+{
+  "checked_at": "2026-11-25T22:03:33.466417+00:00",
+  "publication_snapshot": "2026-11-25T22:01:00.408564+00:00",
+  "scope": "Publication identity, population, analysis and claim scope check; no scientific approval.",
+  "snapshot_additions": 38,
+  "publishable_additions": 27,
+  "papers": [
+    "Xing2018",
+    "Yang2017",
+    "Yourganov2015Predicting",
+    "Yourganov2016",
+    "Yu2022",
+    "Yu2023"
+  ],
+  "identity_check": "All six PDF identities match their citation keys; no adjacent-article contamination found. Existing published/reviewed records and withdrawals preserved.",
+  "quarantined": [
+    {
+      "path": "drafts/predictors/left_af_fa_metrics__Yu2022__R003.md",
+      "paper": "Yu2022",
+      "candidate": "R003",
+      "reason": "PDF Table 2 p.8 distinguishes PSAF and LSAF effects: LSAF FA correlates with fluency but not repetition; PSAF FA correlates with repetition but not fluency. The pooled any-subsets except fluency and/or repetition wording needs tract-specific clarification.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/left_af_fa_metrics__Yu2022__R003.md",
+      "sha256": "bff4b694296f7597fddc56ffb317af6c09c3d1b63c00f7c65dd6b9c1c1fea50c"
+    },
+    {
+      "path": "drafts/regions/asaf_language_correlation__Yu2022__R007.md",
+      "paper": "Yu2022",
+      "candidate": "R007",
+      "reason": "Draft describes Spearman analyses and an unqualified ASAF null, but PDF Table 2 p.8 reports ASAF fiber-number/fluency p=.032. Table 3 adjusted associations are nonsignificant; specify analysis and metric rather than a blanket null.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/asaf_language_correlation__Yu2022__R007.md",
+      "sha256": "a364d6682979d3821eb0cba7bcb37af78327b2f7aadad146bca9f40d356ad4a6"
+    },
+    {
+      "path": "drafts/regions/left_af_reconstruction__Yu2022__R013.md",
+      "paper": "Yu2022",
+      "candidate": "R013",
+      "reason": "PDF pp.1,9-11: A-versus-C contrast concerns 8 completely and 12 partially reconstructed participants; the draft assigns the whole 26-person cohort to this pairwise finding.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_af_reconstruction__Yu2022__R013.md",
+      "sha256": "29732ec607e8ed34b042576b0cbdd8918efd1756f15175c90d9ff83fe81aca0b"
+    },
+    {
+      "path": "drafts/regions/left_af_reconstruction_status__Yu2022__R009.md",
+      "paper": "Yu2022",
+      "candidate": "R009",
+      "reason": "PDF pp.1,9,11: A-versus-B contrast uses 8 completely reconstructed and 6 non-reconstructed participants, not all 26 participants as the draft sample indicates.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_af_reconstruction_status__Yu2022__R009.md",
+      "sha256": "08f9b9f87dc48ab7c298b9412394bec490ba4db670ee42745d306c1bb42322e7"
+    },
+    {
+      "path": "drafts/regions/left_af_reconstruction_status__Yu2022__R018.md",
+      "paper": "Yu2022",
+      "candidate": "R018",
+      "reason": "PDF pp.1,11-12: B-versus-C contrast concerns 6 non-reconstructed and 12 partially reconstructed participants, not the whole 26-person cohort stated in the draft.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_af_reconstruction_status__Yu2022__R018.md",
+      "sha256": "51fc695e308cb0b1297660f4b5886e73a6ac59f40505fb6e3aa250f6acd2c2b1"
+    },
+    {
+      "path": "drafts/regions/left_astg_right_astg_connection__Xing2018__R006.md",
+      "paper": "Xing2018",
+      "candidate": "R006",
+      "reason": "PDF pp.6,9: interhemispheric aSTG connection result is an FA association, not the LSM method assigned to this draft.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_astg_right_astg_connection__Xing2018__R006.md",
+      "sha256": "3baff0bfe3fe3d0f965f76ce58c0df83756d10ad2acd27fa0f149bd14356e1cf"
+    },
+    {
+      "path": "drafts/regions/left_psaf_reconstruction__Yu2022__R016.md",
+      "paper": "Yu2022",
+      "candidate": "R016",
+      "reason": "PDF pp.6,11: groups are defined by reconstruction of the whole left AF, not the left PSAF as stated in the draft exposure description. Correct group definition before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_psaf_reconstruction__Yu2022__R016.md",
+      "sha256": "6eebea5134ce744ed7722fb17a17debe6b06d0910e87ae9c7821577d7867466f"
+    },
+    {
+      "path": "drafts/regions/left_slf__Yang2017__R003.md",
+      "paper": "Yang2017",
+      "candidate": "R003",
+      "reason": "PDF pp.4-5: association uses mean FA in TBSS-defined SLF clusters; LSM method label does not describe this diffusion analysis.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_slf__Yang2017__R003.md",
+      "sha256": "957355db4de7876d0b4c610a30a3f0412a2fa9d40a58cf8a55f1e4d9cfdb2c71"
+    },
+    {
+      "path": "drafts/regions/lsaf_diffusion_metrics__Yu2022__R006.md",
+      "paper": "Yu2022",
+      "candidate": "R006",
+      "reason": "PDF Table 3 p.8: adjusted LSAF comprehension, naming and AQ associations are significant for FA but not fiber number; AQ FA r=.504 also exceeds the paper strong-correlation threshold. Draft groups FA and fiber number and labels all associations moderate.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/lsaf_diffusion_metrics__Yu2022__R006.md",
+      "sha256": "503069a16f80744c65e4b6cf3f206748531a39492e525d0c34d85cf1085b2d35"
+    },
+    {
+      "path": "drafts/regions/psaf_diffusion_metrics__Yu2022__R005.md",
+      "paper": "Yu2022",
+      "candidate": "R005",
+      "reason": "PDF Table 3 p.8: adjusted PSAF naming association is FA-specific (r=.488), while fiber number is nonsignificant (p=.220). Draft groups FA and fiber number and calls all listed associations strong; distinguish metrics and strengths before review.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/psaf_diffusion_metrics__Yu2022__R005.md",
+      "sha256": "1577640f2451e17f4e322c4e0e4753ebba105bc1663525c051e81a10a4d4ba19"
+    },
+    {
+      "path": "drafts/regions/right_hemisphere_naming_connectome_integrity__Xing2018__R005.md",
+      "paper": "Xing2018",
+      "candidate": "R005",
+      "reason": "PDF pp.6,9: FA correlations in template-defined tracts are diffusion/tractography analyses, not the LSM method assigned to this draft.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/right_hemisphere_naming_connectome_integrity__Xing2018__R005.md",
+      "sha256": "187fde0bb3de15172e96edc613782c561332e46582d795bcb88c9d92f8a7f1ce"
+    }
+  ],
+  "published_paths": [
+    "drafts/impairments/pwr_ppt_association__Xing2018__R007.md",
+    "drafts/predictors/aalcts_aphasia_predictor__Yourganov2015Predicting__R003.md",
+    "drafts/predictors/aalcts_atlas_prediction_model__Yourganov2015Predicting__R009.md",
+    "drafts/predictors/anomic_aphasia_prediction_model__Yourganov2015Predicting__R008.md",
+    "drafts/predictors/aphasia_type_prediction_model__Yourganov2015Predicting__R001.md",
+    "drafts/predictors/aphasia_type_svm_model__Yourganov2015Predicting__R002.md",
+    "drafts/predictors/brocas_aphasia_predictor__Yourganov2015Predicting__R004.md",
+    "drafts/predictors/combined_lesion_connectome_svr__Yourganov2016__R006.md",
+    "drafts/predictors/global_aphasia_predictor__Yourganov2015Predicting__R006.md",
+    "drafts/predictors/intact_region_connectome_predictor__Yourganov2016__R007.md",
+    "drafts/predictors/left_af_reconstruction_status__Yu2022__R014.md",
+    "drafts/predictors/left_af_reconstruction_status__Yu2022__R015.md",
+    "drafts/predictors/lesion_based_wab_predictor__Yourganov2016__R008.md",
+    "drafts/predictors/lesion_size_prediction_model__Yourganov2016__R005.md",
+    "drafts/predictors/lesion_svr_wab_predictor__Yourganov2016__R001.md",
+    "drafts/predictors/lesion_volume__Yu2022__R002.md",
+    "drafts/predictors/lesion_vs_connectome_prediction_model__Yourganov2016__R004.md",
+    "drafts/predictors/overall_lesion_size__Yourganov2016__R003.md",
+    "drafts/predictors/wernickes_aphasia_predictor__Yourganov2015Predicting__R007.md",
+    "drafts/regions/aq_pq_interaction_ifof_slf__Yang2017__R004.md",
+    "drafts/regions/conduction_aphasia_predictive_cluster__Yourganov2015Predicting__R005.md",
+    "drafts/regions/cortical_language_areas_lesion_load__Yu2022__R001.md",
+    "drafts/regions/left_af_fiber_number__Yu2022__R004.md",
+    "drafts/regions/left_hemisphere_cortical_nodes_naming__Xing2018__R002.md",
+    "drafts/regions/left_lsaf__Yu2023__R001.md",
+    "drafts/regions/left_uf__Yu2023__R003.md",
+    "drafts/regions/right_lsaf_uf__Yu2023__R002.md"
+  ],
+  "source_papers": [
+    {
+      "paper": "Xing2018",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C2140_Xing2018.pdf",
+      "sha256": "f25fce04666dc022f51c9d2164d19b05e16f5fe93880a5764a534461a0d7fea4",
+      "identity_scope": "45 chronic left-hemisphere stroke survivors with aphasia history; PNT naming, pseudoword repetition, PPT semantics; cortical lesion loads and template-tract FA. Claims checked against pp.2,6,9."
+    },
+    {
+      "paper": "Yang2017",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C2467_Yang2017.pdf",
+      "sha256": "c496e5bcfef9f3c2f1c2d118e283e170fb02c4c4143c562cbb78343319fa139c",
+      "identity_scope": "18 acute left-hemisphere stroke patients, Chinese native speakers; TBSS diffusion analysis and ABC quotients. Checked pp.2-5."
+    },
+    {
+      "paper": "Yourganov2015Predicting",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0006_Yourganov2015Predicting.pdf",
+      "sha256": "8cea32fbedcdb4af1a30ac7fecebcb769f1951e7eac742197a0fccd30494ee3a",
+      "identity_scope": "98 chronic left-hemisphere stroke patients across five WAB aphasia types; MRI/SVM binary classification and aggregated regional relevance. Checked pp.1,6,11-13."
+    },
+    {
+      "paper": "Yourganov2016",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0112_Yourganov2016.pdf",
+      "sha256": "e0ff583339e6382052bbf13a2ff1a95dc393932fa0edf27fee24037e53fd4de7",
+      "identity_scope": "90 chronic left-hemisphere stroke participants with aphasia history, including 12 without current aphasia; WAB scores, SVR lesions and connectomes. Claims checked against pp.1-2,5-7, including AQ exception in intact-region analysis."
+    },
+    {
+      "paper": "Yu2022",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C1255_Yu2022.pdf",
+      "sha256": "bafbfa255008564d612a84eb59f53dfcd1de32ae706f546d6165e177286d97f0",
+      "identity_scope": "26 first-ever left-hemisphere stroke patients; Chinese WAB, acute/subacute; AF tractography and cortical lesion load. Groups A=8/B=6/C=12. Claims checked against pp.1-2,6-12. Conflicts between prose and tables held for review."
+    },
+    {
+      "paper": "Yu2023",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0994_Yu2023.pdf",
+      "sha256": "6dbf400a356a1ad0078d9d36156ad9dbd70fbf223606aaa812f81fd7e2174cd8",
+      "identity_scope": "36 first-ever left-hemisphere stroke patients within 90 days; Chinese WAB and bilateral LSAF/UF diffusion tractography. Checked pp.1,4,7; three already completed candidate drafts captured by snapshot while paper-level checking continues."
+    }
+  ],
+  "baseline_review_material": "Inspected logs/baseline/reviewer-material/regions/left_posterior_stg__Yourganov2016.md; retained unchanged. It contains prior model provenance and cohort-overlap flag with Yourganov2015Predicting, not approval. No retired path restored and no existing finding replaced."
+}

@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-25T20:19:47.673122+00:00",
+  "snapshot_at": "2026-11-25T22:01:00.408564+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -9188,6 +9188,218 @@
       "candidate": "R008",
       "publication_disposition": "withdrawn_pending_source_design_review",
       "publication_disposition_reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
+    },
+    "drafts/regions/left_hemisphere_cortical_nodes_naming__Xing2018__R002.md": {
+      "source_sha256": "a92036f711ec5b607376591420a9ec8cb9e8c1b11fe24abd8257e06c872d854d",
+      "paper": "Xing2018",
+      "candidate": "R002"
+    },
+    "drafts/regions/right_hemisphere_naming_connectome_integrity__Xing2018__R005.md": {
+      "source_sha256": "187fde0bb3de15172e96edc613782c561332e46582d795bcb88c9d92f8a7f1ce",
+      "paper": "Xing2018",
+      "candidate": "R005",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp.6,9: FA correlations in template-defined tracts are diffusion/tractography analyses, not the LSM method assigned to this draft."
+    },
+    "drafts/regions/left_astg_right_astg_connection__Xing2018__R006.md": {
+      "source_sha256": "3baff0bfe3fe3d0f965f76ce58c0df83756d10ad2acd27fa0f149bd14356e1cf",
+      "paper": "Xing2018",
+      "candidate": "R006",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp.6,9: interhemispheric aSTG connection result is an FA association, not the LSM method assigned to this draft."
+    },
+    "drafts/impairments/pwr_ppt_association__Xing2018__R007.md": {
+      "source_sha256": "2c45d2fdea6ae01b69494b6a734f75299f0f19ee17764adddbeb0b7641d55dca",
+      "paper": "Xing2018",
+      "candidate": "R007"
+    },
+    "drafts/regions/left_slf__Yang2017__R003.md": {
+      "source_sha256": "957355db4de7876d0b4c610a30a3f0412a2fa9d40a58cf8a55f1e4d9cfdb2c71",
+      "paper": "Yang2017",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp.4-5: association uses mean FA in TBSS-defined SLF clusters; LSM method label does not describe this diffusion analysis."
+    },
+    "drafts/regions/aq_pq_interaction_ifof_slf__Yang2017__R004.md": {
+      "source_sha256": "afc32b254c641d3f5d0557be6a2da685ec3057c31bd4baca2ec6825e1f73a244",
+      "paper": "Yang2017",
+      "candidate": "R004"
+    },
+    "drafts/predictors/aphasia_type_prediction_model__Yourganov2015Predicting__R001.md": {
+      "source_sha256": "1fba3929f2ba8695ac45f12496927fb482421f9721ef343ea4f2f379826f71e9",
+      "paper": "Yourganov2015Predicting",
+      "candidate": "R001"
+    },
+    "drafts/predictors/aphasia_type_svm_model__Yourganov2015Predicting__R002.md": {
+      "source_sha256": "897016665f9dc55de7595ae48203e4d49a1cd8b98c8787c44a850f7f29384759",
+      "paper": "Yourganov2015Predicting",
+      "candidate": "R002"
+    },
+    "drafts/predictors/aalcts_aphasia_predictor__Yourganov2015Predicting__R003.md": {
+      "source_sha256": "e0d2d75c51c593008853d1248d551138419d959c32ab82ec7ae0394dccea1bf5",
+      "paper": "Yourganov2015Predicting",
+      "candidate": "R003"
+    },
+    "drafts/predictors/brocas_aphasia_predictor__Yourganov2015Predicting__R004.md": {
+      "source_sha256": "e4d77f4b56a38d48c48a9617ddce8241b57aa42eaa8ef4a82ba0e2329ffde2f2",
+      "paper": "Yourganov2015Predicting",
+      "candidate": "R004"
+    },
+    "drafts/regions/conduction_aphasia_predictive_cluster__Yourganov2015Predicting__R005.md": {
+      "source_sha256": "69ecb4e7e50c82953e09e5ec4517658c9d13474d76401f5b437349236cae9259",
+      "paper": "Yourganov2015Predicting",
+      "candidate": "R005"
+    },
+    "drafts/predictors/global_aphasia_predictor__Yourganov2015Predicting__R006.md": {
+      "source_sha256": "b2b2e63c2ae5fa84ed65b702c6283c89fd5dcc0f805b9e72d51e74aabbaed0c5",
+      "paper": "Yourganov2015Predicting",
+      "candidate": "R006"
+    },
+    "drafts/predictors/wernickes_aphasia_predictor__Yourganov2015Predicting__R007.md": {
+      "source_sha256": "6f74f2ae455f8b9163a9d62313b62c4a159b4c14e1e9185fd55d518e0060e2f8",
+      "paper": "Yourganov2015Predicting",
+      "candidate": "R007"
+    },
+    "drafts/predictors/anomic_aphasia_prediction_model__Yourganov2015Predicting__R008.md": {
+      "source_sha256": "26342a241a69685316fa5a183ec0ce6b9adc5b5bbb2ab06826ee0cbd57f79674",
+      "paper": "Yourganov2015Predicting",
+      "candidate": "R008"
+    },
+    "drafts/predictors/aalcts_atlas_prediction_model__Yourganov2015Predicting__R009.md": {
+      "source_sha256": "7f548873504fbacc2e1210d1df98b3d7874b6c2f9e56170e9550a04ac2d5b126",
+      "paper": "Yourganov2015Predicting",
+      "candidate": "R009"
+    },
+    "drafts/predictors/lesion_svr_wab_predictor__Yourganov2016__R001.md": {
+      "source_sha256": "064532a68516ed23ce7e9ee1130aade6b22c6c25f60376a58cf7ea5b13a11535",
+      "paper": "Yourganov2016",
+      "candidate": "R001"
+    },
+    "drafts/predictors/overall_lesion_size__Yourganov2016__R003.md": {
+      "source_sha256": "6ac54205babf1838f2fa86df8585ccc02516d6bb4a2b2388fe5d771288bc82d9",
+      "paper": "Yourganov2016",
+      "candidate": "R003"
+    },
+    "drafts/predictors/lesion_vs_connectome_prediction_model__Yourganov2016__R004.md": {
+      "source_sha256": "d6c1f79884d9c62fa6d22fd64f78f16811133bb8b6ef3db4e7123ee1f98be588",
+      "paper": "Yourganov2016",
+      "candidate": "R004"
+    },
+    "drafts/predictors/lesion_size_prediction_model__Yourganov2016__R005.md": {
+      "source_sha256": "e3322d1df66ae214bc48891a37fd6404de89591794fdb9d896b11c012abf3fe4",
+      "paper": "Yourganov2016",
+      "candidate": "R005"
+    },
+    "drafts/predictors/combined_lesion_connectome_svr__Yourganov2016__R006.md": {
+      "source_sha256": "f013e641f4489827e6f87f33b11476fd2852a1bd34195419eaf4693f66368bb7",
+      "paper": "Yourganov2016",
+      "candidate": "R006"
+    },
+    "drafts/predictors/intact_region_connectome_predictor__Yourganov2016__R007.md": {
+      "source_sha256": "ae4e1e9e1ad8e14f113197726df12bb9a3b42f7f3628d08e074ba257a41e03c2",
+      "paper": "Yourganov2016",
+      "candidate": "R007"
+    },
+    "drafts/predictors/lesion_based_wab_predictor__Yourganov2016__R008.md": {
+      "source_sha256": "e65bb257a0a60b976890ffabf97a49db019438b5ca9555b7a34a09378a56e85f",
+      "paper": "Yourganov2016",
+      "candidate": "R008"
+    },
+    "drafts/regions/cortical_language_areas_lesion_load__Yu2022__R001.md": {
+      "source_sha256": "779ee135eb65d0e26c94aa984aff9d6f46447ca53ea5e8e24cd8febd9e304ea3",
+      "paper": "Yu2022",
+      "candidate": "R001"
+    },
+    "drafts/predictors/lesion_volume__Yu2022__R002.md": {
+      "source_sha256": "c1caad18e21add1ade8c3d4a1b950d9825872550d841b953d0e353c6df5f98c1",
+      "paper": "Yu2022",
+      "candidate": "R002"
+    },
+    "drafts/predictors/left_af_fa_metrics__Yu2022__R003.md": {
+      "source_sha256": "bff4b694296f7597fddc56ffb317af6c09c3d1b63c00f7c65dd6b9c1c1fea50c",
+      "paper": "Yu2022",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF Table 2 p.8 distinguishes PSAF and LSAF effects: LSAF FA correlates with fluency but not repetition; PSAF FA correlates with repetition but not fluency. The pooled any-subsets except fluency and/or repetition wording needs tract-specific clarification."
+    },
+    "drafts/regions/left_af_fiber_number__Yu2022__R004.md": {
+      "source_sha256": "319ef8af3447cc0bea505dae4aeae3e93f868862e943427cf5bbff35d0920c3a",
+      "paper": "Yu2022",
+      "candidate": "R004"
+    },
+    "drafts/regions/psaf_diffusion_metrics__Yu2022__R005.md": {
+      "source_sha256": "1577640f2451e17f4e322c4e0e4753ebba105bc1663525c051e81a10a4d4ba19",
+      "paper": "Yu2022",
+      "candidate": "R005",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF Table 3 p.8: adjusted PSAF naming association is FA-specific (r=.488), while fiber number is nonsignificant (p=.220). Draft groups FA and fiber number and calls all listed associations strong; distinguish metrics and strengths before review."
+    },
+    "drafts/regions/lsaf_diffusion_metrics__Yu2022__R006.md": {
+      "source_sha256": "503069a16f80744c65e4b6cf3f206748531a39492e525d0c34d85cf1085b2d35",
+      "paper": "Yu2022",
+      "candidate": "R006",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF Table 3 p.8: adjusted LSAF comprehension, naming and AQ associations are significant for FA but not fiber number; AQ FA r=.504 also exceeds the paper strong-correlation threshold. Draft groups FA and fiber number and labels all associations moderate."
+    },
+    "drafts/regions/asaf_language_correlation__Yu2022__R007.md": {
+      "source_sha256": "a364d6682979d3821eb0cba7bcb37af78327b2f7aadad146bca9f40d356ad4a6",
+      "paper": "Yu2022",
+      "candidate": "R007",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "Draft describes Spearman analyses and an unqualified ASAF null, but PDF Table 2 p.8 reports ASAF fiber-number/fluency p=.032. Table 3 adjusted associations are nonsignificant; specify analysis and metric rather than a blanket null."
+    },
+    "drafts/regions/left_af_reconstruction_status__Yu2022__R009.md": {
+      "source_sha256": "08f9b9f87dc48ab7c298b9412394bec490ba4db670ee42745d306c1bb42322e7",
+      "paper": "Yu2022",
+      "candidate": "R009",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp.1,9,11: A-versus-B contrast uses 8 completely reconstructed and 6 non-reconstructed participants, not all 26 participants as the draft sample indicates."
+    },
+    "drafts/regions/left_af_reconstruction__Yu2022__R013.md": {
+      "source_sha256": "29732ec607e8ed34b042576b0cbdd8918efd1756f15175c90d9ff83fe81aca0b",
+      "paper": "Yu2022",
+      "candidate": "R013",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp.1,9-11: A-versus-C contrast concerns 8 completely and 12 partially reconstructed participants; the draft assigns the whole 26-person cohort to this pairwise finding."
+    },
+    "drafts/predictors/left_af_reconstruction_status__Yu2022__R014.md": {
+      "source_sha256": "8d3df54ccca4094f4858283a26e6eda82a570b932e2d846fcfd47ca335e7bb25",
+      "paper": "Yu2022",
+      "candidate": "R014"
+    },
+    "drafts/predictors/left_af_reconstruction_status__Yu2022__R015.md": {
+      "source_sha256": "f098833ede872fcda7ae82f25aebb2b6f0af487fecf1e6a60d97e3a7ef61538d",
+      "paper": "Yu2022",
+      "candidate": "R015"
+    },
+    "drafts/regions/left_psaf_reconstruction__Yu2022__R016.md": {
+      "source_sha256": "6eebea5134ce744ed7722fb17a17debe6b06d0910e87ae9c7821577d7867466f",
+      "paper": "Yu2022",
+      "candidate": "R016",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp.6,11: groups are defined by reconstruction of the whole left AF, not the left PSAF as stated in the draft exposure description. Correct group definition before publication."
+    },
+    "drafts/regions/left_af_reconstruction_status__Yu2022__R018.md": {
+      "source_sha256": "51fc695e308cb0b1297660f4b5886e73a6ac59f40505fb6e3aa250f6acd2c2b1",
+      "paper": "Yu2022",
+      "candidate": "R018",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "PDF pp.1,11-12: B-versus-C contrast concerns 6 non-reconstructed and 12 partially reconstructed participants, not the whole 26-person cohort stated in the draft."
+    },
+    "drafts/regions/left_lsaf__Yu2023__R001.md": {
+      "source_sha256": "2de6e266fad5f03d4ed50e07a4c10123232c06565e8fb840240c058751f5847c",
+      "paper": "Yu2023",
+      "candidate": "R001"
+    },
+    "drafts/regions/right_lsaf_uf__Yu2023__R002.md": {
+      "source_sha256": "263411aeae5d899cca6652cc82262e3c066a9359c8a8b45747abfcfa6df3b8e5",
+      "paper": "Yu2023",
+      "candidate": "R002"
+    },
+    "drafts/regions/left_uf__Yu2023__R003.md": {
+      "source_sha256": "382e3829d51e35dd102ce4bc9f6dada27dc7d1ac95c9439e797e703348b074cf",
+      "paper": "Yu2023",
+      "candidate": "R003"
     }
   }
 }
