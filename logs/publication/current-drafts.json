@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-25T07:29:49.357852+00:00",
+  "snapshot_at": "2026-11-25T09:07:42.731266+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -7560,6 +7560,232 @@
       "source_sha256": "63c9aeaf6ca52208d676847bf544c6f8ec31c2c3fe4d31ba3fa242e25b2513ed",
       "paper": "Sebastian2014",
       "candidate": "R005"
+    },
+    "drafts/predictors/thalamic_infarct_volume__Sebastian2014__R006.md": {
+      "source_sha256": "ed2d7ad7e46b981951543b03423d4ed31750e44e3ca0ca21cecef73a41f9dccc",
+      "paper": "Sebastian2014",
+      "candidate": "R006"
+    },
+    "drafts/regions/time_post_stroke__Sewell2025__R001.md": {
+      "source_sha256": "297ab1fee88ef5ac7fa94ddae92d8d8b438d600dc545369b2f99d42da04d2eb5",
+      "paper": "Sewell2025",
+      "candidate": "R001"
+    },
+    "drafts/predictors/early_depressive_symptoms__Sewell2025__R002.md": {
+      "source_sha256": "55bab8ac2ad5930c8401d249cfa07f1d8f28b8883f441442348a1d883811b9cd",
+      "paper": "Sewell2025",
+      "candidate": "R002"
+    },
+    "drafts/predictors/early_depressive_symptoms__Sewell2025__R003.md": {
+      "source_sha256": "597c696aa95e8349ddf6d15e9b3c776d1ceda9d7bd9218d6b6e50d091ce4e0ec",
+      "paper": "Sewell2025",
+      "candidate": "R003"
+    },
+    "drafts/predictors/depressive_symptoms_3m__Sewell2025__R004.md": {
+      "source_sha256": "1c8988d84170f445f493186e78b945726302b77c2975e969fe83d58171864138",
+      "paper": "Sewell2025",
+      "candidate": "R004"
+    },
+    "drafts/predictors/anomia_therapy_activation_change__Shekari2022__R001.md": {
+      "source_sha256": "e306432b218926a91c06f3422ddab71f590caf3e123fa947026001b43915be5a",
+      "paper": "Shekari2022",
+      "candidate": "R001"
+    },
+    "drafts/reviews/anomia_therapy_f_mri_activation__Shekari2022__R002.md": {
+      "source_sha256": "bc04781dabc867f62bbc4424eb104aabd6d7f295a3d126153fcc129939eb92c6",
+      "paper": "Shekari2022",
+      "candidate": "R002",
+      "publication_disposition": "withdrawn_pending_schema_review",
+      "publication_disposition_reason": "The source claim matches the narrative review, but this draft uses unsupported entry kind=review under drafts/reviews. The KB loader includes regions, impairments, therapies, predictors and ingredients; the record is absent from the generated draft export. Hold for schema/category reconciliation rather than silently claiming it was published."
+    },
+    "drafts/regions/left_hemisphere_activation__Shekari2022__R003.md": {
+      "source_sha256": "22752867040c534e106c8df4dac55af101ba3f9aadaa7dc71e3a00232c82a3d9",
+      "paper": "Shekari2022",
+      "candidate": "R003"
+    },
+    "drafts/regions/lesion_size__Shekari2022__R004.md": {
+      "source_sha256": "d84b56c65bd1faf89f669492c767153c8ed23fa0b82b55ab0244f61cdaaf472e",
+      "paper": "Shekari2022",
+      "candidate": "R004"
+    },
+    "drafts/regions/core_language_areas__Shekari2022__R006.md": {
+      "source_sha256": "0133218e3c9508cb8a1fb51ce9e51c3f9ac52de31fe7f47cd05c5c836e71dd28",
+      "paper": "Shekari2022",
+      "candidate": "R006"
+    },
+    "drafts/therapies/standard_anomia_protocol__Shekari2022__R008.md": {
+      "source_sha256": "e75493cbc61d95a6a3ff701f858e23026e931dbb36ec5eae8e471d4d99246222",
+      "paper": "Shekari2022",
+      "candidate": "R008",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "publication_disposition_reason": "The source explicitly states on PDF p. 3 that data were synthesized narratively and meta-analysis was not conducted because of study heterogeneity. R008 labels method=meta-analysis despite narrative-review evidence. The p. 9 claim summarizes Marcotte2018; reconcile method and secondary-source provenance before publication."
+    },
+    "drafts/predictors/semantic_treatment_preserved_semantics__Shekari2022__R009.md": {
+      "source_sha256": "aa8fda43c672ac6f19f98a1d472e4ed937aebcc80c48b61c31639ace85f6cb12",
+      "paper": "Shekari2022",
+      "candidate": "R009"
+    },
+    "drafts/predictors/phonemic_cues_phonological_impairment__Shekari2022__R010.md": {
+      "source_sha256": "a80cc6844ad94ec085cccd1e4cbd4fec7fe1223f557fe6f6ab178b70b6c465cc",
+      "paper": "Shekari2022",
+      "candidate": "R010"
+    },
+    "drafts/reviews/anomia_therapy_activation_direction__Shekari2022__R011.md": {
+      "source_sha256": "d86e6788fb1473dc8e64340bbf13c063e1a69d1abbaf19197993c125714ecca8",
+      "paper": "Shekari2022",
+      "candidate": "R011",
+      "publication_disposition": "withdrawn_pending_schema_review",
+      "publication_disposition_reason": "The source claim matches the narrative review, but this draft uses unsupported entry kind=review under drafts/reviews. The KB loader includes regions, impairments, therapies, predictors and ingredients; the record is absent from the generated draft export. Hold for schema/category reconciliation rather than silently claiming it was published."
+    },
+    "drafts/regions/lesion_size_non_language_activation__Shekari2022__R012.md": {
+      "source_sha256": "066139b09989146aba52c1ae1f980c93472c9c6c12f03081530cf85b93c7b3af",
+      "paper": "Shekari2022",
+      "candidate": "R012"
+    },
+    "drafts/regions/ifg_activation__Shekari2022__R013.md": {
+      "source_sha256": "d1dd84b67f0f44e44d0825dfb36baad156055e9f0178a73194aecb301e04b028",
+      "paper": "Shekari2022",
+      "candidate": "R013"
+    },
+    "drafts/regions/left_mfg_cluster__Shekari2022__R014.md": {
+      "source_sha256": "0fc242a76ca4a325656c40381a3ee55cdbba0b6f10a4320c2a8eb8f1c1baf182",
+      "paper": "Shekari2022",
+      "candidate": "R014"
+    },
+    "drafts/regions/superior_frontal_gyrus__Shekari2022__R015.md": {
+      "source_sha256": "ab73820f6f32b844d59965162d1a704ab9acbf537d1162f338b02e2ace508887",
+      "paper": "Shekari2022",
+      "candidate": "R015"
+    },
+    "drafts/regions/precentral_gyrus__Shekari2022__R016.md": {
+      "source_sha256": "538f99625bb5c4657942f1fd172315bbb97647bcd448f18fba316f1641f04013",
+      "paper": "Shekari2022",
+      "candidate": "R016"
+    },
+    "drafts/regions/cingulate_cortex_cluster__Shekari2022__R017.md": {
+      "source_sha256": "865e2c1e83811a8a2e0d62a6eae7172ecff00fbc5ec48b57b6a51d92c79cdb3d",
+      "paper": "Shekari2022",
+      "candidate": "R017"
+    },
+    "drafts/regions/insula__Shekari2022__R018.md": {
+      "source_sha256": "99488bdc2e95fc0c8c3d180d5dd6b96de18f28c90da2c863c77cdaff6b93bc72",
+      "paper": "Shekari2022",
+      "candidate": "R018"
+    },
+    "drafts/regions/inferior_parietal_lobe__Shekari2022__R019.md": {
+      "source_sha256": "09c3ecebb42d8027fae48dedc7c186f998cd15e181e8d068eb18dbf296755fa1",
+      "paper": "Shekari2022",
+      "candidate": "R019"
+    },
+    "drafts/regions/stg_activation_anomia_therapy__Shekari2022__R020.md": {
+      "source_sha256": "643d51276717ac7fe50cd66d1b1f582b49071bf77d53cb99cbf5b4b9f37f43e4",
+      "paper": "Shekari2022",
+      "candidate": "R020"
+    },
+    "drafts/regions/middle_temporal_gyrus__Shekari2022__R021.md": {
+      "source_sha256": "acbd7294f624476996b41e55b91beef91f1f4853c27682d4a03ae61b2a4b0753",
+      "paper": "Shekari2022",
+      "candidate": "R021"
+    },
+    "drafts/regions/itg_sfa_activation__Shekari2022__R022.md": {
+      "source_sha256": "c5ea39fa1b5701c3a02bcb78dfc8f57a47e09b040bdf18b7eb64f1c28e3a0652",
+      "paper": "Shekari2022",
+      "candidate": "R022"
+    },
+    "drafts/regions/parahippocampal_gyrus__Shekari2022__R023.md": {
+      "source_sha256": "2228fe3754c9e23a69a7560fd17e65ee2d3159a5a4f7ced9af066ae8a981bf28",
+      "paper": "Shekari2022",
+      "candidate": "R023"
+    },
+    "drafts/regions/precuneus__Shekari2022__R024.md": {
+      "source_sha256": "ba0a53d822d92ca0850b3b889b3d85ea0721239e9bf3db9a371da787edd8d7a3",
+      "paper": "Shekari2022",
+      "candidate": "R024"
+    },
+    "drafts/regions/cerebellum__Shekari2022__R025.md": {
+      "source_sha256": "ad9e73bebdafff213ce8069e793fd26f2386585abe147f2c0de8c13e363939ec",
+      "paper": "Shekari2022",
+      "candidate": "R025"
+    },
+    "drafts/regions/caudate_activation__Shekari2022__R026.md": {
+      "source_sha256": "ff05d2c935a07fcf0ffda8071ea89c37e251455b34aa75941238d83e90669f98",
+      "paper": "Shekari2022",
+      "candidate": "R026"
+    },
+    "drafts/predictors/right_posterior_stg_age_emotion_id__Sheppard2020__R001.md": {
+      "source_sha256": "a77a27f0c659f0e5e00285a6206c50e0e76a25d8b99c2fc76870c0a8c297471d",
+      "paper": "Sheppard2020",
+      "candidate": "R001"
+    },
+    "drafts/predictors/fear_prosody_predictor_model__Sheppard2020__R002.md": {
+      "source_sha256": "10c170e17722817d3b923957e577ba50a75eabbc908340a2eb7fc1a7bc5bc67a",
+      "paper": "Sheppard2020",
+      "candidate": "R002"
+    },
+    "drafts/regions/right_posterior_stg__Sheppard2020__R003.md": {
+      "source_sha256": "37ff07bd96989aa102a56ab3835e4fc2e17449d7f9f62603f22ad950433dabf8",
+      "paper": "Sheppard2020",
+      "candidate": "R003"
+    },
+    "drafts/predictors/dorsal_stream_model__Sheppard2020__R004.md": {
+      "source_sha256": "b8f5fed4af69776b82b5cb82e03624eea3918b209d0b11a4f078cc4bedca711a",
+      "paper": "Sheppard2020",
+      "candidate": "R004"
+    },
+    "drafts/predictors/overall_emotion_identification_model__Sheppard2020__R006.md": {
+      "source_sha256": "bd35ae773097461c317a89a17d8cc5447dff83b7667ab4105edd4ad22d5c72f5",
+      "paper": "Sheppard2020",
+      "candidate": "R006"
+    },
+    "drafts/predictors/fear_prosody_identification_model__Sheppard2020__R007.md": {
+      "source_sha256": "97728b5ab86b97c1b3b848d2d66cd8916426a993a2e91c8559096a704d9cee80",
+      "paper": "Sheppard2020",
+      "candidate": "R007"
+    },
+    "drafts/predictors/acute_canonical_sentence_comprehension_predictor__Sheppard2022__R001.md": {
+      "source_sha256": "2cd267a1c11465fc4cb11c3a62a5dc0ff7f24b43110083ef015c2767b0f7df53",
+      "paper": "Sheppard2022",
+      "candidate": "R001"
+    },
+    "drafts/impairments/word_level_comprehension_deficit__Sheppard2022__R002.md": {
+      "source_sha256": "50e583562d50e2fc8bd6208fb77d4123029a9a5572e6787c193145e0db89a773",
+      "paper": "Sheppard2022",
+      "candidate": "R002"
+    },
+    "drafts/predictors/chronic_canonical_comprehension_model__Sheppard2022__R003.md": {
+      "source_sha256": "9fb8bc4ca1a65129afd5330dde01796204dfb58f6bbea9779363cc93251099d5",
+      "paper": "Sheppard2022",
+      "candidate": "R003"
+    },
+    "drafts/predictors/acute_noncanonical_comprehension_predictor__Sheppard2022__R004.md": {
+      "source_sha256": "20fce6bc0adb78d469eda4aa5804c45cc1c50f44c75a52eace9b306c39945d4e",
+      "paper": "Sheppard2022",
+      "candidate": "R004"
+    },
+    "drafts/regions/smg_noncanonical_acute__Sheppard2022__R005.md": {
+      "source_sha256": "3b44b3d5513b686dccc3ee1abba9186a43a8b836ac2989ee7b9f0f9e6d720cdd",
+      "paper": "Sheppard2022",
+      "candidate": "R005"
+    },
+    "drafts/predictors/chronic_noncanonical_comprehension_predictor__Sheppard2022__R006.md": {
+      "source_sha256": "943ee8f948b8414a344ebca81370064f2f7fffd13a6f3fa8fa40fcb944fab15b",
+      "paper": "Sheppard2022",
+      "candidate": "R006"
+    },
+    "drafts/predictors/pstg_chronic_noncanonical_prediction__Sheppard2022__R007.md": {
+      "source_sha256": "9d09610b65118836590b7ebb12a3322a762c904efef5cbe79c47350c9d379fbb",
+      "paper": "Sheppard2022",
+      "candidate": "R007"
+    },
+    "drafts/regions/brocas_area_chronic_asyntactic__Sheppard2022__R009.md": {
+      "source_sha256": "cba960cfc407bdbfd2e3e8a93dbf4a05a2096d09d5ca00748e22fc80d30e96bf",
+      "paper": "Sheppard2022",
+      "candidate": "R009"
+    },
+    "drafts/predictors/fc_vs_lesion_topography_prediction__Siegel2016__R002.md": {
+      "source_sha256": "078a0a8b69bc0279faaf8b58d4400534d192cb983f3b7f766e410208cca701c3",
+      "paper": "Siegel2016",
+      "candidate": "R002"
     }
   }
 }

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-25T07:29:49.357852+00:00",
+  "last_publication_snapshot": "2026-11-25T09:07:42.731266+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -160,7 +160,12 @@
     "Schlaug2010",
     "Schumacher2019",
     "Schwartz2009",
-    "Schwartz2012"
+    "Schwartz2012",
+    "Sebastian2014",
+    "Sewell2025",
+    "Shekari2022",
+    "Sheppard2020",
+    "Sheppard2022"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
   "recovery_publication_ready_seen": false

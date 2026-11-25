@@ -1,0 +1,125 @@
+{
+  "checked_at": "2026-11-25T09:09:38.524847+00:00",
+  "publication_snapshot": "2026-11-25T09:07:42.731266+00:00",
+  "scope": "Paper identity, claim/population scope and study-design provenance check only; no human scientific approval.",
+  "snapshot_additions": 44,
+  "publishable_additions": 41,
+  "papers": [
+    "Sebastian2014",
+    "Sewell2025",
+    "Shekari2022",
+    "Sheppard2020",
+    "Sheppard2022",
+    "Siegel2016"
+  ],
+  "partial_paper": "Siegel2016 has one completed candidate included by the snapshot script; it is not counted as completed in the captured checkpoint.",
+  "identity_check": "Every added claim and population inspected against the named source PDF. No adjacent-article contamination found. Existing published records and withdrawal dispositions remain unchanged.",
+  "quarantined": [
+    {
+      "path": "drafts/therapies/standard_anomia_protocol__Shekari2022__R008.md",
+      "paper": "Shekari2022",
+      "candidate": "R008",
+      "reason": "The source explicitly states on PDF p. 3 that data were synthesized narratively and meta-analysis was not conducted because of study heterogeneity. R008 labels method=meta-analysis despite narrative-review evidence. The p. 9 claim summarizes Marcotte2018; reconcile method and secondary-source provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/therapies/standard_anomia_protocol__Shekari2022__R008.md",
+      "sha256": "e75493cbc61d95a6a3ff701f858e23026e931dbb36ec5eae8e471d4d99246222"
+    },
+    {
+      "path": "drafts/reviews/anomia_therapy_activation_direction__Shekari2022__R011.md",
+      "paper": "Shekari2022",
+      "candidate": "R011",
+      "reason": "The source claim matches the narrative review, but this draft uses unsupported entry kind=review under drafts/reviews. The KB loader includes regions, impairments, therapies, predictors and ingredients; the record is absent from the generated draft export. Hold for schema/category reconciliation rather than silently claiming it was published.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/reviews/anomia_therapy_activation_direction__Shekari2022__R011.md",
+      "sha256": "d86e6788fb1473dc8e64340bbf13c063e1a69d1abbaf19197993c125714ecca8"
+    },
+    {
+      "path": "drafts/reviews/anomia_therapy_f_mri_activation__Shekari2022__R002.md",
+      "paper": "Shekari2022",
+      "candidate": "R002",
+      "reason": "The source claim matches the narrative review, but this draft uses unsupported entry kind=review under drafts/reviews. The KB loader includes regions, impairments, therapies, predictors and ingredients; the record is absent from the generated draft export. Hold for schema/category reconciliation rather than silently claiming it was published.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/reviews/anomia_therapy_f_mri_activation__Shekari2022__R002.md",
+      "sha256": "bc04781dabc867f62bbc4424eb104aabd6d7f295a3d126153fcc129939eb92c6"
+    }
+  ],
+  "published_paths": [
+    "drafts/impairments/word_level_comprehension_deficit__Sheppard2022__R002.md",
+    "drafts/predictors/acute_canonical_sentence_comprehension_predictor__Sheppard2022__R001.md",
+    "drafts/predictors/acute_noncanonical_comprehension_predictor__Sheppard2022__R004.md",
+    "drafts/predictors/anomia_therapy_activation_change__Shekari2022__R001.md",
+    "drafts/predictors/chronic_canonical_comprehension_model__Sheppard2022__R003.md",
+    "drafts/predictors/chronic_noncanonical_comprehension_predictor__Sheppard2022__R006.md",
+    "drafts/predictors/depressive_symptoms_3m__Sewell2025__R004.md",
+    "drafts/predictors/dorsal_stream_model__Sheppard2020__R004.md",
+    "drafts/predictors/early_depressive_symptoms__Sewell2025__R002.md",
+    "drafts/predictors/early_depressive_symptoms__Sewell2025__R003.md",
+    "drafts/predictors/fc_vs_lesion_topography_prediction__Siegel2016__R002.md",
+    "drafts/predictors/fear_prosody_identification_model__Sheppard2020__R007.md",
+    "drafts/predictors/fear_prosody_predictor_model__Sheppard2020__R002.md",
+    "drafts/predictors/overall_emotion_identification_model__Sheppard2020__R006.md",
+    "drafts/predictors/phonemic_cues_phonological_impairment__Shekari2022__R010.md",
+    "drafts/predictors/pstg_chronic_noncanonical_prediction__Sheppard2022__R007.md",
+    "drafts/predictors/right_posterior_stg_age_emotion_id__Sheppard2020__R001.md",
+    "drafts/predictors/semantic_treatment_preserved_semantics__Shekari2022__R009.md",
+    "drafts/predictors/thalamic_infarct_volume__Sebastian2014__R006.md",
+    "drafts/regions/brocas_area_chronic_asyntactic__Sheppard2022__R009.md",
+    "drafts/regions/caudate_activation__Shekari2022__R026.md",
+    "drafts/regions/cerebellum__Shekari2022__R025.md",
+    "drafts/regions/cingulate_cortex_cluster__Shekari2022__R017.md",
+    "drafts/regions/core_language_areas__Shekari2022__R006.md",
+    "drafts/regions/ifg_activation__Shekari2022__R013.md",
+    "drafts/regions/inferior_parietal_lobe__Shekari2022__R019.md",
+    "drafts/regions/insula__Shekari2022__R018.md",
+    "drafts/regions/itg_sfa_activation__Shekari2022__R022.md",
+    "drafts/regions/left_hemisphere_activation__Shekari2022__R003.md",
+    "drafts/regions/left_mfg_cluster__Shekari2022__R014.md",
+    "drafts/regions/lesion_size__Shekari2022__R004.md",
+    "drafts/regions/lesion_size_non_language_activation__Shekari2022__R012.md",
+    "drafts/regions/middle_temporal_gyrus__Shekari2022__R021.md",
+    "drafts/regions/parahippocampal_gyrus__Shekari2022__R023.md",
+    "drafts/regions/precentral_gyrus__Shekari2022__R016.md",
+    "drafts/regions/precuneus__Shekari2022__R024.md",
+    "drafts/regions/right_posterior_stg__Sheppard2020__R003.md",
+    "drafts/regions/smg_noncanonical_acute__Sheppard2022__R005.md",
+    "drafts/regions/stg_activation_anomia_therapy__Shekari2022__R020.md",
+    "drafts/regions/superior_frontal_gyrus__Shekari2022__R015.md",
+    "drafts/regions/time_post_stroke__Sewell2025__R001.md"
+  ],
+  "source_papers": [
+    {
+      "paper": "Sebastian2014",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0122_Sebastian2014.pdf",
+      "sha256": "2bcfe7ba9dff472faeb5095d27c65d17947145be08cb9d8f31586651ffcd9836",
+      "identity_scope": "Primary 20 acute isolated thalamic infarcts (10 left, 10 right). R006 matches the left-thalamic infarct-volume/comprehension result on PDF pp. 4\u20135; left subgroup n=10."
+    },
+    {
+      "paper": "Sewell2025",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C22223_Sewell2025.pdf",
+      "sha256": "2ff4924a20fb1db57ab84d972482c37ce1531fd4758fe92bafdc6f13d175a9f7",
+      "identity_scope": "Primary longitudinal cohort of 142 ischaemic stroke survivors, MADRS at first week, 3 and 12 months. All four claims match current-cohort results on PDF pp. 2\u20133."
+    },
+    {
+      "paper": "Shekari2022",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0058_Shekari2022.pdf",
+      "sha256": "070c1deead0f311773ac0324e4b3ca57dcd9dd5c348f9de6ef0cfdda433ae20a",
+      "identity_scope": "Systematic review with narrative synthesis of 14 task-fMRI anomia therapy studies (146 participants). Retained records identify narrative-review evidence and match the review discussion on PDF pp. 3, 8\u201315. They remain secondary evidence, not new independent cohorts. R008 held for explicit method contradiction."
+    },
+    {
+      "paper": "Sheppard2020",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0157_Sheppard2020.pdf",
+      "sha256": "b56add7cf1ba46bb2681949ae5c13dd2a0e77a66ecc9b28bbe363da2abb83924",
+      "identity_scope": "Primary acute right-hemisphere ischaemic stroke cohort n=23, emotional prosody identification within five days. Claims match ventral/dorsal models, right pSTG emotion comparisons, and fear/amygdala result on PDF pp. 1\u20134. No chronic n=9 findings attributed to the acute sample."
+    },
+    {
+      "paper": "Sheppard2022",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C4853_Sheppard2022.pdf",
+      "sha256": "a0bd896c83907cadd201eb6a8d28ecb8ed2932e4ab412b27f2e3088a7e4b8b6d",
+      "identity_scope": "Primary longitudinal n=15 left-hemisphere ischaemic stroke cohort, canonical/noncanonical SOAP comprehension within six days and at least six months. Claims match current LASSO results on PDF pp. 6\u20138, distinguishing selected model terms from significant independent predictors."
+    },
+    {
+      "paper": "Siegel2016",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0140_Siegel2016.pdf",
+      "sha256": "b9a9d5290e8b6ac7489832fb901432c527993087a2dd7ae98af2566b99ecfbb9",
+      "identity_scope": "Primary first symptomatic stroke cohort: 132 recruited at 1\u20132 weeks, 100 retained after lag/motion exclusions (PDF p. 2). R002 matches lesion-versus-FC prediction of visual/motor deficits on PDF pp. 1\u20133."
+    }
+  ],
+  "export_validation": "Two source-consistent review entries were excluded from the export because kind=review is unsupported; both are held with preserved originals. All 41 retained additions appear exactly once."
+}
