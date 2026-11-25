@@ -1,0 +1,125 @@
+{
+  "checked_at": "2026-11-25T07:31:23.777544+00:00",
+  "publication_snapshot": "2026-11-25T07:29:49.357852+00:00",
+  "scope": "Paper identity, claim/population scope and primary-versus-secondary source check only; no human scientific approval.",
+  "snapshot_additions": 38,
+  "publishable_additions": 34,
+  "papers": [
+    "Schlaug2008",
+    "Schlaug2010",
+    "Schumacher2019",
+    "Schwartz2009",
+    "Schwartz2012",
+    "Sebastian2014"
+  ],
+  "partial_paper": "Sebastian2014 has five completed candidate drafts included by the snapshot script; it is not counted as a completed paper in this checkpoint.",
+  "identity_check": "Each new claim and population inspected against its named main PDF and study context. No adjacent-journal-article contamination found. Source identity/design issues quarantined below.",
+  "quarantined": [
+    {
+      "path": "drafts/predictors/right_arcuate_fasciculus_size_change__Schlaug2010__R005.md",
+      "paper": "Schlaug2010",
+      "candidate": "R005",
+      "reason": "PDF p. 3 attributes the six-patient CIU/right-arcuate change correlation (p=0.08) to reference 25, Schlaug et al. 2009 (p. 8). The draft labels this secondary report cohort/LSM under Schlaug2010; reconcile primary-study identity and method before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/right_arcuate_fasciculus_size_change__Schlaug2010__R005.md",
+      "sha256": "5b11165c70b03b7f97fa2f0c25112c6a434f6b2db9b9c13b3da5f3f51a1194f2"
+    },
+    {
+      "path": "drafts/regions/middle_temporal_gyrus_semantic_cluster__Schwartz2012__R002.md",
+      "paper": "Schwartz2012",
+      "candidate": "R002",
+      "reason": "PDF p. 3 explicitly attributes the 64-person semantic-error result to Schwartz2009/Walker2011, then distinguishes the present larger sample. The draft uses that earlier result and sample alongside current-study methods. Reconcile study identity before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/middle_temporal_gyrus_semantic_cluster__Schwartz2012__R002.md",
+      "sha256": "186f6294cb89ad5c00e919239a944a8d29a67cf47244d51dfc6e5db8f8bb8609"
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__Schlaug2010__R001.md",
+      "paper": "Schlaug2010",
+      "candidate": "R001",
+      "reason": "PDF pp. 2\u20133 explicitly report a previous two-patient MIT/SRT study, reference 24 (Schlaug et al. 2008, identified on p. 8). This draft treats the recounted study as a case-study finding under Schlaug2010, duplicating the primary-paper evidence. Reconcile secondary-source provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/therapies/melodic_intonation_therapy__Schlaug2010__R001.md",
+      "sha256": "bfe232619f07fa52d6e94ea31978ef8a0469b9a9ebed60fa37925c512919cd77"
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__Schlaug2010__R003.md",
+      "paper": "Schlaug2010",
+      "candidate": "R003",
+      "reason": "PDF p. 3 describes Figure 1 as one of our other patients treated with MIT, a single-patient illustration in a Special Report. The draft instead records cohort evidence and plural patients with n unreported. Reconcile case illustration versus cohort provenance before publication.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/therapies/melodic_intonation_therapy__Schlaug2010__R003.md",
+      "sha256": "54010525cb7b342d8e41c4fd4400ed343e5033710627e669c1d98d84fcd76cde"
+    }
+  ],
+  "published_paths": [
+    "drafts/predictors/cortical_hypoperfusion_left_thalamic_stroke__Sebastian2014__R001.md",
+    "drafts/predictors/cortical_hypoperfusion_right_thalamic_stroke__Sebastian2014__R002.md",
+    "drafts/predictors/cortical_hypoperfusion_volume__Sebastian2014__R003.md",
+    "drafts/predictors/lesion_volume__Schumacher2019__R015.md",
+    "drafts/predictors/non_verbal_impairment_severity__Schumacher2019__R014.md",
+    "drafts/predictors/pronto_inhibit_generate_model__Schumacher2019__R011.md",
+    "drafts/predictors/semantic_error_predictor_nvcomp_filtered__Schwartz2009__R004.md",
+    "drafts/predictors/svr_lsm_behavioral_components__Schumacher2019__R009.md",
+    "drafts/predictors/thalamic_infarct_volume__Sebastian2014__R005.md",
+    "drafts/predictors/thalamic_lesion_volume__Sebastian2014__R004.md",
+    "drafts/regions/age__Schumacher2019__R017.md",
+    "drafts/regions/anterior_temporal_lobe_cluster__Schwartz2009__R001.md",
+    "drafts/regions/arcuate_fasciculus__Schwartz2012__R006.md",
+    "drafts/regions/ba_38_21_semantic_errors__Schwartz2009__R007.md",
+    "drafts/regions/inhibit_generate_cluster__Schumacher2019__R002.md",
+    "drafts/regions/lesion_volume__Schumacher2019__R016.md",
+    "drafts/regions/phonological_auditory_overlap_cluster__Schwartz2012__R005.md",
+    "drafts/regions/phonological_vs_semantic_retrieval_segregation__Schwartz2012__R003.md",
+    "drafts/regions/phonology_cluster__Schumacher2019__R004.md",
+    "drafts/regions/posterior_superior_temporal_gyrus__Schwartz2009__R002.md",
+    "drafts/regions/semantics_cluster__Schumacher2019__R005.md",
+    "drafts/regions/shift_update_cluster__Schumacher2019__R001.md",
+    "drafts/regions/singing_vs_speaking_ciu__Schlaug2008__R008.md",
+    "drafts/regions/speech_quanta_cluster__Schumacher2019__R006.md",
+    "drafts/regions/speed_component_cluster__Schumacher2019__R003.md",
+    "drafts/regions/time_post_stroke__Schumacher2019__R019.md",
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2008__R001.md",
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2008__R002.md",
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2008__R004.md",
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2008__R005.md",
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2008__R007.md",
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2010__R006.md",
+    "drafts/therapies/speech_repetition_therapy__Schlaug2008__R003.md",
+    "drafts/therapies/speech_repetition_therapy__Schlaug2008__R006.md"
+  ],
+  "source_papers": [
+    {
+      "paper": "Schlaug2008",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0026_Schlaug2008.pdf",
+      "sha256": "0d77b30100d6f663e9662da3a1677ee9cf0069050b35658a3441e72dd6501de0",
+      "identity_scope": "Primary two-patient nonfluent post-stroke aphasia MIT/SRT comparison, with crossover, behavioural and imaging outcomes."
+    },
+    {
+      "paper": "Schlaug2010",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C3213_Schlaug2010.pdf",
+      "sha256": "c2875f9550c0069f21ac179c72aba6a02033f9f16c6a9ae3f08a6abeeadc9d56",
+      "identity_scope": "Special Report reviewing MIT and earlier cases/cohorts, plus an illustrative patient. Only explicitly labeled narrative synthesis R006 retained; R001/R003/R005 held for source identity/design reconciliation."
+    },
+    {
+      "paper": "Schumacher2019",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0154_Schumacher2019.pdf",
+      "sha256": "7ed3bf60e56cc5818811274e6368ab07625bc9cef5175a7bd217643f3d05ed25",
+      "identity_scope": "Chronic post-stroke aphasia: 38 behavioural participants, 32 with imaging; verbal/nonverbal PCA and brain-behaviour analyses."
+    },
+    {
+      "paper": "Schwartz2009",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0028_Schwartz2009.pdf",
+      "sha256": "9cf2d54579089e10ec7294d1ba700958129654cf1f30bc1b95cffe15a4b12829",
+      "identity_scope": "64 individuals with post-stroke aphasia; semantic naming-error lesion mapping."
+    },
+    {
+      "paper": "Schwartz2012",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0033_Schwartz2012.pdf",
+      "sha256": "eef25a7d563cba481de7f96cc58b9bab94911cf24c78f703022dd4cbcbd0f8ea",
+      "identity_scope": "106-person current phonological-error study and overlap analyses. The 64-person earlier semantic-error result in the introduction was held."
+    },
+    {
+      "paper": "Sebastian2014",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0122_Sebastian2014.pdf",
+      "sha256": "2bcfe7ba9dff472faeb5095d27c65d17947145be08cb9d8f31586651ffcd9836",
+      "identity_scope": "20 acute isolated thalamic infarcts, 10 left and 10 right; aphasia/neglect and cortical hypoperfusion."
+    }
+  ]
+}

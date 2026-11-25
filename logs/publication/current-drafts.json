@@ -1,5 +1,5 @@
 {
-  "snapshot_at": "2026-11-25T05:32:15.814807+00:00",
+  "snapshot_at": "2026-11-25T07:29:49.357852+00:00",
   "archive_tag": "archive/pre-core-drafts-2026-11-20",
   "approved_by_snapshot": false,
   "files": {
@@ -7362,6 +7362,204 @@
       "source_sha256": "908efe0d1e4b2fe3ca6d3dfd7c93e3ac3f320fc2ecfe8624826ac474adb1940d",
       "paper": "Schellekens2026",
       "candidate": "R013"
+    },
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2008__R001.md": {
+      "source_sha256": "7bb689544cec9efe3a97566ea4a1498d6b78882298b65df0c843c2058b7f21ec",
+      "paper": "Schlaug2008",
+      "candidate": "R001"
+    },
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2008__R002.md": {
+      "source_sha256": "f258a8479a58a3e7adf3d75416cfade3ea6ea488faa87ed60be1bc280baa998e",
+      "paper": "Schlaug2008",
+      "candidate": "R002"
+    },
+    "drafts/therapies/speech_repetition_therapy__Schlaug2008__R003.md": {
+      "source_sha256": "0b529f3204d8cd77ea7e4b6454d55698cad0f0c16707f49953cd3042b62ad5d6",
+      "paper": "Schlaug2008",
+      "candidate": "R003"
+    },
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2008__R004.md": {
+      "source_sha256": "b2765285a7e45ac7f6076f6feecc9702e2608f8324c51d968a06eccc1c973e9e",
+      "paper": "Schlaug2008",
+      "candidate": "R004"
+    },
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2008__R005.md": {
+      "source_sha256": "e5d3548780ccfe36adb7d76c286475cc60f5e8e2ce8e6299ee4c47f95f943117",
+      "paper": "Schlaug2008",
+      "candidate": "R005"
+    },
+    "drafts/therapies/speech_repetition_therapy__Schlaug2008__R006.md": {
+      "source_sha256": "0cee61ee4783007a7eb2976743f0c4c3eaa7b0a5c834d7c942d1bd1ad5a50949",
+      "paper": "Schlaug2008",
+      "candidate": "R006"
+    },
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2008__R007.md": {
+      "source_sha256": "7c32aae292a60e821b0c59a707dbcb16e23050f0b5aef2202a6ec778aedc1062",
+      "paper": "Schlaug2008",
+      "candidate": "R007"
+    },
+    "drafts/regions/singing_vs_speaking_ciu__Schlaug2008__R008.md": {
+      "source_sha256": "d988136f1acde7395648baa12abab8c86c284a6fc9be0bf02067e0b8970f8c21",
+      "paper": "Schlaug2008",
+      "candidate": "R008"
+    },
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2010__R001.md": {
+      "source_sha256": "bfe232619f07fa52d6e94ea31978ef8a0469b9a9ebed60fa37925c512919cd77",
+      "paper": "Schlaug2010",
+      "candidate": "R001",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "PDF pp. 2\u20133 explicitly report a previous two-patient MIT/SRT study, reference 24 (Schlaug et al. 2008, identified on p. 8). This draft treats the recounted study as a case-study finding under Schlaug2010, duplicating the primary-paper evidence. Reconcile secondary-source provenance before publication. Original source-check output preserved."
+    },
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2010__R003.md": {
+      "source_sha256": "54010525cb7b342d8e41c4fd4400ed343e5033710627e669c1d98d84fcd76cde",
+      "paper": "Schlaug2010",
+      "candidate": "R003",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "PDF p. 3 describes Figure 1 as one of our other patients treated with MIT, a single-patient illustration in a Special Report. The draft instead records cohort evidence and plural patients with n unreported. Reconcile case illustration versus cohort provenance before publication. Original source-check output preserved."
+    },
+    "drafts/predictors/right_arcuate_fasciculus_size_change__Schlaug2010__R005.md": {
+      "source_sha256": "5b11165c70b03b7f97fa2f0c25112c6a434f6b2db9b9c13b3da5f3f51a1194f2",
+      "paper": "Schlaug2010",
+      "candidate": "R005",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "PDF p. 3 attributes the six-patient CIU/right-arcuate change correlation (p=0.08) to reference 25, Schlaug et al. 2009 (p. 8). The draft labels this secondary report cohort/LSM under Schlaug2010; reconcile primary-study identity and method before publication. Original source-check output preserved."
+    },
+    "drafts/therapies/melodic_intonation_therapy__Schlaug2010__R006.md": {
+      "source_sha256": "3f649e62d248b0023b5c23c1b8ad8640843a1673a49735ae98b2cbb307b19000",
+      "paper": "Schlaug2010",
+      "candidate": "R006"
+    },
+    "drafts/regions/shift_update_cluster__Schumacher2019__R001.md": {
+      "source_sha256": "864d279c38e1ea4e31cc7b3be782203ecfb2d9ad6a2512f7875438b2d0468b5a",
+      "paper": "Schumacher2019",
+      "candidate": "R001"
+    },
+    "drafts/regions/inhibit_generate_cluster__Schumacher2019__R002.md": {
+      "source_sha256": "3445004284aceadda79161203ce92f0fecf8e1575725a11e8ec03b5db9bcd583",
+      "paper": "Schumacher2019",
+      "candidate": "R002"
+    },
+    "drafts/regions/speed_component_cluster__Schumacher2019__R003.md": {
+      "source_sha256": "543996a246ec05a0537983d5d35caf6cf62937e941b947f92e5dac0b24b00f18",
+      "paper": "Schumacher2019",
+      "candidate": "R003"
+    },
+    "drafts/regions/phonology_cluster__Schumacher2019__R004.md": {
+      "source_sha256": "25a47eb818cabfe25d836e2ef9da3c7cea7558a7c846f72dfe55c832d8ea1848",
+      "paper": "Schumacher2019",
+      "candidate": "R004"
+    },
+    "drafts/regions/semantics_cluster__Schumacher2019__R005.md": {
+      "source_sha256": "a55e48f683fad018c2c79cd23e95493c588a06b07f0880d837e5c2603872e93d",
+      "paper": "Schumacher2019",
+      "candidate": "R005"
+    },
+    "drafts/regions/speech_quanta_cluster__Schumacher2019__R006.md": {
+      "source_sha256": "66734cff9261ae66d5b2b38a9c7a54694feceb9ae64c50027199c4cbbffef9cc",
+      "paper": "Schumacher2019",
+      "candidate": "R006"
+    },
+    "drafts/predictors/svr_lsm_behavioral_components__Schumacher2019__R009.md": {
+      "source_sha256": "220a721bfa216301d96e92b03a2ad2d3b32662274a52971fd0d9c71f5e04b3d7",
+      "paper": "Schumacher2019",
+      "candidate": "R009"
+    },
+    "drafts/predictors/pronto_inhibit_generate_model__Schumacher2019__R011.md": {
+      "source_sha256": "f59b38bfdc44d138f99afa5357c6094acf8d1d1edc9c54302e01b6dc312e966a",
+      "paper": "Schumacher2019",
+      "candidate": "R011"
+    },
+    "drafts/predictors/non_verbal_impairment_severity__Schumacher2019__R014.md": {
+      "source_sha256": "f8281eb578d0e4aa37932293bd062d3a74b858c7d02618d50a840280b2135318",
+      "paper": "Schumacher2019",
+      "candidate": "R014"
+    },
+    "drafts/predictors/lesion_volume__Schumacher2019__R015.md": {
+      "source_sha256": "6f619c499ce1273f92777d8c3e03c08064299a5bc08e6bc26c8a54360c7bec7e",
+      "paper": "Schumacher2019",
+      "candidate": "R015"
+    },
+    "drafts/regions/lesion_volume__Schumacher2019__R016.md": {
+      "source_sha256": "a9baceb93035a1a18a981879f9930a81535570326806eb3a4a02c89980d30472",
+      "paper": "Schumacher2019",
+      "candidate": "R016"
+    },
+    "drafts/regions/age__Schumacher2019__R017.md": {
+      "source_sha256": "58f404fdd3b690cd662240f1a6105b602daa083b5be936b20b23b230e0d8aa86",
+      "paper": "Schumacher2019",
+      "candidate": "R017"
+    },
+    "drafts/regions/time_post_stroke__Schumacher2019__R019.md": {
+      "source_sha256": "743ab1b50503c5d86ea4b20b3d33b650d44d3c58c99b2bb813e837b0fb8eb63b",
+      "paper": "Schumacher2019",
+      "candidate": "R019"
+    },
+    "drafts/regions/anterior_temporal_lobe_cluster__Schwartz2009__R001.md": {
+      "source_sha256": "269bc68353540d8e3d9bd4a15b66e26d79eefd9dfafeca38a5bf6e5bdcf97a89",
+      "paper": "Schwartz2009",
+      "candidate": "R001"
+    },
+    "drafts/regions/posterior_superior_temporal_gyrus__Schwartz2009__R002.md": {
+      "source_sha256": "93706723ca672a1ed150142e15a105a44975cf4072f315bac09033674939aa42",
+      "paper": "Schwartz2009",
+      "candidate": "R002"
+    },
+    "drafts/predictors/semantic_error_predictor_nvcomp_filtered__Schwartz2009__R004.md": {
+      "source_sha256": "93915a820fecb3ce57c1b43ca39e0d971900bc3983bf812a67452806a1ad9592",
+      "paper": "Schwartz2009",
+      "candidate": "R004"
+    },
+    "drafts/regions/ba_38_21_semantic_errors__Schwartz2009__R007.md": {
+      "source_sha256": "961b1d7baa5fde23a996256ff814064b024f16b44148f770ae135242f1433d73",
+      "paper": "Schwartz2009",
+      "candidate": "R007"
+    },
+    "drafts/regions/middle_temporal_gyrus_semantic_cluster__Schwartz2012__R002.md": {
+      "source_sha256": "186f6294cb89ad5c00e919239a944a8d29a67cf47244d51dfc6e5db8f8bb8609",
+      "paper": "Schwartz2012",
+      "candidate": "R002",
+      "publication_disposition": "withdrawn_pending_source_design_review",
+      "reason": "PDF p. 3 explicitly attributes the 64-person semantic-error result to Schwartz2009/Walker2011, then distinguishes the present larger sample. The draft uses that earlier result and sample alongside current-study methods. Reconcile study identity before publication. Original source-check output preserved."
+    },
+    "drafts/regions/phonological_vs_semantic_retrieval_segregation__Schwartz2012__R003.md": {
+      "source_sha256": "0a6acd584f36ddc54196d8555242c5f35e556a137e80f4080f83ca9453a93b1d",
+      "paper": "Schwartz2012",
+      "candidate": "R003"
+    },
+    "drafts/regions/phonological_auditory_overlap_cluster__Schwartz2012__R005.md": {
+      "source_sha256": "9785c26a58e61a08e98e589ced18af30ec04762b957567e52c848cefc972113e",
+      "paper": "Schwartz2012",
+      "candidate": "R005"
+    },
+    "drafts/regions/arcuate_fasciculus__Schwartz2012__R006.md": {
+      "source_sha256": "86e40fe0ace3f475cb544bff4fd7d9bc09038a0f782d1cbc9acb23f778e1b37c",
+      "paper": "Schwartz2012",
+      "candidate": "R006"
+    },
+    "drafts/predictors/cortical_hypoperfusion_left_thalamic_stroke__Sebastian2014__R001.md": {
+      "source_sha256": "b753503ecf17ba5cc69c0bfbfaef4f2cbd98160769c980f5d9d53580b0a67d4a",
+      "paper": "Sebastian2014",
+      "candidate": "R001"
+    },
+    "drafts/predictors/cortical_hypoperfusion_right_thalamic_stroke__Sebastian2014__R002.md": {
+      "source_sha256": "29e174ed0c23839e5dfb2798611f97a59d7eddf1224585c446f7102234931e9d",
+      "paper": "Sebastian2014",
+      "candidate": "R002"
+    },
+    "drafts/predictors/cortical_hypoperfusion_volume__Sebastian2014__R003.md": {
+      "source_sha256": "5144a327de8945315d9a531fb3da419540abb07f1912893479298577cf4788bd",
+      "paper": "Sebastian2014",
+      "candidate": "R003"
+    },
+    "drafts/predictors/thalamic_lesion_volume__Sebastian2014__R004.md": {
+      "source_sha256": "daac838fc434d9459e5b553d833de4cf51ffe600ef02ea4cb2ad8c74704e99db",
+      "paper": "Sebastian2014",
+      "candidate": "R004"
+    },
+    "drafts/predictors/thalamic_infarct_volume__Sebastian2014__R005.md": {
+      "source_sha256": "63c9aeaf6ca52208d676847bf544c6f8ec31c2c3fe4d31ba3fa242e25b2513ed",
+      "paper": "Sebastian2014",
+      "candidate": "R005"
     }
   }
 }

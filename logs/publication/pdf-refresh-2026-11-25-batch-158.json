@@ -1,0 +1,75 @@
+{
+  "publication_snapshot": "2026-11-25T07:29:49.357852+00:00",
+  "scope": "Annotation loop restricted in memory to citations with remaining published findings. Helper file and withdrawal ledger not modified by refresh. Existing PDF object names and access categories preserved.",
+  "report": {
+    "Desjardins2026": {
+      "status": "missing_pdf_index"
+    },
+    "Gilbert2025": {
+      "status": "missing_pdf_index"
+    },
+    "Goldenberg1994": {
+      "status": "missing_pdf_index"
+    },
+    "Hillis2002": {
+      "status": "missing_pdf_index"
+    },
+    "Hobden2024": {
+      "status": "missing_pdf_index"
+    },
+    "Hope2016": {
+      "status": "missing_pdf_index"
+    },
+    "Kourtidou2021": {
+      "status": "missing_pdf_index"
+    },
+    "Lukic2017": {
+      "status": "missing_pdf_index"
+    },
+    "Matchin2024": {
+      "status": "missing_pdf_index"
+    },
+    "Moore2024": {
+      "status": "missing_pdf_index"
+    },
+    "OsaGarcia2024": {
+      "status": "missing_pdf_index"
+    },
+    "Pendlebury2009": {
+      "status": "missing_pdf_index"
+    },
+    "Schellekens2026": {
+      "status": "missing_pdf_index"
+    },
+    "Schlaug2008": {
+      "status": "uploaded",
+      "placed": 61,
+      "missed": 0
+    },
+    "Schlaug2010": {
+      "status": "uploaded",
+      "placed": 4,
+      "missed": 0
+    },
+    "Schumacher2019": {
+      "status": "uploaded",
+      "placed": 75,
+      "missed": 0
+    },
+    "Schwartz2009": {
+      "status": "uploaded",
+      "placed": 27,
+      "missed": 0
+    },
+    "Schwartz2012": {
+      "status": "uploaded",
+      "placed": 26,
+      "missed": 0
+    },
+    "Sebastian2014": {
+      "status": "uploaded",
+      "placed": 32,
+      "missed": 0
+    }
+  }
+}
