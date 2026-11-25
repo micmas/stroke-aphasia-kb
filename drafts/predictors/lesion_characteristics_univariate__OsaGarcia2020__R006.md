@@ -4,7 +4,21 @@ name: lesion characteristics and initial severity univariate model
 kind: predictor
 findings:
 - id: f1
-  target: cs_subacute
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: cs_subacute
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    metric: Study-specific language composite; phase retained in claim
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: overall_language_function
   target_kind: impairment
   claim: lesion size, lesion load of the arcuate fasciculus, and initial aphasia severity
     were each significantly associated with the subacute aphasia composite score in

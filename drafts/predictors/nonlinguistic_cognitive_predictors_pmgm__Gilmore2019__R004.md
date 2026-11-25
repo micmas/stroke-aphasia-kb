@@ -4,7 +4,21 @@ name: nonlinguistic cognitive predictors of PMGM
 kind: predictor
 findings:
 - id: f1
-  target: pmgm
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: pmgm
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    metric: Proportion of potential maximal gain maintained (PMGM)
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: maintenance_of_naming_improvement
   target_kind: prognosis
   claim: In a backward elimination regression model, pretreatment visual short-term
     memory and verbal short-term memory were significant predictors of the proportion

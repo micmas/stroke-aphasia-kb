@@ -4,7 +4,22 @@ name: matrix reasoning prediction model
 kind: predictor
 findings:
 - id: f1
-  target: matrix_reasoning_scores
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: matrix_reasoning_scores
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Matrix Reasoning test
+    metric: matrix reasoning scores
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: nonverbal_reasoning
   target_kind: impairment
   claim: Neither the region of interest stepwise regression nor the whole brain VLSM
     analyses yielded statistically significant prediction models for matrix reasoning

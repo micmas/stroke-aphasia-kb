@@ -4,7 +4,22 @@ name: combined GM and WM clustering model
 kind: predictor
 findings:
 - id: f1
-  target: bnt_total
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: bnt_total
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Boston Naming Test
+    metric: bnt total
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: picture_naming
   target_kind: impairment
   claim: Combined GM and WM clustering provided greater explanatory power for pre-treatment
     naming skills (BNTtotal) than did GM-only clustering.

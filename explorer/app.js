@@ -376,6 +376,8 @@ function findingCard(index, f, { route = true, open = false } = {}) {
     Population: displayValue(sample.population || f.population, 'sample.population'),
     Timing: displayValue(sample.time_post_onset || f.time_post_onset, 'sample.time_post_onset'),
     Outcome: index.name(f.target),
+    'Measured using': f.outcome_measurement?.instruments?.map(x => x.name).join('; ') || 'Not yet verified',
+    'Score / task detail': f.outcome_measurement?.metric,
     Method: f.method.join(', '),
     'Study type': displayValue(f.evidence_quality || f.design, 'design'),
   });
@@ -390,6 +392,7 @@ function findingCard(index, f, { route = true, open = false } = {}) {
     context.review_notes?.length ? h('ul', { class: 'context-review-notes' }, context.review_notes.map(note => h('li', { text: note }))) : null) : null;
 
   const details = [h('h4', { text: 'Analysis context' }), kvList({ relationship: RELATIONSHIP_TEXT[f.relationship] || f.relationship, result: f.direction === 'no_effect' ? 'No association detected' : DIRECTION_LABEL[f.direction] || f.direction, method: f.method, study_design: f.design, therapy: f.therapy })];
+  if (f.target_audit) details.push(h('h4', { text: 'Outcome definition audit' }), h('p', { text: f.target_audit.reason }), h('p', { class: 'small muted', text: f.outcome_measurement?.note || '' }));
   if (f.sample && Object.keys(f.sample).length) details.push(h('h4', { text: 'Sample' }), kvList(f.sample));
   else if (f.population || f.sample_n) details.push(h('h4', { text: 'Sample' }), kvList({ n: f.sample_n, population: f.population, time_post_onset: f.time_post_onset }));
   if (f.statistics && Object.keys(f.statistics).length) details.push(h('h4', { text: 'Reported statistics' }), kvList(f.statistics));

@@ -411,6 +411,25 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
         if f.get("direction") not in DIRECTION_VOCAB:
             err(f"{prefix}: unknown direction={f.get('direction')!r}")
 
+        # Outcome measurement is separate from the predictor interpretation triplet.
+        om = f.get("outcome_measurement")
+        if om is not None:
+            if not isinstance(om, dict):
+                err(f"{prefix}: outcome_measurement must be a mapping")
+            else:
+                if om.get("status") not in ("identified", "needs_source_review", "not_applicable"):
+                    err(f"{prefix}: outcome_measurement.status invalid")
+                instruments = om.get("instruments")
+                if not isinstance(instruments, list):
+                    err(f"{prefix}: outcome_measurement.instruments must be a list")
+                elif any(not isinstance(x, dict) or not isinstance(x.get("name"), str) or not x["name"].strip() for x in instruments):
+                    err(f"{prefix}: outcome_measurement instruments need non-empty names")
+                elif om.get("status") == "identified" and not instruments:
+                    err(f"{prefix}: identified outcome_measurement needs an instrument or task")
+                for key in ("metric", "note"):
+                    if key in om and not isinstance(om[key], str):
+                        err(f"{prefix}: outcome_measurement.{key} must be a string")
+
         # Method (v2.2: can be a list of strings; v2.0/2.1: string only)
         m = f.get("method")
         if isinstance(m, list):

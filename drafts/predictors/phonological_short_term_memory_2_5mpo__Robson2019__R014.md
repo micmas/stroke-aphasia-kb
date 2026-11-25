@@ -4,6 +4,19 @@ name: phonological short-term memory at 2.5 MPO
 kind: predictor
 findings:
 - id: f1
+  target_audit:
+    status: behaviour_label_present
+    category: behaviour_or_language_construct
+    original_target: comprehension_9mpo
+    reason: Label names a behaviour or language construct; its exact operational definition and measurement
+      still need source review.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
+      or a paper-wide test list.
   target: comprehension_9mpo
   target_kind: prognosis
   claim: phonological short-term memory at 2.5 MPO was significantly associated with

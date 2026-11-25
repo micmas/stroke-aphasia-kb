@@ -4,6 +4,19 @@ name: time-constraint naming
 kind: predictor
 findings:
 - id: f1
+  target_audit:
+    status: behaviour_label_present
+    category: behaviour_or_language_construct
+    original_target: executive_linguistic_function
+    reason: Label names a behaviour or language construct; its exact operational definition and measurement
+      still need source review.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
+      or a paper-wide test list.
   target: executive_linguistic_function
   target_kind: impairment
   claim: Time-constraint naming correlated with verbal working memory (digit span

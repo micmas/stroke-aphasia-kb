@@ -4,6 +4,19 @@ name: right posterior parietal and occipital/superior temporal cluster
 kind: network
 findings:
 - id: f1
+  target_audit:
+    status: needs_source_review
+    category: ambiguous_or_composite
+    original_target: cancellation_total_score
+    reason: A score, generic outcome or composite label does not uniquely identify a behaviour. Check the
+      task, subtests and analysis before retargeting.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
+      or a paper-wide test list.
   target: cancellation_total_score
   target_kind: impairment
   claim: Cancellation Total score was associated with damage to 139,745 voxels distributed

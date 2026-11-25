@@ -4,7 +4,22 @@ name: amount of SLT
 kind: ingredient
 findings:
 - id: f1
-  target: wab_r_aq_proportion_change
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: wab_r_aq_proportion_change
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery–Revised
+    metric: Proportion change in Aphasia Quotient
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: aphasia_severity_change
   target_kind: prognosis
   claim: The amount of SLT received was not a significant predictor of proportion
     change in WAB-R AQ in a stepwise regression model that also included lesion volume

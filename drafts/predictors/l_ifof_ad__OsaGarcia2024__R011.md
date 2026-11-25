@@ -4,7 +4,21 @@ name: left inferior fronto-occipital fasciculus axial diffusivity
 kind: predictor
 findings:
 - id: f1
-  target: early_raw_change_score
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: early_raw_change_score
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    metric: Composite score change from acute to subacute phase (ΔCS1–2)
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: language_recovery
   target_kind: prognosis
   claim: Left inferior fronto-occipital fasciculus axial diffusivity (L-IFOFAD) was
     the most robust predictor of early raw change scores (ΔCS1–2) and remained significant

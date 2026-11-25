@@ -4,6 +4,19 @@ name: MCA infarct proximity
 kind: classical
 findings:
 - id: f1
+  target_audit:
+    status: needs_source_review
+    category: non_behaviour_or_methodological
+    original_target: left_hippocampus_volume_reduction
+    reason: This endpoint is not a behaviour. Review its scope and target kind; do not relabel it as a behavioural
+      deficit.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
+      or a paper-wide test list.
   target: left_hippocampus_volume_reduction
   target_kind: impairment
   claim: Proximity of the infarct was negatively correlated with volume reductions

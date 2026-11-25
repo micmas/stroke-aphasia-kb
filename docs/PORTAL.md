@@ -1,5 +1,25 @@
 # The review portal
 
+## Start with one finding
+
+Choose **Drafts**, then search by paper, behaviour or assessment. The queue shows
+25 drafts at a time. Filters separate unclear outcome definitions, missing
+measurement details and high extractor confidence. Confidence is a sorting aid,
+not evidence that a draft is ready for approval.
+
+Each draft follows three steps: read the finding and outcome, check the passages
+against the PDF, then choose agree, disagree or unsure. A partial review is useful.
+Unchecked passages remain open. Study details, limitations and provenance remain
+available in an expandable section. Use **Correct the finding or its measurement**
+to edit the behaviour and record its assessment/task separately, including the
+subtest or score. Proposed measurement edits are version-checked on import and do
+not approve the finding. Maintainer controls are under **Maintainer tools** on Home.
+
+The 2026-11-25 target audit is metadata triage of the published drafts. Unclear
+composites, clinical endpoints and imaging/method findings require source review;
+they are not automatically renamed as behaviours. A named measurement is not a
+verification of its version, scoring or scientific interpretation.
+
 ## Where human decisions enter the process
 
 | Stage | Person's task | What it does not do |

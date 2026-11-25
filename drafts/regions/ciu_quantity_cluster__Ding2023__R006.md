@@ -4,7 +4,22 @@ name: CIU quantity cluster
 kind: network
 findings:
 - id: f1
-  target: ciu_quantity
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: ciu_quantity
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Correct information unit analysis
+    metric: Number of correct information units; aggregation retained in claim
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: discourse_information_quantity
   target_kind: impairment
   claim: Lesions in a sparse set of voxels including the left arcuate fasciculus (AF),
     corpus callosum, frontal aslant tract (FAT), and supramarginal gyrus are associated

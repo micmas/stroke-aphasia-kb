@@ -209,6 +209,22 @@ class Import(unittest.TestCase):
         self.assertIn("skip: no draft", PI.apply_edit({"id": "regions/left_angular_gyrus.md", "finding": "f1", "fields": {}}, "alex", True, state))
         self.assertIn("skip: no draft", PI.apply_edit({"id": "drafts/../README.md", "finding": "f1", "fields": {}}, "alex", True, state))
 
+    def test_outcome_measurement_edit_is_structured_and_stale_safe(self):
+        rel = "drafts/regions/left_angular_gyrus__TestPaper2020.md"
+        m = {"status": "identified", "instruments": [{"name": "Boston Naming Test"}], "metric": "Total correct"}
+        rec = {"id": rel, "finding": "f1", "fields": {"outcome_measurement": {"old": None, "new": m}}}
+        self.PI.apply_edit(rec, "alex", True, {})
+        fm, _ = self.PI.parse_markdown(self.draft)
+        self.assertEqual(fm['findings'][0]['outcome_measurement'], m)
+        self.assertEqual(fm['status'], 'draft')
+        self.assertEqual(fm['findings'][0]['target'], 'anomia')
+        rec['fields']['outcome_measurement']['new'] = {**m, 'metric': 'Changed score'}
+        self.assertIn('stale: outcome_measurement', self.PI.apply_edit(rec, 'alex', True, {}))
+        rec['fields']['outcome_measurement'] = {'old': m, 'new': {'status': 'identified', 'instruments': []}}
+        self.assertIn('invalid structured measurement', self.PI.apply_edit(rec, 'alex', True, {}))
+        fm, _ = self.PI.parse_markdown(self.draft)
+        self.assertEqual(fm['findings'][0]['outcome_measurement'], m)
+
     def test_pdf_upload_lands_in_papers(self):
         PI = self.PI
         saved = (PI.PAPERS, PI.PORTAL, dict(PI.FETCH), PI.S.load_candidates)

@@ -4,7 +4,22 @@ name: lesion anatomy cluster
 kind: network
 findings:
 - id: f1
-  target: pm_impairment
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: pm_impairment
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Memory for Intentions Screening Test–Short Form
+    metric: Summary score or subscales specified in the claim; timing retained
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: prospective_memory
   target_kind: impairment
   claim: Limited conclusions could be drawn regarding lesion anatomy and prospective
     memory impairment due to insufficient lesion overlap; formal statistical analysis

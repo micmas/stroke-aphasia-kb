@@ -4,7 +4,22 @@ name: age
 kind: classical
 findings:
 - id: f1
-  target: achieved_delta_wab
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: achieved_delta_wab
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery
+    metric: Change in study-specific WAB score from baseline to 90 days
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: language_recovery
   target_kind: prognosis
   claim: In a multiple-regression model predicting aphasia recovery (change in WAB
     score from baseline to 90 days), age was not a significant predictor when analyzed

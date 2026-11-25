@@ -4,7 +4,22 @@ name: angular gyrus cluster
 kind: network
 findings:
 - id: f1
-  target: aspt_a_score
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: aspt_a_score
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Northwestern Assessment of Verbs and Sentences
+    metric: 'Argument Structure Production Test, Code A: verb and all required arguments in correct order'
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: verb_argument_structure_production
   target_kind: impairment
   claim: Damage to the angular gyrus, extending into the middle occipital gyrus, is
     associated with lower ASPT-A scores.

@@ -4,7 +4,26 @@ name: overall lesion volume
 kind: predictor
 findings:
 - id: f1
-  target: token_test_performance
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: token_test_performance
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Token Test
+    metric: Sentence comprehension performance
+    definition_source:
+      citation: '@Adezati2022'
+      page: 2
+      quote: First, sentence comprehension was measured using the Token Test
+    note: 'Methods, page 2: sentences avoid non-canonical structures and complex embeddings. This is not
+      a measure of all syntactic abilities.'
+  target: auditory_sentence_comprehension
   target_kind: impairment
   claim: Overall lesion volume was a statistically significant predictor of Token
     Test performance.

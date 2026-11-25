@@ -4,7 +4,22 @@ name: 1 Hz rTMS to R pars triangularis
 kind: therapy
 findings:
 - id: f1
-  target: bdae_phrase_length
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: bdae_phrase_length
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Boston Diagnostic Aphasia Examination
+    metric: Words per longest phrase in elicited propositional speech
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: connected_speech_phrase_length
   target_kind: impairment
   claim: Improvement was observed in the number of words per longest phrase length
     in elicited, propositional speech for two of the three nonfluent patients at 2

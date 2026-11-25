@@ -4,6 +4,19 @@ name: arcuate fasciculus fiber count asymmetry index
 kind: predictor
 findings:
 - id: f1
+  target_audit:
+    status: behaviour_label_present
+    category: behaviour_or_language_construct
+    original_target: aphasia_at_discharge
+    reason: Label names a behaviour or language construct; its exact operational definition and measurement
+      still need source review.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
+      or a paper-wide test list.
   target: aphasia_at_discharge
   target_kind: prognosis
   claim: A lower (rightward) asymmetry index of arcuate fasciculus fiber counts is

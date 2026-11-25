@@ -4,7 +4,22 @@ name: Prefrontal, Temporal, and Other ROI cluster
 kind: network
 findings:
 - id: f1
-  target: agrammatism_dimension_score
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: agrammatism_dimension_score
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: APROCSA
+    metric: Agrammatism dimension score
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: agrammatism
   target_kind: impairment
   claim: The Prefrontal, Temporal, and Other ROIs were not significant predictors
     of Agrammatism dimension scores when holding damage in the other ROIs constant.

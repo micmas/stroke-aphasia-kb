@@ -4,7 +4,22 @@ name: Early intensive cognitive-linguistic treatment
 kind: therapy
 findings:
 - id: f1
-  target: cat_word_comprehension
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: cat_word_comprehension
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Comprehensive Aphasia Test
+    metric: Word comprehension subtest; modality requires verification
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: word_comprehension
   target_kind: impairment
   claim: In an on-treatment analysis, patients who received at least the specified
     intensity of 28 h of treatment in 4 weeks reached significantly higher scores

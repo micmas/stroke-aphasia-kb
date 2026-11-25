@@ -78,7 +78,7 @@ LOG = ROOT / "logs" / "extraction_log.md"
 REVIEWERS = ROOT / "portal" / "reviewers.yaml"
 PAPERS = ROOT / "papers"
 PORTAL = ROOT / "portal"
-EDITABLE = ("claim", "direction", "relationship", "strength", "target", "target_kind")
+EDITABLE = ("claim", "direction", "relationship", "strength", "target", "target_kind", "outcome_measurement")
 
 
 def reviewers() -> dict[str, dict]:
@@ -272,6 +272,16 @@ def apply_edit(rec: dict, by: str, execute: bool, state: dict) -> str:
     for k, ch in (rec.get("fields") or {}).items():
         if k not in EDITABLE or not isinstance(ch, dict):
             continue
+        if k == "outcome_measurement":
+            m = ch.get("new")
+            valid = (isinstance(m, dict) and m.get("status") in ("identified", "needs_source_review", "not_applicable")
+                     and isinstance(m.get("instruments"), list)
+                     and all(isinstance(x, dict) and isinstance(x.get("name"), str) and x["name"].strip() for x in m["instruments"])
+                     and (m["status"] != "identified" or bool(m["instruments"]))
+                     and all(key not in m or isinstance(m[key], str) for key in ("metric", "note")))
+            if not valid:
+                stale.append("outcome_measurement (invalid structured measurement)")
+                continue
         if f.get(k) != ch.get("old") and str(f.get(k)) != str(ch.get("old")):
             stale.append(f"{k} (now {f.get(k)!r}, reviewer saw {ch.get('old')!r})")
             continue

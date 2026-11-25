@@ -4,6 +4,19 @@ name: dorsal white matter pathways
 kind: network
 findings:
 - id: f1
+  target_audit:
+    status: needs_source_review
+    category: ambiguous_or_composite
+    original_target: ciu_measures
+    reason: A score, generic outcome or composite label does not uniquely identify a behaviour. Check the
+      task, subtests and analysis before retargeting.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
+      or a paper-wide test list.
   target: ciu_measures
   target_kind: impairment
   claim: When controlling for apraxia of speech as a covariate, the association between

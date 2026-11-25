@@ -4,6 +4,19 @@ name: intersection index
 kind: predictor
 findings:
 - id: f1
+  target_audit:
+    status: needs_source_review
+    category: ambiguous_or_composite
+    original_target: good_outcome_3m
+    reason: A score, generic outcome or composite label does not uniquely identify a behaviour. Check the
+      task, subtests and analysis before retargeting.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
+      or a paper-wide test list.
   target: good_outcome_3m
   target_kind: prognosis
   claim: The intersection index was a univariate predictor of good outcome at 3 months

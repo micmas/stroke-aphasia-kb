@@ -4,7 +4,22 @@ name: mean household income
 kind: predictor
 findings:
 - id: f1
-  target: wab_aq_change
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: wab_aq_change
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery
+    metric: Change in Aphasia Quotient between first and last assessments
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: aphasia_severity_change
   target_kind: prognosis
   claim: mean household income was not correlated with change between the first and
     last WAB assessments, nor was it a significant predictor when entered into a linear

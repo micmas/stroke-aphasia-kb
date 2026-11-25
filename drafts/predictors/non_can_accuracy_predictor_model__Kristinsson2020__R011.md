@@ -4,7 +4,22 @@ name: noncanonical score accuracy predictor model
 kind: predictor
 findings:
 - id: f1
-  target: non_can_score_accuracy
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: non_can_score_accuracy
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Sentence comprehension task
+    metric: Noncanonical sentence accuracy
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: noncanonical_sentence_comprehension
   target_kind: impairment
   claim: Noncanonical scores were best predicted by proportional damage to pMTG and
     IFGop; both coefficients were negative, and proportional damage to pMTG was significantly

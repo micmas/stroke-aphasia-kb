@@ -4,6 +4,19 @@ name: temporoparietal and frontal cortices and interconnecting white matter clus
 kind: network
 findings:
 - id: f1
+  target_audit:
+    status: behaviour_label_present
+    category: behaviour_or_language_construct
+    original_target: long_term_language_gains
+    reason: Label names a behaviour or language construct; its exact operational definition and measurement
+      still need source review.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
+      or a paper-wide test list.
   target: long_term_language_gains
   target_kind: prognosis
   claim: Participants who did not show clinically meaningful long-term language improvement

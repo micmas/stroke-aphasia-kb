@@ -4,6 +4,19 @@ name: right hemisphere lesion site
 kind: classical
 findings:
 - id: f1
+  target_audit:
+    status: behaviour_label_present
+    category: behaviour_or_language_construct
+    original_target: communication_impairment_clusters
+    reason: Label names a behaviour or language construct; its exact operational definition and measurement
+      still need source review.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
+      or a paper-wide test list.
   target: communication_impairment_clusters
   target_kind: impairment
   claim: descriptive analysis of brain lesion localisation did not allow the identification

@@ -4,6 +4,19 @@ name: Word Finding/Fluency factor
 kind: predictor
 findings:
 - id: f1
+  target_audit:
+    status: needs_source_review
+    category: non_behaviour_or_methodological
+    original_target: word_finding_fluency_factor
+    reason: This endpoint is not a behaviour. Review its scope and target kind; do not relabel it as a behavioural
+      deficit.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
+      or a paper-wide test list.
   target: word_finding_fluency_factor
   target_kind: predictor
   claim: A principal components factor analysis of 25 behavioral tests identified

@@ -1,5 +1,42 @@
 # Schema v2.8
 
+### Behaviour and its measurement
+
+`target` names the behaviour or construct, not the test or score. For example,
+`auditory_sentence_comprehension` is measured with the Token Test. Keep a broad
+language composite broad: an Aphasia Quotient is not a single language behaviour.
+Keep legitimate imaging, clinical and methodological endpoints distinct; do not
+rename them as impairments merely to make every target behavioural.
+
+The optional finding-level `outcome_measurement` block records measurement without
+using the predictor-specific `instrument` / `score_band` / `interpretation` triplet:
+
+```yaml
+target: auditory_sentence_comprehension
+target_kind: impairment
+outcome_measurement:
+  status: identified
+  instruments:
+  - name: Token Test
+  metric: Token Test performance
+  note: Check the paper for the exact version, scoring and task conditions.
+```
+
+`status` is `identified`, `needs_source_review` or `not_applicable`.
+`instruments` is a list of objects with non-empty `name`; optional `subtest` may
+retain the task component. A task or discourse-coding procedure can be named when
+there is no standardised test. `identified` means a measure is recorded, **not**
+that the finding has been approved. Use an empty list and `needs_source_review`
+when uncertain. Optional `metric` and `note` are strings. Preserve raw/change/
+residual scoring, subtests, task conditions and timing; never collapse these into
+an unqualified test total. Do not copy a predictor assessment into this block.
+
+`target_audit` is dated metadata triage, not approval provenance. It retains the
+original target and distinguishes `construct_separated`,
+`behaviour_label_present` and `needs_source_review`. A behaviour-like label is not
+evidence that its operational definition was verified. The complete audit scope
+and unresolved queue are in `logs/publication/target-audit.json`.
+
 Every entry is a single markdown file with **YAML frontmatter** followed by
 **prose**. The frontmatter is the contract that `aphasia_kb.py`,
 `promote.py`, `annotate_paper.py`, and any extraction agent rely on.

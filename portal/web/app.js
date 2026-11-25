@@ -18,7 +18,7 @@
 
 const PDFJS = './vendor/pdf.min.mjs';            // vendored by scripts/publish_portal.py from pdfjs-dist
 const PDFJS_WORKER = './vendor/pdf.worker.min.mjs';
-const EDITABLE = ['claim', 'direction', 'relationship', 'strength', 'target', 'target_kind'];
+const EDITABLE = ['claim', 'direction', 'relationship', 'strength', 'target', 'target_kind', 'outcome_measurement'];
 const VOCAB = {
   direction: ['likely', 'unlikely', 'no_effect', 'mixed', 'likely_responder', 'unlikely_responder'],
   relationship: ['causal', 'correlational', 'recruitment', 'responder', 'treatment_response', 'synthesis'],
@@ -29,6 +29,7 @@ const VOCAB = {
 import { orderScreeningPapers, mergePendingPapers, pendingScreenReceipts } from './paper-intake.js';
 import { applyState } from './apply-state.js';
 import { carryOver, sameBuild } from './review-state.js';
+import { selectDrafts, measurementLabel } from './draft-queue.js';
 
 const state = { me: null, manifest: null, kb: null, bindings: {}, bindingProblem: '', screening: null, screeningIndex: [], mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
 const MAX_UPLOAD = 60 * 1024 * 1024;
@@ -169,12 +170,16 @@ function home() {
   const pendingTa = pendingSent().filter((x) => x.stage === 'ta' && x.decision === 'include').length;
   return frag(
     h('div', { class: 'page-head' }, h('h1', { text: 'Welcome back' })),
-    h('p', { class: 'lead', text: 'Choose a task below. Every paper screened and finding checked helps make the knowledge base more useful.' }),
+    h('p', { class: 'lead', text: 'Start with one finding. You can send a partial review and return later.' }),
+    h('section', { class: 'review-start' }, h('h2', { text: 'Review a finding in three steps' }),
+      h('ol', {}, h('li', { text: 'Read the finding, behaviour and measurement.' }), h('li', { text: 'Open its highlighted passages and check them against the paper.' }), h('li', { text: 'Choose agree, disagree or unsure, then send your review.' })),
+      h('a', { class: 'btn btn-primary', href: '#/drafts', text: 'Choose a finding to review' }),
+      h('p', { class: 'small muted', text: 'Unsure is useful. You do not need to resolve the whole paper to contribute.' })),
     h('p', { class: 'small muted', text: `Signed in as ${state.me.email}. Your decisions are recorded under this address.` }),
     h('details', { class: 'editorial-details' }, h('summary', { text: 'When will my decisions appear?' }),
       h('p', { text: 'Send your decisions when you are ready. The maintainer applies them and the site rebuilds; this also runs automatically every six hours. A paper moves to its next queue after that rebuild.' }),
       h('p', { class: 'small muted', text: `KB ${m.kbCommit || '?'} · built ${m.built || '?'}. Approval permissions follow the project’s governance policy.` })),
-    (m.maintainers || []).includes(String(state.me.email || '').toLowerCase()) ? frag(applyPanel(), requestsPanel()) : null,
+    (m.maintainers || []).includes(String(state.me.email || '').toLowerCase()) ? h('details', { class: 'editorial-details' }, h('summary', { text: 'Maintainer tools: apply reviews and manage access' }), applyPanel(), requestsPanel()) : null,
     h('div', { class: 'tiles' },
       h('a', { class: 'tile tile-link', href: '#/drafts' }, h('div', { class: 'value', text: String(drafts.length) }), h('div', { class: 'label', text: 'drafts to review' }), h('div', { class: 'detail', text: `${drafts.reduce((n, d) => n + d.findings.length, 0)} findings` })),
       h('a', { class: 'tile tile-link', href: '#/screen/ta' }, h('div', { class: 'value', text: String(ta.length) }), h('div', { class: 'label', text: 'titles/abstracts to screen' })),
@@ -304,24 +309,37 @@ function requestsPanel() {
 
 function draftsList() {
   const drafts = draftsIndex(state.kb);
-  const byPaper = new Map();
-  for (const d of drafts) (byPaper.get(d.citation) || byPaper.set(d.citation, []).get(d.citation)).push(d);
-  const rows = [];
-  for (const [cit, ds] of [...byPaper.entries()].sort((a, b) => String(a[0]).localeCompare(String(b[0])))) {
-    const pdf = paperPdf(cit);
-    rows.push(h('tr', { class: 'paper-row' }, h('th', { colspan: 5 }, h('span', { class: 'chip', text: cit }), ' ', h('span', { class: 'small muted', text: (state.kb.citations?.[cit] || '').slice(0, 140) }), ' ',
-      pdf ? h('a', { class: `badge ${pdf.public ? 'badge-human' : 'badge-kind'}`, href: pdf.annotated, target: '_blank', rel: 'noopener', title: 'Open the annotated PDF in a new tab (the highlights are the drafts’ passages)', text: pdf.public ? 'annotated PDF ↗ (public)' : 'annotated PDF ↗ (reviewers)' })
-        : paperSource(cit) ? h('span', { class: 'badge badge-warn', title: 'The maintainer has the paper; the annotated copy is not in this build yet', text: 'PDF with the maintainer, not annotated yet' })
-          : h('span', { class: 'badge badge-warn', title: 'Nobody has this paper yet — open a draft to upload it', text: 'no PDF anywhere yet' }))));
-    for (const d of ds) {
+  const prefs = state.queue || (state.queue = { query: '', filter: 'all', page: 0 });
+  const results = h('div');
+  const search = h('input', { type: 'search', value: prefs.query, placeholder: 'Search paper, behaviour or test…', 'aria-label': 'Search drafts', oninput: e => { prefs.query = e.target.value; prefs.page = 0; update(); } });
+  const filter = h('select', { 'aria-label': 'Filter draft queue', onchange: e => { prefs.filter = e.target.value; prefs.page = 0; update(); } },
+    [['all', 'All drafts'], ['target', 'Outcome definition needs attention'], ['measurement', 'Measurement needs checking'], ['high', 'High extractor confidence']].map(([v, t]) => h('option', { value: v, selected: prefs.filter === v ? '' : null, text: t })));
+  function update() {
+    const selected = selectDrafts(drafts, prefs);
+    prefs.page = selected.page;
+    const rows = selected.items.map(d => {
+      const f = d.findings[0];
       const who = reviewedBy(d.path);
-      rows.push(h('tr', {}, h('td', {}, h('a', { href: draftHref(d.path), text: d.path.replace(/^drafts\//, '') })), h('td', { text: entryName(d.entry) }), h('td', { text: d.kind }),
-        h('td', { class: 'num', text: String(d.findings.length) }), h('td', { class: 'small muted', text: who.length ? `reviewed by ${[...new Set(who)].join(', ')}` : '' })));
-    }
+      const needsTarget = d.findings.some(x => x.target_audit?.status === 'needs_source_review');
+      return h('tr', {},
+        h('td', {}, h('a', { href: draftHref(d.path), text: entryName(f.target) }), h('div', { class: 'small muted', text: entryName(d.entry) }), h('div', { class: 'small', text: String(f.claim || '').slice(0, 180) + (String(f.claim || '').length > 180 ? '…' : '') })),
+        h('td', { text: d.citation }),
+        h('td', { class: 'small', text: measurementLabel(f) }),
+        h('td', { class: 'small', text: who.length ? `Review sent by ${[...new Set(who)].join(', ')}` : needsTarget ? 'Clarify outcome first' : 'Awaiting review' }),
+        h('td', {}, h('a', { class: 'btn', href: draftHref(d.path), text: d.findings.length > 1 ? `Review ${d.findings.length} findings` : 'Review' })));
+    });
+    results.replaceChildren(
+      h('p', { class: 'small muted', role: 'status', text: `${selected.total} matching drafts · page ${selected.page + 1} of ${selected.pages}` }),
+      prefs.filter === 'high' ? h('p', { class: 'notice', text: 'Confidence comes from the extractor. These findings still need source review; this filter does not establish eligibility for approval.' }) : h('span'),
+      selected.total ? h('div', { class: 'queue-scroll' }, h('table', { class: 'queue draft-queue' }, h('thead', {}, h('tr', {}, ...['Behaviour / finding', 'Paper', 'Measurement', 'Review status', ''].map(text => h('th', { text })))), h('tbody', {}, rows))) : h('p', { text: 'No matching drafts. Try a broader search or another filter.' }),
+      h('div', { class: 'queue-controls' },
+        h('button', { class: 'btn', disabled: selected.page === 0, text: 'Previous 25', onclick: () => { prefs.page--; update(); } }),
+        h('button', { class: 'btn', disabled: selected.page + 1 === selected.pages, text: 'Next 25', onclick: () => { prefs.page++; update(); } })));
   }
-  return frag(h('div', { class: 'page-head' }, h('h1', { text: 'Drafts awaiting review' }), h('span', { class: 'muted small', text: `${drafts.length} drafts · ${byPaper.size} papers` })),
-    h('p', { class: 'small', text: 'One draft is one entry (a region, impairment, therapy or predictor) as read from one paper. Open it to review each finding against the paper.' }),
-    h('table', { class: 'queue' }, h('thead', {}, h('tr', {}, h('th', { text: 'Draft' }), h('th', { text: 'Entry' }), h('th', { text: 'Kind' }), h('th', { class: 'num', text: 'Findings' }), h('th', { text: '' }))), h('tbody', {}, rows)));
+  update();
+  return frag(h('div', { class: 'page-head' }, h('h1', { text: 'Choose a finding to review' })),
+    h('p', { text: 'Pick a paper or behaviour you know. Review one draft at a time; unfinished checks stay open for another reviewer.' }),
+    h('div', { class: 'queue-controls' }, search, filter), results);
 }
 
 // ---- one draft beside its PDF ----
@@ -365,11 +383,12 @@ function draftLeft(d, r, save, pdf, path) {
       `${p.verdict ? `overall ${p.verdict}` : 'no overall verdict'}${agreed ? `; ${agreed}` : ''}${p.rationale ? `; note: “${p.rationale}”` : ''}. `,
       h('button', { class: 'btn', text: 'Dismiss', onclick: () => { delete r.previous; save(); render(); } })));
   }
-  left.append(h('div', { class: 'page-head' }, h('h1', { text: entryName(d.entry) }), h('span', { class: 'chip', text: d.citation })),
-    h('p', { class: 'small muted' }, `${path} · ${plural(d.findings.length, 'finding')} · `, h('a', { href: '#/drafts', text: 'all drafts' }), pdf ? '' : ' · no annotated PDF in the portal for this paper: review from the quotes, or ask the maintainer to add it'),
-    h('p', { class: 'small' }, 'For each finding: does the paper show this? ', h('b', { text: 'agree' }), ' when the claim, direction and strength are what the passages say; ', h('b', { text: 'disagree' }), ' with a concern when not; ', h('b', { text: 'unsure' }), ' when you cannot tell. For each passage, say whether you checked it in the paper; what you leave as "not checked" stays open for another reviewer. Fix a field in place when the paper says otherwise (it is sent as an edit). Select words in the PDF to add a passage to a finding, or to mark something no finding covers.'));
+  left.append(h('div', { class: 'page-head' }, h('h1', { text: entryName(d.findings[0]?.target || d.entry) }), h('span', { class: 'chip', text: d.citation })),
+    h('p', { class: 'small muted' }, `${entryName(d.entry)} · ${plural(d.findings.length, 'finding')} · `, h('a', { href: '#/drafts', text: 'all drafts' }), pdf ? '' : ' · no annotated PDF in the portal for this paper: review from the quotes, or ask the maintainer to add it'),
+    h('p', { class: 'small' }, 'Read the finding → check the passages in the paper → choose your decision. ', h('b', { text: 'Unsure is fine.' }), ' Unchecked passages remain open.'),
+    h('details', {}, h('summary', { text: 'Help with reviewing and corrections' }), h('p', { class: 'small', text: 'Agree when the meaning, population, timing, direction and strength match the source. Disagree with a reason when they do not. Use “Correct the finding” to propose edits. Select words in the PDF to add evidence or mark an uncovered finding. Sending a review and approving a finding are separate steps.' }), h('p', { class: 'small muted', text: `Record: ${path}` })));
   for (const f of d.findings) left.append(findingCard(d, f, r, save, pdf));
-  left.append(marksPanel(r, save));
+  left.append(h('details', { open: r.marks.length ? '' : null }, h('summary', { text: `Evidence missing from this draft (${r.marks.length} marks)` }), marksPanel(r, save)));
   left.append(verdictPanel(d, r, save));
   return left;
 }
@@ -380,31 +399,63 @@ function findingCard(d, f, r, save, pdf) {
     const cur = fr.edits[k] !== undefined ? fr.edits[k] : f[k];
     const changed = fr.edits[k] !== undefined && fr.edits[k] !== f[k];
     const onchange = (v) => { if (v === String(f[k] ?? '')) delete fr.edits[k]; else fr.edits[k] = v; save(); render(); };
-    const ctrl = VOCAB[k] ? h('select', { class: changed ? 'changed' : '', onchange: (e) => onchange(e.target.value) }, VOCAB[k].map((o) => h('option', { value: o, selected: cur === o ? '' : null, text: o })), VOCAB[k].includes(cur) ? null : h('option', { value: cur ?? '', selected: '', text: `${cur ?? '(unset)'}` }))
-      : h('input', { type: 'text', class: changed ? 'changed' : '', value: esc(cur), style: 'flex:1;min-width:12em', onchange: (e) => onchange(e.target.value.trim()) });
-    return h('div', { class: 'field' }, h('label', { text: label }), ctrl, changed ? h('span', { class: 'small muted', text: `was: ${esc(f[k])}` }) : null);
+    const ctrl = VOCAB[k] ? h('select', { id: `${f.id}-${k}`, class: changed ? 'changed' : '', onchange: (e) => onchange(e.target.value) }, VOCAB[k].map((o) => h('option', { value: o, selected: cur === o ? '' : null, text: o })), VOCAB[k].includes(cur) ? null : h('option', { value: cur ?? '', selected: '', text: `${cur ?? '(unset)'}` }))
+      : h('input', { id: `${f.id}-${k}`, type: 'text', class: changed ? 'changed' : '', value: esc(cur), style: 'flex:1;min-width:12em', onchange: (e) => onchange(e.target.value.trim()) });
+    return h('div', { class: 'field' }, h('label', { for: `${f.id}-${k}`, text: label }), ctrl, changed ? h('span', { class: 'small muted', text: `was: ${esc(f[k])}` }) : null);
   };
   const claimCur = fr.edits.claim !== undefined ? fr.edits.claim : f.claim;
+  const passages = (f.source_passages || []).map((p, i) => ({ p, i }));
+  const mainPassages = passages.filter(({ p }) => ['claim', 'statistics'].includes(p.supports));
+  const contextPassages = passages.filter(({ p }) => !['claim', 'statistics'].includes(p.supports));
+  const measure = fr.edits.outcome_measurement || f.outcome_measurement || { status: 'needs_source_review', instruments: [] };
+  const measurementEdit = (key, value) => {
+    const next = { ...measure };
+    if (key === 'instruments') {
+      next.instruments = value.split('\n').map(x => x.trim()).filter(Boolean).map(name => (measure.instruments || []).find(x => x.name === name) || { name });
+      next.status = next.instruments.length ? 'identified' : 'needs_source_review';
+    } else next[key] = value.trim();
+    if (JSON.stringify(next) === JSON.stringify(f.outcome_measurement)) delete fr.edits.outcome_measurement;
+    else fr.edits.outcome_measurement = next;
+    save(); render();
+  };
   const card = h('article', { class: 'finding', id: `f-${f.id}` },
-    h('p', { class: 'route' }, h('span', { class: 'badge badge-kind', text: f.id }), ' ', entryName(f.source_id), ' → ', h('b', { text: entryName(fr.edits.target ?? f.target) }), ` (${fr.edits.target_kind ?? f.target_kind}) · ${Array.isArray(f.method) ? f.method.join(', ') : esc(f.method)}${f.therapy?.name ? ` · therapy: ${f.therapy.name}` : ''}`),
-    h('textarea', { rows: 3, class: fr.edits.claim !== undefined ? 'changed' : '', onchange: (e) => { const v = e.target.value.trim(); if (v === String(f.claim || '').trim()) delete fr.edits.claim; else fr.edits.claim = v; save(); } }, esc(claimCur)),
-    h('div', { class: 'field' }, field('direction', 'direction'), field('relationship', 'relationship'), field('strength', 'strength')),
-    h('div', { class: 'field' }, field('target', 'target'), field('target_kind', 'target kind')),
-    f.sample ? h('p', { class: 'small muted', text: `sample: ${Object.entries(f.sample).filter(([, v]) => v).map(([k, v]) => `${k} ${v}`).join(' · ')}` }) : null,
-    f.statistics && Object.keys(f.statistics).length ? h('p', { class: 'small muted', text: `statistics: ${Object.entries(f.statistics).filter(([, v]) => v).map(([k, v]) => `${k} ${v}`).join(' · ')}` }) : null,
-    f.author_limitations?.length ? h('p', { class: 'small muted', text: `authors' limitations: ${f.author_limitations.join('; ')}` }) : null,
-    f.notes ? h('p', { class: 'small', text: `Interpretation notes: ${f.notes}` }) : null,
+    h('h3', { text: '1. Read the proposed finding' }),
+    h('p', { class: 'claim', text: claimCur }),
+    h('dl', { class: 'outcome-summary' },
+      h('dt', { text: f.target_audit?.category === 'non_behaviour_or_methodological' ? 'Recorded endpoint' : 'Behaviour / outcome' }), h('dd', { text: entryName(fr.edits.target ?? f.target) }),
+      h('dt', { text: 'Measured using' }), h('dd', { text: measurementLabel({ outcome_measurement: measure }) }),
+      measure.metric ? frag(h('dt', { text: 'Score / task detail' }), h('dd', { text: measure.metric })) : null),
+    f.target_audit?.status === 'needs_source_review' ? h('p', { class: 'notice', text: 'Clarify the outcome definition before approval. This audit could not establish a specific behavioural target from the recorded label.' }) : null,
+    f.sample ? h('p', { class: 'small', text: `Participants: ${[f.sample.n ? `n = ${f.sample.n}` : '', f.sample.population, f.sample.time_post_onset, f.sample.phase].filter(v => v && !['not_reported', 'not_transcribed'].includes(String(v))).join(' · ')}` }) : null,
+    h('details', { class: 'finding-edit', open: Object.keys(fr.edits).length ? '' : null }, h('summary', { text: 'Correct the finding or its measurement' }),
+      h('label', {}, 'Finding', h('textarea', { rows: 3, class: fr.edits.claim !== undefined ? 'changed' : '', onchange: (e) => { const v = e.target.value.trim(); if (v === String(f.claim || '').trim()) delete fr.edits.claim; else fr.edits.claim = v; save(); render(); } }, esc(claimCur))),
+      field('target', 'Behaviour / outcome ID'), field('target_kind', 'Outcome category'),
+      h('label', {}, 'Assessment or task (one per line)', h('textarea', { rows: 2, onchange: e => measurementEdit('instruments', e.target.value) }, (measure.instruments || []).map(x => x.name).join('\n'))),
+      h('label', {}, 'Subtest, score or change metric', h('input', { type: 'text', value: measure.metric || '', onchange: e => measurementEdit('metric', e.target.value) })),
+      h('div', { class: 'field' }, field('direction', 'Direction'), field('relationship', 'Relationship'), field('strength', 'Strength'))),
+    h('details', {}, h('summary', { text: 'Study details, limitations and review history' }),
+      h('p', { class: 'small muted', text: `Method: ${Array.isArray(f.method) ? f.method.join(', ') : esc(f.method)}${f.therapy?.name ? ` · therapy: ${f.therapy.name}` : ''}` }),
+      f.statistics && Object.keys(f.statistics).length ? h('p', { class: 'small', text: `Statistics: ${Object.entries(f.statistics).filter(([, v]) => v).map(([k, v]) => `${k} ${v}`).join(' · ')}` }) : null,
+      f.author_limitations?.length ? h('p', { class: 'small', text: `Authors' limitations: ${f.author_limitations.join('; ')}` }) : null,
+      f.notes ? h('p', { class: 'small', text: `Interpretation notes: ${f.notes}` }) : null,
+      f.target_audit ? h('p', { class: 'small', text: f.target_audit.reason }) : null,
+      measure.note ? h('p', { class: 'small', text: measure.note }) : null,
     f.source_check ? h('details', {},
       h('summary', { text: 'Source check — approval still required' }),
       h('p', { class: 'small', text: `${f.source_check.checked_by} · ${f.source_check.date}. ${f.source_check.scope || ''}` }),
       h('ul', {}, (f.source_check.corrections || []).map(text => h('li', { text }))),
       h('p', { class: 'small', text: `Still to resolve: ${(f.source_check.remaining || []).join(' ')}` })) : null,
-    f.flags?.length ? h('p', { class: 'small muted', text: `extractor flags: ${f.flags.join('; ')}` }) : null,
-    h('h4', { text: 'Source passages' }),
-    (f.source_passages || []).map((p, i) => passageCard(f, p, i, fr, save, pdf)),
+    f.flags?.length ? h('p', { class: 'small muted', text: `Extractor flags: ${f.flags.join('; ')}` }) : null),
+    h('h3', { text: '2. Check the source passages' }),
+    h('p', { class: 'small muted', text: 'Use “show in paper”, then record whether the passage supports the finding. Leave passages unchecked if you have not inspected them.' }),
+    mainPassages.map(({ p, i }) => passageCard(f, p, i, fr, save, pdf)),
+    contextPassages.length ? h('details', { open: contextPassages.some(({ i }) => fr.passages[String(i)]) ? '' : null },
+      h('summary', { text: `${contextPassages.length} more source passages: methods, participants and limitations` }),
+      contextPassages.map(({ p, i }) => passageCard(f, p, i, fr, save, pdf))) : null,
     fr.added.map((p, i) => h('div', { class: 'passage', style: 'border-left-color:var(--grape)' }, h('div', { class: 'meta' }, h('span', { class: 'badge badge-kind', text: 'added by you' }), ` page ${p.page} · supports ${p.supports}`, h('button', { class: 'btn', onclick: () => { fr.added.splice(i, 1); save(); render(); }, text: 'remove' })), h('div', { text: `“${p.quote}”` }))),
-    h('div', { class: 'fverdict' }, h('span', { class: 'muted', text: 'Your verdict:' }),
-      ['agree', 'disagree', 'unsure'].map((v) => h('label', {}, h('input', { type: 'radio', name: `v-${f.id}`, value: v, checked: fr.verdict === v ? '' : null, onchange: () => { fr.verdict = v; save(); } }), ` ${v}`))),
+    h('h3', { text: '3. Record your decision' }),
+    h('div', { class: 'fverdict' }, h('span', { class: 'muted', text: 'Does the source support this finding?' }),
+      ['agree', 'disagree', 'unsure'].map((v) => h('label', {}, h('input', { type: 'radio', name: `v-${f.id}`, value: v, checked: fr.verdict === v ? '' : null, onchange: () => { fr.verdict = v; save(); render(); } }), ` ${v}`))),
     h('textarea', { rows: 2, placeholder: 'concern or comment (required for disagree): what the paper says instead, which passage is wrong …', onchange: (e) => { fr.concern = e.target.value.trim(); save(); } }, esc(fr.concern)));
   return card;
 }

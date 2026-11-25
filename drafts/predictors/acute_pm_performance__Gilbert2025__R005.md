@@ -4,7 +4,22 @@ name: acute prospective memory performance
 kind: predictor
 findings:
 - id: f1
-  target: long_term_pm
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: long_term_pm
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Memory for Intentions Screening Test–Short Form
+    metric: Summary score or subscales specified in the claim; timing retained
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: prospective_memory
   target_kind: prognosis
   claim: Acute stage PM Summary Scores were a strong, positive predictor of PM Summary
     Scores at the chronic post-stroke phase.

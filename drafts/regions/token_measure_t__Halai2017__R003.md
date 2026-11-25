@@ -4,7 +4,22 @@ name: token measure (T) cluster
 kind: network
 findings:
 - id: f1
-  target: token_measure_t
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: token_measure_t
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Connected speech analysis
+    metric: Token count (T); not the Token Test
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: speech_output_quantity
   target_kind: impairment
   claim: The token measure (T) of speech fluency was correlated with the superior-posterior
     insula, portions of the frontal lobe (including the pre-central gyrus and middle

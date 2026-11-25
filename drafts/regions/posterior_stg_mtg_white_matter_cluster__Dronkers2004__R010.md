@@ -4,7 +4,22 @@ name: posterior STG and MTG white matter cluster
 kind: network
 findings:
 - id: f1
-  target: cycle_r_double_embedding_agentless_passive
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: cycle_r_double_embedding_agentless_passive
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: CYCLE-R
+    metric: Double Embedding and Agentless Passive subtests
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: double_embedding_and_agentless_passive_comprehension
   target_kind: impairment
   claim: Lesions to a small white matter region underlying the posterior STG and MTG
     were significantly associated with impaired performance on the Double Embedding

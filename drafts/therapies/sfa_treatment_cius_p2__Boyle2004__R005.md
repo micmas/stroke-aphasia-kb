@@ -4,7 +4,22 @@ name: SFA treatment for discourse informativeness (Participant 2)
 kind: therapy
 findings:
 - id: f1
-  target: mean_cius
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: mean_cius
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Correct information unit analysis
+    metric: Number of correct information units; aggregation retained in claim
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: discourse_information_quantity
   target_kind: impairment
   claim: Participant 2 demonstrated increases in the mean number of Correct Information
     Units (CIUs) after implementation of the few-exemplar treatment condition, and

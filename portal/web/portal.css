@@ -1,4 +1,19 @@
 /* Review portal — additions to the explorer's stylesheet (same palette and components). */
+.review-start { padding: 1rem; margin: 1rem 0; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; }
+.review-start h2 { margin-top: 0; }
+.queue-controls { display: flex; flex-wrap: wrap; gap: .7rem; margin: 1rem 0; }
+.queue-controls input, .queue-controls select { font: inherit; padding: .55rem; background: var(--surface); color: var(--ink); border: 1px solid var(--line-strong); border-radius: 4px; }
+.queue-controls input { flex: 1; min-width: 220px; }
+.queue-scroll { overflow-x: auto; }
+.draft-queue td:first-child { white-space: normal; min-width: 240px; max-width: 580px; }
+.draft-queue td { vertical-align: top; }
+.outcome-summary { display: grid; grid-template-columns: minmax(100px, 30%) 1fr; gap: .4rem .8rem; padding: .75rem; background: var(--panel); border-radius: 5px; font-size: .9rem; }
+.outcome-summary dt { color: var(--ink-2); }
+.outcome-summary dd { margin: 0; }
+.finding-edit > label { display: grid; gap: .3rem; margin: .6rem 0; font-size: .86rem; }
+.finding-edit input { font: inherit; width: 100%; }
+.finding > details { margin: .8rem 0; }
+.finding > h3 { font-size: 1rem; margin-top: 1.3rem; }
 .review-layout { display: grid; grid-template-columns: minmax(380px, 46%) 1fr; gap: 0; height: calc(100vh - 3.4rem); }
 .review-layout > .left { overflow: auto; padding: .6rem .9rem 4rem; border-right: 1px solid var(--line); }
 .review-layout > .right { overflow: auto; background: color-mix(in oklab, var(--panel) 70%, var(--line)); position: relative; }

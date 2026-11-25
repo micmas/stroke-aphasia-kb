@@ -4,6 +4,19 @@ name: SMA/dACC to LN chronic cluster
 kind: network
 findings:
 - id: f1
+  target_audit:
+    status: needs_source_review
+    category: non_behaviour_or_methodological
+    original_target: auditory_speech_processing_connectivity
+    reason: This endpoint is not a behaviour. Review its scope and target kind; do not relabel it as a behavioural
+      deficit.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
+      or a paper-wide test list.
   target: auditory_speech_processing_connectivity
   target_kind: impairment
   claim: In the chronic phase, auditory speech processing facilitated effective connectivity

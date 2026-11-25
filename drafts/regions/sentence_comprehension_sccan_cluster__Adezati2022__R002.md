@@ -4,6 +4,25 @@ name: sentence comprehension cluster
 kind: network
 findings:
 - id: f1
+  target_audit:
+    status: behaviour_label_present
+    category: behaviour_or_language_construct
+    original_target: sentence_comprehension_deficit
+    reason: Label names a behaviour or language construct; its exact operational definition and measurement
+      still need source review.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Token Test
+    metric: Sentence comprehension performance
+    definition_source:
+      citation: '@Adezati2022'
+      page: 2
+      quote: First, sentence comprehension was measured using the Token Test
+    note: 'Methods, page 2: sentences avoid non-canonical structures and complex embeddings. This is not
+      a measure of all syntactic abilities.'
   target: sentence_comprehension_deficit
   target_kind: impairment
   claim: lesions in the posterior superior temporal cortex, inferior frontal gyrus

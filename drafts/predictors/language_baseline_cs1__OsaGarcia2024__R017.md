@@ -4,7 +4,21 @@ name: language baseline (CS1)
 kind: predictor
 findings:
 - id: f1
-  target: overall_change_scores_delta_cs1_3
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: overall_change_scores_delta_cs1_3
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    metric: Composite score change from acute to chronic phase (ΔCS1–3)
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: language_recovery
   target_kind: prognosis
   claim: In a regression model predicting overall raw change scores (ΔCS1–3) using
     covariates and acute language baseline, the acute language baseline (CS1) was

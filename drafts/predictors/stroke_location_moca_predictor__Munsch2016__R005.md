@@ -4,7 +4,22 @@ name: stroke location
 kind: predictor
 findings:
 - id: f1
-  target: moca_score
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: moca_score
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Montreal Cognitive Assessment
+    metric: MoCA total score
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: global_cognitive_function
   target_kind: prognosis
   claim: Stroke location is an independent predictor of cognitive outcome (MoCA) at
     3 months post stroke, and significantly improves prediction accuracy when combined

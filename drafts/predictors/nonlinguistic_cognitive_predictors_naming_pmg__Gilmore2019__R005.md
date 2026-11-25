@@ -4,7 +4,21 @@ name: nonlinguistic cognitive predictors of naming PMG
 kind: predictor
 findings:
 - id: f1
-  target: naming_pmg
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: naming_pmg
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    metric: Proportion of potential maximal gain (PMG)
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: naming_improvement
   target_kind: prognosis
   claim: When controlling for pretreatment apraxia of speech and auditory comprehension
     impairment, pretreatment executive function, visual short-term memory, and auditory

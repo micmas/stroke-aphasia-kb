@@ -60,7 +60,7 @@ ENTRY_FIELDS = ("id", "name", "kind", "aliases", "short_description", "status", 
 FINDING_RAW_FIELDS = ("relationship", "design", "sample", "statistics", "author_limitations", "source_passages",
                       "region_definition", "primary_papers_cited", "instrument", "therapy",
                       "notes", "imaging_details", "confounders_controlled", "confounders_not_controlled",
-                      "outcome_timing")
+                      "outcome_timing", "outcome_measurement", "target_audit")
 # Columns of KnowledgeBase.findings the webapp reads (the rest are tooling).
 FINDING_FLAT_FIELDS = ("source_id", "source_kind", "source_status", "source_path", "id", "target", "target_kind",
                        "claim", "direction", "citation", "method", "design", "evidence_quality", "strength",

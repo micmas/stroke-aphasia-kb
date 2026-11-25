@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-25",
+  "scope": "Eligibility triage of published drafts against GOVERNANCE.md Tier A; not an independent full-PDF model review",
+  "findings": 1346,
+  "papers": 136,
+  "confidence_counts": {
+    "low": 1346
+  },
+  "findings_with_unresolved_flags": 1346,
+  "eligible_for_delegated_approval": 0,
+  "approved": 0,
+  "blockers": [
+    {
+      "flag": "core_profile_machine_prepared",
+      "findings": 1346
+    },
+    {
+      "flag": "human_approval_pending",
+      "findings": 1346
+    },
+    {
+      "flag": "core_text_check_only",
+      "findings": 1346
+    },
+    {
+      "flag": "paper_completeness_pending",
+      "findings": 1346
+    },
+    {
+      "flag": "pdf_visual_review_pending",
+      "findings": 1346
+    },
+    {
+      "flag": "not_transcribed:statistics",
+      "findings": 1346
+    },
+    {
+      "flag": "not_transcribed:confounders_controlled",
+      "findings": 1346
+    },
+    {
+      "flag": "not_transcribed:confounders_not_controlled",
+      "findings": 1346
+    },
+    {
+      "flag": "not_transcribed:region_definition",
+      "findings": 1346
+    },
+    {
+      "flag": "not_transcribed:imaging_details.reference_space",
+      "findings": 1346
+    },
+    {
+      "flag": "not_transcribed:imaging_details.atlases_used",
+      "findings": 1346
+    },
+    {
+      "flag": "not_transcribed:lesion_mapping",
+      "findings": 1346
+    },
+    {
+      "flag": "not_transcribed:sample.phase",
+      "findings": 1346
+    },
+    {
+      "flag": "not_transcribed:strength",
+      "findings": 1346
+    },
+    {
+      "flag": "not_transcribed:sample.n",
+      "findings": 469
+    }
+  ],
+  "next_step": "Resolve source, design, statistics, completeness and visual-check obligations. An independent reviewer may then assess Tier A eligibility; new concepts, therapies, reviews and remaining flagged findings require human approval."
+}

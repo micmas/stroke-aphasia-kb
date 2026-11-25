@@ -4,7 +4,22 @@ name: initial aphasia severity predictor model
 kind: predictor
 findings:
 - id: f1
-  target: initial_aq
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: initial_aq
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery
+    metric: Initial Aphasia Quotient
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: baseline_aphasia_severity
   target_kind: impairment
   claim: In a multiple linear regression model of initial aphasia severity (AQ), neurological
     severity (modified SSS) was the only significant predictor, while sex and age

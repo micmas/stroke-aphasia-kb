@@ -4,7 +4,22 @@ name: 1-year AQ prediction model
 kind: predictor
 findings:
 - id: f1
-  target: aq_1yr
+  target_audit:
+    status: construct_separated
+    category: behaviour_or_language_construct
+    original_target: aq_1yr
+    reason: Separated the construct from the score/task using the published claim and linked source passages.
+      This is metadata correction, not scientific approval.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: identified
+    instruments:
+    - name: Western Aphasia Battery
+    metric: Aphasia Quotient at one year
+    note: Task conditions, covariates, change metric and timing remain in the claim and source passages.
+      Instrument version/subtests require final source verification.
+  target: overall_aphasia_severity
   target_kind: prognosis
   claim: A multiple linear regression model including initial AQ and neurological
     stroke severity (modified SSS) predicted the 1-year AQ, while age and sex were

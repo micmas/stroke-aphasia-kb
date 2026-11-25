@@ -4,6 +4,19 @@ name: direction of behavioural change
 kind: predictor
 findings:
 - id: f1
+  target_audit:
+    status: needs_source_review
+    category: non_behaviour_or_methodological
+    original_target: spoken_object_naming_predictability
+    reason: This endpoint is not a behaviour. Review its scope and target kind; do not relabel it as a behavioural
+      deficit.
+    audited_on: '2026-11-25'
+    scope: Published metadata and linked excerpts; no new model pass or human approval
+  outcome_measurement:
+    status: needs_source_review
+    instruments: []
+    note: Outcome instrument/task is not yet verified for this finding. Do not infer it from the predictor
+      or a paper-wide test list.
   target: spoken_object_naming_predictability
   target_kind: predictor
   claim: The predictability of change in spoken object naming skills (measured by
