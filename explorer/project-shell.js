@@ -41,7 +41,8 @@
       if (new URL(url).hostname === location.hostname) a.setAttribute('aria-current', 'location');
       return a;
     };
-    const chapter = /^\/(aphasia|dysphagia)(?:\/|$)/.exec(location.pathname)?.[1]
+    const chapter = /^\/(aphasia|dysphagia|practice)(?:\/|$)/.exec(location.pathname)?.[1]
+      || (location.hostname === 'review.stroke-kb.app' ? 'practice' : null)
       || (location.pathname.startsWith('/dysphagia-search') ? 'dysphagia'
         : /(^|\.)dysphagia-kb\.app$/.test(location.hostname) ? 'dysphagia'
         : /(^|\.)aphasia-kb\.app$/.test(location.hostname) && !location.hostname.startsWith('calmar.') ? 'aphasia' : null);
@@ -65,9 +66,11 @@
       ['Stroke KB home', 'https://stroke-kb.app/', !chapter && location.hostname === 'stroke-kb.app'],
       ['Aphasia KB', 'https://aphasia-kb.app/', chapter === 'aphasia' && !isReview],
       ['Dysphagia KB', 'https://dysphagia-kb.app/', chapter === 'dysphagia' && !isReview],
+      ['Practice & lived experience', 'https://stroke-kb.app/practice/', chapter === 'practice' && !isReview],
     ]), group('Review portal', [
       ['Aphasia', 'https://review.aphasia-kb.app/welcome/', chapter === 'aphasia' && isReview],
       ['Dysphagia', 'https://review.dysphagia-kb.app/', chapter === 'dysphagia' && isReview],
+      ['Practice & lived experience', 'https://review.stroke-kb.app/', chapter === 'practice' && isReview],
     ]));
     document.addEventListener('click', event => {
       for (const menu of nav.querySelectorAll('.project-menu')) if (!menu.contains(event.target)) menu.open = false;

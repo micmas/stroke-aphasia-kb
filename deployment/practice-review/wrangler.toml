@@ -1,0 +1,23 @@
+name = "stroke-kb-practice-review"
+main = "worker.js"
+compatibility_date = "2025-10-01"
+workers_dev = false
+preview_urls = false
+[assets]
+directory = "dist"
+binding = "ASSETS"
+run_worker_first = true
+[vars]
+ACCESS_TEAM_DOMAIN = "sparkling-bird-a757"
+ACCESS_AUD = "89aae04a8d6aa157067be9fb8d85fe3e36b1d41b421a994392f2bb116180af8f"
+# Dedicated Practice resources; do not bind Aphasia or Dysphagia stores.
+[[r2_buckets]]
+binding = "PRIVATE"
+bucket_name = "stroke-kb-practice-private"
+[[d1_databases]]
+binding = "SCREENING"
+database_name = "stroke-kb-practice-screening"
+database_id = "a359851c-8448-4514-97eb-3e36f26ddec8"
+[[routes]]
+pattern = "review.stroke-kb.app"
+custom_domain = true

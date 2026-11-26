@@ -48,3 +48,6 @@ portal/.dysphagia-cache/
 .env*
 !.env.example
 deployment/dysphagia-review/dist/
+
+staging/practice/dist/
+deployment/practice-review/dist/

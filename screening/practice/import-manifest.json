@@ -1,0 +1,177 @@
+{
+  "section": "practice",
+  "clinical_domains": [
+    "aphasia"
+  ],
+  "search_date": "2026-11-26",
+  "raw_records": 35710,
+  "unique_records": 14759,
+  "duplicates_collapsed": 20951,
+  "missing_abstracts": 560,
+  "files": [
+    {
+      "database": "pubmed",
+      "strategy": "q1",
+      "file": "pubmed/q1/pubmed_q1_2026-11-26_2132.nbib",
+      "records": 2132,
+      "sha256": "8bfbf1411e7e09cb7cd9f3ebad284f2ddc4da574143cd988a83c0ea71de1b52f",
+      "query": "((\"Aphasia\"[Mesh] OR (aphasi*[tiab] OR dysphasi*[tiab])) AND (qualitative[tiab] OR interview*[tiab] OR \"focus group*\"[tiab] OR ethnograph*[tiab] OR phenomenolog*[tiab] OR \"grounded theory\"[tiab] OR \"thematic analys*\"[tiab] OR \"content analys*\"[tiab] OR \"mixed method*\"[tiab] OR \"action research\"[tiab] OR \"participatory research\"[tiab] OR \"lived experience*\"[tiab] OR perspective*[tiab] OR experience*[tiab] OR perception*[tiab] OR preference*[tiab] OR attitude*[tiab] OR opinion*[tiab] OR view*[tiab] OR hope*[tiab] OR wish*[tiab] OR \"patient report*\"[tiab] OR \"self report*\"[tiab]) AND (\"living well\"[tiab] OR \"living successfully\"[tiab:~0] OR \"successful living\"[tiab] OR \"personal recovery\"[tiab] OR recovery[tiab] OR meaningful*[tiab] OR \"quality of life\"[tiab] OR wellbeing[tiab] OR \"well-being\"[tiab] OR \"well being\"[tiab] OR participat*[tiab] OR \"everyday life\"[tiab] OR \"daily life\"[tiab] OR \"life role*\"[tiab] OR identity[tiab] OR adjust*[tiab] OR adapt*[tiab] OR coping[tiab] OR autonomy[tiab] OR independence[tiab] OR relationship*[tiab] OR friend*[tiab] OR \"social support\"[tiab] OR \"social inclusion\"[tiab] OR \"return to work\"[tiab] OR \"return to employment\"[tiab] OR \"self management\"[tiab] OR \"self efficacy\"[tiab] OR goal*[tiab] OR priorit*[tiab] OR need*[tiab] OR \"life satisfaction\"[tiab] OR \"emotional wellbeing\"[tiab] OR \"emotional well-being\"[tiab]))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "pubmed",
+      "strategy": "q2",
+      "file": "pubmed/q2/pubmed_q2_2026-11-26_796.nbib",
+      "records": 796,
+      "sha256": "f6941802a1c95c5dcae49b8a16aa214fe13ca179c0a191aa6a562cd48b7e0d9b",
+      "query": "((\"Aphasia\"[Mesh] OR (aphasi*[tiab] OR dysphasi*[tiab])) AND ((\"meaningful change*\"[tiab] OR \"meaningful improvement*\"[tiab] OR \"meaningful outcome*\"[tiab] OR \"important change*\"[tiab] OR \"important difference*\"[tiab] OR \"important improvement*\"[tiab] OR \"clinically meaningful\"[tiab] OR \"clinically important\"[tiab] OR \"minimal important\"[tiab] OR \"minimally important\"[tiab] OR \"minimum important\"[tiab] OR \"patient defined\"[tiab] OR \"patient valued\"[tiab] OR \"personally relevant\"[tiab] OR \"personally meaningful\"[tiab] OR \"stakeholder important\"[tiab] OR \"patient important\"[tiab] OR \"goal attainment\"[tiab] OR \"goal setting\"[tiab] OR \"treatment success\"[tiab] OR \"successful treatment\"[tiab] OR \"core outcome*\"[tiab] OR \"outcome priorit*\"[tiab] OR \"recovery priorit*\"[tiab] OR \"rehabilitation priorit*\"[tiab] OR \"global rating* of change\"[tiab] OR \"patient global impression*\"[tiab] OR \"anchor based\"[tiab] OR \"anchor rating\"[tiab]) OR ((outcome*[tiab] OR improvement*[tiab] OR change*[tiab] OR recovery[tiab] OR benefit*[tiab]) AND (priorit*[tiab] OR prefer*[tiab] OR valued[tiab] OR meaningful*[tiab] OR \"patient perspective*\"[tiab] OR \"patient perception*\"[tiab] OR \"patient preference*\"[tiab] OR \"patient satisfaction\"[tiab] OR \"patient reported\"[tiab])) OR ((outcome*[tiab] OR goal*[tiab]) AND (consensus[tiab] OR Delphi[tiab] OR \"nominal group*\"[tiab] OR codesign[tiab] OR \"co-design\"[tiab] OR \"co design\"[tiab]))))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "medline_ebsco",
+      "strategy": "q1",
+      "file": "medline_ebsco/q1/medline_ebsco_q1_2026-11-26_2119.ris",
+      "records": 2119,
+      "sha256": "92ea4ee6e3dfb5892f7e041837ae9af2e897980e1c7ee0c2fdf4d2e442ca0f19",
+      "query": "((MH \"Aphasia+\" OR (TI (aphasi* OR dysphasi*) OR AB (aphasi* OR dysphasi*))) AND (TI (qualitative OR interview* OR \"focus group*\" OR ethnograph* OR phenomenolog* OR \"grounded theory\" OR \"thematic analys*\" OR \"content analys*\" OR \"mixed method*\" OR \"action research\" OR \"participatory research\" OR \"lived experience*\" OR perspective* OR experience* OR perception* OR preference* OR attitude* OR opinion* OR view* OR hope* OR wish* OR \"patient report*\" OR \"self report*\") OR AB (qualitative OR interview* OR \"focus group*\" OR ethnograph* OR phenomenolog* OR \"grounded theory\" OR \"thematic analys*\" OR \"content analys*\" OR \"mixed method*\" OR \"action research\" OR \"participatory research\" OR \"lived experience*\" OR perspective* OR experience* OR perception* OR preference* OR attitude* OR opinion* OR view* OR hope* OR wish* OR \"patient report*\" OR \"self report*\")) AND (TI (\"living well\" OR \"living successfully\" OR \"successful living\" OR \"personal recovery\" OR recovery OR meaningful* OR \"quality of life\" OR wellbeing OR \"well-being\" OR \"well being\" OR participat* OR \"everyday life\" OR \"daily life\" OR \"life role*\" OR identity OR adjust* OR adapt* OR coping OR autonomy OR independence OR relationship* OR friend* OR \"social support\" OR \"social inclusion\" OR \"return to work\" OR \"return to employment\" OR \"self management\" OR \"self efficacy\" OR goal* OR priorit* OR need* OR \"life satisfaction\" OR \"emotional wellbeing\" OR \"emotional well-being\") OR AB (\"living well\" OR \"living successfully\" OR \"successful living\" OR \"personal recovery\" OR recovery OR meaningful* OR \"quality of life\" OR wellbeing OR \"well-being\" OR \"well being\" OR participat* OR \"everyday life\" OR \"daily life\" OR \"life role*\" OR identity OR adjust* OR adapt* OR coping OR autonomy OR independence OR relationship* OR friend* OR \"social support\" OR \"social inclusion\" OR \"return to work\" OR \"return to employment\" OR \"self management\" OR \"self efficacy\" OR goal* OR priorit* OR need* OR \"life satisfaction\" OR \"emotional wellbeing\" OR \"emotional well-being\")))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "medline_ebsco",
+      "strategy": "q2",
+      "file": "medline_ebsco/q2/medline_ebsco_q2_2026-11-26_736.ris",
+      "records": 736,
+      "sha256": "4a58e49840e33f1cd474244535a8b4a5320feedb3893edfbc1c5ed738c5601fd",
+      "query": "((MH \"Aphasia+\" OR (TI (aphasi* OR dysphasi*) OR AB (aphasi* OR dysphasi*))) AND ((TI (\"meaningful change*\" OR \"meaningful improvement*\" OR \"meaningful outcome*\" OR \"important change*\" OR \"important difference*\" OR \"important improvement*\" OR \"clinically meaningful\" OR \"clinically important\" OR \"minimal important\" OR \"minimally important\" OR \"minimum important\" OR \"patient defined\" OR \"patient valued\" OR \"personally relevant\" OR \"personally meaningful\" OR \"stakeholder important\" OR \"patient important\" OR \"goal attainment\" OR \"goal setting\" OR \"treatment success\" OR \"successful treatment\" OR \"core outcome*\" OR \"outcome priorit*\" OR \"recovery priorit*\" OR \"rehabilitation priorit*\" OR \"global rating* of change\" OR \"patient global impression*\" OR \"anchor based\" OR \"anchor rating\") OR AB (\"meaningful change*\" OR \"meaningful improvement*\" OR \"meaningful outcome*\" OR \"important change*\" OR \"important difference*\" OR \"important improvement*\" OR \"clinically meaningful\" OR \"clinically important\" OR \"minimal important\" OR \"minimally important\" OR \"minimum important\" OR \"patient defined\" OR \"patient valued\" OR \"personally relevant\" OR \"personally meaningful\" OR \"stakeholder important\" OR \"patient important\" OR \"goal attainment\" OR \"goal setting\" OR \"treatment success\" OR \"successful treatment\" OR \"core outcome*\" OR \"outcome priorit*\" OR \"recovery priorit*\" OR \"rehabilitation priorit*\" OR \"global rating* of change\" OR \"patient global impression*\" OR \"anchor based\" OR \"anchor rating\")) OR ((TI (outcome* OR improvement* OR change* OR recovery OR benefit*) OR AB (outcome* OR improvement* OR change* OR recovery OR benefit*)) AND (TI (priorit* OR prefer* OR valued OR meaningful* OR \"patient perspective*\" OR \"patient perception*\" OR \"patient preference*\" OR \"patient satisfaction\" OR \"patient reported\") OR AB (priorit* OR prefer* OR valued OR meaningful* OR \"patient perspective*\" OR \"patient perception*\" OR \"patient preference*\" OR \"patient satisfaction\" OR \"patient reported\"))) OR ((TI (outcome* OR goal*) OR AB (outcome* OR goal*)) AND (TI (consensus OR Delphi OR \"nominal group*\" OR codesign OR \"co-design\" OR \"co design\") OR AB (consensus OR Delphi OR \"nominal group*\" OR codesign OR \"co-design\" OR \"co design\")))))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "embase_com",
+      "strategy": "q1",
+      "file": "embase_com/q1/embase_com_q1_2026-11-26_4838.ris",
+      "records": 4838,
+      "sha256": "25f945c690a3cf099b4bdc554be63d1d9bb025e800fa94bddf6a5d05f25eecb2",
+      "query": "(('aphasia'/exp OR (aphasi* OR dysphasi*):ti,ab) AND (qualitative OR interview* OR 'focus group*' OR ethnograph* OR phenomenolog* OR 'grounded theory' OR 'thematic analys*' OR 'content analys*' OR 'mixed method*' OR 'action research' OR 'participatory research' OR 'lived experience*' OR perspective* OR experience* OR perception* OR preference* OR attitude* OR opinion* OR view* OR hope* OR wish* OR 'patient report*' OR 'self report*'):ti,ab AND ('living well' OR 'living successfully' OR 'successful living' OR 'personal recovery' OR recovery OR meaningful* OR 'quality of life' OR wellbeing OR 'well-being' OR 'well being' OR participat* OR 'everyday life' OR 'daily life' OR 'life role*' OR identity OR adjust* OR adapt* OR coping OR autonomy OR independence OR relationship* OR friend* OR 'social support' OR 'social inclusion' OR 'return to work' OR 'return to employment' OR 'self management' OR 'self efficacy' OR goal* OR priorit* OR need* OR 'life satisfaction' OR 'emotional wellbeing' OR 'emotional well-being'):ti,ab)",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "embase_com",
+      "strategy": "q2",
+      "file": "embase_com/q2/embase_com_q2_2026-11-26_1852.ris",
+      "records": 1852,
+      "sha256": "5a87d604a2473e6520e1f19fc06d03032e5cc5563d75b7c9a067f76dd9b57eb8",
+      "query": "(('aphasia'/exp OR (aphasi* OR dysphasi*):ti,ab) AND (('meaningful change*' OR 'meaningful improvement*' OR 'meaningful outcome*' OR 'important change*' OR 'important difference*' OR 'important improvement*' OR 'clinically meaningful' OR 'clinically important' OR 'minimal important' OR 'minimally important' OR 'minimum important' OR 'patient defined' OR 'patient valued' OR 'personally relevant' OR 'personally meaningful' OR 'stakeholder important' OR 'patient important' OR 'goal attainment' OR 'goal setting' OR 'treatment success' OR 'successful treatment' OR 'core outcome*' OR 'outcome priorit*' OR 'recovery priorit*' OR 'rehabilitation priorit*' OR 'global rating* of change' OR 'patient global impression*' OR 'anchor based' OR 'anchor rating'):ti,ab OR ((outcome* OR improvement* OR change* OR recovery OR benefit*):ti,ab AND (priorit* OR prefer* OR valued OR meaningful* OR 'patient perspective*' OR 'patient perception*' OR 'patient preference*' OR 'patient satisfaction' OR 'patient reported'):ti,ab) OR ((outcome* OR goal*):ti,ab AND (consensus OR Delphi OR 'nominal group*' OR codesign OR 'co-design' OR 'co design'):ti,ab)))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "cinahl_ebsco",
+      "strategy": "q1",
+      "file": "cinahl_ebsco/q1/cinahl_ebsco_q1_2026-11-26_1746.ris",
+      "records": 1746,
+      "sha256": "d81956d3ba4b2c0efb6f82d26994cd6797fa278de6f77111f134626023e2f997",
+      "query": "((MH \"Aphasia+\" OR (TI (aphasi* OR dysphasi*) OR AB (aphasi* OR dysphasi*))) AND (TI (qualitative OR interview* OR \"focus group*\" OR ethnograph* OR phenomenolog* OR \"grounded theory\" OR \"thematic analys*\" OR \"content analys*\" OR \"mixed method*\" OR \"action research\" OR \"participatory research\" OR \"lived experience*\" OR perspective* OR experience* OR perception* OR preference* OR attitude* OR opinion* OR view* OR hope* OR wish* OR \"patient report*\" OR \"self report*\") OR AB (qualitative OR interview* OR \"focus group*\" OR ethnograph* OR phenomenolog* OR \"grounded theory\" OR \"thematic analys*\" OR \"content analys*\" OR \"mixed method*\" OR \"action research\" OR \"participatory research\" OR \"lived experience*\" OR perspective* OR experience* OR perception* OR preference* OR attitude* OR opinion* OR view* OR hope* OR wish* OR \"patient report*\" OR \"self report*\")) AND (TI (\"living well\" OR \"living successfully\" OR \"successful living\" OR \"personal recovery\" OR recovery OR meaningful* OR \"quality of life\" OR wellbeing OR \"well-being\" OR \"well being\" OR participat* OR \"everyday life\" OR \"daily life\" OR \"life role*\" OR identity OR adjust* OR adapt* OR coping OR autonomy OR independence OR relationship* OR friend* OR \"social support\" OR \"social inclusion\" OR \"return to work\" OR \"return to employment\" OR \"self management\" OR \"self efficacy\" OR goal* OR priorit* OR need* OR \"life satisfaction\" OR \"emotional wellbeing\" OR \"emotional well-being\") OR AB (\"living well\" OR \"living successfully\" OR \"successful living\" OR \"personal recovery\" OR recovery OR meaningful* OR \"quality of life\" OR wellbeing OR \"well-being\" OR \"well being\" OR participat* OR \"everyday life\" OR \"daily life\" OR \"life role*\" OR identity OR adjust* OR adapt* OR coping OR autonomy OR independence OR relationship* OR friend* OR \"social support\" OR \"social inclusion\" OR \"return to work\" OR \"return to employment\" OR \"self management\" OR \"self efficacy\" OR goal* OR priorit* OR need* OR \"life satisfaction\" OR \"emotional wellbeing\" OR \"emotional well-being\")))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "cinahl_ebsco",
+      "strategy": "q2",
+      "file": "cinahl_ebsco/q2/cinahl_ebsco_q2_2026-11-26_717.ris",
+      "records": 717,
+      "sha256": "551aa5c5c3e44e5d5e9a2b29e9ca9ba857ce1857fa242c4dfc325395704762dd",
+      "query": "((MH \"Aphasia+\" OR (TI (aphasi* OR dysphasi*) OR AB (aphasi* OR dysphasi*))) AND ((TI (\"meaningful change*\" OR \"meaningful improvement*\" OR \"meaningful outcome*\" OR \"important change*\" OR \"important difference*\" OR \"important improvement*\" OR \"clinically meaningful\" OR \"clinically important\" OR \"minimal important\" OR \"minimally important\" OR \"minimum important\" OR \"patient defined\" OR \"patient valued\" OR \"personally relevant\" OR \"personally meaningful\" OR \"stakeholder important\" OR \"patient important\" OR \"goal attainment\" OR \"goal setting\" OR \"treatment success\" OR \"successful treatment\" OR \"core outcome*\" OR \"outcome priorit*\" OR \"recovery priorit*\" OR \"rehabilitation priorit*\" OR \"global rating* of change\" OR \"patient global impression*\" OR \"anchor based\" OR \"anchor rating\") OR AB (\"meaningful change*\" OR \"meaningful improvement*\" OR \"meaningful outcome*\" OR \"important change*\" OR \"important difference*\" OR \"important improvement*\" OR \"clinically meaningful\" OR \"clinically important\" OR \"minimal important\" OR \"minimally important\" OR \"minimum important\" OR \"patient defined\" OR \"patient valued\" OR \"personally relevant\" OR \"personally meaningful\" OR \"stakeholder important\" OR \"patient important\" OR \"goal attainment\" OR \"goal setting\" OR \"treatment success\" OR \"successful treatment\" OR \"core outcome*\" OR \"outcome priorit*\" OR \"recovery priorit*\" OR \"rehabilitation priorit*\" OR \"global rating* of change\" OR \"patient global impression*\" OR \"anchor based\" OR \"anchor rating\")) OR ((TI (outcome* OR improvement* OR change* OR recovery OR benefit*) OR AB (outcome* OR improvement* OR change* OR recovery OR benefit*)) AND (TI (priorit* OR prefer* OR valued OR meaningful* OR \"patient perspective*\" OR \"patient perception*\" OR \"patient preference*\" OR \"patient satisfaction\" OR \"patient reported\") OR AB (priorit* OR prefer* OR valued OR meaningful* OR \"patient perspective*\" OR \"patient perception*\" OR \"patient preference*\" OR \"patient satisfaction\" OR \"patient reported\"))) OR ((TI (outcome* OR goal*) OR AB (outcome* OR goal*)) AND (TI (consensus OR Delphi OR \"nominal group*\" OR codesign OR \"co-design\" OR \"co design\") OR AB (consensus OR Delphi OR \"nominal group*\" OR codesign OR \"co-design\" OR \"co design\")))))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "psycinfo_ebsco",
+      "strategy": "q1",
+      "file": "psycinfo_ebsco/q1/psycinfo_ebsco_q1_2026-11-26_2235.ris",
+      "records": 2235,
+      "sha256": "a13eb56eb79106a21b447beb2506835d97bdd12c8b4ff72afbbd07b0fd92175c",
+      "query": "((DE \"Aphasia\" OR (TI (aphasi* OR dysphasi*) OR AB (aphasi* OR dysphasi*))) AND (TI (qualitative OR interview* OR \"focus group*\" OR ethnograph* OR phenomenolog* OR \"grounded theory\" OR \"thematic analys*\" OR \"content analys*\" OR \"mixed method*\" OR \"action research\" OR \"participatory research\" OR \"lived experience*\" OR perspective* OR experience* OR perception* OR preference* OR attitude* OR opinion* OR view* OR hope* OR wish* OR \"patient report*\" OR \"self report*\") OR AB (qualitative OR interview* OR \"focus group*\" OR ethnograph* OR phenomenolog* OR \"grounded theory\" OR \"thematic analys*\" OR \"content analys*\" OR \"mixed method*\" OR \"action research\" OR \"participatory research\" OR \"lived experience*\" OR perspective* OR experience* OR perception* OR preference* OR attitude* OR opinion* OR view* OR hope* OR wish* OR \"patient report*\" OR \"self report*\")) AND (TI (\"living well\" OR \"living successfully\" OR \"successful living\" OR \"personal recovery\" OR recovery OR meaningful* OR \"quality of life\" OR wellbeing OR \"well-being\" OR \"well being\" OR participat* OR \"everyday life\" OR \"daily life\" OR \"life role*\" OR identity OR adjust* OR adapt* OR coping OR autonomy OR independence OR relationship* OR friend* OR \"social support\" OR \"social inclusion\" OR \"return to work\" OR \"return to employment\" OR \"self management\" OR \"self efficacy\" OR goal* OR priorit* OR need* OR \"life satisfaction\" OR \"emotional wellbeing\" OR \"emotional well-being\") OR AB (\"living well\" OR \"living successfully\" OR \"successful living\" OR \"personal recovery\" OR recovery OR meaningful* OR \"quality of life\" OR wellbeing OR \"well-being\" OR \"well being\" OR participat* OR \"everyday life\" OR \"daily life\" OR \"life role*\" OR identity OR adjust* OR adapt* OR coping OR autonomy OR independence OR relationship* OR friend* OR \"social support\" OR \"social inclusion\" OR \"return to work\" OR \"return to employment\" OR \"self management\" OR \"self efficacy\" OR goal* OR priorit* OR need* OR \"life satisfaction\" OR \"emotional wellbeing\" OR \"emotional well-being\")))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "psycinfo_ebsco",
+      "strategy": "q2",
+      "file": "psycinfo_ebsco/q2/psycinfo_ebsco_q2_2026-11-26_704.ris",
+      "records": 704,
+      "sha256": "98e6f9f6484330d69bb7c79528d87ea2b454c1bcb3cc0ed8d172279f05160d1a",
+      "query": "((DE \"Aphasia\" OR (TI (aphasi* OR dysphasi*) OR AB (aphasi* OR dysphasi*))) AND ((TI (\"meaningful change*\" OR \"meaningful improvement*\" OR \"meaningful outcome*\" OR \"important change*\" OR \"important difference*\" OR \"important improvement*\" OR \"clinically meaningful\" OR \"clinically important\" OR \"minimal important\" OR \"minimally important\" OR \"minimum important\" OR \"patient defined\" OR \"patient valued\" OR \"personally relevant\" OR \"personally meaningful\" OR \"stakeholder important\" OR \"patient important\" OR \"goal attainment\" OR \"goal setting\" OR \"treatment success\" OR \"successful treatment\" OR \"core outcome*\" OR \"outcome priorit*\" OR \"recovery priorit*\" OR \"rehabilitation priorit*\" OR \"global rating* of change\" OR \"patient global impression*\" OR \"anchor based\" OR \"anchor rating\") OR AB (\"meaningful change*\" OR \"meaningful improvement*\" OR \"meaningful outcome*\" OR \"important change*\" OR \"important difference*\" OR \"important improvement*\" OR \"clinically meaningful\" OR \"clinically important\" OR \"minimal important\" OR \"minimally important\" OR \"minimum important\" OR \"patient defined\" OR \"patient valued\" OR \"personally relevant\" OR \"personally meaningful\" OR \"stakeholder important\" OR \"patient important\" OR \"goal attainment\" OR \"goal setting\" OR \"treatment success\" OR \"successful treatment\" OR \"core outcome*\" OR \"outcome priorit*\" OR \"recovery priorit*\" OR \"rehabilitation priorit*\" OR \"global rating* of change\" OR \"patient global impression*\" OR \"anchor based\" OR \"anchor rating\")) OR ((TI (outcome* OR improvement* OR change* OR recovery OR benefit*) OR AB (outcome* OR improvement* OR change* OR recovery OR benefit*)) AND (TI (priorit* OR prefer* OR valued OR meaningful* OR \"patient perspective*\" OR \"patient perception*\" OR \"patient preference*\" OR \"patient satisfaction\" OR \"patient reported\") OR AB (priorit* OR prefer* OR valued OR meaningful* OR \"patient perspective*\" OR \"patient perception*\" OR \"patient preference*\" OR \"patient satisfaction\" OR \"patient reported\"))) OR ((TI (outcome* OR goal*) OR AB (outcome* OR goal*)) AND (TI (consensus OR Delphi OR \"nominal group*\" OR codesign OR \"co-design\" OR \"co design\") OR AB (consensus OR Delphi OR \"nominal group*\" OR codesign OR \"co-design\" OR \"co design\")))))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "scopus",
+      "strategy": "q1",
+      "file": "scopus/q1/scopus_q1_2026-11-26_6458.ris",
+      "records": 6458,
+      "sha256": "a04b0e62e314f449eb9630af23e07e7eb3cfa57c77a85004b89d5d870b4eda75",
+      "query": "(TITLE-ABS-KEY(aphasi* OR dysphasi*) AND TITLE-ABS-KEY(qualitative OR interview* OR \"focus group*\" OR ethnograph* OR phenomenolog* OR \"grounded theory\" OR \"thematic analys*\" OR \"content analys*\" OR \"mixed method*\" OR \"action research\" OR \"participatory research\" OR \"lived experience*\" OR perspective* OR experience* OR perception* OR preference* OR attitude* OR opinion* OR view* OR hope* OR wish* OR \"patient report*\" OR \"self report*\") AND TITLE-ABS-KEY(\"living well\" OR \"living successfully\" OR \"successful living\" OR \"personal recovery\" OR recovery OR meaningful* OR \"quality of life\" OR wellbeing OR \"well-being\" OR \"well being\" OR participat* OR \"everyday life\" OR \"daily life\" OR \"life role*\" OR identity OR adjust* OR adapt* OR coping OR autonomy OR independence OR relationship* OR friend* OR \"social support\" OR \"social inclusion\" OR \"return to work\" OR \"return to employment\" OR \"self management\" OR \"self efficacy\" OR goal* OR priorit* OR need* OR \"life satisfaction\" OR \"emotional wellbeing\" OR \"emotional well-being\"))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "scopus",
+      "strategy": "q2",
+      "file": "scopus/q2/scopus_q2_2026-11-26_5764.ris",
+      "records": 5764,
+      "sha256": "ec852d91b3617cacbbb563a42d6bd1c0a3b7d4aa8ac0f2f74af79beca828b7bc",
+      "query": "(TITLE-ABS-KEY(aphasi* OR dysphasi*) AND (TITLE-ABS-KEY(\"meaningful change*\" OR \"meaningful improvement*\" OR \"meaningful outcome*\" OR \"important change*\" OR \"important difference*\" OR \"important improvement*\" OR \"clinically meaningful\" OR \"clinically important\" OR \"minimal important\" OR \"minimally important\" OR \"minimum important\" OR \"patient defined\" OR \"patient valued\" OR \"personally relevant\" OR \"personally meaningful\" OR \"stakeholder important\" OR \"patient important\" OR \"goal attainment\" OR \"goal setting\" OR \"treatment success\" OR \"successful treatment\" OR \"core outcome*\" OR \"outcome priorit*\" OR \"recovery priorit*\" OR \"rehabilitation priorit*\" OR \"global rating* of change\" OR \"patient global impression*\" OR \"anchor based\" OR \"anchor rating\") OR (TITLE-ABS-KEY(outcome* OR improvement* OR change* OR recovery OR benefit*) AND TITLE-ABS-KEY(priorit* OR prefer* OR valued OR meaningful* OR \"patient perspective*\" OR \"patient perception*\" OR \"patient preference*\" OR \"patient satisfaction\" OR \"patient reported\")) OR (TITLE-ABS-KEY(outcome* OR goal*) AND TITLE-ABS-KEY(consensus OR Delphi OR \"nominal group*\" OR codesign OR \"co-design\" OR \"co design\"))))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "web_of_science",
+      "strategy": "q1",
+      "file": "web_of_science/q1/web_of_science_q1_2026-11-26_p1_1000.ris",
+      "records": 1000,
+      "sha256": "295873b362246a3ea5fb39155f07ac4dbb45aee6822c4d72a1d465ebfc54473d",
+      "query": "(TS=(aphasi* OR dysphasi*) AND TS=(qualitative OR interview* OR \"focus group*\" OR ethnograph* OR phenomenolog* OR \"grounded theory\" OR \"thematic analys*\" OR \"content analys*\" OR \"mixed method*\" OR \"action research\" OR \"participatory research\" OR \"lived experience*\" OR perspective* OR experience* OR perception* OR preference* OR attitude* OR opinion* OR view* OR hope* OR wish* OR \"patient report*\" OR \"self report*\") AND TS=(\"living well\" OR \"living successfully\" OR \"successful living\" OR \"personal recovery\" OR recovery OR meaningful* OR \"quality of life\" OR wellbeing OR \"well-being\" OR \"well being\" OR participat* OR \"everyday life\" OR \"daily life\" OR \"life role*\" OR identity OR adjust* OR adapt* OR coping OR autonomy OR independence OR relationship* OR friend* OR \"social support\" OR \"social inclusion\" OR \"return to work\" OR \"return to employment\" OR \"self management\" OR \"self efficacy\" OR goal* OR priorit* OR need* OR \"life satisfaction\" OR \"emotional wellbeing\" OR \"emotional well-being\"))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "web_of_science",
+      "strategy": "q1",
+      "file": "web_of_science/q1/web_of_science_q1_2026-11-26_p2_1000.ris",
+      "records": 1000,
+      "sha256": "2645b0284704f3f6d69c12074f4e3d41428cc525d58c87bbc9bba7f0982cecdf",
+      "query": "(TS=(aphasi* OR dysphasi*) AND TS=(qualitative OR interview* OR \"focus group*\" OR ethnograph* OR phenomenolog* OR \"grounded theory\" OR \"thematic analys*\" OR \"content analys*\" OR \"mixed method*\" OR \"action research\" OR \"participatory research\" OR \"lived experience*\" OR perspective* OR experience* OR perception* OR preference* OR attitude* OR opinion* OR view* OR hope* OR wish* OR \"patient report*\" OR \"self report*\") AND TS=(\"living well\" OR \"living successfully\" OR \"successful living\" OR \"personal recovery\" OR recovery OR meaningful* OR \"quality of life\" OR wellbeing OR \"well-being\" OR \"well being\" OR participat* OR \"everyday life\" OR \"daily life\" OR \"life role*\" OR identity OR adjust* OR adapt* OR coping OR autonomy OR independence OR relationship* OR friend* OR \"social support\" OR \"social inclusion\" OR \"return to work\" OR \"return to employment\" OR \"self management\" OR \"self efficacy\" OR goal* OR priorit* OR need* OR \"life satisfaction\" OR \"emotional wellbeing\" OR \"emotional well-being\"))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "web_of_science",
+      "strategy": "q1",
+      "file": "web_of_science/q1/web_of_science_q1_2026-11-26_p3_1000.ris",
+      "records": 1000,
+      "sha256": "015c06a844f2fb815f91e49a5f2d8df5ba59775f960d816983be7368476ca498",
+      "query": "(TS=(aphasi* OR dysphasi*) AND TS=(qualitative OR interview* OR \"focus group*\" OR ethnograph* OR phenomenolog* OR \"grounded theory\" OR \"thematic analys*\" OR \"content analys*\" OR \"mixed method*\" OR \"action research\" OR \"participatory research\" OR \"lived experience*\" OR perspective* OR experience* OR perception* OR preference* OR attitude* OR opinion* OR view* OR hope* OR wish* OR \"patient report*\" OR \"self report*\") AND TS=(\"living well\" OR \"living successfully\" OR \"successful living\" OR \"personal recovery\" OR recovery OR meaningful* OR \"quality of life\" OR wellbeing OR \"well-being\" OR \"well being\" OR participat* OR \"everyday life\" OR \"daily life\" OR \"life role*\" OR identity OR adjust* OR adapt* OR coping OR autonomy OR independence OR relationship* OR friend* OR \"social support\" OR \"social inclusion\" OR \"return to work\" OR \"return to employment\" OR \"self management\" OR \"self efficacy\" OR goal* OR priorit* OR need* OR \"life satisfaction\" OR \"emotional wellbeing\" OR \"emotional well-being\"))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "web_of_science",
+      "strategy": "q1",
+      "file": "web_of_science/q1/web_of_science_q1_2026-11-26_p4_766.ris",
+      "records": 766,
+      "sha256": "2e841b3345fd4056b9033554f1de79984705e0cbfecaf1a909198a41b17755fe",
+      "query": "(TS=(aphasi* OR dysphasi*) AND TS=(qualitative OR interview* OR \"focus group*\" OR ethnograph* OR phenomenolog* OR \"grounded theory\" OR \"thematic analys*\" OR \"content analys*\" OR \"mixed method*\" OR \"action research\" OR \"participatory research\" OR \"lived experience*\" OR perspective* OR experience* OR perception* OR preference* OR attitude* OR opinion* OR view* OR hope* OR wish* OR \"patient report*\" OR \"self report*\") AND TS=(\"living well\" OR \"living successfully\" OR \"successful living\" OR \"personal recovery\" OR recovery OR meaningful* OR \"quality of life\" OR wellbeing OR \"well-being\" OR \"well being\" OR participat* OR \"everyday life\" OR \"daily life\" OR \"life role*\" OR identity OR adjust* OR adapt* OR coping OR autonomy OR independence OR relationship* OR friend* OR \"social support\" OR \"social inclusion\" OR \"return to work\" OR \"return to employment\" OR \"self management\" OR \"self efficacy\" OR goal* OR priorit* OR need* OR \"life satisfaction\" OR \"emotional wellbeing\" OR \"emotional well-being\"))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "web_of_science",
+      "strategy": "q2",
+      "file": "web_of_science/q2/web_of_science_q2_2026-11-26_p1_1000.ris",
+      "records": 1000,
+      "sha256": "526a3632eaec1427401b7866394a674ec1576ff3dba491e6f4f95e57ecdf82ac",
+      "query": "(TS=(aphasi* OR dysphasi*) AND (TS=(\"meaningful change*\" OR \"meaningful improvement*\" OR \"meaningful outcome*\" OR \"important change*\" OR \"important difference*\" OR \"important improvement*\" OR \"clinically meaningful\" OR \"clinically important\" OR \"minimal important\" OR \"minimally important\" OR \"minimum important\" OR \"patient defined\" OR \"patient valued\" OR \"personally relevant\" OR \"personally meaningful\" OR \"stakeholder important\" OR \"patient important\" OR \"goal attainment\" OR \"goal setting\" OR \"treatment success\" OR \"successful treatment\" OR \"core outcome*\" OR \"outcome priorit*\" OR \"recovery priorit*\" OR \"rehabilitation priorit*\" OR \"global rating* of change\" OR \"patient global impression*\" OR \"anchor based\" OR \"anchor rating\") OR (TS=(outcome* OR improvement* OR change* OR recovery OR benefit*) AND TS=(priorit* OR prefer* OR valued OR meaningful* OR \"patient perspective*\" OR \"patient perception*\" OR \"patient preference*\" OR \"patient satisfaction\" OR \"patient reported\")) OR (TS=(outcome* OR goal*) AND TS=(consensus OR Delphi OR \"nominal group*\" OR codesign OR \"co-design\" OR \"co design\"))))",
+      "query_status": "Prepared query; execution history not independently verified"
+    },
+    {
+      "database": "web_of_science",
+      "strategy": "q2",
+      "file": "web_of_science/q2/web_of_science_q2_2026-11-26_p2_847.ris",
+      "records": 847,
+      "sha256": "9dd384eb32eac7a470628f78e1c62571c590dd43a4c76edce9d903191d806ec1",
+      "query": "(TS=(aphasi* OR dysphasi*) AND (TS=(\"meaningful change*\" OR \"meaningful improvement*\" OR \"meaningful outcome*\" OR \"important change*\" OR \"important difference*\" OR \"important improvement*\" OR \"clinically meaningful\" OR \"clinically important\" OR \"minimal important\" OR \"minimally important\" OR \"minimum important\" OR \"patient defined\" OR \"patient valued\" OR \"personally relevant\" OR \"personally meaningful\" OR \"stakeholder important\" OR \"patient important\" OR \"goal attainment\" OR \"goal setting\" OR \"treatment success\" OR \"successful treatment\" OR \"core outcome*\" OR \"outcome priorit*\" OR \"recovery priorit*\" OR \"rehabilitation priorit*\" OR \"global rating* of change\" OR \"patient global impression*\" OR \"anchor based\" OR \"anchor rating\") OR (TS=(outcome* OR improvement* OR change* OR recovery OR benefit*) AND TS=(priorit* OR prefer* OR valued OR meaningful* OR \"patient perspective*\" OR \"patient perception*\" OR \"patient preference*\" OR \"patient satisfaction\" OR \"patient reported\")) OR (TS=(outcome* OR goal*) AND TS=(consensus OR Delphi OR \"nominal group*\" OR codesign OR \"co-design\" OR \"co design\"))))",
+      "query_status": "Prepared query; execution history not independently verified"
+    }
+  ],
+  "warnings": [],
+  "deduplication": "Exact DOI/PMID or compatible title/year/first-author match; conflicting identifiers and ambiguous matches retained. Every source occurrence is retained."
+}

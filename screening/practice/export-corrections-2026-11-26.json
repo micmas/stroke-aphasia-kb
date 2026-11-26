@@ -1,0 +1,44 @@
+[
+  {
+    "old": "cinahl_ebsco/q1/cinahl_ebsco_q1_2026-11-26_1746.ris",
+    "new": "cinahl_ebsco/q2/cinahl_ebsco_q2_2026-11-26_717.ris",
+    "sha256": "551aa5c5c3e44e5d5e9a2b29e9ca9ba857ce1857fa242c4dfc325395704762dd",
+    "reason": "Researcher confirmed Q1/Q2 exports swapped"
+  },
+  {
+    "old": "cinahl_ebsco/q2/cinahl_ebsco_q2_2026-11-26_717.ris",
+    "new": "cinahl_ebsco/q1/cinahl_ebsco_q1_2026-11-26_1746.ris",
+    "sha256": "d81956d3ba4b2c0efb6f82d26994cd6797fa278de6f77111f134626023e2f997",
+    "reason": "Researcher confirmed Q1/Q2 exports swapped"
+  },
+  {
+    "old": "psycinfo_ebsco/q1/psycinfo_ebsco_q1_2026-11-26_2235.ris",
+    "new": "psycinfo_ebsco/q2/psycinfo_ebsco_q2_2026-11-26_704.ris",
+    "sha256": "98e6f9f6484330d69bb7c79528d87ea2b454c1bcb3cc0ed8d172279f05160d1a",
+    "reason": "Researcher confirmed Q1/Q2 exports swapped"
+  },
+  {
+    "old": "psycinfo_ebsco/q2/psycinfo_ebsco_q2_2026-11-26_704.ris",
+    "new": "psycinfo_ebsco/q1/psycinfo_ebsco_q1_2026-11-26_2235.ris",
+    "sha256": "a13eb56eb79106a21b447beb2506835d97bdd12c8b4ff72afbbd07b0fd92175c",
+    "reason": "Researcher confirmed Q1/Q2 exports swapped"
+  },
+  {
+    "old": "embase_com/q1/embase_com_q1_2026-11-26_5069.ris",
+    "new": "embase_com/q1/embase_com_q1_2026-11-26_4838.ris",
+    "sha256": "25f945c690a3cf099b4bdc554be63d1d9bb025e800fa94bddf6a5d05f25eecb2",
+    "reason": "Researcher confirmed file content correct; filename corrected to parsed count"
+  },
+  {
+    "old": "web_of_science/q1/web_of_science_q1_2026-11-26_p4_765.ris",
+    "new": "web_of_science/q1/web_of_science_q1_2026-11-26_p4_766.ris",
+    "sha256": "2e841b3345fd4056b9033554f1de79984705e0cbfecaf1a909198a41b17755fe",
+    "reason": "Researcher confirmed file content correct; filename corrected to parsed count"
+  },
+  {
+    "old": "web_of_science/q2/web_of_science_q2_2026-11-26_p2_846.ris",
+    "new": "web_of_science/q2/web_of_science_q2_2026-11-26_p2_847.ris",
+    "sha256": "9dd384eb32eac7a470628f78e1c62571c590dd43a4c76edce9d903191d806ec1",
+    "reason": "Researcher confirmed file content correct; filename corrected to parsed count"
+  }
+]

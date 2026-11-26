@@ -39,7 +39,7 @@ def build(exports=None, public=False, reuse_exports=False):
     (search/'index.html').write_text(page)
     summary=json.loads((ROOT/'screening/dysphagia/import-manifest.json').read_text())
     nav=[('Overview',''),('Findings','findings'),('Matrix','matrix'),('Papers','papers'),('Coverage','coverage'),('Searches','searches'),('Paper licences','licences'),('Methods','models'),('Get involved','involve'),('Review','review')]
-    for chapter in ['aphasia','dysphagia']:
+    for chapter in ['aphasia','dysphagia','practice']:
         dest=DEST/chapter;dest.mkdir(exist_ok=True)
         for path in (ROOT/'explorer').iterdir():
             if path.is_file():shutil.copy2(path,dest/path.name)
@@ -50,15 +50,21 @@ def build(exports=None, public=False, reuse_exports=False):
         html=html.replace('Stroke aphasia KB',f'{chapter.capitalize()} KB')
         html=re.sub(r'<meta name="description"[^>]*>',f'<meta name="description" content="Stroke KB staging: {chapter.capitalize()} chapter.">',html)
         html=re.sub(r'<nav class="nav".*?</nav>','<nav class="nav" aria-label="Views">'+''.join(f'<a href="#/{route}">{label}</a>' for label,route in nav)+'</nav>',html,flags=re.S)
-        if chapter=='dysphagia':html=re.sub(r'<aside.*?</aside>','',html,flags=re.S)
+        if chapter in ('dysphagia','practice'):html=re.sub(r'<aside.*?</aside>','',html,flags=re.S)
         else:html=html.replace('https://review.aphasia-kb.app/#/drafts','?kb=drafts#/findings')
         html=html.replace('</head>','<meta name="robots" content="noindex,nofollow"><link rel="stylesheet" href="/chapter.css"><script src="/chapter-bar.js"></script></head>')
         if chapter=='dysphagia':html=html.replace('</head>',f'<script>window.DYSPHAGIA_IMPORT={json.dumps(summary)};</script></head>')
+        if chapter=='practice':
+            practice_summary=json.loads((ROOT/'screening/practice/import-manifest.json').read_text())
+            html=html.replace('Practice KB','Practice and lived experience · Stroke KB').replace('>Matrix<','>Themes & outcomes<')
+            html=html.replace('</head>',f'<script>window.PRACTICE_IMPORT={json.dumps(practice_summary).replace("<", chr(92)+"u003c")};</script></head>')
+            shutil.copy2(WEB/'practice.js',dest/'practice.js')
         (dest/'index.html').write_text(html)
         app=(dest/'app.js').read_text()
+        app="import {initPractice} from '/practice/practice.js';\n"+app
         app="import {initEmptyChapter,renderChapterExtra} from './chapter-empty.js';\n"+app
         app=app.replace("'../export/", "'/aphasia/export/")
-        app=app.replace('function init() {',"function init() {\n  if(window.STROKE_CHAPTER==='dysphagia'){initEmptyChapter({prismaDiagram});return;}")
+        app=app.replace('function init() {',"function init() {\n  if(window.STROKE_CHAPTER==='practice'){initPractice();return;}\n  if(window.STROKE_CHAPTER==='dysphagia'){initEmptyChapter({prismaDiagram});return;}")
         app=app.replace('function render() {',"function render() {\n  if(renderChapterExtra(window.STROKE_CHAPTER,{prismaDiagram}))return;")
         app=app.replace('portalNav(state.index.kb.portal);','// Staging uses the chapter Review hub rather than a silent production link.')
         (dest/'app.js').write_text(app)
@@ -77,7 +83,7 @@ def build(exports=None, public=False, reuse_exports=False):
 def prepare_public(dest):
     # Only public templates and evidence exports are present; never copy screening data.
     forbidden = list(dest.rglob('records*.json'))
-    if forbidden or (dest/'dysphagia/screening').exists():
+    if forbidden or any(p.name=='screening' for p in dest.rglob('*') if p.is_dir()):
         raise ValueError('Private screening assets found in public output')
     for p in dest.rglob('*'):
         if p.suffix not in ('.html','.js','.css'): continue
