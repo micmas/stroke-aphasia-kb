@@ -43,7 +43,7 @@ export function renderDysphagiaCoverage(manifest, prismaDiagram) {
   ]) tiles.append(node('div', {class:'tile'}, node('div', {class:'value', text:value || '\u00a0'}),
     node('div', {class:'label', text:label}), node('div', {class:'detail', text:detail})));
   page.append(tiles, node('h2', {text:'Flow of papers (PRISMA 2020)'}),
-    node('p', {class:'small muted', text:'Database records and duplicates removed during import are populated. Later counts are left blank until screening, inclusion and extraction results are ready to report. Blank boxes do not mean zero.'}),
+    node('p', {class:'small muted', text:'Database records, duplicates removed and the initial pool for title/abstract screening are populated. The screening pool is the number remaining after deduplication, not completed reviews. Later counts are left blank until screening, inclusion and extraction results are ready to report. Blank boxes do not mean zero.'}),
     paragraph('Select “Records from databases” to see the export details below.'),
   );
   // Reuse the Aphasia diagram, including its geometry, colours and responsive styling.
@@ -55,7 +55,9 @@ export function renderDysphagiaCoverage(manifest, prismaDiagram) {
       screening:{}, other:{}, included:{}},
     searches:new Map(), sourceKinds:{}, reasonLabel:key => key,
   }};
-  page.append(node('div', {class:'prisma-wrap'}, prismaDiagram(index, {identificationOnly:true})));
+  page.append(node('div', {class:'prisma-wrap'}, prismaDiagram(index, {
+    identificationOnly:true, initialScreeningRecords:manifest.unique_records,
+  })));
   const searchSection = node('section', {id:'database-searches'},
     node('h2', {text:'Database searches'}),
     paragraph(`Search batch: ${date}. Counts below are records actually present in the supplied exports, before deduplication. A paper can appear in more than one database.`),
