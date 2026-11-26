@@ -32,6 +32,13 @@ import { carryOver, sameBuild } from './review-state.js';
 import { selectDrafts, measurementLabel, reviewProgress, pendingFirst, nextPaperDraft } from './draft-queue.js';
 import { rankPapers, REVIEW_TOPICS } from './review-priority.js';
 import { loadExportText } from './load-export.js';
+import { openAccessNote } from './open-access.js';
+
+const oaPdfs=new Map();
+function oaNote(id){return openAccessNote(id,pdf=>{
+  const previous=oaPdfs.get(id);oaPdfs.set(id,pdf);
+  if(!previous && document.querySelector('.review-layout.ft')?.dataset.id===id)render({preserveScroll:true});
+});}
 
 const state = { me: null, manifest: null, kb: null, bindings: {}, bindingProblem: '', screening: null, screeningIndex: [], mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
 const MAX_UPLOAD = 60 * 1024 * 1024;
@@ -71,6 +78,8 @@ async function api(path, init) {
 async function sendAll(records) {
   if (!records.length) return { files: [] };
   const out = await api('reviews', { method: 'POST', body: JSON.stringify({ records }) });
+  state.oaWarning=out.oaWarning||'';
+  for(const r of records)if(r.kind==='screen'&&r.decision==='exclude')oaPdfs.delete(r.id);
   for (const f of out.files || [out.file]) state.mine.inbox.push(f.split('/').pop());
   return out;
 }
@@ -91,7 +100,7 @@ const paperPdf = (citation) => state.manifest?.papers?.[citation] || null;
 /** The maintainer has the paper's source PDF (annotated or not). */
 const paperSource = (citation) => Boolean(citation && (paperPdf(citation) || (state.manifest?.sources?.keys || []).includes(citation)));
 /** A candidate's PDF is with the maintainer: named after its key, or linked through `pdf_file`. */
-const candidateHasPdf = (c) => Boolean(c.pdf_file || state.manifest?.fulltext?.[c.id]?.object || state.screeningIndex.find((r) => r.id === c.id)?.pdf_file) || paperSource(c.key);
+const candidateHasPdf = (c) => oaPdfs.has(c.id) || Boolean(c.pdf_file || state.manifest?.fulltext?.[c.id]?.object || state.screeningIndex.find((r) => r.id === c.id)?.pdf_file) || paperSource(c.key);
 /** An upload waiting in the bucket for this candidate id or citation key, if any. */
 const uploadFor = (...ids) => {
   const aliases = (state.screening?.candidates || []).filter((c) => ids.includes(c.id)).flatMap((c) => c.upload_ids || []);
@@ -706,6 +715,7 @@ function screenView(stage) {
       h('p', { class: 'small muted' }, [c.year, c.journal, (c.authors || '').slice(0, 120)].filter(Boolean).join(' · '), c.doi ? [' · ', h('a', { href: `https://doi.org/${c.doi}`, target: '_blank', rel: 'noopener', text: c.doi })] : null, c.pmid ? [' · PMID ', h('a', { href: `https://pubmed.ncbi.nlm.nih.gov/${c.pmid}`, target: '_blank', rel: 'noopener', text: String(c.pmid) })] : null,
         c.for?.length ? ` · for ${c.for.join(', ')}` : '', c.history?.length ? ` · ${c.history.map((x) => `${x.stage === 'title_abstract' ? 'T/A' : 'FT'}: ${x.decision} (${x.by})`).join('; ')}` : ''),
       h('p', { class: 'small pdfline' }, pdfLine, up ? [' · ', h('a', { href: `api/upload?file=${encodeURIComponent(up.id)}`, target: '_blank', rel: 'noopener', text: 'Open uploaded PDF' })] : null),
+      oaNote(c.id),
       h('p', { class: 'ab', text: c.abstract || '(no abstract available)' }),
       c.suggestion?.decision ? h('p', { class: 'sug', text: `Model suggests ${c.suggestion.decision}${c.suggestion.reason && c.suggestion.reason !== 'none' ? ` (${c.suggestion.reason})` : ''} — a suggestion, not a decision.` }) : null,
       h('div', { class: 'dec' }, ['include', 'exclude', 'unsure'].map((v) => h('label', { title: gated ? 'Upload the PDF first' : null }, h('input', { type: 'radio', name: `s-${c.id}`, value: v, disabled: gated ? '' : null, checked: dec.decision === v ? '' : null, onchange: () => { decided[c.id] = { ...dec, decision: v }; store.set(key, decided); card.classList.add('done'); const k = Object.values(decided).filter((x) => x.decision).length; status.textContent = statusText(k); sendBtn.disabled = k ? false : true; sendBtn.textContent = k ? `Send ${plural(k, 'decision')}` : 'Send decisions'; } }), ` ${v}`)),
@@ -744,7 +754,7 @@ function ftPdf(c) {
   if (ft?.object) return { url: ft.object, label: 'full text' };
   const up = uploadFor(c.id, c.key);
   if (up) return { url: `api/upload?file=${encodeURIComponent(up.id)}`, label: 'uploaded PDF', upload: up };
-  return null;
+  return oaPdfs.get(c.id)||null;
 }
 /** The queue in the order shown (skipped papers last) and the paper on screen. */
 function ftQueue(wanted) {
@@ -838,7 +848,7 @@ function ftLeft(q, c, pdf) {
   }));
   return h('div', { class: 'left' },
     h('div', { class: 'page-head sticky-head' }, h('h1', { text: 'Full-text screening' }), status, h('span', { style: 'margin-left:auto' }, sendBtn)),
-    nav, card,
+    nav, card, oaNote(c.id),
     h('p', { class: 'small muted', text: 'Criteria: docs/SCREENING.md §2 — include when the paper answers a question in §1 and no exclusion reason applies. Keys: i include · e exclude · u unsure · s skip · ← → previous/next. Decisions stay in this browser until you send them.' }),
     h('h3', { text: 'The queue' }), list);
 }
@@ -1164,6 +1174,7 @@ function render({ preserveScroll = false } = {}) {
     else view = h('p', { class: 'error', text: `Unknown page: ${head}` });
   } catch (err) { console.error(err); view = h('p', { class: 'error', text: `This page could not be rendered: ${err.message}` }); }
   main.replaceChildren(view);
+  if(state.oaWarning)main.prepend(h('p',{class:'notice',text:state.oaWarning}));
   for (const a of document.querySelectorAll('.nav a')) { if (a.getAttribute('href') === `#${current}`) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); }
   if (scroll) window.scrollTo(scroll);
   else if (head !== 'draft') window.scrollTo(0, 0);
@@ -1188,6 +1199,8 @@ async function init() {
     state.bindingProblem = consistent ? '' : 'The portal files loaded are not all from the same build: reload the page before sending a draft review.';
     state.screening = await fetch('screening.json', fresh).then((r) => (r.ok ? r.json() : null)).catch(() => null);
     state.screeningIndex = await fetch('screening-index.json', fresh).then((r) => r.ok ? r.json() : null).then((x) => x?.candidates || []).catch(() => []);
+    const collected=await fetch('/api/open-access?available=1',fresh).then(r=>r.ok?r.json():{}).catch(()=>({}));
+    for(const [id,paper] of Object.entries(collected.papers||{}))oaPdfs.set(id,{url:`api/open-access?id=${encodeURIComponent(id)}&file=1`,label:'open-access PDF',source:paper.source});
     store.set('screen:sent', pendingScreenReceipts(store.get('screen:sent', {}), state.screeningIndex));
     state.mine = await api('reviews').catch(() => ({ inbox: [], applied: [] }));
     try { const u = await api('upload'); state.uploads = u.uploads || []; state.uploadsOk = true; if (state.screening) state.screening.candidates = mergePendingPapers(state.screening.candidates, state.uploads, state.screeningIndex); } catch { state.uploads = []; state.uploadsOk = false; }

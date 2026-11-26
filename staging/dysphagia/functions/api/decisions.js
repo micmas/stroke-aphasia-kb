@@ -1,4 +1,5 @@
 // Isolated staging D1 database with per-reviewer state and append-only audit events.
+import {syncOaDecisions} from '../../../../portal/lib/open-access.js';
 export const BRANCH = 'feat/dysphagia-screening-staging';
 export function validate(body) {
   if (!body || !Array.isArray(body.decisions) || body.decisions.length > 100) return 'Send 1–100 decisions at a time.';
@@ -32,6 +33,9 @@ export async function onRequest({request,env,data}) {
       env.SCREENING.prepare('INSERT INTO decision_events (write_id,reviewer,saved_at,revision,changes) SELECT ?,?,?,revision,? FROM reviewer_state WHERE reviewer = ? AND write_id = ?').bind(writeId,email,now,JSON.stringify(body.decisions),email,writeId)
     ]);
     if(!results[1].meta.changes) return Response.json({error:'Another save arrived first. Reload before saving; pending choices are retained.'},{status:409});
-    return Response.json({ok:true,sha:revision+1,decisions:saved});
+    let oaWarning;
+    try { await syncOaDecisions(env.PRIVATE,email,body.decisions.map(d=>saved[d.id])); }
+    catch { oaWarning='Decisions saved. PDF removal will be retried automatically.'; }
+    return Response.json({ok:true,sha:revision+1,decisions:saved,...(oaWarning?{oaWarning}:{})});
   } catch(e) { return Response.json({error:'Unable to save or load decisions. Your browser backup is retained.'},{status:502}); }
 }

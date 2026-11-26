@@ -8,6 +8,7 @@
 // A record is data for scripts/portal_import.py, which applies it on the maintainer's machine:
 // nothing here edits a draft, the register or a canonical entry directly.
 import { gh, listRecords, putRecords } from '../../lib/github.js';
+import { syncOaDecisions } from '../../lib/open-access.js';
 
 const KINDS = new Set(['screen', 'verdict', 'edit', 'mark', 'comment', 'resolve']);
 const MAX_BATCH = 200;
@@ -70,7 +71,10 @@ export async function onRequestPost({ request, env, data }) {
   if (bad) return Response.json({ error: bad }, { status: bad === 'record too large' ? 413 : 400 });
   try {
     const { files, commit } = await putRecords(env, data.reviewer, checked);
-    return Response.json({ ok: true, file: files[0], files, commit });
+    let oaWarning;
+    try { await syncOaDecisions(env.PDFS,data.reviewer.email,checked.filter(c=>c.kind==='screen').map(c=>c.body)); }
+    catch { oaWarning='Decisions saved. PDF collection will reconcile them on its next run.'; }
+    return Response.json({ ok: true, file: files[0], files, commit, ...(oaWarning?{oaWarning}:{}) });
   } catch (e) {
     return Response.json({ error: e.message }, { status: e.status || 502 });
   }

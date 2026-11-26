@@ -14,5 +14,6 @@ def build():
   text=(ROOT/'explorer'/name).read_text().replace("link('Review portal', 'https://review.aphasia-kb.app/welcome/')","link('Dysphagia review', 'https://review.dysphagia-kb.app/')")
   (dest/name).write_text(text)
  (dest/'_headers').write_text('/*\n  Cache-Control: no-store\n  X-Robots-Tag: noindex, nofollow\n')
+ shutil.copy2(ROOT/'portal/web/open-access.js',dest/'open-access.js')
  print(dest)
 if __name__=='__main__':build()
