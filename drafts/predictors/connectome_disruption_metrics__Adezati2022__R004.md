@@ -25,10 +25,9 @@ findings:
       a measure of all syntactic abilities.'
   target: auditory_sentence_comprehension
   target_kind: impairment
-  claim: Graph theoretic metrics of connectivity disruption were not statistically
-    significant predictors of Token Test performance, regardless of whether they were
-    defined at the whole brain level or for the language sub-network, after accounting
-    for overall lesion size.
+  claim: Graph theoretic metrics of connectivity disruption were not statistically significant predictors
+    of Token Test performance, regardless of whether they were defined at the whole brain level or for
+    the language sub-network, after accounting for overall lesion size.
   direction: no_effect
   relationship: correlational
   method: tractography
@@ -48,16 +47,14 @@ findings:
   - several connectivity measures had skewed or bimodal distributions
   evidence_quality: cohort
   strength: weak
-  notes: 'Exposure measurement: Graph theoretic measures of connectivity disruption
-    (average clustering coefficient, transitivity, characteristic path length, and
-    global efficiency) calculated from whole-brain structural connectomes generated
-    via probabilistic tractography, with streamlines restricted to the probabilistic
-    white-matter map excluding the stroke lesion. analysis used multiple regression
-    with overall lesion volume and five graph theory connectivity metrics entered
-    simultaneously. Additional metadata has not been transcribed; review the pending-field
-    flags before approval. PDF image reading (P2-S3-C5, two-model agreement, human
-    verification pending): Almost all of the participants included in the current
-    study
+  notes: 'Exposure measurement: Graph theoretic measures of connectivity disruption (average clustering
+    coefficient, transitivity, characteristic path length, and global efficiency) calculated from whole-brain
+    structural connectomes generated via probabilistic tractography, with streamlines restricted to the
+    probabilistic white-matter map excluding the stroke lesion. analysis used multiple regression with
+    overall lesion volume and five graph theory connectivity metrics entered simultaneously. Additional
+    metadata has not been transcribed; review the pending-field flags before approval. PDF image reading
+    (P2-S3-C5, two-model agreement, human verification pending): Almost all of the participants included
+    in the current study
 
     were previously included in a lesion-symptom mapping study of se-
 
@@ -68,9 +65,9 @@ findings:
 
     psycholinguistic data from 50 participants with aphasia secondary to
 
-    a single left hemisphere stroke were analysed Original text-layer quotation is
-    preserved below. Reconcile this new analysis with earlier drafts and source-review
-    decisions for the paper; new candidate IDs do not carry earlier decisions forward.'
+    a single left hemisphere stroke were analysed Original text-layer quotation is preserved below. Reconcile
+    this new analysis with earlier drafts and source-review decisions for the paper; new candidate IDs
+    do not carry earlier decisions forward.'
   imaging_details:
     reference_space: not_reported
     atlases_used: []
@@ -101,60 +98,54 @@ findings:
   source_passages:
   - section: Original source P1-S1-C9
     page: 1
-    quote: "Graph \ntheoretic measures of connectome disruption were not statistically\
-      \ significantly associated with sentence \ncomprehension deficits after accounting\
-      \ for overall lesion size.   \n1."
+    quote: "Graph \ntheoretic measures of connectome disruption were not statistically significantly associated\
+      \ with sentence \ncomprehension deficits after accounting for overall lesion size.   \n1."
     supports: claim
   - section: Original source P4-S3-C3
     page: 4
-    quote: "None of the graph theory metrics of connectivity disruption were \nstatistically\
-      \ significant predictors of Token Test performance, regardless \nof whether\
-      \ they were defined at the whole brain level or for the language \nsub-network\
-      \ (all p > 0.2)."
+    quote: "None of the graph theory metrics of connectivity disruption were \nstatistically significant\
+      \ predictors of Token Test performance, regardless \nof whether they were defined at the whole brain\
+      \ level or for the language \nsub-network (all p > 0.2)."
     supports: claim
   - section: Original source P4-S3-C9
     page: 4
-    quote: "Graph \ntheoretic measures of connectome disruption were not statistically\
-      \ \nsignificantly associated with sentence comprehension deficits after ac­\n\
-      counting for overall lesion size."
+    quote: "Graph \ntheoretic measures of connectome disruption were not statistically \nsignificantly\
+      \ associated with sentence comprehension deficits after ac­\ncounting for overall lesion size."
     supports: claim
   - section: Original source P4-S2-C9
     page: 4
-    quote: "Separate \nregressions were run for metrics based on the whole brain network\
-      \ and \nthe language sub-network, with overall lesion volume and the five graph\
-      \ \ntheory connectivity metrics entered simultaneously in each regression. \n\
-      3."
+    quote: "Separate \nregressions were run for metrics based on the whole brain network and \nthe language\
+      \ sub-network, with overall lesion volume and the five graph \ntheory connectivity metrics entered\
+      \ simultaneously in each regression. \n3."
     supports: method
   - section: Original source P2-S3-C5
     page: 2
-    quote: "Almost all of the participants included in the current study \nwere previously\
-      \ included in a lesion-symptom mapping study of se­\nmantic and phonological\
-      \ fluency (Thye et al., 2021).1 \nProspectively collected Magnetic Resonance\
-      \ Imaging (MRI) and \npsycholinguistic data from 50 participants with aphasia\
-      \ secondary to a \nsingle left hemisphere stroke were analysed."
+    quote: "Almost all of the participants included in the current study \nwere previously included in\
+      \ a lesion-symptom mapping study of se­\nmantic and phonological fluency (Thye et al., 2021).1 \n\
+      Prospectively collected Magnetic Resonance Imaging (MRI) and \npsycholinguistic data from 50 participants\
+      \ with aphasia secondary to a \nsingle left hemisphere stroke were analysed."
     supports: sample
   - section: Original source P3-S1-C6
     page: 3
-    quote: "Whole-brain structural connectomes were generated from each \nparticipant’s\
-      \ diffusion images using probabilistic tractography."
+    quote: "Whole-brain structural connectomes were generated from each \nparticipant’s diffusion images\
+      \ using probabilistic tractography."
     supports: method
   - section: Original source P3-S2-C2
     page: 3
-    quote: "Tractography was restricted to the probabilistic white-matter map \nexcluding\
-      \ the stroke lesion, and streamlines were seeded from each \ncortical region."
+    quote: "Tractography was restricted to the probabilistic white-matter map \nexcluding the stroke lesion,\
+      \ and streamlines were seeded from each \ncortical region."
     supports: method
   - section: Original source P4-S2-C8
     page: 4
-    quote: "Several of the \nconnectivity measures had skewed or bimodal distributions,\
-      \ so the an­\nalyses used robust standard error estimation (Savalei, 2014) imple­\n\
-      mented in the lavaan package version 0.6–8 (Rosseel, 2012)."
+    quote: "Several of the \nconnectivity measures had skewed or bimodal distributions, so the an­\nalyses\
+      \ used robust standard error estimation (Savalei, 2014) imple­\nmented in the lavaan package version\
+      \ 0.6–8 (Rosseel, 2012)."
     supports: limitation
 predictor_type: imaging_metric
-short_definition: Graph theoretic measures of connectivity disruption (average clustering
-  coefficient, transitivity, characteristic path length, and global efficiency) calculated
-  from whole-brain structural connectomes generated via probabilistic tractography,
-  with streamlines restricted to the probabilistic white-matter map excluding the
-  stroke lesion.
+short_definition: Graph theoretic measures of connectivity disruption (average clustering coefficient,
+  transitivity, characteristic path length, and global efficiency) calculated from whole-brain structural
+  connectomes generated via probabilistic tractography, with streamlines restricted to the probabilistic
+  white-matter map excluding the stroke lesion.
 assessment:
 - Token Test
 schema_version: '2.8'
@@ -266,8 +257,8 @@ relationship_review:
   proposal:
     id: R004
     exposure:
-      text: graph theory metrics of connectivity disruption (average clustering coefficient,
-        transitivity, characteristic path length, global efficiency)
+      text: graph theory metrics of connectivity disruption (average clustering coefficient, transitivity,
+        characteristic path length, global efficiency)
     outcome:
       text: Token Test performance
     analysis_label: connectivity disruption regression
@@ -324,15 +315,14 @@ relationship_review:
       source_anomalies: []
       visual_review_required:
         scope: All main-paper figures and table crops
-        note: Automatic crops and matching transcriptions do not certify visual completeness.
-          Figures are not automatically interpreted.
+        note: Automatic crops and matching transcriptions do not certify visual completeness. Figures
+          are not automatically interpreted.
         caption_candidate_units:
         - P3-S1
         - P3-S3
         - P3-S4
         - P4-S2
-      approval: Not performed. Structural checks and model selections do not establish
-        semantic correctness.
+      approval: Not performed. Structural checks and model selections do not establish semantic correctness.
     candidate_discovery:
       model: gemma4:31b
       model_digest: 92808281a855666acf35743d49004bb30c810152cd004baf78f31b4578920e49
@@ -347,19 +337,18 @@ relationship_review:
       result_indexes:
       - 0
       - 1
-      reason: States association of posterior superior temporal lobe and IFG pars
-        triangularis with deficits in both mass univariate and multivariate LSM.
+      reason: States association of posterior superior temporal lobe and IFG pars triangularis with deficits
+        in both mass univariate and multivariate LSM.
     - source_id: P1-S1-C9
       disposition: represented
       result_indexes:
       - 3
-      reason: States graph theoretic measures were not significantly associated with
-        deficits after accounting for lesion size.
+      reason: States graph theoretic measures were not significantly associated with deficits after accounting
+        for lesion size.
     - source_id: P2-S4-C2
       disposition: background_or_descriptive
       result_indexes: []
-      reason: Describes lack of correlation between time since stroke and Token Test
-        performance.
+      reason: Describes lack of correlation between time since stroke and Token Test performance.
     - source_id: P4-S2-C10
       disposition: background_or_descriptive
       result_indexes: []
@@ -368,39 +357,37 @@ relationship_review:
       disposition: represented
       result_indexes:
       - 0
-      reason: Identifies suprathreshold voxels in posterior superior temporal lobe
-        and IFG pars triangularis via mass-univariate VLSM.
+      reason: Identifies suprathreshold voxels in posterior superior temporal lobe and IFG pars triangularis
+        via mass-univariate VLSM.
     - source_id: P4-S2-C12
       disposition: represented
       result_indexes:
       - 1
-      reason: Identifies suprathreshold voxels in posterior superior temporal cortex,
-        IFG pars triangularis, and frontal white matter via SCCAN LSM.
+      reason: Identifies suprathreshold voxels in posterior superior temporal cortex, IFG pars triangularis,
+        and frontal white matter via SCCAN LSM.
     - source_id: P4-S2-C13
       disposition: represented
       result_indexes:
       - 2
-      reason: Reports overall lesion volume as a statistically significant effect
-        in connectivity regressions.
+      reason: Reports overall lesion volume as a statistically significant effect in connectivity regressions.
     - source_id: P4-S3-C2
       disposition: represented
       result_indexes:
       - 2
-      reason: Confirms overall lesion volume as the only significant effect in connectivity
-        disruption regressions.
+      reason: Confirms overall lesion volume as the only significant effect in connectivity disruption
+        regressions.
     - source_id: P4-S3-C3
       disposition: represented
       result_indexes:
       - 3
-      reason: States graph theory metrics were not significant predictors of Token
-        Test performance.
+      reason: States graph theory metrics were not significant predictors of Token Test performance.
     - source_id: P4-S3-C6
       disposition: represented
       result_indexes:
       - 0
       - 1
-      reason: Restates association of posterior superior temporal lobe and IFG pars
-        triangularis with deficits in both LSM methods.
+      reason: Restates association of posterior superior temporal lobe and IFG pars triangularis with
+        deficits in both LSM methods.
     - source_id: P4-S3-C7
       disposition: background_or_descriptive
       result_indexes: []
@@ -409,8 +396,8 @@ relationship_review:
       disposition: represented
       result_indexes:
       - 3
-      reason: Restates that graph theoretic measures were not significantly associated
-        with deficits after accounting for lesion size.
+      reason: Restates that graph theoretic measures were not significantly associated with deficits after
+        accounting for lesion size.
     - source_id: P4-S3-C11
       disposition: background_or_descriptive
       result_indexes: []
@@ -426,15 +413,13 @@ relationship_review:
     - source_id: P4-S4-C8
       disposition: background_or_descriptive
       result_indexes: []
-      reason: Interprets critical regions as associated with speech perception, WM,
-        and semantic control.
+      reason: Interprets critical regions as associated with speech perception, WM, and semantic control.
     - source_id: P4-S4-C11
       disposition: repeated
       result_indexes:
       - 0
       - 1
-      reason: Restates the critical role of posterior superior temporal and inferior
-        frontal regions.
+      reason: Restates the critical role of posterior superior temporal and inferior frontal regions.
     - source_id: P4-S4-C12
       disposition: repeated
       result_indexes:
@@ -452,17 +437,16 @@ relationship_review:
     - P4-S4-C8
     - P4-S4-C11
     - P4-S4-C12
-    pending_policy: Every result passage without direct candidate evidence remains
-      pending, including model-labelled background and restatements; those labels
-      never certify completeness.
+    pending_policy: Every result passage without direct candidate evidence remains pending, including
+      model-labelled background and restatements; those labels never certify completeness.
     tables_requiring_review:
     - TABLE-1-page-2-1
     - TABLE-2-page-3-2
     - TABLE-3-page-5-3
     paper_complete: false
     approved: false
-    policy: New candidates require independent source checks; coverage dispositions
-      are model suggestions. No original outputs changed.
+    policy: New candidates require independent source checks; coverage dispositions are model suggestions.
+      No original outputs changed.
   study_frame:
     slots:
       analysed_sample:
@@ -504,13 +488,12 @@ relationship_review:
     imaging_vs_outcome: concurrent
     validation_type: internal_cross_validation
     held_selections: []
-    policy: All slots and enums remain unverified. Held selections are not evidence
-      of absence. Original response is preserved in frame/raw.json.
+    policy: All slots and enums remain unverified. Held selections are not evidence of absence. Original
+      response is preserved in frame/raw.json.
   approved: false
   source_check:
     profile: core
-    scope: Independent model text review of core meaning; not human approval or complete
-      PDF verification
+    scope: Independent model text review of core meaning; not human approval or complete PDF verification
     binding:
       profile: core
       version: core-source-check-v3
@@ -543,55 +526,51 @@ relationship_review:
       - P1-S1-C9
       - P4-S3-C3
       - P4-S3-C9
-      source_result: Graph theoretic measures of connectome disruption (average clustering
-        coefficient, transitivity, characteristic path length, global efficiency)
-        were not statistically significantly associated with Token Test performance
-        after accounting for overall lesion size, in both whole-brain and language
-        sub-network analyses.
+      source_result: Graph theoretic measures of connectome disruption (average clustering coefficient,
+        transitivity, characteristic path length, global efficiency) were not statistically significantly
+        associated with Token Test performance after accounting for overall lesion size, in both whole-brain
+        and language sub-network analyses.
       result_status: lost_after_adjustment
       patient_measurement: patient_diffusion
       checks:
         analysis_identity:
           answer: fits
-          reason: The selected analysis corresponds to the multiple regression of
-            graph-theoretic connectivity metrics on Token Test performance, as described
-            in P4-S2-C9 and P4-S3-C3.
+          reason: The selected analysis corresponds to the multiple regression of graph-theoretic connectivity
+            metrics on Token Test performance, as described in P4-S2-C9 and P4-S3-C3.
           source_ids:
           - P4-S2-C9
           - P4-S3-C3
         direction:
           answer: fits
-          reason: The source explicitly states that the metrics were not statistically
-            significant predictors after accounting for lesion size (P4-S3-C3, P4-S3-C9),
-            which aligns with the 'no_effect' direction in the draft, interpreted
-            as a null result after adjustment.
+          reason: The source explicitly states that the metrics were not statistically significant predictors
+            after accounting for lesion size (P4-S3-C3, P4-S3-C9), which aligns with the 'no_effect' direction
+            in the draft, interpreted as a null result after adjustment.
           source_ids:
           - P4-S3-C3
           - P4-S3-C9
         construct:
           answer: fits
-          reason: The exposure is correctly identified as graph-theoretic metrics
-            derived from patient diffusion data (probabilistic tractography), and
-            the outcome is Token Test performance. The patient measurement is patient_diffusion
-            because the connectomes were generated from each participant's diffusion
-            images (P3-S1-C6), not just template overlap.
+          reason: The exposure is correctly identified as graph-theoretic metrics derived from patient
+            diffusion data (probabilistic tractography), and the outcome is Token Test performance. The
+            patient measurement is patient_diffusion because the connectomes were generated from each
+            participant's diffusion images (P3-S1-C6), not just template overlap.
           source_ids:
           - P3-S1-C6
           - P3-S2-C5
           - P2-S3-C8
         qualifications:
           answer: fits
-          reason: The draft correctly includes the qualification that the null result
-            was observed after accounting for overall lesion size, which is a critical
-            part of the source's finding (P4-S3-C3, P4-S3-C9).
+          reason: The draft correctly includes the qualification that the null result was observed after
+            accounting for overall lesion size, which is a critical part of the source's finding (P4-S3-C3,
+            P4-S3-C9).
           source_ids:
           - P4-S3-C3
           - P4-S3-C9
         missing_material_caveat:
           answer: fits
-          reason: The draft includes the limitation regarding skewed/bimodal distributions
-            (P4-S2-C8) and the adjustment for lesion volume. No other material caveats
-            that change the interpretation of this specific null result are omitted.
+          reason: The draft includes the limitation regarding skewed/bimodal distributions (P4-S2-C8)
+            and the adjustment for lesion volume. No other material caveats that change the interpretation
+            of this specific null result are omitted.
           source_ids:
           - P4-S2-C8
           - P4-S2-C9
@@ -600,16 +579,15 @@ relationship_review:
       reason: All five core checks fit the source.
       material_issues: []
     pending_details:
-    - Detailed statistics, atlas/reference-space and structured confounder metadata
-      not transcribed.
+    - Detailed statistics, atlas/reference-space and structured confounder metadata not transcribed.
     - Recovery phase is not classified; use the reported timing words.
     - Evidence-strength rating is a conservative draft placeholder pending human review.
     normalizations: []
     analysis_identity:
       id: R004
       exposure:
-        text: graph theory metrics of connectivity disruption (average clustering
-          coefficient, transitivity, characteristic path length, global efficiency)
+        text: graph theory metrics of connectivity disruption (average clustering coefficient, transitivity,
+          characteristic path length, global efficiency)
       outcome:
         text: Token Test performance
       analysis_label: connectivity disruption regression
@@ -651,16 +629,15 @@ relationship_review:
           model_digests: *id002
           host: http://localhost:11434
         status: agreed_model_transcription
-        original_text: "Almost all of the participants included in the current study\
-          \ \nwere previously included in a lesion-symptom mapping study of se­\n\
-          mantic and phonological fluency (Thye et al., 2021).1 \nProspectively collected\
-          \ Magnetic Resonance Imaging (MRI) and \npsycholinguistic data from 50 participants\
-          \ with aphasia secondary to a \nsingle left hemisphere stroke were analysed."
-        anchor_text: "Almost all of the participants included in the current study\
-          \ \nwere previously included in a lesion-symptom mapping study of se­\n\
-          mantic and phonological fluency (Thye et al., 2021).1 \nProspectively collected\
-          \ Magnetic Resonance Imaging (MRI) and \npsycholinguistic data from 50 participants\
-          \ with aphasia secondary to a \nsingle left hemisphere stroke were analysed."
+        original_text: "Almost all of the participants included in the current study \nwere previously\
+          \ included in a lesion-symptom mapping study of se­\nmantic and phonological fluency (Thye et\
+          \ al., 2021).1 \nProspectively collected Magnetic Resonance Imaging (MRI) and \npsycholinguistic\
+          \ data from 50 participants with aphasia secondary to a \nsingle left hemisphere stroke were\
+          \ analysed."
+        anchor_text: "Almost all of the participants included in the current study \nwere previously included\
+          \ in a lesion-symptom mapping study of se­\nmantic and phonological fluency (Thye et al., 2021).1\
+          \ \nProspectively collected Magnetic Resonance Imaging (MRI) and \npsycholinguistic data from\
+          \ 50 participants with aphasia secondary to a \nsingle left hemisphere stroke were analysed."
         excluded_fragments: []
         image_sha256: af92d4075a8eff6e737ffc9639789910aab33f56da465de84483ec537e7d05b2
         transcription: 'Almost all of the participants included in the current study
@@ -682,17 +659,35 @@ relationship_review:
 reviewer_marks:
 - id: relationship-source-check
   page: 1
-  quote: "Graph \ntheoretic measures of connectome disruption were not statistically\
-    \ significantly associated with sentence \ncomprehension deficits after accounting\
-    \ for overall lesion size.   \n1."
+  quote: "Graph \ntheoretic measures of connectome disruption were not statistically significantly associated\
+    \ with sentence \ncomprehension deficits after accounting for overall lesion size.   \n1."
   status: pending
   by: agent:relationship-converter
   date: '2026-11-20'
-  note: 'Before approval: verify mapped claim/target, anatomy, timing, personal-factor
-    roles, all qualifiers, source audit issues and main-PDF tables/figures; check
-    missing results. This model proposal is not verified.'
+  note: 'Before approval: verify mapped claim/target, anatomy, timing, personal-factor roles, all qualifiers,
+    source audit issues and main-PDF tables/figures; check missing results. This model proposal is not
+    verified.'
+portal_reviews:
+- by: human:michele
+  date: '2026-11-26'
+  verdict: agree_defer
+  rationale: ''
+  approver: true
+  findings:
+  - id: f1
+    verdict: agree
+    passages:
+      '0': fine
+      '1': fine
+      '2': fine
+      '3': fine
+      '4': fine
+      '5': fine
+      '6': fine
+      '7': fine
+  reviewed_digest: sha256:8734db3491b1062ce895d6db39a6618abed688ffdfc85fc855180754b538dac7
+  record: 20261126T033441Z_verdict_m-massontrottier_predictors-connectome-disruption-metrics.json
 ---
-
 # Source review required
 
 This draft is unapproved. The full audit and original proposal are retained in the frontmatter. Resolve the pending source-check mark before approval.

@@ -29,5 +29,10 @@
  "reviewer": "m.massontrottier@uq.edu.au",
  "reviewer_name": null,
  "submitted": "2026-11-26T03:34:41.350Z",
- "portal": 1
+ "portal": 1,
+ "_outcome": {
+  "status": "recorded",
+  "message": "connectome_disruption_metrics__Adezati2022__R004.md: agree_defer by michele (1/1 findings agreed)",
+  "at": "2026-11-26T08:25:11+00:00"
+ }
 }
