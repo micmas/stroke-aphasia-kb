@@ -1,0 +1,33 @@
+{
+ "kind": "verdict",
+ "id": "drafts/predictors/connectome_disruption_metrics__Adezati2022__R004.md",
+ "citation": "@Adezati2022",
+ "verdict": "agree_defer",
+ "rationale": "",
+ "per_finding": [
+  {
+   "id": "f1",
+   "verdict": "agree",
+   "concern": "",
+   "supports_approval": true,
+   "passages": {
+    "0": "fine",
+    "1": "fine",
+    "2": "fine",
+    "3": "fine",
+    "4": "fine",
+    "5": "fine",
+    "6": "fine",
+    "7": "fine"
+   }
+  }
+ ],
+ "draft_digest": "sha256:8734db3491b1062ce895d6db39a6618abed688ffdfc85fc855180754b538dac7",
+ "finding_ids": [
+  "f1"
+ ],
+ "reviewer": "m.massontrottier@uq.edu.au",
+ "reviewer_name": null,
+ "submitted": "2026-11-26T03:34:41.350Z",
+ "portal": 1
+}
