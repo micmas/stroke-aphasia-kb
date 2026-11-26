@@ -15,6 +15,7 @@ import os
 from pathlib import Path
 import re
 import socket
+import subprocess
 import time
 import unicodedata
 import urllib.error
@@ -97,15 +98,29 @@ class R2:
     def __init__(self, bucket):
         self.bucket=bucket
         self.base=f"https://api.cloudflare.com/client/v4/accounts/{os.environ['CLOUDFLARE_ACCOUNT_ID']}/r2/buckets/{bucket}/objects"
-        self.token=os.environ['CLOUDFLARE_API_TOKEN']
+        self.token=os.environ.get('CLOUDFLARE_API_TOKEN')
+        self.wrangler=os.environ.get('STROKE_KB_WRANGLER')
+        self.token_checked=0
+    def auth_token(self,force=False):
+        if self.wrangler and (force or time.monotonic()-self.token_checked>30):
+            result=subprocess.run([self.wrangler,'auth','token','--json'],capture_output=True,text=True,timeout=60)
+            try: token=json.loads(result.stdout).get('token') if result.returncode==0 else None
+            except ValueError: token=None
+            if not token: raise RuntimeError('Cloudflare sign-in unavailable. Run wrangler login, then resume.')
+            self.token=token; self.token_checked=time.monotonic()
+        if not self.token: raise RuntimeError('Set CLOUDFLARE_API_TOKEN or use --wrangler with your signed-in Wrangler installation')
+        return self.token
     def call(self, method, key='', data=None, query=None, content_type='application/json'):
         url=self.base+('/'+U.quote(key,safe='') if key else '')+('?' + U.urlencode(query) if query else '')
         for attempt in range(4):
             try:
-                req=H.Request(url,data=data,method=method,headers={'Authorization':'Bearer '+self.token,'Content-Type':content_type})
+                req=H.Request(url,data=data,method=method,headers={'Authorization':'Bearer '+self.auth_token(),'Content-Type':content_type})
                 with H.urlopen(req,timeout=90) as res: return res.read()
             except urllib.error.HTTPError as e:
                 if e.code==404 and method in ('GET','DELETE'): return None
+                if e.code==401 and self.wrangler and attempt<3:
+                    self.auth_token(force=True)
+                    continue
                 if e.code not in (429,500,502,503,504) or attempt==3: raise RuntimeError(f'R2 {method} failed: HTTP {e.code}') from None
                 time.sleep(2**attempt*2)
         raise RuntimeError('R2 unavailable')
@@ -242,6 +257,7 @@ def collect_one(store,record,old=None):
     return dict(status,status='available',source=source)
 
 def run(chapter,max_records,deadline):
+    print(f'{chapter.title()}: loading candidates and checking saved progress…',flush=True)
     store=R2(BUCKETS[chapter]); rows=candidates(chapter,store)
     rows=[r for r in rows if ID.fullmatch(str(r.get('id','')))]
     index=store.get(PREFIX+'index.json',{})
@@ -269,6 +285,8 @@ def run(chapter,max_records,deadline):
         return age>(86400 if s.get('status')=='retry' else 30*86400)
     todo=sorted((r for r in rows if due(r)),key=lambda r:(r['id'] not in retry,not r.get('kept',False),r['id']))
     processed=0
+    batch_total=min(len(todo),max_records)
+    print(f'{chapter.title()}: {len(rows):,} candidates; {len(todo):,} due; up to {batch_total:,} in this run.',flush=True)
     for row in todo[:max_records]:
         if time.monotonic()>deadline: break
         status=collect_one(store,row,index.get(row['id']))
@@ -279,7 +297,8 @@ def run(chapter,max_records,deadline):
         # Keep retries for retained records until they have actually been attempted.
         store.delete(f"{PREFIX}retry/{row['id']}.json")
         processed+=1
-        print(json.dumps({'chapter':chapter,'id':row['id'],'status':status['status']}),flush=True)
+        saved=sum(x['status']=='available' for x in index.values())
+        print(f"[{chapter} {processed:,}/{batch_total:,}] {row['id']} — {status['status']} | {saved:,} PDFs stored | {len(todo)-processed:,} checks left",flush=True)
         if processed%10==0:
             store.put(PREFIX+'index.json',index)
             store.put(PREFIX+'summary.json',{'chapter':chapter,'updated':now(),'candidates':len(rows),'processed_this_run':processed,
@@ -296,7 +315,11 @@ def main():
     parser.add_argument('--chapter',choices=[*BUCKETS,'all'],default='all')
     parser.add_argument('--max-records',type=int,default=500)
     parser.add_argument('--minutes',type=int,default=45)
+    parser.add_argument('--wrangler',help='Path to signed-in Wrangler; refreshes existing OAuth access without displaying credentials')
+    parser.add_argument('--account-id',help='Cloudflare account ID (or set CLOUDFLARE_ACCOUNT_ID)')
     args=parser.parse_args()
+    if args.wrangler: os.environ['STROKE_KB_WRANGLER']=args.wrangler
+    if args.account_id: os.environ['CLOUDFLARE_ACCOUNT_ID']=args.account_id
     chapters=list(BUCKETS) if args.chapter=='all' else [args.chapter]
     failed=False
     for chapter in chapters:

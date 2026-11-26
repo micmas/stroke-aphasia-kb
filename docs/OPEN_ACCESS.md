@@ -4,13 +4,15 @@ Stroke KB collects licensed main-article PDFs for all imported Aphasia and
 Dysphagia candidates, except excluded and duplicate records. Collection is not
 a screening decision, full-text eligibility assessment or extraction approval.
 
-The hourly `open-access-papers` GitHub workflow resumes from its R2 index. Each
+The `open-access-papers` GitHub workflow resumes from its R2 index. Automatic
+hourly runs are currently disabled while the maintainer runs the collector in a
+local terminal. Do not run a GitHub collection and a local collection at the same
+time. Each
 run attempts up to 500 records per chapter within a 45-minute budget. The two
 chapters run independently, so a slow provider in one does not delay the other.
 Large initial collections therefore finish over multiple runs. Saved includes
 prioritise another attempt. Temporary failures retry after a day; papers without
-a licensed downloadable copy are checked again after 30 days. GitHub scheduled
-runs may be delayed. Manual runs use the same concurrency group and checkpoints.
+a licensed downloadable copy are checked again after 30 days. Manual GitHub runs use the same concurrency group and checkpoints.
 
 The collector uses the current NLM PMC Cloud Service and Unpaywall DOI lookup.
 For records missing identifiers, Europe PMC may supply them only when a single
@@ -55,7 +57,7 @@ This removal applies only to automatically collected copies. Working source PDFs
 annotated PDFs, user uploads and extraction inputs use other prefixes and are
 never overwritten or removed by this collector.
 
-Aphasia's hourly collector also reconciles the canonical register and pending
+Aphasia's collector also reconciles the canonical register and pending
 screening receipts. Dysphagia follows its append-only D1 decision events in batches
 of 100 changes every 15 minutes, repairing interrupted storage updates. Corrections
 do not wait for a full rescan of previously screened papers. Its first complete
@@ -80,3 +82,8 @@ Inspect each bucket's `open-access/summary.json` for counts and the number of
 records remaining in the current pass. Each review record shows the copy's
 availability, provider, licence and manuscript/publication version. Full-text
 review and extraction still require human assessment of the retrieved paper.
+
+For a local run, `--wrangler /path/to/wrangler --account-id ACCOUNT_ID` uses and
+refreshes an existing Wrangler sign-in without printing credentials. Each completed
+record prints a batch counter, PDFs stored and checks remaining. Re-running resumes
+from the stored index; keep the terminal and computer running during collection.
