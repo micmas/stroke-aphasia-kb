@@ -1,0 +1,425 @@
+{
+  "approved": false,
+  "snapshot_at": "2026-11-26T03:26:01.107459+00:00",
+  "checked_records": 52,
+  "published_additions": 40,
+  "held": 12,
+  "records": [
+    {
+      "path": "drafts/regions/left_ifof_fd__Zhang2021__R018.md",
+      "source_sha256": "bf56dd1af80590a02c076b41ed76c2f93cba68696a1fbc4c00f3dd250448fcef",
+      "paper": "Zhang2021",
+      "candidate": "R018",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/left_slf_iii_fd__Zhang2021__R019.md",
+      "source_sha256": "a7c59c46aaf56b9d96f4d95515488f41bae67bcab086786a305c196c4415555a",
+      "paper": "Zhang2021",
+      "candidate": "R019",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/left_uf_fd_comprehension__Zhang2021__R020.md",
+      "source_sha256": "0b7e82eb6e3358aab9caa844a3bd14eeb45336be58f26b2cb91c801d00280389",
+      "paper": "Zhang2021",
+      "candidate": "R020",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/predictors/left_ifof_uf_fd__Zhang2021__R021.md",
+      "source_sha256": "c373700f69e731a5fcadafb59678b0df35ed873bc848ddcfb5474a3b21971b3b",
+      "paper": "Zhang2021",
+      "candidate": "R021",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/predictors/left_ifof_uf_fd_picture_naming__Zhang2021__R022.md",
+      "source_sha256": "c17762e1c171ac648383f84aaddf740d4e80603afb9bc74bcc8bf6cda317ddf7",
+      "paper": "Zhang2021",
+      "candidate": "R022",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/left_ifof_fd__Zhang2021__R023.md",
+      "source_sha256": "26b92d7ad424eb99759589e9f76de74d0c33a4114ba630662255df1555b2347f",
+      "paper": "Zhang2021",
+      "candidate": "R023",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/left_slf3_af_mdlf_fa__Zhang2021__R027.md",
+      "source_sha256": "888bff4fadfe166cf0a766809336eb0622d3c08986d2875c370f9d6267d89fd6",
+      "paper": "Zhang2021",
+      "candidate": "R027",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/left_angular_gyrus_basal_ganglia_cluster__Zhao2018__R001.md",
+      "source_sha256": "337417b67def53529e2b3a1d5095cc325ac5c3e7148a1480cffdbb299b0679ba",
+      "paper": "Zhao2018",
+      "candidate": "R001",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/cognitive_domain_strategic_networks__Zhao2018__R002.md",
+      "source_sha256": "6516562b4a54460acd4ca9f538a940801835ff38c6345f7dd4a07f752aaa762f",
+      "paper": "Zhao2018",
+      "candidate": "R002",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/global_cognition_svr_lsm_cluster__Zhao2018__R003.md",
+      "source_sha256": "c821dca48099b8e8764713162dbfefea20d38feded1bb4353e44be6e32e8f1de",
+      "paper": "Zhao2018",
+      "candidate": "R003",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/global_cognition_svr_lsm_cluster__Zhao2018__R004.md",
+      "source_sha256": "8a1cdf71cfeb044d0ce7260b349a01f27ab2f256c6dce34c896d75b085aa7040",
+      "paper": "Zhao2018",
+      "candidate": "R004",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/cognitive_domain_cluster__Zhao2018__R005.md",
+      "source_sha256": "3bc3decad9caaf56e8aa109f05286e1e353949b481b1b086708acdefdcfc0e15",
+      "paper": "Zhao2018",
+      "candidate": "R005",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/left_dorsal_cortical_cluster__Zhao2018__R006.md",
+      "source_sha256": "9c97340ffa151fb6568b6ff2a4c786abab6664f7a99bb3fc4f7f84eb68b9a2ac",
+      "paper": "Zhao2018",
+      "candidate": "R006",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/language_cortical_cluster__Zhao2018__R007.md",
+      "source_sha256": "ea14081b443c5acf04433af60e77aa31b9f70667e8ee0ea68a8a121d8ca700bd",
+      "paper": "Zhao2018",
+      "candidate": "R007",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/left_hemisphere_lesions__Zhao2018__R008.md",
+      "source_sha256": "c10a400467660fce3c95e2c06f8083940f578f32975b972e263f578a29189b4e",
+      "paper": "Zhao2018",
+      "candidate": "R008",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/right_parietal_cluster__Zhao2018__R009.md",
+      "source_sha256": "c58f71b6f4620f0042b547c839508536acc88949c64cc1ecd6767a61e15a350b",
+      "paper": "Zhao2018",
+      "candidate": "R009",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/cerebellum_attention_cluster__Zhao2018__R010.md",
+      "source_sha256": "40966ca7cda7f5a41363fd45cac3e130b3cfa3196f3664032ed716b4d2994520",
+      "paper": "Zhao2018",
+      "candidate": "R010",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/left_hemisphere_global_cognition_cluster__Zhao2018__R011.md",
+      "source_sha256": "eb88226cc6febe41d69d0196b4ffc6ed89be5fe53b265886609bbb968aa6d948",
+      "paper": "Zhao2018",
+      "candidate": "R011",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/predictors/svr_roi_global_cognition__Zhao2018__R012.md",
+      "source_sha256": "3dfd05f27634c48973478e142a47678bc1ae9cee82a8cd80958522beafe04a84",
+      "paper": "Zhao2018",
+      "candidate": "R012",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/predictors/total_lesion_volume__Zhao2018__R013.md",
+      "source_sha256": "47a184a607c021f799f6c7875849f42e342b56a22a5303e8ab7056da38dddf85",
+      "paper": "Zhao2018",
+      "candidate": "R013",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/left_aic__Zhao2018__R014.md",
+      "source_sha256": "6c34f305749616e95a4ba9bfe1aab181b61253b2f3c1e3998bb1534bdec06a68",
+      "paper": "Zhao2018",
+      "candidate": "R014",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/predictors/total_lesion_volume__Zhao2018__R015.md",
+      "source_sha256": "e977916ffd3874946550e7e6a521b560dedefb0adf869b7c78192211b8354f4d",
+      "paper": "Zhao2018",
+      "candidate": "R015",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/left_dorsal_cortical_cluster__Zhao2018__R016.md",
+      "source_sha256": "985a80fa12c674931a3f4c59dadcf53dfb2f5463375743a7128cd37bee7cc06a",
+      "paper": "Zhao2018",
+      "candidate": "R016",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/basal_ganglia_language__Zhao2018__R017.md",
+      "source_sha256": "6ade146e567858815f902cde22135a6ee8f3929c6c011c8d65010ebbb48b1317",
+      "paper": "Zhao2018",
+      "candidate": "R017",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/left_hemisphere_exclusive_regions__Zhao2018__R018.md",
+      "source_sha256": "418e7537df663921a6a50a2944f7e16b99cefae3360aa66702b89c3c07251e22",
+      "paper": "Zhao2018",
+      "candidate": "R018",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/predictors/svr_lsm_linear_feature_selection_model__Zhao2018__R022.md",
+      "source_sha256": "590a001303d1a48933b280957ed1669fe2708ec4481c6bd67dc840ee4277736b",
+      "paper": "Zhao2018",
+      "candidate": "R022",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/predictors/original_nonlinear_svr_lsm__Zhao2018__R023.md",
+      "source_sha256": "b216e44b01d77e85622d5ca168ceb71f4ef5ad71653c2f679fac791e72fa3dcd",
+      "paper": "Zhao2018",
+      "candidate": "R023",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/therapies/palliative_mit__Zumbansen2014__R004.md",
+      "source_sha256": "0afc878f755a0f1f32c67471617c7c82042ec9405a97d2df0b18553321d80bc7",
+      "paper": "Zumbansen2014",
+      "candidate": "R004",
+      "disposition": "withdrawn_pending_source_design_review",
+      "reason": "Secondary review report is encoded as a primary-study finding, or has an incompatible study-design/method classification. Requires explicit secondary attribution and design correction before publication; original extraction preserved."
+    },
+    {
+      "path": "drafts/therapies/palliative_mit__Zumbansen2014__R005.md",
+      "source_sha256": "665f3d3e2a0bf410585456238db76e06e18d1de154b049b47ab33beffb8df73e",
+      "paper": "Zumbansen2014",
+      "candidate": "R005",
+      "disposition": "withdrawn_pending_source_design_review",
+      "reason": "Secondary review report is encoded as a primary-study finding, or has an incompatible study-design/method classification. Requires explicit secondary attribution and design correction before publication; original extraction preserved."
+    },
+    {
+      "path": "drafts/ingredients/singing_along__Zumbansen2014__R006.md",
+      "source_sha256": "274d83be3574b7b7517b4bc64597a49bb3bcc3526c8ae619527b80b787332dcf",
+      "paper": "Zumbansen2014",
+      "candidate": "R006",
+      "disposition": "withdrawn_pending_source_design_review",
+      "reason": "Secondary review report is encoded as a primary-study finding, or has an incompatible study-design/method classification. Requires explicit secondary attribution and design correction before publication; original extraction preserved."
+    },
+    {
+      "path": "drafts/therapies/palliative_mit_pitch_rhythm__Zumbansen2014__R013.md",
+      "source_sha256": "c48421f85fbcd65f5ed3bbfd1d0372c14dc0658bc7bc2e99cfd2228f0cc1d680",
+      "paper": "Zumbansen2014",
+      "candidate": "R013",
+      "disposition": "withdrawn_pending_source_design_review",
+      "reason": "Secondary review report is encoded as a primary-study finding, or has an incompatible study-design/method classification. Requires explicit secondary attribution and design correction before publication; original extraction preserved."
+    },
+    {
+      "path": "drafts/therapies/palliative_mit_rhythm_only__Zumbansen2014__R014.md",
+      "source_sha256": "909577424d65ae2fde2e36b9f1de9d5bc400ebeffc14d11f790d0b4c863df26b",
+      "paper": "Zumbansen2014",
+      "candidate": "R014",
+      "disposition": "withdrawn_pending_source_design_review",
+      "reason": "Secondary review report is encoded as a primary-study finding, or has an incompatible study-design/method classification. Requires explicit secondary attribution and design correction before publication; original extraction preserved."
+    },
+    {
+      "path": "drafts/predictors/mit_program_effect__Zumbansen2014__R018.md",
+      "source_sha256": "c4a47fad978de253a707914d0d4e6e314026bb0c3731e839a2dac3b73d82a766",
+      "paper": "Zumbansen2014",
+      "candidate": "R018",
+      "disposition": "withdrawn_pending_source_design_review",
+      "reason": "Secondary review report is encoded as a primary-study finding, or has an incompatible study-design/method classification. Requires explicit secondary attribution and design correction before publication; original extraction preserved."
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__vanderMeulen2012__R001.md",
+      "source_sha256": "88011e9e65e4253439bf6b5ae04384208bdd372447368f9f6b0a368d3e77330e",
+      "paper": "vanderMeulen2012",
+      "candidate": "R001",
+      "disposition": "withdrawn_pending_source_design_review",
+      "reason": "Secondary review report is encoded as a primary-study finding, or has an incompatible study-design/method classification. Requires explicit secondary attribution and design correction before publication; original extraction preserved."
+    },
+    {
+      "path": "drafts/therapies/mit_vs_linguistic_treatment__vanderMeulen2012__R004.md",
+      "source_sha256": "6f7b5b75b0675d696e4f614c3edb75b1df96bec68f2c15060b67a25ffa94f5c0",
+      "paper": "vanderMeulen2012",
+      "candidate": "R004",
+      "disposition": "withdrawn_pending_source_design_review",
+      "reason": "Secondary review report is encoded as a primary-study finding, or has an incompatible study-design/method classification. Requires explicit secondary attribution and design correction before publication; original extraction preserved."
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__vanderMeulen2012__R006.md",
+      "source_sha256": "d0d0b2d92a921ba3cddf193357a079ed6e2b45432ff3b2a64a360ef5d3bfbe56",
+      "paper": "vanderMeulen2012",
+      "candidate": "R006",
+      "disposition": "withdrawn_pending_source_design_review",
+      "reason": "Secondary review report is encoded as a primary-study finding, or has an incompatible study-design/method classification. Requires explicit secondary attribution and design correction before publication; original extraction preserved."
+    },
+    {
+      "path": "drafts/therapies/mit_bonakdapour_null__vanderMeulen2012__R007.md",
+      "source_sha256": "9fd201062f2a95f0dfe2833893fccde1859f05058504e2b1b40f43c8c16e7e0f",
+      "paper": "vanderMeulen2012",
+      "candidate": "R007",
+      "disposition": "withdrawn_pending_source_design_review",
+      "reason": "Secondary review report is encoded as a primary-study finding, or has an incompatible study-design/method classification. Requires explicit secondary attribution and design correction before publication; original extraction preserved."
+    },
+    {
+      "path": "drafts/regions/right_hemisphere_intact__vanderMeulen2012__R014.md",
+      "source_sha256": "7d6d433225ed5ef648edaa9440f431dad58a11c8d3202534e7f330ad7f6732e5",
+      "paper": "vanderMeulen2012",
+      "candidate": "R014",
+      "disposition": "withdrawn_pending_source_design_review",
+      "reason": "Secondary review report is encoded as a primary-study finding, or has an incompatible study-design/method classification. Requires explicit secondary attribution and design correction before publication; original extraction preserved."
+    },
+    {
+      "path": "drafts/predictors/mit_rh_activation__vanderMeulen2012__R017.md",
+      "source_sha256": "5eaed2cd6731193fa6e9226fa3bfd2e96abb86db3aeb3279c3aaa71ba6723d08",
+      "paper": "vanderMeulen2012",
+      "candidate": "R017",
+      "disposition": "withdrawn_pending_source_design_review",
+      "reason": "Secondary review report is encoded as a primary-study finding, or has an incompatible study-design/method classification. Requires explicit secondary attribution and design correction before publication; original extraction preserved."
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__vanderMeulen2012__R019.md",
+      "source_sha256": "856dcd3220cad68469c8b54e56308154b3a94f4f2e47e4ff4b4918d9044e2e08",
+      "paper": "vanderMeulen2012",
+      "candidate": "R019",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/therapies/mit_patient_ds__vanderMeulen2012__R020.md",
+      "source_sha256": "907b0337ac1f5b661d4dc72322997d5de99e6d38b5adcc30c90fa31d4aef145f",
+      "paper": "vanderMeulen2012",
+      "candidate": "R020",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__vanderMeulen2014__R001.md",
+      "source_sha256": "f855003f6d8ecb179253f52bf197d04cef9a2ed92635c97bea33ba03591410b1",
+      "paper": "vanderMeulen2014",
+      "candidate": "R001",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__vanderMeulen2014__R002.md",
+      "source_sha256": "0517336900ec0301f47926ebad9ebc66533ba5b7b80a35635c0a9085f2639919",
+      "paper": "vanderMeulen2014",
+      "candidate": "R002",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/therapies/melodic_intonation_therapy__vanderMeulen2014__R003.md",
+      "source_sha256": "e51f2e3addb4b8fe6ebc00320cac888a0dfd88a50fde72c95709defb3fa688c6",
+      "paper": "vanderMeulen2014",
+      "candidate": "R003",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/therapies/mit_untrained_repetition__vanderMeulen2014__R004.md",
+      "source_sha256": "a5ead6477fb9ba2eb9152ef4b051da7879db2f8d6c88336aa7bb236456c705be",
+      "paper": "vanderMeulen2014",
+      "candidate": "R004",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/therapies/mit_timing_delay__vanderMeulen2014__R005.md",
+      "source_sha256": "02dcac559244fa65a1a19e40b554f6984d9f6dd97ec0cfa4f317c51a3fcebfec",
+      "paper": "vanderMeulen2014",
+      "candidate": "R005",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/regions/mit_timing_functional_recovery__vanderMeulen2014__R007.md",
+      "source_sha256": "853196ea22f4cee5d9df594fa618bf354d440acec01bd7709da9ab5c3ac8fa7f",
+      "paper": "vanderMeulen2014",
+      "candidate": "R007",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/predictors/time_poststroke_mit_effect__vanderMeulen2014__R008.md",
+      "source_sha256": "8abd3c471581008a9647ffaa0491a78e3d472f670c39fc48a46523244be61ed8",
+      "paper": "vanderMeulen2014",
+      "candidate": "R008",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/therapies/mit_timing_interaction__vanderMeulen2014__R009.md",
+      "source_sha256": "18075dbe8d51609c6ef32491efcc946ab8361591e3e77a0b408dc2be53e63050",
+      "paper": "vanderMeulen2014",
+      "candidate": "R009",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/ingredients/treatment_intensity__vanderMeulen2014__R010.md",
+      "source_sha256": "0e127d57130712b6eb38783ff56be651427a933e1f757cd1f9a350191b7b0b34",
+      "paper": "vanderMeulen2014",
+      "candidate": "R010",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/predictors/mit_start_timing__vanderMeulen2014__R011.md",
+      "source_sha256": "241ca331432ea74ae72a99396481564a2c5a04111962a24ea9c72913a99551c3",
+      "paper": "vanderMeulen2014",
+      "candidate": "R011",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    },
+    {
+      "path": "drafts/predictors/mit_responder_status__vanderMeulen2014__R013.md",
+      "source_sha256": "eadae7e0fafabbf246ee49d0274560c54aa16c74041da105e856c5e74fde09fa",
+      "paper": "vanderMeulen2014",
+      "candidate": "R013",
+      "disposition": "published_unapproved",
+      "reason": "Claim and population belong to the identified source paper; checked paper identity and source passages. Draft remains unapproved and all existing reviewer obligations remain open."
+    }
+  ]
+}

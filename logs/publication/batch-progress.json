@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-26T01:00:53.989770+00:00",
+  "last_publication_snapshot": "2026-11-26T03:26:01.107459+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -205,8 +205,14 @@
     "Yu2024",
     "Zavanone2018",
     "Zevgolatakou2022",
-    "Zhang2018"
+    "Zhang2018",
+    "Zhang2021",
+    "Zhao2018",
+    "Zumbansen2014",
+    "vanderMeulen2012",
+    "vanderMeulen2014"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
-  "recovery_publication_ready_seen": false
+  "recovery_publication_ready_seen": false,
+  "main_finished_seen": true
 }

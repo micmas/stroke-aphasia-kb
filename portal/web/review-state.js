@@ -2,9 +2,9 @@
 // Pure functions, so they can be tested without a browser (portal/functions/test/review-state.test.mjs).
 
 /** An empty review of the draft version `digest`. */
-export const freshReview = (digest) => ({ verdict: '', rationale: '', findings: {}, marks: [], comments: {}, digest: digest || null });
+export const freshReview = (digest) => ({ verdict: '', rationale: '', findings: {}, marks: [], comments: {}, resolutions: {}, digest: digest || null });
 
-const touched = (x) => Boolean(x && (x.verdict || x.rationale || Object.keys(x.findings || {}).length || (x.marks || []).length));
+const touched = (x) => Boolean(x && (x.verdict || x.rationale || Object.keys(x.findings || {}).length || (x.marks || []).length || Object.keys(x.resolutions || {}).length));
 
 /**
  * The saved review state for a draft whose current version is `digest`. Decisions belong to the
@@ -16,7 +16,7 @@ export function carryOver(saved, digest, now = new Date()) {
   if (!digest) return { review: saved || freshReview(null), setAside: false };   // not reviewable: nothing is sent anyway
   if (!saved) return { review: freshReview(digest), setAside: false };
   if (saved.digest === digest) return { review: saved, setAside: false };
-  if (!touched(saved)) return { review: { ...saved, digest }, setAside: false };
+  if (!touched(saved)) return { review: { ...freshReview(digest), ...saved, digest }, setAside: false };
   const { previous: _older, ...earlier } = saved;
   return { review: { ...freshReview(digest), previous: { ...earlier, digest: saved.digest || null, set_aside: now.toISOString() } }, setAside: true };
 }

@@ -467,13 +467,13 @@ def export_is_current(ver: dict, root: Path = ROOT) -> bool:
         return False
 
 
-def maintainers(root: Path = ROOT) -> list[str]:
+def maintainers(root: Path = ROOT, role: str = "maintainer") -> list[str]:
     """Emails marked `maintainer: true` in portal/reviewers.yaml: they see the Apply button."""
     path = root / "portal" / "reviewers.yaml"
     if not path.exists():
         return []
     data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
-    return sorted(str(k).lower() for k, v in (data.get("reviewers") or {}).items() if (v or {}).get("maintainer"))
+    return sorted(str(k).lower() for k, v in (data.get("reviewers") or {}).items() if (v or {}).get(role))
 
 
 def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
@@ -549,7 +549,7 @@ def build(ta_limit: int = 300, index_path: Path = INDEX) -> dict:
                 "exportSha256": export_sha,
                 "kbDate": git("log", "-1", "--format=%cs"), "papers": pdfs, "sources": sources, "config": cfg,
                 "fulltext": {k: {"object": v.get("object"), "bytes": v.get("bytes")} for k, v in (index.get("fulltext") or {}).items()},
-                "pdfsSynced": index.get("synced"), "maintainers": maintainers(),
+                "pdfsSynced": index.get("synced"), "maintainers": maintainers(), "approvers": maintainers(role="approver"),
                 "counts": {"public": n_public, "private": len(pdfs) - n_public, "candidates": len(sb["candidates"]),
                            "sources": sum(1 for k in sources["keys"] if k not in pdfs), "sourceFiles": len(sources["files"])}}
     (DIST / "manifest.json").write_text(json.dumps(manifest, indent=1, sort_keys=True), encoding="utf-8")

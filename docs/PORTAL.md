@@ -22,6 +22,13 @@ page); all its findings remain available even when it spans several topics.
 or assessment; filters separate unclear outcome definitions, missing measurements
 and high extractor confidence. Missing PDFs remain visible.
 
+Within a paper, findings still needing review come first. Submitted reviews appear
+in a muted section at the bottom, with **Review again** available. The counts show
+remaining and submitted drafts; a partial review stays in the remaining section.
+After **Send this review** succeeds, the next unreviewed draft from the same paper
+opens automatically. When none remain, you return to that paper's list. This tracks
+review submission on the current draft version, not scientific approval.
+
 Each draft follows three steps: read the finding and outcome, check the passages
 against the PDF, then choose agree, disagree or unsure. A partial review is useful.
 Unchecked passages remain open. Study details, limitations and provenance remain
@@ -221,8 +228,23 @@ Record kinds, and what the import does with them:
 | `verdict` | per-finding answers + overall verdict | the draft's `portal_reviews`; `promote.py` when the reviewer is an approver and `--promote` is given |
 | `edit` | a changed field, added passages | the finding, stamped `edits: {by, date, fields, via: portal}`; skipped as stale if the field changed since |
 | `mark` | a passage no finding covers | the draft's `reviewer_marks`, for `refocus.py` |
+| `resolve` | explicit source-check confirmation and explanation | named reviewer marks set to `done`, retaining the original note and recording the resolving approver, date and inbox record; never approves a finding |
 | `comment` | free text | `portal_comments` |
 | `pdf` | an uploaded paper | pulled from the bucket into `papers/<Key>.pdf` (or `<Cid>_<name>.pdf`, linked to the candidate), checksum verified, then deleted from the bucket |
+
+Open reviewer notes appear under **Source checks to resolve before approval** on
+each draft. A registered approver reads the note and source, explains what they
+verified (including pages), confirms each resolved flag, and chooses **Send
+source-check resolutions**. The importer checks their permission and the exact
+draft version before applying any resolution. Missing explanations, unknown flags
+and outdated versions cannot clear a flag. The original note remains in the record.
+
+Apply the submitted records using the maintainer's home-page controls, then wait
+for publication and reopen the draft. Approval stays disabled while any flag is
+open; resolving flags does not approve the draft. Proposed corrections must be
+submitted and applied before resolving flags against the corrected version.
+**Kept for more review** submits an assessment without approving that draft;
+it does not refer to other drafts in the queue.
 
 ## 2. One-time setup (maintainer)
 

@@ -225,6 +225,43 @@ class Import(unittest.TestCase):
         fm, _ = self.PI.parse_markdown(self.draft)
         self.assertEqual(fm['findings'][0]['outcome_measurement'], m)
 
+    def test_source_flag_resolution_requires_authority_exact_version_and_audit(self):
+        import review_binding as RB
+        PI = self.PI
+        rel = str(self.draft.relative_to(self.tmp))
+        fm, body = PI.parse_markdown(self.draft)
+        fm['reviewer_marks'] = [{'id': 'relationship-source-check', 'status': 'pending', 'note': 'Check the population.', 'page': 1, 'quote': 'Original source', 'by': 'agent:converter'}]
+        PI._write(self.draft, fm, body)
+        bound = RB.binding(fm)
+        self.assertEqual(bound['reviewer_marks'][0]['note'], 'Check the population.')
+        rec = {'id': rel, 'draft_digest': bound['digest'], 'finding_ids': bound['findings'], '_record': 'resolution-1.json',
+               'submitted': '2026-11-26T03:00:00Z', 'resolutions': [{'id': 'relationship-source-check', 'confirmed': True, 'note': 'Verified participants on page 1.'}]}
+        before = self.draft.read_bytes()
+        self.assertEqual(PI.apply_resolution(rec, 'alex', False, True, {}).status, 'blocked')
+        self.assertEqual(PI.apply_resolution({**rec, 'draft_digest': 'sha256:old'}, 'michele', True, True, {}).status, 'stale')
+        self.assertEqual(PI.apply_resolution({**rec, 'finding_ids': ['other']}, 'michele', True, True, {}).status, 'stale')
+        for rows in [[], [{'id': 'missing', 'confirmed': True, 'note': 'checked'}], [{'id': 'relationship-source-check', 'confirmed': False, 'note': 'checked'}], [{'id': 'relationship-source-check', 'confirmed': True, 'note': ' '}], rec['resolutions'] * 2]:
+            self.assertEqual(PI.apply_resolution({**rec, 'resolutions': rows}, 'michele', True, True, {}).status, 'blocked')
+        PI.apply_resolution(rec, 'michele', True, False, {})
+        self.assertEqual(self.draft.read_bytes(), before)
+        self.assertEqual(PI.apply_resolution(rec, 'michele', True, True, {}).status, 'applied')
+        after = self.draft.read_bytes()
+        fm, _ = PI.parse_markdown(self.draft)
+        self.assertEqual(fm['status'], 'draft')
+        self.assertEqual(RB.open_obligations(fm), [])
+        self.assertNotEqual(RB.review_digest(fm), bound['digest'])
+        mark = fm['reviewer_marks'][0]
+        self.assertEqual(mark['by'], 'agent:converter')
+        self.assertEqual(mark['resolved_by'], 'human:michele')
+        self.assertEqual(mark['result'], 'Verified participants on page 1.')
+        self.assertEqual(mark['resolution_record'], 'resolution-1.json')
+        self.assertEqual(PI.apply_resolution(rec, 'michele', True, True, {}).status, 'applied')
+        self.assertEqual(self.draft.read_bytes(), after)
+        # Adding an ordinary mark works even alongside the converter's named flag.
+        PI.apply_mark({'id': rel, 'page': 2, 'quote': 'Another concern.'}, 'michele', True, {})
+        fm, _ = PI.parse_markdown(self.draft)
+        self.assertEqual(RB.open_obligations(fm), ['m1'])
+
     def test_pdf_upload_lands_in_papers(self):
         PI = self.PI
         saved = (PI.PAPERS, PI.PORTAL, dict(PI.FETCH), PI.S.load_candidates)

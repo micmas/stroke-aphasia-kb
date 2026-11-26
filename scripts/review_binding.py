@@ -51,7 +51,11 @@ def open_obligations(fm: dict) -> list[str]:
 
 
 def binding(fm: dict) -> dict:
-    return {"digest": review_digest(fm), "findings": finding_ids(fm), "obligations": open_obligations(fm)}
+    marks = [{k: copy.deepcopy(m[k]) for k in ("id", "status", "page", "quote", "note", "result", "resolved_by", "resolved_on") if k in m}
+             for m in (fm or {}).get("reviewer_marks") or [] if isinstance(m, dict)]
+    reviews = [{k: copy.deepcopy(r[k]) for k in ("by", "reviewed_digest", "findings", "stale") if k in r}
+               for r in (fm or {}).get("portal_reviews") or [] if isinstance(r, dict)]
+    return {"digest": review_digest(fm), "findings": finding_ids(fm), "obligations": open_obligations(fm), "reviewer_marks": marks, "reviews": reviews}
 
 
 def drafts_bindings(root: Path) -> dict[str, dict]:

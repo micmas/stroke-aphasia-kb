@@ -38,6 +38,9 @@ main:has(.review-layout) { max-width: none; padding: 0; }
 .verdict .row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; margin: .25rem 0; font-size: .86rem; }
 .verdict .approval-unavailable { color: var(--ink-2); opacity: .65; cursor: not-allowed; }
 .verdict .approval-unavailable input { pointer-events: none; }
+.draft-queue .review-sent, .draft-queue .review-sent a { color: var(--ink-2); }
+.draft-queue .review-sent { background: var(--panel); }
+.draft-queue .review-section th { text-align: left; padding-top: 1rem; color: var(--ink-2); }
 .verdict textarea, .finding textarea, .screen textarea { width: 100%; font: inherit; font-size: .86rem; padding: .3rem .4rem; border: 1px solid var(--line-strong); border-radius: 4px; resize: vertical; }
 .finding .field { display: flex; gap: .4rem; align-items: baseline; flex-wrap: wrap; font-size: .84rem; margin: .2rem 0; }
 .finding .field label { color: var(--ink-2); min-width: 7em; }

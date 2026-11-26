@@ -310,7 +310,7 @@ def apply_mark(rec: dict, by: str, execute: bool, state: dict) -> str:
     marks = fm.setdefault("reviewer_marks", [])
     if _has_record(marks, _record_id(rec)) or any(isinstance(m, dict) and m.get("quote") == rec.get("quote") for m in marks):
         return Outcome(f"{p.name}: mark already present", "applied")
-    n = 1 + max([int(str(m.get("id", "m0"))[1:] or 0) for m in marks if isinstance(m, dict)] or [0])
+    n = 1 + max([int(m["id"][1:]) for m in marks if isinstance(m, dict) and re.fullmatch(r"m\d+", str(m.get("id", "")))] or [0])
     marks.append({"id": f"m{n}", "page": rec.get("page"), "quote": str(rec.get("quote") or "").strip(), "note": rec.get("note") or "",
                   "by": f"human:{by}", "date": str(rec.get("submitted") or "")[:10] or dt.date.today().isoformat(), "status": "pending"}
                  | ({"record": _record_id(rec)} if _record_id(rec) else {}))
@@ -338,6 +338,44 @@ def apply_comment(rec: dict, by: str, execute: bool, state: dict) -> str:
         _write(p, fm, body)
     state.setdefault("touched", set()).add(p)
     return f"{p.name}: comment by {by}"
+
+
+def apply_resolution(rec: dict, by: str, approver: bool, execute: bool, state: dict) -> str:
+    """Resolve explicit marks on exactly the reviewed version; never approve the draft."""
+    p = _draft(str(rec.get("id")))
+    if p is None:
+        return f"skip: no draft {rec.get('id')}"
+    if not approver:
+        return Outcome("blocked: only a registered approver may resolve reviewer flags", "blocked")
+    fm, body = parse_markdown(p)
+    resolutions = rec.get("resolutions")
+    if not isinstance(resolutions, list) or not resolutions or len(resolutions) > 100:
+        return Outcome("blocked: provide explicit reviewer flag resolutions", "blocked")
+    if any(not isinstance(r, dict) or not isinstance(r.get("id"), str) or not r["id"]
+           or r.get("confirmed") is not True or not isinstance(r.get("note"), str)
+           or not r["note"].strip() or len(r["note"]) > 10000 for r in resolutions):
+        return Outcome("blocked: each resolution needs a flag id, confirmation and a source-check note", "blocked")
+    ids = [r["id"] for r in resolutions]
+    marks = [m for m in fm.get("reviewer_marks") or [] if isinstance(m, dict)]
+    if len(set(ids)) != len(ids) or any(sum(m.get("id") == i for m in marks) != 1 for i in ids):
+        return Outcome("blocked: unknown or ambiguous reviewer flag id", "blocked")
+    selected = {m["id"]: m for m in marks if m.get("id") in ids}
+    rid = _record_id(rec)
+    if rid and all(m.get("resolution_record") == rid and m.get("status") == "done" for m in selected.values()):
+        return Outcome(f"{p.name}: resolutions already applied", "applied")
+    # No same-send edit exemption: a resolution must describe the exact displayed draft.
+    if rec.get("draft_digest") != RB.review_digest(fm) or rec.get("finding_ids") != RB.finding_ids(fm):
+        return Outcome(f"{p.name}: source-check resolution is stale; review the current draft", "stale")
+    if any(m.get("status") in RB.RESOLVED_MARKS for m in selected.values()):
+        return Outcome(f"{p.name}: flag already resolved; review the current draft", "stale")
+    for resolution in resolutions:
+        selected[resolution["id"]].update(status="done", result=resolution["note"].strip(),
+            resolved_by=f"human:{by}", resolved_on=str(rec.get("submitted") or "")[:10] or dt.date.today().isoformat(),
+            **({"resolution_record": rid} if rid else {}))
+    if execute:
+        _write(p, fm, body)
+        state.setdefault("touched", set()).add(p)
+    return Outcome(f"{p.name}: {'resolved' if execute else 'would resolve'} {', '.join(ids)} by {by}; draft remains unapproved", "applied")
 
 
 def _binding_problem(rec: dict, p: Path, fm: dict, state: dict) -> str | None:
@@ -652,7 +690,7 @@ def apply_pdf(rec: dict, by: str, execute: bool, state: dict) -> str:
 
 
 # ------------------------------------------------------------------ run
-DRAFT_KINDS = ("edit", "mark", "comment", "verdict")
+DRAFT_KINDS = ("edit", "mark", "comment", "verdict", "resolve")
 
 
 def _order(files: list[Path], records: dict[Path, dict]) -> list[Path]:
@@ -813,6 +851,8 @@ def run(execute: bool, promote: bool, only_kind: str | None, skip_kinds: tuple[s
                 msg = apply_mark(rec, by, execute, state)
             elif kind == "comment":
                 msg = apply_comment(rec, by, execute, state)
+            elif kind == "resolve":
+                msg = apply_resolution(rec, by, approver, execute, state)
             elif kind == "verdict":
                 msg = apply_verdict(rec, by, approver, execute, promote, state)
             elif kind == "pdf":
@@ -883,7 +923,7 @@ def _cli(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--execute", action="store_true")
     ap.add_argument("--promote", action="store_true", help="run promote.py for approve/reject verdicts from approvers")
-    ap.add_argument("--kind", choices=["paper", "screen", "verdict", "edit", "mark", "comment", "pdf"])
+    ap.add_argument("--kind", choices=["paper", "screen", "verdict", "edit", "mark", "comment", "resolve", "pdf"])
     ap.add_argument("--skip-pdf", action="store_true",
                     help="leave `pdf` records in the inbox (for CI, which has no papers/ folder to pull the uploads into)")
     ap.add_argument("--no-intake", action="store_true",

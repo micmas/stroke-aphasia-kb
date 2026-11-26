@@ -20,3 +20,28 @@ export function measurementLabel(f) {
   const names = (m?.instruments || []).map(x => [x.name, x.subtest].filter(Boolean).join(' — '));
   return names.length ? names.join('; ') : 'Not yet verified — check the paper';
 }
+
+/** Exact draft/version receipts, never truncated filenames or approval status. */
+export function reviewProgress(draft, binding, receipts = []) {
+  const ids = new Set(draft.findings.map(f => f.id));
+  const decided = new Set(); const by = new Set();
+  if (!binding?.digest) return { complete: false, decided: 0, total: ids.size, by: [] };
+  const rows = [...receipts.filter(r => r.id === draft.path && r.draft_digest === binding.digest),
+    ...(binding.reviews || []).filter(r => !r.stale && r.reviewed_digest === binding.digest).map(r => ({ per_finding: r.findings, by: r.by }))];
+  for (const r of rows) {
+    let useful = false;
+    for (const f of r.per_finding || []) if (ids.has(f.id) && ['agree', 'disagree', 'unsure'].includes(f.verdict)) { decided.add(f.id); useful = true; }
+    if (useful) by.add(r.by || r.reviewer_name || r.reviewer || 'a reviewer');
+  }
+  return { complete: ids.size > 0 && decided.size === ids.size, decided: decided.size, total: ids.size, by: [...by] };
+}
+
+export function pendingFirst(drafts, complete) {
+  return [...drafts.filter(d => !complete(d)), ...drafts.filter(complete)];
+}
+
+export function nextPaperDraft(drafts, current, complete) {
+  const paper = drafts.filter(d => d.citation === current.citation);
+  const at = paper.findIndex(d => d.path === current.path);
+  return [...paper.slice(at + 1), ...paper.slice(0, Math.max(0, at))].find(d => d.path !== current.path && !complete(d)) || null;
+}

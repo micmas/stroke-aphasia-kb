@@ -4,7 +4,7 @@
 // a branch that moved under us is retried on its new head. Run: node --test portal/functions/test/
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { onRequestPost } from '../api/reviews.js';
+import { onRequestPost, onRequestGet } from '../api/reviews.js';
 
 const calls = [];
 let headSha = 'aaaa111';
@@ -88,4 +88,34 @@ test('a verdict must name the version of the draft it reviewed (REVIEW.md findin
   assert.equal((await post({ records: [screen('C0001', 'include'), verdict({})] })).status, 400);
   assert.equal(calls.length, 0);
   assert.equal((await post(verdict({ draft_digest: digest, finding_ids: ['f1', 'f2'] }))).status, 200);
+});
+
+test('source-check resolutions require version binding, explicit confirmation and notes', async () => {
+  const rec = { kind: 'resolve', id: 'drafts/regions/x__Y2020.md', draft_digest: `sha256:${'a'.repeat(64)}`, finding_ids: ['f1'],
+    resolutions: [{ id: 'relationship-source-check', confirmed: true, note: 'Verified the cohort and analysis on pages 2–4.' }] };
+  calls.length = 0;
+  for (const bad of [{ draft_digest: '' }, { finding_ids: null }, { resolutions: [] }, { resolutions: rec.resolutions.concat(rec.resolutions) },
+    { resolutions: [{ ...rec.resolutions[0], confirmed: false }] }, { resolutions: [{ ...rec.resolutions[0], note: ' ' }] }]) {
+    assert.equal((await post({ ...rec, ...bad })).status, 400);
+  }
+  assert.equal(calls.length, 0);
+  assert.equal((await post(rec)).status, 200); // Importer checks registered approver permission before applying.
+});
+
+test('pending review receipts use exact content, not truncated filename slugs', async () => {
+  const original = globalThis.fetch;
+  const verdict = {kind:'verdict',id:'drafts/regions/a-long-path__Paper__R002.md',draft_digest:'sha256:version',reviewer_name:'Reviewer',per_finding:[{id:'f1',verdict:'agree'}]};
+  const name='20261126T030000Z_verdict_reviewer_a-long-truncated-prefix.json';
+  globalThis.fetch=async url=>{
+    if(url.includes('/inbox/'+name)) return Response.json({content:Buffer.from(JSON.stringify(verdict)).toString('base64')});
+    if(url.includes('/inbox?')) return Response.json([{type:'file',name},{type:'file',name:'20261126_mark_reviewer_same-prefix.json'}]);
+    if(url.includes('/applied?')) return Response.json([]);
+    return Response.json({}, {status:404});
+  };
+  try {
+    const out=await (await onRequestGet({env})).json();
+    assert.equal(out.review_receipts.length,1);
+    assert.equal(out.review_receipts[0].id,verdict.id);
+    assert.equal(out.review_receipts_incomplete,false);
+  } finally { globalThis.fetch=original; }
 });

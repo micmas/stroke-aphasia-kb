@@ -1,0 +1,246 @@
+---
+id: cnn_svm_fusion_weighted_average
+name: CNN and SVM combined predictions (weighted average)
+kind: predictor
+findings:
+- id: f1
+  target: aphasia_severity
+  target_kind: impairment
+  claim: Exhaustively tweaking the weight given to the CNN over SVM predictions in the average did not produce a single model that meaningfully outperformed the CNN on the F1 score.
+  direction: no_effect
+  relationship: correlational
+  method: MVPA
+  sample:
+    n: 213
+    population: individuals with chronic left strokes
+    phase: not_reported
+    time_post_onset: cross-sectional; mean years post-stroke = 3.2 +/- 3.7; imaging collected within 10 days of behavioral evaluation
+  statistics:
+    threshold: not_transcribed
+  confounders_controlled: []
+  confounders_not_controlled: []
+  region_definition:
+    kind: not_reported
+    description: Not transcribed; see source passages and claim.
+  author_limitations:
+  - Data was downsampled to a lower resolution than typical to make deep learning with nested cross-validation tractable
+  evidence_quality: cohort
+  strength: weak
+  notes: 'Exposure measurement: A model fusion approach using a weighted average of probabilistic class predictions from a 3D Convolutional Neural Network (CNN) and a Support Vector Machine (SVM), both trained on whole brain morphometry (segmented tissue volumes) and lesion anatomy. Comparison made against the CNN model alone; Severe aphasia defined as WAB-AQ below 50. Additional metadata has not been transcribed; review the pending-field flags before approval. Source repair (unapproved): Source PDF identity and methods/results checked. Target the measured WAB-R aphasia severity classification (AQ <50), not an aphasia syndrome. This is cross-sectional classifier performance or feature importance, not prospective recovery prediction or causal brain necessity. Use n=213 from Methods; the abstract states N=231, an unresolved source inconsistency explicitly retained here. No human approval.'
+  imaging_details:
+    reference_space: not_reported
+    atlases_used: []
+  lesion_mapping: {}
+  provenance:
+    extracted_by: agent:source-repair
+    extracted_on: '2026-11-26'
+    paper_section: Main paper; qualitative core draft
+    confidence: low
+    flags:
+    - core_profile_machine_prepared
+    - human_approval_pending
+    - core_text_check_only
+    - paper_completeness_pending
+    - pdf_visual_review_pending
+    - not_transcribed:statistics
+    - not_transcribed:confounders_controlled
+    - not_transcribed:confounders_not_controlled
+    - not_transcribed:region_definition
+    - not_transcribed:imaging_details.reference_space
+    - not_transcribed:imaging_details.atlases_used
+    - not_transcribed:lesion_mapping
+    - not_transcribed:sample.phase
+    - not_transcribed:strength
+    - agent_source_repair_pending_human_review
+  citation: '@Teghipco2024'
+  source_passages:
+  - section: Original source P8-S1-C5
+    page: 8
+    quote: 'This analysis
+
+      demonstrated that exhaustively tweaking the weight given to the CNN over
+
+      SVM predictions in the average did not produce a single model that
+
+      meaningfully outperformed the CNN on the F1 score (Fig. 5a).'
+    supports: claim
+  - section: Original source P8-S1-C6
+    page: 8
+    quote: 'Indeed, a
+
+      paired t-test revealed no signiﬁcant difference between the maximum
+
+      attainedF1fromtheentireensembleset(M = 0.71,SD = 0.15)and theCNN
+
+      (M = 0.7, SD = 0.14), t(19) = 2, p = 0.056, Cohen’s d = 0.46.'
+    supports: claim
+  - section: Original source P2-S4-C9
+    page: 2
+    quote: 'Methods
+
+      Participants
+
+      Two-hundred and thirteen individuals (age = 57.98 +/−11.34, 62% male)
+
+      with chronic left strokes (mean years post-stroke = 3.2 +/−3.7) that par-
+
+      ticipated in studies conducted at the Center for the Study of Aphasia
+
+      Recovery (C-STAR) were analyzed retrospectively in the present work.'
+    supports: sample
+  - section: Original source P3-S1-C2
+    page: 3
+    quote: 'In
+
+      the present study, we aimed to identify patients with severe aphasia (WAB-
+
+      AQ below 50), who comprise 35% of the participant cohort and fall under
+
+      the very severe or severe WAB-R categories.'
+    supports: claim
+  - section: Original source P3-S1-C5
+    page: 3
+    quote: 'Neuroimaging data was
+
+      collected within 10 days of evaluation on the WAB-R.'
+    supports: method
+  - section: Original source P14-S3-C5
+    page: 14
+    quote: 'An important caveat to the results we present is that our data was
+
+      downsampled to a lower resolution than typical to many neuroimaging
+
+      analyses to make deep learning with nested cross-validation tractable.'
+    supports: limitation
+predictor_type: imaging_metric
+short_definition: A model fusion approach using a weighted average of probabilistic class predictions from a 3D Convolutional Neural Network (CNN) and a Support Vector Machine (SVM), both trained on whole brain morphometry (segmented tissue volumes) and lesion anatomy.
+assessment:
+- Western Aphasia Battery-Revised Aphasia Quotient
+schema_version: '2.8'
+status: draft
+created_by: agent:source-repair
+created_on: '2026-11-26'
+relationship_review:
+  paper: Teghipco2024
+  proposal_id: R007
+  approved: false
+  original_core_review: {}
+  original_publication_entry: null
+  original_mapping:
+    decision: draft
+    reason: The analysis tests whether fusing CNN and SVM predictions (via weighted average) improves the prediction of severe aphasia compared to the CNN alone. The result was a null finding (no significant difference in F1 score).
+    bucket: predictors
+    entity_id: cnn_svm_fusion_weighted_average
+    name: CNN and SVM combined predictions (weighted average)
+    kind: predictor
+    predictor_type: imaging_metric
+    definition: A model fusion approach using a weighted average of probabilistic class predictions from a 3D Convolutional Neural Network (CNN) and a Support Vector Machine (SVM), both trained on whole brain morphometry (segmented tissue volumes) and lesion anatomy.
+    assessment:
+    - F1 score
+    target: severe_aphasia
+    target_kind: impairment
+    claim: Exhaustively tweaking the weight given to the CNN over SVM predictions in the average did not produce a single model that meaningfully outperformed the CNN on the F1 score.
+    direction: no_effect
+    method: MVPA
+    relationship: correlational
+    therapy: null
+    sample_n: 213
+    population: individuals with chronic left strokes
+    timing: cross-sectional; mean years post-stroke = 3.2 +/- 3.7; imaging collected within 10 days of behavioral evaluation
+    qualifications:
+    - Comparison made against the CNN model alone
+    - Severe aphasia defined as WAB-AQ below 50
+    limitations:
+    - Data was downsampled to a lower resolution than typical to make deep learning with nested cross-validation tractable
+    optional_pending: []
+    evidence_quality: cohort
+    passages:
+    - source_id: P8-S1-C5
+      supports: claim
+    - source_id: P8-S1-C6
+      supports: claim
+    - source_id: P2-S4-C9
+      supports: sample
+    - source_id: P3-S1-C2
+      supports: claim
+    - source_id: P3-S1-C5
+      supports: method
+    - source_id: P14-S3-C5
+      supports: limitation
+  original_attempt:
+    binding:
+      profile: core
+      version: core-source-check-v3
+      model: gemma4:31b
+      model_digest: 92808281a855666acf35743d49004bb30c810152cd004baf78f31b4578920e49
+      checker_model: qwen3.8:27b
+      checker_digest: 47951e4a666180bc2aedfc93c169472f2de783696fe196efbf063f5730ecf163
+      host: http://localhost:11434
+      pdf_sha256: 68f566e52924f65d6d4df2e0ebeb371b036a1588ed2e049de3bacdd06a582486
+      review_sha256: 8d7a558e52be5e3f0e45ec8e054dd1acdc5ec2f388b22878efa73fb39271f0a0
+      code_sha256: c4650d24fa3e36e6f317cb65cc7626277a28936a7cdf5d07248d4b1e5bfa09aa
+      source_helpers_sha256: e0e0f295e5efa1fdb4e9e8c84ca491d062df3aefe8ca8b4d9ca85fcb6d4c9082
+      converter_sha256: 048f1e35905528676837a00b1b2406b1c97cb1eb47c48d63f121a5c00cc0afeb
+      table_helpers_sha256: 78e562e9725fc484d6a12279ea710856dfd1d9aa13ee178d0358e9c0acdd2c8c
+      mapper_budget: 2500
+      reviewer_budget: 1600
+      approved: false
+      visual:
+        models:
+        - gemma4:31b
+        - qwen3.8:27b
+        digests:
+        - 92808281a855666acf35743d49004bb30c810152cd004baf78f31b4578920e49
+        - 47951e4a666180bc2aedfc93c169472f2de783696fe196efbf063f5730ecf163
+        code_sha256: e3a753f28fa59991e5048d54458af0dad5ae3161412a06fbd2ae3c8dfae57cd1
+        layout_sha256: d3ffc5761ad06f5cab9d484f62a160200a0fd6f6f8dae0563b2358a6b246ea3d
+    proposal: R007
+    status: failed
+    reason: 'Teghipco2024: finding[0] (id=f1): target ''severe_aphasia'' is an aphasia syndrome but the claim is about a symptom; target the symptom entry (anomia, fluency, …) unless the paper classifies by syndrome'
+    material_issues: []
+    seconds_this_run: 121.82372529100394
+  source_check:
+    profile: agent-repair
+    scope: Agent source reconstruction; original model reviews do not certify the changed record. No independent model pass or human approval.
+    approved: false
+    paper_complete: false
+    binding:
+      pdf_sha256: 68f566e52924f65d6d4df2e0ebeb371b036a1588ed2e049de3bacdd06a582486
+      original_mapping_sha256: bb563c8119f77b9867432ec774f9489c2821ced6e5373b2abe124f4cd4df9fc7
+      original_status_sha256: 53755fe7d29b941701a21a2ecb1f65c0b431a8a63dfeb09fd4572ac6ea90fdac
+      evidence_sha256: cfd39318c3e7f6cb42bd0141294dbdde925a2ccef2209954bea14af3b2d4c1c0
+    publication_correction:
+      by: agent:source-repair
+      date: '2026-11-26T03:33:02.412795+00:00'
+      pdf_pages:
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      note: Source PDF identity and methods/results checked. Target the measured WAB-R aphasia severity classification (AQ <50), not an aphasia syndrome. This is cross-sectional classifier performance or feature importance, not prospective recovery prediction or causal brain necessity. Use n=213 from Methods; the abstract states N=231, an unresolved source inconsistency explicitly retained here. No human approval.
+      approved: false
+      audit: logs/publication/draft-repairs-2026-11-26-round3.json
+    remaining:
+    - Human source review and approval
+    - Full paper completeness review
+reviewer_marks:
+- id: source-repair-round3
+  status: pending
+  by: agent:source-repair
+  date: '2026-11-26'
+  note: Source PDF identity and methods/results checked. Target the measured WAB-R aphasia severity classification (AQ <50), not an aphasia syndrome. This is cross-sectional classifier performance or feature importance, not prospective recovery prediction or causal brain necessity. Use n=213 from Methods; the abstract states N=231, an unresolved source inconsistency explicitly retained here. No human approval.
+---
+
+# Source review required
+
+This repaired draft remains unapproved. Original outputs and review provenance are preserved.

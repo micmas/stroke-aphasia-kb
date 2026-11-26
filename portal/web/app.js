@@ -29,7 +29,7 @@ const VOCAB = {
 import { orderScreeningPapers, mergePendingPapers, pendingScreenReceipts } from './paper-intake.js';
 import { applyState } from './apply-state.js';
 import { carryOver, sameBuild } from './review-state.js';
-import { selectDrafts, measurementLabel } from './draft-queue.js';
+import { selectDrafts, measurementLabel, reviewProgress, pendingFirst, nextPaperDraft } from './draft-queue.js';
 import { rankPapers, REVIEW_TOPICS } from './review-priority.js';
 import { loadExportText } from './load-export.js';
 
@@ -159,7 +159,7 @@ function pendingSent() {
 /** Candidates included at title/abstract (awaiting the full text) whose paper the maintainer does not have. */
 const missingPdfs = () => (state.screening?.candidates || []).filter((c) => ['awaiting_ft', 'unsure_ft'].includes(c.stage) && !candidateHasPdf(c));
 const slug = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 40);
-const reviewedBy = (id) => { const s = slug(id.replace(/^drafts\//, '').replace(/\.md$/, '')); return [...state.mine.inbox, ...state.mine.applied].filter((n) => n.endsWith(`_${s}.json`)).map((n) => n.split('_')[2]); };
+const draftProgress = d => reviewProgress(d, state.bindings?.[d.path], [...(state.mine.review_receipts || []), ...Object.values(store.get('draft:sent', {}))]);
 
 // ---------------------------------------------------------------- views
 function home() {
@@ -343,22 +343,25 @@ function draftsList() {
     const matching = selectDrafts(ranked.flatMap(p => p.drafts), { ...prefs, citations: state.kb.citations, page: 0, pageSize: Math.max(1, drafts.length) }).items;
     const paths = new Set(matching.map(d => d.path));
     const papers = ranked.map(p => ({ ...p, matching: p.drafts.filter(d => paths.has(d.path)) })).filter(p => p.matching.length);
-    const selected = prefs.paper ? selectDrafts(matching, { page: prefs.page }) : {
+    const paperDrafts = pendingFirst(matching, d => draftProgress(d).complete);
+    const selected = prefs.paper ? selectDrafts(paperDrafts, { page: prefs.page }) : {
       total: papers.length, pages: Math.max(1, Math.ceil(papers.length / 10)),
       page: Math.min(Math.max(0, prefs.page), Math.max(0, Math.ceil(papers.length / 10) - 1)),
     };
     prefs.page = selected.page;
-    const rows = prefs.paper ? selected.items.map(d => {
+    const rows = prefs.paper ? selected.items.map((d, index) => {
       const f = d.findings[0];
-      const who = reviewedBy(d.path);
+      const progress = draftProgress(d);
       const needsTarget = d.findings.some(x => x.target_audit?.status === 'needs_source_review');
-      return h('tr', {},
+      const section = index === 0 || draftProgress(selected.items[index - 1]).complete !== progress.complete;
+      return [section ? h('tr', { class: 'review-section' }, h('th', { colspan: 4, scope: 'colgroup', text: progress.complete ? 'Review submitted — available to revisit' : 'Still needs review' })) : null,
+        h('tr', { class: progress.complete ? 'review-sent' : null },
         h('td', {}, h('a', { href: draftHref(d.path), text: entryName(f.target) }), h('div', { class: 'small muted', text: entryName(d.entry) }), h('div', { class: 'small', text: String(f.claim || '').slice(0, 180) + (String(f.claim || '').length > 180 ? '…' : '') })),
         h('td', { class: 'small', text: measurementLabel(f) }),
-        h('td', { class: 'small', text: who.length ? `Review sent by ${[...new Set(who)].join(', ')}` : needsTarget ? 'Clarify outcome first' : 'Awaiting review' }),
-        h('td', {}, h('a', { class: 'btn', href: draftHref(d.path), text: 'Review' })));
+        h('td', { class: 'small', text: progress.complete ? `Review submitted by ${progress.by.join(', ')} · not necessarily approved` : progress.decided ? `Partly reviewed · ${progress.decided} of ${progress.total} findings decided` : needsTarget ? 'Awaiting review · clarify outcome' : 'Awaiting review' }),
+        h('td', {}, h('a', { class: 'btn', href: draftHref(d.path), text: progress.complete ? 'Review again' : 'Review' })))];
     }) : papers.slice(selected.page * 10, (selected.page + 1) * 10).map(p => {
-      const sent = p.drafts.filter(d => reviewedBy(d.path).length).length;
+      const sent = p.drafts.filter(d => draftProgress(d).complete).length;
       return h('tr', {},
         h('td', {}, h('button', { class: 'btn', text: p.citation.replace(/^@/, ''), onclick: () => openPaper(p.citation) }), h('div', { class: 'small', text: state.kb.citations?.[p.citation] || p.citation })),
         h('td', {}, h('strong', { text: p.priority.label }), h('div', { class: 'small muted', text: p.priority.reason })),
@@ -370,6 +373,8 @@ function draftsList() {
     results.replaceChildren(
       prefs.paper ? h('div', {}, h('button', { class: 'btn', text: prefs.topic === 'all' ? '← All papers' : '← Topic papers', onclick: () => openPaper('') }), h('h2', { text: prefs.paper.replace(/^@/, '') }), h('p', { class: 'small', text: state.kb.citations?.[prefs.paper] || '' })) : h('span'),
       h('p', { class: 'small muted', role: 'status', text: `${selected.total} matching ${prefs.paper ? 'drafts' : 'papers'}${prefs.paper ? '' : ` · ${matching.length} drafts`} · page ${selected.page + 1} of ${selected.pages}` }),
+      prefs.paper ? h('p', { class: 'small', text: `${matching.filter(d => !draftProgress(d).complete).length} still need review · ${matching.filter(d => draftProgress(d).complete).length} submitted. Submitted reviews are not approvals.` }) : h('span'),
+      state.mine.review_receipts_incomplete ? h('p', { class: 'small muted', text: 'Some pending review receipts could not be loaded. Their drafts remain visible for review; refresh to check again.' }) : h('span'),
       prefs.filter === 'high' ? h('p', { class: 'notice', text: 'Extractor confidence does not establish eligibility for approval.' }) : h('span'),
       selected.total ? h('div', { class: 'queue-scroll' }, h('table', { class: 'queue draft-queue' }, h('thead', {}, h('tr', {}, headers.map(text => h('th', { text })))), h('tbody', {}, rows))) : h('p', { text: 'No matching drafts. Try a broader search or another filter.' }),
       h('div', { class: 'queue-controls' },
@@ -431,6 +436,7 @@ function draftLeft(d, r, save, pdf, path) {
     h('details', {}, h('summary', { text: 'Help with reviewing and corrections' }), h('p', { class: 'small', text: 'Agree when the meaning, population, timing, direction and strength match the source. Disagree with a reason when they do not. Use “Correct the finding” to propose edits. Select words in the PDF to add evidence or mark an uncovered finding. Sending a review and approving a finding are separate steps.' }), h('p', { class: 'small muted', text: `Record: ${path}` })));
   for (const f of d.findings) left.append(findingCard(d, f, r, save, pdf));
   left.append(h('details', { open: r.marks.length ? '' : null }, h('summary', { text: `Evidence missing from this draft (${r.marks.length} marks)` }), marksPanel(r, save)));
+  left.append(sourceFlagsPanel(d, r, save, pdf));
   left.append(verdictPanel(d, r, save));
   return left;
 }
@@ -527,10 +533,58 @@ function marksPanel(r, save) {
       h('button', { class: 'btn', onclick: () => { r.marks.splice(i, 1); save(); render(); }, text: 'remove' }))));
 }
 
+function sourceFlagsPanel(d, r, save, pdf) {
+  const bound = state.bindings?.[d.path];
+  const marks = bound?.reviewer_marks || [];
+  if (!marks.length) return null;
+  const open = new Set(bound.obligations || []);
+  const authorised = (state.manifest?.approvers || []).includes(String(state.me?.email || '').toLowerCase());
+  r.resolutions ||= {};
+  const hasEdits = Object.values(r.findings).some(x => Object.keys(x.edits || {}).length || x.added?.length) || r.marks.length > 0;
+  const controls = authorised && !r.resolutions_sent && !hasEdits;
+  const panel = h('section', { class: 'verdict' }, h('h3', { text: 'Source checks to resolve before approval' }),
+    h('p', { class: 'small', text: 'Read each note and check the relevant evidence in the paper. A flag is a request for verification; it does not necessarily mean the finding is wrong.' }));
+  for (const m of marks) {
+    const pending = open.has(String(m.id));
+    const x = r.resolutions[m.id] || {};
+    const update = (key, value) => { r.resolutions[m.id] = { ...r.resolutions[m.id], [key]: value }; save(); };
+    panel.append(h('div', { class: 'passage' },
+      h('b', { text: `${pending ? 'Open' : 'Resolved'} · ${m.id}` }),
+      h('p', { text: m.note || 'Check the marked passage and resolve the concern it raises.' }),
+      m.quote ? h('details', {}, h('summary', { text: `Marked passage${m.page ? ` · page ${m.page}` : ''}` }), h('p', { text: m.quote }),
+        pdf && m.page ? h('button', { class: 'btn', text: 'Show in paper', onclick: () => goToPage(Number(m.page), m.quote) }) : null) : null,
+      m.result ? h('p', { class: 'small', text: `${pending ? 'Previous check' : 'Resolution'}: ${m.result}` }) : null,
+      m.resolved_by ? h('p', { class: 'small muted', text: `${m.resolved_by} · ${m.resolved_on || ''}` }) : null,
+      pending && authorised ? frag(
+        h('label', {}, 'What did you verify? Include the relevant pages and how the concern was resolved.',
+          h('textarea', { rows: 3, disabled: controls ? null : '', value: x.note || '', oninput: e => update('note', e.target.value) }, x.note || '')),
+        h('label', {}, h('input', { type: 'checkbox', disabled: controls ? null : '', checked: x.confirmed ? '' : null, onchange: e => update('confirmed', e.target.checked) }), ' I checked this note against the source and resolved all concerns it raises.')) : null));
+  }
+  if (!open.size) return panel;
+  panel.append(h('p', { class: 'small', text: !authorised ? 'Only a registered approver can resolve these flags. You can still send your findings, passage checks and comments using “kept for more review”.'
+    : r.resolutions_sent ? 'Resolutions sent. Apply the submitted reviews from the home page, then reload this draft after publication. Approval stays unavailable until those resolutions are applied.'
+    : hasEdits ? 'You have proposed corrections or new evidence. Send that review first, apply it, then reopen the updated draft before resolving its flags.'
+    : 'Sending resolutions does not approve this draft. Apply the submitted reviews from the home page, then reopen the updated draft to make your approval decision.' }));
+  if (controls) {
+    const button = h('button', { class: 'btn', text: 'Send source-check resolutions', onclick: async () => {
+      const rows = [...open].filter(id => r.resolutions[id]?.confirmed).map(id => ({ id, confirmed: true, note: (r.resolutions[id].note || '').trim() }));
+      if (!rows.length || rows.some(x => !x.note)) { toast('Confirm each flag you resolved and explain what you checked before sending.', true); return; }
+      if (!bound.digest || r.digest !== bound.digest) { toast('This draft changed. Reload and check the current version before resolving flags.', true); return; }
+      button.disabled = true;
+      try {
+        await sendAll([{ kind: 'resolve', id: d.path, citation: d.citation, draft_digest: bound.digest, finding_ids: bound.findings, resolutions: rows }]);
+        r.resolutions_sent = true; save(); render(); toast('Resolutions sent for application. This draft is still unapproved.');
+      } catch (e) { button.disabled = false; toast(`Not sent: ${e.message}`, true); }
+    } });
+    panel.append(button);
+  }
+  return panel;
+}
+
 function verdictPanel(d, r, save) {
   const obligations = state.bindings?.[d.path]?.obligations || [];
   const approvalBlocked = obligations.length > 0;
-  const approvalReason = 'Approval is unavailable because this draft has an unresolved source-check or reviewer flag. The maintainer must record its resolution first. Choose “kept for more review” to send your assessment now.';
+  const approvalReason = 'Approval is unavailable because this draft has an unresolved source-check or reviewer flag. See “Source checks to resolve before approval” above. Choose “kept for more review” to send your assessment now.';
   // A saved approval selection must not remain selected after it becomes unavailable.
   // Keep all finding decisions, passage checks, edits and comments intact.
   if (approvalBlocked && r.verdict === 'approve') { r.verdict = ''; save(); }
@@ -546,7 +600,7 @@ function verdictPanel(d, r, save) {
     if (!r.verdict && pending === total) { toast('Give an overall verdict for the draft', true); return; }
     const bound = state.bindings?.[d.path];
     if (bound && r.digest && r.digest !== bound.digest) { toast('This draft changed while you were reviewing it: reload the page and review the current version', true); return; }
-    if ((r.verdict || pending) && !bound) { toast(state.bindingProblem || 'This draft is not in the portal build any more (or the build is older than this page): reload, then review the current version', true); return; }
+    if ((r.verdict || pending || checked) && !bound) { toast(state.bindingProblem || 'This draft is not in the portal build any more (or the build is older than this page): reload, then review the current version', true); return; }
     if (r.verdict === 'approve') {
       const notAgreed = d.findings.filter((f) => r.findings[f.id]?.verdict !== 'agree').map((f) => f.id);
       if (notAgreed.length) { toast(`To approve, agree with every finding (${notAgreed.join(', ')} not agreed), or choose "kept for more review"`, true); return; }
@@ -555,7 +609,7 @@ function verdictPanel(d, r, save) {
     btn.disabled = true; btn.classList.add('working'); btn.textContent = 'Sending…';
     try {
       const records = [];
-      const perFinding = d.findings.filter((f) => r.findings[f.id]?.verdict).map((f) => ({ id: f.id, verdict: r.findings[f.id].verdict, concern: r.findings[f.id].concern || '', supports_approval: r.findings[f.id].verdict === 'agree', passages: r.findings[f.id].passages }));
+      const perFinding = d.findings.filter((f) => r.findings[f.id]?.verdict || Object.keys(r.findings[f.id]?.passages || {}).length).map((f) => ({ id: f.id, verdict: r.findings[f.id].verdict || null, concern: r.findings[f.id].concern || '', supports_approval: r.findings[f.id].verdict === 'agree', passages: r.findings[f.id].passages }));
       for (const f of d.findings) {
         const x = r.findings[f.id]; if (!x) continue;
         if (Object.keys(x.edits).length || x.added.length) records.push({ kind: 'edit', id: d.path, citation: d.citation, finding: f.id, fields: Object.fromEntries(Object.entries(x.edits).map(([k, v]) => [k, { old: f[k], new: v }])), passages_added: x.added });
@@ -566,9 +620,20 @@ function verdictPanel(d, r, save) {
       if (perFinding.length || r.verdict) records.push({ kind: 'verdict', id: d.path, citation: d.citation, verdict: r.verdict || null, rationale: r.rationale || '', per_finding: perFinding, draft_digest: bound.digest, finding_ids: bound.findings });
       btn.textContent = `Sending ${plural(records.length, 'record')} in one commit…`;
       await sendAll(records);
+      const receipt = records.find(x => x.kind === 'verdict');
+      if (receipt) {
+        const sent = store.get('draft:sent', {});
+        const previous = sent[d.path]?.draft_digest === bound.digest ? sent[d.path].per_finding || [] : [];
+        const combined = new Map(previous.map(x => [x.id, x]));
+        for (const x of perFinding) if (x.verdict) combined.set(x.id, x);
+        sent[d.path] = { id: d.path, draft_digest: bound.digest, per_finding: [...combined.values()], by: state.me.name || state.me.email };
+        store.set('draft:sent', sent);
+      }
       store.del(`review:${d.path}`);
-      toast(`Sent ${plural(records.length, 'record')} — thank you`);
-      location.hash = '#/drafts';
+      const next = nextPaperDraft(draftsIndex(state.kb), d, x => draftProgress(x).complete);
+      state.queue = { ...(state.queue || {}), topic: state.queue?.topic || 'all', paper: d.citation, query: '', filter: 'all', page: 0 };
+      toast(next ? 'Review submitted. Opening the next draft from this paper.' : 'Review submitted. Returning to this paper’s list.');
+      location.hash = next ? draftHref(next.path) : '#/drafts';
     } catch (e) { toast(`Not sent: ${e.message}`, true); btn.disabled = false; btn.classList.remove('working'); btn.textContent = 'Send this review'; }
   } });
   bar.append(btn, h('span', { class: 'pending', text: `${pending} of ${total} findings decided · ${checked} of ${nPassages} passages checked${edits ? ` · ${edits} edited` : ''}${r.marks.length ? ` · ${r.marks.length} marks` : ''}` }), h('span', { class: 'small muted', text: 'Saved in this browser until you send.' }));

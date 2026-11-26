@@ -44,3 +44,12 @@ test('the page refuses mixed builds', () => {
   assert.equal(sameBuild(manifest, null, kb, 's1'), false);
   assert.equal(sameBuild({ ...manifest, buildId: '' }, { ...bindings, buildId: '' }, kb, 's1'), false);
 });
+
+test('resolution notes are preserved on the same version and set aside on a changed draft', () => {
+  const saved = { ...freshReview(A), resolutions: { 'relationship-source-check': { confirmed: true, note: 'Checked pages 2–4' } } };
+  assert.deepEqual(carryOver(saved, A).review, saved);
+  const changed = carryOver(saved, B);
+  assert.equal(changed.setAside, true);
+  assert.deepEqual(changed.review.resolutions, {});
+  assert.deepEqual(changed.review.previous.resolutions, saved.resolutions);
+});

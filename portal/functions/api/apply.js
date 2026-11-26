@@ -76,7 +76,7 @@ export async function inboxSummary(env, records) {
   const attention = [];
   for (const file of records.inbox) {
     if (file.includes('_pdf_')) { pdf += 1; continue; }
-    if (['_edit_', '_mark_', '_comment_'].some((kind) => file.includes(kind))) {
+    if (['_edit_', '_mark_', '_comment_', '_resolve_'].some((kind) => file.includes(kind))) {
       const response = await gh(env, `contents/logs/portal/inbox/${encodeURIComponent(file)}?ref=${encodeURIComponent(env.GITHUB_BRANCH || 'main')}`);
       if (!response.ok) throw new Error(`Cannot inspect pending record ${file}`);
       let record;
