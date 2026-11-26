@@ -1,165 +1,217 @@
-# Automatic open-access collection
+# Collect and sync open-access PDFs
 
-Stroke KB collects licensed main-article PDFs for all imported Aphasia,
-Dysphagia and Practice/lived experience candidates, except excluded and duplicate records. Collection is not
-a screening decision, full-text eligibility assessment or extraction approval.
+There are two terminal commands. Neither uses AI/model tokens or starts extraction.
 
-The `open-access-papers` GitHub workflow resumes from its R2 index. Automatic
-hourly runs are currently disabled while the maintainer runs the collector in a
-local terminal. Do not run a GitHub collection and a local collection at the same
-time. Each
-run attempts up to 500 records per chapter within a 45-minute budget. The three
-collections run independently, so a slow provider in one does not delay the other.
-Large initial collections therefore finish over multiple runs. Saved includes
-prioritise another attempt. Temporary failures retry after a day; papers without
-a licensed downloadable copy are checked again after 30 days. Manual GitHub runs use the same concurrency group and checkpoints.
+| Command, from the repository root | What it does |
+| --- | --- |
+| `./collect-pdfs.command` | Finds licensed PDFs for all non-excluded candidates and stores them in Cloudflare. Runs Aphasia, Dysphagia and Practice/lived experience concurrently. |
+| `./sync-pdfs.command` | Downloads only saved, kept papers into named local incoming folders. Preserves existing working PDFs. |
 
-The collector uses the current NLM PMC Cloud Service and Unpaywall DOI lookup.
-For records missing identifiers, Europe PMC may supply them only when a single
-result matches the title, publication year and first author; ambiguous matches
-are left for review and the original imported record is unchanged.
-It verifies identifiers, an explicit Creative Commons licence, PDF format,
-readability, size and checksum. Accepted manuscripts are labelled separately
-from published versions. Missing identifiers, missing licence details, blocked
-downloads and papers without a downloadable PDF remain unresolved; they are not
-excluded. Subscription access, browser sessions and paywall bypasses are not used.
+On the maintainer's current Mac, the shortcuts are:
+
+```sh
+/Users/uqmmasso/GITHUB/run-stroke-kb-pdfs.command
+/Users/uqmmasso/GITHUB/sync-stroke-kb-pdfs.command
+```
+
+These shortcuts forward to the versioned launchers above. For another checkout,
+use the repository commands rather than copying machine-specific paths.
+
+## First-time setup
+
+Use the project Python environment described in [README](../README.md). It needs
+PyYAML and PyMuPDF. Install the portal dependencies and sign in to Cloudflare once:
+
+```sh
+(cd portal && npm ci)
+portal/node_modules/.bin/wrangler login
+```
+
+The launchers find `.venv` and Wrangler in this checkout or its primary checkout.
+They use the existing Wrangler sign-in and refresh it when needed. Credentials are
+never printed or committed. `deployment/open-access.json` contains the non-secret
+project account ID. An authorised environment can instead set
+`CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`. Optional overrides are
+`STROKE_KB_PYTHON`, `STROKE_KB_WRANGLER` and `STROKE_KB_WORKING_REPO`.
+
+## 1. Collect into Cloudflare
+
+```sh
+./collect-pdfs.command
+```
+
+One independent process runs per collection, capped at three processes. Each has
+its own progress counter and checkpoint; slow downloads in one collection do not
+hold up the others. Wrangler credential refresh is serialized between processes.
+The local launcher allows up to 50,000 attempts per collection within a 24-hour
+budget. Only records due for a lookup are attempted. For a shorter run:
+
+```sh
+./collect-pdfs.command --minutes 60 --max-records 500
+```
+
+Use `--chapter aphasia`, `--chapter dysphagia` or `--chapter practice` for one
+collection. Keep the computer awake and terminal open. Ctrl+C stops the run and
+flushes completed checkpoints. Run the same command again to resume. If an older
+sequential collector is running, stop it before starting the parallel version.
+Never run two collectors for the same collection at the same time.
+
+Example progress:
+
+```text
+Running aphasia, dysphagia, practice together, one process per collection.
+[aphasia 13/20718] C0118 — available | 23 PDFs stored | 20705 checks left
+```
+
+| Status | Meaning |
+| --- | --- |
+| `available` | A licensed, identifier-matched, readable PDF was stored. |
+| `not_found` | No explicitly licensed downloadable copy was found in the sources checked. The paper may still be accessible through a library or publisher. |
+| `retry` | A temporary lookup/download failure occurred. |
+| `excluded` | The collected copy is removed or withheld because of screening. |
+
+The collector uses NLM PMC's current cloud dataset and Unpaywall DOI lookup.
+When identifiers are missing, Europe PMC can supply them only for a single exact
+match on title, publication year and first author. Original reference records are
+unchanged. Explicit Creative Commons licences, identifiers, PDF format, readability,
+size and checksum are checked. Manuscripts and published copies are labelled
+separately. Subscription credentials and paywall bypasses are not used.
+
+Temporary failures retry after a day; unsuccessful licensed-copy searches retry
+after 30 days. Saving an include requests a prioritised new attempt. Collection
+is not an eligibility assessment, extraction approval or published finding.
 
 References: [PMC Cloud Service](https://pmc.ncbi.nlm.nih.gov/tools/cloud/),
-[PMC dataset technical documentation](https://pmc-oa-opendata.s3.amazonaws.com/README.txt),
+[PMC dataset documentation](https://pmc-oa-opendata.s3.amazonaws.com/README.txt),
 [Unpaywall API](https://data.unpaywall.org/products/api).
-NLM PMC is credited as the source of its copies. Stored PDFs are downloaded
-snapshots and may not reflect subsequent publisher or NLM updates.
 
-## Storage and screening
+## 2. Sync kept papers locally
 
-The collection uses `open-access/` in the existing separate private buckets:
-
-| Chapter | Bucket |
-| --- | --- |
-| Aphasia | `stroke-aphasia-kb-pdfs` |
-| Dysphagia | `dysphagia-kb-private` |
-| Practice and lived experience | `stroke-kb-practice-private` |
-
-`pdf/<record-id>.pdf` holds bytes; `status/`, `history/`, `index.json` and
-`summary.json` preserve retrieval status, dates, source URL, licence, version,
-page count, byte size and checksum. Paper licences remain their own licences;
-the project's non-commercial licence does not replace them. Copies are available
-only in the signed-in review sites, via `/api/open-access?id=...&file=1`.
-
-Saving a title/abstract or full-text exclusion writes a removal marker before
-deleting that record's collected PDF. The marker also prevents serving or
-re-uploading a copy during an in-flight download. Another reviewer's include
-cannot override that reviewer's exclusion. Changing the exclusion to include
-clears that reviewer's marker and requests retrieval again. Full-text and
-title/abstract markers are independent. Check-screening opinions do not change
-collection. Retrieval history and screening audit remain after PDF removal.
-
-This removal applies only to automatically collected copies. Working source PDFs,
-annotated PDFs, user uploads and extraction inputs use other prefixes and are
-never overwritten or removed by this collector.
-
-Aphasia's collector also reconciles the canonical register and pending
-screening receipts. Dysphagia and Practice follow their append-only D1 decision events in batches
-of 100 changes every 15 minutes, repairing interrupted storage updates. Corrections
-do not wait for a full rescan of previously screened papers. Each first complete
-reconciliation must finish before initial collection starts. A storage failure
-does not undo a saved screening decision; removal is retried. The signed-in
-Dysphagia and Practice download routes also checks the saved D1 exclusions.
-
-## Running and inspecting
-
-Use GitHub Actions → **open-access-papers** → **Run workflow** to choose a chapter
-and batch size. The workflow uses the existing Cloudflare publishing secrets;
-no provider credentials or PDFs are committed to Git.
-
-For an authorised local run, set `CLOUDFLARE_API_TOKEN` and
-`CLOUDFLARE_ACCOUNT_ID` in the process environment, then run:
+Save the inclusion in the review website first, then run:
 
 ```sh
-python scripts/collect_open_access.py --chapter all --max-records 500 --minutes 45
+./sync-pdfs.command
 ```
 
-Inspect each bucket's `open-access/summary.json` for counts and the number of
-records remaining in the current pass. Each review record shows the copy's
-availability, provider, licence and manuscript/publication version. Full-text
-review and extraction still require human assessment of the retrieved paper.
+Only saved title/abstract or full-text includes qualify, with no current screening
+exclusion. Unsaved browser choices and Practice evidence-note verdicts do not count.
+You can sync while collection continues, and rerun as you keep more papers.
 
-For a local run, `--wrangler /path/to/wrangler --account-id ACCOUNT_ID` uses and
-refreshes an existing Wrangler sign-in without printing credentials. Each completed
-record prints a batch counter, PDFs stored and checks remaining. Re-running resumes
-from the stored index; keep the terminal and computer running during collection.
+The destination defaults to the working repository's resolved `papers/` directory:
 
-## Papers shared between collections
+```text
+papers/_incoming/open-access/
+  aphasia/
+  dysphagia/
+  practice/
+```
 
-Each collection retains its own record, screening decisions and private PDF copy.
-The collector currently retrieves and stores these copies independently; it does not
-merge records across collections or use a shared PDF whose deletion could affect
-another collection. An exclusion removes only that collection's automatically
-collected copy. DOI matches can identify the same publication but do not imply that
-it meets every collection's inclusion criteria. Rejecting a Practice evidence note
-is not a paper exclusion and does not remove the PDF; title/abstract and full-text
-exclusions do.
+On the maintainer's Mac, `papers/` points to:
 
-`--chapter all` runs Aphasia, Dysphagia and Practice concurrently, with one
-independent process per collection (at most three processes). This keeps all
-collections moving without waiting for a slow provider in another collection.
-Each process has its own progress counter and checkpoint; the time limit applies
-to the whole run. Wrangler sign-in refreshes are serialized between processes. Use
-`--chapter practice` for just the new collection. A process already running when
-this support was added retains its original behaviour. Stop with Ctrl+C and
-restart to use parallel collection. Completed record checkpoints are flushed on
-interruption. Never run two collectors for the same collection at once.
+```text
+/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers
+```
 
-## Sync kept papers into local source folders
+Registered papers use `RecordID_CitationKey.pdf`, such as
+`C0010_Fridriksson2018BDNF.pdf`. Other papers use `RecordID_AuthorYear.pdf`, such as
+`PLE-09d2311a55cab8b6_Brady2025.pdf`. The record ID prevents name collisions; an
+author/year filename does not itself register a citation key.
 
-`scripts/sync_open_access.py` downloads only papers with a saved title/abstract or
-full-text inclusion and no current exclusion. Unsaved browser choices and evidence
-note verdicts do not qualify a paper. Run it repeatedly as screening progresses.
-It does not run models, formatting, OCR, registration or publication, and it does
-not overwrite working PDFs. The collector can continue running during this sync.
+Each new PDF has a `.source.json` sidecar with its DOI, title, source, licence,
+version and checksum. Each collection also has `.open-access-sync.json`, recording
+local paths, sync outcomes and current eligibility. Preview without downloading:
 
 ```sh
-python scripts/sync_open_access.py --repo /path/to/stroke-kb \
-  --wrangler /path/to/wrangler --account-id ACCOUNT_ID --execute
+./sync-pdfs.command --dry-run
+./sync-pdfs.command --chapter practice --dry-run
 ```
 
-Without `--execute` (or with `--dry-run`) it previews the sync. `--chapter practice`
-selects one collection. By default, it writes to the resolved `papers/` folder's
-`_incoming/open-access/{aphasia,dysphagia,practice}/` subfolders. On the maintainer's
-machine, `papers/` already points to the OneDrive `calmar-papers` directory.
+Sync verifies downloaded checksums and rechecks screening before writing. Identical
+incoming copies are skipped. For Aphasia, matching working files and retained
+`_originals` are reused without alteration. Different working versions and modified
+incoming files are preserved and reported; nothing replaces an active source PDF.
+Previously downloaded local files are not automatically deleted when screening
+changes. The manifest updates their eligibility; Cloudflare removal is separate.
 
-Cloudflare filenames remain stable record IDs (`open-access/pdf/C1234.pdf`,
-`DYS-….pdf`, `PLE-….pdf`). Incoming local copies use `RecordID_CitationKey.pdf` for
-registered citations, otherwise `RecordID_AuthorYear.pdf`. The record ID prevents
-filename collisions. A `.source.json` sidecar and `.open-access-sync.json` manifest
-retain the DOI, title, citation key, original source, licence, version and checksum.
-An author/year label is not a newly registered citation key.
+`--destination /path/to/incoming` overrides the incoming root. `--limit 5` limits a
+preview/test to five selected records per collection. Only one local sync can write
+a given incoming root at a time.
 
-Sync checks the actual downloaded bytes against the stored checksum, rechecks the
-saved screening decision before writing, and resumes without downloading identical
-local copies again. For Aphasia, matching working files and retained `_originals`
-are reused without alteration. Different working versions are preserved; a new
-source may be staged separately for comparison. Modified incoming copies are also
-preserved and reported. Previously downloaded local files are not automatically
-deleted when screening changes; the sync manifest updates their current eligibility.
-Cloudflare removal remains separate and applies only to collected remote copies.
+## 3. Prepare and extract separately
 
-For Aphasia, finish full-text eligibility and register included papers before
-extraction. The existing `kb.py screen register --execute` registers fully included
-candidates. The guarded intake can then copy matching registered sources from the
-incoming folder, preserve originals, remove cover pages and OCR as needed:
+For Aphasia, complete full-text eligibility and register the included paper before
+extraction. The existing registration command is:
+
+```sh
+.venv/bin/python scripts/screen.py register --execute
+```
+
+Then the existing guarded intake can import matching registered sources that have
+no working PDF, preserve originals, remove cover pages and OCR as needed:
 
 ```sh
 .venv/bin/python kb.py intake --from papers/_incoming/open-access/aphasia --execute --wait
 ```
 
-`--from` only imports sources matching registered citations that have no working
-PDF; it does not replace an existing version. Prepare a fresh extraction manifest
-for the selected citation keys afterward, using `kb.py prepare`. Extraction remains
-a separate explicit command. See `docs/HOWTO.md` for the established workflow.
+`--wait` waits for active KB processing to finish. Intake does not replace an
+existing working version. Create a fresh `kb.py prepare` manifest for the selected
+citation keys afterward; model extraction remains an explicit separate action.
+Follow [Prepare, extract and review papers](HOWTO.md) for the full workflow.
 
-Dysphagia and Practice incoming files remain in their own folders. Their records
-are not added to the Aphasia bibliography or fed into its extraction assumptions;
-chapter-specific registration and extraction adaptation are separate work. The
-existing `kb.py sync` handles reviewer uploads, not these collected open-access
-copies; use this new sync command for the latter.
+Dysphagia and Practice sources stay in their own incoming folders. They are not
+added to the Aphasia bibliography or fed into its extraction assumptions.
+Chapter-specific registration and extraction adaptation remain separate work.
+
+The existing `kb.py sync` handles PDFs uploaded by reviewers. Use
+`sync-pdfs.command` for the automatically collected open-access copies.
+
+## Shared papers, exclusions and storage
+
+| Collection | Private Cloudflare bucket |
+| --- | --- |
+| Aphasia | `stroke-aphasia-kb-pdfs` |
+| Dysphagia | `dysphagia-kb-private` |
+| Practice and lived experience | `stroke-kb-practice-private` |
+
+Cloudflare keys remain stable: `open-access/pdf/<RecordID>.pdf`. Status, source URL,
+licence, version, date, page count, size and checksum are retained under
+`open-access/status/`, `history/`, `index.json` and `summary.json`. Paper licences
+remain their own licences; the project's non-commercial licence does not replace
+them. NLM PMC copies are credited and labelled as downloaded snapshots.
+
+The same publication can have a record and PDF copy in several collections.
+Copies are currently retrieved and stored independently, without merging screening
+decisions across collections. Excluding a paper from one collection removes only
+that collection's automatically collected copy. Working PDFs, annotations, uploads,
+local extraction inputs and source/audit history are preserved.
+
+Saving a screening exclusion first writes an atomic per-reviewer/stage marker,
+which blocks serving and re-uploading during an in-flight retrieval. Another
+reviewer's include cannot override that reviewer's exclusion. Changing an exclusion
+to include clears that reviewer's marker and requests collection again. Rejecting
+a Practice evidence note is not a paper exclusion and leaves its PDF available.
+
+Dysphagia and Practice reconcile durable decision events every 15 minutes to repair
+interrupted storage updates; the initial reconciliation must finish before their
+first collection. Their PDF routes also check saved exclusions. Aphasia collection
+additionally reconciles its register and pending receipts. A storage failure does
+not undo a saved decision; removal is retried. Review pages show an **Open collected
+PDF** link when a copy is available, with source/licence/version details.
+
+## GitHub workflow and troubleshooting
+
+The `open-access-papers` workflow is **manual only** while local collection is in
+use. In Actions → open-access-papers → Run workflow, select a collection or `all`.
+It uses the existing Cloudflare secrets, with up to 500 records per collection and
+a 45-minute budget by default. It does not use AI. Do not run it for a collection
+already being processed in your terminal. GitHub jobs share a concurrency group.
+
+- **Cloudflare sign-in unavailable:** run Wrangler login, then resume the command.
+- **No local files synced:** save an include first; a licensed collected PDF must
+  also exist. Unsure/excluded/unsaved choices do not qualify.
+- **`not_found`:** this is a retrieval result, not a screening exclusion or proof
+  that the paper cannot be accessed through a library.
+- **`local_copy_changed`:** the local file was preserved. Compare versions before
+  replacing anything; sync never overwrites it.
+- **Collection progress:** inspect each bucket's `open-access/summary.json`.
+- **Local sync progress:** inspect the incoming collection's `.open-access-sync.json`.

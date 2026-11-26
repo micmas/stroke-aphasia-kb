@@ -159,3 +159,17 @@ New drafts become visible online when committed and pushed; source checking alon
 does not publish them. They remain unapproved until the person reviewing resolves
 the source-check mark and applies the approval rules. You can release completed
 papers incrementally rather than waiting for the whole corpus.
+
+## Open-access collection commands
+
+From the repository root:
+
+| Command | Purpose |
+| --- | --- |
+| `./collect-pdfs.command` | Collect licensed copies across all three collections concurrently; no models. |
+| `./sync-pdfs.command` | Sync only saved, kept papers into named incoming folders; no formatting or extraction. |
+| `./sync-pdfs.command --dry-run` | Preview the local sync without downloading. |
+| `./collect-pdfs.command --chapter practice` | Collect one collection only. |
+
+See [PDF collection and local sync](OPEN_ACCESS.md) for authentication, limits,
+resuming, filenames, shared papers and the subsequent source-preparation steps.
