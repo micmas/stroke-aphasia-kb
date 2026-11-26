@@ -83,12 +83,13 @@ export function renderImportCoverage(manifest, prismaDiagram, {databases, search
   for (const file of files) fileList.append(node('li', {}, node('code', {text:file.file}), ` · ${number(file.records)} records`));
   audit.append(fileList);
   searchSection.append(audit);
-  page.append(searchSection,
+  page.append(
     node('div', {class:'grid-2'},
       node('section', {}, node('h2', {text:'Why candidates were excluded'}), paragraph('Exclusion reasons will appear when screening results are ready to report.')),
       node('section', {}, node('h2', {text:'Who decided'}), paragraph('Reviewer attribution will accompany published screening decisions.'))),
     node('h2', {text:'Coverage of the evidence gaps'}),
     paragraph(gapText),
+    searchSection,
     node('h2', {text:'Candidates'}),
     paragraph(`Titles, abstracts and your current decisions are available in the separate ${collectionName} review workspace. This public page reports the original search batch.`),
     link('Open title & abstract screening', reviewHref),
