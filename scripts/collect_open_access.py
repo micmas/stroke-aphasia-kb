@@ -142,7 +142,7 @@ def candidates(chapter,store):
         manifest=store.get('screening/records.json')
         if not manifest: raise RuntimeError('Missing Dysphagia import')
         return [r for name in manifest['chunks'] for r in store.get('screening/'+name)]
-    data=yaml.load((ROOT/'screening/candidates.yaml').read_text(),Loader=yaml.CSafeLoader)
+    data=yaml.load((ROOT/'screening/candidates.yaml').read_text(),Loader=getattr(yaml, 'CSafeLoader', yaml.SafeLoader))
     rows=data if isinstance(data,list) else data['candidates']
     by_id={r['id']:r for r in rows}
     # Pending human decisions must take effect before the six-hour register apply.
