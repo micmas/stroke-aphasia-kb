@@ -2,13 +2,19 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {DatabaseSync} from 'node:sqlite';
 import {readFileSync} from 'node:fs';
-import worker,{decisions,validate} from './worker.js';
+import worker,{decisions,validate,reconcileOpenAccess} from './worker.js';
 const id='PLE-0123456789abcdef';
 const choice=(stage='title_abstract',patch={})=>({id,stage,decision:'include',notes:'',reason:'',...patch});
+function bucket(){
+ const files=new Map([['screening/record-ids.json',JSON.stringify([id])]]);
+ return {files,async get(key){const v=files.get(key);return v===undefined?null:{body:v,size:v.length,httpEtag:'"test"',text:async()=>v,json:async()=>JSON.parse(v)};},
+ async put(key,value){files.set(key,value);return{};},async delete(key){files.delete(key);},async head(key){return files.has(key)?{}:null;},
+ async list({prefix}){return {objects:[...files.keys()].filter(key=>key.startsWith(prefix)).map(key=>({key}))};}};
+}
 function fixture(){
  const db=new DatabaseSync(':memory:');db.exec(readFileSync(new URL('./schema.sql',import.meta.url),'utf8'));
  const prepare=sql=>({bind(...values){return {async first(){return db.prepare(sql).get(...values);},async all(){return {results:db.prepare(sql).all(...values)};},async run(){return {meta:{changes:Number(db.prepare(sql).run(...values).changes)}};}};}});
- return {db,env:{PRIVATE:{get:async()=>({json:async()=>[id]})},SCREENING:{prepare,async batch(items){db.exec('BEGIN');try{const result=[];for(const item of items)result.push(await item.run());db.exec('COMMIT');return result;}catch(e){db.exec('ROLLBACK');throw e;}}}}};
+ return {db,env:{PRIVATE:bucket(),SCREENING:{prepare,async batch(items){db.exec('BEGIN');try{const result=[];for(const item of items)result.push(await item.run());db.exec('COMMIT');return result;}catch(e){db.exec('ROLLBACK');throw e;}}}}};
 }
 const req=body=>new Request('https://review.test/api/decisions',body?{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}:{});
 test('unconfigured and unauthenticated requests cannot expose private assets',async()=>{
@@ -62,4 +68,36 @@ test('only the dedicated signed identity can fetch records from its private buck
  assert.equal(await res.text(),'private screening bundle');
  assert.equal(res.headers.get('Cache-Control'),'no-store');
  assert.deepEqual(reads,['screening/records-000.json']);
+});
+
+test('saved screening exclusions remove only this collection copy; note rejection keeps PDFs',async()=>{
+ const {db,env}=fixture(),other=bucket(),pdf='open-access/pdf/'+id+'.pdf';
+ try{
+  await env.PRIVATE.put(pdf,'PDF');await other.put(pdf,'same paper in another collection');
+  const save=async(sha,d)=>{const res=await decisions(req({sha,decisions:[d]}),env,'a@example.test');assert.equal(res.status,200);return res.json();};
+  await save(0,choice());await save(1,choice('full_text'));
+  await save(2,choice('evidence_review',{decision:'exclude',reason:'unsupported note'}));
+  assert.ok(await env.PRIVATE.head(pdf));
+  await save(3,choice('full_text',{decision:'exclude',reason:'wrong population'}));
+  assert.equal(await env.PRIVATE.head(pdf),null);assert.ok(await other.head(pdf));
+  const history=db.prepare('SELECT COUNT(*) AS n FROM decision_events').get();assert.equal(history.n,4);
+  await save(4,choice('full_text'));
+  assert.ok(await env.PRIVATE.head('open-access/retry/'+id+'.json'));
+ }finally{db.close();}
+});
+test('reconciliation repairs interrupted PDF removal using current stage values and preserves saved decisions',async()=>{
+ const {db,env}=fixture(),pdf='open-access/pdf/'+id+'.pdf',original=env.PRIVATE.put;
+ try{
+  await env.PRIVATE.put(pdf,'PDF');
+  env.PRIVATE.put=async()=>{throw Error('temporary storage outage');};
+  const res=await decisions(req({sha:0,decisions:[choice('title_abstract',{decision:'exclude',reason:'wrong population'})]}),env,'a@example.test');
+  assert.equal(res.status,200);assert.match((await res.json()).oaWarning,/saved/);
+  env.PRIVATE.put=original;await reconcileOpenAccess(env);
+  assert.equal(await env.PRIVATE.head(pdf),null);
+  assert.ok(await env.PRIVATE.head('open-access/decisions-ready.json'));
+  assert.equal((await (await env.PRIVATE.get('open-access/decision-cursor.json')).json()).event,1);
+  await decisions(req({sha:1,decisions:[choice()]}),env,'a@example.test');
+  await reconcileOpenAccess(env);
+  assert.equal((await (await env.PRIVATE.get('open-access/decision-cursor.json')).json()).event,2);
+ }finally{db.close();}
 });

@@ -67,3 +67,14 @@ def test_missing_ids_require_unambiguous_title_year_author_match(monkeypatch):
     assert oa.identify(record)==record
     monkeypatch.setattr(oa,'get_json',lambda url:{'doi':'10.1234/right','is_oa':True,'oa_locations':[{'url_for_pdf':'https://publisher.org/p.pdf','license':None}]})
     assert oa.unpaywall_locations({'doi':'10.1234/right'})==[]
+
+
+def test_practice_candidates_use_their_own_ready_import():
+    class ImportStore:
+        def get(self,key):
+            return {'open-access/decisions-ready.json':{'at':'ready'},
+                    'screening/records.json':{'chunks':['records-000.json']},
+                    'screening/records-000.json':[{'id':'PLE-0123456789abcdef','title':'Practice paper'}]}[key]
+    rows=oa.candidates('practice',ImportStore())
+    assert rows[0]['id']=='PLE-0123456789abcdef' and oa.ID.fullmatch(rows[0]['id'])
+    assert oa.BUCKETS['practice'] not in [oa.BUCKETS['aphasia'],oa.BUCKETS['dysphagia']]

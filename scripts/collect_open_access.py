@@ -26,11 +26,11 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 PREFIX = 'open-access/'
-BUCKETS = {'aphasia':'stroke-aphasia-kb-pdfs','dysphagia':'dysphagia-kb-private'}
+BUCKETS = {'aphasia':'stroke-aphasia-kb-pdfs','dysphagia':'dysphagia-kb-private','practice':'stroke-kb-practice-private'}
 MAX_PDF = 60 * 1024 * 1024
 EMAIL = 'm.massontrottier@uq.edu.au'
 S3 = 'https://pmc-oa-opendata.s3.amazonaws.com/'
-ID = re.compile(r'^(?:C\d+|U[a-f0-9]{32}|DYS-[a-f0-9]{16})$')
+ID = re.compile(r'^(?:C\d+|U[a-f0-9]{32}|(?:DYS|PLE)-[a-f0-9]{16})$')
 
 def now():
     return dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')
@@ -151,11 +151,11 @@ class R2:
                    for item in self.entries(f'{PREFIX}decisions/{id}/'))
 
 def candidates(chapter,store):
-    if chapter=='dysphagia':
+    if chapter in ('dysphagia','practice'):
         if not store.get(PREFIX+'decisions-ready.json'):
-            raise RuntimeError('Dysphagia decision reconciliation must finish before collecting PDFs')
+            raise RuntimeError(f'{chapter.title()} decision reconciliation must finish before collecting PDFs')
         manifest=store.get('screening/records.json')
-        if not manifest: raise RuntimeError('Missing Dysphagia import')
+        if not manifest: raise RuntimeError(f'Missing {chapter.title()} import')
         return [r for name in manifest['chunks'] for r in store.get('screening/'+name)]
     data=yaml.load((ROOT/'screening/candidates.yaml').read_text(),Loader=getattr(yaml, 'CSafeLoader', yaml.SafeLoader))
     rows=data if isinstance(data,list) else data['candidates']

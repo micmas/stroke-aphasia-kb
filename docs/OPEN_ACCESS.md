@@ -1,15 +1,15 @@
 # Automatic open-access collection
 
-Stroke KB collects licensed main-article PDFs for all imported Aphasia and
-Dysphagia candidates, except excluded and duplicate records. Collection is not
+Stroke KB collects licensed main-article PDFs for all imported Aphasia,
+Dysphagia and Practice/lived experience candidates, except excluded and duplicate records. Collection is not
 a screening decision, full-text eligibility assessment or extraction approval.
 
 The `open-access-papers` GitHub workflow resumes from its R2 index. Automatic
 hourly runs are currently disabled while the maintainer runs the collector in a
 local terminal. Do not run a GitHub collection and a local collection at the same
 time. Each
-run attempts up to 500 records per chapter within a 45-minute budget. The two
-chapters run independently, so a slow provider in one does not delay the other.
+run attempts up to 500 records per chapter within a 45-minute budget. The three
+collections run independently, so a slow provider in one does not delay the other.
 Large initial collections therefore finish over multiple runs. Saved includes
 prioritise another attempt. Temporary failures retry after a day; papers without
 a licensed downloadable copy are checked again after 30 days. Manual GitHub runs use the same concurrency group and checkpoints.
@@ -38,6 +38,7 @@ The collection uses `open-access/` in the existing separate private buckets:
 | --- | --- |
 | Aphasia | `stroke-aphasia-kb-pdfs` |
 | Dysphagia | `dysphagia-kb-private` |
+| Practice and lived experience | `stroke-kb-practice-private` |
 
 `pdf/<record-id>.pdf` holds bytes; `status/`, `history/`, `index.json` and
 `summary.json` preserve retrieval status, dates, source URL, licence, version,
@@ -58,12 +59,12 @@ annotated PDFs, user uploads and extraction inputs use other prefixes and are
 never overwritten or removed by this collector.
 
 Aphasia's collector also reconciles the canonical register and pending
-screening receipts. Dysphagia follows its append-only D1 decision events in batches
+screening receipts. Dysphagia and Practice follow their append-only D1 decision events in batches
 of 100 changes every 15 minutes, repairing interrupted storage updates. Corrections
-do not wait for a full rescan of previously screened papers. Its first complete
+do not wait for a full rescan of previously screened papers. Each first complete
 reconciliation must finish before initial collection starts. A storage failure
 does not undo a saved screening decision; removal is retried. The signed-in
-Dysphagia download route also checks the saved D1 exclusions.
+Dysphagia and Practice download routes also checks the saved D1 exclusions.
 
 ## Running and inspecting
 
@@ -87,3 +88,20 @@ For a local run, `--wrangler /path/to/wrangler --account-id ACCOUNT_ID` uses and
 refreshes an existing Wrangler sign-in without printing credentials. Each completed
 record prints a batch counter, PDFs stored and checks remaining. Re-running resumes
 from the stored index; keep the terminal and computer running during collection.
+
+## Papers shared between collections
+
+Each collection retains its own record, screening decisions and private PDF copy.
+The collector currently retrieves and stores these copies independently; it does not
+merge records across collections or use a shared PDF whose deletion could affect
+another collection. An exclusion removes only that collection's automatically
+collected copy. DOI matches can identify the same publication but do not imply that
+it meets every collection's inclusion criteria. Rejecting a Practice evidence note
+is not a paper exclusion and does not remove the PDF; title/abstract and full-text
+exclusions do.
+
+`--chapter all` includes Aphasia, Dysphagia and Practice, in that order. Use
+`--chapter practice` for just the new collection. A process already running when
+this support was added retains its original chapter list; restart to include all
+three, or run a separate Practice-only process. Never run two collectors for the
+same collection at once.

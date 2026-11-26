@@ -58,4 +58,4 @@ jobs:
         with:
           node-version: "22"
       - run: node --test portal/functions/test/*.test.mjs
-      - run: node --test staging/dysphagia/test/*.test.js deployment/dysphagia-review/worker.test.js
+      - run: node --test staging/dysphagia/test/*.test.js deployment/dysphagia-review/worker.test.js deployment/practice-review/worker.test.js

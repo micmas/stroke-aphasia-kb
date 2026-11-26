@@ -1,3 +1,4 @@
+import {serveOpenAccess,syncOaDecisions} from '../../portal/lib/open-access.js';
 import {verifyAccessJwt} from '../../staging/dysphagia/functions/_middleware.js';
 export const stages=['title_abstract','full_text','evidence_review'];
 const fields=['claim','passage','locator','perspective','limitations','appraisal','source_url'];
@@ -42,14 +43,37 @@ export async function decisions(request,env,reviewer){
  ]);
  if(!results[1].meta.changes)return Response.json({error:'Concurrent save: reload before retrying.'},{status:409});
  for(const d of changes)saved[d.stage+':'+d.id]=d;
- return Response.json({ok:true,sha:revision+1,decisions:saved},{headers:{'Cache-Control':'no-store'}});
+ let oaWarning;
+ try{await syncOaDecisions(env.PRIVATE,reviewer,changes);}catch{oaWarning='Decisions saved. PDF removal or retrieval will be retried automatically.';}
+ return Response.json({ok:true,sha:revision+1,decisions:saved,...(oaWarning?{oaWarning}:{})},{headers:{'Cache-Control':'no-store'}});
 }
-export default {async fetch(request,env){
+export async function reconcileOpenAccess(env){
+ const object=await env.PRIVATE.get('open-access/decision-cursor.json');
+ const cursor=object?await object.json():{};
+ const rows=await env.SCREENING.prepare(`SELECT e.rowid AS event_id,CAST(j.key AS INTEGER) AS item_index,e.reviewer,d.value
+  FROM decision_events e,json_each(e.changes) j
+  JOIN practice_decisions d ON d.reviewer=e.reviewer AND d.record_id=json_extract(j.value,'$.id') AND d.stage=json_extract(j.value,'$.stage')
+  WHERE e.rowid > ? OR (e.rowid = ? AND CAST(j.key AS INTEGER) > ?)
+  ORDER BY e.rowid,CAST(j.key AS INTEGER) LIMIT 100`).bind(cursor.event||0,cursor.event||0,cursor.item??-1).all();
+ const groups=new Map();
+ for(const row of rows.results){const d=JSON.parse(row.value);if(!groups.has(row.reviewer))groups.set(row.reviewer,new Map());groups.get(row.reviewer).set(d.stage+':'+d.id,d);}
+ for(const [reviewer,items]of groups)await syncOaDecisions(env.PRIVATE,reviewer,[...items.values()]);
+ const last=rows.results.at(-1);
+ if(last)await env.PRIVATE.put('open-access/decision-cursor.json',JSON.stringify({event:last.event_id,item:last.item_index}));
+ if(rows.results.length<100)await env.PRIVATE.put('open-access/decisions-ready.json',JSON.stringify({at:new Date().toISOString()}));
+}
+export default {async scheduled(controller,env){await reconcileOpenAccess(env);},async fetch(request,env){
  const url=new URL(request.url);let reviewer;
  if(!env.ACCESS_AUD)return new Response('Practice review sign-in has not been configured.',{status:503});
  try{const token=request.headers.get('Cf-Access-Jwt-Assertion');if(!token)throw Error();const identity=await verifyAccessJwt(token,env);reviewer=String(identity.email).toLowerCase();}catch{return new Response('Sign in through Cloudflare Access.',{status:401});}
  try{
   if(url.pathname==='/api/decisions')return await decisions(request,env,reviewer);
+  if(url.pathname==='/api/open-access'){
+   const id=url.searchParams.get('id');
+   const rows=await env.SCREENING.prepare('SELECT reviewer,value FROM practice_decisions WHERE record_id = ?').bind(id).all();
+   for(const row of rows.results){const d=JSON.parse(row.value);if(d.decision==='exclude')await syncOaDecisions(env.PRIVATE,row.reviewer,[d]);}
+   return serveOpenAccess(request,env.PRIVATE);
+  }
   if(!['GET','HEAD'].includes(request.method))return new Response('Method not allowed',{status:405});
   if(/^\/records(?:-\d{3})?\.json$/.test(url.pathname)){
    const obj=await env.PRIVATE.get('screening'+url.pathname);if(!obj)return new Response('Records unavailable',{status:404});

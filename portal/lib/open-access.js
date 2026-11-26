@@ -1,6 +1,6 @@
 // Private, automatically collected copies; never working or annotated source PDFs.
 export const OA = 'open-access/';
-export const validId = id => /^(?:C\d+|U[a-f0-9]{32}|DYS-[a-f0-9]{16})$/.test(id || '');
+export const validId = id => /^(?:C\d+|U[a-f0-9]{32}|(?:DYS|PLE)-[a-f0-9]{16})$/.test(id || '');
 export const pdfKey = id => `${OA}pdf/${id}.pdf`;
 const hash = async value => [...new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(value)))].map(x => x.toString(16).padStart(2,'0')).join('');
 export async function excluded(bucket, id) {
