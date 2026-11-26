@@ -485,7 +485,7 @@ direction_of_severity = higher_is_worse | lower_is_worse | nonmonotonic
                       | not_applicable
 target_kind       = impairment | therapy | region | prognosis | predictor
 method            = LSM | VLSM | RLSM | VBCM | VBM | MLPA | MVPA
-                  | fMRI_activation | fMRI_FC | rs_fMRI
+                  | fMRI_activation | fMRI_FC | rs_fMRI | PET | structural_MRI
                   | DTI | NODDI | tractography
                   | lesion_network_mapping | disconnectome
                   | EEG | MEG | TMS | tDCS
@@ -502,6 +502,13 @@ region_definition.kind = atlas | manual_ROI | peak_coord_sphere | tract
 ```
 
 ### Method-vocabulary notes
+
+- **`PET`**: positron emission tomography measurements, including activation
+  measures. Specify the tracer and task in the finding; PET is not fMRI.
+- **`structural_MRI`**: structural MRI measurements such as rated white-matter
+  disease or atrophy entered into an observational regression. Record the
+  measurement and analysis explicitly; this label does not imply voxel-based
+  morphometry, lesion-symptom mapping, or randomized treatment allocation.
 
 - **`narrative_review`** (v2.4): Use when the paper is a narrative review,
   systematic review (without formal meta-analytic pooling), or opinion

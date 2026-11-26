@@ -2776,15 +2776,45 @@
       "source_sha256": "71040a780f7e0415ef204455b0892d0a395a04da2966c2818b27151657018ec2",
       "paper": "Fridriksson2018JAMA",
       "candidate": "R003",
-      "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
-      "reason": "Source PDF page 5 reports one-sided futility tests with H0: muA - muS >= 1.5 (P=.94 at week 4, .90 at week 24, .91 completers-only). The draft instead states absence of a statistically significant between-group difference without preserving the tested futility hypothesis. Hold for interpretation correction against the source; original outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Corrected the interpretation of the prespecified futility hypothesis. The trial was not powered to establish superiority.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "71040a780f7e0415ef204455b0892d0a395a04da2966c2818b27151657018ec2",
+            "paper": "Fridriksson2018JAMA",
+            "candidate": "R003",
+            "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
+            "reason": "Source PDF page 5 reports one-sided futility tests with H0: muA - muS >= 1.5 (P=.94 at week 4, .90 at week 24, .91 completers-only). The draft instead states absence of a statistically significant between-group difference without preserving the tested futility hypothesis. Hold for interpretation correction against the source; original outputs are preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "a272b6f4043bb981c9fead96d44cc62a639eb4acc67bc9b90ce9df6ff7ed188d",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/therapies/adjunctive_a_tdcs_speech_therapy__Fridriksson2018JAMA__R004.md": {
       "source_sha256": "a6905ec3d100d978b6541111d1e340f4b34a9cf99c72fdb8c1c17efc3a16434c",
       "paper": "Fridriksson2018JAMA",
       "candidate": "R004",
-      "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
-      "reason": "Source PDF page 5 reports one-sided futility tests with H0: muA - muS >= 1.5 (P=.94 at week 4, .90 at week 24, .91 completers-only). The draft instead states absence of a statistically significant between-group difference without preserving the tested futility hypothesis. Hold for interpretation correction against the source; original outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Corrected the interpretation of the prespecified futility hypothesis. The trial was not powered to establish superiority.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "a6905ec3d100d978b6541111d1e340f4b34a9cf99c72fdb8c1c17efc3a16434c",
+            "paper": "Fridriksson2018JAMA",
+            "candidate": "R004",
+            "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
+            "reason": "Source PDF page 5 reports one-sided futility tests with H0: muA - muS >= 1.5 (P=.94 at week 4, .90 at week 24, .91 completers-only). The draft instead states absence of a statistically significant between-group difference without preserving the tested futility hypothesis. Hold for interpretation correction against the source; original outputs are preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "2b04daa13b40fefeac157a6df9c8835082a8041d51936084e93f3ec7b121a813",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/baseline_aphasia_severity__Fridriksson2018JAMA__R005.md": {
       "source_sha256": "6c7cf7986b6290281a2113e339588f7e87294481ec96e5d03f2ca2f978646353",
@@ -2795,8 +2825,23 @@
       "source_sha256": "f28476548ab38756886c1d0f087aa54e8650dfee20f32daec5618ff067b5d871",
       "paper": "Fridriksson2018JAMA",
       "candidate": "R006",
-      "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
-      "reason": "Source PDF page 5 reports one-sided futility tests with H0: muA - muS >= 1.5 (P=.94 at week 4, .90 at week 24, .91 completers-only). The draft instead states absence of a statistically significant between-group difference without preserving the tested futility hypothesis. Hold for interpretation correction against the source; original outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Corrected the interpretation of the prespecified futility hypothesis. The trial was not powered to establish superiority.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "f28476548ab38756886c1d0f087aa54e8650dfee20f32daec5618ff067b5d871",
+            "paper": "Fridriksson2018JAMA",
+            "candidate": "R006",
+            "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
+            "reason": "Source PDF page 5 reports one-sided futility tests with H0: muA - muS >= 1.5 (P=.94 at week 4, .90 at week 24, .91 completers-only). The draft instead states absence of a statistically significant between-group difference without preserving the tested futility hypothesis. Hold for interpretation correction against the source; original outputs are preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "c25f72d9a4a3c500e5d531699ca79ac379669e400415b756202c0390410c90cf",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/therapies/anodal_tdcs_safety__Fridriksson2018JAMA__R008.md": {
       "source_sha256": "caf798ce906f3058a74605fb1417cefa68aaf97b9387b8e7410bbe87bbdffd79",
@@ -4480,8 +4525,24 @@
       "source_sha256": "691457146badc7e2ad4df0edfce11ee8dee0bd4314591092eeefe121b0385acc",
       "paper": "Kristinsson2021",
       "candidate": "R009",
-      "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
-      "publication_disposition_reason": "Kristinsson2021 R009 generalizes the two nonsignificant comparisons against the FA model to all single-modality and lesion-volume models. The sentence continues across PDF pages 11-12 with \"Naming compared to the FA modality\"; Table 7 shows Fluency and Naming comparisons against CBF, fMRI, lesion-load and lesion volume are significant, while only FA comparisons are nonsignificant (p=.1441 and .2949). Quarantine the publication copy pending correction and review; preserve the original model output."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Kristinsson2021 R009 generalizes the two nonsignificant comparisons against the FA model to all single-modality and lesion-volume models. The sentence continues across PDF pages 11-12 with \"Naming compared to the FA modality\"; Table 7 shows Fluency and Naming comparisons against CBF, fMRI, lesion-load and lesion volume are significant, while only FA comparisons are nonsignificant (p=.1441 and .2949). Quarantine the publication copy pending correction and review; preserve the original model output.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "691457146badc7e2ad4df0edfce11ee8dee0bd4314591092eeefe121b0385acc",
+            "paper": "Kristinsson2021",
+            "candidate": "R009",
+            "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
+            "publication_disposition_reason": "Kristinsson2021 R009 generalizes the two nonsignificant comparisons against the FA model to all single-modality and lesion-volume models. The sentence continues across PDF pages 11-12 with \"Naming compared to the FA modality\"; Table 7 shows Fluency and Naming comparisons against CBF, fMRI, lesion-load and lesion volume are significant, while only FA comparisons are nonsignificant (p=.1441 and .2949). Quarantine the publication copy pending correction and review; preserve the original model output."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "67e280de458ba3c4858c641803593835f7cec45c5e73aa46cfaef8970ab2c8e2",
+      "reason": "Restricted the two nonsignificant comparisons to FA-only models, rather than all unimodal and lesion-volume models.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/fmri_svr_wab_aq__Kristinsson2021__R010.md": {
       "source_sha256": "533270decce1f8fab217e1f91c436ca6f1688289c6d22482b8ed4a7cb3da044f",
@@ -4857,8 +4918,24 @@
       "source_sha256": "1a72e3affb7cdf28ea34ec0f54a98b80f23fadb0cab90cd4eab308f23573d003",
       "paper": "Leonard2008",
       "candidate": "R003",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Publication scope/design check: the draft labels PCA generalisation treatment evidence as method=clinical_RCT, but Leonard et al. (2008), PDF page 2, explicitly describes a single-subject multiple-baseline across-behaviours design with 10 participants; PDF pages 12-13 and 18 report within-participant pre/post generalisation, not a randomized controlled trial. Hold this publication copy pending design reconciliation; preserve the original source-run output. No human scientific approval conferred."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Publication scope/design check: the draft labels PCA generalisation treatment evidence as method=clinical_RCT, but Leonard et al. (2008), PDF page 2, explicitly describes a single-subject multiple-baseline across-behaviours design with 10 participants; PDF pages 12-13 and 18 report within-participant pre/post generalisation, not a randomized controlled trial. Hold this publication copy pending design reconciliation; preserve the original source-run output. No human scientific approval conferred.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "1a72e3affb7cdf28ea34ec0f54a98b80f23fadb0cab90cd4eab308f23573d003",
+            "paper": "Leonard2008",
+            "candidate": "R003",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Publication scope/design check: the draft labels PCA generalisation treatment evidence as method=clinical_RCT, but Leonard et al. (2008), PDF page 2, explicitly describes a single-subject multiple-baseline across-behaviours design with 10 participants; PDF pages 12-13 and 18 report within-participant pre/post generalisation, not a randomized controlled trial. Hold this publication copy pending design reconciliation; preserve the original source-run output. No human scientific approval conferred."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "1938ebb02ef7bcb4b44ea555249995fcd82aded827d858dfda5f75c1edb2a11a",
+      "reason": "Single-subject multiple-baseline across-behaviours treatment design; not randomized allocation. Ten participants overall; generalisation concerns a subset showing treatment response.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/palpa_53_word_repetition__Leonard2008__R006.md": {
       "source_sha256": "48365d2fe2e83cde175fdb03eed64a983759e9eb22e912b882dd30a058284538",
@@ -5114,36 +5191,116 @@
       "source_sha256": "bdaa357c9d89366a5ca14d3f126ce6ea3f8447f2f67b2f53010922312e7debe6",
       "paper": "Maher2006",
       "candidate": "R004",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "bdaa357c9d89366a5ca14d3f126ce6ea3f8447f2f67b2f53010922312e7debe6",
+            "paper": "Maher2006",
+            "candidate": "R004",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "fa81750e103edbe9f7f7f02b95f43a758b1523508621022dfb39bc2279322c5f",
+      "reason": "Nonrandomized repeated-measures pilot. CILT: 5 enrolled, 4 completed; PACE: 6 enrolled, 5 completed. Sample field now describes the relevant completers, with follow-up availability retained as a limitation.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/therapies/cilt_bnt__Maher2006__R005.md": {
       "source_sha256": "a9343eb57e4c8b304c34bda3e3bf18f3327c073a1a1572f66b3ae6f8083fa973",
       "paper": "Maher2006",
       "candidate": "R005",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "a9343eb57e4c8b304c34bda3e3bf18f3327c073a1a1572f66b3ae6f8083fa973",
+            "paper": "Maher2006",
+            "candidate": "R005",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "2431fc82d4b971d2b54557e76a69ac6f07f62972a3aacaec76224d5bb875437f",
+      "reason": "Nonrandomized repeated-measures pilot. CILT: 5 enrolled, 4 completed; PACE: 6 enrolled, 5 completed. Sample field now describes the relevant completers, with follow-up availability retained as a limitation.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/therapies/cilt_ant__Maher2006__R006.md": {
       "source_sha256": "c36889fb7b988cacb7a0a8e4d72a5178fca7a540224ae7bdfddf10ac94157aaa",
       "paper": "Maher2006",
       "candidate": "R006",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "c36889fb7b988cacb7a0a8e4d72a5178fca7a540224ae7bdfddf10ac94157aaa",
+            "paper": "Maher2006",
+            "candidate": "R006",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "e54f02aa9e97a9f57a959ea24a905ba3e1afdaaa1b4f898ea1b6076825187884",
+      "reason": "Nonrandomized repeated-measures pilot. CILT: 5 enrolled, 4 completed; PACE: 6 enrolled, 5 completed. Sample field now describes the relevant completers, with follow-up availability retained as a limitation.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/therapies/pace_therapy__Maher2006__R007.md": {
       "source_sha256": "4310c3baf3531984c4e804a6cd20ce642c9b8be3e995519b024a7da9268a664d",
       "paper": "Maher2006",
       "candidate": "R007",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "4310c3baf3531984c4e804a6cd20ce642c9b8be3e995519b024a7da9268a664d",
+            "paper": "Maher2006",
+            "candidate": "R007",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "176f6ae9e169b92c77f4d6808e08decb17aff548ff27c731a38b02792684c141",
+      "reason": "Nonrandomized repeated-measures pilot. CILT: 5 enrolled, 4 completed; PACE: 6 enrolled, 5 completed. Sample field now describes the relevant completers, with follow-up availability retained as a limitation.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/therapies/pace_therapy__Maher2006__R008.md": {
       "source_sha256": "3b99a67cb8d3ef7048cbd4cd89992f8391045336870b2d5188ea5e65584dad33",
       "paper": "Maher2006",
       "candidate": "R008",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "3b99a67cb8d3ef7048cbd4cd89992f8391045336870b2d5188ea5e65584dad33",
+            "paper": "Maher2006",
+            "candidate": "R008",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "d37bce6837fc95322aef628ee12aa88e5ad815c7897990518adcaa888dbd8b68",
+      "reason": "Nonrandomized repeated-measures pilot. CILT: 5 enrolled, 4 completed; PACE: 6 enrolled, 5 completed. Sample field now describes the relevant completers, with follow-up availability retained as a limitation.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/therapies/cilt_vs_pace_narrative__Maher2006__R009.md": {
       "source_sha256": "0e925b993a9251cfc325ad049fc0833316f7fb0f363ead4f7b75724b09bd1f45",
@@ -5159,8 +5316,24 @@
       "source_sha256": "4ae9ed75a5fa994b9261540f2a4683578bce5ca700d01a224017563a4ed57e12",
       "paper": "Maher2006",
       "candidate": "R011",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "4ae9ed75a5fa994b9261540f2a4683578bce5ca700d01a224017563a4ed57e12",
+            "paper": "Maher2006",
+            "candidate": "R011",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Maher2006 PDF p3 explicitly reports nonrandom group assignment in a repeated-measures pilot (4 CILT and 5 PACE completers after initial enrollment of 5 and 6); this draft labels the study clinical_RCT. Publication copy withheld pending design and sample review; original outputs preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "e5b57a0d02140e52ef4f45133545d5a5096f0d6c724b53cd7b4b31940cbf8d38",
+      "reason": "Nonrandomized repeated-measures pilot. CILT: 5 enrolled, 4 completed; PACE: 6 enrolled, 5 completed. Sample field now describes the relevant completers, with follow-up availability retained as a limitation.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/arcuate_fasciculus_lesion_load__Marchina2011__R001.md": {
       "source_sha256": "a7fe2eca27ac102024b7cbe2468b93bc7f68bc6e637e4936b19cc376f8209e3e",
@@ -5251,8 +5424,24 @@
       "source_sha256": "91a8f523fe5d3f3bd91b91f9ea0b66cb265bb0908b5a54652536f0900e10cb2a",
       "paper": "Marchina2011",
       "candidate": "R018",
-      "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
-      "publication_disposition_reason": "Marchina2011 PDF p3 reports AF significance within a four-variable regression, not an AF-only model. The claim adds unsupported wording \"when used alone in the model\". Publication copy withheld pending review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Marchina2011 PDF p3 reports AF significance within a four-variable regression, not an AF-only model. The claim adds unsupported wording \"when used alone in the model\". Publication copy withheld pending review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "91a8f523fe5d3f3bd91b91f9ea0b66cb265bb0908b5a54652536f0900e10cb2a",
+            "paper": "Marchina2011",
+            "candidate": "R018",
+            "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
+            "publication_disposition_reason": "Marchina2011 PDF p3 reports AF significance within a four-variable regression, not an AF-only model. The claim adds unsupported wording \"when used alone in the model\". Publication copy withheld pending review; original outputs preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "25904812d36feadbcd8530787137242839409d1f077d5e0747cfca6fc805e8c7",
+      "reason": "Removed unsupported AF-only model wording; the AF coefficient is within the four-predictor model.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/af_lesion_load_speech_efficiency__Marchina2011__R019.md": {
       "source_sha256": "3e6bbe90612025c6b27a7953b4638a64e0c0abddb5acf3c1fe9e58841f48ce72",
@@ -5995,8 +6184,24 @@
       "source_sha256": "bb2220bd810ed3d235b9059fc481cd77d2d09690af1a76b04b9c821ce1a0b113",
       "paper": "Oeckel2021",
       "candidate": "R009",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Oeckel 2021 describes a prospective observational stroke cohort and multivariable logistic regression (PDF pp3,5,7), not a randomized clinical trial. This publication copy labels the method clinical_RCT. Withheld pending source-design review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Oeckel 2021 describes a prospective observational stroke cohort and multivariable logistic regression (PDF pp3,5,7), not a randomized clinical trial. This publication copy labels the method clinical_RCT. Withheld pending source-design review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "bb2220bd810ed3d235b9059fc481cd77d2d09690af1a76b04b9c821ce1a0b113",
+            "paper": "Oeckel2021",
+            "candidate": "R009",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Oeckel 2021 describes a prospective observational stroke cohort and multivariable logistic regression (PDF pp3,5,7), not a randomized clinical trial. This publication copy labels the method clinical_RCT. Withheld pending source-design review; original outputs preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "c41f0ad26373f98e037f66547f174d62e453aa81d578f396b7832063316812ba",
+      "reason": "Prospective observational cohort; MRI lesion-volume coefficient in multivariable logistic regression, not a clinical RCT.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/impairments/early_language_improvement__OsaGarcia2020__R001.md": {
       "source_sha256": "0cd959b267b97f7fe8b65f077c7dfded1ad4d018072895c13157cdba297a36e1",
@@ -6032,8 +6237,24 @@
       "source_sha256": "89864aa296cd4654c9cda0a60d7667f8fe72522b49cc41ed8de7462fd2e209ed",
       "paper": "OsaGarcia2020",
       "candidate": "R009",
-      "publication_disposition": "withdrawn_pending_source_statistics_review",
-      "publication_disposition_reason": "The claim says adding lesion size significantly increased explained variance after age and initial severity. PDF p5 reports the overall model F test and R-squared increase, not a significant incremental-change test; Table 3 (p7) gives a nonsignificant lesion-size coefficient in the full model (p=.240). Withheld pending verification of the incremental-significance claim; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "The claim says adding lesion size significantly increased explained variance after age and initial severity. PDF p5 reports the overall model F test and R-squared increase, not a significant incremental-change test; Table 3 (p7) gives a nonsignificant lesion-size coefficient in the full model (p=.240). Withheld pending verification of the incremental-significance claim; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "89864aa296cd4654c9cda0a60d7667f8fe72522b49cc41ed8de7462fd2e209ed",
+            "paper": "OsaGarcia2020",
+            "candidate": "R009",
+            "publication_disposition": "withdrawn_pending_source_statistics_review",
+            "publication_disposition_reason": "The claim says adding lesion size significantly increased explained variance after age and initial severity. PDF p5 reports the overall model F test and R-squared increase, not a significant incremental-change test; Table 3 (p7) gives a nonsignificant lesion-size coefficient in the full model (p=.240). Withheld pending verification of the incremental-significance claim; original outputs preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "25aba2a19cabe1290ff3bda5a0ffe29cc1c02523ccfe5644f31b1a40f3493610",
+      "reason": "Distinguished model-level significance from incremental significance and the lesion-size coefficient.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/right_af_fa__OsaGarcia2020__R010.md": {
       "source_sha256": "2ae6b26467c8d9862fd44921d8332ec6ca0dd342e77672a96abb96806490b26e",
@@ -6074,15 +6295,47 @@
       "source_sha256": "44f6342f983f9d06534c3837c1b4e902bd1b3682f3481c0cb690422777ac89a6",
       "paper": "OsaGarcia2024",
       "candidate": "R009",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Osa Garcia 2024 explicitly follows observational cohort standards (PDF p2); r-tPA receipt is an observed characteristic in 13 of 24 participants (pp3-5), not randomized treatment allocation. This publication copy labels the method clinical_RCT. Withheld pending source-design review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Osa Garcia 2024 explicitly follows observational cohort standards (PDF p2); r-tPA receipt is an observed characteristic in 13 of 24 participants (pp3-5), not randomized treatment allocation. This publication copy labels the method clinical_RCT. Withheld pending source-design review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "44f6342f983f9d06534c3837c1b4e902bd1b3682f3481c0cb690422777ac89a6",
+            "paper": "OsaGarcia2024",
+            "candidate": "R009",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Osa Garcia 2024 explicitly follows observational cohort standards (PDF p2); r-tPA receipt is an observed characteristic in 13 of 24 participants (pp3-5), not randomized treatment allocation. This publication copy labels the method clinical_RCT. Withheld pending source-design review; original outputs preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "58f60c69acd444cf3408c083ce0dd383aa5f85d9de0cdb851bf90395dde8e9f0",
+      "reason": "Observed r-tPA receipt in a longitudinal cohort; treatment allocation was not randomized. Group differences do not establish an r-tPA treatment effect.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/therapies/r_tpa__OsaGarcia2024__R010.md": {
       "source_sha256": "55c1895661d35c89caf34f4186635a6a57bfcdf0e552e9e89ecad836b6353f47",
       "paper": "OsaGarcia2024",
       "candidate": "R010",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Osa Garcia 2024 explicitly follows observational cohort standards (PDF p2); r-tPA receipt is an observed characteristic in 13 of 24 participants (pp3-5), not randomized treatment allocation. This publication copy labels the method clinical_RCT. Withheld pending source-design review; original outputs preserved."
+      "publication_disposition": "withdrawn_duplicate_after_source_reconciliation",
+      "publication_disposition_reason": "Osa Garcia 2024 explicitly follows observational cohort standards (PDF p2); r-tPA receipt is an observed characteristic in 13 of 24 participants (pp3-5), not randomized treatment allocation. This publication copy labels the method clinical_RCT. Withheld pending source-design review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:26:17.458683+00:00",
+          "previous_record": {
+            "source_sha256": "55c1895661d35c89caf34f4186635a6a57bfcdf0e552e9e89ecad836b6353f47",
+            "paper": "OsaGarcia2024",
+            "candidate": "R010",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Osa Garcia 2024 explicitly follows observational cohort standards (PDF p2); r-tPA receipt is an observed characteristic in 13 of 24 participants (pp3-5), not randomized treatment allocation. This publication copy labels the method clinical_RCT. Withheld pending source-design review; original outputs preserved."
+          },
+          "reason": "Same observed r-tPA group comparison; corrected R009 retains the observational interpretation."
+        }
+      ],
+      "reason": "Same observed r-tPA group comparison; corrected R009 retains the observational interpretation.",
+      "duplicate_of_candidate": "R009",
+      "repair_audit": "logs/publication/failure-triage-2026-11-26.json"
     },
     "drafts/predictors/l_ifof_ad__OsaGarcia2024__R011.md": {
       "source_sha256": "f8854985759784d8c80cc750e7a80df562231c3f4349d1e0720809eb3d11d57e",
@@ -6311,7 +6564,7 @@
       "paper": "Pendlebury2009",
       "candidate": "R007",
       "publication_disposition": "withdrawn_pending_source_statistics_review",
-      "publication_disposition_reason": "Publication scope check: source narrative p8 says silent infarcts were no longer significant in sensitivity analysis, but Table 5 p9 reports overall pooled silent-stroke OR 1.8 (95% CI 0.9\u20133.5), p=0.08. Claim of significant overall silent-infarct association requires reconciliation. Withheld pending source statistics review; original outputs preserved."
+      "publication_disposition_reason": "Publication scope check: source narrative p8 says silent infarcts were no longer significant in sensitivity analysis, but Table 5 p9 reports overall pooled silent-stroke OR 1.8 (95% CI 0.9–3.5), p=0.08. Claim of significant overall silent-infarct association requires reconciliation. Withheld pending source statistics review; original outputs preserved."
     },
     "drafts/predictors/post_stroke_dementia_prevalence_variance_model__Pendlebury2009__R009.md": {
       "source_sha256": "72a2a9bc0c32184224a7bfa19503beffc11b255ba744d10285712753d995749b",
@@ -6407,8 +6660,24 @@
       "source_sha256": "e542690982b5ff46a6764513cfbec2bb8045040e4a9d21f9d441bd55480e4ca5",
       "paper": "Pillay2017",
       "candidate": "R008",
-      "publication_disposition": "withdrawn_pending_source_statistics_review",
-      "publication_disposition_reason": "Publication scope check: claim says overlapping ADN and ASC lesion associations survived control for both picture naming and lesion volume. Source PDF p3 states the ASC cluster did not survive cluster correction with both covariates; the surviving posterior MTG/lateral occipital cluster used PN alone. Withheld pending source statistics review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Publication scope check: claim says overlapping ADN and ASC lesion associations survived control for both picture naming and lesion volume. Source PDF p3 states the ASC cluster did not survive cluster correction with both covariates; the surviving posterior MTG/lateral occipital cluster used PN alone. Withheld pending source statistics review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "e542690982b5ff46a6764513cfbec2bb8045040e4a9d21f9d441bd55480e4ca5",
+            "paper": "Pillay2017",
+            "candidate": "R008",
+            "publication_disposition": "withdrawn_pending_source_statistics_review",
+            "publication_disposition_reason": "Publication scope check: claim says overlapping ADN and ASC lesion associations survived control for both picture naming and lesion volume. Source PDF p3 states the ASC cluster did not survive cluster correction with both covariates; the surviving posterior MTG/lateral occipital cluster used PN alone. Withheld pending source statistics review; original outputs preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "20335845243737e9b2fdcdc5a3548a42d84f3748a78489ac2d88ecf1267a32db",
+      "reason": "Separated the covariate sets and cluster-correction outcome for ADN and ASC.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/asc_performance__Pillay2017__R009.md": {
       "source_sha256": "72643f84fd87edaeb717a072e92266215d7b29c2418e61948dc06f6c26c237d8",
@@ -6537,7 +6806,7 @@
       "paper": "Radanovic2017",
       "candidate": "R012",
       "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Publication scope check: the language-disturbance/neglect association on PDF p11 is explicitly attributed to Perani et al. (1987) in the narrative discussion, not to the review authors\u2019 pooled lesion-site analysis. The draft labels this association as a meta-analysis result under Radanovic2017. Withheld pending source-design/provenance review; original outputs preserved."
+      "publication_disposition_reason": "Publication scope check: the language-disturbance/neglect association on PDF p11 is explicitly attributed to Perani et al. (1987) in the narrative discussion, not to the review authors’ pooled lesion-site analysis. The draft labels this association as a meta-analysis result under Radanovic2017. Withheld pending source-design/provenance review; original outputs preserved."
     },
     "drafts/regions/behavioural_impairment_cluster__Ramsey2017__R001.md": {
       "source_sha256": "9dbce25c3bcd3415b24797d404394dfc84627d8d50657935b77606ad51826c4a",
@@ -6882,8 +7151,24 @@
       "source_sha256": "8c99a171f9a441a58bca940285cc34a417147907be72252f1a2c24b6c75c15ec",
       "paper": "Robson2014",
       "candidate": "R009",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source contrast mismatch: Robson2014 PDF pp. 6-7 describes left inferior angular, left inferior frontal and bilateral medial frontal peaks within the Wernicke aphasia group for words versus dual baseline (Table 5, p. 8), not significantly greater activation than controls. The separate group contrast is described on p. 7 and Table 7 (p. 9). Withheld pending human source review; original source output preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source contrast mismatch: Robson2014 PDF pp. 6-7 describes left inferior angular, left inferior frontal and bilateral medial frontal peaks within the Wernicke aphasia group for words versus dual baseline (Table 5, p. 8), not significantly greater activation than controls. The separate group contrast is described on p. 7 and Table 7 (p. 9). Withheld pending human source review; original source output preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "8c99a171f9a441a58bca940285cc34a417147907be72252f1a2c24b6c75c15ec",
+            "paper": "Robson2014",
+            "candidate": "R009",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source contrast mismatch: Robson2014 PDF pp. 6-7 describes left inferior angular, left inferior frontal and bilateral medial frontal peaks within the Wernicke aphasia group for words versus dual baseline (Table 5, p. 8), not significantly greater activation than controls. The separate group contrast is described on p. 7 and Table 7 (p. 9). Withheld pending human source review; original source output preserved."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "c11585a261a8d3117b33c866271a44fa6f41f8a91a9fe3d70a8ab5224ed0b0a7",
+      "reason": "Corrected within-patient word-versus-dual-baseline contrast; it is not a patient-versus-control effect.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/wernickes_aphasia_ventral_middle_temporal_activation__Robson2014__R010.md": {
       "source_sha256": "5e80505aadc16004e7d3430ef03b616b2f77dd8645c73a271f361255ddc2b502",
@@ -7408,7 +7693,7 @@
       "paper": "Schlaug2010",
       "candidate": "R001",
       "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "PDF pp. 2\u20133 explicitly report a previous two-patient MIT/SRT study, reference 24 (Schlaug et al. 2008, identified on p. 8). This draft treats the recounted study as a case-study finding under Schlaug2010, duplicating the primary-paper evidence. Reconcile secondary-source provenance before publication. Original source-check output preserved."
+      "reason": "PDF pp. 2–3 explicitly report a previous two-patient MIT/SRT study, reference 24 (Schlaug et al. 2008, identified on p. 8). This draft treats the recounted study as a case-study finding under Schlaug2010, duplicating the primary-paper evidence. Reconcile secondary-source provenance before publication. Original source-check output preserved."
     },
     "drafts/therapies/melodic_intonation_therapy__Schlaug2010__R003.md": {
       "source_sha256": "54010525cb7b342d8e41c4fd4400ed343e5033710627e669c1d98d84fcd76cde",
@@ -7861,8 +8146,24 @@
       "source_sha256": "95b022341cf41472065049d5f18f0191dd4488472f6a68327e275d7c6f7aed44",
       "paper": "Sihvonen2023",
       "candidate": "R007",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF p. 1 identifies a longitudinal observational study; p. 4 describes a comparison of eight word-retrieval-treatment participants with usual care to check a potential confound. The draft labels method=clinical_RCT, although no randomized trial is established by this source. Reconcile observational comparison versus randomized-trial provenance before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF p. 1 identifies a longitudinal observational study; p. 4 describes a comparison of eight word-retrieval-treatment participants with usual care to check a potential confound. The draft labels method=clinical_RCT, although no randomized trial is established by this source. Reconcile observational comparison versus randomized-trial provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "95b022341cf41472065049d5f18f0191dd4488472f6a68327e275d7c6f7aed44",
+            "paper": "Sihvonen2023",
+            "candidate": "R007",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF p. 1 identifies a longitudinal observational study; p. 4 describes a comparison of eight word-retrieval-treatment participants with usual care to check a potential confound. The draft labels method=clinical_RCT, although no randomized trial is established by this source. Reconcile observational comparison versus randomized-trial provenance before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "5fbbcebe833aa69baef305a14ef52b7f9c20f1344f01518339ad82093b94e8e4",
+      "reason": "Observational comparison of treatment exposure as a potential confound; not an RCT.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/lesion_size__SkipperKallal2017__R001.md": {
       "source_sha256": "7672c1206b37bb03f34ddf57af90484479f9f5222762f775cadbae10f72fe882",
@@ -8014,7 +8315,7 @@
       "paper": "Stahl2011",
       "candidate": "R001",
       "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp. 1, 3\u20136 and 8 describe experimental singing/rhythmic-speech task conditions and immediate articulatory performance in 17 participants, rather than longitudinal therapy efficacy. The draft is categorized as a therapy with relationship=treatment_response. Reconcile immediate task facilitation versus treatment outcome before publication."
+      "publication_disposition_reason": "PDF pp. 1, 3–6 and 8 describe experimental singing/rhythmic-speech task conditions and immediate articulatory performance in 17 participants, rather than longitudinal therapy efficacy. The draft is categorized as a therapy with relationship=treatment_response. Reconcile immediate task facilitation versus treatment outcome before publication."
     },
     "drafts/predictors/fundamental_frequency_variability__Stahl2011__R002.md": {
       "source_sha256": "52b28d05fa2aa06c9428ba8696070903a3f0fb177f639131983e51c19c120f31",
@@ -8055,15 +8356,47 @@
       "source_sha256": "d617252fc94e76eeb03285b6b9b078c37c3a2e95729a552c422ac0c35b975137",
       "paper": "Stahl2013",
       "candidate": "R001",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "d617252fc94e76eeb03285b6b9b078c37c3a2e95729a552c422ac0c35b975137",
+            "paper": "Stahl2013",
+            "candidate": "R001",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "003a2c908d8302ba81853aa934d4de77336ce836524b3e12de0e695e8bae2f6f",
+      "reason": "Patients were systematically assigned to three comparable groups (5 each), not randomized. Preserve the observed behavioural treatment comparison without a randomized-trial label.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/therapies/standard_speech_therapy__Stahl2013__R002.md": {
       "source_sha256": "6ffca5133311e33abde3e5b9aa66813b50d96189a36d2a1f11b10d44ac36012d",
       "paper": "Stahl2013",
       "candidate": "R002",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication."
+      "publication_disposition": "withdrawn_duplicate_after_source_reconciliation",
+      "publication_disposition_reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "6ffca5133311e33abde3e5b9aa66813b50d96189a36d2a1f11b10d44ac36012d",
+            "paper": "Stahl2013",
+            "candidate": "R002",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "reason": "The same formulaic-speech between-group comparison is already retained in corrected R001.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json",
+      "duplicate_of_candidate": "R001"
     },
     "drafts/therapies/standard_speech_therapy__Stahl2013__R003.md": {
       "source_sha256": "642e7c1a9e3e23e52854219e9c11d6252ed43a6ebcb79939bfc1491013433935",
@@ -8074,15 +8407,47 @@
       "source_sha256": "5538a684a3c7758f477de8b041ca57d7911198d5fd0d21d208e558a58e1eba2e",
       "paper": "Stahl2013",
       "candidate": "R004",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication."
+      "publication_disposition": "withdrawn_duplicate_after_source_reconciliation",
+      "publication_disposition_reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "5538a684a3c7758f477de8b041ca57d7911198d5fd0d21d208e558a58e1eba2e",
+            "paper": "Stahl2013",
+            "candidate": "R004",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp. 5-6 describes systematic assignment based on diagnosis, apraxia severity, age and gender to make groups comparable, rather than random assignment. The draft method=clinical_RCT conflicts with the source design. Reconcile allocation provenance before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "reason": "The reverse wording duplicates the published non-formulaic speech comparison in R003.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json",
+      "duplicate_of_candidate": "R003"
     },
     "drafts/therapies/singing_therapy_prosody__Stahl2013__R006.md": {
       "source_sha256": "4015362633f9d5442ed2a93ad7aba8b1be4a51d87605e4c9b48b11db97ace938",
       "paper": "Stahl2013",
       "candidate": "R006",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp. 8-9 restricts both post-hoc voice/prosody analyses to the singing and rhythmic therapy groups (five participants each; n=10), but this record assigns sample.n=15 from the whole three-group study. Reconcile the analysed subgroup versus overall cohort before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp. 8-9 restricts both post-hoc voice/prosody analyses to the singing and rhythmic therapy groups (five participants each; n=10), but this record assigns sample.n=15 from the whole three-group study. Reconcile the analysed subgroup versus overall cohort before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "4015362633f9d5442ed2a93ad7aba8b1be4a51d87605e4c9b48b11db97ace938",
+            "paper": "Stahl2013",
+            "candidate": "R006",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp. 8-9 restricts both post-hoc voice/prosody analyses to the singing and rhythmic therapy groups (five participants each; n=10), but this record assigns sample.n=15 from the whole three-group study. Reconcile the analysed subgroup versus overall cohort before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "56317e34fe44d7aa60e9b06b60a4d515d9f6bb2b4fc37463e6df79ca86eb552e",
+      "reason": "The prosody comparison includes only singing and rhythmic therapy participants, five per group.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/impairments/vocal_frequency_variability__Stahl2013__R007.md": {
       "source_sha256": "251299c9185e2af50ccaba91b1f980d3079a360d45d02a1f6d6f62ed02b982cb",
@@ -8238,15 +8603,47 @@
       "source_sha256": "eb901a9912f1b983bcfa95b41a7bf12bfbe47a26ad5af1f88556e4c61e485ef8",
       "paper": "Thiel2013",
       "candidate": "R003",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp. 1-3 measures activation volume index change using O-15-water PET during verb generation. The draft method=behavioral_only misidentifies the imaging-derived predictor. Reconcile method provenance before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp. 1-3 measures activation volume index change using O-15-water PET during verb generation. The draft method=behavioral_only misidentifies the imaging-derived predictor. Reconcile method provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "eb901a9912f1b983bcfa95b41a7bf12bfbe47a26ad5af1f88556e4c61e485ef8",
+            "paper": "Thiel2013",
+            "candidate": "R003",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp. 1-3 measures activation volume index change using O-15-water PET during verb generation. The draft method=behavioral_only misidentifies the imaging-derived predictor. Reconcile method provenance before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "65356ca852b8b8b4aa8048ec9ee476296cc6f4be3af86e9da7abc8d697d9e5fa",
+      "reason": "Activation volume index was measured using O-15-water PET during verb generation; retained randomized trial cohort provenance but described this association as correlational.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/activation_volume_index_change__Thiel2013__R004.md": {
       "source_sha256": "d949b5df7d2f62fca9f3196c30c456bbbee336f42d1a1ce23009189b5470fae8",
       "paper": "Thiel2013",
       "candidate": "R004",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp. 1-3 measures activation volume index change using O-15-water PET, not fMRI. The draft method=fMRI_activation conflicts with the source modality. Reconcile method provenance before publication."
+      "publication_disposition": "withdrawn_duplicate_after_source_reconciliation",
+      "publication_disposition_reason": "PDF pp. 1-3 measures activation volume index change using O-15-water PET, not fMRI. The draft method=fMRI_activation conflicts with the source modality. Reconcile method provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:26:17.458683+00:00",
+          "previous_record": {
+            "source_sha256": "d949b5df7d2f62fca9f3196c30c456bbbee336f42d1a1ce23009189b5470fae8",
+            "paper": "Thiel2013",
+            "candidate": "R004",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp. 1-3 measures activation volume index change using O-15-water PET, not fMRI. The draft method=fMRI_activation conflicts with the source modality. Reconcile method provenance before publication."
+          },
+          "reason": "Same PET activation-volume-index/change-in-language association."
+        }
+      ],
+      "reason": "Same PET activation-volume-index/change-in-language association.",
+      "duplicate_of_candidate": "R003",
+      "repair_audit": "logs/publication/failure-triage-2026-11-26.json"
     },
     "drafts/therapies/inhibitory_1hz_rtms_right_pifg_slt__Thiel2013__R005.md": {
       "source_sha256": "187e6e674fbef96cbad69d6faa06a49c135b8d2516d991836cf1bb833d4b35fe",
@@ -8257,8 +8654,24 @@
       "source_sha256": "e6427dcc43022eb618ea2b0d4bf07fa39582da7430ae5596d0bbd7924a420528",
       "paper": "Thompson2003",
       "candidate": "R003",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp. 8-9 reports lack of object-relative generalization during object-cleft training for Participants 2 and 4 (n=2); Participants 1 and 3 received complex object-relative training first. The draft assigns the whole-study sample.n=4 to this subgroup claim. Reconcile analysed subgroup versus overall cohort before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp. 8-9 reports lack of object-relative generalization during object-cleft training for Participants 2 and 4 (n=2); Participants 1 and 3 received complex object-relative training first. The draft assigns the whole-study sample.n=4 to this subgroup claim. Reconcile analysed subgroup versus overall cohort before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "e6427dcc43022eb618ea2b0d4bf07fa39582da7430ae5596d0bbd7924a420528",
+            "paper": "Thompson2003",
+            "candidate": "R003",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp. 8-9 reports lack of object-relative generalization during object-cleft training for Participants 2 and 4 (n=2); Participants 1 and 3 received complex object-relative training first. The draft assigns the whole-study sample.n=4 to this subgroup claim. Reconcile analysed subgroup versus overall cohort before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "92684fec247d3e83bb59f7eb64ce1ac54bd502b90d2646a897dd9fbd8643dd91",
+      "reason": "Object-cleft-first training finding is restricted to Participants 2 and 4.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/therapies/complexity_training_order__Thompson2003__R008.md": {
       "source_sha256": "0b4395c852e20f6518d53ffdc140442b6abe27f0ad26ed34d5e536e6a5cbd064",
@@ -8269,8 +8682,24 @@
       "source_sha256": "8eef481ed4c9b3ab585e426982f1d34aa563399d07ddf598713822746e20a6a6",
       "paper": "Thurston2026",
       "candidate": "R001",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF p. 2 explicitly excludes samples with aphasia or other communication impairments, and p. 6 warns that results may not generalize to aphasia. This draft population omits that material exclusion. Reconcile population scope before publication; R002/R003 retain the exclusion."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF p. 2 explicitly excludes samples with aphasia or other communication impairments, and p. 6 warns that results may not generalize to aphasia. This draft population omits that material exclusion. Reconcile population scope before publication; R002/R003 retain the exclusion.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "8eef481ed4c9b3ab585e426982f1d34aa563399d07ddf598713822746e20a6a6",
+            "paper": "Thurston2026",
+            "candidate": "R001",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF p. 2 explicitly excludes samples with aphasia or other communication impairments, and p. 6 warns that results may not generalize to aphasia. This draft population omits that material exclusion. Reconcile population scope before publication; R002/R003 retain the exclusion."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "eda220430d41e38ca584bdf63a519a06adff76b745d0be285f7678962c683827",
+      "reason": "Restored the material exclusion of aphasia and communication impairments; this result is not directly generalizable to aphasia.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/time_since_stroke__Thurston2026__R002.md": {
       "source_sha256": "6f42afc957f4e7b5023451353291507a79ecb3564e3280bcf834c16574015ef7",
@@ -8396,8 +8825,24 @@
       "source_sha256": "859f3d95987a5dcb71b01406ccd8a3eb3e48f47102bf71d75741ce17584f97fe",
       "paper": "Thye2021",
       "candidate": "R009",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp. 3 and 5 describes mass-univariate VLSM and multivariate SCCAN; this record notes SCCAN but labels method=RLSM (region-based lesion-symptom mapping). Reconcile analysis-method provenance before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp. 3 and 5 describes mass-univariate VLSM and multivariate SCCAN; this record notes SCCAN but labels method=RLSM (region-based lesion-symptom mapping). Reconcile analysis-method provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "859f3d95987a5dcb71b01406ccd8a3eb3e48f47102bf71d75741ce17584f97fe",
+            "paper": "Thye2021",
+            "candidate": "R009",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp. 3 and 5 describes mass-univariate VLSM and multivariate SCCAN; this record notes SCCAN but labels method=RLSM (region-based lesion-symptom mapping). Reconcile analysis-method provenance before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "100c99d0c2531318d8f67b55f1880f1e54e8882da0c820e161df4034aa47cc93",
+      "reason": "Multivariate SCCAN lesion-symptom analysis, not region-based LSM.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/lh_language_motor_network_control__Turkeltaub2011__R001.md": {
       "source_sha256": "69fad834552938af177e5f0760633fc76a6c2d57f3ba332cbf74587ead414b74",
@@ -8503,8 +8948,24 @@
       "source_sha256": "36e6ef41f2391aef89add76a7f68620706324329f9c91a440c098d2fdb175596",
       "paper": "Wallentin2018",
       "candidate": "R004",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp. 6-7 describes a post-hoc weighted analysis of six studies with sex-stratified age information, not a six-participant sample. The draft sample.n=6 conflates studies with patients and method=behavioral_only obscures the pooled-study analysis. Reconcile sample unit and analysis provenance before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp. 6-7 describes a post-hoc weighted analysis of six studies with sex-stratified age information, not a six-participant sample. The draft sample.n=6 conflates studies with patients and method=behavioral_only obscures the pooled-study analysis. Reconcile sample unit and analysis provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "36e6ef41f2391aef89add76a7f68620706324329f9c91a440c098d2fdb175596",
+            "paper": "Wallentin2018",
+            "candidate": "R004",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp. 6-7 describes a post-hoc weighted analysis of six studies with sex-stratified age information, not a six-participant sample. The draft sample.n=6 conflates studies with patients and method=behavioral_only obscures the pooled-study analysis. Reconcile sample unit and analysis provenance before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "affc97acd37a9f5e6bd41d275a9641f06342c13c165c14eaa82dfa28e10a0a82",
+      "reason": "The unit is six studies, not six patients. Preserve post-hoc weighted study-level analysis; do not invent a patient denominator.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/sex__Wallentin2018__R006.md": {
       "source_sha256": "84571644a9bc3c54530108d256aa73b28c621a1544bd0929e81dc56985bc7d78",
@@ -8555,22 +9016,70 @@
       "source_sha256": "5030d49b10eed8dbd85c0d55d9a58e9fba7ce1c3e3e2d2c26f74859065f96d1d",
       "paper": "Weaver2021",
       "candidate": "R005",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 10\u201311 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 10–11 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "5030d49b10eed8dbd85c0d55d9a58e9fba7ce1c3e3e2d2c26f74859065f96d1d",
+            "paper": "Weaver2021",
+            "candidate": "R005",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 10–11 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "14bf9faebc7d49855ec03cc14559003fb68e69d7749c16fdcd08ada69dd5c427",
+      "reason": "Restricted domain analyses to cortical or large subcortical infarcts. The eligible subgroup has 1,488 participants, but domain-specific usable denominators are not established here; do not substitute either 2,950 or 1,488 as an exact per-domain n.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/right_parietal_lobe__Weaver2021__R006.md": {
       "source_sha256": "4192c71da64d098953b94a391a59caf9b7b7b173fc6f4b7e8c12b6625f838c10",
       "paper": "Weaver2021",
       "candidate": "R006",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 10\u201311 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 10–11 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "4192c71da64d098953b94a391a59caf9b7b7b173fc6f4b7e8c12b6625f838c10",
+            "paper": "Weaver2021",
+            "candidate": "R006",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 10–11 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "c0c9564ae3fe9d89904ec896e528bbf7dac41b5bab4291f9fe7b994937a4f871",
+      "reason": "Restricted domain analyses to cortical or large subcortical infarcts. The eligible subgroup has 1,488 participants, but domain-specific usable denominators are not established here; do not substitute either 2,950 or 1,488 as an exact per-domain n.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/processing_speed_infarct_locations__Weaver2021__R007.md": {
       "source_sha256": "97fdc696cd146819701099df3175d22547c569a3d6d4288f9de8d6bda89cf047",
       "paper": "Weaver2021",
       "candidate": "R007",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 10\u201311 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 10–11 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "97fdc696cd146819701099df3175d22547c569a3d6d4288f9de8d6bda89cf047",
+            "paper": "Weaver2021",
+            "candidate": "R007",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 10–11 restricts domain-specific analyses to cortical or large subcortical infarcts, while sample.n=2950 is the full pooled cohort. Reconcile the analysis-specific denominator before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "1c348674c81766ba9029d4165a26a1606117dc8d6785715f0e4582e4c45d5227",
+      "reason": "Restricted domain analyses to cortical or large subcortical infarcts. The eligible subgroup has 1,488 participants, but domain-specific usable denominators are not established here; do not substitute either 2,950 or 1,488 as an exact per-domain n.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/location_impact_score__Weaver2021__R008.md": {
       "source_sha256": "8df8ed85339f6a075292eadcc69440019f436fb7ab77ea423ee750485cad8bc5",
@@ -8606,15 +9115,47 @@
       "source_sha256": "3bdaa598be483034cc3af7e102397506a7adf7c950f179d518ea00ff5ba97bd8",
       "paper": "White2024",
       "candidate": "R002",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "The baseline prediction model uses MRI-derived left lesion volume plus clinical measures, but method=behavioral_only. Reconcile the imaging/analysis-method provenance; see source Methods and baseline-model Results."
+      "publication_disposition": "withdrawn_duplicate_after_source_reconciliation",
+      "publication_disposition_reason": "The baseline prediction model uses MRI-derived left lesion volume plus clinical measures, but method=behavioral_only. Reconcile the imaging/analysis-method provenance; see source Methods and baseline-model Results.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:26:17.458683+00:00",
+          "previous_record": {
+            "source_sha256": "3bdaa598be483034cc3af7e102397506a7adf7c950f179d518ea00ff5ba97bd8",
+            "paper": "White2024",
+            "candidate": "R002",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "The baseline prediction model uses MRI-derived left lesion volume plus clinical measures, but method=behavioral_only. Reconcile the imaging/analysis-method provenance; see source Methods and baseline-model Results."
+          },
+          "reason": "Same complete baseline logistic prediction model."
+        }
+      ],
+      "reason": "Same complete baseline logistic prediction model.",
+      "duplicate_of_candidate": "R003",
+      "repair_audit": "logs/publication/failure-triage-2026-11-26.json"
     },
     "drafts/predictors/baseline_logistic_regression_spoken_description__White2024__R003.md": {
       "source_sha256": "13cdfa73c9e2fdfcdbdd2e689644ae6ab3ef2b50472dcd182499e7c13e264041",
       "paper": "White2024",
       "candidate": "R003",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "The baseline prediction model uses MRI-derived left lesion volume plus clinical measures, but method=behavioral_only. Reconcile the imaging/analysis-method provenance; see source Methods and baseline-model Results."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "The baseline prediction model uses MRI-derived left lesion volume plus clinical measures, but method=behavioral_only. Reconcile the imaging/analysis-method provenance; see source Methods and baseline-model Results.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "13cdfa73c9e2fdfcdbdd2e689644ae6ab3ef2b50472dcd182499e7c13e264041",
+            "paper": "White2024",
+            "candidate": "R003",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "The baseline prediction model uses MRI-derived left lesion volume plus clinical measures, but method=behavioral_only. Reconcile the imaging/analysis-method provenance; see source Methods and baseline-model Results."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "d6b850d826f7a92961685d63fd812f3e2f8090606ca8bba72040f84d5c2dcd94",
+      "reason": "Multivariable logistic prediction with MRI-derived lesion size, initial severity and recovery time; not a behavioural-only analysis.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/hybrid_roi_resnet_18__White2024__R004.md": {
       "source_sha256": "e780f313dc75574fe47f889171ed51a4173bea4ffecb8a386d4c8027e740f19a",
@@ -8655,29 +9196,93 @@
       "source_sha256": "5b5919559a31eb20b41b6cf999330f1bd942b9170f45114e375d0cada85e92ab",
       "paper": "Willis2025",
       "candidate": "R002",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "5b5919559a31eb20b41b6cf999330f1bd942b9170f45114e375d0cada85e92ab",
+            "paper": "Willis2025",
+            "candidate": "R002",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "a14b389a3743ccffcaaa35823e8d3f64fc08a2c7c70bb9717faa864c74e0603a",
+      "reason": "Specify task-specific samples and anatomical atlas measurement; V1 is a cortical area, not a tract.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/v4_damage__Willis2025__R003.md": {
       "source_sha256": "1eaa6d329261542fa56ac46c14e09345c0439676c3f0741824420e6c7bf8319c",
       "paper": "Willis2025",
       "candidate": "R003",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "1eaa6d329261542fa56ac46c14e09345c0439676c3f0741824420e6c7bf8319c",
+            "paper": "Willis2025",
+            "candidate": "R003",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "a06efe3afb1ca2c8315f5c9e224cb2a79c284fbcc343880277b720e1847a6a5f",
+      "reason": "Contrast and face/place analyses have different denominators; V4 is a cortical atlas region.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/hmt_v5_damage__Willis2025__R004.md": {
       "source_sha256": "76deadc1a1a0caec0a2f953c43ad632c1e51f498d1513053f5dbdccbd23debf8",
       "paper": "Willis2025",
       "candidate": "R004",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "76deadc1a1a0caec0a2f953c43ad632c1e51f498d1513053f5dbdccbd23debf8",
+            "paper": "Willis2025",
+            "candidate": "R004",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "112f40bdb66b220e3cc7f8a5c6b74c18da48edd6fd1d5820f49201d936d4826c",
+      "reason": "Narrowed to the contrast-detection correlation (n=39); the distinct any-hMT+/V5-damage subgroup result is represented separately in R005.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/hmt_v5_cluster__Willis2025__R005.md": {
       "source_sha256": "20a6aff6ad4c24be5c4ddb8eb6c444125103e431d03975536e9d3e052d84eb1e",
       "paper": "Willis2025",
       "candidate": "R005",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "20a6aff6ad4c24be5c4ddb8eb6c444125103e431d03975536e9d3e052d84eb1e",
+            "paper": "Willis2025",
+            "candidate": "R005",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source Methods/Results uses different task subsets (19 completed all three tasks), and the any-hMT+/V5-damage finding concerns n=8. The record uses sample.n=39 for a claim spanning task/subgroup analyses. Reconcile analysis-specific denominators before publication; preserve the overall cohort as context."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "ac0139b87f27ce49dfe6cb6c7eee7cea543f5ded2e04909731083dc4609dbf35",
+      "reason": "Restricted the finding to the eight participants with any hMT+/V5 damage, preserving task availability and avoiding inference about all 39 patients. Exact per-task subgroup denominators are not established; eight is the anatomical subgroup size.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/ifgop_ag_connection_type__Wilmskoetter2021__R001.md": {
       "source_sha256": "4629490af6383b32788feb1c733d62a9d37b6e45e1e2bbb878bb2a0c6a24c42e",
@@ -8713,15 +9318,47 @@
       "source_sha256": "b171ad7d8835a8f50718a6d90383ba273982810d5161b66a810e05574949e5b9",
       "paper": "Wilmskoetter2021",
       "candidate": "R009",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 4\u20136 restricts the AG\u2013MTG indirect-step analysis to 32 participants with indirect connections; sample.n=69 describes the full study. Reconcile the analysis-specific denominator."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 4–6 restricts the AG–MTG indirect-step analysis to 32 participants with indirect connections; sample.n=69 describes the full study. Reconcile the analysis-specific denominator.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "b171ad7d8835a8f50718a6d90383ba273982810d5161b66a810e05574949e5b9",
+            "paper": "Wilmskoetter2021",
+            "candidate": "R009",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 4–6 restricts the AG–MTG indirect-step analysis to 32 participants with indirect connections; sample.n=69 describes the full study. Reconcile the analysis-specific denominator."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "a72414b4510354facc90262dec8cdd3a107edab6fb992ee44c264950d2dcc856",
+      "reason": "Analysis restricted to participants with an indirect AG-MTG connection, not the full cohort.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/indirect_connection_steps_ifgop_ag_mtg__Wilmskoetter2021__R010.md": {
       "source_sha256": "be22c1afd1afe2870c3ddb9abfba99190f5e1fe16a00931bae59e68c3e89c59e",
       "paper": "Wilmskoetter2021",
       "candidate": "R010",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 4\u20136 restricts indirect-step analyses to 46 participants for each IFGop\u2013AG and IFGop\u2013MTG pair; sample.n=69 describes the full study. Reconcile the analysis-specific denominators."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 4–6 restricts indirect-step analyses to 46 participants for each IFGop–AG and IFGop–MTG pair; sample.n=69 describes the full study. Reconcile the analysis-specific denominators.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "be22c1afd1afe2870c3ddb9abfba99190f5e1fe16a00931bae59e68c3e89c59e",
+            "paper": "Wilmskoetter2021",
+            "candidate": "R010",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 4–6 restricts indirect-step analyses to 46 participants for each IFGop–AG and IFGop–MTG pair; sample.n=69 describes the full study. Reconcile the analysis-specific denominators."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "80932f2ba5bc807b69a40393512384586c0c34cae7cb78e3ed87cf7b9f17d040",
+      "reason": "Each indirect-connection analysis has 46 participants; these are two analyses, not a combined 92-person sample.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/roi_lesion_volume_connection_type__Wilmskoetter2021__R011.md": {
       "source_sha256": "229fbf0df477dbed31c9568f9884d3b5310a65f022bdcc8d6fb21554d09f9508",
@@ -8892,8 +9529,24 @@
       "source_sha256": "2c20bcef78c4b88adb75a553627585a34a5edfae4881c86b90d276e7037441f3",
       "paper": "Woollams2018",
       "candidate": "R020",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF p. 11 first identifies a core reading network shared by all three stimulus types. The subsequent absence concerns additional pair-specific overlap for nonwords and concrete words. The standalone claim omits this qualification and implies no shared regions at all; clarify its scope before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF p. 11 first identifies a core reading network shared by all three stimulus types. The subsequent absence concerns additional pair-specific overlap for nonwords and concrete words. The standalone claim omits this qualification and implies no shared regions at all; clarify its scope before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "2c20bcef78c4b88adb75a553627585a34a5edfae4881c86b90d276e7037441f3",
+            "paper": "Woollams2018",
+            "candidate": "R020",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF p. 11 first identifies a core reading network shared by all three stimulus types. The subsequent absence concerns additional pair-specific overlap for nonwords and concrete words. The standalone claim omits this qualification and implies no shared regions at all; clarify its scope before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "32f9a3268b4b4619eb3ced32984a20371b06ffe4d5112b3b540cf25f4ad72cef",
+      "reason": "Qualified the absence of additional pair-specific overlap outside the core network shared by all three reading conditions.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/nonword_reading_cluster__Woollams2018__R021.md": {
       "source_sha256": "f830e5bc78b263f1cd82c4b944cb1bf26950bcfba233658f680384e62b0ed871",
@@ -8939,8 +9592,24 @@
       "source_sha256": "1135c5d824361957dbca408b5ce97678ca1f252669995eacaf8ed7ac557ac1d2",
       "paper": "Woollams2018",
       "candidate": "R029",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "The listed anterior/inferior regions shared by concrete and abstract reading belong to the phonology overlap described on source PDF p. 11, not the semantics overlap described on pp. 11\u201312. The claim substitutes semantic for phonological processing; reconcile the map identity before publication."
+      "publication_disposition": "withdrawn_duplicate_after_source_reconciliation",
+      "publication_disposition_reason": "The listed anterior/inferior regions shared by concrete and abstract reading belong to the phonology overlap described on source PDF p. 11, not the semantics overlap described on pp. 11–12. The claim substitutes semantic for phonological processing; reconcile the map identity before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:26:17.458683+00:00",
+          "previous_record": {
+            "source_sha256": "1135c5d824361957dbca408b5ce97678ca1f252669995eacaf8ed7ac557ac1d2",
+            "paper": "Woollams2018",
+            "candidate": "R029",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "The listed anterior/inferior regions shared by concrete and abstract reading belong to the phonology overlap described on source PDF p. 11, not the semantics overlap described on pp. 11–12. The claim substitutes semantic for phonological processing; reconcile the map identity before publication."
+          },
+          "reason": "Correcting semantic to phonological map makes this the already-published R026 relationship."
+        }
+      ],
+      "reason": "Correcting semantic to phonological map makes this the already-published R026 relationship.",
+      "duplicate_of_candidate": "R026",
+      "repair_audit": "logs/publication/failure-triage-2026-11-26.json"
     },
     "drafts/regions/speech_fluency_cluster__Woollams2018__R030.md": {
       "source_sha256": "5ab9f02cec2f9a397f64eec3764f5f2c9baad7aeb9dd37d3f9b90c6be35cf319",
@@ -8991,22 +9660,70 @@
       "source_sha256": "37965ba67614dc7d947b1d087b4e6e9fb6cd1f1d857812a5f0a8d04ad42a8608",
       "paper": "Wright2018",
       "candidate": "R004",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 2\u20134 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 2–4 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "37965ba67614dc7d947b1d087b4e6e9fb6cd1f1d857812a5f0a8d04ad42a8608",
+            "paper": "Wright2018",
+            "candidate": "R004",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 2–4 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "7e564b2e38610d31ea94b6378a2b77eefae05d1fbc40b9cccf393d67c530cdb7",
+      "reason": "Observational MRI-derived leukoaraiosis/atrophy and clinical predictor analysis. No randomized allocation; structural MRI measurement and logistic regression are retained.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/rh_leukoaraiosis_word_fluency__Wright2018__R005.md": {
       "source_sha256": "899ccb26dd6d0c3b425a37282e8b51e0f01067657b03b565215ee22f76fef897",
       "paper": "Wright2018",
       "candidate": "R005",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 2\u20134 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 2–4 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "899ccb26dd6d0c3b425a37282e8b51e0f01067657b03b565215ee22f76fef897",
+            "paper": "Wright2018",
+            "candidate": "R005",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 2–4 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "2608e98d28d8c46605b6a05852ae321f1c91e7eb73e34e76d9fe34b67b08387f",
+      "reason": "Observational MRI-derived leukoaraiosis/atrophy and clinical predictor analysis. No randomized allocation; structural MRI measurement and logistic regression are retained.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/race_atrophy_naming_outcome__Wright2018__R006.md": {
       "source_sha256": "c11ceeb2dd8317c3471d4271022a2f0a455ea5542251d5364a2ce549f817746c",
       "paper": "Wright2018",
       "candidate": "R006",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 2\u20134 describes a cross-sectional observational study of 42 stroke survivors and logistic regression, not a randomized clinical trial. method=clinical_RCT misrepresents the study design; reconcile method provenance before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 2–4 describes a cross-sectional observational study of 42 stroke survivors and logistic regression, not a randomized clinical trial. method=clinical_RCT misrepresents the study design; reconcile method provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "c11ceeb2dd8317c3471d4271022a2f0a455ea5542251d5364a2ce549f817746c",
+            "paper": "Wright2018",
+            "candidate": "R006",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 2–4 describes a cross-sectional observational study of 42 stroke survivors and logistic regression, not a randomized clinical trial. method=clinical_RCT misrepresents the study design; reconcile method provenance before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "dcc8d4156a34062764b09216374d14cd65378e7e8bf5d2cc6a2c53111f8dce49",
+      "reason": "Observational MRI-derived leukoaraiosis/atrophy and clinical predictor analysis. No randomized allocation; structural MRI measurement and logistic regression are retained.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/race__Wright2018__R007.md": {
       "source_sha256": "206ff85fd0d8f9c754dd216fba483d87805df349ed60c6f9136bec4612349e12",
@@ -9017,8 +9734,24 @@
       "source_sha256": "77d0baffb561907c00bf9b69ca472a5664e5036eca355fe6a64c16b13a685341",
       "paper": "Wright2018",
       "candidate": "R008",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 2\u20134 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication."
+      "publication_disposition": "withdrawn_duplicate_after_source_reconciliation",
+      "publication_disposition_reason": "Source PDF pp. 2–4 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "77d0baffb561907c00bf9b69ca472a5664e5036eca355fe6a64c16b13a685341",
+            "paper": "Wright2018",
+            "candidate": "R008",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 2–4 uses MRI-derived leukoaraiosis ratings or brain/CSF atrophy measures as the predictor. method=behavioral_only misrepresents the imaging measurement; reconcile method provenance before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "reason": "The atrophy/naming null is already included in corrected R006; avoid a second copy of the same result.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json",
+      "duplicate_of_candidate": "R006"
     },
     "drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R009.md": {
       "source_sha256": "d6e76df9aeedc840467c39a7200dc4b80b9623af3967a317b6bc7612485294cc",
@@ -9029,8 +9762,24 @@
       "source_sha256": "03119b13e302074789c9eb0d22ddfa436da8c095cc568c9b19362b49169de41d",
       "paper": "Wright2018",
       "candidate": "R010",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 2\u20134 describes a cross-sectional observational study of 42 stroke survivors and logistic regression, not a randomized clinical trial. method=clinical_RCT misrepresents the study design; reconcile method provenance before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 2–4 describes a cross-sectional observational study of 42 stroke survivors and logistic regression, not a randomized clinical trial. method=clinical_RCT misrepresents the study design; reconcile method provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "03119b13e302074789c9eb0d22ddfa436da8c095cc568c9b19362b49169de41d",
+            "paper": "Wright2018",
+            "candidate": "R010",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 2–4 describes a cross-sectional observational study of 42 stroke survivors and logistic regression, not a randomized clinical trial. method=clinical_RCT misrepresents the study design; reconcile method provenance before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "04fdaf6641ae5f93389d8512ad52028e6142048aad9c636103eeb6dfd1aa6940",
+      "reason": "Observational MRI-derived leukoaraiosis/atrophy and clinical predictor analysis. No randomized allocation; structural MRI measurement and logistic regression are retained.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/rh_leukoaraiosis_severity__Wright2018__R011.md": {
       "source_sha256": "a26ddf9551420e4491deab2f7592d27ec6c1930bc80d5729f3a43770e330c174",
@@ -9126,8 +9875,24 @@
       "source_sha256": "6a21c68bfe0d3749899f44d6619d22747eb79424798688d6de40c024c54f1922",
       "paper": "Xing2016",
       "candidate": "R019",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF p. 8 reports a non-significant patient/control difference only for the spontaneous-speech-related right-hemisphere cluster; AQ, repetition and naming clusters differ significantly. The standalone claim generalizes the null to right-hemisphere clusters. Specify the spontaneous-speech cluster in the claim before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF p. 8 reports a non-significant patient/control difference only for the spontaneous-speech-related right-hemisphere cluster; AQ, repetition and naming clusters differ significantly. The standalone claim generalizes the null to right-hemisphere clusters. Specify the spontaneous-speech cluster in the claim before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "6a21c68bfe0d3749899f44d6619d22747eb79424798688d6de40c024c54f1922",
+            "paper": "Xing2016",
+            "candidate": "R019",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF p. 8 reports a non-significant patient/control difference only for the spontaneous-speech-related right-hemisphere cluster; AQ, repetition and naming clusters differ significantly. The standalone claim generalizes the null to right-hemisphere clusters. Specify the spontaneous-speech cluster in the claim before publication."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "8dfd22cd3cc928016a438135eef7b67380d8682b9ee94269cc62911a1971ad2e",
+      "reason": "Restricted the null patient/control comparison to the spontaneous-speech-related right-hemisphere cluster.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/rh_language_clusters__Xing2016__R021.md": {
       "source_sha256": "57d58bdaccd9651ed010582170e24c270117d294e58d9d315a17a3553edcf3a9",
@@ -9148,8 +9913,24 @@
       "source_sha256": "536d5438354cc4d516905a1fe988c900847a4417cb8945792e12be97eff7b979",
       "paper": "Xing2017",
       "candidate": "R002",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 3\u20134 describes TBSS of diffusion-tensor metrics in spared white matter, not voxel-based morphometry. Reconcile method=VBM with the actual DTI/TBSS analysis."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 3–4 describes TBSS of diffusion-tensor metrics in spared white matter, not voxel-based morphometry. Reconcile method=VBM with the actual DTI/TBSS analysis.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "536d5438354cc4d516905a1fe988c900847a4417cb8945792e12be97eff7b979",
+            "paper": "Xing2017",
+            "candidate": "R002",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 3–4 describes TBSS of diffusion-tensor metrics in spared white matter, not voxel-based morphometry. Reconcile method=VBM with the actual DTI/TBSS analysis."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "e0bc1032a72423f67032aca5b0ba050f04a20cfdef10ff6e3adfaa1dece22078",
+      "reason": "Corrected to patient diffusion metrics: TBSS and mean diffusion values in reference-defined tract masks, with template construction distinguished from patient measurements.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/uncinate_fasciculus_lesion_load__Xing2017__R003.md": {
       "source_sha256": "d52fda3c1e94448d06adc6dd9b4c2c4ef2a6c4dcb17689cec7acf96fcebfef4a",
@@ -9165,29 +9946,93 @@
       "source_sha256": "ff4a3bb7b0e9e26673d05797714e5e8923a6cdd7942c1048c60b72f354d6a8da",
       "paper": "Xing2017",
       "candidate": "R005",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 3–4 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "ff4a3bb7b0e9e26673d05797714e5e8923a6cdd7942c1048c60b72f354d6a8da",
+            "paper": "Xing2017",
+            "candidate": "R005",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 3–4 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "e4c8fc9ee6f8a9c1ffc626db3ef9955cefbcfab9a9225c91b0528108506848d0",
+      "reason": "Corrected to patient diffusion metrics: TBSS and mean diffusion values in reference-defined tract masks, with template construction distinguished from patient measurements.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/left_ilf__Xing2017__R006.md": {
       "source_sha256": "616b4706ed58b5920ffb70ae507f8dbc81332fb472756ae9eddca47f53ae6f9a",
       "paper": "Xing2017",
       "candidate": "R006",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 3–4 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "616b4706ed58b5920ffb70ae507f8dbc81332fb472756ae9eddca47f53ae6f9a",
+            "paper": "Xing2017",
+            "candidate": "R006",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 3–4 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "366d7bf1f28056c5275e6f6408793d86523d3d73a361a52f2e0c9c78a52dbfc4",
+      "reason": "Corrected to patient diffusion metrics: TBSS and mean diffusion values in reference-defined tract masks, with template construction distinguished from patient measurements.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/left_uncinate_fasciculus__Xing2017__R007.md": {
       "source_sha256": "eb5db11eaa6c2f0e921280018f3504d2bdd89d78b88a05534e6195475f536ad0",
       "paper": "Xing2017",
       "candidate": "R007",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
+      "publication_disposition": "withdrawn_duplicate_after_source_reconciliation",
+      "publication_disposition_reason": "Source PDF pp. 3–4 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "eb5db11eaa6c2f0e921280018f3504d2bdd89d78b88a05534e6195475f536ad0",
+            "paper": "Xing2017",
+            "candidate": "R007",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 3–4 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "reason": "The same left-UF/word-comprehension association is retained with metric and adjustment qualifications in corrected R008.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json",
+      "duplicate_of_candidate": "R008"
     },
     "drafts/regions/left_uncinate_fasciculus__Xing2017__R008.md": {
       "source_sha256": "5722cb3e9e1f22f2a44799e6671250d929294a81a4d325bd18a353b6a86c44be",
       "paper": "Xing2017",
       "candidate": "R008",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Source PDF pp. 3\u20134 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Source PDF pp. 3–4 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "5722cb3e9e1f22f2a44799e6671250d929294a81a4d325bd18a353b6a86c44be",
+            "paper": "Xing2017",
+            "candidate": "R008",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Source PDF pp. 3–4 separates direct lesion burden from mean diffusion-tensor metrics extracted using healthy-reference tract masks. This claim concerns FA/diffusivity associations controlling for lesion burden, but method=LSM conflates the DTI-metric analysis with lesion-load mapping. Reconcile method provenance while preserving the template origin."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "06f177381ed15deb5576a951492080e72ea18a117943f79eb77a00540ec50426",
+      "reason": "Corrected to patient diffusion metrics: TBSS and mean diffusion values in reference-defined tract masks, with template construction distinguished from patient measurements.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/left_hemisphere_cortical_nodes_naming__Xing2018__R002.md": {
       "source_sha256": "a92036f711ec5b607376591420a9ec8cb9e8c1b11fe24abd8257e06c872d854d",
@@ -9198,15 +10043,47 @@
       "source_sha256": "187fde0bb3de15172e96edc613782c561332e46582d795bcb88c9d92f8a7f1ce",
       "paper": "Xing2018",
       "candidate": "R005",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp.6,9: FA correlations in template-defined tracts are diffusion/tractography analyses, not the LSM method assigned to this draft."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp.6,9: FA correlations in template-defined tracts are diffusion/tractography analyses, not the LSM method assigned to this draft.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "187fde0bb3de15172e96edc613782c561332e46582d795bcb88c9d92f8a7f1ce",
+            "paper": "Xing2018",
+            "candidate": "R005",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp.6,9: FA correlations in template-defined tracts are diffusion/tractography analyses, not the LSM method assigned to this draft."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "0a622f4c0bb60607162ebc83811e92ac2393339de482a20246742f2e77721ef3",
+      "reason": "Patient FA measured within healthy-reference tract masks; corrected the method from lesion mapping to diffusion imaging.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/left_astg_right_astg_connection__Xing2018__R006.md": {
       "source_sha256": "3baff0bfe3fe3d0f965f76ce58c0df83756d10ad2acd27fa0f149bd14356e1cf",
       "paper": "Xing2018",
       "candidate": "R006",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp.6,9: interhemispheric aSTG connection result is an FA association, not the LSM method assigned to this draft."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp.6,9: interhemispheric aSTG connection result is an FA association, not the LSM method assigned to this draft.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "3baff0bfe3fe3d0f965f76ce58c0df83756d10ad2acd27fa0f149bd14356e1cf",
+            "paper": "Xing2018",
+            "candidate": "R006",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp.6,9: interhemispheric aSTG connection result is an FA association, not the LSM method assigned to this draft."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "f49b11bfa2a656cf0f37a0039d720f33a54db7572c15045f97cbb70011a8956c",
+      "reason": "Patient FA measured within healthy-reference tract masks; corrected the method from lesion mapping to diffusion imaging.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/impairments/pwr_ppt_association__Xing2018__R007.md": {
       "source_sha256": "2c45d2fdea6ae01b69494b6a734f75299f0f19ee17764adddbeb0b7641d55dca",
@@ -9217,8 +10094,24 @@
       "source_sha256": "957355db4de7876d0b4c610a30a3f0412a2fa9d40a58cf8a55f1e4d9cfdb2c71",
       "paper": "Yang2017",
       "candidate": "R003",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp.4-5: association uses mean FA in TBSS-defined SLF clusters; LSM method label does not describe this diffusion analysis."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp.4-5: association uses mean FA in TBSS-defined SLF clusters; LSM method label does not describe this diffusion analysis.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "957355db4de7876d0b4c610a30a3f0412a2fa9d40a58cf8a55f1e4d9cfdb2c71",
+            "paper": "Yang2017",
+            "candidate": "R003",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp.4-5: association uses mean FA in TBSS-defined SLF clusters; LSM method label does not describe this diffusion analysis."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "1b18e30d63291d6868e27afd6306a8bffc5fe29ac919f7eae350a1d577ef4305",
+      "reason": "TBSS-defined SLF mean FA correlations; corrected the method from LSM to DTI.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/aq_pq_interaction_ifof_slf__Yang2017__R004.md": {
       "source_sha256": "afc32b254c641d3f5d0557be6a2da685ec3057c31bd4baca2ec6825e1f73a244",
@@ -9319,8 +10212,24 @@
       "source_sha256": "bff4b694296f7597fddc56ffb317af6c09c3d1b63c00f7c65dd6b9c1c1fea50c",
       "paper": "Yu2022",
       "candidate": "R003",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF Table 2 p.8 distinguishes PSAF and LSAF effects: LSAF FA correlates with fluency but not repetition; PSAF FA correlates with repetition but not fluency. The pooled any-subsets except fluency and/or repetition wording needs tract-specific clarification."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF Table 2 p.8 distinguishes PSAF and LSAF effects: LSAF FA correlates with fluency but not repetition; PSAF FA correlates with repetition but not fluency. The pooled any-subsets except fluency and/or repetition wording needs tract-specific clarification.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "bff4b694296f7597fddc56ffb317af6c09c3d1b63c00f7c65dd6b9c1c1fea50c",
+            "paper": "Yu2022",
+            "candidate": "R003",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF Table 2 p.8 distinguishes PSAF and LSAF effects: LSAF FA correlates with fluency but not repetition; PSAF FA correlates with repetition but not fluency. The pooled any-subsets except fluency and/or repetition wording needs tract-specific clarification."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "6638121c20a2857d64bee3bff170c5dbd158db3fd3501eb30d68c6e7047e98c3",
+      "reason": "Replaced pooled and/or wording with tract-specific unadjusted FA associations from Table 2.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/left_af_fiber_number__Yu2022__R004.md": {
       "source_sha256": "319ef8af3447cc0bea505dae4aeae3e93f868862e943427cf5bbff35d0920c3a",
@@ -9331,36 +10240,116 @@
       "source_sha256": "1577640f2451e17f4e322c4e0e4753ebba105bc1663525c051e81a10a4d4ba19",
       "paper": "Yu2022",
       "candidate": "R005",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF Table 3 p.8: adjusted PSAF naming association is FA-specific (r=.488), while fiber number is nonsignificant (p=.220). Draft groups FA and fiber number and calls all listed associations strong; distinguish metrics and strengths before review."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF Table 3 p.8: adjusted PSAF naming association is FA-specific (r=.488), while fiber number is nonsignificant (p=.220). Draft groups FA and fiber number and calls all listed associations strong; distinguish metrics and strengths before review.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "1577640f2451e17f4e322c4e0e4753ebba105bc1663525c051e81a10a4d4ba19",
+            "paper": "Yu2022",
+            "candidate": "R005",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF Table 3 p.8: adjusted PSAF naming association is FA-specific (r=.488), while fiber number is nonsignificant (p=.220). Draft groups FA and fiber number and calls all listed associations strong; distinguish metrics and strengths before review."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "e4b45835064fdad85597fb626adc830ac766eb25242269ae317240d56f02018a",
+      "reason": "Restricted adjusted associations to FA, distinguishing the moderate naming correlation from stronger correlations; fiber-number naming was not significant.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/lsaf_diffusion_metrics__Yu2022__R006.md": {
       "source_sha256": "503069a16f80744c65e4b6cf3f206748531a39492e525d0c34d85cf1085b2d35",
       "paper": "Yu2022",
       "candidate": "R006",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF Table 3 p.8: adjusted LSAF comprehension, naming and AQ associations are significant for FA but not fiber number; AQ FA r=.504 also exceeds the paper strong-correlation threshold. Draft groups FA and fiber number and labels all associations moderate."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF Table 3 p.8: adjusted LSAF comprehension, naming and AQ associations are significant for FA but not fiber number; AQ FA r=.504 also exceeds the paper strong-correlation threshold. Draft groups FA and fiber number and labels all associations moderate.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "503069a16f80744c65e4b6cf3f206748531a39492e525d0c34d85cf1085b2d35",
+            "paper": "Yu2022",
+            "candidate": "R006",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF Table 3 p.8: adjusted LSAF comprehension, naming and AQ associations are significant for FA but not fiber number; AQ FA r=.504 also exceeds the paper strong-correlation threshold. Draft groups FA and fiber number and labels all associations moderate."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "05a25db0eaf19fe35a7ba74f86bff8c37c26541790399e3a640061dbd1209689",
+      "reason": "Restricted adjusted associations to FA; no corresponding fiber-number associations were significant.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/asaf_language_correlation__Yu2022__R007.md": {
       "source_sha256": "a364d6682979d3821eb0cba7bcb37af78327b2f7aadad146bca9f40d356ad4a6",
       "paper": "Yu2022",
       "candidate": "R007",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Draft describes Spearman analyses and an unqualified ASAF null, but PDF Table 2 p.8 reports ASAF fiber-number/fluency p=.032. Table 3 adjusted associations are nonsignificant; specify analysis and metric rather than a blanket null."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Draft describes Spearman analyses and an unqualified ASAF null, but PDF Table 2 p.8 reports ASAF fiber-number/fluency p=.032. Table 3 adjusted associations are nonsignificant; specify analysis and metric rather than a blanket null.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "a364d6682979d3821eb0cba7bcb37af78327b2f7aadad146bca9f40d356ad4a6",
+            "paper": "Yu2022",
+            "candidate": "R007",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Draft describes Spearman analyses and an unqualified ASAF null, but PDF Table 2 p.8 reports ASAF fiber-number/fluency p=.032. Table 3 adjusted associations are nonsignificant; specify analysis and metric rather than a blanket null."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "b7dfa3a5d13f141a83614e948d06da4db08e39a63bec26f3ca2a738540ce3500",
+      "reason": "Specified adjusted rather than blanket ASAF null; preserved the unadjusted fiber-number/fluency exception.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/left_af_reconstruction_status__Yu2022__R009.md": {
       "source_sha256": "08f9b9f87dc48ab7c298b9412394bec490ba4db670ee42745d306c1bb42322e7",
       "paper": "Yu2022",
       "candidate": "R009",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp.1,9,11: A-versus-B contrast uses 8 completely reconstructed and 6 non-reconstructed participants, not all 26 participants as the draft sample indicates."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp.1,9,11: A-versus-B contrast uses 8 completely reconstructed and 6 non-reconstructed participants, not all 26 participants as the draft sample indicates.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "08f9b9f87dc48ab7c298b9412394bec490ba4db670ee42745d306c1bb42322e7",
+            "paper": "Yu2022",
+            "candidate": "R009",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp.1,9,11: A-versus-B contrast uses 8 completely reconstructed and 6 non-reconstructed participants, not all 26 participants as the draft sample indicates."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "a8c7002efffcb66447c665718ba8771826014d360323abb5347744ffa064c5a4",
+      "reason": "Restricted sample to the participants in the stated pairwise comparison; full study cohort n=26 remains contextual.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/left_af_reconstruction__Yu2022__R013.md": {
       "source_sha256": "29732ec607e8ed34b042576b0cbdd8918efd1756f15175c90d9ff83fe81aca0b",
       "paper": "Yu2022",
       "candidate": "R013",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp.1,9-11: A-versus-C contrast concerns 8 completely and 12 partially reconstructed participants; the draft assigns the whole 26-person cohort to this pairwise finding."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp.1,9-11: A-versus-C contrast concerns 8 completely and 12 partially reconstructed participants; the draft assigns the whole 26-person cohort to this pairwise finding.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "29732ec607e8ed34b042576b0cbdd8918efd1756f15175c90d9ff83fe81aca0b",
+            "paper": "Yu2022",
+            "candidate": "R013",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp.1,9-11: A-versus-C contrast concerns 8 completely and 12 partially reconstructed participants; the draft assigns the whole 26-person cohort to this pairwise finding."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "55451d276dbd545de9690d90e71135966de5fd5cda3129043c68421f7b63311d",
+      "reason": "Restricted sample to the participants in the stated pairwise comparison; full study cohort n=26 remains contextual.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/predictors/left_af_reconstruction_status__Yu2022__R014.md": {
       "source_sha256": "8d3df54ccca4094f4858283a26e6eda82a570b932e2d846fcfd47ca335e7bb25",
@@ -9376,15 +10365,47 @@
       "source_sha256": "6eebea5134ce744ed7722fb17a17debe6b06d0910e87ae9c7821577d7867466f",
       "paper": "Yu2022",
       "candidate": "R016",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp.6,11: groups are defined by reconstruction of the whole left AF, not the left PSAF as stated in the draft exposure description. Correct group definition before publication."
+      "publication_disposition": "withdrawn_duplicate_after_source_reconciliation",
+      "publication_disposition_reason": "PDF pp.6,11: groups are defined by reconstruction of the whole left AF, not the left PSAF as stated in the draft exposure description. Correct group definition before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:26:17.458683+00:00",
+          "previous_record": {
+            "source_sha256": "6eebea5134ce744ed7722fb17a17debe6b06d0910e87ae9c7821577d7867466f",
+            "paper": "Yu2022",
+            "candidate": "R016",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp.6,11: groups are defined by reconstruction of the whole left AF, not the left PSAF as stated in the draft exposure description. Correct group definition before publication."
+          },
+          "reason": "The PSAF group comparison is already contained in the published whole-AF reconstruction finding R014."
+        }
+      ],
+      "reason": "The PSAF group comparison is already contained in the published whole-AF reconstruction finding R014.",
+      "duplicate_of_candidate": "R014",
+      "repair_audit": "logs/publication/failure-triage-2026-11-26.json"
     },
     "drafts/regions/left_af_reconstruction_status__Yu2022__R018.md": {
       "source_sha256": "51fc695e308cb0b1297660f4b5886e73a6ac59f40505fb6e3aa250f6acd2c2b1",
       "paper": "Yu2022",
       "candidate": "R018",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp.1,11-12: B-versus-C contrast concerns 6 non-reconstructed and 12 partially reconstructed participants, not the whole 26-person cohort stated in the draft."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp.1,11-12: B-versus-C contrast concerns 6 non-reconstructed and 12 partially reconstructed participants, not the whole 26-person cohort stated in the draft.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T00:24:06.569756+00:00",
+          "previous_record": {
+            "source_sha256": "51fc695e308cb0b1297660f4b5886e73a6ac59f40505fb6e3aa250f6acd2c2b1",
+            "paper": "Yu2022",
+            "candidate": "R018",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp.1,11-12: B-versus-C contrast concerns 6 non-reconstructed and 12 partially reconstructed participants, not the whole 26-person cohort stated in the draft."
+          },
+          "reason": "Corrected withheld publication copy following explicit maintainer repair request."
+        }
+      ],
+      "publication_sha256": "08b002895e3592f91f50f74104172107fcbe480d8f5f94061eea0575e734703e",
+      "reason": "Restricted sample to the participants in the stated pairwise comparison; full study cohort n=26 remains contextual.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     },
     "drafts/regions/left_lsaf__Yu2023__R001.md": {
       "source_sha256": "2de6e266fad5f03d4ed50e07a4c10123232c06565e8fb840240c058751f5847c",
@@ -9400,6 +10421,31 @@
       "source_sha256": "382e3829d51e35dd102ce4bc9f6dada27dc7d1ac95c9439e797e703348b074cf",
       "paper": "Yu2023",
       "candidate": "R003"
+    },
+    "drafts/regions/insula_arcuate_slf_fluency_cluster__Bates2003__R008.md": {
+      "source_sha256": null,
+      "paper": "Bates2003",
+      "candidate": "R008",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "392809c6b846876377a64df088f90be20f6ec63f33956f0fbc46c1d6fa3f2f88",
+      "original_mapping_sha256": "323a07ee04347b43c207917e106ffca7024416ec9528ce8f8828a8de9d139bde",
+      "original_status_sha256": "840307d38e2ab5032bea21a515e243cd7673689189fa125296a5b4456ec2ea09",
+      "reason": "Added the actual lesion-reconstruction and voxelwise t-test method passages on PDF page 2; retained the directly supported relationship and population. Pages 1 and 3 contain adjacent articles, whose results are excluded.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
+    },
+    "drafts/regions/mtg_auditory_comprehension__Bates2003__R009.md": {
+      "source_sha256": null,
+      "paper": "Bates2003",
+      "candidate": "R009",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "f2ce4383497d3c8c7a8f050e4daf49882f9a25479aa4f471579d249913d59441",
+      "original_mapping_sha256": "e55c6c87b37e36a38e02847ace9d69852a65ec6688294c0b147fc136fc0a4418",
+      "original_status_sha256": "84d5c7757c554b7e9afe57265bdbf8e9e4d50b1382c4813131cd1f0e81ceb304",
+      "reason": "Added the actual lesion-reconstruction and voxelwise t-test method passages on PDF page 2; retained the directly supported relationship and population. Pages 1 and 3 contain adjacent articles, whose results are excluded.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26.json"
     }
-  }
+  },
+  "last_repair_at": "2026-11-26T00:24:06.569756+00:00"
 }

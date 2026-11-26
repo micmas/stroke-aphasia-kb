@@ -138,7 +138,7 @@ DIRECTION_OF_SEVERITY_VOCAB = {
 }
 METHOD_VOCAB = {
     "LSM", "VLSM", "RLSM", "VBCM", "VBM", "MLPA", "MVPA",
-    "fMRI_activation", "fMRI_FC", "rs_fMRI",
+    "fMRI_activation", "fMRI_FC", "rs_fMRI", "PET", "structural_MRI",
     "DTI", "NODDI", "tractography",
     "lesion_network_mapping", "disconnectome",
     "EEG", "MEG", "TMS", "tDCS",

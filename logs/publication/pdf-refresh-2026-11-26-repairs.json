@@ -1,0 +1,205 @@
+{
+  "scope": "PDF refresh for repaired drafts; only existing annotated objects updated, public/private categories preserved.",
+  "counts": {
+    "uploaded": 22,
+    "missing_pdf_index": 24
+  },
+  "placed": 1616,
+  "missed": 0,
+  "report": {
+    "Bates2003": {
+      "status": "uploaded",
+      "placed": 43,
+      "missed": 0
+    },
+    "Desjardins2026": {
+      "status": "missing_pdf_index"
+    },
+    "Fridriksson2018JAMA": {
+      "status": "uploaded",
+      "placed": 73,
+      "missed": 0
+    },
+    "Gilbert2025": {
+      "status": "missing_pdf_index"
+    },
+    "Goldenberg1994": {
+      "status": "missing_pdf_index"
+    },
+    "Hillis2002": {
+      "status": "missing_pdf_index"
+    },
+    "Hobden2024": {
+      "status": "missing_pdf_index"
+    },
+    "Hope2016": {
+      "status": "missing_pdf_index"
+    },
+    "Kourtidou2021": {
+      "status": "missing_pdf_index"
+    },
+    "Kristinsson2021": {
+      "status": "uploaded",
+      "placed": 84,
+      "missed": 0
+    },
+    "Leonard2008": {
+      "status": "uploaded",
+      "placed": 35,
+      "missed": 0
+    },
+    "Lukic2017": {
+      "status": "missing_pdf_index"
+    },
+    "Maher2006": {
+      "status": "uploaded",
+      "placed": 86,
+      "missed": 0
+    },
+    "Marchina2011": {
+      "status": "uploaded",
+      "placed": 99,
+      "missed": 0
+    },
+    "Matchin2024": {
+      "status": "missing_pdf_index"
+    },
+    "Moore2024": {
+      "status": "missing_pdf_index"
+    },
+    "Oeckel2021": {
+      "status": "uploaded",
+      "placed": 49,
+      "missed": 0
+    },
+    "OsaGarcia2020": {
+      "status": "uploaded",
+      "placed": 73,
+      "missed": 0
+    },
+    "OsaGarcia2024": {
+      "status": "missing_pdf_index"
+    },
+    "Pendlebury2009": {
+      "status": "missing_pdf_index"
+    },
+    "Pillay2017": {
+      "status": "uploaded",
+      "placed": 61,
+      "missed": 0
+    },
+    "Robson2014": {
+      "status": "uploaded",
+      "placed": 155,
+      "missed": 0
+    },
+    "Schellekens2026": {
+      "status": "missing_pdf_index"
+    },
+    "Sewell2025": {
+      "status": "missing_pdf_index"
+    },
+    "Sihvonen2023": {
+      "status": "missing_pdf_index"
+    },
+    "Stahl2013": {
+      "status": "uploaded",
+      "placed": 43,
+      "missed": 0
+    },
+    "Tang2022": {
+      "status": "missing_pdf_index"
+    },
+    "Thiel2013": {
+      "status": "uploaded",
+      "placed": 36,
+      "missed": 0
+    },
+    "Thompson2003": {
+      "status": "uploaded",
+      "placed": 9,
+      "missed": 0
+    },
+    "Thurston2026": {
+      "status": "missing_pdf_index"
+    },
+    "Thye2021": {
+      "status": "missing_pdf_index"
+    },
+    "Walker2011": {
+      "status": "missing_pdf_index"
+    },
+    "Wallentin2018": {
+      "status": "uploaded",
+      "placed": 42,
+      "missed": 0
+    },
+    "Weaver2021": {
+      "status": "missing_pdf_index"
+    },
+    "White2024": {
+      "status": "uploaded",
+      "placed": 59,
+      "missed": 0
+    },
+    "Willis2025": {
+      "status": "missing_pdf_index"
+    },
+    "Wilmskoetter2021": {
+      "status": "uploaded",
+      "placed": 102,
+      "missed": 0
+    },
+    "Wilson2011": {
+      "status": "missing_pdf_index"
+    },
+    "Woollams2018": {
+      "status": "uploaded",
+      "placed": 238,
+      "missed": 0
+    },
+    "Wright2018": {
+      "status": "uploaded",
+      "placed": 98,
+      "missed": 0
+    },
+    "Xing2016": {
+      "status": "uploaded",
+      "placed": 110,
+      "missed": 0
+    },
+    "Xing2017": {
+      "status": "uploaded",
+      "placed": 34,
+      "missed": 0
+    },
+    "Xing2018": {
+      "status": "missing_pdf_index"
+    },
+    "Yang2017": {
+      "status": "uploaded",
+      "placed": 14,
+      "missed": 0
+    },
+    "Yu2022": {
+      "status": "uploaded",
+      "placed": 73,
+      "missed": 0
+    },
+    "Yu2023": {
+      "status": "missing_pdf_index"
+    }
+  },
+  "source_warning_check": {
+    "paper": "OsaGarcia2020",
+    "original_pdf_warning": "Pre-existing LZW/font decoding warning (HelveticaNeueLTStd-Lt); also occurs when reading the unchanged source.",
+    "source_pdf_sha256": "17a0e2cbfaec8e15ca57cb6cab5934426f6a11205bd0ba2de0489005fb7701e0",
+    "source_pages": 9,
+    "output_pages": 10,
+    "all_original_pdf_streams_byte_identical": true,
+    "original_stream_count": 26,
+    "all_original_page_text_unchanged": true,
+    "render_observation": "Source and annotated-output page 5 inspected without annotations: text/layout remain legible and visually consistent. Pixel equality is not asserted because the source font has decoding errors."
+  },
+  "withdrawal_ledger_unchanged_by_annotation_helper": true
+}

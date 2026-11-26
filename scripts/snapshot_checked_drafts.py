@@ -10,6 +10,10 @@ def snapshot(run_dir, source_repo, destination):
     audit = destination / 'logs/publication/current-drafts.json'
     previous = json.loads(audit.read_text()) if audit.exists() else {'files': {}}
     records = previous['files']
+    # A manually repaired failed candidate may later be regenerated under a
+    # different entity filename. Preserve the repair and avoid a second copy.
+    repaired_candidates = {(r['paper'], r['candidate']) for r in records.values()
+                           if r.get('manual_repair')}
     added = []
     changed = []
     for status_path in sorted(run_dir.glob('*/*/status.json')):
@@ -33,6 +37,8 @@ def snapshot(run_dir, source_repo, destination):
         if key in records:
             if records[key]['source_sha256'] != sha:
                 changed.append(key)
+            continue
+        if (status_path.parent.parent.name, status_path.parent.name) in repaired_candidates:
             continue
         dest = destination / rel
         if dest.exists():
