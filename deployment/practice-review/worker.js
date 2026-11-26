@@ -69,6 +69,7 @@ export default {async scheduled(controller,env){await reconcileOpenAccess(env);}
  try{
   if(url.pathname==='/api/decisions')return await decisions(request,env,reviewer);
   if(url.pathname==='/api/open-access'){
+   if(!await env.PRIVATE.head('open-access/decisions-ready.json'))await reconcileOpenAccess(env);
    const id=url.searchParams.get('id');
    const rows=await env.SCREENING.prepare('SELECT reviewer,value FROM practice_decisions WHERE record_id = ?').bind(id).all();
    for(const row of rows.results){const d=JSON.parse(row.value);if(d.decision==='exclude')await syncOaDecisions(env.PRIVATE,row.reviewer,[d]);}
