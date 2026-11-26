@@ -4,6 +4,8 @@ on:
     branches: [main]
     paths:
       - 'deployment/practice-review/**'
+      - 'portal/lib/open-access.js'
+      - 'portal/web/open-access.js'
       - 'staging/dysphagia/functions/**'
       - 'staging/practice/web/**'
       - 'scripts/build_practice.py'

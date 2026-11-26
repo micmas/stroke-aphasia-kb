@@ -32,6 +32,14 @@ Use **`kb.py`** for routine preparation, extraction, review and inspection. The
 [workflow guide](docs/HOWTO.md) explains the steps; the
 [command reference](docs/COMMANDS.md) lists the supported entry points.
 
+## Collect and sync PDFs
+
+Run `./collect-pdfs.command` to collect licensed open-access PDFs for Aphasia,
+Dysphagia and Practice/lived experience concurrently. Run `./sync-pdfs.command`
+to copy only kept papers into named local incoming folders. Neither command uses
+AI or starts extraction. See [PDF collection and local sync](docs/OPEN_ACCESS.md)
+for setup, progress, filenames, shared papers, exclusions and source preparation.
+
 ## From paper to finding
 
 1. Select and register the paper, then verify its main PDF.

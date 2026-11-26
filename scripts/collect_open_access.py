@@ -7,6 +7,7 @@ private R2 prefix. Exclusions remove those copies, retaining source/checksum his
 from __future__ import annotations
 import argparse
 from collections import Counter
+from concurrent.futures import ProcessPoolExecutor, as_completed
 import datetime as dt
 import hashlib
 import ipaddress
@@ -16,6 +17,8 @@ from pathlib import Path
 import re
 import socket
 import subprocess
+import tempfile
+import fcntl
 import time
 import unicodedata
 import urllib.error
@@ -26,11 +29,11 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 PREFIX = 'open-access/'
-BUCKETS = {'aphasia':'stroke-aphasia-kb-pdfs','dysphagia':'dysphagia-kb-private'}
+BUCKETS = {'aphasia':'stroke-aphasia-kb-pdfs','dysphagia':'dysphagia-kb-private','practice':'stroke-kb-practice-private'}
 MAX_PDF = 60 * 1024 * 1024
 EMAIL = 'm.massontrottier@uq.edu.au'
 S3 = 'https://pmc-oa-opendata.s3.amazonaws.com/'
-ID = re.compile(r'^(?:C\d+|U[a-f0-9]{32}|DYS-[a-f0-9]{16})$')
+ID = re.compile(r'^(?:C\d+|U[a-f0-9]{32}|(?:DYS|PLE)-[a-f0-9]{16})$')
 
 def now():
     return dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds')
@@ -103,7 +106,12 @@ class R2:
         self.token_checked=0
     def auth_token(self,force=False):
         if self.wrangler and (force or time.monotonic()-self.token_checked>30):
-            result=subprocess.run([self.wrangler,'auth','token','--json'],capture_output=True,text=True,timeout=60)
+            # Concurrent collections share one Wrangler sign-in. Serialize its
+            # refresh so a rotated OAuth refresh token is never reused in parallel.
+            lock=Path(tempfile.gettempdir())/f'stroke-kb-auth-{os.getuid()}.lock'
+            with lock.open('a') as handle:
+                fcntl.flock(handle,fcntl.LOCK_EX)
+                result=subprocess.run([self.wrangler,'auth','token','--json'],capture_output=True,text=True,timeout=60)
             try: token=json.loads(result.stdout).get('token') if result.returncode==0 else None
             except ValueError: token=None
             if not token: raise RuntimeError('Cloudflare sign-in unavailable. Run wrangler login, then resume.')
@@ -151,11 +159,11 @@ class R2:
                    for item in self.entries(f'{PREFIX}decisions/{id}/'))
 
 def candidates(chapter,store):
-    if chapter=='dysphagia':
+    if chapter in ('dysphagia','practice'):
         if not store.get(PREFIX+'decisions-ready.json'):
-            raise RuntimeError('Dysphagia decision reconciliation must finish before collecting PDFs')
+            raise RuntimeError(f'{chapter.title()} decision reconciliation must finish before collecting PDFs')
         manifest=store.get('screening/records.json')
-        if not manifest: raise RuntimeError('Missing Dysphagia import')
+        if not manifest: raise RuntimeError(f'Missing {chapter.title()} import')
         return [r for name in manifest['chunks'] for r in store.get('screening/'+name)]
     data=yaml.load((ROOT/'screening/candidates.yaml').read_text(),Loader=getattr(yaml, 'CSafeLoader', yaml.SafeLoader))
     rows=data if isinstance(data,list) else data['candidates']
@@ -287,28 +295,49 @@ def run(chapter,max_records,deadline):
     processed=0
     batch_total=min(len(todo),max_records)
     print(f'{chapter.title()}: {len(rows):,} candidates; {len(todo):,} due; up to {batch_total:,} in this run.',flush=True)
-    for row in todo[:max_records]:
-        if time.monotonic()>deadline: break
-        status=collect_one(store,row,index.get(row['id']))
-        index[row['id']]=status
-        stamp=status['checked_at'].replace(':','-')
-        store.put(f"{PREFIX}history/{row['id']}/{stamp}.json",status)
-        store.put(f"{PREFIX}status/{row['id']}.json",status)
-        # Keep retries for retained records until they have actually been attempted.
-        store.delete(f"{PREFIX}retry/{row['id']}.json")
-        processed+=1
-        saved=sum(x['status']=='available' for x in index.values())
-        print(f"[{chapter} {processed:,}/{batch_total:,}] {row['id']} — {status['status']} | {saved:,} PDFs stored | {len(todo)-processed:,} checks left",flush=True)
-        if processed%10==0:
-            store.put(PREFIX+'index.json',index)
-            store.put(PREFIX+'summary.json',{'chapter':chapter,'updated':now(),'candidates':len(rows),'processed_this_run':processed,
-                      'remaining_this_pass':len(todo)-processed,'running':True,'counts':dict(Counter(x['status'] for x in index.values()))})
-    store.put(PREFIX+'index.json',index)
-    summary={'chapter':chapter,'updated':now(),'candidates':len(rows),'processed_this_run':processed,'running':False,
-             'remaining_this_pass':len(todo)-processed,'counts':dict(Counter(x['status'] for x in index.values()))}
-    store.put(PREFIX+'summary.json',summary)
-    print(json.dumps(summary),flush=True)
+    try:
+        for row in todo[:max_records]:
+            if time.monotonic()>deadline: break
+            status=collect_one(store,row,index.get(row['id']))
+            index[row['id']]=status
+            stamp=status['checked_at'].replace(':','-')
+            store.put(f"{PREFIX}history/{row['id']}/{stamp}.json",status)
+            store.put(f"{PREFIX}status/{row['id']}.json",status)
+            # Keep retries for retained records until they have actually been attempted.
+            store.delete(f"{PREFIX}retry/{row['id']}.json")
+            processed+=1
+            saved=sum(x['status']=='available' for x in index.values())
+            print(f"[{chapter} {processed:,}/{batch_total:,}] {row['id']} — {status['status']} | {saved:,} PDFs stored | {len(todo)-processed:,} checks left",flush=True)
+            if processed%10==0:
+                store.put(PREFIX+'index.json',index)
+                store.put(PREFIX+'summary.json',{'chapter':chapter,'updated':now(),'candidates':len(rows),'processed_this_run':processed,
+                          'remaining_this_pass':len(todo)-processed,'running':True,'counts':dict(Counter(x['status'] for x in index.values()))})
+    finally:
+        store.put(PREFIX+'index.json',index)
+        summary={'chapter':chapter,'updated':now(),'candidates':len(rows),'processed_this_run':processed,'running':False,
+                 'remaining_this_pass':len(todo)-processed,'counts':dict(Counter(x['status'] for x in index.values()))}
+        store.put(PREFIX+'summary.json',summary)
+        print(json.dumps(summary),flush=True)
+
     return summary
+
+def run_collections(chapters,max_records,deadline):
+    """Isolate PDF parsers and storage writers: at most one process per collection."""
+    if len(chapters)==1:
+        try: run(chapters[0],max_records,deadline); return False
+        except Exception as exc:
+            print(json.dumps({'chapter':chapters[0],'error':str(exc)}),flush=True)
+            return True
+    print('Running '+', '.join(chapters)+' together, one process per collection.',flush=True)
+    failed=False
+    with ProcessPoolExecutor(max_workers=min(3,len(chapters))) as pool:
+        pending={pool.submit(run,chapter,max_records,deadline):chapter for chapter in chapters}
+        for future in as_completed(pending):
+            try: future.result()
+            except Exception as exc:
+                print(json.dumps({'chapter':pending[future],'error':str(exc)}),flush=True)
+                failed=True
+    return failed
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
@@ -321,12 +350,12 @@ def main():
     if args.wrangler: os.environ['STROKE_KB_WRANGLER']=args.wrangler
     if args.account_id: os.environ['CLOUDFLARE_ACCOUNT_ID']=args.account_id
     chapters=list(BUCKETS) if args.chapter=='all' else [args.chapter]
-    failed=False
-    for chapter in chapters:
-        try: run(chapter,args.max_records,time.monotonic()+args.minutes*60/len(chapters))
-        except Exception as exc:
-            print(json.dumps({'chapter':chapter,'error':str(exc)}),flush=True)
-            failed=True
+    if args.max_records<0 or args.minutes<1: parser.error('Use a non-negative record limit and a positive time limit')
+    try:
+        failed=run_collections(chapters,args.max_records,time.monotonic()+args.minutes*60)
+    except KeyboardInterrupt:
+        print('Stopped. Saved PDFs and checkpoints remain; run the same command to resume.',flush=True)
+        raise SystemExit(130) from None
     if failed: raise SystemExit(1)
 
 if __name__=='__main__': main()

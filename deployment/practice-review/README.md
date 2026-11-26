@@ -72,8 +72,10 @@ hide them from eligible queues. Browser backups retain unsaved notes and CSV
 exports label unsaved values. Counts include pending browser decisions and are
 personal progress, not adjudicated PRISMA totals.
 
-Full-text reading uses the source/publisher link and library access. This workspace
-does not automatically acquire PDFs. Evidence notes require a supporting passage,
+Full-text reading uses the source/publisher link and library access. The shared open-access collector supplies licensed PDFs in this workspace's
+private bucket. Collected copies appear beside the publisher link. Screening
+exclusions remove that workspace's collected copy; rejecting an evidence note
+does not. See `docs/OPEN_ACCESS.md` for collection and reconciliation. Evidence notes require a supporting passage,
 locator, perspective, limitations and appraisal. Marking reviewed does not publish
 a KB claim. The public findings/papers/theme views remain explicitly empty until
 source-checked findings are separately approved and published.

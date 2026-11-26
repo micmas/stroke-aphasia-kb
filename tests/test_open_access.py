@@ -67,3 +67,50 @@ def test_missing_ids_require_unambiguous_title_year_author_match(monkeypatch):
     assert oa.identify(record)==record
     monkeypatch.setattr(oa,'get_json',lambda url:{'doi':'10.1234/right','is_oa':True,'oa_locations':[{'url_for_pdf':'https://publisher.org/p.pdf','license':None}]})
     assert oa.unpaywall_locations({'doi':'10.1234/right'})==[]
+
+
+def test_practice_candidates_use_their_own_ready_import():
+    class ImportStore:
+        def get(self,key):
+            return {'open-access/decisions-ready.json':{'at':'ready'},
+                    'screening/records.json':{'chunks':['records-000.json']},
+                    'screening/records-000.json':[{'id':'PLE-0123456789abcdef','title':'Practice paper'}]}[key]
+    rows=oa.candidates('practice',ImportStore())
+    assert rows[0]['id']=='PLE-0123456789abcdef' and oa.ID.fullmatch(rows[0]['id'])
+    assert oa.BUCKETS['practice'] not in [oa.BUCKETS['aphasia'],oa.BUCKETS['dysphagia']]
+
+
+def test_collections_start_together_and_one_failure_does_not_stop_the_others(monkeypatch):
+    import threading
+    from concurrent.futures import ThreadPoolExecutor
+    barrier=threading.Barrier(3);finished=[]
+    def fake_run(chapter,max_records,deadline):
+        barrier.wait(timeout=3)
+        if chapter=='dysphagia':raise RuntimeError('One provider failed')
+        finished.append(chapter)
+    monkeypatch.setattr(oa,'ProcessPoolExecutor',ThreadPoolExecutor)
+    monkeypatch.setattr(oa,'run',fake_run)
+    assert oa.run_collections(list(oa.BUCKETS),20,999999999) is True
+    assert set(finished)=={'aphasia','practice'}
+
+
+def test_interrupted_collection_saves_records_before_the_ten_record_checkpoint(monkeypatch):
+    class MemoryStore:
+        def __init__(self):self.files={}
+        def get(self,key,default=None):return self.files.get(key,default)
+        def put(self,key,value):self.files[key]=value.copy()
+        def delete(self,key):self.files.pop(key,None)
+        def entries(self,prefix):return []
+        def keys(self,prefix):return []
+    store=MemoryStore();rows=[{'id':'C'+str(n)} for n in range(5)];calls=[]
+    def collect(store,row,old):
+        if len(calls)==2:raise KeyboardInterrupt
+        calls.append(row['id'])
+        return {'id':row['id'],'checked_at':oa.now(),'status':'not_found'}
+    monkeypatch.setattr(oa,'R2',lambda bucket:store)
+    monkeypatch.setattr(oa,'candidates',lambda *args:rows)
+    monkeypatch.setattr(oa,'collect_one',collect)
+    with pytest.raises(KeyboardInterrupt):oa.run('practice',20,oa.time.monotonic()+60)
+    assert set(store.files[oa.PREFIX+'index.json'])=={'C0','C1'}
+    assert store.files[oa.PREFIX+'summary.json']['processed_this_run']==2
+    assert store.files[oa.PREFIX+'summary.json']['running'] is False

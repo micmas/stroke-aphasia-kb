@@ -53,6 +53,7 @@ def import_exports(exports):
 def build_review():
     dest=ROOT/'deployment/practice-review/dist';dest.mkdir(parents=True,exist_ok=True)
     for p in (ROOT/'staging/practice/web').iterdir():shutil.copy2(p,dest/p.name)
+    shutil.copy2(ROOT/'portal/web/open-access.js',dest/'open-access.js')
     for name in ('project-shell.css','project-shell.js'):shutil.copy2(ROOT/'explorer'/name,dest/name)
     (dest/'_headers').write_text('/*\n  Cache-Control: no-store\n  X-Robots-Tag: noindex, nofollow\n');print(dest)
 if __name__=='__main__':

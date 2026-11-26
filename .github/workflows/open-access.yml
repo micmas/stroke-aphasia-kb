@@ -4,7 +4,7 @@ on:
     inputs:
       chapter:
         type: choice
-        options: [all, aphasia, dysphagia]
+        options: [all, aphasia, dysphagia, practice]
         default: all
       max_records:
         description: Maximum records per chapter in this run
@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        chapter: ${{ fromJSON(inputs.chapter == 'aphasia' && '["aphasia"]' || inputs.chapter == 'dysphagia' && '["dysphagia"]' || '["aphasia","dysphagia"]') }}
+        chapter: ${{ fromJSON(inputs.chapter == 'aphasia' && '["aphasia"]' || inputs.chapter == 'dysphagia' && '["dysphagia"]' || inputs.chapter == 'practice' && '["practice"]' || '["aphasia","dysphagia","practice"]') }}
     env:
       CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
       CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

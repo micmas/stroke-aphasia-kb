@@ -1,3 +1,4 @@
+import {openAccessNote} from './open-access.js';
 const $=id=>document.getElementById(id),stages=['title_abstract','full_text','evidence_review'];
 let records=[],saved={},pending={},sha=0,reviewer='',key='',index=0,saving=false;
 const stage=()=>$('stage').value,empty=()=>({decision:'pending',reason:'',notes:'',evidence:{}});
@@ -21,6 +22,7 @@ function render(keep){
  if(!r){panel.append(el('p',stage()==='title_abstract'?'No records match this view.':'Include papers in the preceding stage to populate this queue.'));return;}
  const a=el('article','');a.append(el('h2',r.title),el('p',`${r.authors.join('; ')} · ${r.year||'Year unavailable'} · ${r.journal}`,'meta'));
  if(r.doi){const link=el('a','Open publisher / source');link.href='https://doi.org/'+encodeURIComponent(r.doi);link.target='_blank';link.rel='noopener';a.append(link);}
+ a.append(openAccessNote(r.id));
  a.append(el('h3','Abstract'),el('p',r.abstract||'No abstract supplied. Retain as unsure if the title is insufficient.','abstract'));
  if(stage()!=='title_abstract')a.append(el('p','Read the full source before deciding. A publisher link may require library access. Record the source and page/section in your notes.'));
  if(stage()==='evidence_review'){
@@ -40,10 +42,11 @@ $('save').onclick=async()=>{
  const deferred=Object.values(pending).filter(d=>!eligible({id:d.id},d.stage));
  const todo=Object.values(pending).filter(d=>eligible({id:d.id},d.stage)).sort((a,b)=>stages.indexOf(a.stage)-stages.indexOf(b.stage));
  if(todo.some(d=>d.decision==='exclude'&&!d.reason.trim())){message('Choose a reason for every exclusion.');return;}
+ const oaWarnings=new Set();
  saving=true;progress();message('Saving…');
  try{ // Save each stage in order so later-stage prerequisites are durable.
-  for(const s of stages){const items=todo.filter(d=>d.stage===s);for(let n=0;n<items.length;n+=50){const batch=items.slice(n,n+50);const out=await api({method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sha,decisions:batch})});sha=out.sha;saved=out.decisions;for(const d of batch){const k=d.stage+':'+d.id;if(JSON.stringify(pending[k])===JSON.stringify(d))delete pending[k];}persist();}}
-  message('Saved with reviewer attribution and an audit record.'+(deferred.length?` ${deferred.length} later-stage notes remain in your browser until preceding stages are included again.`:''));
+  for(const s of stages){const items=todo.filter(d=>d.stage===s);for(let n=0;n<items.length;n+=50){const batch=items.slice(n,n+50);const out=await api({method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({sha,decisions:batch})});sha=out.sha;saved=out.decisions;if(out.oaWarning)oaWarnings.add(out.oaWarning);for(const d of batch){const k=d.stage+':'+d.id;if(JSON.stringify(pending[k])===JSON.stringify(d))delete pending[k];}persist();}}
+  message('Saved with reviewer attribution and an audit record. '+[...oaWarnings].join(' ')+(deferred.length?` ${deferred.length} later-stage notes remain in your browser until preceding stages are included again.`:''));
  }catch(e){message(e.message);}finally{saving=false;render();}
 };
 for(const id of ['stage','filter'])$(id).onchange=()=>{index=0;render();};$('search').oninput=()=>{index=0;render();};$('previous').onclick=()=>{index--;render();};$('next').onclick=()=>{const list=filtered(),id=$('position').textContent.split(' · ').at(-1),at=list.findIndex(r=>r.id===id);index=at<0?index:at+1;render();};

@@ -12,6 +12,14 @@ replacement paper, check `logs/baseline/2026-11-12.json` and any preserved revie
 material for unresolved source questions. An archived approval or model verdict
 does not automatically approve a newly extracted finding.
 
+## Collect open-access copies and sync kept papers
+
+Use `./collect-pdfs.command` for all three collections, then
+`./sync-pdfs.command` to download only saved, kept papers into
+`papers/_incoming/open-access/{aphasia,dysphagia,practice}/`. These commands do not
+format PDFs or run extraction. See [PDF collection and local sync](OPEN_ACCESS.md)
+for the complete terminal workflow and filename/source metadata rules.
+
 ## Download portal uploads without starting models
 
 Run `.venv/bin/python kb.py sync` to download uploaded PDFs and publish their
