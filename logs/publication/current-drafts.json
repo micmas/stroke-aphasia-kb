@@ -2212,113 +2212,369 @@
       "source_sha256": "3aaaa0a4d3aabcd8033fffa629903cfdb4d6fde2bc321f01f23b9c88f8ce68e6",
       "paper": "Durfee2021",
       "candidate": "R002",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to the review\u2019s cross-study synthesis. This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "3aaaa0a4d3aabcd8033fffa629903cfdb4d6fde2bc321f01f23b9c88f8ce68e6",
+            "paper": "Durfee2021",
+            "candidate": "R002",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "52d11a6bf1881acaaf3a5d7ef86b30700af65a731ef6dfa26a598758c13c5775",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/right_temporoparietal_basal_ganglia_cluster__Durfee2021__R003.md": {
       "source_sha256": "9813bc067bbe949ffefc405d85d061419b8baec922ef34fe6f1779916fb84071",
       "paper": "Durfee2021",
       "candidate": "R003",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Starkstein et al. (1994). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "9813bc067bbe949ffefc405d85d061419b8baec922ef34fe6f1779916fb84071",
+            "paper": "Durfee2021",
+            "candidate": "R003",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "0a568e84afaef3b0512aefdb88e90b819849352851b797bf237b6add92169ebb",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/right_posterior_superior_temporal_cortex__Durfee2021__R004.md": {
       "source_sha256": "6d08b3c0a9820107e5a5ebcd764f55c2b7a05a15453647ec40da963a338b9211",
       "paper": "Durfee2021",
       "candidate": "R004",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Sheppard et al. (2020). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "6d08b3c0a9820107e5a5ebcd764f55c2b7a05a15453647ec40da963a338b9211",
+            "paper": "Durfee2021",
+            "candidate": "R004",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "07893ee6cfe302136c6f37f7c5553dc015fa206b9d02ca5e9dd813fe116352d0",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/amygdala_fearful_prosody_predictor__Durfee2021__R005.md": {
       "source_sha256": "d7c3c0071fd9d6e6e44c0feeab75b06eb7f239abbb0dcff4dfdefa9b02c807be",
       "paper": "Durfee2021",
       "candidate": "R005",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Sheppard et al. (2020). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "d7c3c0071fd9d6e6e44c0feeab75b06eb7f239abbb0dcff4dfdefa9b02c807be",
+            "paper": "Durfee2021",
+            "candidate": "R005",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "b72639e1e9da2f0336e1f6b8bbaaaaf518157f327654a2b64d5ff7d2f74e1362",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/rh_temporal_parietal_lesions__Durfee2021__R006.md": {
       "source_sha256": "3497cb4d7cb35f7d4e2252a921f3105f7115abb3da3935de9ca22f4199ba897c",
       "paper": "Durfee2021",
       "candidate": "R006",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Ross (1981). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "3497cb4d7cb35f7d4e2252a921f3105f7115abb3da3935de9ca22f4199ba897c",
+            "paper": "Durfee2021",
+            "candidate": "R006",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "2b54a0adf247f36d586fa20679d5f1ac38b6f003c3d8d6b1dc5237c38cae449d",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/rh_mca_inferior_division__Durfee2021__R009.md": {
       "source_sha256": "dace40c9a365a83c4a3b70fb2f90677c4f9f55565d04134cc218837a9af1925c",
       "paper": "Durfee2021",
       "candidate": "R009",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Darby (1993). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "dace40c9a365a83c4a3b70fb2f90677c4f9f55565d04134cc218837a9af1925c",
+            "paper": "Durfee2021",
+            "candidate": "R009",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "ac5026f2259ba9af4a0aacaff2770ed2aba83f59175674d1bdb5ab700e88014e",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/right_temporoparietal_cortex__Durfee2021__R011.md": {
       "source_sha256": "5caed8a6dd60afd55b32b62d45a5494db4b6947a1fe77db39e1ffcc3e2759bdf",
       "paper": "Durfee2021",
       "candidate": "R011",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Gorelick and Ross (1987) and Hughes et al. (1983). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "5caed8a6dd60afd55b32b62d45a5494db4b6947a1fe77db39e1ffcc3e2759bdf",
+            "paper": "Durfee2021",
+            "candidate": "R011",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "b28408ed3da4d4d0bcbbf9e9957e3da21b6ac250368723e1a632557be5606d91",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/rh_subcortical_frontal_receptive_aprosodia__Durfee2021__R012.md": {
       "source_sha256": "828c38ea73bc9e71cc376157a0e13e30ee3bd30487f6b870b9cae437837051de",
       "paper": "Durfee2021",
       "candidate": "R012",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Cancelliere and Kertesz (1990), Gorelick and Ross (1987), and Ross and Monnot (2008). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "828c38ea73bc9e71cc376157a0e13e30ee3bd30487f6b870b9cae437837051de",
+            "paper": "Durfee2021",
+            "candidate": "R012",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "0aa0fea7bc05ba315fa1d9fc6909438d302c003279241d289983354a5acc7a6c",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/right_temporoparietal_basal_ganglia_cluster__Durfee2021__R014.md": {
       "source_sha256": "b701202a96cf3f17993223845e015932ce18986e6af50edca672713a35a8e1d4",
       "paper": "Durfee2021",
       "candidate": "R014",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Starkstein et al. (1994). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "b701202a96cf3f17993223845e015932ce18986e6af50edca672713a35a8e1d4",
+            "paper": "Durfee2021",
+            "candidate": "R014",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "85cad66c935a1db5b82ff9598bdd0ba56ad523ceed185db93cc1f2e2da66a39f",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/right_smg_slf_damage__Durfee2021__R015.md": {
       "source_sha256": "695f93efab0a7359ceff4aa4d18308fb4233ff649cc6d5f7b40e8ed8109929a9",
       "paper": "Durfee2021",
       "candidate": "R015",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Patel et al. (2018). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "695f93efab0a7359ceff4aa4d18308fb4233ff649cc6d5f7b40e8ed8109929a9",
+            "paper": "Durfee2021",
+            "candidate": "R015",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "c3f7492b1fcc8d49de01e1eb6c7f5e6009fb51883c0f7ca6bea4fcab066bdd11",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/acute_spectral_flatness_predictor__Durfee2021__R016.md": {
       "source_sha256": "7a0c3e44f5941b54bd698c800a3f224b377211454572463d86067c21a806d878",
       "paper": "Durfee2021",
       "candidate": "R016",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Patel et al. (2018). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "7a0c3e44f5941b54bd698c800a3f224b377211454572463d86067c21a806d878",
+            "paper": "Durfee2021",
+            "candidate": "R016",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "1be8c51e09a87e61d6d68bab183d047ca0c9099ba5318232ef6c8e27a0e378b3",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/ventral_stream_receptive_prosody_regions__Durfee2021__R017.md": {
       "source_sha256": "472160a524c7d581b5f8c4407676ca746fced30bd3cdcfa156ca225e99ca4575",
       "paper": "Durfee2021",
       "candidate": "R017",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Patel et al. (2018). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "472160a524c7d581b5f8c4407676ca746fced30bd3cdcfa156ca225e99ca4575",
+            "paper": "Durfee2021",
+            "candidate": "R017",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "bd375a17a6bfc385ec0925328f519a5953539cd9281479b885aef34ce5288182",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/subcortical_prosody_cluster__Durfee2021__R019.md": {
       "source_sha256": "65dc2077a3735bbb552a0b936464b64be8b543c45a86c934ce99ea5fc364d683",
       "paper": "Durfee2021",
       "candidate": "R019",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Ross (1981). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "65dc2077a3735bbb552a0b936464b64be8b543c45a86c934ce99ea5fc364d683",
+            "paper": "Durfee2021",
+            "candidate": "R019",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "4d13aa77d3d15da8608c9c6265e8d77104041cd8ffc906aa45852045cc929236",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/rh_frontal_insula_white_matter_expressive_aprosodia__Durfee2021__R029.md": {
       "source_sha256": "1ce9c80da5c5da5be5fac7f48f9f423a374d6adcb9690c1b3de1ca5c3d6f50c2",
       "paper": "Durfee2021",
       "candidate": "R029",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to the review\u2019s cross-study comparison of reported lesion regions. This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "1ce9c80da5c5da5be5fac7f48f9f423a374d6adcb9690c1b3de1ca5c3d6f50c2",
+            "paper": "Durfee2021",
+            "candidate": "R029",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "7f02e8fa547b12282a0bbd964d1bf760fec2708a9a9cb95fe4c985a047ff5c16",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/rh_posterior_subcortical_cluster__Durfee2021__R030.md": {
       "source_sha256": "176cdabd4bac0a66af0d9961278d97d5868a46bba4a2a7e9b8db7d475f51958a",
       "paper": "Durfee2021",
       "candidate": "R030",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to the review\u2019s cross-study comparison of reported lesion regions. This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "176cdabd4bac0a66af0d9961278d97d5868a46bba4a2a7e9b8db7d475f51958a",
+            "paper": "Durfee2021",
+            "candidate": "R030",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "a13dba0c57d14313ea1ab2a5c9b43445e20647bbaac6540e2e349b2d0b24eb4f",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/right_parietal_lobe__Durfee2021__R031.md": {
       "source_sha256": "57c05cbce87681741eb711690861e01dc43ea513272b220d57a79383286cdf76",
       "paper": "Durfee2021",
       "candidate": "R031",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to the review\u2019s article-level comparison of reported lesion regions. This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "57c05cbce87681741eb711690861e01dc43ea513272b220d57a79383286cdf76",
+            "paper": "Durfee2021",
+            "candidate": "R031",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Durfee2021 is a systematic review of 11 articles, not a new primary stroke cohort. This draft requires reconciliation of review-level versus cited-primary-study attribution and method/evidence classification before publication, to avoid presenting reviewed cases or cohorts as independent Durfee2021 data. Original source-check outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "7d44fc72c516d8463553335d29da8c392b4f8e7010e31cc939fd3a4206b341e6",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/therapies/semantic_feature_analysis__Efstratiadou2018__R002.md": {
       "source_sha256": "715c00091429448be4d2291fce7a5b0f59835c59260cf9f27b9396dd8d4669d1",
@@ -2734,8 +2990,24 @@
       "source_sha256": "11cf7bbd1d2a444988ceed677de714ca0ea6a71cb204a52bab6dd532d02cfb12",
       "paper": "Fridriksson2018BDNF",
       "candidate": "R004",
-      "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
-      "reason": "Source Results prose on PDF page 4 reports a main effect of time, but Table 2 on PDF page 5 gives time-of-testing F=2.5 and P=.08. The draft repeats the prose without flagging this internal conflict. Hold pending reconciliation of the source text and table; original outputs are preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Agent visually checked Table 2 against the Results prose. Preserved the disagreement explicitly rather than claiming a resolved significant or null effect. Human source adjudication remains required.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "11cf7bbd1d2a444988ceed677de714ca0ea6a71cb204a52bab6dd532d02cfb12",
+            "paper": "Fridriksson2018BDNF",
+            "candidate": "R004",
+            "publication_disposition": "withdrawn_pending_statistical_interpretation_review",
+            "reason": "Source Results prose on PDF page 4 reports a main effect of time, but Table 2 on PDF page 5 gives time-of-testing F=2.5 and P=.08. The draft repeats the prose without flagging this internal conflict. Hold pending reconciliation of the source text and table; original outputs are preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "8309c30e0981f128db0885fb111fd8193113f75b3b826e208b74a23f39d789f2",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/tdcs_time_interaction__Fridriksson2018BDNF__R005.md": {
       "source_sha256": "b4eba3fb1fbd795473c2ec050a2a870d97c2ecd467f8c357b3471923a23f18e1",
@@ -3582,8 +3854,25 @@
       "source_sha256": "279e0c4f1788fc9f7fc095e79adc53f624eb0bca7a3c5bfd32f863ddb5549c56",
       "paper": "Hickok2007",
       "candidate": "R010",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Hickok2007 is an Opinion article. PDF page 8 attributes the pianist humming-versus-keyboard observation to G.H., unpublished observations. The draft labels this as cohort evidence without preserving its unpublished status; reconcile source design and attribution before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Hickok2007 is an Opinion article. PDF page 8 attributes the pianist humming-versus-keyboard observation to G.H., unpublished observations. The draft labels this as cohort evidence without preserving its unpublished status; reconcile source design and attribution before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "279e0c4f1788fc9f7fc095e79adc53f624eb0bca7a3c5bfd32f863ddb5549c56",
+            "paper": "Hickok2007",
+            "candidate": "R010",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Hickok2007 is an Opinion article. PDF page 8 attributes the pianist humming-versus-keyboard observation to G.H., unpublished observations. The draft labels this as cohort evidence without preserving its unpublished status; reconcile source design and attribution before publication."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "2812b46124b3b0c3bd82b9e977d43e41ebd8f89e16620d4f8381f12d950fb0d8",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to G.H.\u2019s unpublished observations reported in this Opinion article. This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/wernickes_area_perfusion_delay__Hillis2001__R001.md": {
       "source_sha256": "0ea81fe861bffac299cfeada86e90485411cefd65c48e58b2663201cac7fd55b",
@@ -3604,8 +3893,25 @@
       "source_sha256": "614dc0cbcd18d18d97fcd162078b2e3decfeddb2deaf23e39584d015b6d0c73f",
       "paper": "Hillis2002",
       "candidate": "R002",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Draft method clinical_RCT is unsupported: PDF page 4 describes six selected intervention patients (four induced blood pressure elevation, one endarterectomy, one stent) and one untreated comparison, without random allocation. The abstract says 100% immediate resolution, whereas page 5 describes substantial improvement with full recovery in most cases. Reconcile design and outcome wording before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Draft method clinical_RCT is unsupported: PDF page 4 describes six selected intervention patients (four induced blood pressure elevation, one endarterectomy, one stent) and one untreated comparison, without random allocation. The abstract says 100% immediate resolution, whereas page 5 describes substantial improvement with full recovery in most cases. Reconcile design and outcome wording before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "614dc0cbcd18d18d97fcd162078b2e3decfeddb2deaf23e39584d015b6d0c73f",
+            "paper": "Hillis2002",
+            "candidate": "R002",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Draft method clinical_RCT is unsupported: PDF page 4 describes six selected intervention patients (four induced blood pressure elevation, one endarterectomy, one stent) and one untreated comparison, without random allocation. The abstract says 100% immediate resolution, whereas page 5 describes substantial improvement with full recovery in most cases. Reconcile design and outcome wording before publication."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "dc8ca4f6f0b14dc2e9603ae7e267f5e7bb7e50b1d95ca820e5eba7c53452a67c",
+      "reason": "Used the detailed Results description instead of the abstract\u2019s blanket 100% immediate-resolution wording. Four patients received induced blood-pressure elevation, one endarterectomy and one a stent. Observational selected case series; intervention effectiveness cannot be isolated from this uncontrolled comparison.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/aphasia_neglect_cortical_hypoperfusion_prediction__Hillis2002__R003.md": {
       "source_sha256": "6c648bdf73c64e31f0a2ce198aceb58fdf4fcda8359382cb7f73fb77e6228f98",
@@ -4281,8 +4587,25 @@
       "source_sha256": "d0e44ab83eace918aa894762f8ca67ecb467c7067d6deab438d68f71973fc131",
       "paper": "Karnath2018",
       "candidate": "R009",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Karnath2018 is a narrative review, not the primary cohort study. Page 7 explicitly attributes the spatial-neglect prediction result to Smith et al. (2013). This draft labels it cohort evidence under Karnath2018 and omits that primary-study attribution. Quarantine the publication copy pending source/design reconciliation; original model output is preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Karnath2018 is a narrative review, not the primary cohort study. Page 7 explicitly attributes the spatial-neglect prediction result to Smith et al. (2013). This draft labels it cohort evidence under Karnath2018 and omits that primary-study attribution. Quarantine the publication copy pending source/design reconciliation; original model output is preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "d0e44ab83eace918aa894762f8ca67ecb467c7067d6deab438d68f71973fc131",
+            "paper": "Karnath2018",
+            "candidate": "R009",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Karnath2018 is a narrative review, not the primary cohort study. Page 7 explicitly attributes the spatial-neglect prediction result to Smith et al. (2013). This draft labels it cohort evidence under Karnath2018 and omits that primary-study attribution. Quarantine the publication copy pending source/design reconciliation; original model output is preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "d95f337fb70c136320c37d8cb9401e3dddfc206f670aed1c4d5163c0e94bf170",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Smith et al. (2013). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/multivariate_lesion_behavior_mapping__Karnath2018__R011.md": {
       "source_sha256": "bd58f4adaf907b09853e2b5da3f50c4c55cb1f4c88cfa147b6d074b6749223e1",
@@ -4443,8 +4766,25 @@
       "source_sha256": "119dd80b585b927edd8b4ce2d552e7c253e343e4544cfbca8ec1eed91c4d83b7",
       "paper": "Kristinsson2020",
       "candidate": "R003",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Kristinsson2020 R003 identifies MTGpole as a predictor in the non-CAN model. The prose on PDF page 8 initially names MTGpole, but Table 4 on that page and Figure 3 on page 9 label the fifth predictor MTG (distinct predefined ROIs in Table 3). The draft repeats MTGpole without acknowledging this source discrepancy. Quarantine the publication copy pending anatomical source reconciliation and human review; preserve the original model output."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Kristinsson2020 R003 identifies MTGpole as a predictor in the non-CAN model. The prose on PDF page 8 initially names MTGpole, but Table 4 on that page and Figure 3 on page 9 label the fifth predictor MTG (distinct predefined ROIs in Table 3). The draft repeats MTGpole without acknowledging this source discrepancy. Quarantine the publication copy pending anatomical source reconciliation and human review; preserve the original model output.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "119dd80b585b927edd8b4ce2d552e7c253e343e4544cfbca8ec1eed91c4d83b7",
+            "paper": "Kristinsson2020",
+            "candidate": "R003",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Kristinsson2020 R003 identifies MTGpole as a predictor in the non-CAN model. The prose on PDF page 8 initially names MTGpole, but Table 4 on that page and Figure 3 on page 9 label the fifth predictor MTG (distinct predefined ROIs in Table 3). The draft repeats MTGpole without acknowledging this source discrepancy. Quarantine the publication copy pending anatomical source reconciliation and human review; preserve the original model output."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "f830f4bf89ac25642d68d836675d4d3b458ff95af4ba9fb78d1485eccbf82c48",
+      "reason": "Agent visually inspected Table 4 and compared the Results and ROI list. Retained the model-level result while flagging the unresolved MTG versus MTGpole label; do not treat this as a uniquely localized MTGpole finding.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/non_can_residual_predictor_model__Kristinsson2020__R004.md": {
       "source_sha256": "ea45f4a0ef32f715e1b602f76500773834aedda3223388f6db6e880d296068ab",
@@ -6077,8 +6417,25 @@
       "source_sha256": "7ea1652d71f8345a8c459f8c0b1b892257596ce5d4101a7a09524f292b6da962",
       "paper": "NadeauCrosson1997",
       "candidate": "R011",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Nadeau and Crosson 1997 explicitly reviews the subcortical aphasia literature (PDF p1). The frontal-ITP-NR-CM conclusion on p24 synthesizes reported cases and four anatomical case descriptions (pp21-24), rather than a cohort lesion-symptom mapping study. This publication copy labels evidence_quality cohort and method LSM; withheld pending source-design review. Original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Nadeau and Crosson 1997 explicitly reviews the subcortical aphasia literature (PDF p1). The frontal-ITP-NR-CM conclusion on p24 synthesizes reported cases and four anatomical case descriptions (pp21-24), rather than a cohort lesion-symptom mapping study. This publication copy labels evidence_quality cohort and method LSM; withheld pending source-design review. Original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "7ea1652d71f8345a8c459f8c0b1b892257596ce5d4101a7a09524f292b6da962",
+            "paper": "NadeauCrosson1997",
+            "candidate": "R011",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Nadeau and Crosson 1997 explicitly reviews the subcortical aphasia literature (PDF p1). The frontal-ITP-NR-CM conclusion on p24 synthesizes reported cases and four anatomical case descriptions (pp21-24), rather than a cohort lesion-symptom mapping study. This publication copy labels evidence_quality cohort and method LSM; withheld pending source-design review. Original outputs preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "5cb12ff0affee1ecc59d1c8c77c28792608c2cdccbed099d0bb19ab34de85498",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to the authors\u2019 limited-evidence synthesis of previously reported thalamic cases. This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/therapies/rtms_r_pars_triangularis__Naeser2005__R001.md": {
       "source_sha256": "cc5976b244c932989d2fef65a5868926f7a12a4bd4eaff24f79c7fc299a6e655",
@@ -6356,8 +6713,25 @@
       "source_sha256": "120049573db1bbf9a43fc83232303d335c42a057b4156365d2f6f0b61cf73bb7",
       "paper": "OsaGarcia2024",
       "candidate": "R016",
-      "publication_disposition": "withdrawn_pending_source_statistics_review",
-      "publication_disposition_reason": "The claim identifies lesion size as the most robust predictor in the complete relative overall change model. PDF p5 prose conflicts with Table 3 (p7): lesion size is listed for the nested model, while CS1 is the only listed significant predictor in the complete model. Withheld pending resolution of the prose/table model distinction; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "The claim identifies lesion size as the most robust predictor in the complete relative overall change model. PDF p5 prose conflicts with Table 3 (p7): lesion size is listed for the nested model, while CS1 is the only listed significant predictor in the complete model. Withheld pending resolution of the prose/table model distinction; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "120049573db1bbf9a43fc83232303d335c42a057b4156365d2f6f0b61cf73bb7",
+            "paper": "OsaGarcia2024",
+            "candidate": "R016",
+            "publication_disposition": "withdrawn_pending_source_statistics_review",
+            "publication_disposition_reason": "The claim identifies lesion size as the most robust predictor in the complete relative overall change model. PDF p5 prose conflicts with Table 3 (p7): lesion size is listed for the nested model, while CS1 is the only listed significant predictor in the complete model. Withheld pending resolution of the prose/table model distinction; original outputs preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "a3c3153694e2a7a1306a8ec41893c724a9ff914852dfee949a5ec3e295a8ee87",
+      "reason": "Agent visually checked Table 3. Removed the unqualified complete-model lesion-size claim and explicitly reported the conflicting model descriptions. Human source adjudication is still required.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/language_baseline_cs1__OsaGarcia2024__R017.md": {
       "source_sha256": "9e3f3f6399be22cb3f17bbe4b0b2066fccf6aa22782c1b7d9e09b98ddd3e1d33",
@@ -6563,8 +6937,25 @@
       "source_sha256": "a5c136f1db119582f602346e5f0dd943f037362c43cedb1de42f97e6d2cc9516",
       "paper": "Pendlebury2009",
       "candidate": "R007",
-      "publication_disposition": "withdrawn_pending_source_statistics_review",
-      "publication_disposition_reason": "Publication scope check: source narrative p8 says silent infarcts were no longer significant in sensitivity analysis, but Table 5 p9 reports overall pooled silent-stroke OR 1.8 (95% CI 0.9\u20133.5), p=0.08. Claim of significant overall silent-infarct association requires reconciliation. Withheld pending source statistics review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Publication scope check: source narrative p8 says silent infarcts were no longer significant in sensitivity analysis, but Table 5 p9 reports overall pooled silent-stroke OR 1.8 (95% CI 0.9\u20133.5), p=0.08. Claim of significant overall silent-infarct association requires reconciliation. Withheld pending source statistics review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "a5c136f1db119582f602346e5f0dd943f037362c43cedb1de42f97e6d2cc9516",
+            "paper": "Pendlebury2009",
+            "candidate": "R007",
+            "publication_disposition": "withdrawn_pending_source_statistics_review",
+            "publication_disposition_reason": "Publication scope check: source narrative p8 says silent infarcts were no longer significant in sensitivity analysis, but Table 5 p9 reports overall pooled silent-stroke OR 1.8 (95% CI 0.9\u20133.5), p=0.08. Claim of significant overall silent-infarct association requires reconciliation. Withheld pending source statistics review; original outputs preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "20b1fd73e083c0ea60f1b65e941d83d714b720a013bd7bf32bc4925806e3ffa7",
+      "reason": "Agent visually checked the Table 5 rows and preserved the narrative/table disagreement. Do not describe silent infarcts as an established significant overall predictor or equate non-significance with absence of an association.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/post_stroke_dementia_prevalence_variance_model__Pendlebury2009__R009.md": {
       "source_sha256": "72a2a9bc0c32184224a7bfa19503beffc11b255ba744d10285712753d995749b",
@@ -6805,8 +7196,25 @@
       "source_sha256": "4964a9ca8904bfa438f798dc9de57056fdefdca50637d45e3ade803917665e51",
       "paper": "Radanovic2017",
       "candidate": "R012",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Publication scope check: the language-disturbance/neglect association on PDF p11 is explicitly attributed to Perani et al. (1987) in the narrative discussion, not to the review authors\u2019 pooled lesion-site analysis. The draft labels this association as a meta-analysis result under Radanovic2017. Withheld pending source-design/provenance review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Publication scope check: the language-disturbance/neglect association on PDF p11 is explicitly attributed to Perani et al. (1987) in the narrative discussion, not to the review authors\u2019 pooled lesion-site analysis. The draft labels this association as a meta-analysis result under Radanovic2017. Withheld pending source-design/provenance review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "4964a9ca8904bfa438f798dc9de57056fdefdca50637d45e3ade803917665e51",
+            "paper": "Radanovic2017",
+            "candidate": "R012",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Publication scope check: the language-disturbance/neglect association on PDF p11 is explicitly attributed to Perani et al. (1987) in the narrative discussion, not to the review authors\u2019 pooled lesion-site analysis. The draft labels this association as a meta-analysis result under Radanovic2017. Withheld pending source-design/provenance review; original outputs preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "8faba310247c6bbf780a00f270e3a7ece92c43bad2650aac814aaf3ac592eafa",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Perani et al. (1987) and D\u00e9monet et al. (1991). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/behavioural_impairment_cluster__Ramsey2017__R001.md": {
       "source_sha256": "9dbce25c3bcd3415b24797d404394dfc84627d8d50657935b77606ad51826c4a",
@@ -7042,8 +7450,25 @@
       "source_sha256": "c3af0a5ef6bbf0c45cdcf50e908beffcf615ab5036a884dd6c375a2c121ba706",
       "paper": "Raymer",
       "candidate": "R003",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "Publication scope check: Raymer and Roitsch appraise six systematic reviews, rather than conduct a new treatment meta-analysis (PDF p1). The positive trained-naming synthesis on p4 is explicitly attributed to Pierce et al. (2019). This record uses meta-analysis evidence quality under Raymer without distinguishing the secondary review from the original synthesis. Withheld pending source-design/provenance review; original outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Publication scope check: Raymer and Roitsch appraise six systematic reviews, rather than conduct a new treatment meta-analysis (PDF p1). The positive trained-naming synthesis on p4 is explicitly attributed to Pierce et al. (2019). This record uses meta-analysis evidence quality under Raymer without distinguishing the secondary review from the original synthesis. Withheld pending source-design/provenance review; original outputs preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "c3af0a5ef6bbf0c45cdcf50e908beffcf615ab5036a884dd6c375a2c121ba706",
+            "paper": "Raymer",
+            "candidate": "R003",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "Publication scope check: Raymer and Roitsch appraise six systematic reviews, rather than conduct a new treatment meta-analysis (PDF p1). The positive trained-naming synthesis on p4 is explicitly attributed to Pierce et al. (2019). This record uses meta-analysis evidence quality under Raymer without distinguishing the secondary review from the original synthesis. Withheld pending source-design/provenance review; original outputs preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "b39618552e5175aed3b81122de67284a030760b60e3da973c315cdb92c334e65",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Pierce et al. (2019), one of the six systematic reviews appraised by Raymer and Roitsch. This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/therapies/cilt__Raymer__R004.md": {
       "source_sha256": "73ca9cbcc7edfc7559608daf222c9381d63c43fe81ce08d74e20886679d9e251",
@@ -7104,8 +7529,25 @@
       "source_sha256": "2f12870df3ad38fcd2fd1637503cc764f1f5789e5faadd119c9e203a1647ac34",
       "paper": "Riley2021",
       "candidate": "R001",
-      "publication_disposition": "withdrawn_pending_publication_schema_review",
-      "publication_disposition_reason": "Publication schema limitation: this is a review-level finding about representation of speech-language disorders in fatigue research, stored as kind=review in drafts/reviews. The current KnowledgeBase loader does not load the reviews bucket, so it cannot appear exactly once in the public findings export. Withheld pending schema/editorial review rather than relabelled as clinical evidence. Original source output preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "Publication schema limitation: this is a review-level finding about representation of speech-language disorders in fatigue research, stored as kind=review in drafts/reviews. The current KnowledgeBase loader does not load the reviews bucket, so it cannot appear exactly once in the public findings export. Withheld pending schema/editorial review rather than relabelled as clinical evidence. Original source output preserved.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "2f12870df3ad38fcd2fd1637503cc764f1f5789e5faadd119c9e203a1647ac34",
+            "paper": "Riley2021",
+            "candidate": "R001",
+            "publication_disposition": "withdrawn_pending_publication_schema_review",
+            "publication_disposition_reason": "Publication schema limitation: this is a review-level finding about representation of speech-language disorders in fatigue research, stored as kind=review in drafts/reviews. The current KnowledgeBase loader does not load the reviews bucket, so it cannot appear exactly once in the public findings export. Withheld pending schema/editorial review rather than relabelled as clinical evidence. Original source output preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "8a241e6bed8f2119e9934eefcd1abd8636b18795835fc07005d7c3b42b56f00a",
+      "reason": "Restored in the explicit review bucket: literature-level narrative synthesis, not meta-analysis or a new patient cohort. Remains unapproved.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/ventral_anterior_temporal_lobes_cluster__Robson2014__R001.md": {
       "source_sha256": "23bb8655aaf9e2b1202b69e7d8e2dd3e64c6106cf4fa1d62d8dcff21a8a84c12",
@@ -7514,29 +7956,93 @@
       "source_sha256": "4888523238c6455fa0f2d11dc90aaa02f69a7d74ccd1dbf14a34b98572ec8f3c",
       "paper": "Rost2022",
       "candidate": "R013",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to the autopsy study cited as reference 68. This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "4888523238c6455fa0f2d11dc90aaa02f69a7d74ccd1dbf14a34b98572ec8f3c",
+            "paper": "Rost2022",
+            "candidate": "R013",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "b9e020dca27bbdffc705f98af6078b0677e6d458d5d33d8b2bd34c34371f0f8f",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/therapies/multidomain_intervention_cognitive_prevention__Rost2022__R039.md": {
       "source_sha256": "6b9e7a7fa971b740fbdfa4b820d3762c6aa3fb1569b43bcd4f7caca7c75e8f53",
       "paper": "Rost2022",
       "candidate": "R039",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to the ASPIS and risk-factor/lifestyle trials cited as references 197\u2013198. This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "6b9e7a7fa971b740fbdfa4b820d3762c6aa3fb1569b43bcd4f7caca7c75e8f53",
+            "paper": "Rost2022",
+            "candidate": "R039",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "a16030ab78e716d0076fcf0fdbcc74b289d42a0ea337297ec94e1dac749c439f",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/therapies/actovegin__Rost2022__R041.md": {
       "source_sha256": "521c75b5ce20b1e9ade48dc64cadcef2637da66cb1aba2c250da1595c299739d",
       "paper": "Rost2022",
       "candidate": "R041",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Guekht et al. (2017), the ARTEMIDA trial (reference 201). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "521c75b5ce20b1e9ade48dc64cadcef2637da66cb1aba2c250da1595c299739d",
+            "paper": "Rost2022",
+            "candidate": "R041",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "12f986c95ebe65e0640c25dd1a05be513203fcca22a3fa984bf22ddd4bbdd1e2",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/therapies/rivastigmine__Rost2022__R042.md": {
       "source_sha256": "d20942da96299200a81482c83e41ac3a70b3b04d243b52941e069afbdbffea4b",
       "paper": "Rost2022",
       "candidate": "R042",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Narasimhalu et al. (2010), the 50-participant rivastigmine trial (reference 206). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "d20942da96299200a81482c83e41ac3a70b3b04d243b52941e069afbdbffea4b",
+            "paper": "Rost2022",
+            "candidate": "R042",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "Rost2022 is a narrative review of post-stroke cognitive impairment. These records classify secondary reports of cited studies as primary cohort/RCT evidence without identifying the primary paper. Withheld pending source-design and citation reconciliation; original source-check outputs preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "3ad30e071be5e5577a4fe825099bc5d6f07b01dd344b74edc25b68a53947bb85",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/subacute_language_network_cluster__Saur2006__R002.md": {
       "source_sha256": "15720edafe5939d52e3d4cb47f874d6829e7182b3357ae26c1337ada6d0894cb",
@@ -7699,15 +8205,47 @@
       "source_sha256": "54010525cb7b342d8e41c4fd4400ed343e5033710627e669c1d98d84fcd76cde",
       "paper": "Schlaug2010",
       "candidate": "R003",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "PDF p. 3 describes Figure 1 as one of our other patients treated with MIT, a single-patient illustration in a Special Report. The draft instead records cohort evidence and plural patients with n unreported. Reconcile case illustration versus cohort provenance before publication. Original source-check output preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Source p.3 explicitly identifies one of the authors\u2019 other patients. Corrected cohort/plural interpretation to the single illustrative fMRI case.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "54010525cb7b342d8e41c4fd4400ed343e5033710627e669c1d98d84fcd76cde",
+            "paper": "Schlaug2010",
+            "candidate": "R003",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "PDF p. 3 describes Figure 1 as one of our other patients treated with MIT, a single-patient illustration in a Special Report. The draft instead records cohort evidence and plural patients with n unreported. Reconcile case illustration versus cohort provenance before publication. Original source-check output preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "3db2d1a67227a796c14bf1c044168ced298a25c17dd51989edcd96c8c324a211",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/right_arcuate_fasciculus_size_change__Schlaug2010__R005.md": {
       "source_sha256": "5b11165c70b03b7f97fa2f0c25112c6a434f6b2db9b9c13b3da5f3f51a1194f2",
       "paper": "Schlaug2010",
       "candidate": "R005",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "reason": "PDF p. 3 attributes the six-patient CIU/right-arcuate change correlation (p=0.08) to reference 25, Schlaug et al. 2009 (p. 8). The draft labels this secondary report cohort/LSM under Schlaug2010; reconcile primary-study identity and method before publication. Original source-check output preserved."
+      "publication_disposition": "corrected_pending_human_review",
+      "reason": "Reconciled the source identity to reference 25 (Schlaug et al. 2009). Retained one attributed secondary account and the non-significant p=.08 trend; the parallel Plowman2012 R019 account remains excluded to avoid duplication. Human source review remains pending.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "5b11165c70b03b7f97fa2f0c25112c6a434f6b2db9b9c13b3da5f3f51a1194f2",
+            "paper": "Schlaug2010",
+            "candidate": "R005",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "reason": "PDF p. 3 attributes the six-patient CIU/right-arcuate change correlation (p=0.08) to reference 25, Schlaug et al. 2009 (p. 8). The draft labels this secondary report cohort/LSM under Schlaug2010; reconcile primary-study identity and method before publication. Original source-check output preserved."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "a8be4523ccd35efe611fcdfaa53e72145abbe358429f7281c3c00164e9a34b6c",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/therapies/melodic_intonation_therapy__Schlaug2010__R006.md": {
       "source_sha256": "3f649e62d248b0023b5c23c1b8ad8640843a1673a49735ae98b2cbb307b19000",
@@ -7880,8 +8418,25 @@
       "source_sha256": "bc04781dabc867f62bbc4424eb104aabd6d7f295a3d126153fcc129939eb92c6",
       "paper": "Shekari2022",
       "candidate": "R002",
-      "publication_disposition": "withdrawn_pending_schema_review",
-      "publication_disposition_reason": "The source claim matches the narrative review, but this draft uses unsupported entry kind=review under drafts/reviews. The KB loader includes regions, impairments, therapies, predictors and ingredients; the record is absent from the generated draft export. Hold for schema/category reconciliation rather than silently claiming it was published."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "The source claim matches the narrative review, but this draft uses unsupported entry kind=review under drafts/reviews. The KB loader includes regions, impairments, therapies, predictors and ingredients; the record is absent from the generated draft export. Hold for schema/category reconciliation rather than silently claiming it was published.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "bc04781dabc867f62bbc4424eb104aabd6d7f295a3d126153fcc129939eb92c6",
+            "paper": "Shekari2022",
+            "candidate": "R002",
+            "publication_disposition": "withdrawn_pending_schema_review",
+            "publication_disposition_reason": "The source claim matches the narrative review, but this draft uses unsupported entry kind=review under drafts/reviews. The KB loader includes regions, impairments, therapies, predictors and ingredients; the record is absent from the generated draft export. Hold for schema/category reconciliation rather than silently claiming it was published."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "a0b0715c65c8b254fc5aaa5b2798752f3c34c4c61d66891ccc599e879374710d",
+      "reason": "Restored in the explicit review bucket: literature-level narrative synthesis, not meta-analysis or a new patient cohort. Remains unapproved.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/left_hemisphere_activation__Shekari2022__R003.md": {
       "source_sha256": "22752867040c534e106c8df4dac55af101ba3f9aadaa7dc71e3a00232c82a3d9",
@@ -7902,8 +8457,25 @@
       "source_sha256": "e75493cbc61d95a6a3ff701f858e23026e931dbb36ec5eae8e471d4d99246222",
       "paper": "Shekari2022",
       "candidate": "R008",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "The source explicitly states on PDF p. 3 that data were synthesized narratively and meta-analysis was not conducted because of study heterogeneity. R008 labels method=meta-analysis despite narrative-review evidence. The p. 9 claim summarizes Marcotte2018; reconcile method and secondary-source provenance before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "The source explicitly states on PDF p. 3 that data were synthesized narratively and meta-analysis was not conducted because of study heterogeneity. R008 labels method=meta-analysis despite narrative-review evidence. The p. 9 claim summarizes Marcotte2018; reconcile method and secondary-source provenance before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "e75493cbc61d95a6a3ff701f858e23026e931dbb36ec5eae8e471d4d99246222",
+            "paper": "Shekari2022",
+            "candidate": "R008",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "The source explicitly states on PDF p. 3 that data were synthesized narratively and meta-analysis was not conducted because of study heterogeneity. R008 labels method=meta-analysis despite narrative-review evidence. The p. 9 claim summarizes Marcotte2018; reconcile method and secondary-source provenance before publication."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "4222998e893265d2532b1191d0ef6d020b0628e71283d0444a7a643d8864c639",
+      "reason": "Reclassified as a secondary review report, explicitly attributing the result to Marcotte et al. (2018). This is not a new primary sample or independent replication; quantitative estimates and study-level attribution require human verification against the primary publication.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/semantic_treatment_preserved_semantics__Shekari2022__R009.md": {
       "source_sha256": "aa8fda43c672ac6f19f98a1d472e4ed937aebcc80c48b61c31639ace85f6cb12",
@@ -7919,8 +8491,25 @@
       "source_sha256": "d86e6788fb1473dc8e64340bbf13c063e1a69d1abbaf19197993c125714ecca8",
       "paper": "Shekari2022",
       "candidate": "R011",
-      "publication_disposition": "withdrawn_pending_schema_review",
-      "publication_disposition_reason": "The source claim matches the narrative review, but this draft uses unsupported entry kind=review under drafts/reviews. The KB loader includes regions, impairments, therapies, predictors and ingredients; the record is absent from the generated draft export. Hold for schema/category reconciliation rather than silently claiming it was published."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "The source claim matches the narrative review, but this draft uses unsupported entry kind=review under drafts/reviews. The KB loader includes regions, impairments, therapies, predictors and ingredients; the record is absent from the generated draft export. Hold for schema/category reconciliation rather than silently claiming it was published.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "d86e6788fb1473dc8e64340bbf13c063e1a69d1abbaf19197993c125714ecca8",
+            "paper": "Shekari2022",
+            "candidate": "R011",
+            "publication_disposition": "withdrawn_pending_schema_review",
+            "publication_disposition_reason": "The source claim matches the narrative review, but this draft uses unsupported entry kind=review under drafts/reviews. The KB loader includes regions, impairments, therapies, predictors and ingredients; the record is absent from the generated draft export. Hold for schema/category reconciliation rather than silently claiming it was published."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "e5f0ec7c928bdf395af758f404af796c71d4e91d6453a1c28fb2b92522ad47b9",
+      "reason": "Restored in the explicit review bucket: literature-level narrative synthesis, not meta-analysis or a new patient cohort. Remains unapproved.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/lesion_size_non_language_activation__Shekari2022__R012.md": {
       "source_sha256": "066139b09989146aba52c1ae1f980c93472c9c6c12f03081530cf85b93c7b3af",
@@ -8314,8 +8903,25 @@
       "source_sha256": "7af5056871e454cb2dd3eac9254e0823f68f60ac8cbbe77e3be5d5e0b61ababc",
       "paper": "Stahl2011",
       "candidate": "R001",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_disposition_reason": "PDF pp. 1, 3\u20136 and 8 describe experimental singing/rhythmic-speech task conditions and immediate articulatory performance in 17 participants, rather than longitudinal therapy efficacy. The draft is categorized as a therapy with relationship=treatment_response. Reconcile immediate task facilitation versus treatment outcome before publication."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_disposition_reason": "PDF pp. 1, 3\u20136 and 8 describe experimental singing/rhythmic-speech task conditions and immediate articulatory performance in 17 participants, rather than longitudinal therapy efficacy. The draft is categorized as a therapy with relationship=treatment_response. Reconcile immediate task facilitation versus treatment outcome before publication.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "7af5056871e454cb2dd3eac9254e0823f68f60ac8cbbe77e3be5d5e0b61ababc",
+            "paper": "Stahl2011",
+            "candidate": "R001",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_disposition_reason": "PDF pp. 1, 3\u20136 and 8 describe experimental singing/rhythmic-speech task conditions and immediate articulatory performance in 17 participants, rather than longitudinal therapy efficacy. The draft is categorized as a therapy with relationship=treatment_response. Reconcile immediate task facilitation versus treatment outcome before publication."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "905b603ede936756a5ed57a07a1ae48d6ef0fe3577062611f83858fd5ae25848",
+      "reason": "Distinguished experimental task facilitation from longitudinal therapy response; no efficacy inference is made.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/fundamental_frequency_variability__Stahl2011__R002.md": {
       "source_sha256": "52b28d05fa2aa06c9428ba8696070903a3f0fb177f639131983e51c19c120f31",
@@ -10637,8 +11243,25 @@
       "source_sha256": "e1249b7bb229e9f3a66f394c1f649c34f087b0ddf86ebf7ede4d57689387c8c6",
       "paper": "Zhang2018",
       "candidate": "R001",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_reason": "PDF pp.5-6: FA-language associations use diffusion tract-based spatial statistics (TBSS); the record instead labels the result LSM. Requires source-design/method reconciliation."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_reason": "PDF pp.5-6: FA-language associations use diffusion tract-based spatial statistics (TBSS); the record instead labels the result LSM. Requires source-design/method reconciliation.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "e1249b7bb229e9f3a66f394c1f649c34f087b0ddf86ebf7ede4d57689387c8c6",
+            "paper": "Zhang2018",
+            "candidate": "R001",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_reason": "PDF pp.5-6: FA-language associations use diffusion tract-based spatial statistics (TBSS); the record instead labels the result LSM. Requires source-design/method reconciliation."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "5da52643ccbf25e8bb177ff69925bd00c1b1c74566e7e316254860d00be4e824",
+      "reason": "TBSS/AFQ measure patient diffusion, not lesion-symptom mapping. Results pp.4\u20135 exclude two motion-corrupted and one damaged scan: 11 patients and 11 controls were analyzed. Corrected method and relevant denominator.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/left_ifof_mean_fa__Zhang2018__R003.md": {
       "source_sha256": "a1cda4f3fa8743515f96eb2f6cb5064e0642cbf7f2abc47703209ebae169b3cf",
@@ -10659,15 +11282,49 @@
       "source_sha256": "02208683dbcf757f731fcda92ace64d876e4b7c015018e1d5dcd756bdc4da45e",
       "paper": "Zhang2018",
       "candidate": "R007",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_reason": "PDF pp.5-6: FA-language associations use diffusion tract-based spatial statistics (TBSS); the record instead labels the result LSM. Requires source-design/method reconciliation."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_reason": "PDF pp.5-6: FA-language associations use diffusion tract-based spatial statistics (TBSS); the record instead labels the result LSM. Requires source-design/method reconciliation.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "02208683dbcf757f731fcda92ace64d876e4b7c015018e1d5dcd756bdc4da45e",
+            "paper": "Zhang2018",
+            "candidate": "R007",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_reason": "PDF pp.5-6: FA-language associations use diffusion tract-based spatial statistics (TBSS); the record instead labels the result LSM. Requires source-design/method reconciliation."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "2ae81857907e93f08e0894d3e1d1f36b06b351355a53af6fd4da74beff2a3116",
+      "reason": "TBSS/AFQ measure patient diffusion, not lesion-symptom mapping. Results pp.4\u20135 exclude two motion-corrupted and one damaged scan: 11 patients and 11 controls were analyzed. Corrected method and relevant denominator.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/left_ifof_fa_comprehension_naming__Zhang2018__R008.md": {
       "source_sha256": "61c94756d548f3bf940eae4429d8d5840dba3c6d19b1195190b0bd20bb9099c3",
       "paper": "Zhang2018",
       "candidate": "R008",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_reason": "PDF pp.5-6: FA-language associations use diffusion tract-based spatial statistics (TBSS); the record instead labels the result LSM. Requires source-design/method reconciliation."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_reason": "PDF pp.5-6: FA-language associations use diffusion tract-based spatial statistics (TBSS); the record instead labels the result LSM. Requires source-design/method reconciliation.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "61c94756d548f3bf940eae4429d8d5840dba3c6d19b1195190b0bd20bb9099c3",
+            "paper": "Zhang2018",
+            "candidate": "R008",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_reason": "PDF pp.5-6: FA-language associations use diffusion tract-based spatial statistics (TBSS); the record instead labels the result LSM. Requires source-design/method reconciliation."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "9fbcdd44e4394caf5684b854d2e9acb8e13274cf2a5f34f68000004c047fc05d",
+      "reason": "TBSS/AFQ measure patient diffusion, not lesion-symptom mapping. Results pp.4\u20135 exclude two motion-corrupted and one damaged scan: 11 patients and 11 controls were analyzed. Corrected method and relevant denominator.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/left_ifof__Zhang2018__R010.md": {
       "source_sha256": "0e3456108cac57d14ec9505de5a815e12cd4abb8096e0a461cf4d7127b604f10",
@@ -10678,8 +11335,25 @@
       "source_sha256": "652da5040a094e074ac11e639c8f0b0436474acd0b6a9522729512d9048827e7",
       "paper": "Zhang2018",
       "candidate": "R012",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_reason": "PDF pp.4-5: 14 patients enrolled, but 3 were excluded (2 motion, 1 storage); analyzed sample is 11 patients and 11 controls. Draft n=25 incorrectly includes excluded participants."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_reason": "PDF pp.4-5: 14 patients enrolled, but 3 were excluded (2 motion, 1 storage); analyzed sample is 11 patients and 11 controls. Draft n=25 incorrectly includes excluded participants.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "652da5040a094e074ac11e639c8f0b0436474acd0b6a9522729512d9048827e7",
+            "paper": "Zhang2018",
+            "candidate": "R012",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_reason": "PDF pp.4-5: 14 patients enrolled, but 3 were excluded (2 motion, 1 storage); analyzed sample is 11 patients and 11 controls. Draft n=25 incorrectly includes excluded participants."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "18dc280e18d7ac1c2f4ef65babfad7e589ffdf8e5d1b6cd18f7992f036d1a6d9",
+      "reason": "TBSS/AFQ measure patient diffusion, not lesion-symptom mapping. Results pp.4\u20135 exclude two motion-corrupted and one damaged scan: 11 patients and 11 controls were analyzed. Corrected method and relevant denominator.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/left_uf_insular_segment__Zhang2018__R016.md": {
       "source_sha256": "010f39bac7e4e24aa00a7811b275a8bd56839b163faa67c75f95c50f8ab54895",
@@ -10700,57 +11374,1284 @@
       "source_sha256": "705ce890ad01736eca35ae1e1a164fdb51faefbd48b0bad634e2754fc2fb8be3",
       "paper": "Zhang2021",
       "candidate": "R006",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "705ce890ad01736eca35ae1e1a164fdb51faefbd48b0bad634e2754fc2fb8be3",
+            "paper": "Zhang2021",
+            "candidate": "R006",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "85baca9ba654faa39b233c5e1146d2df06fa5126d6cd0e28bb6f7b97fe26c037",
+      "reason": "Corrected LSM to fixel-based analysis (FBA), removed the false template-lesion-overlap description, and restored the patient denominator. Source Sections 2.4\u20132.6 and 3.2\u20133.3 distinguish diffusion-derived fixel measurements from lesion masks.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/left_ifof_cc_fd_word_comprehension__Zhang2021__R007.md": {
       "source_sha256": "583cfd9c95636be475966a3a5d6ec11dae2d2a3b14253bb5d7b1a272b6f43c92",
       "paper": "Zhang2021",
       "candidate": "R007",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "583cfd9c95636be475966a3a5d6ec11dae2d2a3b14253bb5d7b1a272b6f43c92",
+            "paper": "Zhang2021",
+            "candidate": "R007",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "3703fe6f5613117a15dda9f7de53417a1b55e1ba1d68e993ddff2dda96196811",
+      "reason": "Corrected LSM to fixel-based analysis (FBA), removed the false template-lesion-overlap description, and restored the patient denominator. Source Sections 2.4\u20132.6 and 3.2\u20133.3 distinguish diffusion-derived fixel measurements from lesion masks.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/left_ifof_fd__Zhang2021__R008.md": {
       "source_sha256": "8f73ab6c6829732111ab213b4f7f5fc5ec3081cf3d74220073a628b3b918bd7a",
       "paper": "Zhang2021",
       "candidate": "R008",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "8f73ab6c6829732111ab213b4f7f5fc5ec3081cf3d74220073a628b3b918bd7a",
+            "paper": "Zhang2021",
+            "candidate": "R008",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "eba70378ad4c4749671914069a4695b52f6ba0e905bb20bc3c579542bbad7110",
+      "reason": "Corrected LSM to fixel-based analysis (FBA), removed the false template-lesion-overlap description, and restored the patient denominator. Source Sections 2.4\u20132.6 and 3.2\u20133.3 distinguish diffusion-derived fixel measurements from lesion masks.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/left_ifof_temporal_segment__Zhang2021__R009.md": {
       "source_sha256": "72497a8aa27d9fcd67c97b1aabf3b0f330831bfdab9312f38461b1bb23b2ac5d",
       "paper": "Zhang2021",
       "candidate": "R009",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "72497a8aa27d9fcd67c97b1aabf3b0f330831bfdab9312f38461b1bb23b2ac5d",
+            "paper": "Zhang2021",
+            "candidate": "R009",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "808f4e00603c3d33a464026b2f8477cc0c4779737092435b4493f876ac1c4b0a",
+      "reason": "Corrected LSM to fixel-based analysis (FBA), removed the false template-lesion-overlap description, and restored the patient denominator. Source Sections 2.4\u20132.6 and 3.2\u20133.3 distinguish diffusion-derived fixel measurements from lesion masks.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/left_ifof_tapetum_color_naming__Zhang2021__R010.md": {
       "source_sha256": "55742b3671e4a20eac25ec095cefb74277cd9a9ca5858a723090fe538239c72a",
       "paper": "Zhang2021",
       "candidate": "R010",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "55742b3671e4a20eac25ec095cefb74277cd9a9ca5858a723090fe538239c72a",
+            "paper": "Zhang2021",
+            "candidate": "R010",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "ff7acd8cc3b79a1c2baef8f6de5bf1421e90358d131002c2b91bc31b103f8cfc",
+      "reason": "Corrected LSM to fixel-based analysis (FBA), removed the false template-lesion-overlap description, and restored the patient denominator. Source Sections 2.4\u20132.6 and 3.2\u20133.3 distinguish diffusion-derived fixel measurements from lesion masks.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/regions/left_ifof_tapetum_fd__Zhang2021__R011.md": {
       "source_sha256": "14cf83ca899686b1f0bbb018231eb4b29b3e6d631b5471b340bbee4bc77cfdd3",
       "paper": "Zhang2021",
       "candidate": "R011",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "14cf83ca899686b1f0bbb018231eb4b29b3e6d631b5471b340bbee4bc77cfdd3",
+            "paper": "Zhang2021",
+            "candidate": "R011",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "d5be26a997e073df277639d648ff084bc81d034fc6c78a82e63eee769bc69dec",
+      "reason": "Corrected LSM to fixel-based analysis (FBA), removed the false template-lesion-overlap description, and restored the patient denominator. Source Sections 2.4\u20132.6 and 3.2\u20133.3 distinguish diffusion-derived fixel measurements from lesion masks.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/fixel_fc_fdc_language__Zhang2021__R012.md": {
       "source_sha256": "a2cb2a8c59104ba41874791852938f87708796aca0a7724b5485e7fb356734aa",
       "paper": "Zhang2021",
       "candidate": "R012",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "a2cb2a8c59104ba41874791852938f87708796aca0a7724b5485e7fb356734aa",
+            "paper": "Zhang2021",
+            "candidate": "R012",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "f7892598bd0dc0f7b850349b51bec88887822fb7c357f4f2cfeb0f193369e36c",
+      "reason": "Corrected LSM to fixel-based analysis (FBA), removed the false template-lesion-overlap description, and restored the patient denominator. Source Sections 2.4\u20132.6 and 3.2\u20133.3 distinguish diffusion-derived fixel measurements from lesion masks.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     },
     "drafts/predictors/left_ifof_slf3_fd__Zhang2021__R017.md": {
       "source_sha256": "fbc0391cc3df24673889e2a433ad64f2da0846f96c31c1ac762067de20c75655",
       "paper": "Zhang2021",
       "candidate": "R017",
-      "publication_disposition": "withdrawn_pending_source_design_review",
-      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "publication_history": [
+        {
+          "recorded_at": "2026-11-26T02:05:16.806224+00:00",
+          "previous_record": {
+            "source_sha256": "fbc0391cc3df24673889e2a433ad64f2da0846f96c31c1ac762067de20c75655",
+            "paper": "Zhang2021",
+            "candidate": "R017",
+            "publication_disposition": "withdrawn_pending_source_design_review",
+            "publication_reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review."
+          },
+          "reason": "Maintainer-requested second source repair pass."
+        }
+      ],
+      "manual_repair": true,
+      "publication_sha256": "f3e93f90136857c44f0b619dd94dfea4ed2f822020242ea58f8855dcfea25260",
+      "reason": "Corrected LSM to fixel-based analysis (FBA), removed the false template-lesion-overlap description, and restored the patient denominator. Source Sections 2.4\u20132.6 and 3.2\u20133.3 distinguish diffusion-derived fixel measurements from lesion masks.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/right_antero_superior_cluster__Durfee2021__R001.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R001",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "a879454c8a3300f5612df7a717b1a371db061f852710bac68fe60d1526a5263d",
+      "reason": "Reconstructed as a secondary review summary attributed to the systematic review synthesis. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/right_posterior_superior_temporal_inferior_parietal_cluster__Durfee2021__R007.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R007",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "c0da02e72b17382721a8ced33b7c2c62f9fc14dbb0c5dbb5cf77d85efde2d8f9",
+      "reason": "Reconstructed as a secondary review summary attributed to Ross (1981). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/right_temporal_lobe_transcortical_sensory_aprosodia_cluster__Durfee2021__R008.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R008",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "6b37b9bba541ab320b1174e2b9382b84a7f4a2cf175f1e3ae8f55411951bc3ce",
+      "reason": "Reconstructed as a secondary review summary attributed to Ross (1981). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/rh_lesion_vs_lh_lesion__Durfee2021__R013.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R013",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "c7e04b94c40352983f33428e6a2c3d3df0b89c2eef091f1d8698a538b7e75acd",
+      "reason": "Reconstructed as a secondary review summary attributed to the review\u2019s comparison of reported effect sizes. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/frontal_parietal_motor_aprosodia_cluster__Durfee2021__R018.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R018",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "44e9979e97bed8c6b3a20f0e23cb93c15ca6f09c5ea805b08973896e56587e38",
+      "reason": "Reconstructed as a secondary review summary attributed to Ross (1981). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/motor_aprosodia_cluster__Durfee2021__R020.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R020",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "f921fc3412b3d03af219e60645615d2fb804ce6af54722ad8376a996d489b649",
+      "reason": "Reconstructed as a secondary review summary attributed to Cancelliere and Kertesz (1990). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/right_frontal_operculum_cluster__Durfee2021__R021.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R021",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "8dda57f0120df76d45e0db6c957a652e272c229770ede93959490284ef7d5c0c",
+      "reason": "Reconstructed as a secondary review summary attributed to Gorelick and Ross (1987). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/right_frontal_lobe__Durfee2021__R023.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R023",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "0a455efa524ef75b2688bcc4afc391432b3355d3f5b23b102e29bc7c39ee5912",
+      "reason": "Reconstructed as a secondary review summary attributed to Hughes et al. (1983). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/baum_pell_1997_acoustic_analysis__Durfee2021__R025.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R025",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "f737a767f2451c3674beeab81f873b300672dd18bee4f72144f933b014e72add",
+      "reason": "Reconstructed as a secondary review summary attributed to Baum and Pell (1997). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/rhd_relative_amplitude__Durfee2021__R026.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R026",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "39038836ea0bc86200568be72b22147b48b73f69aaa39d80bc8c7cbb481a65fa",
+      "reason": "Reconstructed as a secondary review summary attributed to Baum and Pell (1997). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/right_frontal_operculum_anterior_insula__Durfee2021__R027.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R027",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "87b3a4879508b7ca9b352df4ae5a6c4c72b77a9f8a16eeb99f5585763f0d4e82",
+      "reason": "Reconstructed as a secondary review summary attributed to Ross and Monnot (2008). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/posterior_caudate_globus_pallidus_cluster__Durfee2021__R028.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R028",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "565edc86fa03ce35d8c3f7edb6c27edba2e453ba0154e26ede84f5f58e6458b8",
+      "reason": "Reconstructed as a secondary review summary attributed to Ross and Monnot (2008). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/time_post_stroke_darby_1993__Durfee2021__R032.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R032",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "ec775c2a10402065ec3c52fd787fce19dffac2d26014bb47cea89b253b7744aa",
+      "reason": "Reconstructed as a secondary review summary attributed to Darby (1993). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/time_post_stroke_prosody_recovery__Durfee2021__R033.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R033",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "245449fb118a76587a06e0b3a980905426682fb3d2b31a121e65612acfddade2",
+      "reason": "Reconstructed as a secondary review summary attributed to Sheppard et al. (2020). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/mood_priming_paragraph__Durfee2021__R036.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R036",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "414ae333b37849b039c24328f73eeb56beee7b0ee8b7f54040fddee53e45f4c1",
+      "reason": "Reconstructed as a secondary review summary attributed to Tompkins and Flowers (1987). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/negatively_biasing_task__Durfee2021__R037.md": {
+      "source_sha256": null,
+      "paper": "Durfee2021",
+      "candidate": "R037",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "4b883d8e3db21f3add02646f625b73e1d747e7cf29e70792256f2ceeca4a2538",
+      "reason": "Reconstructed as a secondary review summary attributed to Zezinka and Tompkins (2015). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/stroke_related_factors__Plowman2012__R002.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R002",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "50f67a77882953a6b3177224866987c47a7411b0aa6d0a01482c1c4fb0660849",
+      "reason": "Reconstructed as a secondary review summary attributed to the literature review synthesis. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/gender__Plowman2012__R004.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R004",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "7016bdf3191575723ea67a964255dfaaafd284a77efc49e792b5263eb4db2c41",
+      "reason": "Reconstructed as a secondary review summary attributed to the literature review synthesis. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/handedness__Plowman2012__R005.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R005",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "f719ff3821d2e5821d5d7493cbdde3e5ad66b9900a63b9c92a77c9e0d53835eb",
+      "reason": "Reconstructed as a secondary review summary attributed to the literature review synthesis. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/age__Plowman2012__R006.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R006",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "f8c267267ab6075f0be3a1231b37e86264334cb6f175eb28572593dbb6f7e196",
+      "reason": "Reconstructed as a secondary review summary attributed to the literature review synthesis. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/education_ses__Plowman2012__R007.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R007",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "b0d8e691103c272de777e525dde6667511c114f7daebda6c84c72d5e59363dd5",
+      "reason": "Reconstructed as a secondary review summary attributed to the literature review synthesis. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/education_ses_initial_severity__Plowman2012__R008.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R008",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "ccdc97c04bc5903ba13b8142851b9afcf79e9014bfffb74958bfc07f461af74f",
+      "reason": "Reconstructed as a secondary review summary attributed to Connor et al. (2001), reference 34. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/intelligence_level__Plowman2012__R010.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R010",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "e29ef8684a37e429551621e07072c29483a211bd57e3a21b3a9a99355b0adcce",
+      "reason": "Reconstructed as a secondary review summary attributed to David and Skilbeck (1984), reference 37, and the synthesis of prognostic studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/initial_severity_predictor__Plowman2012__R011.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R011",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "92c0f0fd845ed658d07fa08d35c332fa328e46b105d220f646440b388566cff1",
+      "reason": "Reconstructed as a secondary review summary attributed to Laska et al., Pedersen et al. and the reviewed longitudinal severity studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/lesion_size__Plowman2012__R012.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R012",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "a4e1744a0668eb0766028dc506ce7c4483f27f4b71f8046c8b05b641c0d478c5",
+      "reason": "Reconstructed as a secondary review summary attributed to Mazzoni et al. (1992), reference 42. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/temporobasal_lesion_size__Plowman2012__R013.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R013",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "ba2fb9909a00b51e44f5f27110872df2a70cd4df93577c87146ab9db628d25bd",
+      "reason": "Reconstructed as a secondary review summary attributed to Goldenberg and Spatt (1994), reference 43. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/stroke_size__Plowman2012__R014.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R014",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "29720c150cdbc7967c47b4d0668b8409f4eb7f824a9e48baf75c3c8d5840503e",
+      "reason": "Reconstructed as a secondary review summary attributed to Maas et al., reference 8. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/subcallosal_periventricular_cluster__Plowman2012__R016.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R016",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "9437a47d597b1d70c2e051412bf971964a5d29a0271fb011791d09b9ec4e549d",
+      "reason": "Reconstructed as a secondary review summary attributed to Naeser et al., reference 48. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/posterior_superior_temporal_infrasylvian_supramarginal_cluster__Plowman2012__R018.md": {
+      "source_sha256": null,
+      "paper": "Plowman2012",
+      "candidate": "R018",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "1e26aae8437e9a0a8941c6c89717d9f2a3af63ba4f78745c5f570933a7e91d50",
+      "reason": "Reconstructed as a secondary review summary attributed to Selnes et al. (1983), reference 51. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/speech_language_disorder_fatigue_association__Riley2021__R002.md": {
+      "source_sha256": null,
+      "paper": "Riley2021",
+      "candidate": "R002",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "50c84d0ac35ae31e389690dc4a20be74e2b0a42c728337a504be5c1456834b61",
+      "reason": "Reconstructed as a secondary review summary attributed to five reviewed studies with varied and sometimes contradictory results. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/simulated_speech_language_treatment__Riley2021__R003.md": {
+      "source_sha256": null,
+      "paper": "Riley2021",
+      "candidate": "R003",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "2a94c8fdf8b8b5d98b5a903287094416878f1df33f15d46e3ff4c038f4af595e",
+      "reason": "Reconstructed as a secondary review summary attributed to Riley, Owora, McCleary and Anderson (2019). This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/lesion_size__Watila2015__R001.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R001",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "c7bb36f8c8b0055d567927ce05c2fe5fb683b36fa1afbf48927822ed7d7e9772",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/lesion_location__Watila2015__R003.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R003",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "aca46b999163f7327ae169fda9068601826aa3a0e7857fa28582d1013246c300",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/stg_lesion__Watila2015__R004.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R004",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "845b6a829c10e5c452bc098d7c1e662be219fef857da596b0a693ee41a00884c",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/subcortical_lesion_location__Watila2015__R005.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R005",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "67dc9efbaf6f07ad2501db4b4ad179b63438b1a67f621c02940102b1161feccc",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/initial_aphasia_severity__Watila2015__R006.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R006",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "0eb37c702f8ed87fc942b411b19cf53a32c9588f802b84854335a49ec53e0d7b",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/aphasia_type__Watila2015__R008.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R008",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "ed08269b3886990801aca974248b96571481eeb4b71717b6c33395dff11bcfed",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/haemorrhagic_stroke__Watila2015__R010.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R010",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "13ceef6f0981b2f49c0f741a3fc32d516cd38997e98416e2bb00038a82e67b68",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/early_haemodynamic_response__Watila2015__R011.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R011",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "3f13723a913a3553f4410632b2ad15fb5b873e34c12e52bfb053041027bec987",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/gender__Watila2015__R012.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R012",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "e8ba9957f18d1edf9583cb7b7afda1dd698fef1a30d1efcc8c419a68492494d8",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/age__Watila2015__R013.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R013",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "90191cfb8f597e131a9353ea4ad2c389ca1341dd09be16bdcc73871d30f5f4a7",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/handedness__Watila2015__R014.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R014",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "ec2e2dfda4a90b1efbe32d0cbd6bb60f443141a7d10a57155863c45f58372e65",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/education__Watila2015__R015.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R015",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "6186fd9f9a75424763421c4377a3a93dc4527f58a38e7d7af072641460c4a3ec",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/cognitive_decline__Watila2015__R016.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R016",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "57a9c0598494acfe639277565609b173e0877c39299e911e489a907e3284f2f6",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/environmental_factors_motivation__Watila2015__R017.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R017",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "38940ed9d056d534a982a3200bfa2d6e9256357237860dc5faea62911a483ac2",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/treatment_received__Watila2015__R018.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R018",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "3ee589bab6dcc9365d498f6f6b4dc825230c24f50a6e8f77d599f4ce4855daae",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/rtms_tdcs_aphasia_recovery__Watila2015__R019.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R019",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "d4ffaaae22633f5924497cf69e55f204b93391f6c6fa5000d7828e5501ba3d9c",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/donepezil_galantamine__Watila2015__R020.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R020",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "9b123adba4325d05af81548b6b2a7ce3b6b63be3662d47e62051c12266f3dcda",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/speech_therapy_tdcs_combination__Watila2015__R021.md": {
+      "source_sha256": null,
+      "paper": "Watila2015",
+      "candidate": "R021",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "1980bc715d08a041cc9682d3564759972e55e2be32bd9246ba87a2171097ddb8",
+      "reason": "Reconstructed as a secondary review summary attributed to the review discussion and its cited primary studies. This is not a new patient cohort or independent replication. Primary-study verification and human approval remain pending. Checked the full source PDF beyond the truncated original evidence index.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/lesion_size__Shekari2022__R005.md": {
+      "source_sha256": null,
+      "paper": "Shekari2022",
+      "candidate": "R005",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "4d009cc51099aa4207282a77b9582d18a7620f6778bbdce1f2ff63ec413090d9",
+      "reason": "Reconstructed as a secondary review report, explicitly attributed to Vitali et al. (2007) and Fridriksson et al. (2007). Not a new independent patient cohort; human source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/intensive_anomia_therapy__Shekari2022__R007.md": {
+      "source_sha256": null,
+      "paper": "Shekari2022",
+      "candidate": "R007",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "0455947174960faf72f864572d1c1b5e40fdbf75e98d9cb3d8a9cfc2ebd37ed1",
+      "reason": "Reconstructed as a secondary review report, explicitly attributed to Menke et al. (2009), Marcotte et al. (2012) and van Hees et al. (2014). Not a new independent patient cohort; human source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/subcortical_lacunar_infarct_cluster__Biesbroek2017__R001.md": {
+      "source_sha256": null,
+      "paper": "Biesbroek2017",
+      "candidate": "R001",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "ae0f950de49bcfe54e9affbc5812c65655f83af47fe48041c9d07df823dae703",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/internal_capsule__Biesbroek2017__R002.md": {
+      "source_sha256": null,
+      "paper": "Biesbroek2017",
+      "candidate": "R002",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "4c9edfa711e26628ca73127522519b3011d2d5d1fc4fa3cc176ad24aca5e6172",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/thalamus_infarct__Biesbroek2017__R003.md": {
+      "source_sha256": null,
+      "paper": "Biesbroek2017",
+      "candidate": "R003",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "c50e55feb21b9012eb78c379e5bed038eeb0ae35991eeb62c58a0de37da9946d",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/anterior_thalamus_inferior_thalamic_peduncle_cluster__Biesbroek2017__R004.md": {
+      "source_sha256": null,
+      "paper": "Biesbroek2017",
+      "candidate": "R004",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "2ccb20747d7579d09f3ef36502747b25ef67b3f505e21f483313c21ca9325cbf",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/dorsomedial_nucleus_thalamus__Biesbroek2017__R005.md": {
+      "source_sha256": null,
+      "paper": "Biesbroek2017",
+      "candidate": "R005",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "13f69df1956d9c1aa00fba3e35f765a60cd2109ad440d004df699b60f9484a8a",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/fornix_infarct__Biesbroek2017__R006.md": {
+      "source_sha256": null,
+      "paper": "Biesbroek2017",
+      "candidate": "R006",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "d41bc9bc0a71204381d3599d9f7b3c60e401dd2876c64f8e9aeed3236f54b0d2",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/caudate_nucleus__Biesbroek2017__R008.md": {
+      "source_sha256": null,
+      "paper": "Biesbroek2017",
+      "candidate": "R008",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "ab254dbe8d58d8f6ebdacf3441c4892937c82bb22e96cc2121a71a15a8d547c2",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/splenium_corpus_callosum_left__Biesbroek2017__R009.md": {
+      "source_sha256": null,
+      "paper": "Biesbroek2017",
+      "candidate": "R009",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "59d18d2289f35581d6c314771fcd473f4d440262bffa0f02d6b83baa4491d52f",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/left_hemisphere_thalamus_parietal_cluster__Biesbroek2017__R012.md": {
+      "source_sha256": null,
+      "paper": "Biesbroek2017",
+      "candidate": "R012",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "6c31db65257ab300a689f5414e2a78a951b10ddf94ba1ba33a14beacd72ded3a",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/posterior_inferior_frontal_gyrus__Hillis2007__R001.md": {
+      "source_sha256": null,
+      "paper": "Hillis2007",
+      "candidate": "R001",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "a30d6821b3992b06c88b1dc6c2aba806594b678a4b919be1cddd2be76d1b629c",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/left_mca_inferior_division__Hillis2007__R002.md": {
+      "source_sha256": null,
+      "paper": "Hillis2007",
+      "candidate": "R002",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "6a89430d0dded5cc98851b712e147927c7b3e782b6deb41f2ebada160366741d",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/brocas_area_surround__Hillis2007__R003.md": {
+      "source_sha256": null,
+      "paper": "Hillis2007",
+      "candidate": "R003",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "ffc9111a6762b562eecaa70a454b698cd45af64a65c1916a8080bd5b71fd3151",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/tcs_aphasia_watershed_cluster__Hillis2007__R004.md": {
+      "source_sha256": null,
+      "paper": "Hillis2007",
+      "candidate": "R004",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "7322d7c0699523560abe039051549b80fa57e3e5c922846cdc51c254bb046c09",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/mta_surrounding_lesions__Hillis2007__R005.md": {
+      "source_sha256": null,
+      "paper": "Hillis2007",
+      "candidate": "R005",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "2baad1af5deb22622d8060c5c8a450e91eb20452bba146fd790c6e9c3d0813d4",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/left_occipital_splenium_combination__Hillis2007__R006.md": {
+      "source_sha256": null,
+      "paper": "Hillis2007",
+      "candidate": "R006",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "f99d1ed9c64ab48a1af690d77a019d83c7083d276ba0366351c76a79fd92b030",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/left_ba37__Hillis2007__R008.md": {
+      "source_sha256": null,
+      "paper": "Hillis2007",
+      "candidate": "R008",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "e9435f3febefdf0b13fee889c320ac7c0bfab342f81d16f1ae328997e42009d8",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/intensive_aphasia_therapy__Hillis2007__R009.md": {
+      "source_sha256": null,
+      "paper": "Hillis2007",
+      "candidate": "R009",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "e3a528eb90d64f276538e951a025d2fae880c576fe4f28ceff5fd842c83da039",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/medication_without_therapy__Hillis2007__R010.md": {
+      "source_sha256": null,
+      "paper": "Hillis2007",
+      "candidate": "R010",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "060c76f45b4290d091fb9075648695b2dc2d3cb4c586aaa4a8e7478cbf50bde6",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/permutation_thresholding__Karnath2018__R001.md": {
+      "source_sha256": null,
+      "paper": "Karnath2018",
+      "candidate": "R001",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "1dd6cab7cc5d825d80cb0b7d8e08f4adc59164bbe0c3d1deb4d5892f051e451f",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/vlbm_correction_factors__Karnath2018__R003.md": {
+      "source_sha256": null,
+      "paper": "Karnath2018",
+      "candidate": "R003",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "153451bb8f7ccf8c1929f730297e4ad2037227627fdf467d16ceeb31b5e39cfe",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/rsfmri_network_disruption__Karnath2018__R005.md": {
+      "source_sha256": null,
+      "paper": "Karnath2018",
+      "candidate": "R005",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "7e8e5cc27e3338e633282c2f36db1c5e2e99dd87e33914b81871d596b09ae1cd",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/rsfmri_structural_lesion_synergy__Karnath2018__R006.md": {
+      "source_sha256": null,
+      "paper": "Karnath2018",
+      "candidate": "R006",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "bd8d4984b78ab41636a9aff686324dac9851bbbea9c27711ff76895005b26538",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/hub_cluster__Karnath2018__R007.md": {
+      "source_sha256": null,
+      "paper": "Karnath2018",
+      "candidate": "R007",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "2e598e19383f7d68f7cf73a2263fc57d3a1cf50758de69c9c73151c2655b1bd9",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/network_modification_toolbox_model__Karnath2018__R008.md": {
+      "source_sha256": null,
+      "paper": "Karnath2018",
+      "candidate": "R008",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "c795ad695de5149cd45c4c06d5358c47276bc037207036f21951cbb2bf5baf79",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/multivariate_sparse_canonical_correlations__Karnath2018__R012.md": {
+      "source_sha256": null,
+      "paper": "Karnath2018",
+      "candidate": "R012",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "3ebdef3a0f8083981ff972f627eddb91367ac84f304bcb6dc2bdd4bcf9f0cce2",
+      "reason": "Corrected primary-study misclassification to an explicitly attributed review summary. No new independent cohort or pooled effect is asserted. Source passages preserve cited study references; human primary-source review remains pending.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/therapies/object_relative_training__Thompson2003__R001.md": {
+      "source_sha256": null,
+      "paper": "Thompson2003",
+      "candidate": "R001",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "addc64195ffa21d5463fef4a40e254be6138189440f4a9db231f74ca30a47bcb",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval. Corrected the design to the reported single-subject experiment; no randomized trial. Training-order contrasts involve two participants each.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/therapies/who_question_training__Thompson2003__R002.md": {
+      "source_sha256": null,
+      "paper": "Thompson2003",
+      "candidate": "R002",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "1cd9f6d585b6983a501064c8d5fd7c8118bb4b8ebdd73822abaa94286dcc970e",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval. Corrected the design to the reported single-subject experiment; no randomized trial. Training-order contrasts involve two participants each.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/therapies/tuf_wh_movement__Thompson2003__R004.md": {
+      "source_sha256": null,
+      "paper": "Thompson2003",
+      "candidate": "R004",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "7592930731e6d7f60d7be09e498df74d0c5401ed0094df4c049688136076cbcf",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval. Corrected the design to the reported single-subject experiment; no randomized trial. Training-order contrasts involve two participants each.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/therapies/wh_movement_training__Thompson2003__R005.md": {
+      "source_sha256": null,
+      "paper": "Thompson2003",
+      "candidate": "R005",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "a3f89f21499bca14a4ab8986c48b15549bf95594f6d9799f02760586990f5d08",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval. Corrected the design to the reported single-subject experiment; no randomized trial. Training-order contrasts involve two participants each.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/therapies/wh_movement_training__Thompson2003__R006.md": {
+      "source_sha256": null,
+      "paper": "Thompson2003",
+      "candidate": "R006",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "5e3ac24ed6170348e9f8d5d03e208eeae5c97a634988cd9708e76819f3b15889",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval. Corrected the design to the reported single-subject experiment; no randomized trial. Training-order contrasts involve two participants each.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/therapies/tuf_wh_movement__Thompson2003__R007.md": {
+      "source_sha256": null,
+      "paper": "Thompson2003",
+      "candidate": "R007",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "3304f13e8ed5b6f96a5fc6c3776d88e742c5c9291f35affab8a3d0c823e395dd",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval. Corrected the design to the reported single-subject experiment; no randomized trial. Training-order contrasts involve two participants each.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/regions/language_activation_course__Saur2006__R011.md": {
+      "source_sha256": null,
+      "paper": "Saur2006",
+      "candidate": "R011",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "29c678e74011fae61aad3d5754c7627c50a4c2827fd0aac06fb7f2bccbbc5334",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/predictors/lrs_ex1_activation_correlation__Saur2006__R015.md": {
+      "source_sha256": null,
+      "paper": "Saur2006",
+      "candidate": "R015",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "ce71c3640754016a6c579368451c898b3990fb8c8ff3b485a100060d481928b8",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/regions/anterior_dorsal_stream_cluster__Schwartz2012__R001.md": {
+      "source_sha256": null,
+      "paper": "Schwartz2012",
+      "candidate": "R001",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "87476a9b7898b16970fd96462860a4b3ca2524980092198412505a8330b977de",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/gender_familial_sinistrality__Coppens2002__R002.md": {
+      "source_sha256": null,
+      "paper": "Coppens2002",
+      "candidate": "R002",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "e69f99f6ecfe7f1e3b08a8be6b58dbe28bdf3cb2b3a8063389b473a7fdf1cc11",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval. Preserved the review-level result without treating the reported cases as a newly recruited cohort or inferring missing comparison denominators.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/gender__Coppens2002__R003.md": {
+      "source_sha256": null,
+      "paper": "Coppens2002",
+      "candidate": "R003",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "8a207b000b610da3fc391a3c3e285427c990cbefed0d921c6b3083dad1532cbd",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval. Preserved the review-level result without treating the reported cases as a newly recruited cohort or inferring missing comparison denominators.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/gender__Coppens2002__R006.md": {
+      "source_sha256": null,
+      "paper": "Coppens2002",
+      "candidate": "R006",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "e499f235c4b20471f8b5d3887a89769730a1060e0a994fedd0824e32832120e6",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval. Preserved the review-level result without treating the reported cases as a newly recruited cohort or inferring missing comparison denominators.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/oral_written_discrepancy__Coppens2002__R007.md": {
+      "source_sha256": null,
+      "paper": "Coppens2002",
+      "candidate": "R007",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "f414913133ceee0bed4755bca3b78d1b558787e2acaee01aeaccae1113243cff",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval. Preserved the review-level result without treating the reported cases as a newly recruited cohort or inferring missing comparison denominators.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/semantic_feature_analysis__Efstratiadou2018__R001.md": {
+      "source_sha256": null,
+      "paper": "Efstratiadou2018",
+      "candidate": "R001",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "6d28e18f27f34f6caf6d52103b5ada86e2b17d5396310f616fb5b47b683b7484",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval. Preserved the review-level result without treating the reported cases as a newly recruited cohort or inferring missing comparison denominators.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/reviews/semantic_feature_analysis__Efstratiadou2018__R004.md": {
+      "source_sha256": null,
+      "paper": "Efstratiadou2018",
+      "candidate": "R004",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "ddbdcb8b93f47135a70b3a0ea8a524f83626bfb0342b21e2b8b460c6ba2c10a4",
+      "reason": "Reconstructed the saved mapping after an incomplete checker response, using the original article passages. This is an agent source check, not a completed model review or human approval. Preserved the review-level result without treating the reported cases as a newly recruited cohort or inferring missing comparison denominators.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/regions/dual_stream_tracts_fd_reduction__Zhang2021__R001.md": {
+      "source_sha256": null,
+      "paper": "Zhang2021",
+      "candidate": "R001",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "45c530940f2520f1943a1f554fc9807c436e7d7dd787b6483833767d97dfffe3",
+      "reason": "Reconstructed the selected analysis from original Results and Methods. Corrected the actual patient measurement, group/within-patient denominator, statistical interpretation and evidence links; original failed mapping retained. No independent model or human approval is asserted.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/regions/left_ventral_tracts_fdc_reduction__Zhang2021__R002.md": {
+      "source_sha256": null,
+      "paper": "Zhang2021",
+      "candidate": "R002",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "6a3af37e599e54c00fd3f3613bbc9ec0009983a9aa520cd6dcf4fc762eeadd68",
+      "reason": "Reconstructed the selected analysis from original Results and Methods. Corrected the actual patient measurement, group/within-patient denominator, statistical interpretation and evidence links; original failed mapping retained. No independent model or human approval is asserted.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/predictors/post_stroke_aphasia_fc__Zhang2021__R003.md": {
+      "source_sha256": null,
+      "paper": "Zhang2021",
+      "candidate": "R003",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "3f836d51f5879642b9d4649bb198a9494df0668a829bd53ef3ada74749d595a8",
+      "reason": "Reconstructed the selected analysis from original Results and Methods. Corrected the actual patient measurement, group/within-patient denominator, statistical interpretation and evidence links; original failed mapping retained. No independent model or human approval is asserted.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/regions/left_dual_stream_tracts_fd__Zhang2021__R013.md": {
+      "source_sha256": null,
+      "paper": "Zhang2021",
+      "candidate": "R013",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "33a63346413c704dc31e748ae6328d72f79d56ea9d78efc9d1b1044da27779a4",
+      "reason": "Reconstructed the selected analysis from original Results and Methods. Corrected the actual patient measurement, group/within-patient denominator, statistical interpretation and evidence links; original failed mapping retained. No independent model or human approval is asserted.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/regions/left_ifof_fdc__Zhang2021__R014.md": {
+      "source_sha256": null,
+      "paper": "Zhang2021",
+      "candidate": "R014",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "bfb3d3c66efeac5e2a7784fe5854c85bf3f7ee4c7a7fd2603b3cd227c7bcde64",
+      "reason": "Reconstructed the selected analysis from original Results and Methods. Corrected the actual patient measurement, group/within-patient denominator, statistical interpretation and evidence links; original failed mapping retained. No independent model or human approval is asserted.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/predictors/post_stroke_aphasia_fc__Zhang2021__R015.md": {
+      "source_sha256": null,
+      "paper": "Zhang2021",
+      "candidate": "R015",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "bc05fd10a235c74c00da585b206eb665f5f0d17284485fcf6a2d23249bfe648d",
+      "reason": "Reconstructed the selected analysis from original Results and Methods. Corrected the actual patient measurement, group/within-patient denominator, statistical interpretation and evidence links; original failed mapping retained. No independent model or human approval is asserted.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/regions/aphasia_fa_reduction__Zhang2021__R016.md": {
+      "source_sha256": null,
+      "paper": "Zhang2021",
+      "candidate": "R016",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "dadc9270beff276d70f0139b2dcf57568f228e39accaccb245807ccf9cc9d462",
+      "reason": "Reconstructed the selected analysis from original Results and Methods. Corrected the actual patient measurement, group/within-patient denominator, statistical interpretation and evidence links; original failed mapping retained. No independent model or human approval is asserted.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/predictors/left_ifof_fd__Zhang2021__R024.md": {
+      "source_sha256": null,
+      "paper": "Zhang2021",
+      "candidate": "R024",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "2b203068e16117578b7d7a26d95f3e4350580c7c6e50c5dccc5bd576260ad642",
+      "reason": "Reconstructed the selected analysis from original Results and Methods. Corrected the actual patient measurement, group/within-patient denominator, statistical interpretation and evidence links; original failed mapping retained. No independent model or human approval is asserted.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/predictors/left_ifof_fd__Zhang2021__R025.md": {
+      "source_sha256": null,
+      "paper": "Zhang2021",
+      "candidate": "R025",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "a80c43f0b02940358535b85e6e8a1fa260df8622cb7dce155a1f6596273fc06a",
+      "reason": "Reconstructed the selected analysis from original Results and Methods. Corrected the actual patient measurement, group/within-patient denominator, statistical interpretation and evidence links; original failed mapping retained. No independent model or human approval is asserted.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/predictors/left_ifof_fd__Zhang2021__R026.md": {
+      "source_sha256": null,
+      "paper": "Zhang2021",
+      "candidate": "R026",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "e2f07f986c396bc71c1f8baa8500a8d6fe96879fc34aa964b45253da03ffbcf1",
+      "reason": "Reconstructed the selected analysis from original Results and Methods. Corrected the actual patient measurement, group/within-patient denominator, statistical interpretation and evidence links; original failed mapping retained. No independent model or human approval is asserted.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/regions/left_tpj_cluster__Zhang2021__R028.md": {
+      "source_sha256": null,
+      "paper": "Zhang2021",
+      "candidate": "R028",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "30ef134833ad845255dab86c44fc4f84a885c12df48828b3681866138cefacae",
+      "reason": "Reconstructed the selected analysis from original Results and Methods. Corrected the actual patient measurement, group/within-patient denominator, statistical interpretation and evidence links; original failed mapping retained. No independent model or human approval is asserted.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/regions/left_dorsal_ventral_streams__Zhang2018__R002.md": {
+      "source_sha256": null,
+      "paper": "Zhang2018",
+      "candidate": "R002",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "d60a90dfe6ddd8d71855e26cb1ab10acdd39df43f5d152654573662cd019a3e7",
+      "reason": "Repaired evidence binding and selected-analysis identity against Results pp.4\u20137. Restricted the denominator to analyzed participants and distinguished group contrasts from language associations.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/predictors/non_fa_diffusion_metrics__Zhang2018__R009.md": {
+      "source_sha256": null,
+      "paper": "Zhang2018",
+      "candidate": "R009",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "a7f976f79905acf8e1f129aef1c5e389a2ab4bd1ae75e0cb2d96740ac956355b",
+      "reason": "Repaired evidence binding and selected-analysis identity against Results pp.4\u20137. Restricted the denominator to analyzed participants and distinguished group contrasts from language associations.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/regions/left_ilf__Zhang2018__R011.md": {
+      "source_sha256": null,
+      "paper": "Zhang2018",
+      "candidate": "R011",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "95c1c259bf76264c8cc92c88b94f68694f07bcc7282b1039ccbf0f818e7755bb",
+      "reason": "Repaired evidence binding and selected-analysis identity against Results pp.4\u20137. Restricted the denominator to analyzed participants and distinguished group contrasts from language associations.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/predictors/left_ifof_fa_mean__Zhang2018__R013.md": {
+      "source_sha256": null,
+      "paper": "Zhang2018",
+      "candidate": "R013",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "99c53eee115eb59eb97c35d4389327460c7c77a155a501b837d37cdd535445c0",
+      "reason": "Repaired evidence binding and selected-analysis identity against Results pp.4\u20137. Restricted the denominator to analyzed participants and distinguished group contrasts from language associations.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/regions/left_ifof_ad_occipital_posterior_temporal__Zhang2018__R014.md": {
+      "source_sha256": null,
+      "paper": "Zhang2018",
+      "candidate": "R014",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "4b1f691f4e779eea27322dd5989b4b8d19cfc8b6cbf804980b0061455574d344",
+      "reason": "Repaired evidence binding and selected-analysis identity against Results pp.4\u20137. Restricted the denominator to analyzed participants and distinguished group contrasts from language associations.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/regions/left_ifof_rd_middle_segment__Zhang2018__R015.md": {
+      "source_sha256": null,
+      "paper": "Zhang2018",
+      "candidate": "R015",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "3a96afa86ca77d88bfd775432dbb09722ff0dc0b2a29e21a6f7b1b29158ee930",
+      "reason": "Repaired evidence binding and selected-analysis identity against Results pp.4\u20137. Restricted the denominator to analyzed participants and distinguished group contrasts from language associations.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
+    },
+    "drafts/predictors/md_bilateral_hemispheres__Zhang2018__R017.md": {
+      "source_sha256": null,
+      "paper": "Zhang2018",
+      "candidate": "R017",
+      "manual_repair": true,
+      "publication_disposition": "corrected_pending_human_review",
+      "publication_sha256": "18ae50270f378951091c02f6345791ef31f92c269a03457b04df3d7b3703a488",
+      "reason": "Corrected the sample from recruited to analysed participants (11 patients and 11 controls). Preserved the between-group MD null result without claiming that it excludes edema. Unapproved.",
+      "repair_audit": "logs/publication/draft-repairs-2026-11-26-round2.json"
     }
-  }
+  },
+  "last_repair_at": "2026-11-26T02:05:16.806224+00:00"
 }

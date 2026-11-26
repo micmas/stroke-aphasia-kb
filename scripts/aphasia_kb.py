@@ -139,7 +139,7 @@ DIRECTION_OF_SEVERITY_VOCAB = {
 METHOD_VOCAB = {
     "LSM", "VLSM", "RLSM", "VBCM", "VBM", "MLPA", "MVPA",
     "fMRI_activation", "fMRI_FC", "rs_fMRI", "PET", "structural_MRI",
-    "DTI", "NODDI", "tractography",
+    "DTI", "NODDI", "FBA", "tractography",
     "lesion_network_mapping", "disconnectome",
     "EEG", "MEG", "TMS", "tDCS",
     "behavioral_only", "clinical_RCT", "meta-analysis",
@@ -339,10 +339,10 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
     # v2.4+ entries can use method=narrative_review with relaxed field rules.
     # v2.5 adds optional review-provenance fields (review_tier, per-finding
     # review block, audited_by/audited_on); no structural change.
-    _ALL_SV = (2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8,
-               "2", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8")
+    _ALL_SV = (2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 2.8, 2.9,
+               "2", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9")
     if sv not in _ALL_SV:
-        err(f"schema_version must be 2–2.8, got {sv!r}")
+        err(f"schema_version must be 2–2.9, got {sv!r}")
     # Compare numerically: the slice-based test this replaces silently
     # excluded every version added after it was written (2.6 drafts
     # failed "predictor entries require schema_version 2.3 or higher").
@@ -356,6 +356,13 @@ def _validate_v2_entry(entry: dict, src: str, issues: list[str]):
     is_v24 = _v >= 2.4
     is_v27 = _v >= 2.7
     is_v28 = _v >= 2.8
+
+    if entry.get("kind") == "review":
+        if _v < 2.9:
+            err("review finding entries require schema_version 2.9 or higher")
+        for finding in entry.get("findings") or []:
+            if finding.get("method") != "narrative_review" or finding.get("relationship") != "synthesis":
+                err("review findings require method=narrative_review and relationship=synthesis")
 
     # v2.3 predictor entries: validate file-level predictor fields.
     # (We check kind=='predictor' regardless of bucket so any file that
@@ -704,7 +711,7 @@ class KnowledgeBase:
     # Load
     # --------------------------------------------------------
     def _walk(self, base: Path) -> dict[str, list[dict]]:
-        out = {"regions": [], "impairments": [], "therapies": [], "predictors": [], "ingredients": []}
+        out = {"regions": [], "impairments": [], "therapies": [], "predictors": [], "ingredients": [], "reviews": []}
         for sub in out:
             d = base / sub
             if not d.is_dir():
@@ -719,6 +726,10 @@ class KnowledgeBase:
                     continue
                 if not fm:
                     self.issues.append(f"{path}: no frontmatter")
+                    continue
+                # Legacy reviews/ files are bibliographic summaries, not finding
+                # entries. Admit only explicitly typed v2.9 review evidence.
+                if sub == "reviews" and (fm.get("kind") != "review" or str(fm.get("schema_version")) != "2.9"):
                     continue
                 fs = fm.get('findings')
                 if fs is not None and (not isinstance(fs, list) or any(not isinstance(f, dict) for f in fs)):
@@ -752,7 +763,7 @@ class KnowledgeBase:
                 for e in entries:
                     src = e["_path"]
                     sv = e.get("schema_version")
-                    if str(sv) in {"2", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8"}:
+                    if str(sv) in {"2", "2.0", "2.1", "2.2", "2.3", "2.4", "2.5", "2.6", "2.7", "2.8", "2.9"}:
                         _validate_v2_entry(e, src, self.issues)
                     else:
                         _validate_v1_entry(e, src, self.issues)
@@ -798,6 +809,9 @@ class KnowledgeBase:
         ings = [e for e in (approved.get('ingredients') or []) + (drafts.get('ingredients') or []) if keep(e)]
         self.ingredients = pd.DataFrame(ings) if ings else pd.DataFrame()
 
+        revs = [e for e in approved["reviews"] + drafts["reviews"] if keep(e)]
+        self.reviews = pd.DataFrame(revs)
+
         # Long-format findings table
         rows = []
         for sub_entries, sub in (
@@ -806,6 +820,7 @@ class KnowledgeBase:
             (theras,  "therapy"),
             (preds,   "predictor"),
             (ings,    "ingredient"),
+            (revs,    "review"),
         ):
             for e in sub_entries:
                 for f in e.get("findings") or []:

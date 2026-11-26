@@ -1,4 +1,4 @@
-# Schema v2.8
+# Schema v2.9
 
 ### Behaviour and its measurement
 
@@ -47,7 +47,7 @@ Every entry is a single markdown file with **YAML frontmatter** followed by
 Changing field names or controlled vocabularies should be a deliberate,
 documented change to *this file* and the loader together.
 
-> **Status note.** Schema v1 → v2.0 → v2.1 → v2.2 → v2.3 → **v2.4** → v2.5 → v2.6 → v2.7 → **v2.8** (current).
+> **Status note.** Schema v1 → v2.0 → v2.1 → v2.2 → v2.3 → **v2.4** → v2.5 → v2.6 → v2.7 → v2.8 → **v2.9** (current).
 >
 > - **v2.0** introduced the rich finding object (method/sample/stats/etc.).
 > - **v2.1** made `source_passages` required and added `imaging_details`
@@ -121,14 +121,14 @@ documented change to *this file* and the loader together.
 >   findings; `backfill.py --fields therapy` fills the therapy block
 >   from the paper.
 >
-> New entries must declare `schema_version: 2.8`. The loader reads older
+> New entries must declare `schema_version: 2.9`. The loader reads older
 > entries (v1, v2.0–v2.7) for backwards compatibility.
 
 ## File-level fields (every entry)
 
 | Field            | Type    | Required | Notes |
 |------------------|---------|----------|-------|
-| `schema_version` | number or string | yes | New entries use `2.8`; older v2 versions remain readable. |
+| `schema_version` | number or string | yes | New entries use `2.9`; older v2 versions remain readable. |
 | `id`             | string  | yes      | Stable join key, lowercase, dash-or-underscore-separated. |
 | `name`           | string  | yes      | Human-readable name. |
 | `aliases`        | list    | no       | Other names that should resolve to this entry. |
@@ -262,7 +262,7 @@ to know what e.g. `direction: likely` actually means.
 | `relationship`   | Typical methods                        | "likely" means                                                                                          |
 |------------------|----------------------------------------|---------------------------------------------------------------------------------------------------------|
 | `causal`         | LSM, VLSM, RLSM, VBCM, MLPA, lesion_network_mapping, disconnectome | "Damage to this region is associated with the impairment" — the canonical lesion-symptom claim. |
-| `correlational`  | fMRI_FC, rs_fMRI, DTI, NODDI, EEG, MEG | "Activity / integrity of this region tracks behavior" — no causal claim, just covariation.              |
+| `correlational`  | fMRI_FC, rs_fMRI, DTI, NODDI, FBA, EEG, MEG | "Activity / integrity of this region tracks behavior" — no causal claim, just covariation.              |
 | `recruitment`    | fMRI_activation                        | "This region is recruited (active) during this task" — task-functional claim.                           |
 | `responder`      | clinical_RCT, behavioral_only          | "Patients with this lesion / region pattern respond well to this therapy" — a moderator claim.          |
 | `treatment_response` (added 2026-05-01) | fMRI_activation pre/post a treatment   | "This region's activation changes as a *consequence* of the treatment." Distinct from `causal` (damage→impairment) and `responder` (which patients respond). Use for treatment-induced upregulation / functional reorganization findings. Needs `therapy` (v2.8). |
@@ -486,7 +486,7 @@ direction_of_severity = higher_is_worse | lower_is_worse | nonmonotonic
 target_kind       = impairment | therapy | region | prognosis | predictor
 method            = LSM | VLSM | RLSM | VBCM | VBM | MLPA | MVPA
                   | fMRI_activation | fMRI_FC | rs_fMRI | PET | structural_MRI
-                  | DTI | NODDI | tractography
+                  | DTI | NODDI | FBA | tractography
                   | lesion_network_mapping | disconnectome
                   | EEG | MEG | TMS | tDCS
                   | behavioral_only | clinical_RCT | meta-analysis
@@ -644,3 +644,17 @@ Fridriksson J, Yourganov G, Bonilha L, ... Revealing the dual streams of
 speech processing. Proc Natl Acad Sci USA. 2018;115(7):1432–1437.
 doi:10.1073/pnas.1714922115
 ```
+
+`FBA` denotes fixel-based analysis of diffusion-derived fiber density (FD), fiber-bundle cross-section (FC), or their product (FDC). It does not denote lesion overlap with a reference tract. Distinguish fixel-wise versus tract-wise results, patient-control contrasts versus within-patient correlations, and tensor FA from fixel FD in the claim and evidence.
+
+
+### v2.9: review findings
+
+`reviews/` and `drafts/reviews/` admit explicitly typed `kind: review`,
+`schema_version: 2.9` entries. These describe literature-level findings, not a
+new patient cohort. Their findings require `method: narrative_review` and
+`relationship: synthesis`; distinguish numbers of articles from patients in
+`sample.population` and the claim. Existing status and review restrictions apply.
+Older review files remain bibliographic summaries and are not imported as finding
+entries. Clinical interpretations must not treat a review summary as an independent
+replication of its cited primary studies. Older v2 finding entries remain readable.

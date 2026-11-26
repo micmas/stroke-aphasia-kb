@@ -178,7 +178,7 @@ def portal(root: Path) -> dict:
 
 def entries(kb) -> dict:
     out = {}
-    for table in (kb.regions, kb.impairments, kb.therapies, kb.predictors, kb.ingredients):
+    for table in (kb.regions, kb.impairments, kb.therapies, kb.predictors, kb.ingredients, kb.reviews):
         if table is None or table.empty:
             continue
         for _, row in table.iterrows():
@@ -203,7 +203,7 @@ def findings(kb, root: Path) -> list:
     """Flat rows merged with the nested blocks of the raw finding."""
     raw = {}
     source_checks = {}
-    for table in (kb.regions, kb.impairments, kb.therapies, kb.predictors, kb.ingredients):
+    for table in (kb.regions, kb.impairments, kb.therapies, kb.predictors, kb.ingredients, kb.reviews):
         if table is None or table.empty:
             continue
         for _, entry in table.iterrows():
