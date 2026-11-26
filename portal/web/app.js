@@ -32,6 +32,13 @@ import { carryOver, sameBuild } from './review-state.js';
 import { selectDrafts, measurementLabel, reviewProgress, pendingFirst, nextPaperDraft } from './draft-queue.js';
 import { rankPapers, REVIEW_TOPICS } from './review-priority.js';
 import { loadExportText } from './load-export.js';
+import { openAccessNote } from './open-access.js';
+
+const oaPdfs=new Map();
+function oaNote(id){return openAccessNote(id,pdf=>{
+  const previous=oaPdfs.get(id);oaPdfs.set(id,pdf);
+  if(!previous && document.querySelector('.review-layout.ft')?.dataset.id===id)render({preserveScroll:true});
+});}
 
 const state = { me: null, manifest: null, kb: null, bindings: {}, bindingProblem: '', screening: null, screeningIndex: [], mine: { inbox: [], applied: [] }, uploads: [], uploadsOk: false, pdfjs: null, zoom: 1, sel: null, docs: new Map() };
 const MAX_UPLOAD = 60 * 1024 * 1024;
@@ -71,6 +78,7 @@ async function api(path, init) {
 async function sendAll(records) {
   if (!records.length) return { files: [] };
   const out = await api('reviews', { method: 'POST', body: JSON.stringify({ records }) });
+  state.oaWarning=out.oaWarning||'';
   for (const f of out.files || [out.file]) state.mine.inbox.push(f.split('/').pop());
   return out;
 }
@@ -706,6 +714,7 @@ function screenView(stage) {
       h('p', { class: 'small muted' }, [c.year, c.journal, (c.authors || '').slice(0, 120)].filter(Boolean).join(' · '), c.doi ? [' · ', h('a', { href: `https://doi.org/${c.doi}`, target: '_blank', rel: 'noopener', text: c.doi })] : null, c.pmid ? [' · PMID ', h('a', { href: `https://pubmed.ncbi.nlm.nih.gov/${c.pmid}`, target: '_blank', rel: 'noopener', text: String(c.pmid) })] : null,
         c.for?.length ? ` · for ${c.for.join(', ')}` : '', c.history?.length ? ` · ${c.history.map((x) => `${x.stage === 'title_abstract' ? 'T/A' : 'FT'}: ${x.decision} (${x.by})`).join('; ')}` : ''),
       h('p', { class: 'small pdfline' }, pdfLine, up ? [' · ', h('a', { href: `api/upload?file=${encodeURIComponent(up.id)}`, target: '_blank', rel: 'noopener', text: 'Open uploaded PDF' })] : null),
+      oaNote(c.id),
       h('p', { class: 'ab', text: c.abstract || '(no abstract available)' }),
       c.suggestion?.decision ? h('p', { class: 'sug', text: `Model suggests ${c.suggestion.decision}${c.suggestion.reason && c.suggestion.reason !== 'none' ? ` (${c.suggestion.reason})` : ''} — a suggestion, not a decision.` }) : null,
       h('div', { class: 'dec' }, ['include', 'exclude', 'unsure'].map((v) => h('label', { title: gated ? 'Upload the PDF first' : null }, h('input', { type: 'radio', name: `s-${c.id}`, value: v, disabled: gated ? '' : null, checked: dec.decision === v ? '' : null, onchange: () => { decided[c.id] = { ...dec, decision: v }; store.set(key, decided); card.classList.add('done'); const k = Object.values(decided).filter((x) => x.decision).length; status.textContent = statusText(k); sendBtn.disabled = k ? false : true; sendBtn.textContent = k ? `Send ${plural(k, 'decision')}` : 'Send decisions'; } }), ` ${v}`)),
@@ -744,7 +753,7 @@ function ftPdf(c) {
   if (ft?.object) return { url: ft.object, label: 'full text' };
   const up = uploadFor(c.id, c.key);
   if (up) return { url: `api/upload?file=${encodeURIComponent(up.id)}`, label: 'uploaded PDF', upload: up };
-  return null;
+  return oaPdfs.get(c.id)||null;
 }
 /** The queue in the order shown (skipped papers last) and the paper on screen. */
 function ftQueue(wanted) {
@@ -838,7 +847,7 @@ function ftLeft(q, c, pdf) {
   }));
   return h('div', { class: 'left' },
     h('div', { class: 'page-head sticky-head' }, h('h1', { text: 'Full-text screening' }), status, h('span', { style: 'margin-left:auto' }, sendBtn)),
-    nav, card,
+    nav, card, oaNote(c.id),
     h('p', { class: 'small muted', text: 'Criteria: docs/SCREENING.md §2 — include when the paper answers a question in §1 and no exclusion reason applies. Keys: i include · e exclude · u unsure · s skip · ← → previous/next. Decisions stay in this browser until you send them.' }),
     h('h3', { text: 'The queue' }), list);
 }
@@ -1164,6 +1173,7 @@ function render({ preserveScroll = false } = {}) {
     else view = h('p', { class: 'error', text: `Unknown page: ${head}` });
   } catch (err) { console.error(err); view = h('p', { class: 'error', text: `This page could not be rendered: ${err.message}` }); }
   main.replaceChildren(view);
+  if(state.oaWarning)main.prepend(h('p',{class:'notice',text:state.oaWarning}));
   for (const a of document.querySelectorAll('.nav a')) { if (a.getAttribute('href') === `#${current}`) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); }
   if (scroll) window.scrollTo(scroll);
   else if (head !== 'draft') window.scrollTo(0, 0);

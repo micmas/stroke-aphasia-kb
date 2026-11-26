@@ -111,6 +111,7 @@ def build(exports):
     dest.mkdir(parents=True,exist_ok=True)
     for p in (ROOT/'staging/dysphagia/web').iterdir(): shutil.copy2(p,dest/p.name)
     for name in ('project-shell.css','project-shell.js'): shutil.copy2(ROOT/'explorer'/name,dest/name)
+    shutil.copy2(ROOT/'portal/web/open-access.js',dest/'open-access.js')
     chunks=[]
     for start in range(0,len(unique),1000):
         name=f'records-{start//1000:03}.json'; chunks.append(name)
