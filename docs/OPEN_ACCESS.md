@@ -100,8 +100,12 @@ it meets every collection's inclusion criteria. Rejecting a Practice evidence no
 is not a paper exclusion and does not remove the PDF; title/abstract and full-text
 exclusions do.
 
-`--chapter all` includes Aphasia, Dysphagia and Practice, in that order. Use
+`--chapter all` runs Aphasia, Dysphagia and Practice concurrently, with one
+independent process per collection (at most three processes). This keeps all
+collections moving without waiting for a slow provider in another collection.
+Each process has its own progress counter and checkpoint; the time limit applies
+to the whole run. Wrangler sign-in refreshes are serialized between processes. Use
 `--chapter practice` for just the new collection. A process already running when
-this support was added retains its original chapter list; restart to include all
-three, or run a separate Practice-only process. Never run two collectors for the
-same collection at once.
+this support was added retains its original behaviour. Stop with Ctrl+C and
+restart to use parallel collection. Completed record checkpoints are flushed on
+interruption. Never run two collectors for the same collection at once.
