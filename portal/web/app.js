@@ -528,6 +528,12 @@ function marksPanel(r, save) {
 }
 
 function verdictPanel(d, r, save) {
+  const obligations = state.bindings?.[d.path]?.obligations || [];
+  const approvalBlocked = obligations.length > 0;
+  const approvalReason = 'Approval is unavailable because this draft has an unresolved source-check or reviewer flag. The maintainer must record its resolution first. Choose “kept for more review” to send your assessment now.';
+  // A saved approval selection must not remain selected after it becomes unavailable.
+  // Keep all finding decisions, passage checks, edits and comments intact.
+  if (approvalBlocked && r.verdict === 'approve') { r.verdict = ''; save(); }
   const pending = Object.values(r.findings).filter((x) => x.verdict).length;
   const total = d.findings.length;
   const edits = Object.entries(r.findings).filter(([, x]) => Object.keys(x.edits).length || x.added.length || Object.keys(x.passages).some((k) => !['fine', 'unsure'].includes(x.passages[k]))).length;
@@ -567,7 +573,14 @@ function verdictPanel(d, r, save) {
   } });
   bar.append(btn, h('span', { class: 'pending', text: `${pending} of ${total} findings decided · ${checked} of ${nPassages} passages checked${edits ? ` · ${edits} edited` : ''}${r.marks.length ? ` · ${r.marks.length} marks` : ''}` }), h('span', { class: 'small muted', text: 'Saved in this browser until you send.' }));
   return frag(h('div', { class: 'verdict' }, h('h4', { text: 'Overall' }),
-    h('div', { class: 'row' }, h('span', { class: 'muted', text: 'This draft should be' }), ['approve', 'agree_defer', 'reject'].map((v) => h('label', {}, h('input', { type: 'radio', name: 'overall', value: v, checked: r.verdict === v ? '' : null, onchange: () => { r.verdict = v; save(); } }), ` ${v === 'agree_defer' ? 'kept for more review' : v === 'approve' ? 'approved' : 'rejected'}`))),
+    h('div', { class: 'row' }, h('span', { class: 'muted', text: 'This draft should be' }), ['approve', 'agree_defer', 'reject'].map((v) => {
+      const disabled = v === 'approve' && approvalBlocked;
+      return h('label', { class: disabled ? 'approval-unavailable' : null, title: disabled ? approvalReason : null, tabindex: disabled ? '0' : null, 'aria-describedby': disabled ? 'approval-unavailable-reason' : null },
+        h('input', { type: 'radio', name: 'overall', value: v, disabled: disabled ? '' : null, checked: r.verdict === v ? '' : null, 'aria-describedby': disabled ? 'approval-unavailable-reason' : null, onchange: () => { r.verdict = v; save(); } }),
+        ` ${v === 'agree_defer' ? 'kept for more review' : v === 'approve' ? 'approved' : 'rejected'}`);
+    })),
+    approvalBlocked ? h('p', { id: 'approval-unavailable-reason', class: 'small', text: approvalReason }) : null,
+    h('p', { class: 'small muted', text: '“Kept for more review” submits your assessment and leaves this draft unapproved. It does not refer to other drafts in the queue.' }),
     h('textarea', { rows: 2, placeholder: 'rationale, 1–3 sentences', onchange: (e) => { r.rationale = e.target.value.trim(); save(); } }, esc(r.rationale)),
     h('p', { class: 'small muted', text: 'Only someone marked approver in the Reviewer team (portal/reviewers.yaml) approves; if that is not you, your verdict is recorded as an opinion the maintainer reads before promoting.' })), bar);
 }

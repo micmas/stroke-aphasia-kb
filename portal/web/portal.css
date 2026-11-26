@@ -36,6 +36,8 @@ main:has(.review-layout) { max-width: none; padding: 0; }
 
 .verdict { border: 1px solid var(--line-strong); border-radius: 6px; padding: .55rem .75rem; margin: .5rem 0; background: var(--panel); }
 .verdict .row { display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; margin: .25rem 0; font-size: .86rem; }
+.verdict .approval-unavailable { color: var(--ink-2); opacity: .65; cursor: not-allowed; }
+.verdict .approval-unavailable input { pointer-events: none; }
 .verdict textarea, .finding textarea, .screen textarea { width: 100%; font: inherit; font-size: .86rem; padding: .3rem .4rem; border: 1px solid var(--line-strong); border-radius: 4px; resize: vertical; }
 .finding .field { display: flex; gap: .4rem; align-items: baseline; flex-wrap: wrap; font-size: .84rem; margin: .2rem 0; }
 .finding .field label { color: var(--ink-2); min-width: 7em; }
