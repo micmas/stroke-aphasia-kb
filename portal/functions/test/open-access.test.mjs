@@ -47,3 +47,10 @@ test('conditional-write conflict rereads the newer decision instead of undoing i
  assert.equal(await excluded(b,'C1234'),true);
  assert.equal(await b.head('open-access/retry/C1234.json'),null);
 });
+test('available index reconciles excluded and missing copies before full-text screening',async()=>{
+ const b=bucket();await b.put('open-access/index.json',JSON.stringify({C1234:{status:'available'},C1235:{status:'available'},C1236:{status:'available'}}));
+ await b.put(pdfKey('C1234'),'PDF');await b.put(pdfKey('C1235'),'PDF');
+ await syncOaDecisions(b,'a',[d('exclude')]);
+ const response=await serveOpenAccess(new Request('https://review/api/open-access?available=1'),b);
+ assert.deepEqual(Object.keys((await response.json()).papers),['C1235']);
+});

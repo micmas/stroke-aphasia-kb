@@ -79,6 +79,7 @@ async function sendAll(records) {
   if (!records.length) return { files: [] };
   const out = await api('reviews', { method: 'POST', body: JSON.stringify({ records }) });
   state.oaWarning=out.oaWarning||'';
+  for(const r of records)if(r.kind==='screen'&&r.decision==='exclude')oaPdfs.delete(r.id);
   for (const f of out.files || [out.file]) state.mine.inbox.push(f.split('/').pop());
   return out;
 }
@@ -99,7 +100,7 @@ const paperPdf = (citation) => state.manifest?.papers?.[citation] || null;
 /** The maintainer has the paper's source PDF (annotated or not). */
 const paperSource = (citation) => Boolean(citation && (paperPdf(citation) || (state.manifest?.sources?.keys || []).includes(citation)));
 /** A candidate's PDF is with the maintainer: named after its key, or linked through `pdf_file`. */
-const candidateHasPdf = (c) => Boolean(c.pdf_file || state.manifest?.fulltext?.[c.id]?.object || state.screeningIndex.find((r) => r.id === c.id)?.pdf_file) || paperSource(c.key);
+const candidateHasPdf = (c) => oaPdfs.has(c.id) || Boolean(c.pdf_file || state.manifest?.fulltext?.[c.id]?.object || state.screeningIndex.find((r) => r.id === c.id)?.pdf_file) || paperSource(c.key);
 /** An upload waiting in the bucket for this candidate id or citation key, if any. */
 const uploadFor = (...ids) => {
   const aliases = (state.screening?.candidates || []).filter((c) => ids.includes(c.id)).flatMap((c) => c.upload_ids || []);
@@ -1198,6 +1199,8 @@ async function init() {
     state.bindingProblem = consistent ? '' : 'The portal files loaded are not all from the same build: reload the page before sending a draft review.';
     state.screening = await fetch('screening.json', fresh).then((r) => (r.ok ? r.json() : null)).catch(() => null);
     state.screeningIndex = await fetch('screening-index.json', fresh).then((r) => r.ok ? r.json() : null).then((x) => x?.candidates || []).catch(() => []);
+    const collected=await fetch('/api/open-access?available=1',fresh).then(r=>r.ok?r.json():{}).catch(()=>({}));
+    for(const [id,paper] of Object.entries(collected.papers||{}))oaPdfs.set(id,{url:`api/open-access?id=${encodeURIComponent(id)}&file=1`,label:'open-access PDF',source:paper.source});
     store.set('screen:sent', pendingScreenReceipts(store.get('screen:sent', {}), state.screeningIndex));
     state.mine = await api('reviews').catch(() => ({ inbox: [], applied: [] }));
     try { const u = await api('upload'); state.uploads = u.uploads || []; state.uploadsOk = true; if (state.screening) state.screening.candidates = mergePendingPapers(state.screening.candidates, state.uploads, state.screeningIndex); } catch { state.uploads = []; state.uploadsOk = false; }

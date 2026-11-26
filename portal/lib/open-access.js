@@ -47,6 +47,25 @@ export async function serveOpenAccess(request,bucket) {
   if (!['GET','HEAD'].includes(request.method)) return new Response('Method not allowed',{status:405});
   const url=new URL(request.url),id=url.searchParams.get('id');
   const headers={'Cache-Control':'private, no-store','X-Robots-Tag':'noindex'};
+  if(url.searchParams.get('available')==='1'){
+    const object=await bucket.get(`${OA}index.json`),index=object?await object.json():{};
+    const blocked=new Set(),present=new Set();
+    for(const prefix of ['decisions/','pdf/']){
+      let cursor;
+      do{
+        const page=await bucket.list({prefix:OA+prefix,cursor,include:['customMetadata']});
+        for(const item of page.objects){
+          if(prefix==='pdf/')present.add(item.key.slice((OA+prefix).length).replace(/\.pdf$/,''));
+          else{
+            const row=item.customMetadata?.decision?item.customMetadata:await (await bucket.get(item.key)).json();
+            if(row.decision==='exclude')blocked.add(row.id);
+          }
+        }
+        cursor=page.truncated?page.cursor:undefined;
+      }while(cursor);
+    }
+    return Response.json({papers:Object.fromEntries(Object.entries(index).filter(([key,value])=>validId(key)&&value.status==='available'&&present.has(key)&&!blocked.has(key)).map(([key,value])=>[key,{source:value.source}]))},{headers});
+  }
   if (!validId(id)) return Response.json({error:'Invalid record.'},{status:400,headers});
   const blocked=await excluded(bucket,id);
   if (url.searchParams.get('file')==='1') {
