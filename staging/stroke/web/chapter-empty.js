@@ -1,9 +1,9 @@
+import {contentSection as section, chapterHeading, summaryTiles} from './chapter-presentation.js';
 import {renderDysphagiaCoverage} from './dysphagia-coverage.js';
 const titles={findings:'Findings',matrix:'Matrix',papers:'Papers',coverage:'Coverage',involve:'Get involved',searches:'Search strategy',licences:'Paper licences',models:'Extraction & review methods',review:'Review workspace',drafts:'Drafts',fulltext:'Full-text screening',pdfs:'PDFs'};
 const messages={findings:['No findings yet','Findings will appear after papers have been included, extracted and reviewed. No Aphasia findings are shown in this chapter.'],matrix:['No evidence links yet','The brain-region, swallowing-impairment and treatment matrices will populate when Dysphagia findings are available.'],papers:['No included papers yet','Database search results are candidates for screening, not included evidence. Included studies will appear here after eligibility assessment.'],licences:['No included-paper licences yet','Paper-specific access and reuse terms will be recorded as studies enter the chapter.'],drafts:['No extraction drafts yet','Drafts will appear after included papers have been processed.'],fulltext:['No full-text queue published yet','Title-and-abstract decisions are saved in the separate screening workspace. A full-text queue will be prepared from those decisions.'],pdfs:['No chapter PDFs yet','PDFs will be linked to included studies with their access and licence information.'],models:['Extraction adaptation has not started','The Dysphagia extraction method and its validation results will be documented here. Aphasia model evaluations are not evidence of performance for swallowing research.']};
 function el(tag,text,cls){const n=document.createElement(tag);n.textContent=text;if(cls)n.className=cls;return n;}
 function link(text,url){const a=el('a',text);a.href=url;return a;}
-function section(title,text){const n=el('section','','chapter-empty');n.append(el('h2',title),el('p',text));return n;}
 export function renderChapterExtra(chapter,views={}){
  const route=location.hash.replace(/^#\//,'').split('?')[0]||'';
  if(chapter==='aphasia'&&route!=='review')return false;
@@ -14,7 +14,7 @@ export function renderChapterExtra(chapter,views={}){
  }
  document.title=`${titles[route]||'Overview'} · Dysphagia KB · staging`;
  for(const a of document.querySelectorAll('.nav a')){if(a.hash==='#/'+route)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');}
- const heading=el('header','',route?'':'editorial-hero');heading.append(el('p','STROKE KB / DYSPHAGIA','eyebrow'),el('h1',titles[route]||'What can research tell us about swallowing after stroke?'));main.append(heading);
+ const heading=chapterHeading({title:titles[route]||'What can research tell us about swallowing after stroke?',eyebrow:'STROKE KB / DYSPHAGIA',overview:!route});main.append(heading);
  if(!route){
  heading.append(el('p','Explore brain injury, swallowing difficulties, treatment and recovery. This chapter has the same sections as Aphasia; evidence will be added as screening, extraction and review progress.','lead'));
  const counts=el('div','','project-counts');for(const text of ['0 included papers published','0 extracted findings','0 extraction drafts'])counts.append(el('p',text));main.append(counts);
