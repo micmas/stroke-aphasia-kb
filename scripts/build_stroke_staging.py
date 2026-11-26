@@ -13,9 +13,14 @@ ROOT=Path(__file__).resolve().parents[1]
 DEST=ROOT/'staging/stroke/dist'
 WEB=ROOT/'staging/stroke/web'
 
-def build(exports=None, public=False, reuse_exports=False):
+def build(exports=None, public=False, reuse_exports=False, presentation_only=False):
     global DEST
     DEST = ROOT / ('deployment/public-site/dist' if public else 'staging/stroke/dist')
+    if presentation_only:
+        if not public: raise ValueError('--presentation-only requires --public')
+        for name in ('stroke-aphasia-kb.json', 'stroke-aphasia-kb-drafts.json'):
+            if not (DEST/'aphasia/export'/name).exists():
+                raise ValueError('A complete public build is required before --presentation-only')
     if not public:
         if not exports: raise ValueError('Staging requires --exports')
         build_screening(exports)
@@ -70,6 +75,7 @@ def build(exports=None, public=False, reuse_exports=False):
         (dest/'app.js').write_text(app)
     export=DEST/'aphasia/export';export.mkdir(exist_ok=True)
     for name,statuses in [('stroke-aphasia-kb.json','approved'),('stroke-aphasia-kb-drafts.json','approved,in_review,draft')]:
+        if presentation_only: continue
         if reuse_exports: shutil.copy2(ROOT/'export'/name,export/name)
         else: subprocess.run([sys.executable,str(ROOT/'scripts/export_webapp.py'),'--include',statuses,'--out',str(export/name)],cwd=ROOT,check=True)
         package_export(export/name)
@@ -102,4 +108,4 @@ def prepare_public(dest):
     (dest/'_redirects').write_text('/dysphagia/screening/* https://review.dysphagia-kb.app/:splat 302\n')
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--exports',type=Path);p.add_argument('--public',action='store_true');p.add_argument('--reuse-exports',action='store_true');args=p.parse_args();build(args.exports,args.public,args.reuse_exports)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('--exports',type=Path);p.add_argument('--public',action='store_true');p.add_argument('--reuse-exports',action='store_true');p.add_argument('--presentation-only',action='store_true',help='Rebuild shared UI while retaining the existing built evidence exports');args=p.parse_args();build(args.exports,args.public,args.reuse_exports,args.presentation_only)

@@ -1,19 +1,10 @@
 // The import manifest describes the original search batch, not live review decisions.
-function node(tag, attrs = {}, ...children) {
-  const element = document.createElement(tag);
-  for (const [key, value] of Object.entries(attrs)) {
-    if (key === 'text') element.textContent = value;
-    else element.setAttribute(key, value);
-  }
-  for (const child of children.flat(Infinity)) if (child != null) element.append(child);
-  return element;
-}
+import {element as node, coveragePage} from './chapter-presentation.js';
 const number = value => Number(value).toLocaleString();
 const paragraph = text => node('p', {text});
 const link = (text, href) => node('a', {text, href});
 
 export function renderImportCoverage(manifest, prismaDiagram, {databases, searchHref, reviewHref, collectionName, gapText, auditNotes = []}) {
-  const page = node('div', {class: 'chapter-coverage'});
   const files = manifest?.files || [];
   const groups = Object.entries(databases).map(([id, name]) => {
     const exports = files.filter(file => file.database === id);
@@ -22,26 +13,12 @@ export function renderImportCoverage(manifest, prismaDiagram, {databases, search
   const date = manifest?.search_date
     ? new Intl.DateTimeFormat('en-AU', {day:'numeric', month:'long', year:'numeric', timeZone:'UTC'}).format(new Date(manifest.search_date + 'T00:00:00Z'))
     : 'Date not recorded';
-  page.append(
-    node('div', {class:'page-head'}, node('h1', {text:'Coverage'}),
-      node('span', {class:'muted small', text:`${groups.length} databases · initial search batch · ${date}`})),
-    node('p', {class:'lead', text:'Follow the papers from search results to screening decisions and findings in the knowledge base.'}),
-  );
-  if (!manifest) {
-    page.append(paragraph('Search import details are not available yet.'));
-    return page;
-  }
-  const tiles = node('div', {class:'tiles'});
-  for (const [value, label, detail] of [
-    [number(manifest.raw_records), 'database records', `${groups.length} databases · before deduplication`],
-    ['', 'screened', 'Not yet reported'], ['', 'included', 'Not yet reported'],
-    ['', 'in the knowledge base', 'Not yet reported'],
-  ]) tiles.append(node('div', {class:'tile'}, node('div', {class:'value', text:value || '\u00a0'}),
-    node('div', {class:'label', text:label}), node('div', {class:'detail', text:detail})));
-  page.append(tiles, node('h2', {text:'Flow of papers (PRISMA 2020)'}),
-    node('p', {class:'small muted', text:'Database records, duplicates removed and the initial pool for title/abstract screening are populated. The screening pool is the number remaining after deduplication, not completed reviews. Later counts are left blank until screening, inclusion and extraction results are ready to report. Blank boxes do not mean zero.'}),
-    paragraph('Select “Records from databases” to see the export details below.'),
-  );
+  const meta = `${groups.length} databases · initial search batch · ${date}`;
+  if (!manifest) return coveragePage({meta, notice:paragraph('Search import details are not available yet.')});
+  const tiles = [
+    {value:number(manifest.raw_records), label:'database records', detail:`${groups.length} databases · before deduplication`},
+    ...['screened','included','in the knowledge base'].map(label => ({value:null, label, detail:'Not yet reported'})),
+  ];
   // Reuse the Aphasia diagram, including its geometry, colours and responsive styling.
   // Missing downstream values stay blank; no Aphasia evidence is loaded here.
   const index = {screening:{
@@ -51,15 +28,10 @@ export function renderImportCoverage(manifest, prismaDiagram, {databases, search
       screening:{}, other:{}, included:{}},
     searches:new Map(), sourceKinds:{}, reasonLabel:key => key,
   }};
-  page.append(node('div', {class:'prisma-wrap'}, prismaDiagram(index, {
-    identificationOnly:true, initialScreeningRecords:manifest.unique_records,
-  })));
-  const searchSection = node('section', {id:'database-searches'},
-    node('h2', {text:'Database searches'}),
+  const diagram = prismaDiagram(index, {identificationOnly:true, initialScreeningRecords:manifest.unique_records});
+  const searchSection = node('div', {},
     paragraph(`Search batch: ${date}. Counts below are records actually present in the supplied exports, before deduplication. A paper can appear in more than one database.`),
-    paragraph(''),
-  );
-  searchSection.lastChild.append(link('Read the search questions and database queries', searchHref));
+    node('p', {}, link('Read the search questions and database queries', searchHref)));
   const body = node('tbody');
   for (const group of groups) body.append(node('tr', {},
     node('th', {scope:'row', text:group.name}), node('td', {class:'num', text:number(group.records)}),
@@ -83,16 +55,16 @@ export function renderImportCoverage(manifest, prismaDiagram, {databases, search
   for (const file of files) fileList.append(node('li', {}, node('code', {text:file.file}), ` · ${number(file.records)} records`));
   audit.append(fileList);
   searchSection.append(audit);
-  page.append(
-    node('div', {class:'grid-2'},
-      node('section', {}, node('h2', {text:'Why candidates were excluded'}), paragraph('Exclusion reasons will appear when screening results are ready to report.')),
-      node('section', {}, node('h2', {text:'Who decided'}), paragraph('Reviewer attribution will accompany published screening decisions.'))),
-    node('h2', {text:'Coverage of the evidence gaps'}),
-    paragraph(gapText),
-    searchSection,
-    node('h2', {text:'Candidates'}),
-    paragraph(`Titles, abstracts and your current decisions are available in the separate ${collectionName} review workspace. This public page reports the original search batch.`),
-    link('Open title & abstract screening', reviewHref),
-  );
-  return page;
+  return coveragePage({meta, tiles, diagram,
+    flowIntro:[
+      node('p', {class:'small muted', text:'Database records, duplicates removed and the initial pool for title/abstract screening are populated. The screening pool is the number remaining after deduplication, not completed reviews. Later counts are left blank until screening, inclusion and extraction results are ready to report. Blank boxes do not mean zero.'}),
+      paragraph('Select “Records from databases” to see the export details below.'),
+    ],
+    exclusions:[paragraph('Exclusion reasons will appear when screening results are ready to report.')],
+    reviewers:[paragraph('Reviewer attribution will accompany published screening decisions.')],
+    gaps:[paragraph(gapText)],
+    searches:[searchSection],
+    candidates:[paragraph(`Titles, abstracts and your current decisions are available in the separate ${collectionName} review workspace. This public page reports the original search batch.`),
+      link('Open title & abstract screening', reviewHref)],
+  });
 }

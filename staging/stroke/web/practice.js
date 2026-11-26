@@ -1,10 +1,10 @@
+import {contentSection as section, chapterHeading, summaryTiles} from './chapter-presentation.js';
 import {renderImportCoverage} from './chapter-coverage.js';
 const topics=[['Meaningful outcomes and measurement','What changes matter, and how are they recognised?'],['Lived experience and priorities','Recovery, identity, participation and personal priorities.'],['Goals and communication','Collaborative goals and conversations about progress.'],['Experiences of care','Access, acceptability and experiences of rehabilitation.']];
 const names={pubmed:'PubMed',medline_ebsco:'MEDLINE (EBSCO)',embase_com:'Embase',cinahl_ebsco:'CINAHL',psycinfo_ebsco:'PsycINFO',scopus:'Scopus',web_of_science:'Web of Science'};
 const titles={findings:'Findings',matrix:'Themes and outcomes',papers:'Papers',coverage:'Coverage',searches:'Searches',licences:'Paper licences',models:'Methods',involve:'Get involved',review:'Review workspace'};
 function el(tag,text,cls){const n=document.createElement(tag);n.textContent=text;if(cls)n.className=cls;return n;}
 function link(text,href){const n=el('a',text);n.href=href;return n;}
-function section(title,text){const n=el('section','','chapter-empty');n.append(el('h2',title),el('p',text));return n;}
 const fmt=n=>Number(n).toLocaleString();
 export function initPractice({prismaDiagram}){
  const manifest=window.PRACTICE_IMPORT||{},main=document.getElementById('main');
@@ -12,10 +12,10 @@ export function initPractice({prismaDiagram}){
  function render(){
   const route=location.hash.replace(/^#\//,'').split('?')[0]||'';main.replaceChildren();document.title=`${titles[route]||'Practice and lived experience'} · Stroke KB`;
   for(const a of document.querySelectorAll('.nav a')){a.toggleAttribute('aria-current',a.hash==='#/'+route);if(a.hash==='#/'+route)a.setAttribute('aria-current','page');}
-  const header=el('header','',route?'':'editorial-hero');header.append(el('p','STROKE KB / PRACTICE AND LIVED EXPERIENCE','eyebrow'),el('h1',titles[route]||'What makes recovery meaningful?'));main.append(header);
+  const header=chapterHeading({title:titles[route]||'What makes recovery meaningful?',eyebrow:'STROKE KB / PRACTICE AND LIVED EXPERIENCE',overview:!route});main.append(header);
   if(!route){
    header.append(el('p','Evidence about what matters to people after stroke and how that knowledge informs practice. This shared section begins with meaningful outcomes and lived experience in aphasia.','lead'));
-   const tiles=el('div','','tiles');for(const [n,label]of [[manifest.raw_records||0,'exported records'],[manifest.unique_records||0,'candidates to screen'],[0,'published findings']]){const t=el('div','','tile');t.append(el('div',fmt(n),'value'),el('div',label,'label'));tiles.append(t);}main.append(tiles);
+   main.append(summaryTiles([[manifest.raw_records||0,'exported records'],[manifest.unique_records||0,'candidates to screen'],[0,'published findings']].map(([n,label])=>({value:fmt(n),label}))));
    main.append(section('A shared section, with condition-specific evidence','Each study retains its clinical population and whose perspective it represents. Aphasia findings are not assumed to generalise to all stroke survivors. Imported records are candidates, not included evidence.'));
    const grid=el('div','','chapter-grid');for(const [title,text]of topics)grid.append(section(title,text));main.append(grid);
    const nav=el('div','','section-links');nav.append(link('Review the evidence','#/review'),link('Search provenance and coverage','#/coverage'));main.append(nav);

@@ -1,3 +1,4 @@
+import {coveragePage} from './chapter-presentation.js';
 import { overviewTopics } from './overview-topics.js';
 import { atlasCoverage, mappingStatus } from './atlas-coverage.js';
 import { ANATOMY, FACTORS } from './topic-categories.js';
@@ -1177,8 +1178,7 @@ function searchQuestions(index, route) {
 function coverage(index, route) {
   const sc = index.screening;
   if (!sc.present) {
-    return frag(h('div', { class: 'page-head' }, h('h1', { text: 'Coverage' })),
-      h('p', { class: 'notice', text: 'This export carries no screening register. Run `python scripts/screen.py backfill --execute` (and searches), regenerate the export, and this view shows the PRISMA flow and what each evidence gap still needs.' }));
+    return coveragePage({notice: h('p', { class: 'notice', text: 'This export carries no screening register. Run `python scripts/screen.py backfill --execute` (and searches), regenerate the export, and this view shows the PRISMA flow and what each evidence gap still needs.' })});
   }
   const filters = route.filters;
   const query = route.params.get('q') || '';
@@ -1257,32 +1257,36 @@ function coverage(index, route) {
   const searches = [...sc.searches.values()];
 
 
-  return frag(
-    h('div', { class: 'page-head' }, h('h1', { text: 'Coverage' }), h('span', { class: 'muted small', text: `${sc.candidates.length} candidates · ${searches.length} searches · ${inc.total} included · ${inc.kb?.in_kb ?? 0} in the knowledge base` })),
-    h('p', { class: 'lead', text: 'Follow the papers from search results to screening decisions and findings in the knowledge base.' }),
-    h('div', { class: 'tiles' },
-      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(sc.candidates.length + (sc.omitted.awaitingTitleAbstract || 0) + (sc.omitted.removedByRule || 0)) }), h('div', { class: 'label', text: 'candidate papers' }), h('div', { class: 'detail', text: `${p?.identification.databases.records ?? 0} database records · ${p?.identification.other.records ?? 0} from other sources` })),
-      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(decided) }), h('div', { class: 'label', text: 'screened' }), h('div', { class: 'detail', text: `${awaiting + (sc.omitted.awaitingTitleAbstract || 0)} awaiting a decision` })),
-      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(inc.total) }), h('div', { class: 'label', text: 'included' }), h('div', { class: 'detail', text: `${[...excludedReasons.values()].reduce((a, b) => a + b, 0)} excluded` })),
-      h('div', { class: 'tile' }, h('div', { class: 'value', text: String(inc.kb?.in_kb ?? 0) }), h('div', { class: 'label', text: 'in the knowledge base' }), h('div', { class: 'detail', text: `${inc.approvedFindings} approved findings · ${inc.kb?.in_review ?? 0} in review` }))),
-    h('h2', { text: 'Flow of papers (PRISMA 2020)' }),
+  return coveragePage({
+    meta: `${sc.candidates.length} candidates · ${searches.length} searches · ${inc.total} included · ${inc.kb?.in_kb ?? 0} in the knowledge base`,
+    tiles: [
+      {value:sc.candidates.length + (sc.omitted.awaitingTitleAbstract || 0) + (sc.omitted.removedByRule || 0), label:'candidate papers', detail:`${p?.identification.databases.records ?? 0} database records · ${p?.identification.other.records ?? 0} from other sources`},
+      {value:decided, label:'screened', detail:`${awaiting + (sc.omitted.awaitingTitleAbstract || 0)} awaiting a decision`},
+      {value:inc.total, label:'included', detail:`${[...excludedReasons.values()].reduce((a, b) => a + b, 0)} excluded`},
+      {value:inc.kb?.in_kb ?? 0, label:'in the knowledge base', detail:`${inc.approvedFindings} approved findings · ${inc.kb?.in_review ?? 0} in review`},
+    ],
+    flowIntro:[
     h('p', { class: 'small muted', text: 'Hover over a pink box (an exit) to see its papers: author, year and why. Click any box to list its papers with titles just below the diagram. The knowledge-base row shows where included papers stand in the extraction and review pipeline.' }),
     h('p', {}, h('a', { href: '#/searches', text: 'What did we search for? Questions in plain English and exact database terms →' })),
-    h('div', { class: 'prisma-wrap' }, prismaDiagram(index)),
-    boxPanel(index, route, rows),
-    h('div', { class: 'grid-2' },
-      h('section', {}, h('h2', { text: 'Why candidates were excluded' }),
+    ],
+    diagram:prismaDiagram(index),
+    afterDiagram:boxPanel(index, route, rows),
+    exclusions:[
         excludedReasons.size ? barList([...excludedReasons.entries()].map(([r, n]) => ({ id: r, n, label: sc.reasonLabel(r) })).sort((a, b) => b.n - a.n), { link: (x) => coverageHref({ reason: x.id }) }) : h('p', { class: 'muted', text: 'Nothing excluded yet.' }),
-        h('p', { class: 'small muted', text: 'Reasons are the controlled vocabulary of SCREENING.md §2.' })),
-      h('section', {}, h('h2', { text: 'Who decided' }),
+        h('p', { class: 'small muted', text: 'Reasons are the controlled vocabulary of SCREENING.md §2.' }),
+    ],
+    reviewers:[
         barList([...counts.decided_by.entries()].map(([k, n]) => ({ id: k, n, label: k, alt: k === 'legacy' || k === 'nobody yet' })).sort((a, b) => b.n - a.n), { link: (x) => coverageHref({ decided_by: x.id }) }),
-        h('p', { class: 'small muted', text: 'Grey: legacy stamps (papers that pre-date the register) and candidates still awaiting a decision. A model only ever suggests.' }))),
-    h('h2', { text: 'Coverage of the evidence gaps' }),
+        h('p', { class: 'small muted', text: 'Grey: legacy stamps (papers that pre-date the register) and candidates still awaiting a decision. A model only ever suggests.' }),
+    ],
+    gaps:[
     h('p', { class: 'small', text: 'For each gap declared in atlas_mapping/evidence_gaps.yaml (and each entry a search was run for): how many candidates were found, screened and included, and how many are already in the knowledge base. A gap with candidates found but none in the KB is waiting on extraction or review; a gap with none found needs a search.' }),
     gapTable,
-    h('h2', { text: 'Database searches' }),
+    ],
+    searches:[
     h('p', {}, h('a', { href: '#/searches', text: 'Read the search questions and exact database terms →' })),
-    h('h2', { id: 'candidates', text: 'Candidates' }),
+    ],
+    candidates:[
     sc.omitted.awaitingTitleAbstract || sc.omitted.removedByRule ? h('p', { class: 'small muted', text: `Listed: every candidate someone has decided on, and everything past title/abstract. Counted in the flow above but not listed: ${sc.omitted.awaitingTitleAbstract || 0} records awaiting title/abstract screening and ${sc.omitted.removedByRule || 0} grey-literature records removed by rule.` }) : null,
     h('div', { class: 'two-col' },
       h('aside', { class: 'facets', 'aria-label': 'Filters' }, search, facetNodes),
@@ -1292,7 +1296,9 @@ function coverage(index, route) {
             [['register', 'register order'], ['year', 'year, newest first'], ['title', 'title'], ['decided', 'decided, latest first']].map(([v, t]) => h('option', { value: v, selected: v === sort ? '' : null, text: t }))))),
         h('div', { class: 'active-filters' }, active),
         rows.length ? h('div', { class: 'cand-wrap' }, table) : h('p', { class: 'notice', text: anyFilter ? 'No candidate matches these filters.' : 'The register is empty.' }),
-        more)));
+        more)),
+    ],
+  });
 }
 
 /** The screening record of one paper, for the paper page. */

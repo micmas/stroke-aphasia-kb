@@ -40,5 +40,8 @@ specific visual detail authorizes that detail only, not a broader layout change.
 Equivalent components across chapters must reuse the established presentation,
 including headings, section order, summary tiles, tables, diagrams and navigation.
 Pass chapter-specific data and wording into shared renderers instead of creating
-a parallel layout. Import-stage coverage uses `staging/stroke/web/chapter-coverage.js`
-and Aphasia's `prismaDiagram`; unknown review totals remain blank, not zero.
+a parallel layout. Use Aphasia as the default presentation. Shared components belong in
+`explorer/chapter-presentation.js`; coverage content adapters supply data to its
+`coveragePage` rather than owning page structure. See `docs/PRESENTATION.md`.
+Flag sections that do not fit a chapter before inventing a different layout.
+Unknown review totals remain blank, not zero.
