@@ -56,8 +56,9 @@ annotated PDFs, user uploads and extraction inputs use other prefixes and are
 never overwritten or removed by this collector.
 
 Aphasia's hourly collector also reconciles the canonical register and pending
-screening receipts. Dysphagia reconciles its durable D1 decisions in batches of
-100 every 15 minutes, repairing interrupted storage updates. Its first complete
+screening receipts. Dysphagia follows its append-only D1 decision events in batches
+of 100 changes every 15 minutes, repairing interrupted storage updates. Corrections
+do not wait for a full rescan of previously screened papers. Its first complete
 reconciliation must finish before initial collection starts. A storage failure
 does not undo a saved screening decision; removal is retried. The signed-in
 Dysphagia download route also checks the saved D1 exclusions.

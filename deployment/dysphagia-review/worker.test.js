@@ -1,10 +1,34 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import worker from './worker.js';
+import {DatabaseSync} from 'node:sqlite';
+import {readFileSync} from 'node:fs';
+import {excluded} from '../../portal/lib/open-access.js';
 test('unconfigured sign-in cannot expose assets or records',async()=>{
  for(const path of ['/','/records.json','/api/decisions']){
  const res=await worker.fetch(new Request('https://review.dysphagia-kb.app'+path),{});assert.equal(res.status,503);
  }
+});
+
+test('scheduled reconciliation resumes audit events and honours a later correction',async()=>{
+ const db=new DatabaseSync(':memory:');db.exec(readFileSync(new URL('../../staging/dysphagia/schema.sql',import.meta.url),'utf8'));
+ const files=new Map(),id='DYS-0123456789abcdef',reviewer='test@example.org';
+ const bucket={async put(k,v){files.set(k,v);return{};},async delete(k){files.delete(k);},async get(k){const v=files.get(k);return v===undefined?null:{httpEtag:'"test"',text:async()=>v,json:async()=>JSON.parse(v)};},async list({prefix}){return{objects:[...files.keys()].filter(k=>k.startsWith(prefix)).map(key=>({key}))};}};
+ const env={PRIVATE:bucket,SCREENING:{prepare(sql){return{bind(...values){return{async all(){return{results:db.prepare(sql).all(...values)};}};}};}}};
+ function event(n,decision){
+  const date=`2026-11-26T${String(n).padStart(2,'0')}:00:00Z`,value={id,stage:'title_abstract',decision,date};
+  db.prepare('INSERT OR REPLACE INTO screening_decisions VALUES (?,?,?)').run(reviewer,id,JSON.stringify(value));
+  db.prepare('INSERT INTO decision_events VALUES (?,?,?,?,?)').run('event-'+n,reviewer,date,n,JSON.stringify([value]));
+ }
+ event(1,'include');event(2,'exclude');files.set(`open-access/pdf/${id}.pdf`,'PDF');
+ await worker.scheduled({},env);
+ assert.equal(await excluded(bucket,id),true);assert.equal(files.has(`open-access/pdf/${id}.pdf`),false);
+ assert.equal(JSON.parse(files.get('open-access/decision-cursor.json')).event,2);
+ event(3,'include');await worker.scheduled({},env);
+ assert.equal(await excluded(bucket,id),false);assert.ok(files.has(`open-access/retry/${id}.json`));
+ files.delete(`open-access/retry/${id}.json`);await worker.scheduled({},env);
+ assert.equal(files.has(`open-access/retry/${id}.json`),false);assert.ok(files.has('open-access/decisions-ready.json'));
+ db.close();
 });
 test('missing identity cannot reach private R2 or assets',async()=>{
  for(const path of ['/','/records-000.json','/api/decisions']){

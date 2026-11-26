@@ -4,12 +4,20 @@ import {serveOpenAccess,syncOaDecisions} from '../../portal/lib/open-access.js';
 export default {
  async scheduled(controller,env){
   const progress=await env.PRIVATE.get('open-access/decision-cursor.json');
-  const cursor=progress?(await progress.json()).cursor:0;
-  const rows=await env.SCREENING.prepare('SELECT rowid,reviewer,value FROM screening_decisions WHERE rowid > ? ORDER BY rowid LIMIT 100').bind(cursor).all();
-  for(const row of rows.results)await syncOaDecisions(env.PRIVATE,row.reviewer,[JSON.parse(row.value)]);
-  const next=rows.results.length===100?rows.results.at(-1).rowid:0;
-  await env.PRIVATE.put('open-access/decision-cursor.json',JSON.stringify({cursor:next}));
-  if(!next)await env.PRIVATE.put('open-access/decisions-ready.json',JSON.stringify({at:new Date().toISOString()}));
+  const cursor=progress?await progress.json():{};
+  // Follow append-only changes, reading each record's current value. A correction
+  // is handled next even if the reviewer has already screened thousands of papers.
+  const rows=await env.SCREENING.prepare(`SELECT e.rowid AS event_id,CAST(j.key AS INTEGER) AS item_index,e.reviewer,d.value
+   FROM decision_events e,json_each(e.changes) j
+   JOIN screening_decisions d ON d.reviewer=e.reviewer AND d.record_id=json_extract(j.value,'$.id')
+   WHERE e.rowid > ? OR (e.rowid = ? AND CAST(j.key AS INTEGER) > ?)
+   ORDER BY e.rowid,CAST(j.key AS INTEGER) LIMIT 100`).bind(cursor.event||0,cursor.event||0,cursor.item??-1).all();
+  const groups=new Map();
+  for(const row of rows.results){const value=JSON.parse(row.value);if(!groups.has(row.reviewer))groups.set(row.reviewer,new Map());groups.get(row.reviewer).set(value.id,value);}
+  for(const [reviewer,items]of groups)await syncOaDecisions(env.PRIVATE,reviewer,[...items.values()]);
+  const last=rows.results.at(-1);
+  if(last)await env.PRIVATE.put('open-access/decision-cursor.json',JSON.stringify({event:last.event_id,item:last.item_index}));
+  if(rows.results.length<100)await env.PRIVATE.put('open-access/decisions-ready.json',JSON.stringify({at:new Date().toISOString()}));
  },
  async fetch(request,env){
   const url=new URL(request.url);
