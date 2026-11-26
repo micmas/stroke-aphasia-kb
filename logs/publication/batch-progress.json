@@ -1,7 +1,7 @@
 {
   "version": 1,
   "threshold_papers": 5,
-  "last_publication_snapshot": "2026-11-25T22:01:00.408564+00:00",
+  "last_publication_snapshot": "2026-11-26T01:00:53.989770+00:00",
   "completed_main_papers_at_last_publication": [
     "Adezati2022",
     "Akkad2023",
@@ -200,7 +200,12 @@
     "Yang2017",
     "Yourganov2015Predicting",
     "Yourganov2016",
-    "Yu2022"
+    "Yu2022",
+    "Yu2023",
+    "Yu2024",
+    "Zavanone2018",
+    "Zevgolatakou2022",
+    "Zhang2018"
   ],
   "count_policy": "Top-level checked_candidates papers only; never model passes or candidates. Failed/held candidates remain unapproved.",
   "recovery_publication_ready_seen": false

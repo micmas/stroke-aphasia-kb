@@ -1,0 +1,237 @@
+{
+  "checked_at": "2026-11-26T01:04:46.315363+00:00",
+  "publication_snapshot": "2026-11-26T01:00:53.989770+00:00",
+  "scope": "Publication identity, population, analysis and claim scope check; no scientific approval.",
+  "snapshot_additions": 56,
+  "publishable_additions": 43,
+  "papers": [
+    "Yu2023",
+    "Yu2024",
+    "Zavanone2018",
+    "Zevgolatakou2022",
+    "Zhang2018",
+    "Zhang2021"
+  ],
+  "identity_check": "All six PDF identities match their citation keys; no adjacent-article contamination found. Existing publications, repaired records and withdrawals preserved.",
+  "quarantined": [
+    {
+      "path": "drafts/predictors/fixel_fc_fdc_language__Zhang2021__R012.md",
+      "paper": "Zhang2021",
+      "candidate": "R012",
+      "reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/fixel_fc_fdc_language__Zhang2021__R012.md",
+      "sha256": "a2cb2a8c59104ba41874791852938f87708796aca0a7724b5485e7fb356734aa"
+    },
+    {
+      "path": "drafts/predictors/left_ifof_slf3_fd__Zhang2021__R017.md",
+      "paper": "Zhang2021",
+      "candidate": "R017",
+      "reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/predictors/left_ifof_slf3_fd__Zhang2021__R017.md",
+      "sha256": "fbc0391cc3df24673889e2a433ad64f2da0846f96c31c1ac762067de20c75655"
+    },
+    {
+      "path": "drafts/regions/ilf_ll__Yu2024__R015.md",
+      "paper": "Yu2024",
+      "candidate": "R015",
+      "reason": "Duplicates Yu2024 R004: the same ILF lesion-load/AQ correlation and lack of independent prediction in multiple regression (PDF pp.4-5). Retain R004 only.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/ilf_ll__Yu2024__R015.md",
+      "sha256": "3d3eb0df909977550882ad0dbdbdb0d66b5ff3edf8c8ca5ec53b11f632a98e16"
+    },
+    {
+      "path": "drafts/regions/left_af_uf_fa__Zhang2018__R012.md",
+      "paper": "Zhang2018",
+      "candidate": "R012",
+      "reason": "PDF pp.4-5: 14 patients enrolled, but 3 were excluded (2 motion, 1 storage); analyzed sample is 11 patients and 11 controls. Draft n=25 incorrectly includes excluded participants.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_af_uf_fa__Zhang2018__R012.md",
+      "sha256": "652da5040a094e074ac11e639c8f0b0436474acd0b6a9522729512d9048827e7"
+    },
+    {
+      "path": "drafts/regions/left_ifof_cc_fd_word_comprehension__Zhang2021__R007.md",
+      "paper": "Zhang2021",
+      "candidate": "R007",
+      "reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_ifof_cc_fd_word_comprehension__Zhang2021__R007.md",
+      "sha256": "583cfd9c95636be475966a3a5d6ec11dae2d2a3b14253bb5d7b1a272b6f43c92"
+    },
+    {
+      "path": "drafts/regions/left_ifof_fa_comprehension_naming__Zhang2018__R008.md",
+      "paper": "Zhang2018",
+      "candidate": "R008",
+      "reason": "PDF pp.5-6: FA-language associations use diffusion tract-based spatial statistics (TBSS); the record instead labels the result LSM. Requires source-design/method reconciliation.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_ifof_fa_comprehension_naming__Zhang2018__R008.md",
+      "sha256": "61c94756d548f3bf940eae4429d8d5840dba3c6d19b1195190b0bd20bb9099c3"
+    },
+    {
+      "path": "drafts/regions/left_ifof_fd__Zhang2021__R008.md",
+      "paper": "Zhang2021",
+      "candidate": "R008",
+      "reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_ifof_fd__Zhang2021__R008.md",
+      "sha256": "8f73ab6c6829732111ab213b4f7f5fc5ec3081cf3d74220073a628b3b918bd7a"
+    },
+    {
+      "path": "drafts/regions/left_ifof_repetition_cluster__Zhang2018__R007.md",
+      "paper": "Zhang2018",
+      "candidate": "R007",
+      "reason": "PDF pp.5-6: FA-language associations use diffusion tract-based spatial statistics (TBSS); the record instead labels the result LSM. Requires source-design/method reconciliation.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_ifof_repetition_cluster__Zhang2018__R007.md",
+      "sha256": "02208683dbcf757f731fcda92ace64d876e4b7c015018e1d5dcd756bdc4da45e"
+    },
+    {
+      "path": "drafts/regions/left_ifof_tapetum_color_naming__Zhang2021__R010.md",
+      "paper": "Zhang2021",
+      "candidate": "R010",
+      "reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_ifof_tapetum_color_naming__Zhang2021__R010.md",
+      "sha256": "55742b3671e4a20eac25ec095cefb74277cd9a9ca5858a723090fe538239c72a"
+    },
+    {
+      "path": "drafts/regions/left_ifof_tapetum_fd__Zhang2021__R006.md",
+      "paper": "Zhang2021",
+      "candidate": "R006",
+      "reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_ifof_tapetum_fd__Zhang2021__R006.md",
+      "sha256": "705ce890ad01736eca35ae1e1a164fdb51faefbd48b0bad634e2754fc2fb8be3"
+    },
+    {
+      "path": "drafts/regions/left_ifof_tapetum_fd__Zhang2021__R011.md",
+      "paper": "Zhang2021",
+      "candidate": "R011",
+      "reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_ifof_tapetum_fd__Zhang2021__R011.md",
+      "sha256": "14cf83ca899686b1f0bbb018231eb4b29b3e6d631b5471b340bbee4bc77cfdd3"
+    },
+    {
+      "path": "drafts/regions/left_ifof_temporal_segment__Zhang2021__R009.md",
+      "paper": "Zhang2021",
+      "candidate": "R009",
+      "reason": "PDF pp.1,4-5 describes fixel-based fiber-density/cross-section analysis and tract-wise diffusion correlations, not the LSM method assigned to this record. Preserve pending correct method mapping and source-design review.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/left_ifof_temporal_segment__Zhang2021__R009.md",
+      "sha256": "72497a8aa27d9fcd67c97b1aabf3b0f330831bfdab9312f38461b1bb23b2ac5d"
+    },
+    {
+      "path": "drafts/regions/ventral_stream_integrity__Zhang2018__R001.md",
+      "paper": "Zhang2018",
+      "candidate": "R001",
+      "reason": "PDF pp.5-6: FA-language associations use diffusion tract-based spatial statistics (TBSS); the record instead labels the result LSM. Requires source-design/method reconciliation.",
+      "original": "/Users/uqmmasso/GITHUB/stroke-aphasia-kb/_compare/relationships-2026-11-16/new-core-drafts/drafts/regions/ventral_stream_integrity__Zhang2018__R001.md",
+      "sha256": "e1249b7bb229e9f3a66f394c1f649c34f087b0ddf86ebf7ede4d57689387c8c6"
+    }
+  ],
+  "published_paths": [
+    "drafts/predictors/aphasia_severity_model_iii__Yu2024__R013.md",
+    "drafts/predictors/areas_ll_aphasia_severity_predictor__Yu2024__R016.md",
+    "drafts/predictors/language_network_efficiency__Zevgolatakou2022__R008.md",
+    "drafts/predictors/left_ifof_mean_fa__Zhang2018__R003.md",
+    "drafts/predictors/left_uf_mean_fa__Zhang2018__R004.md",
+    "drafts/predictors/lesion_volume__Yu2023__R004.md",
+    "drafts/predictors/lesion_volume__Zevgolatakou2022__R005.md",
+    "drafts/predictors/model_ii_aphasia_severity__Yu2024__R012.md",
+    "drafts/predictors/sccan_lsm_phonology_semantics__Zevgolatakou2022__R004.md",
+    "drafts/predictors/slf_ifof_combination_model__Yu2024__R019.md",
+    "drafts/regions/cortical_language_areas_cluster__Yu2024__R001.md",
+    "drafts/regions/cortical_language_areas_cluster__Yu2024__R006.md",
+    "drafts/regions/dorsal_ventral_disconnection_cluster__Zavanone2018__R005.md",
+    "drafts/regions/ifof_lesion_load__Yu2024__R003.md",
+    "drafts/regions/ifof_lesion_load__Yu2024__R008.md",
+    "drafts/regions/ifof_ll__Yu2024__R018.md",
+    "drafts/regions/ilf_lesion_load__Yu2024__R004.md",
+    "drafts/regions/language_network_clustering_coefficient__Zevgolatakou2022__R009.md",
+    "drafts/regions/language_network_clustering_coefficient__Zevgolatakou2022__R010.md",
+    "drafts/regions/left_ifof__Zhang2018__R010.md",
+    "drafts/regions/left_ifof_frontal_radiation__Zhang2018__R020.md",
+    "drafts/regions/left_ifof_narrow_stem_cluster__Zhang2018__R019.md",
+    "drafts/regions/left_ilf_temporal_segment__Zhang2018__R005.md",
+    "drafts/regions/left_lsaf_fa__Yu2023__R006.md",
+    "drafts/regions/left_lsaf_fiber_number__Yu2023__R007.md",
+    "drafts/regions/left_stg_temporoparietal_cluster__Zavanone2018__R004.md",
+    "drafts/regions/left_stg_tpj_cluster__Zavanone2018__R003.md",
+    "drafts/regions/left_uf_insular_segment__Zhang2018__R016.md",
+    "drafts/regions/lesion_volume__Zevgolatakou2022__R006.md",
+    "drafts/regions/lexical_syntax_cluster__Zevgolatakou2022__R003.md",
+    "drafts/regions/lsaf_lateralization__Yu2023__R010.md",
+    "drafts/regions/lsaf_uf_interaction__Yu2023__R009.md",
+    "drafts/regions/posterior_insula_rolandic_operculum_cluster__Zavanone2018__R001.md",
+    "drafts/regions/slf_lesion_load__Yu2024__R002.md",
+    "drafts/regions/slf_lesion_load__Yu2024__R007.md",
+    "drafts/regions/slf_ll__Yu2024__R011.md",
+    "drafts/regions/slf_ll__Yu2024__R017.md",
+    "drafts/regions/temporo_parietal_complexity_cluster__Zevgolatakou2022__R002.md",
+    "drafts/regions/tract_disconnection_severity__Zevgolatakou2022__R007.md",
+    "drafts/regions/uf_bilateral_distribution__Yu2023__R011.md",
+    "drafts/regions/uncinate_fasciculi_lesion_load__Yu2024__R005.md",
+    "drafts/regions/uncinate_fasciculi_lesion_load__Yu2024__R010.md",
+    "drafts/regions/ventral_stream_disconnection_cluster__Zavanone2018__R002.md"
+  ],
+  "source_checks": {
+    "Yu2023": "PDF pp.1,7-9,12: 36 acute/subacute PSA patients; FA/fiber-number regressions, lesion-volume association and intact-tract lateralization. Unknown draft sample metadata remains explicitly pending.",
+    "Yu2024": "PDF pp.1-5: 46 first left-hemisphere stroke patients; atlas lesion loads, concurrent AQ, models I-IV and ROC. ILF duplicate excluded.",
+    "Zavanone2018": "PDF pp.1-4: 19 patients; ADC at 24 hours linked to day7/month3/month6 ART; ventral versus dorsal/ventral atlas overlap.",
+    "Zevgolatakou2022": "PDF pp.1,5,10-12: 69 behavioral/58 imaging participants, mostly chronic; SCCAN and lesion-derived atlas connectome analyses. Marginal clustering effect p=.064 retained explicitly in notes.",
+    "Zhang2018": "PDF pp.1,4-7: 11 analyzed patients/11 controls; AFQ mean/segmental diffusion findings match. Mislabelled TBSS and incorrect sample held.",
+    "Zhang2021": "PDF pp.1,4-5: 29 patients/33 controls; claims belong to paper but all eight new records incorrectly map fixel analyses to LSM; held."
+  },
+  "source_pdfs": {
+    "Zhang2021": {
+      "key": "Zhang2021",
+      "citation": "@Zhang2021",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C1480_Zhang2021.pdf",
+      "pdf_sha256": "96e619987834dcf3b519d8142823d11a54cb5095aea35cecde0b685b7a4f0963",
+      "licence_evidence": {
+        "category": "unknown"
+      },
+      "processing": "local_only; review/publication rights checked separately"
+    },
+    "Yu2023": {
+      "key": "Yu2023",
+      "citation": "@Yu2023",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0994_Yu2023.pdf",
+      "pdf_sha256": "6dbf400a356a1ad0078d9d36156ad9dbd70fbf223606aaa812f81fd7e2174cd8",
+      "licence_evidence": {
+        "category": "unknown"
+      },
+      "processing": "local_only; review/publication rights checked separately"
+    },
+    "Yu2024": {
+      "key": "Yu2024",
+      "citation": "@Yu2024",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C0797_Yu2024.pdf",
+      "pdf_sha256": "f71dc47ac2f8923ba9109c78bc40bca67bb33825fb0e5bae629800c0a31eea38",
+      "licence_evidence": {
+        "category": "unknown"
+      },
+      "processing": "local_only; review/publication rights checked separately"
+    },
+    "Zhang2018": {
+      "key": "Zhang2018",
+      "citation": "@Zhang2018",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C2183_Zhang2018.pdf",
+      "pdf_sha256": "1f55089b0daa53f85f07313b5f3862c188f569e267bb388418d56b3bf4748e56",
+      "licence_evidence": {
+        "category": "unknown"
+      },
+      "processing": "local_only; review/publication rights checked separately"
+    },
+    "Zevgolatakou2022": {
+      "key": "Zevgolatakou2022",
+      "citation": "@Zevgolatakou2022",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C1133_Zevgolatakou2022.pdf",
+      "pdf_sha256": "7712a756795eb8829f11bc2a02ce0eebcb9003d950dcb50fd447c33e7cce9e62",
+      "licence_evidence": {
+        "category": "unknown"
+      },
+      "processing": "local_only; review/publication rights checked separately"
+    },
+    "Zavanone2018": {
+      "key": "Zavanone2018",
+      "citation": "@Zavanone2018",
+      "pdf": "/Users/uqmmasso/Library/CloudStorage/OneDrive-TheUniversityofQueensland/Documents/calmar-papers/C2108_Zavanone2018.pdf",
+      "pdf_sha256": "c332dcbc410f4d93f904af2ab354ca3efe61cecf4a05dae78504a88a0820040f",
+      "licence_evidence": {
+        "category": "unknown"
+      },
+      "processing": "local_only; review/publication rights checked separately"
+    }
+  }
+}

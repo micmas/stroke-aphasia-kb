@@ -2286,27 +2286,36 @@
   },
   "@Yu2024": {
    "annotated": "pdf/C0797_Yu2024_annotated.pdf",
-   "bytes": 8109273,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "c0dd3b81c23c84c3706a428d949d64ae0464ba5ba1d755d35a3c234c327903d1",
+   "bytes": 8847821,
    "category": "unknown",
+   "draft_snapshot": "2026-11-26T01:00:53.989770+00:00",
    "label": null,
    "public": false,
-   "sha256": "41335a05ab4e92859723b15b0175f0cc147b5c982cf2b4c073ec05594012dbf1"
+   "sha256": "c2da2cb2314bb3e0224487a7028407fa0f1137b164c1d3ae37947d6c4a96ee18"
   },
   "@Zavanone2018": {
    "annotated": "pdf/C2108_Zavanone2018_annotated.pdf",
-   "bytes": 1384860,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "39789bc205517fd547709a0a677e30715a50ab600faef11d985eab43f631a76a",
+   "bytes": 1457054,
    "category": "unknown",
+   "draft_snapshot": "2026-11-26T01:00:53.989770+00:00",
    "label": null,
    "public": false,
-   "sha256": "1e93f7af569b0f8ed5addda8b78b7e55b88da7ccd27cb6501e8cd24118245394"
+   "sha256": "af36c75ad684910ec4ae817dfabf20dc9a6df1cc3f6c535bfbaa1dedf035e337"
   },
   "@Zevgolatakou2022": {
    "annotated": "pdf/C1133_Zevgolatakou2022_annotated.pdf",
-   "bytes": 1114264,
+   "annotation_passages_missed": 0,
+   "annotation_source_digest": "1d61e5bd3d8f2520994e46d41129b042d58709daec5645729be703b0ee0e32d5",
+   "bytes": 1877427,
    "category": "unknown",
+   "draft_snapshot": "2026-11-26T01:00:53.989770+00:00",
    "label": null,
    "public": false,
-   "sha256": "f6e45ba7187d9098d67c979e802330f19e74ddaac744bdd1d71382a49c350d24"
+   "sha256": "a4d334ba42fd2a7730c630d77f98f956cfcdae2eb57cd41b9754af90f756f5a9"
   },
   "@Zhao2018": {
    "annotated": "pdf/C0158_Zhao2018_annotated.pdf",

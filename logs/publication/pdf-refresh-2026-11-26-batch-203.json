@@ -1,0 +1,99 @@
+{
+  "checked_at": "2026-11-26T01:11:58.703693+00:00",
+  "publication_snapshot": "2026-11-26T01:00:53.989770+00:00",
+  "report": {
+    "Desjardins2026": {
+      "status": "missing_pdf_index"
+    },
+    "Gilbert2025": {
+      "status": "missing_pdf_index"
+    },
+    "Goldenberg1994": {
+      "status": "missing_pdf_index"
+    },
+    "Hillis2002": {
+      "status": "missing_pdf_index"
+    },
+    "Hobden2024": {
+      "status": "missing_pdf_index"
+    },
+    "Hope2016": {
+      "status": "missing_pdf_index"
+    },
+    "Kourtidou2021": {
+      "status": "missing_pdf_index"
+    },
+    "Lukic2017": {
+      "status": "missing_pdf_index"
+    },
+    "Matchin2024": {
+      "status": "missing_pdf_index"
+    },
+    "Moore2024": {
+      "status": "missing_pdf_index"
+    },
+    "OsaGarcia2024": {
+      "status": "missing_pdf_index"
+    },
+    "Pendlebury2009": {
+      "status": "missing_pdf_index"
+    },
+    "Schellekens2026": {
+      "status": "missing_pdf_index"
+    },
+    "Sewell2025": {
+      "status": "missing_pdf_index"
+    },
+    "Sihvonen2023": {
+      "status": "missing_pdf_index"
+    },
+    "Tang2022": {
+      "status": "missing_pdf_index"
+    },
+    "Thurston2026": {
+      "status": "missing_pdf_index"
+    },
+    "Thye2021": {
+      "status": "missing_pdf_index"
+    },
+    "Walker2011": {
+      "status": "missing_pdf_index"
+    },
+    "Weaver2021": {
+      "status": "missing_pdf_index"
+    },
+    "Willis2025": {
+      "status": "missing_pdf_index"
+    },
+    "Wilson2011": {
+      "status": "missing_pdf_index"
+    },
+    "Xing2018": {
+      "status": "missing_pdf_index"
+    },
+    "Yu2023": {
+      "status": "missing_pdf_index"
+    },
+    "Yu2024": {
+      "status": "uploaded",
+      "placed": 146,
+      "missed": 0
+    },
+    "Zavanone2018": {
+      "status": "uploaded",
+      "placed": 45,
+      "missed": 0
+    },
+    "Zevgolatakou2022": {
+      "status": "uploaded",
+      "placed": 66,
+      "missed": 0
+    },
+    "Zhang2018": {
+      "status": "missing_pdf_index"
+    }
+  },
+  "existing_access_categories_preserved": true,
+  "withdrawal_ledger_unchanged_by_refresh": true,
+  "wrapper": "Annotation loop limited in memory to citations present in the published export; original helper unchanged."
+}
