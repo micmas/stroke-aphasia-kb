@@ -872,7 +872,7 @@ const stageBadge = (stage) => h('span', { class: `badge badge-stage badge-stage-
 const kbBadge = (state) => h('span', { class: `badge badge-kb badge-kb-${String(state).replace(/\s+/g, '-')}`, text: KB_STATE_TEXT[state] || String(state || '').replace(/_/g, ' ') });
 
 /** The PRISMA 2020 flow as one SVG. Every box links to the candidates it counts. */
-function prismaDiagram(index, { identificationOnly = false } = {}) {
+function prismaDiagram(index, { identificationOnly = false, initialScreeningRecords = null } = {}) {
   const p = index.screening.prisma;
   if (!p) return null;
   const idn = p.identification; const db = p.screening; const ot = p.other; const inc = p.included;
@@ -896,7 +896,11 @@ function prismaDiagram(index, { identificationOnly = false } = {}) {
   const contentHeight = (labels, w) => boxH + wrapLabels(labels, w).length * 16;
   const box = ({ x, y: yy, w, title, n, sub, link, cls = '', params = null, id = null, tip = null, height = boxH, breakdown = null }) => {
     // Publish initial search totals without implying downstream decisions.
-    if (identificationOnly && title !== 'Records from databases' && !(id === 'removed' && Number.isFinite(idn.duplicatesRemoved))) {
+    if (identificationOnly && title === 'Records screened (title/abstract)' && Number.isFinite(initialScreeningRecords)) {
+      title = 'Records for title/abstract screening';
+      n = initialScreeningRecords; sub = 'after deduplication';
+      link = null; params = null; breakdown = null;
+    } else if (identificationOnly && title !== 'Records from databases' && !(id === 'removed' && Number.isFinite(idn.duplicatesRemoved))) {
       n = null; sub = null; link = null; params = null; breakdown = null;
     }
     if (identificationOnly && id === 'removed') { params = null; link = null; }
