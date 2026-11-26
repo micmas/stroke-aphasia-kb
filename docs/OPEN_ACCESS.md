@@ -5,7 +5,8 @@ Dysphagia candidates, except excluded and duplicate records. Collection is not
 a screening decision, full-text eligibility assessment or extraction approval.
 
 The hourly `open-access-papers` GitHub workflow resumes from its R2 index. Each
-run attempts up to 500 records per chapter within a 45-minute total budget.
+run attempts up to 500 records per chapter within a 45-minute budget. The two
+chapters run independently, so a slow provider in one does not delay the other.
 Large initial collections therefore finish over multiple runs. Saved includes
 prioritise another attempt. Temporary failures retry after a day; papers without
 a licensed downloadable copy are checked again after 30 days. GitHub scheduled
