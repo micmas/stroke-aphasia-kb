@@ -1,3 +1,4 @@
+import {renderImportCoverage} from './chapter-coverage.js';
 const topics=[['Meaningful outcomes and measurement','What changes matter, and how are they recognised?'],['Lived experience and priorities','Recovery, identity, participation and personal priorities.'],['Goals and communication','Collaborative goals and conversations about progress.'],['Experiences of care','Access, acceptability and experiences of rehabilitation.']];
 const names={pubmed:'PubMed',medline_ebsco:'MEDLINE (EBSCO)',embase_com:'Embase',cinahl_ebsco:'CINAHL',psycinfo_ebsco:'PsycINFO',scopus:'Scopus',web_of_science:'Web of Science'};
 const titles={findings:'Findings',matrix:'Themes and outcomes',papers:'Papers',coverage:'Coverage',searches:'Searches',licences:'Paper licences',models:'Methods',involve:'Get involved',review:'Review workspace'};
@@ -5,7 +6,7 @@ function el(tag,text,cls){const n=document.createElement(tag);n.textContent=text
 function link(text,href){const n=el('a',text);n.href=href;return n;}
 function section(title,text){const n=el('section','','chapter-empty');n.append(el('h2',title),el('p',text));return n;}
 const fmt=n=>Number(n).toLocaleString();
-export function initPractice(){
+export function initPractice({prismaDiagram}){
  const manifest=window.PRACTICE_IMPORT||{},main=document.getElementById('main');
  document.querySelector('.header-tools').replaceChildren(el('span','Aphasia collection · screening in progress','source-badge'));
  function render(){
@@ -19,12 +20,12 @@ export function initPractice(){
    const grid=el('div','','chapter-grid');for(const [title,text]of topics)grid.append(section(title,text));main.append(grid);
    const nav=el('div','','section-links');nav.append(link('Review the evidence','#/review'),link('Search provenance and coverage','#/coverage'));main.append(nav);
   }else if(route==='coverage'){
-   main.append(section('From searches to review',`${fmt(manifest.raw_records||0)} exported occurrences → ${fmt(manifest.duplicates_collapsed||0)} duplicate occurrences combined → ${fmt(manifest.unique_records||0)} candidates. ${fmt(manifest.missing_abstracts||0)} candidates lack an abstract.`));
-   main.append(el('p','Import counts describe the 26 November 2026 search batch. Screening, full-text inclusion and review totals are available per reviewer in the private workspace; no adjudicated totals are published yet.'));
-   const table=el('table','','database-import-table'),head=el('tr','');for(const label of ['Database','Q1 records','Q2 records','Export files'])head.append(el('th',label));table.append(head);
-   for(const [db,name]of Object.entries(names)){const files=(manifest.files||[]).filter(f=>f.database===db),tr=el('tr','');for(const value of [name,...['q1','q2'].map(q=>fmt(files.filter(f=>f.strategy===q).reduce((s,f)=>s+f.records,0))),files.length])tr.append(el('td',String(value)));table.append(tr);}main.append(table,el('p',manifest.deduplication||''));
-   for(const warning of manifest.warnings||[])main.append(section('Export audit',warning));
-   main.append(el('p','The researcher confirmed and corrected swapped CINAHL/PsycINFO exports and filename counts. File contents were preserved. Exact executed query settings remain subject to search-history verification.'));
+   main.replaceChildren(renderImportCoverage(manifest, prismaDiagram, {
+    databases:names, searchHref:'#/searches', reviewHref:'https://review.stroke-kb.app/',
+    collectionName:'Practice and lived experience',
+    gapText:'Coverage by meaningful outcomes, lived experience, goals and communication, and experiences of care will appear after included studies have been extracted and reviewed.',
+    auditNotes:['The researcher confirmed and corrected swapped CINAHL/PsycINFO exports and filename counts. File contents were preserved. Exact executed query settings remain subject to search-history verification.'],
+   }));
   }else if(route==='searches'){
    main.append(section('Two complementary questions','Q1: experiences, priorities and living well. Q2: meaningful outcomes and interpretation of change. Both search routes run from inception with no proposed language filter. Stroke aetiology is assessed at screening.'));
    main.append(el('p','Strategies adapt and expand Manning et al. (2019), rather than reproduce its searches unchanged. The queries below are the prepared queries associated with the supplied exports; they are not independently verified execution histories.'));
@@ -47,6 +48,10 @@ export function initPractice(){
   else if(route==='licences')main.append(section('Source access and reuse','Original database exports and abstracts remain in private review storage. No source PDFs are published here. Record each source’s access and licence before sharing it.'));
   else main.append(section('No findings published yet','Source-supported findings will appear after screening, extraction, appraisal and review. Existing lesion-based Aphasia findings are not shown as practice evidence.'));
   document.getElementById('footerVersion').textContent='Practice and lived experience · Aphasia search collection · no published findings';window.scrollTo(0,0);
+  if(route==='coverage'&&new URLSearchParams(location.hash.split('?')[1]).get('arm')==='databases'){
+   const details=document.getElementById('database-searches');
+   if(details)window.scrollTo(0,details.getBoundingClientRect().top+window.scrollY-document.querySelector('.app-header').getBoundingClientRect().height-24);
+  }
  }
  window.addEventListener('hashchange',render);render();
 }

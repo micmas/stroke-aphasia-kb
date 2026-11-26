@@ -34,3 +34,11 @@ section order, spacing, typography and the overall visual design consistent.
 Routine content updates, data refreshes and bug fixes must fit the existing layout;
 do not bundle redesigns or unsolicited visual cleanup with them. A request to fix a
 specific visual detail authorizes that detail only, not a broader layout change.
+
+## Shared chapter presentation
+
+Equivalent components across chapters must reuse the established presentation,
+including headings, section order, summary tiles, tables, diagrams and navigation.
+Pass chapter-specific data and wording into shared renderers instead of creating
+a parallel layout. Import-stage coverage uses `staging/stroke/web/chapter-coverage.js`
+and Aphasia's `prismaDiagram`; unknown review totals remain blank, not zero.

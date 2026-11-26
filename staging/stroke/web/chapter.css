@@ -1,8 +1,8 @@
 html{font-size:16px}.staging-bar{background:var(--grape,#52489c);color:white;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:10px 24px;font-size:.9rem}.staging-bar a{color:white}.staging-bar nav{display:flex;gap:20px;flex-wrap:wrap}.staging-bar a[aria-current=page]{font-weight:750;text-decoration:underline}.chapter-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;margin:32px 0}.chapter-card{border:1px solid var(--line-strong);border-top:4px solid var(--grape);border-radius:8px;padding:28px;background:var(--panel);display:flex;flex-direction:column;align-items:start}.chapter-card:nth-child(2){border-top-color:var(--blue)}.chapter-card h2{font-size:2rem;margin:8px 0}.chapter-card p{max-width:48ch}.chapter-card .editorial-button{margin-top:auto}.chapter-card .status{font-size:.9rem;color:var(--ink-2)}.chapter-empty{border:1px solid var(--line-strong);border-radius:8px;background:var(--panel);padding:32px;margin:24px 0}.chapter-empty h2{margin-top:0}.chapter-status{font-size:.9rem;color:var(--ink-2)}.section-links{display:flex;gap:18px;flex-wrap:wrap;margin:20px 0}.landing{max-width:1140px;margin:auto;padding:56px 28px}.landing h1{font-size:clamp(2.3rem,5vw,4rem);max-width:19ch;line-height:1.12}.landing .lead{max-width:64ch}.app-header{flex-wrap:wrap}.nav{flex-wrap:wrap}.chapter-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;border-top:1px solid var(--line);padding-top:24px}.chapter-steps h3{font-size:1.1rem}@media(max-width:700px){.chapter-grid,.chapter-steps{grid-template-columns:1fr}.landing{padding:32px 20px}.chapter-empty{padding:20px}.staging-bar{padding:10px 16px}.header-tools{flex-wrap:wrap}.nav{gap:12px}}
 
-.dysphagia-coverage .database-import-table { width:100%; }
-.dysphagia-coverage .database-import-table caption { text-align:left; padding-bottom:.6rem; }
-.dysphagia-coverage .database-import-table tfoot { font-weight:600; border-top:2px solid var(--line); }
-.dysphagia-coverage .import-files { padding-left:1.25rem; }
-.dysphagia-coverage .import-files li { margin:.6rem 0; overflow-wrap:anywhere; }
-.dysphagia-coverage #database-searches { scroll-margin-top:1.5rem; }
+.chapter-coverage .database-import-table { width:100%; }
+.chapter-coverage .database-import-table caption { text-align:left; padding-bottom:.6rem; }
+.chapter-coverage .database-import-table tfoot { font-weight:600; border-top:2px solid var(--line); }
+.chapter-coverage .import-files { padding-left:1.25rem; }
+.chapter-coverage .import-files li { margin:.6rem 0; overflow-wrap:anywhere; }
+.chapter-coverage #database-searches { scroll-margin-top:1.5rem; }
