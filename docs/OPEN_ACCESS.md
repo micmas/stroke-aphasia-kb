@@ -109,3 +109,57 @@ to the whole run. Wrangler sign-in refreshes are serialized between processes. U
 this support was added retains its original behaviour. Stop with Ctrl+C and
 restart to use parallel collection. Completed record checkpoints are flushed on
 interruption. Never run two collectors for the same collection at once.
+
+## Sync kept papers into local source folders
+
+`scripts/sync_open_access.py` downloads only papers with a saved title/abstract or
+full-text inclusion and no current exclusion. Unsaved browser choices and evidence
+note verdicts do not qualify a paper. Run it repeatedly as screening progresses.
+It does not run models, formatting, OCR, registration or publication, and it does
+not overwrite working PDFs. The collector can continue running during this sync.
+
+```sh
+python scripts/sync_open_access.py --repo /path/to/stroke-kb \
+  --wrangler /path/to/wrangler --account-id ACCOUNT_ID --execute
+```
+
+Without `--execute` (or with `--dry-run`) it previews the sync. `--chapter practice`
+selects one collection. By default, it writes to the resolved `papers/` folder's
+`_incoming/open-access/{aphasia,dysphagia,practice}/` subfolders. On the maintainer's
+machine, `papers/` already points to the OneDrive `calmar-papers` directory.
+
+Cloudflare filenames remain stable record IDs (`open-access/pdf/C1234.pdf`,
+`DYS-….pdf`, `PLE-….pdf`). Incoming local copies use `RecordID_CitationKey.pdf` for
+registered citations, otherwise `RecordID_AuthorYear.pdf`. The record ID prevents
+filename collisions. A `.source.json` sidecar and `.open-access-sync.json` manifest
+retain the DOI, title, citation key, original source, licence, version and checksum.
+An author/year label is not a newly registered citation key.
+
+Sync checks the actual downloaded bytes against the stored checksum, rechecks the
+saved screening decision before writing, and resumes without downloading identical
+local copies again. For Aphasia, matching working files and retained `_originals`
+are reused without alteration. Different working versions are preserved; a new
+source may be staged separately for comparison. Modified incoming copies are also
+preserved and reported. Previously downloaded local files are not automatically
+deleted when screening changes; the sync manifest updates their current eligibility.
+Cloudflare removal remains separate and applies only to collected remote copies.
+
+For Aphasia, finish full-text eligibility and register included papers before
+extraction. The existing `kb.py screen register --execute` registers fully included
+candidates. The guarded intake can then copy matching registered sources from the
+incoming folder, preserve originals, remove cover pages and OCR as needed:
+
+```sh
+.venv/bin/python kb.py intake --from papers/_incoming/open-access/aphasia --execute --wait
+```
+
+`--from` only imports sources matching registered citations that have no working
+PDF; it does not replace an existing version. Prepare a fresh extraction manifest
+for the selected citation keys afterward, using `kb.py prepare`. Extraction remains
+a separate explicit command. See `docs/HOWTO.md` for the established workflow.
+
+Dysphagia and Practice incoming files remain in their own folders. Their records
+are not added to the Aphasia bibliography or fed into its extraction assumptions;
+chapter-specific registration and extraction adaptation are separate work. The
+existing `kb.py sync` handles reviewer uploads, not these collected open-access
+copies; use this new sync command for the latter.
