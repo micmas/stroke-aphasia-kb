@@ -6,8 +6,11 @@ const hash = async value => [...new Uint8Array(await crypto.subtle.digest('SHA-2
 export async function excluded(bucket, id) {
   let cursor;
   do {
-    const page=await bucket.list({prefix:`${OA}decisions/${id}/`,cursor});
-    for(const item of page.objects){const row=await bucket.get(item.key);if(row && (await row.json()).decision==='exclude')return true;}
+    const page=await bucket.list({prefix:`${OA}decisions/${id}/`,cursor,include:['customMetadata']});
+    for(const item of page.objects){
+      if(item.customMetadata?.decision){if(item.customMetadata.decision==='exclude')return true;continue;}
+      const row=await bucket.get(item.key);if(row && (await row.json()).decision==='exclude')return true;
+    }
     cursor=page.truncated?page.cursor:undefined;
   }while(cursor);
   return false;

@@ -31,3 +31,19 @@ test('invalid ids and check opinions cannot delete files; tombstone persists if 
  await assert.rejects(syncOaDecisions(b,'a',[d('exclude')]));assert.ok(await excluded(b,'C1234'));
  assert.equal((await serveOpenAccess(new Request('https://review/api/open-access?id=..%2Fsource&file=1'),b)).status,400);
 });
+test('decision metadata avoids per-reviewer reads for large screening batches',async()=>{
+ const b=bucket();b.list=async()=>({objects:[{key:'first',customMetadata:{decision:'include'}},{key:'second',customMetadata:{decision:'exclude'}}]});
+ b.get=async()=>{assert.fail('R2 metadata should avoid another subrequest');};
+ assert.equal(await excluded(b,'C1234'),true);
+});
+test('conditional-write conflict rereads the newer decision instead of undoing it',async()=>{
+ const b=bucket();const put=b.put;
+ let conflict=true;
+ b.put=async(k,v,options)=>{
+  if(conflict&&options?.onlyIf){conflict=false;await put(k,JSON.stringify(d('exclude','2026-11-26T05:00:00Z')));return null;}
+  return put(k,v,options);
+ };
+ await syncOaDecisions(b,'a',[d('include','2026-11-26T04:00:00Z')]);
+ assert.equal(await excluded(b,'C1234'),true);
+ assert.equal(await b.head('open-access/retry/C1234.json'),null);
+});
