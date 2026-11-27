@@ -36,6 +36,5 @@ jobs:
           node-version: '22'
       - run: npm ci
         working-directory: portal
-      - run: portal/node_modules/.bin/wrangler d1 execute dysphagia-screening-staging --remote --file staging/dysphagia/schema.sql --config deployment/dysphagia-review/wrangler.toml
       - run: python3 scripts/build_dysphagia_review.py
       - run: portal/node_modules/.bin/wrangler deploy --config deployment/dysphagia-review/wrangler.toml

@@ -541,5 +541,9 @@ bucket remain separate. It never loads the Aphasia findings export.
 The old production title/abstract browser backup is copied once into the new
 reviewer's local state, preserving notes and reasons; the original backup remains.
 Saved decisions are read from the existing tables, without reimporting or resetting
-records. New full-text tables are created additively by the deployment workflow.
+records. The full-text tables are provisioned additively before first deployment; routine
+website publishing does not require database administration permission. For a fresh
+installation, run `wrangler d1 execute dysphagia-screening-staging --remote --file
+staging/dysphagia/schema.sql --config deployment/dysphagia-review/wrangler.toml`
+using an authorised setup session before deploying the Worker.
 The shared frontend fixes mouse-click Include advancement in Aphasia as well.
