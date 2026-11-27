@@ -5,7 +5,10 @@ on:
     paths:
       - 'deployment/dysphagia-review/**'
       - 'portal/lib/open-access.js'
-      - 'portal/web/open-access.js'
+      - 'portal/web/**'
+      - 'explorer/styles.css'
+      - 'explorer/load-export.js'
+      - 'staging/dysphagia/schema.sql'
       - 'staging/dysphagia/functions/**'
       - 'staging/dysphagia/web/**'
       - 'scripts/build_dysphagia_review.py'

@@ -41,3 +41,20 @@ test('production explicitly opts into the same durable Dysphagia decisions',asyn
  const production=await onRequest({request:new Request('https://review.aphasia-kb.app/api/dysphagia-decisions'),env:{GITHUB_BRANCH:'main',SCREENING_CHAPTER:'dysphagia',SCREENING:storage},data});
  assert.equal(production.status,200);assert.equal((await production.json()).decisions[d.id].decision,'include');storage.db.close();
 });
+test('full-text decisions require TA inclusion and a PDF, preserve TA and use separate revisions',async()=>{
+ const storage=database(),files=new Map();
+ const bucket={async head(k){return files.has(k)?{key:k}:null;},async get(k){return null;},async put(){return{};},async delete(){},async list(){return{objects:[]};}};
+ const env={GITHUB_BRANCH:BRANCH,SCREENING:storage,PRIVATE:bucket},data={reviewer:{email:'test@example.org'}};
+ const submit=async(stage,decision='include',sha=0)=>onRequest({request:new Request('https://preview/api/decisions',{method:'POST',body:JSON.stringify({sha,decisions:[{...d,decision,reason:decision==='exclude'?'wrong_question':''}]})}),env,data},stage);
+ assert.equal((await submit('full_text')).status,400);
+ assert.equal((await submit('title_abstract')).status,200);
+ assert.equal((await submit('full_text')).status,400);
+ files.set(`uploads/${d.id}.pdf`,true);
+ assert.equal((await submit('full_text')).status,200);
+ assert.equal(JSON.parse(storage.db.prepare('SELECT value FROM screening_decisions').get().value).stage,'title_abstract');
+ assert.equal(JSON.parse(storage.db.prepare('SELECT value FROM fulltext_decisions').get().value).stage,'full_text');
+ assert.equal((await submit('full_text','exclude',0)).status,409);
+ assert.equal((await submit('full_text','exclude',1)).status,200);
+ assert.equal(storage.db.prepare('SELECT COUNT(*) n FROM fulltext_events').get().n,2);
+ storage.db.close();
+});

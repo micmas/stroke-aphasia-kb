@@ -58,3 +58,20 @@ test('only the dedicated signed identity can fetch records from its private buck
  assert.equal(res.headers.get('Cache-Control'),'no-store');
  assert.deepEqual(reads,['screening/records-000.json']);
 });
+import {uploads} from './uploads.js';
+test('Dysphagia uploads validate identity, preserve existing PDFs and stay in the private bucket',async()=>{
+ const id='DYS-0123456789abcdef',objects=new Map(),data={email:'test@example.org'};
+ const bucket={async get(k){if(k==='screening/records.json')return{json:async()=>({chunks:['records-000.json']})};if(k==='screening/records-000.json')return{json:async()=>[{id}]};const v=objects.get(k);return v?{body:v.bytes}:null;},async head(k){return objects.get(k)||null;},async put(k,bytes,opts){assert.equal(opts.onlyIf.etagDoesNotMatch,'*');objects.set(k,{bytes,customMetadata:opts.customMetadata});return{};},async list(){return{objects:[...objects.entries()].map(([key,v])=>({key,customMetadata:v.customMetadata,size:v.bytes.byteLength}))};}};
+ const env={PRIVATE:bucket};
+ const post=(record,bytes)=>uploads(new Request(`https://test/api/upload?id=${record}&name=paper.pdf`,{method:'POST',body:bytes}),env,data);
+ assert.equal((await post('C123','x')).status,400);
+ assert.equal((await post('DYS-ffffffffffffffff','x')).status,404);
+ assert.equal((await post(id,'not pdf')).status,400);
+ const pdf='%PDF-1.7\n'+'x'.repeat(2000);
+ assert.equal((await post(id,pdf)).status,200);
+ assert.equal((await post(id,pdf)).status,200);
+ assert.equal((await post(id,pdf+'different')).status,409);
+ const response=await uploads(new Request(`https://test/api/upload?file=${id}`),env,data);
+ assert.equal(response.headers.get('Cache-Control'),'private, no-store');assert.equal(await response.text(),pdf);
+ const list=await uploads(new Request('https://test/api/upload'),env,data);assert.equal((await list.json()).uploads[0].by,data.email);
+});

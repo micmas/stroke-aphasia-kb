@@ -1,19 +1,27 @@
-"""Build the dedicated Dysphagia review site; all search records remain in private R2."""
+"""Build Dysphagia from the shared Aphasia review UI, with an empty findings export.
+
+Screening records, decisions and PDFs remain in Dysphagia's private storage.
+"""
 from pathlib import Path
+import datetime as dt
+import hashlib
+import json
 import shutil
 ROOT=Path(__file__).resolve().parents[1]
 def build():
  dest=ROOT/'deployment/dysphagia-review/dist'
  if dest.exists():shutil.rmtree(dest)
  dest.mkdir(parents=True)
- for path in (ROOT/'staging/dysphagia/web').iterdir():
-  text=path.read_text().replace(' · screening staging',' · screening').replace('Staging · ','').replace('Dysphagia staging workspace','Dysphagia review workspace').replace('staging workspace','Dysphagia review workspace').replace('staging branch','chapter').replace('dysphagia-staging:','dysphagia-production:')
-  if path.name=='index.html':text=text.replace('<main>', '<p style="padding:0 24px"><a href="https://dysphagia-kb.app/">Dysphagia KB</a> · <a href="https://stroke-kb.app/">Stroke KB home</a></p><main>')
-  (dest/path.name).write_text(text)
- for name in ['project-shell.js','project-shell.css']:
-  text=(ROOT/'explorer'/name).read_text().replace("link('Review portal', 'https://review.aphasia-kb.app/welcome/')","link('Dysphagia review', 'https://review.dysphagia-kb.app/')")
-  (dest/name).write_text(text)
+ for path in (ROOT/'portal/web').iterdir():
+  if path.is_file():shutil.copy2(path,dest/path.name)
+ page=dest/'index.html'
+ page.write_text(page.read_text().replace('<html lang="en">','<html lang="en" data-chapter="dysphagia">').replace('Stroke aphasia KB','Stroke dysphagia KB').replace('https://aphasia-kb.app/','https://dysphagia-kb.app/'))
+ for source,target in [('styles.css','explorer-styles.css'),('load-export.js','load-export.js'),('project-shell.js','project-shell.js'),('project-shell.css','project-shell.css')]:
+  shutil.copy2(ROOT/'explorer'/source,dest/target)
  (dest/'_headers').write_text('/*\n  Cache-Control: no-store\n  X-Robots-Tag: noindex, nofollow\n')
- shutil.copy2(ROOT/'portal/web/open-access.js',dest/'open-access.js')
+ vendor=ROOT/'portal/node_modules/pdfjs-dist/build'
+ (dest/'vendor').mkdir()
+ for name in ['pdf.min.mjs','pdf.worker.min.mjs']:shutil.copy2(vendor/name,dest/'vendor'/name)
+ (dest/'manifest.json').write_text(json.dumps({'chapter':'dysphagia','built':dt.datetime.now(dt.timezone.utc).isoformat(),'papers':{},'fulltext':{},'sources':{'keys':[]},'counts':{'private':0,'public':0,'sources':0},'config':{'explorerUrl':'https://dysphagia-kb.app/'}}))
  print(dest)
 if __name__=='__main__':build()
