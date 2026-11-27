@@ -61,6 +61,7 @@ function h(tag, attrs = {}, ...kids) {
 }
 const frag = (...kids) => { const f = document.createDocumentFragment(); for (const c of kids.flat(Infinity)) if (c !== null && c !== undefined && c !== false) f.append(c instanceof Node ? c : document.createTextNode(String(c))); return f; };
 const esc = (s) => String(s ?? '');
+const sourceRecords=c=>DYSPHAGIA&&c.sources?.length?h('details',{},h('summary',{text:'Original export records'}),...c.sources.map(s=>h('p',{class:'small',text:`${s.database || ''} · ${s.file || ''} · record ${s.record || ''}`}))):null;
 const plural = (n, w, ws = `${w}s`) => `${n} ${n === 1 ? w : ws}`;
 const draftHref = (p) => `#/draft/${encodeURIComponent(p)}`;
 const storageKey=k=>DYSPHAGIA?`dysphagia:${state.me?.email || ''}:${k}`:k;
@@ -208,7 +209,7 @@ function home() {
         h('li', { text: 'Open a draft beside its paper. Read the proposed finding and highlighted source passage.' }),
         h('li', { text: 'Check the meaning, study population and timing. Correct errors or mark missing evidence in the PDF.' }),
         h('li', { text: 'Send your review. Model output is provisional; source checking and final approval are separate steps.' })),
-      h('p', {}, 'For screening, follow the ', h('a', { href: 'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/SCREENING.md', text: 'eligibility criteria' }), ' and record an include, exclude or unsure decision.'),
+      h('p', {}, 'For screening, follow the ', h('a', { href: DYSPHAGIA?'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/PORTAL.md#dysphagia-review':'https://github.com/micmas/stroke-aphasia-kb/blob/main/docs/SCREENING.md', text: 'eligibility criteria' }), ' and record an include, exclude or unsure decision.'),
       h('p', { class: 'small muted', text: 'Screening shortcuts: click a card, then i to include, e to exclude, or u for unsure.' })));
 
 }
@@ -741,7 +742,7 @@ function screenView(stage) {
       h('p', { class: 'small muted' }, [c.year, c.journal, (c.authors || '').slice(0, 120)].filter(Boolean).join(' · '), c.doi ? [' · ', h('a', { href: `https://doi.org/${c.doi}`, target: '_blank', rel: 'noopener', text: c.doi })] : null, c.pmid ? [' · PMID ', h('a', { href: `https://pubmed.ncbi.nlm.nih.gov/${c.pmid}`, target: '_blank', rel: 'noopener', text: String(c.pmid) })] : null,
         c.for?.length ? ` · for ${c.for.join(', ')}` : '', c.history?.length ? ` · ${c.history.map((x) => `${x.stage === 'title_abstract' ? 'T/A' : 'FT'}: ${x.decision} (${x.by})`).join('; ')}` : ''),
       h('p', { class: 'small pdfline' }, pdfLine, up ? [' · ', h('a', { href: `api/upload?file=${encodeURIComponent(up.id)}`, target: '_blank', rel: 'noopener', text: 'Open uploaded PDF' })] : null),
-      oaNote(c.id),
+      oaNote(c.id), sourceRecords(c),
       DYSPHAGIA?instrumentalLabels(c).map(label=>h('span',{class:'badge',text:label+' priority'})):null,
       h('p', { class: 'ab', text: c.abstract || '(no abstract available)' }),
       c.suggestion?.decision ? h('p', { class: 'sug', text: `Model suggests ${c.suggestion.decision}${c.suggestion.reason && c.suggestion.reason !== 'none' ? ` (${c.suggestion.reason})` : ''} — a suggestion, not a decision.` }) : null,
@@ -876,7 +877,7 @@ function ftLeft(q, c, pdf) {
   }));
   return h('div', { class: 'left' },
     h('div', { class: 'page-head sticky-head' }, h('h1', { text: 'Full-text screening' }), status, h('span', { style: 'margin-left:auto' }, sendBtn)),
-    nav, card, oaNote(c.id),
+    nav, card, oaNote(c.id), sourceRecords(c),
     h('p', { class: 'small muted', text: DYSPHAGIA?'Assess adult post-stroke swallowing research against the chapter scope. Read the full paper before including it. Keys: i include · e exclude · u unsure · s skip · ← → previous/next. Send decisions to save them.':'Criteria: docs/SCREENING.md §2 — include when the paper answers a question in §1 and no exclusion reason applies. Keys: i include · e exclude · u unsure · s skip · ← → previous/next. Decisions stay in this browser until you send them.' }),
     h('h3', { text: 'The queue' }), list);
 }
@@ -915,9 +916,10 @@ async function sendScreen(stage, decided, cands, btn = null, status = null) {
   try {
     const receipt = await sendAll(items.map(([id, d]) => ({ kind: 'screen', id, stage: st, decision: d.decision, reason: d.decision === 'exclude' ? d.reason : null, note: d.note || '' })));
     const sentLocal = store.get('screen:sent', {});
+    const remaining=store.get(`screen:${stage}`,{});
     const at = new Date().toISOString();
-    for (const [i, [id, d]] of items.entries()) { delete decided[id]; sentLocal[id] = { at, stage, decision: d.decision, record: receipt.files?.[i]?.split('/').pop() }; }
-    store.set(`screen:${stage}`, decided); store.set('screen:sent', sentLocal);
+    for (const [i, [id, d]] of items.entries()) { if(JSON.stringify(remaining[id])===JSON.stringify(d))delete remaining[id]; sentLocal[id] = { at, stage, decision: d.decision, record: receipt.files?.[i]?.split('/').pop() }; }
+    store.set(`screen:${stage}`, remaining); store.set('screen:sent', sentLocal);
     if(DYSPHAGIA){state.screening=await dysphagia.refresh();state.screeningIndex=state.screening.candidates;store.set('screen:sent',{});toast(`Saved ${plural(items.length,'decision')}.${stage==='ta'?' Included titles are ready for full-text review.':''}`);render();return;}
     toast(`Sent ${plural(items.length, 'decision')} — thank you. They leave the queue until the maintainer applies them${stage === 'ta' ? '; included papers then move to the Full text queue at the next build' : ''}.`);
     render();
