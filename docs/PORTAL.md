@@ -511,3 +511,35 @@ the other way on the same footing and never reach the public path; their
 licence decides that at the next build like every other paper. One upload
 per paper; the uploader may replace it, nobody else can until the
 maintainer has pulled it.
+
+## Dysphagia review
+
+[review.dysphagia-kb.app](https://review.dysphagia-kb.app/) uses the same interface,
+styles, navigation and PDF viewer as Aphasia: Home, Drafts, Title/abstract,
+Full text, PDFs and My reviews. Its sign-in audience, D1 decisions and private R2
+bucket remain separate. It never loads the Aphasia findings export.
+
+- **Title/abstract:** papers mentioning FEES, endoscopic swallowing evaluation,
+  VFSS, videofluoroscopy or modified barium swallow in their title/abstract appear
+  first. Original order is retained within each group; no record is removed and
+  priority is not an eligibility judgement. One paper is shown at a time.
+- **Include** advances to the next paper. Previous revisits the choice. Decisions
+  stay in this browser until **Send decisions** is pressed. Exclude stays on the
+  paper so you can supply a reason. The last paper stays visible with an end notice.
+- **Full text:** saved title/abstract includes appear immediately. Read the PDF
+  beside the decision. Full-text inclusion requires a collected or uploaded PDF;
+  otherwise upload it or skip for now. Stage decisions have separate revisions and
+  append-only audits, so full-text assessment never overwrites title/abstract work.
+- **PDFs:** collected copies can be opened, missing papers can be uploaded against
+  their screening records, and existing uploads are preserved. Uploads stay under
+  `uploads/` in `dysphagia-kb-private`; this page does not add new candidate records.
+  The open-access local sync remains separate from reviewer-upload handling.
+- **My reviews:** shows your saved decisions at both stages and exports them as CSV.
+- **Drafts:** intentionally empty until Dysphagia extraction is prepared. Full-text
+  inclusion alone does not create or approve findings.
+
+The old production title/abstract browser backup is copied once into the new
+reviewer's local state, preserving notes and reasons; the original backup remains.
+Saved decisions are read from the existing tables, without reimporting or resetting
+records. New full-text tables are created additively by the deployment workflow.
+The shared frontend fixes mouse-click Include advancement in Aphasia as well.

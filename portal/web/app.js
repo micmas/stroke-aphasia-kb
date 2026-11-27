@@ -33,6 +33,10 @@ import { selectDrafts, measurementLabel, reviewProgress, pendingFirst, nextPaper
 import { rankPapers, REVIEW_TOPICS } from './review-priority.js';
 import { loadExportText } from './load-export.js';
 import { openAccessNote } from './open-access.js';
+import {createDysphagiaReview} from './dysphagia-review.js';
+import {instrumentalLabels} from './dysphagia-priority.js';
+const DYSPHAGIA=document.documentElement.dataset.chapter==='dysphagia';
+const dysphagia=DYSPHAGIA?createDysphagiaReview(api):null;
 
 const oaPdfs=new Map();
 function oaNote(id){return openAccessNote(id,pdf=>{
@@ -59,7 +63,8 @@ const frag = (...kids) => { const f = document.createDocumentFragment(); for (co
 const esc = (s) => String(s ?? '');
 const plural = (n, w, ws = `${w}s`) => `${n} ${n === 1 ? w : ws}`;
 const draftHref = (p) => `#/draft/${encodeURIComponent(p)}`;
-const store = { get: (k, d) => { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } }, set: (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* private window */ } }, del: (k) => { try { localStorage.removeItem(k); } catch { /* ignore */ } } };
+const storageKey=k=>DYSPHAGIA?`dysphagia:${state.me?.email || ''}:${k}`:k;
+const store = { get: (k, d) => { try { const v = localStorage.getItem(storageKey(k)); return v === null ? d : JSON.parse(v); } catch { return d; } }, set: (k, v) => { try { localStorage.setItem(storageKey(k), JSON.stringify(v)); } catch { /* private window */ } }, del: (k) => { try { localStorage.removeItem(storageKey(k)); } catch { /* ignore */ } } };
 function toast(msg, err = false) { const t = h('div', { class: `toast${err ? ' err' : ''}`, text: msg }); document.body.append(t); setTimeout(() => t.remove(), err ? 6000 : 2500); }
 
 /** SHA-256 of the exact bytes fetched (the drafts export on screen must be the one the bindings were made for). */
@@ -77,6 +82,7 @@ async function api(path, init) {
 /** Send records to the repository in one request = one commit, however many there are. */
 async function sendAll(records) {
   if (!records.length) return { files: [] };
+  if(DYSPHAGIA){const out=await dysphagia.send(records);state.oaWarning=out.oaWarning||'';for(const r of records)if(r.decision==='exclude')oaPdfs.delete(r.id);return out;}
   const out = await api('reviews', { method: 'POST', body: JSON.stringify({ records }) });
   state.oaWarning=out.oaWarning||'';
   for(const r of records)if(r.kind==='screen'&&r.decision==='exclude')oaPdfs.delete(r.id);
@@ -125,12 +131,12 @@ function uploadControl(id, citation, { required = false, label = null } = {}) {
       if (!res.ok || data.error) throw new Error(data.error || `${res.status}`);
       state.uploads.push({ object: data.object, id, name: file.name, bytes: file.size, by: state.me.email, uploaded: new Date().toISOString() });
       if (data.file) state.mine.inbox.push(data.file.split('/').pop());
-      toast(`PDF uploaded for ${id} — the maintainer will add it to the papers folder`);
+      toast(DYSPHAGIA?`PDF uploaded for ${id} — ready for full-text review`:`PDF uploaded for ${id} — the maintainer will add it to the papers folder`);
       render({ preserveScroll: location.hash === '#/screen/ta' });
     } catch (e) { toast(`Not uploaded: ${e.message}`, true); busy = false; btn.disabled = false; btn.textContent = label || 'Upload the PDF'; }
   };
   const btn = h('button', { class: `btn${required ? ' btn-primary' : ''}`, text: label || 'Upload the PDF', onclick: () => upload(input.files?.[0]) });
-  const el = h('span', { class: 'upload' }, input, btn, h('span', { class: 'small muted', text: 'Choose a PDF or drop one here; up to 60 MB. It goes to the maintainer, never to the public site.' }));
+  const el = h('span', { class: 'upload' }, input, btn, h('span', { class: 'small muted', text: DYSPHAGIA?'Choose a PDF or drop one here; up to 60 MB. It stays in the private Dysphagia workspace.':'Choose a PDF or drop one here; up to 60 MB. It goes to the maintainer, never to the public site.' }));
   el.uploadFile = upload;                 // so a larger area (a table row, a screening card) can be the drop target too
   dropZone(el, upload);
   return el;
@@ -158,7 +164,7 @@ window.addEventListener('dragover', (e) => { if ([...(e.dataTransfer?.types || [
 window.addEventListener('drop', (e) => { if ([...(e.dataTransfer?.types || [])].includes('Files')) e.preventDefault(); });
 /** "PDF uploaded by … on …, waiting for the maintainer" */
 const uploadedNote = (u) => h('span', { class: 'badge badge-warn', title: u.name, text: `PDF uploaded${u.by === state.me?.email ? ' by you' : u.by ? ` by ${u.by}` : ''}${u.uploaded ? ` on ${String(u.uploaded).slice(0, 10)}` : ''}, with the maintainer` });
-const myRecords = () => [...state.mine.inbox, ...state.mine.applied].filter((n) => n.includes(`_${slug(state.me?.email?.split('@')[0])}_`));
+const myRecords = () => DYSPHAGIA?dysphagia.reviews():[...state.mine.inbox, ...state.mine.applied].filter((n) => n.includes(`_${slug(state.me?.email?.split('@')[0])}_`));
 /** Screening decisions sent from this browser and not yet applied (the candidate is still in its old stage): [{id, stage, decision}]. */
 function pendingSent() {
   const sent = store.get('screen:sent', {});
@@ -181,14 +187,14 @@ function home() {
   const pendingTa = pendingSent().filter((x) => x.stage === 'ta' && x.decision === 'include').length;
   return frag(
     h('div', { class: 'page-head' }, h('h1', { text: 'Welcome back' })),
-    h('p', { class: 'lead', text: 'Start with one finding. You can send a partial review and return later.' }),
-    h('section', { class: 'review-start' }, h('h2', { text: 'Review a finding in three steps' }),
+    h('p', { class: 'lead', text: DYSPHAGIA?'Start with title/abstract screening. FEES and VFSS papers are prioritised. Saved includes move to full-text review.':'Start with one finding. You can send a partial review and return later.' }),
+    DYSPHAGIA?h('p',{class:'notice',text:'Dysphagia extraction has not started. Drafts and annotated findings will appear here when they are ready for review.'}):h('section', { class: 'review-start' }, h('h2', { text: 'Review a finding in three steps' }),
       h('ol', {}, h('li', { text: 'Read the finding, behaviour and measurement.' }), h('li', { text: 'Open its highlighted passages and check them against the paper.' }), h('li', { text: 'Choose agree, disagree or unsure, then send your review.' })),
       h('a', { class: 'btn btn-primary', href: '#/drafts', text: 'Choose what to review' }),
       h('p', { class: 'small muted', text: 'Unsure is useful. You do not need to resolve the whole paper to contribute.' })),
     h('p', { class: 'small muted', text: `Signed in as ${state.me.email}. Your decisions are recorded under this address.` }),
     h('details', { class: 'editorial-details' }, h('summary', { text: 'When will my decisions appear?' }),
-      h('p', { text: 'Send your decisions when you are ready. The maintainer applies them and the site rebuilds; this also runs automatically every six hours. A paper moves to its next queue after that rebuild.' }),
+      h('p', { text: DYSPHAGIA?'Send your decisions when ready. They are saved to the separate Dysphagia workspace immediately, with your identity and date. Title/abstract includes then appear in Full text.':'Send your decisions when you are ready. The maintainer applies them and the site rebuilds; this also runs automatically every six hours. A paper moves to its next queue after that rebuild.' }),
       h('p', { class: 'small muted', text: `KB ${m.kbCommit || '?'} · built ${m.built || '?'}. Approval permissions follow the project’s governance policy.` })),
     (m.maintainers || []).includes(String(state.me.email || '').toLowerCase()) ? h('details', { class: 'editorial-details' }, h('summary', { text: 'Maintainer tools: apply reviews and manage access' }), applyPanel(), requestsPanel()) : null,
     h('div', { class: 'tiles' },
@@ -324,6 +330,7 @@ function reviewPaperTitles() {
 }
 
 function draftsList() {
+  if(DYSPHAGIA)return frag(h('div',{class:'page-head'},h('h1',{text:'Drafts to review'})),h('p',{class:'notice',text:'No Dysphagia extraction drafts yet. Included papers must complete full-text assessment before preparation and extraction.'}));
   const drafts = draftsIndex(state.kb);
   const prefs = state.queue || (state.queue = { query: '', filter: 'all', page: 0, paper: '', order: 'priority', topic: '' });
   if (!prefs.topic) {
@@ -671,6 +678,15 @@ function screenQueue(stage) {
   //   - the inbox (not applied yet): the build still shows the record at the stage the
   //     decision was made at, so it is this stage's decision;
   //   - applied: already part of this build, unless it was applied after the build.
+  if(DYSPHAGIA){
+    const pending=store.get(`screen:${stage}`,{}),view=stage==='ta'?(state.taView||'awaiting'):'awaiting';
+    const query=stage==='ta'?(state.taQuery||'').trim().toLowerCase():'';
+    const rows=sc.candidates.filter(c=>{
+      const decision=pending[c.id]?.decision||c.history?.find(d=>d.stage==='title_abstract')?.decision||'pending';
+      return (view==='all'||(view==='awaiting'?(stages.includes(c.stage)||pending[c.id]):decision===view))&&(!query||[c.id,c.title,c.authors,c.doi].join(' ').toLowerCase().includes(query));
+    });
+    return {cands:orderScreeningPapers(rows,state.uploads,stage),hidden:0};
+  }
   const sentLocal = store.get('screen:sent', {});
   const mineSlug = slug(state.me?.email?.split('@')[0]);
   const builtAt = Date.parse(sc.built || '') || 0;
@@ -697,7 +713,17 @@ function screenView(stage) {
   const sendBtn = h('button', { class: 'btn btn-primary', style: 'margin-left:auto', disabled: nDecided ? null : '', text: nDecided ? `Send ${plural(nDecided, 'decision')}` : 'Send decisions', onclick: () => sendScreen(stage, decided, cands, sendBtn, status) });
   const head = h('div', { class: 'page-head sticky-head' }, h('h1', { text: stage === 'ta' ? 'Title/abstract screening' : 'Full-text screening' }), status, sendBtn);
   const list = h('div', {});
-  for (const c of cands) {
+  if(DYSPHAGIA){
+    const search=h('input',{type:'search','aria-label':'Find a paper',placeholder:'Title, author, DOI or ID',value:state.taQuery||''});
+    const apply=()=>{state.taQuery=search.value;state.taId=null;render();};
+    search.addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();apply();}});
+    list.append(h('div',{class:'matrix-controls'},h('label',{},'View ',h('select',{'aria-label':'Screening view',onchange:e=>{state.taView=e.target.value;state.taId=null;render();}},... [['awaiting','Awaiting decision'],['all','All records'],['include','Included'],['exclude','Excluded'],['unsure','Unsure']].map(([value,text])=>h('option',{value,text,selected:(state.taView||'awaiting')===value?'':null})))),search,h('button',{class:'btn',text:'Find',onclick:apply})));
+  }
+  const taCurrent=DYSPHAGIA?(cands.find(c=>c.id===state.taId)||cands.find(c=>!decided[c.id]?.decision)||cands[0]):null;
+  const taIndex=cands.indexOf(taCurrent);
+  const taGo=c=>{if(c){state.taId=c.id;render();}};
+  if(DYSPHAGIA){state.taId=taCurrent?.id;list.append(h('p',{class:'small',text:'FEES/VFSS papers first. Include advances; Previous revisits your choice. Decisions stay in this browser until you send them.'}),h('div',{class:'ft-nav'},h('button',{class:'btn',text:'← Previous',disabled:taIndex>0?null:'',onclick:()=>taGo(cands[taIndex-1])}),h('span',{text:taCurrent?`${taIndex+1} of ${cands.length}`:'Queue complete'}),h('button',{class:'btn',text:'Next →',disabled:taIndex<cands.length-1?null:'',onclick:()=>taGo(cands[taIndex+1])})));}
+  for (const c of DYSPHAGIA?(taCurrent?[taCurrent]:[]):cands) {
     const dec = decided[c.id] || {};
     const pdf = c.key ? paperPdf(c.key) : null;
     const sourcePdf = state.manifest?.fulltext?.[c.id];
@@ -716,9 +742,10 @@ function screenView(stage) {
         c.for?.length ? ` · for ${c.for.join(', ')}` : '', c.history?.length ? ` · ${c.history.map((x) => `${x.stage === 'title_abstract' ? 'T/A' : 'FT'}: ${x.decision} (${x.by})`).join('; ')}` : ''),
       h('p', { class: 'small pdfline' }, pdfLine, up ? [' · ', h('a', { href: `api/upload?file=${encodeURIComponent(up.id)}`, target: '_blank', rel: 'noopener', text: 'Open uploaded PDF' })] : null),
       oaNote(c.id),
+      DYSPHAGIA?instrumentalLabels(c).map(label=>h('span',{class:'badge',text:label+' priority'})):null,
       h('p', { class: 'ab', text: c.abstract || '(no abstract available)' }),
       c.suggestion?.decision ? h('p', { class: 'sug', text: `Model suggests ${c.suggestion.decision}${c.suggestion.reason && c.suggestion.reason !== 'none' ? ` (${c.suggestion.reason})` : ''} — a suggestion, not a decision.` }) : null,
-      h('div', { class: 'dec' }, ['include', 'exclude', 'unsure'].map((v) => h('label', { title: gated ? 'Upload the PDF first' : null }, h('input', { type: 'radio', name: `s-${c.id}`, value: v, disabled: gated ? '' : null, checked: dec.decision === v ? '' : null, onchange: () => { decided[c.id] = { ...dec, decision: v }; store.set(key, decided); card.classList.add('done'); const k = Object.values(decided).filter((x) => x.decision).length; status.textContent = statusText(k); sendBtn.disabled = k ? false : true; sendBtn.textContent = k ? `Send ${plural(k, 'decision')}` : 'Send decisions'; } }), ` ${v}`)),
+      h('div', { class: 'dec' }, ['include', 'exclude', 'unsure'].map((v) => h('label', { title: gated ? 'Upload the PDF first' : null }, h('input', { type: 'radio', name: `s-${c.id}`, value: v, disabled: gated ? '' : null, checked: dec.decision === v ? '' : null, onchange: () => { decided[c.id] = { ...(decided[c.id]||{}), decision: v }; store.set(key, decided); card.classList.add('done'); const k = Object.values(decided).filter((x) => x.decision).length; status.textContent = statusText(k); sendBtn.disabled = k ? false : true; sendBtn.textContent = k ? `Send ${plural(k, 'decision')}` : 'Send decisions'; if(v==='include'){if(DYSPHAGIA){if(cands[taIndex+1])taGo(cands[taIndex+1]);else toast('End of the queue. Send your decisions when ready.');}else{const next=card.nextElementSibling;if(next){next.focus();next.scrollIntoView({block:'center'});}}} } }), ` ${v}`)),
         h('select', { onchange: (e) => { decided[c.id] = { ...(decided[c.id] || {}), reason: e.target.value }; store.set(key, decided); } }, h('option', { value: '', text: 'reason…' }), reasons.map(([k, v]) => h('option', { value: k, selected: dec.reason === k ? '' : null, text: v.label }))),
         h('input', { type: 'text', value: dec.note || '', placeholder: 'note', style: 'min-width:220px', onchange: (e) => { decided[c.id] = { ...(decided[c.id] || {}), note: e.target.value }; store.set(key, decided); } })));
     const ctl = card.querySelector('.upload');
@@ -737,7 +764,7 @@ function screenView(stage) {
   };
   document.addEventListener('keydown', onkey, { once: false });
   state.keyHandler = onkey;
-  return frag(head, h('p', { class: 'small', text: `Criteria: docs/SCREENING.md §2. ${stage === 'ta' ? 'Include whatever might answer one of the KB questions; exclude only for a listed reason.' : 'Read the paper; include when it answers a question in §1 and no exclusion reason applies.'} Decisions are kept in this browser until you send them.` }), list);
+  return frag(head, h('p', { class: 'small', text: `${DYSPHAGIA?'Adult post-stroke swallowing research: retain potentially relevant brain–swallowing relationships, patient predictors and treatment-response studies. Choose unsure when information is insufficient.':'Criteria: docs/SCREENING.md §2.'} ${stage === 'ta' ? 'Include whatever might answer one of the KB questions; exclude only for a listed reason.' : 'Read the paper; include when it answers a question in §1 and no exclusion reason applies.'} Decisions are kept in this browser until you send them.` }), list);
 }
 
 // ---- full-text screening: one paper at a time, beside its PDF ----
@@ -811,6 +838,7 @@ function ftLeft(q, c, pdf) {
   const save = (patch) => {
     decided[c.id] = { ...(decided[c.id] || {}), ...patch }; store.set('screen:ft', decided);
     if (patch.decision) { const s = new Set(store.get(FT_SKIP, [])); if (s.delete(c.id)) store.set(FT_SKIP, [...s]); }
+    if(patch.decision==='include'&&order[i+1]){ftGo(order[i+1]);return;}
     render();
   };
   const reasons = Object.entries(state.screening.reasons || {});
@@ -849,7 +877,7 @@ function ftLeft(q, c, pdf) {
   return h('div', { class: 'left' },
     h('div', { class: 'page-head sticky-head' }, h('h1', { text: 'Full-text screening' }), status, h('span', { style: 'margin-left:auto' }, sendBtn)),
     nav, card, oaNote(c.id),
-    h('p', { class: 'small muted', text: 'Criteria: docs/SCREENING.md §2 — include when the paper answers a question in §1 and no exclusion reason applies. Keys: i include · e exclude · u unsure · s skip · ← → previous/next. Decisions stay in this browser until you send them.' }),
+    h('p', { class: 'small muted', text: DYSPHAGIA?'Assess adult post-stroke swallowing research against the chapter scope. Read the full paper before including it. Keys: i include · e exclude · u unsure · s skip · ← → previous/next. Send decisions to save them.':'Criteria: docs/SCREENING.md §2 — include when the paper answers a question in §1 and no exclusion reason applies. Keys: i include · e exclude · u unsure · s skip · ← → previous/next. Decisions stay in this browser until you send them.' }),
     h('h3', { text: 'The queue' }), list);
 }
 function ftKeys(e) {
@@ -875,7 +903,7 @@ async function sendScreen(stage, decided, cands, btn = null, status = null) {
   const items = Object.entries(decided).filter(([, d]) => d.decision);
   if (!items.length) { toast('Nothing decided yet', true); return; }
   const label = btn ? btn.textContent : '';
-  const working = () => { if (btn) { btn.disabled = true; btn.classList.add('working'); btn.textContent = `Sending ${plural(items.length, 'decision')}…`; } if (status) status.textContent = 'writing them to the repository as one commit; a few seconds'; };
+  const working = () => { if (btn) { btn.disabled = true; btn.classList.add('working'); btn.textContent = `Sending ${plural(items.length, 'decision')}…`; } if (status) status.textContent = DYSPHAGIA?'Saving to the Dysphagia workspace…':'writing them to the repository as one commit; a few seconds'; };
   const done = () => { if (btn) { btn.disabled = false; btn.classList.remove('working'); btn.textContent = label; } };
   const bad = items.filter(([, d]) => d.decision === 'exclude' && !d.reason);
   if (bad.length) { toast(`An exclusion needs a reason: ${bad.map(([id]) => id).join(', ')}`, true); return; }
@@ -890,6 +918,7 @@ async function sendScreen(stage, decided, cands, btn = null, status = null) {
     const at = new Date().toISOString();
     for (const [i, [id, d]] of items.entries()) { delete decided[id]; sentLocal[id] = { at, stage, decision: d.decision, record: receipt.files?.[i]?.split('/').pop() }; }
     store.set(`screen:${stage}`, decided); store.set('screen:sent', sentLocal);
+    if(DYSPHAGIA){state.screening=await dysphagia.refresh();state.screeningIndex=state.screening.candidates;store.set('screen:sent',{});toast(`Saved ${plural(items.length,'decision')}.${stage==='ta'?' Included titles are ready for full-text review.':''}`);render();return;}
     toast(`Sent ${plural(items.length, 'decision')} — thank you. They leave the queue until the maintainer applies them${stage === 'ta' ? '; included papers then move to the Full text queue at the next build' : ''}.`);
     render();
     window.scrollTo(0, 0);
@@ -989,7 +1018,8 @@ function pdfsView() {
   const missingTable = h('table', { class: 'queue missing' }, h('thead', {}, h('tr', {}, h('th', { text: 'Candidate' }), h('th', { text: 'Paper' }), h('th', { text: 'Find it' }), h('th', { text: 'Screening' }), h('th', { text: 'PDF' }))), h('tbody', {}, missing.map(missingRow)));
   const nUp = missing.filter((c) => uploadFor(c.id, c.key)).length;
   return frag(h('div', { class: 'page-head' }, h('h1', { text: 'PDFs' }), h('span', { class: 'muted small', text: `${m.counts?.private ?? 0} private · ${m.counts?.public ?? 0} public · ${m.counts?.sources ?? 0} more source PDFs with the maintainer, not annotated yet · ${missing.length} included papers without a PDF` })),
-    anyPaperUpload(),
+    DYSPHAGIA?h('p',{class:'small',text:'Upload PDFs against their screening records below or in Full text. PDFs stay in the private Dysphagia bucket.'}):anyPaperUpload(),
+    DYSPHAGIA?h('details',{},h('summary',{text:`Collected open-access PDFs (${oaPdfs.size})`}),...[...oaPdfs].map(([id,pdf])=>h('p',{},h('a',{href:pdf.url,target:'_blank',rel:'noopener',text:state.screeningIndex.find(c=>c.id===id)?.title||id})))):null,
     h('h2', { id: 'missing', text: `Papers we still need (${missing.length})` }),
     h('p', { class: 'small', text: `Included at title/abstract, waiting for a full-text decision, and nobody has the PDF yet${nUp ? ` (${nUp} uploaded, with the maintainer)` : ''}. If you can get one — through your library, the authors, or a repository copy — drag the PDF onto the paper's row (or choose the file and press Upload); it goes to the maintainer's papers folder, never to the public site. The full-text decision for a paper can only be made once its PDF exists.` }),
     missing.length ? missingTable : h('p', { class: 'notice', text: 'Every paper awaiting a full-text decision has its PDF.' }),
@@ -1004,6 +1034,8 @@ function pdfsView() {
 }
 
 function mine() {
+  if(DYSPHAGIA){const rows=dysphagia.reviews();return frag(h('div',{class:'page-head'},h('h1',{text:'Reviews you have sent'})),h('p',{class:'small',text:'Your saved Dysphagia decisions. Title/abstract and full-text assessments are recorded separately.'}),h('button',{class:'btn',text:'Download decisions CSV',onclick:()=>{const data=[['id','stage','decision','reason','notes','reviewer','date'],...rows.map(r=>[r.id,r.stage,r.decision,r.reason,r.notes,r.reviewer,r.date])];const csv=data.map(row=>row.map(value=>'"'+String(value||'').replace(/^[\s]*[=+@-]/,"'$&").replaceAll('"','""')+'"').join(',')).join('\r\n');const link=h('a',{href:URL.createObjectURL(new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'})),download:'dysphagia-review-decisions.csv'});link.click();URL.revokeObjectURL(link.href);}}),rows.length?h('table',{class:'queue'},h('thead',{},h('tr',{},...['Paper','Stage','Decision','Reason / notes','Saved'].map(text=>h('th',{text})))),h('tbody',{},...rows.map(r=>h('tr',{},h('td',{text:state.screeningIndex.find(c=>c.id===r.id)?.title||r.id}),h('td',{text:r.stage==='full_text'?'Full text':'Title/abstract'}),h('td',{text:r.decision}),h('td',{text:[r.reason,r.notes].filter(Boolean).join(' · ')}),h('td',{text:r.date}))))):h('p',{class:'notice',text:'Nothing sent yet.'}));}
+
   const names = myRecords().sort().reverse();
   const row = (n, applied) => { const [stamp, kind, , ...rest] = n.replace(/\.json$/, '').split('_'); return h('tr', {}, h('td', { text: `${stamp.slice(0, 4)}-${stamp.slice(4, 6)}-${stamp.slice(6, 8)} ${stamp.slice(9, 11)}:${stamp.slice(11, 13)}` }), h('td', { text: kind }), h('td', { text: rest.join('_') }), h('td', {}, h('span', { class: `badge ${applied ? 'badge-human' : 'badge-legacy'}`, text: applied ? 'applied' : 'waiting for the maintainer' }))); };
   return frag(h('div', { class: 'page-head' }, h('h1', { text: 'Reviews you have sent' }), h('span', { class: 'muted small', text: `${names.length} records` })),
@@ -1184,6 +1216,14 @@ async function init() {
   const main = document.getElementById('main');
   try {
     const fresh = { cache: 'no-store' };
+    if(DYSPHAGIA){
+      state.me=await api('me');state.manifest=await fetch('manifest.json',fresh).then(r=>r.json());state.kb={findings:[],entries:{},citations:{}};
+      state.screening=await dysphagia.load();state.screeningIndex=state.screening.candidates;
+      const collected=await api('open-access?available=1');for(const [id,paper]of Object.entries(collected.papers||{}))oaPdfs.set(id,{url:`api/open-access?id=${encodeURIComponent(id)}&file=1`,label:'open-access PDF',source:paper.source});
+      const uploads=await api('upload');state.uploads=uploads.uploads||[];state.uploadsOk=true;
+      document.getElementById('who').textContent=state.me.email;document.getElementById('footerVersion').textContent='Dysphagia review · separate chapter workspace';
+      window.addEventListener('hashchange',render);render();return;
+    }
     const [me, manifest, kbText, bindings] = await Promise.all([api('me'), fetch('manifest.json', fresh).then((r) => r.json()),
       loadExportText('export/stroke-aphasia-kb-drafts.json', fresh),
       fetch('drafts.json', fresh).then((r) => (r.ok ? r.json() : null)).catch(() => null)]);
@@ -1213,4 +1253,5 @@ async function init() {
     main.replaceChildren(h('div', { class: 'error' }, h('p', {}, h('b', { text: 'The portal could not start.' })), h('p', { text: e.message }), h('p', { class: 'small', text: 'If you reached this page without the Cloudflare Access sign-in, open the portal address again and sign in with the email the maintainer allow-listed.' })));
   }
 }
+window.addEventListener('beforeunload',e=>{if(DYSPHAGIA&&['ta','ft'].some(stage=>Object.keys(store.get(`screen:${stage}`,{})).length)){e.preventDefault();e.returnValue='';}});
 init();

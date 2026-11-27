@@ -17,3 +17,24 @@ CREATE TABLE IF NOT EXISTS screening_decisions (
  value TEXT NOT NULL,
  PRIMARY KEY (reviewer, record_id)
 );
+
+-- Separate full-text decisions; existing title/abstract rows are unchanged.
+CREATE TABLE IF NOT EXISTS fulltext_reviewer_state (
+ reviewer TEXT PRIMARY KEY,
+ revision INTEGER NOT NULL DEFAULT 0,
+ decisions TEXT NOT NULL DEFAULT '{}',
+ write_id TEXT
+);
+CREATE TABLE IF NOT EXISTS fulltext_events (
+ write_id TEXT PRIMARY KEY,
+ reviewer TEXT NOT NULL,
+ saved_at TEXT NOT NULL,
+ revision INTEGER NOT NULL,
+ changes TEXT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS fulltext_decisions (
+ reviewer TEXT NOT NULL,
+ record_id TEXT NOT NULL,
+ value TEXT NOT NULL,
+ PRIMARY KEY (reviewer, record_id)
+);
